@@ -2,6 +2,7 @@
   "name": "paddock",
   "version": "0.1.0",
   "private": true,
+  "description": "A premium F1 telemetry and pit-wall command center featuring live timing, session replay, tyre strategy simulation, and satellite circuit maps — powered by Next.js, TypeScript, and the Jolpica F1 API.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
