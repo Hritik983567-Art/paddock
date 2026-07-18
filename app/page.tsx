@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSeason } from './contexts/SeasonContext';
 import { getJSON, API_BASE, getTeamColor, fetchCircuitWeather, WeatherData } from './utils/api';
+import CircuitMap from './components/CircuitMap';
 
 interface Race {
   raceName: string;
@@ -10,6 +11,7 @@ interface Race {
   date: string;
   time?: string;
   Circuit: {
+    circuitId?: string;
     circuitName: string;
     Location: {
       locality: string;
@@ -257,16 +259,24 @@ export default function OverviewPage() {
             )}
           </div>
 
-          {nextRace && nextRace.Circuit.Location.lat && nextRace.Circuit.Location.long && (
-            <div style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px dashed var(--line)' }}>
-              <div className="eyebrow" style={{ fontSize: '10px', marginBottom: '6px' }}>Circuit Satellite Map</div>
-              <iframe
-                src={`https://maps.google.com/maps?q=${nextRace.Circuit.Location.lat},${nextRace.Circuit.Location.long}&t=k&z=14&output=embed`}
-                width="100%"
-                height="150"
-                style={{ border: '1px solid var(--line)', borderRadius: '4px', opacity: 0.85 }}
-                allowFullScreen
-              />
+          {nextRace && nextRace.Circuit.circuitId && (
+            <div style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px dashed var(--line)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div>
+                <div className="eyebrow" style={{ fontSize: '10px', marginBottom: '8px' }}>Circuit Map Outline</div>
+                <CircuitMap circuitId={nextRace.Circuit.circuitId} showStats={false} />
+              </div>
+              {nextRace.Circuit.Location.lat && nextRace.Circuit.Location.long && (
+                <div>
+                  <div className="eyebrow" style={{ fontSize: '10px', marginBottom: '6px' }}>GPS Satellite Location</div>
+                  <iframe
+                    src={`https://maps.google.com/maps?q=${nextRace.Circuit.Location.lat},${nextRace.Circuit.Location.long}&t=k&z=14&output=embed`}
+                    width="100%"
+                    height="160"
+                    style={{ border: '1px solid var(--line)', borderRadius: '4px', opacity: 0.85 }}
+                    allowFullScreen
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>

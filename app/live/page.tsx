@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { getTeamColor } from '../utils/api';
+import { getTeamColor, getJSON, API_BASE } from '../utils/api';
+import CircuitMap from '../components/CircuitMap';
 
 interface LiveDriver {
   driverId: string;
@@ -55,8 +56,47 @@ const RADIO_MESSAGES = [
   "GAS: 'The DRS is working fine now, overtaking option is open.'"
 ];
 
+
+
 export default function LiveTelemetryPage() {
   const [drivers, setDrivers] = useState<LiveDriver[]>(INITIAL_DRIVERS);
+  const [selectedCircuit, setSelectedCircuit] = useState('spa');
+  const [races, setRaces] = useState<any[]>([]);
+  const [activeRace, setActiveRace] = useState<any | null>(null);
+
+  // Fetch current calendar races on mount
+  useEffect(() => {
+    async function loadCalendar() {
+      try {
+        const res = await getJSON(`${API_BASE}/current.json`);
+        const list = res.MRData.RaceTable.Races || [];
+        setRaces(list);
+        if (list.length > 0) {
+          const spaRace = list.find((r: any) => r.Circuit.circuitId?.toLowerCase().includes('spa'));
+          if (spaRace) {
+            setSelectedCircuit(spaRace.Circuit.circuitId);
+            setActiveRace(spaRace);
+          } else {
+            setSelectedCircuit(list[0].Circuit.circuitId);
+            setActiveRace(list[0]);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load calendar for live console:', err);
+      }
+    }
+    loadCalendar();
+  }, []);
+
+  const handleCircuitChange = (circuitId: string) => {
+    setSelectedCircuit(circuitId);
+    const matched = races.find((r: any) => r.Circuit.circuitId === circuitId);
+    if (matched) {
+      setActiveRace(matched);
+    }
+  };
+
+  const [activeDriverCode, setActiveDriverCode] = useState<string | null>(null);
   const [currentLap, setCurrentLap] = useState(14);
   const [isPlaying, setIsPlaying] = useState(true);
   const [speed, setSpeed] = useState(2500); // 2.5s telemetry ticks
@@ -498,106 +538,173 @@ export default function LiveTelemetryPage() {
         {/* Live Grid Layout */}
         <div className="grid cols-2" style={{ gridTemplateColumns: '1.4fr 1fr', alignItems: 'start', gap: '20px' }}>
           
-          {/* Live Timing Classification Board */}
-          <div className="panel" style={{ overflowX: 'auto' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '17px', margin: 0 }}>
-                Live Timing classification
-              </h3>
-              {connectionMode === 'SIMULATOR' && (
-                <div style={{ display: 'flex', gap: '6px' }}>
-                  <span className="footnote" style={{ color: 'var(--dim)' }}>Polling Speed:</span>
-                  <select 
-                    value={speed} 
-                    onChange={(e) => setSpeed(parseInt(e.target.value))}
-                    style={{ background: 'var(--carbon-2)', border: '1px solid var(--line)', color: 'var(--paper)', fontSize: '11px', padding: '2px 4px' }}
-                  >
-                    <option value={1000}>1.0s (Fast)</option>
-                    <option value={2500}>2.5s (Normal)</option>
-                    <option value={5000}>5.0s (Slow)</option>
-                  </select>
-                </div>
-              )}
+          {/* Left Column: Live Track Radar & Standings */}
+          <div className="flex flex-col gap-4">
+            {/* Live Track Radar Map */}
+            <div className="panel" style={{ padding: 0, border: 'none', background: 'transparent' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <span className="footnote" style={{ color: 'var(--dim)', fontWeight: 'bold', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>SELECT ACTIVE VENUE RADAR:</span>
+                <select
+                  value={selectedCircuit}
+                  onChange={(e) => handleCircuitChange(e.target.value)}
+                  style={{
+                    background: 'var(--carbon-2)',
+                    border: '1px solid var(--line)',
+                    color: 'var(--paper)',
+                    fontSize: '11px',
+                    padding: '3px 6px',
+                    borderRadius: '4px',
+                    fontFamily: 'var(--font-mono)'
+                  }}
+                >
+                  {races.length > 0 ? (
+                    races.map((r: any) => (
+                      <option key={r.Circuit.circuitId} value={r.Circuit.circuitId}>
+                        🏁 {r.Circuit.Location.country} - {r.Circuit.circuitName}
+                      </option>
+                    ))
+                  ) : (
+                    <>
+                      <option value="spa">🇧🇪 Spa-Francorchamps</option>
+                      <option value="monza">🇮🇹 Monza</option>
+                      <option value="silverstone">🇬🇧 Silverstone</option>
+                      <option value="monaco">🇲🇨 Monaco</option>
+                    </>
+                  )}
+                </select>
+              </div>
+              <CircuitMap 
+                circuitId={selectedCircuit} 
+                drivers={drivers}
+                showStats={false}
+                activeDriverCode={activeDriverCode || ''}
+                onHoverDriver={setActiveDriverCode}
+              />
             </div>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '13.0px' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid var(--line)', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--dim)' }}>
-                  <th style={{ padding: '6px 4px' }}>POS</th>
-                  <th style={{ padding: '6px 4px' }}>NUM</th>
-                  <th style={{ padding: '6px 4px' }}>DRIVER</th>
-                  <th style={{ padding: '6px 4px' }}>GAP / GAP TO LDR</th>
-                  <th style={{ padding: '6px 4px' }}>LAST LAP</th>
-                  <th style={{ padding: '6px 4px' }}>SPEED</th>
-                  <th style={{ padding: '6px 4px' }}>TYRE</th>
-                  <th style={{ padding: '6px 4px' }}>STATUS</th>
-                </tr>
-              </thead>
-              <tbody>
-                {drivers.map(row => {
-                  const color = getTeamColor(row.teamId);
-                  const isFastest = row.isFastestSector;
-                  const inPit = row.status === 'IN PIT';
-                  const retired = row.status === 'RETIRED';
 
-                  return (
-                    <tr 
-                      key={row.driverId} 
-                      style={{ 
-                        borderBottom: '1px solid rgba(42, 47, 58, 0.3)',
-                        opacity: retired ? 0.45 : 1,
-                        background: inPit ? 'rgba(232, 180, 42, 0.04)' : 'transparent'
-                      }}
+            {/* Live Timing Classification Board */}
+            <div className="panel" style={{ overflowX: 'auto' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '17px', margin: 0 }}>
+                  Live Timing classification
+                </h3>
+                {connectionMode === 'SIMULATOR' && (
+                  <div style={{ display: 'flex', gap: '6px' }}>
+                    <span className="footnote" style={{ color: 'var(--dim)' }}>Polling Speed:</span>
+                    <select 
+                      value={speed} 
+                      onChange={(e) => setSpeed(parseInt(e.target.value))}
+                      style={{ background: 'var(--carbon-2)', border: '1px solid var(--line)', color: 'var(--paper)', fontSize: '11px', padding: '2px 4px' }}
                     >
-                      <td style={{ padding: '6px 4px', fontWeight: 'bold' }}>P{row.position}</td>
-                      <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>#{row.number}</td>
-                      <td style={{ padding: '6px 4px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ width: '3px', height: '14px', background: color, display: 'inline-block', borderRadius: '1px' }}></span>
-                        {row.name}
-                      </td>
-                      <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)' }}>
-                        {row.position === 1 ? 'Leader' : `+${row.gapToLeader.toFixed(3)}s`}
-                      </td>
-                      <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', color: isFastest ? 'var(--purple)' : 'var(--paper)' }}>
-                        {row.lastLapTime}
-                      </td>
-                      <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>
-                        {row.speedTrap} <small>km/h</small>
-                      </td>
-                      <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)' }}>
-                        <span 
-                          style={{
-                            background: row.tyre === 'S' ? 'var(--red)' : row.tyre === 'M' ? 'var(--amber)' : 'var(--paper)',
-                            color: '#000',
-                            padding: '1px 4px',
-                            borderRadius: '3px',
-                            fontWeight: 'bold',
-                            fontSize: '10.5px',
-                            marginRight: '4px'
-                          }}
-                        >
-                          {row.tyre}
-                        </span>
-                        <small style={{ color: 'var(--dim)' }}>{row.tyreAge}</small>
-                      </td>
-                      <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', fontSize: '11px' }}>
-                        {inPit ? (
-                          <span style={{ color: 'var(--amber)', background: 'rgba(232, 180, 42, 0.1)', padding: '1px 4px', borderRadius: '3px' }}>IN PIT</span>
-                        ) : retired ? (
-                          <span style={{ color: 'var(--red)', background: 'rgba(232, 48, 42, 0.1)', padding: '1px 4px', borderRadius: '3px' }}>OUT</span>
-                        ) : (
-                          <span style={{ color: 'var(--green)' }}>RACING</span>
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                      <option value={1000}>1.0s (Fast)</option>
+                      <option value={2500}>2.5s (Normal)</option>
+                      <option value={5000}>5.0s (Slow)</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '13.0px' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid var(--line)', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--dim)' }}>
+                    <th style={{ padding: '6px 4px' }}>POS</th>
+                    <th style={{ padding: '6px 4px' }}>NUM</th>
+                    <th style={{ padding: '6px 4px' }}>DRIVER</th>
+                    <th style={{ padding: '6px 4px' }}>GAP / GAP TO LDR</th>
+                    <th style={{ padding: '6px 4px' }}>LAST LAP</th>
+                    <th style={{ padding: '6px 4px' }}>SPEED</th>
+                    <th style={{ padding: '6px 4px' }}>TYRE</th>
+                    <th style={{ padding: '6px 4px' }}>STATUS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {drivers.map(row => {
+                    const color = getTeamColor(row.teamId);
+                    const isFastest = row.isFastestSector;
+                    const inPit = row.status === 'IN PIT';
+                    const retired = row.status === 'RETIRED';
+                    const isHovered = activeDriverCode === row.code;
+
+                    return (
+                      <tr 
+                        key={row.driverId} 
+                        onMouseEnter={() => setActiveDriverCode(row.code)}
+                        onMouseLeave={() => setActiveDriverCode(null)}
+                        style={{ 
+                          borderBottom: '1px solid rgba(42, 47, 58, 0.3)',
+                          opacity: retired ? 0.45 : 1,
+                          background: isHovered 
+                            ? 'rgba(52, 228, 200, 0.08)' 
+                            : inPit 
+                              ? 'rgba(232, 180, 42, 0.04)' 
+                              : 'transparent',
+                          transition: 'background 0.15s ease'
+                        }}
+                      >
+                        <td style={{ padding: '6px 4px', fontWeight: 'bold', color: isHovered ? 'var(--cyan)' : 'inherit' }}>P{row.position}</td>
+                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>#{row.number}</td>
+                        <td style={{ padding: '6px 4px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <span style={{ width: '3px', height: '14px', background: color, display: 'inline-block', borderRadius: '1px' }}></span>
+                          {row.name}
+                        </td>
+                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)' }}>
+                          {row.position === 1 ? 'Leader' : `+${row.gapToLeader.toFixed(3)}s`}
+                        </td>
+                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', color: isFastest ? 'var(--purple)' : 'var(--paper)' }}>
+                          {row.lastLapTime}
+                        </td>
+                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>
+                          {row.speedTrap} <small>km/h</small>
+                        </td>
+                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)' }}>
+                          <span 
+                            style={{
+                              background: row.tyre === 'S' ? 'var(--red)' : row.tyre === 'M' ? 'var(--amber)' : 'var(--paper)',
+                              color: '#000',
+                              padding: '1px 4px',
+                              borderRadius: '3px',
+                              fontWeight: 'bold',
+                              fontSize: '10.5px',
+                              marginRight: '4px'
+                            }}
+                          >
+                            {row.tyre}
+                          </span>
+                          <small style={{ color: 'var(--dim)' }}>{row.tyreAge}</small>
+                        </td>
+                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', fontSize: '11px' }}>
+                          {inPit ? (
+                            <span style={{ color: 'var(--amber)', background: 'rgba(232, 180, 42, 0.1)', padding: '1px 4px', borderRadius: '3px' }}>IN PIT</span>
+                          ) : retired ? (
+                            <span style={{ color: 'var(--red)', background: 'rgba(232, 48, 42, 0.1)', padding: '1px 4px', borderRadius: '3px' }}>OUT</span>
+                          ) : (
+                            <span style={{ color: 'var(--green)' }}>RACING</span>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          {/* Mission Control Events & Live Radio Feed */}
+          {/* Right Column: GPS Location & Events */}
           <div className="flex flex-col gap-4">
             
+            {/* GPS Satellite Track Locator */}
+            <div className="panel">
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '16px', marginBottom: '10px' }}>
+                GPS Track Locator (Satellite)
+              </h3>
+              <iframe
+                src={`https://maps.google.com/maps?q=${activeRace?.Circuit?.Location?.lat || '50.4372'},${activeRace?.Circuit?.Location?.long || '5.9714'}&t=k&z=14&output=embed`}
+                width="100%"
+                height="220"
+                style={{ border: '1px solid var(--line)', borderRadius: '6px', opacity: 0.85 }}
+                allowFullScreen
+              />
+            </div>
+
             {/* Action simulation buttons */}
             <div className="panel">
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '16px', marginBottom: '10px' }}>Tactical interventions</h3>

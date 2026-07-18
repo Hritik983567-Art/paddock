@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSeason } from '../contexts/SeasonContext';
 import { getJSON, API_BASE, getTeamColor, fetchCircuitWeather, WeatherData } from '../utils/api';
+import CircuitMap from '../components/CircuitMap';
 
 interface RoundItem {
   round: string;
@@ -64,10 +65,10 @@ export default function RaceTrackerPage() {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [weatherLoading, setWeatherLoading] = useState(false);
   const [weatherError, setWeatherError] = useState('');
-  const [circuitCoords, setCircuitCoords] = useState<{ lat: string; long: string } | null>(null);
   
   // Real data state
   const [raceName, setRaceName] = useState('');
+  const [circuitId, setCircuitId] = useState('');
   const [timingRows, setTimingRows] = useState<TimingRow[]>([]);
   const [pitStops, setPitStops] = useState<PitStopRow[]>([]);
   const [driverCodeMap, setDriverCodeMap] = useState<Record<string, string>>({});
@@ -128,6 +129,7 @@ export default function RaceTrackerPage() {
       }
 
       setRaceName(raceInfo.raceName);
+      setCircuitId(raceInfo.Circuit?.circuitId || '');
       const resultsList = (raceInfo.Results || []) as TimingRow[];
       setTimingRows(resultsList);
 
@@ -151,7 +153,6 @@ export default function RaceTrackerPage() {
       const lat = raceInfo.Circuit?.Location?.lat;
       const lon = raceInfo.Circuit?.Location?.long;
       if (lat && lon) {
-        setCircuitCoords({ lat, long: lon });
         setWeatherLoading(true);
         setWeatherError('');
         try {
@@ -247,7 +248,7 @@ export default function RaceTrackerPage() {
         {timingRows.length > 0 && !loadingData && (
           <div style={{ marginTop: '20px' }}>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', marginBottom: '18px', color: 'var(--cyan)' }}>
-              {raceName.toUpperCase()} // OFFICIAL TELEMETRY FEED
+              {raceName.toUpperCase()} &bull; OFFICIAL TELEMETRY FEED
             </h3>
 
             {/* Quick Stats Grid */}
@@ -310,7 +311,7 @@ export default function RaceTrackerPage() {
             </div>
 
             {/* Layout Grid */}
-            <div className="grid cols-2" style={{ alignItems: 'start' }}>
+            <div className="grid cols-2" style={{ gridTemplateColumns: '1.2fr 1fr', alignItems: 'start', gap: '20px' }}>
               
               {/* Timing Sheet */}
               <div className="panel" style={{ overflowX: 'auto' }}>
@@ -356,18 +357,9 @@ export default function RaceTrackerPage() {
 
               {/* Sidebar Pit stops & DNF Log */}
               <div className="flex flex-col gap-4">
-                {/* Circuit Satellite Map */}
-                {circuitCoords && (
-                  <div className="panel">
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '17px', marginBottom: '12px' }}>Circuit Satellite Map</h3>
-                    <iframe
-                      src={`https://maps.google.com/maps?q=${circuitCoords.lat},${circuitCoords.long}&t=k&z=14&output=embed`}
-                      width="100%"
-                      height="200"
-                      style={{ border: '1px solid var(--line)', borderRadius: '6px', opacity: 0.85 }}
-                      allowFullScreen
-                    />
-                  </div>
+                {/* Circuit Map */}
+                {circuitId && (
+                  <CircuitMap circuitId={circuitId} showStats={true} />
                 )}
 
                 {/* Pit Stops Log */}
