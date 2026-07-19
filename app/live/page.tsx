@@ -134,6 +134,8 @@ export default function LiveTelemetryPage() {
   const connectToProxy = () => {
     autoReconnectRef.current = true;
     if (wsRef.current) {
+      wsRef.current.onclose = null;
+      wsRef.current.onerror = null;
       wsRef.current.close();
     }
 
@@ -253,6 +255,8 @@ export default function LiveTelemetryPage() {
   const disconnectFromProxy = () => {
     autoReconnectRef.current = false;
     if (wsRef.current) {
+      wsRef.current.onclose = null;
+      wsRef.current.onerror = null;
       wsRef.current.close();
       wsRef.current = null;
     }
