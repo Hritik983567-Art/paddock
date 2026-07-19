@@ -986,8 +986,7 @@ export default function CircuitMap({
         <svg 
           viewBox={track.viewBox || "0 0 600 400"} 
           width="100%" 
-          height="100%" 
-          style={{ display: 'block', maxHeight: '350px' }}
+          style={{ display: 'block', width: '100%', height: '320px', maxHeight: '350px' }}
         >
           <defs>
             <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
