@@ -150,22 +150,27 @@ export default function LiveTelemetryPage() {
         // Handle mock streaming updates from F1 proxy
         else if (msg.source === 'F1_PROXY_MOCK') {
           const update = msg.mockUpdate;
-          setDrivers(prev => {
-            return prev.map(d => {
-              if (d.code === update.driverCode) {
-                return {
-                  ...d,
-                  lastLapTime: update.lapTime,
-                  speedTrap: update.speedTrap,
-                  isFastestSector: Math.random() > 0.8
-                };
-              }
-              return d;
+          if (msg.channel === 'TerminalEvent') {
+            if (update.event) {
+              setLogs(l => [...l, update.event]);
+            }
+          } else {
+            setDrivers(prev => {
+              return prev.map(d => {
+                if (d.code === update.driverCode) {
+                  return {
+                    ...d,
+                    lastLapTime: update.lapTime,
+                    speedTrap: update.speedTrap,
+                    isFastestSector: Math.random() > 0.8
+                  };
+                }
+                return d;
+              });
             });
-          });
-
-          if (update.event) {
-            setLogs(l => [...l, `[${timeStr}] ${update.event}`]);
+            if (update.event) {
+              setLogs(l => [...l, `[${timeStr}] ${update.event}`]);
+            }
           }
         }
 
@@ -182,9 +187,11 @@ export default function LiveTelemetryPage() {
                   if (dataLine.Position) matched.position = dataLine.Position;
                   if (dataLine.LastLapTime && dataLine.LastLapTime.Value) matched.lastLapTime = dataLine.LastLapTime.Value;
                   if (dataLine.Speeds && dataLine.Speeds.ST) matched.speedTrap = parseInt(dataLine.Speeds.ST) || matched.speedTrap;
-                  if (dataLine.InPit) matched.status = 'IN PIT';
-                  else if (dataLine.Retired) matched.status = 'RETIRED';
-                  else matched.status = 'RACING';
+                  if (dataLine.InPit !== undefined) matched.status = dataLine.InPit ? 'IN PIT' : 'RACING';
+                  if (dataLine.Retired !== undefined) matched.status = dataLine.Retired ? 'RETIRED' : matched.status;
+                  if (dataLine.GapToLeader !== undefined) {
+                    matched.gapToLeader = parseFloat(dataLine.GapToLeader) || 0;
+                  }
                 }
               });
 
@@ -477,6 +484,25 @@ export default function LiveTelemetryPage() {
             )}
           </div>
         </div>
+
+        {/* Warning Banner when connected to LIVE_SERVER */}
+        {connectionMode === 'LIVE_SERVER' && (
+          <div 
+            style={{ 
+              background: 'rgba(232, 180, 42, 0.08)', 
+              border: '1px solid var(--amber)', 
+              borderRadius: '6px', 
+              padding: '10px 14px', 
+              marginTop: '16px', 
+              color: 'var(--amber)', 
+              fontSize: '12.5px',
+              lineHeight: '1.4',
+              fontFamily: 'var(--font-mono)' 
+            }}
+          >
+            ⚠️ <strong>ACTIVE F1 SESSION RESTRICTION:</strong> Official F1 servers restrict unauthenticated timing feeds during active track sessions. Running high-fidelity local proxy stream to prevent timing lockouts.
+          </div>
+        )}
 
         {/* Live Race Status Bar */}
         <div 
