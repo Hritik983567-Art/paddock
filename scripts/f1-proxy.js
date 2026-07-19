@@ -137,6 +137,34 @@ async function connectToF1Live() {
               if (decompressed) {
                 if (channel === 'TimingData') {
                   lastF1DataFrameTime = Date.now();
+
+                  // Parse updates to display in the client's event terminal
+                  if (decompressed.Lines) {
+                    Object.entries(decompressed.Lines).forEach(([num, line]) => {
+                      const driverCode = NUMBER_TO_CODE[num] || `Driver #${num}`;
+                      const timeStamp = new Date().toTimeString().split(' ')[0];
+
+                      if (line && line.LastLapTime && line.LastLapTime.Value) {
+                        broadcastToLocalClients({
+                          source: 'F1_PROXY_MOCK',
+                          channel: 'TerminalEvent',
+                          mockUpdate: {
+                            event: `[${timeStamp}] ⏱️ LIVE UPDATE: ${driverCode} completed lap with time ${line.LastLapTime.Value}`
+                          }
+                        });
+                      }
+
+                      if (line && line.InPit) {
+                        broadcastToLocalClients({
+                          source: 'F1_PROXY_MOCK',
+                          channel: 'TerminalEvent',
+                          mockUpdate: {
+                            event: `[${timeStamp}] 🔧 LIVE UPDATE: ${driverCode} has entered the pit lane.`
+                          }
+                        });
+                      }
+                    });
+                  }
                 }
 
                 broadcastToLocalClients({
@@ -198,6 +226,31 @@ const CIRCUIT_TO_2024_ROUND = {
   'vegas': 22,
   'losail': 23,
   'yas_marina': 24
+};
+
+const NUMBER_TO_CODE = {
+  '12': 'ANT',
+  '63': 'RUS',
+  '44': 'HAM',
+  '16': 'LEC',
+  '1': 'NOR',
+  '81': 'PIA',
+  '3': 'VER',
+  '6': 'HAD',
+  '10': 'GAS',
+  '30': 'LAW',
+  '41': 'LIN',
+  '87': 'BEA',
+  '43': 'COL',
+  '5': 'BOR',
+  '55': 'SAI',
+  '23': 'ALB',
+  '31': 'OCO',
+  '14': 'ALO',
+  '27': 'HUL',
+  '77': 'BOT',
+  '11': 'PER',
+  '18': 'STR'
 };
 
 let currentCircuitId = 'spa';
