@@ -121,6 +121,7 @@ export default function LiveTelemetryPage() {
   const logConsoleRef = useRef<HTMLDivElement | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
+  const autoReconnectRef = useRef(true);
 
   // Auto-scroll logs to bottom
   useEffect(() => {
@@ -131,6 +132,7 @@ export default function LiveTelemetryPage() {
 
   // Connect to F1 Proxy WebSocket Server
   const connectToProxy = () => {
+    autoReconnectRef.current = true;
     if (wsRef.current) {
       wsRef.current.close();
     }
@@ -232,6 +234,13 @@ export default function LiveTelemetryPage() {
       setProxyStatus('OFFLINE');
       const timeStr = new Date().toTimeString().split(' ')[0];
       setLogs(l => [...l, `[${timeStr}] PROXY: Connection to ws://127.0.0.1:8080 disconnected.`]);
+      
+      if (autoReconnectRef.current) {
+        setLogs(l => [...l, `[${timeStr}] PROXY: Reconnecting in 3s...`]);
+        setTimeout(() => {
+          connectToProxy();
+        }, 3000);
+      }
     };
 
     socket.onerror = () => {
@@ -242,6 +251,7 @@ export default function LiveTelemetryPage() {
   };
 
   const disconnectFromProxy = () => {
+    autoReconnectRef.current = false;
     if (wsRef.current) {
       wsRef.current.close();
       wsRef.current = null;
