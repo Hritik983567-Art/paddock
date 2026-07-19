@@ -22,6 +22,27 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { selectedSeason, setSelectedSeason } = useSeason();
   const pathname = usePathname();
 
+  const [userName, setUserName] = React.useState('User');
+  const [loginMethod, setLoginMethod] = React.useState('');
+
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      const name = localStorage.getItem('paddock_user_name');
+      const method = localStorage.getItem('paddock_user_method');
+      const phone = localStorage.getItem('paddock_user_phone');
+      if (name) {
+        setUserName(name);
+      } else if (phone) {
+        setUserName(`+91 ${phone.slice(0, 5)}...`);
+      } else {
+        setUserName('User');
+      }
+      if (method) {
+        setLoginMethod(method);
+      }
+    }
+  }, [isAuthenticated]);
+
   if (isLoading) {
     return (
       <div className="loading" style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -71,7 +92,13 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             <option key={y} value={y.toString()}>{y}</option>
           ))}
         </select>
-        <button id="logoutLink" onClick={logout}>Log out</button>
+        
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <span style={{ fontSize: '12.5px', color: 'var(--dim)', fontFamily: 'var(--font-mono)' }}>
+            👤 {userName} {loginMethod === 'google' ? ' (Google)' : loginMethod === 'phone' ? ' (OTP)' : loginMethod === 'email' ? ' (Email)' : ''}
+          </span>
+          <button id="logoutLink" style={{ margin: 0 }} onClick={logout}>Log out</button>
+        </div>
       </div>
 
       <aside className="side-nav">
