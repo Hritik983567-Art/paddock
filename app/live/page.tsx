@@ -199,7 +199,7 @@ export default function LiveTelemetryPage() {
               Object.entries(lines).forEach(([driverNum, dataLine]: [string, any]) => {
                 const matched = list.find(d => d.number === driverNum);
                 if (matched) {
-                  if (dataLine.Position) matched.position = dataLine.Position;
+                  if (dataLine.Position) matched.position = parseInt(dataLine.Position) || matched.position;
                   if (dataLine.LastLapTime && dataLine.LastLapTime.Value) matched.lastLapTime = dataLine.LastLapTime.Value;
                   if (dataLine.Speeds && dataLine.Speeds.ST) matched.speedTrap = parseInt(dataLine.Speeds.ST) || matched.speedTrap;
                   if (dataLine.InPit !== undefined) matched.status = dataLine.InPit ? 'IN PIT' : 'RACING';
