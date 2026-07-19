@@ -6,20 +6,18 @@ import { useAuth } from '../contexts/AuthContext';
 export default function AuthGate() {
   const { login } = useAuth();
   
-  // Auth Form tabs and modes
-  const [activeTab, setActiveTab] = useState<'email' | 'phone' | 'demo'>('email');
-  const [isSignUp, setIsSignUp] = useState(false);
-  
-  // Form values
-  const [email, setEmail] = useState('');
+  // Unified flow step: 1 = Identifier, 2 = Verification (Password or OTP)
+  const [step, setStep] = useState<1 | 2>(1);
+  const [identifier, setIdentifier] = useState('');
+  const [identifierType, setIdentifierType] = useState<'email' | 'phone' | 'admin' | null>(null);
+
+  // Form values for Step 2
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState('');
-  const [username, setUsername] = useState('');
-  
-  // OTP delivery flow state
-  const [isOtpSent, setIsOtpSent] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
+
+  // OTP State
   const [otpTimer, setOtpTimer] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -27,11 +25,11 @@ export default function AuthGate() {
   const [showGoogleModal, setShowGoogleModal] = useState(false);
   const [googleConnecting, setGoogleConnecting] = useState(false);
 
-  // UI styling feedback
+  // UI feedback
   const [error, setError] = useState('');
   const [shake, setShake] = useState(false);
 
-  // Countdown timer logic for phone OTP resends
+  // Countdown timer logic for phone OTP
   useEffect(() => {
     if (otpTimer > 0) {
       timerRef.current = setTimeout(() => {
@@ -48,75 +46,103 @@ export default function AuthGate() {
     setTimeout(() => setShake(false), 400);
   };
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleContinue = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     
-    if (!email.includes('@') || email.length < 5) {
-      setError('Please enter a valid email address.');
+    const value = identifier.trim();
+    if (!value) {
+      setError('Please enter your email, phone number, or admin username.');
       triggerShake();
       return;
     }
 
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters.');
-      triggerShake();
+    // 1. Detect Admin
+    if (value.toLowerCase() === 'admin') {
+      setIdentifierType('admin');
+      setStep(2);
       return;
     }
 
-    if (isSignUp && !name.trim()) {
-      setError('Please enter your full name.');
-      triggerShake();
+    // 2. Detect Email
+    if (value.includes('@')) {
+      if (value.length < 5) {
+        setError('Please enter a valid email address.');
+        triggerShake();
+        return;
+      }
+      setIdentifierType('email');
+      setStep(2);
       return;
     }
 
-    try {
-      const success = login('email', { email, password, isSignUp, name });
+    // 3. Detect Phone (contains mostly digits)
+    const cleanPhone = value.replace(/\D/g, '');
+    if (cleanPhone.length >= 10) {
+      setIdentifierType('phone');
+      setStep(2);
+      setOtpTimer(30); // Send OTP simulation
+      return;
+    }
+
+    // 4. Unrecognized format fallback
+    setError('Enter a valid email address or 10-digit phone number.');
+    triggerShake();
+  };
+
+  const handleVerify = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+
+    if (identifierType === 'admin') {
+      const success = login('demo', { username: 'admin', password });
       if (!success) {
-        setError('Incorrect email or password.');
+        setError('Incorrect admin password.');
         triggerShake();
       }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred during registration.');
-      triggerShake();
-    }
-  };
-
-  const handlePhoneSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-
-    const cleanPhone = phone.replace(/\D/g, '');
-    if (cleanPhone.length < 10) {
-      setError('Please enter a valid 10-digit phone number.');
-      triggerShake();
-      return;
-    }
-
-    if (!isOtpSent) {
-      setIsOtpSent(true);
-      setOtpTimer(30);
-      return;
-    }
-
-    // OTP verification validation
-    if (otp === '123456' || otp.length === 6) {
-      login('phone', { phone: cleanPhone });
-    } else {
-      setError('Invalid OTP code. Try entering "123456".');
-      triggerShake();
-    }
-  };
-
-  const handleDemoSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
+    } 
     
-    const success = login('demo', { username, password });
-    if (!success) {
-      setError('Incorrect admin credentials.');
-      triggerShake();
+    else if (identifierType === 'email') {
+      if (password.length < 6) {
+        setError('Password must be at least 6 characters.');
+        triggerShake();
+        return;
+      }
+      if (isSignUp && !name.trim()) {
+        setError('Please enter your name.');
+        triggerShake();
+        return;
+      }
+      try {
+        const success = login('email', { email: identifier, password, isSignUp, name });
+        if (!success) {
+          setError('Incorrect password.');
+          triggerShake();
+        }
+      } catch (err: any) {
+        setError(err.message || 'An error occurred during registration.');
+        triggerShake();
+      }
+    } 
+    
+    else if (identifierType === 'phone') {
+      const cleanPhone = identifier.replace(/\D/g, '');
+      if (otp === '123456' || otp.length === 6) {
+        login('phone', { phone: cleanPhone });
+      } else {
+        setError('Invalid OTP code. Enter "123456" for demo access.');
+        triggerShake();
+      }
     }
+  };
+
+  const handleBack = () => {
+    setError('');
+    setStep(1);
+    setIdentifierType(null);
+    setPassword('');
+    setOtp('');
+    setName('');
   };
 
   const startGoogleLogin = () => {
@@ -124,7 +150,6 @@ export default function AuthGate() {
     setShowGoogleModal(true);
     setGoogleConnecting(true);
 
-    // Simulate OAuth handshake
     setTimeout(() => {
       setGoogleConnecting(false);
     }, 1500);
@@ -138,43 +163,7 @@ export default function AuthGate() {
   return (
     <div id="authGate">
       <style>{`
-        /* Self-contained Auth Tab Navigation & Google buttons style rules */
-        .auth-tabs {
-          display: flex;
-          border-bottom: 1px solid var(--line);
-          margin-bottom: 20px;
-          gap: 6px;
-        }
-        .auth-tab {
-          flex: 1;
-          background: transparent;
-          border: none;
-          color: var(--dim);
-          font-family: var(--font-display);
-          font-size: 13px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          padding: 10px 0;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          border-bottom: 2px solid transparent;
-        }
-        .auth-tab.active {
-          color: var(--cyan);
-          border-bottom-color: var(--cyan);
-        }
-        .mode-toggle-link {
-          font-size: 12px;
-          color: var(--cyan);
-          cursor: pointer;
-          text-decoration: underline dotted;
-          margin-bottom: 15px;
-          display: inline-block;
-        }
-        .mode-toggle-link:hover {
-          color: var(--paper);
-        }
+        /* Self-contained style rules for the unified merged login screen */
         .google-btn {
           width: 100%;
           display: flex;
@@ -185,7 +174,7 @@ export default function AuthGate() {
           color: #1F2937;
           border: 1px solid #E5E7EB;
           border-radius: 6px;
-          padding: 10px 0;
+          padding: 11px 0;
           font-family: var(--font-body);
           font-weight: 500;
           font-size: 13.5px;
@@ -202,7 +191,7 @@ export default function AuthGate() {
           display: flex;
           align-items: center;
           text-align: center;
-          margin: 18px 0 10px;
+          margin: 20px 0 10px;
           font-size: 11px;
           color: var(--dim);
           font-family: var(--font-mono);
@@ -218,6 +207,17 @@ export default function AuthGate() {
         }
         .auth-divider:not(:empty)::after {
           margin-left: .75em;
+        }
+        .mode-toggle-link {
+          font-size: 12px;
+          color: var(--cyan);
+          cursor: pointer;
+          text-decoration: underline dotted;
+          margin-bottom: 15px;
+          display: inline-block;
+        }
+        .mode-toggle-link:hover {
+          color: var(--paper);
         }
         .otp-hint {
           font-family: var(--font-mono);
@@ -239,6 +239,20 @@ export default function AuthGate() {
           color: var(--dim);
           text-decoration: none;
           cursor: not-allowed;
+        }
+        .back-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          color: var(--dim);
+          cursor: pointer;
+          margin-bottom: 16px;
+          transition: color 0.15s ease;
+        }
+        .back-link:hover {
+          color: var(--paper);
         }
 
         /* Google Accounts Chooser Overlay style rules */
@@ -351,121 +365,79 @@ export default function AuthGate() {
         </div>
 
         <div className="gate-form">
-          <div className="auth-tabs">
-            <button 
-              className={`auth-tab ${activeTab === 'email' ? 'active' : ''}`}
-              onClick={() => { setActiveTab('email'); setError(''); }}
-            >
-              Email Auth
-            </button>
-            <button 
-              className={`auth-tab ${activeTab === 'phone' ? 'active' : ''}`}
-              onClick={() => { setActiveTab('phone'); setError(''); }}
-            >
-              Phone / OTP
-            </button>
-            <button 
-              className={`auth-tab ${activeTab === 'demo' ? 'active' : ''}`}
-              onClick={() => { setActiveTab('demo'); setError(''); }}
-            >
-              Demo Admin
-            </button>
-          </div>
-
-          <h2>{activeTab === 'email' ? (isSignUp ? 'Create Account' : 'Sign In') : activeTab === 'phone' ? 'Phone Login' : 'Admin Sign In'}</h2>
-          <p className="gate-sub">
-            {activeTab === 'email' 
-              ? 'Secure dashboard login with email database verification.'
-              : activeTab === 'phone'
-              ? 'Fast login using mobile number with simulated OTP validation.'
-              : 'Developer console access using mock admin dashboard tokens.'}
-          </p>
-
+          <h2>Sign in</h2>
+          <p className="gate-sub">Enter your email or phone number to continue to Paddock.</p>
+          
           <div className="gate-error" id="gateError">{error}</div>
 
-          {/* Tab 1: Email Form */}
-          {activeTab === 'email' && (
-            <form onSubmit={handleEmailSubmit}>
-              <div 
-                className="mode-toggle-link"
-                onClick={() => { setIsSignUp(!isSignUp); setError(''); }}
-              >
-                {isSignUp ? 'Already have an account? Log In' : 'Need an account? Sign Up'}
-              </div>
-
-              {isSignUp && (
-                <div className="gate-field">
-                  <label htmlFor="gateName">Full Name</label>
-                  <input 
-                    type="text" 
-                    id="gateName" 
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. Hritik Kumar"
-                    required
-                  />
-                </div>
-              )}
-
+          {/* STEP 1: Enter Identifier */}
+          {step === 1 && (
+            <form onSubmit={handleContinue}>
               <div className="gate-field">
-                <label htmlFor="gateEmail">Email Address</label>
+                <label htmlFor="gateIdentifier">Email or Phone number</label>
                 <input 
-                  type="email" 
-                  id="gateEmail" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@example.com"
-                  autoComplete="email"
+                  type="text" 
+                  id="gateIdentifier" 
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
+                  placeholder="name@example.com or 9876543210"
+                  autoFocus
                   required
                 />
               </div>
-
-              <div className="gate-field">
-                <label htmlFor="gatePass">Password</label>
-                <input 
-                  type="password" 
-                  id="gatePass" 
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  autoComplete="current-password"
-                  required
-                />
-              </div>
-
-              <button type="submit" className="gate-submit">
-                {isSignUp ? 'Create Account & Enter' : 'Enter Dashboard'}
-              </button>
+              <button type="submit" className="gate-submit">Continue</button>
             </form>
           )}
 
-          {/* Tab 2: Phone Form */}
-          {activeTab === 'phone' && (
-            <form onSubmit={handlePhoneSubmit}>
-              <div className="gate-field">
-                <label htmlFor="gatePhone">Phone Number</label>
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  <span style={{
-                    background: 'var(--carbon-2)',
-                    border: '1px solid var(--line)',
-                    borderRadius: '6px',
-                    padding: '10px',
-                    fontSize: '14px',
-                    fontFamily: 'var(--font-mono)'
-                  }}>+91</span>
-                  <input 
-                    type="tel" 
-                    id="gatePhone" 
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="98765 43210"
-                    disabled={isOtpSent}
-                    required
-                  />
-                </div>
+          {/* STEP 2: Verification Password / OTP */}
+          {step === 2 && (
+            <form onSubmit={handleVerify}>
+              <div className="back-link" onClick={handleBack}>
+                ← Edit {identifierType === 'email' ? 'email' : identifierType === 'phone' ? 'phone' : 'identifier'}
               </div>
 
-              {isOtpSent && (
+              {/* Step 2 Subform: Email (Password) */}
+              {identifierType === 'email' && (
+                <>
+                  <div 
+                    className="mode-toggle-link"
+                    onClick={() => { setIsSignUp(!isSignUp); setError(''); }}
+                  >
+                    {isSignUp ? 'Already have an account? Log In' : 'Need an account? Sign Up'}
+                  </div>
+
+                  {isSignUp && (
+                    <div className="gate-field">
+                      <label htmlFor="gateName">Full Name</label>
+                      <input 
+                        type="text" 
+                        id="gateName" 
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="e.g. Hritik Kumar"
+                        required
+                      />
+                    </div>
+                  )}
+
+                  <div className="gate-field">
+                    <label htmlFor="gatePass">Password</label>
+                    <input 
+                      type="password" 
+                      id="gatePass" 
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      autoComplete="current-password"
+                      autoFocus
+                      required
+                    />
+                  </div>
+                </>
+              )}
+
+              {/* Step 2 Subform: Phone (OTP) */}
+              {identifierType === 'phone' && (
                 <div className="gate-field">
                   <label htmlFor="gateOtp">Verification Code (OTP)</label>
                   <input 
@@ -473,8 +445,9 @@ export default function AuthGate() {
                     id="gateOtp" 
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
-                    placeholder="Enter 6-digit OTP code"
+                    placeholder="Enter 6-digit code"
                     maxLength={6}
+                    autoFocus
                     required
                   />
                   <div style={{ marginTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -496,38 +469,29 @@ export default function AuthGate() {
                 </div>
               )}
 
-              <button type="submit" className="gate-submit">
-                {isOtpSent ? 'Verify OTP & Enter' : 'Send OTP Code'}
-              </button>
-            </form>
-          )}
+              {/* Step 2 Subform: Admin (Password) */}
+              {identifierType === 'admin' && (
+                <div className="gate-field">
+                  <label htmlFor="gatePass">Admin Password</label>
+                  <input 
+                    type="password" 
+                    id="gatePass" 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    autoFocus
+                    required
+                  />
+                </div>
+              )}
 
-          {/* Tab 3: Demo Admin Form */}
-          {activeTab === 'demo' && (
-            <form onSubmit={handleDemoSubmit}>
-              <div className="gate-field">
-                <label htmlFor="gateUser">Username</label>
-                <input 
-                  type="text" 
-                  id="gateUser" 
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="admin"
-                  required
-                />
-              </div>
-              <div className="gate-field">
-                <label htmlFor="gatePass">Password</label>
-                <input 
-                  type="password" 
-                  id="gatePass" 
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  required
-                />
-              </div>
-              <button type="submit" className="gate-submit">Enter Dashboard</button>
+              <button type="submit" className="gate-submit">
+                {identifierType === 'phone' 
+                  ? 'Verify OTP & Enter' 
+                  : isSignUp 
+                  ? 'Create Account & Enter' 
+                  : 'Enter Dashboard'}
+              </button>
             </form>
           )}
 
