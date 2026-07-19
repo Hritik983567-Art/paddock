@@ -103,6 +103,7 @@ export default function LiveTelemetryPage() {
   const [flagStatus, setFlagStatus] = useState<'GREEN' | 'YELLOW' | 'SAFETY CAR'>('GREEN');
   const [connectionMode, setConnectionMode] = useState<'SIMULATOR' | 'LIVE_SERVER'>('SIMULATOR');
   const [proxyStatus, setProxyStatus] = useState<'OFFLINE' | 'CONNECTING' | 'CONNECTED'>('OFFLINE');
+  const [showRestrictionAlert, setShowRestrictionAlert] = useState(true);
   
   const [logs, setLogs] = useState<string[]>([
     "[13:45:00] MISSION CONTROL: Telemetry dashboard online.",
@@ -486,7 +487,7 @@ export default function LiveTelemetryPage() {
         </div>
 
         {/* Warning Banner when connected to LIVE_SERVER */}
-        {connectionMode === 'LIVE_SERVER' && (
+        {connectionMode === 'LIVE_SERVER' && showRestrictionAlert && (
           <div 
             style={{ 
               background: 'rgba(232, 180, 42, 0.08)', 
@@ -497,10 +498,31 @@ export default function LiveTelemetryPage() {
               color: 'var(--amber)', 
               fontSize: '12.5px',
               lineHeight: '1.4',
-              fontFamily: 'var(--font-mono)' 
+              fontFamily: 'var(--font-mono)',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: '12px'
             }}
           >
-            ⚠️ <strong>ACTIVE F1 SESSION RESTRICTION:</strong> Official F1 servers restrict unauthenticated timing feeds during active track sessions. Running high-fidelity local proxy stream to prevent timing lockouts.
+            <span>
+              ⚠️ <strong>ACTIVE F1 SESSION RESTRICTION:</strong> Official F1 servers restrict unauthenticated timing feeds during active track sessions. Running high-fidelity local proxy stream to prevent timing lockouts.
+            </span>
+            <button 
+              onClick={() => setShowRestrictionAlert(false)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: 'var(--amber)',
+                fontSize: '18px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                padding: '0 4px',
+                lineHeight: 1
+              }}
+            >
+              ×
+            </button>
           </div>
         )}
 
