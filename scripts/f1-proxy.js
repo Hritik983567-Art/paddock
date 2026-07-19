@@ -190,6 +190,83 @@ async function connectToF1Live() {
   }
 }
 
+// Historical Replay State
+const CIRCUIT_TO_2024_ROUND = {
+  'bahrain': 1,
+  'jeddah': 2,
+  'albert_park': 3,
+  'suzuka': 4,
+  'shanghai': 5,
+  'miami': 6,
+  'imola': 7,
+  'monaco': 8,
+  'villeneuve': 9,
+  'catalunya': 10,
+  'red_bull_ring': 11,
+  'silverstone': 12,
+  'hungaroring': 13,
+  'spa': 14,
+  'zandvoort': 15,
+  'monza': 16,
+  'baku': 17,
+  'marina_bay': 18,
+  'americas': 19,
+  'rodriguez': 20,
+  'interlagos': 21,
+  'vegas': 22,
+  'losail': 23,
+  'yas_marina': 24
+};
+
+let currentCircuitId = 'spa';
+let cachedLaps = null;
+let cachedLapsLoading = false;
+let currentReplayLap = 1;
+let maxReplayLaps = 44;
+
+async function loadHistoricalLaps(circuitId) {
+  const round = CIRCUIT_TO_2024_ROUND[circuitId] || 14;
+  const url = `https://api.jolpi.ca/ergast/f1/2024/${round}/laps.json?limit=2000`;
+  console.log(`[PROXY HISTORICAL]: Fetching 2024 GP round ${round} lap data from Jolpica...`);
+  cachedLapsLoading = true;
+  
+  try {
+    const resData = await new Promise((resolve, reject) => {
+      https.get(url, (res) => {
+        let body = '';
+        res.on('data', chunk => body += chunk);
+        res.on('end', () => {
+          try {
+            resolve(JSON.parse(body));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      }).on('error', reject);
+    });
+
+    const races = resData.MRData.RaceTable.Races;
+    if (races && races.length > 0) {
+      const laps = races[0].Laps;
+      if (laps && laps.length > 0) {
+        cachedLaps = laps;
+        maxReplayLaps = laps.length;
+        currentReplayLap = 1;
+        console.log(`[PROXY HISTORICAL]: Successfully loaded ${laps.length} laps of 2024 historical GP data!`);
+      } else {
+        throw new Error('Empty laps array returned');
+      }
+    } else {
+      throw new Error('No race found in response');
+    }
+  } catch (err) {
+    console.error(`[PROXY HISTORICAL ERROR]: Failed to load historical laps:`, err.message);
+    cachedLaps = null;
+  } finally {
+    cachedLapsLoading = false;
+  }
+}
+
 // Start local WebSockets server for the Next.js UI client
 const localWss = new WebSocket.Server({ port: LOCAL_PORT });
 
@@ -205,6 +282,24 @@ localWss.on('connection', (ws) => {
       ? 'Connected to F1 live stream.' 
       : 'F1 server restricted / offline. Local high-fidelity timing generator active.'
   }));
+
+  ws.on('message', async (data) => {
+    try {
+      const msg = JSON.parse(data);
+      if (msg.type === 'SET_CIRCUIT') {
+        const newCircuit = msg.circuitId || 'spa';
+        console.log(`[PROXY LOCAL]: Client selected circuit: ${newCircuit}`);
+        if (newCircuit !== currentCircuitId || !cachedLaps) {
+          currentCircuitId = newCircuit;
+          cachedLaps = null;
+          currentReplayLap = 1;
+          await loadHistoricalLaps(newCircuit);
+        }
+      }
+    } catch (e) {
+      // Ignore invalid JSON messages
+    }
+  });
 
   ws.on('close', () => {
     console.log('[PROXY LOCAL]: Next.js dashboard client disconnected.');
@@ -255,127 +350,234 @@ setInterval(() => {
   const shouldMock = !isF1Connected || !isActuallyStreaming;
 
   if (activeLocalClients.size > 0 && shouldMock) {
-    mockLap++;
+    if (cachedLaps && cachedLaps[currentReplayLap - 1]) {
+      const lapData = cachedLaps[currentReplayLap - 1];
+      mockLap = parseInt(lapData.number) || currentReplayLap;
+      
+      const Lines = {};
+      
+      const driverMap2024to2026 = {
+        'antonelli': '12',
+        'russell': '63',
+        'hamilton': '44',
+        'leclerc': '16',
+        'norris': '1',
+        'piastri': '81',
+        'max_verstappen': '3',
+        'hadjar': '6',
+        'gasly': '10',
+        'lawson': '30',
+        'arvid_lindblad': '41',
+        'bearman': '87',
+        'colapinto': '43',
+        'bortoleto': '5',
+        'sainz': '55',
+        'albon': '23',
+        'ocon': '31',
+        'alonso': '14',
+        'hulkenberg': '27',
+        'bottas': '77',
+        'perez': '11',
+        'stroll': '18'
+      };
 
-    // Overtake logic: check close gaps
-    for (let i = 0; i < mockDrivers.length - 1; i++) {
-      const d1 = mockDrivers[i];
-      const d2 = mockDrivers[i + 1];
+      const idMap = {
+        'leclerc': 'leclerc',
+        'hamilton': 'hamilton',
+        'perez': 'perez',
+        'piastri': 'piastri',
+        'russell': 'russell',
+        'sainz': 'sainz',
+        'norris': 'norris',
+        'alonso': 'alonso',
+        'max_verstappen': 'max_verstappen',
+        'albon': 'albon',
+        'ocon': 'ocon',
+        'gasly': 'gasly',
+        'bottas': 'bottas',
+        'stroll': 'stroll',
+        'hulkenberg': 'hulkenberg',
+        'kevin_magnussen': 'bearman',
+        'zhou': 'bortoleto',
+        'sargeant': 'colapinto',
+        'ricciardo': 'lawson',
+        'antonelli': 'antonelli',
+        'hadjar': 'hadjar',
+        'arvid_lindblad': 'arvid_lindblad'
+      };
 
-      if (!d1.retired && !d2.retired && !d1.inPit && !d2.inPit) {
-        const gap = d2.gap - d1.gap;
-        if (gap < 0.8 && Math.random() < 0.25) {
-          // Swap positions
-          const tempPos = d1.position;
-          d1.position = d2.position;
-          d2.position = tempPos;
+      lapData.Timings.forEach((t) => {
+        const targetId = idMap[t.driverId] || t.driverId;
+        const number = driverMap2024to2026[targetId] || '99';
+        const pos = parseInt(t.position);
+        
+        let gapToLeader = 0.0;
+        if (pos > 1) {
+          gapToLeader = (pos - 1) * 1.8 + Math.random() * 0.5;
+        }
 
-          mockDrivers[i] = d2;
-          mockDrivers[i + 1] = d1;
+        Lines[number] = {
+          Position: pos,
+          LastLapTime: { Value: t.time },
+          Speeds: { ST: String(Math.floor(Math.random() * 15) + 320) },
+          InPit: false,
+          Retired: false,
+          GapToLeader: String(gapToLeader.toFixed(3))
+        };
+      });
 
-          // Broadcast overtake event log
+      // Handle DNFs
+      const activeNumbers = new Set(Object.keys(Lines));
+      Object.values(driverMap2024to2026).forEach(num => {
+        if (!activeNumbers.has(num)) {
+          Lines[num] = {
+            Position: 22,
+            LastLapTime: { Value: '—' },
+            Speeds: { ST: '0' },
+            InPit: false,
+            Retired: true,
+            GapToLeader: '999.999'
+          };
+        }
+      });
+
+      broadcastToLocalClients({
+        source: 'F1_LIVE_SERVER',
+        channel: 'TimingData',
+        data: { Lines }
+      });
+
+      const timeStamp = new Date().toTimeString().split(' ')[0];
+      const p1Driver = lapData.Timings[0] ? lapData.Timings[0].driverId.toUpperCase() : 'UNKNOWN';
+      const p2Driver = lapData.Timings[1] ? lapData.Timings[1].driverId.toUpperCase() : 'UNKNOWN';
+      broadcastToLocalClients({
+        source: 'F1_PROXY_MOCK',
+        channel: 'TerminalEvent',
+        mockUpdate: {
+          event: `[${timeStamp}] LAP ${mockLap}: ⏱️ [REPLAY] Real 2024 telemetry stream. P1: ${p1Driver} | P2: ${p2Driver}`
+        }
+      });
+
+      currentReplayLap++;
+      if (currentReplayLap > maxReplayLaps) {
+        currentReplayLap = 1;
+      }
+    } else {
+      mockLap++;
+
+      // Overtake logic: check close gaps
+      for (let i = 0; i < mockDrivers.length - 1; i++) {
+        const d1 = mockDrivers[i];
+        const d2 = mockDrivers[i + 1];
+
+        if (!d1.retired && !d2.retired && !d1.inPit && !d2.inPit) {
+          const gap = d2.gap - d1.gap;
+          if (gap < 0.8 && Math.random() < 0.25) {
+            const tempPos = d1.position;
+            d1.position = d2.position;
+            d2.position = tempPos;
+
+            mockDrivers[i] = d2;
+            mockDrivers[i + 1] = d1;
+
+            const timeStamp = new Date().toTimeString().split(' ')[0];
+            broadcastToLocalClients({
+              source: 'F1_PROXY_MOCK',
+              channel: 'TerminalEvent',
+              mockUpdate: {
+                event: `[${timeStamp}] LAP ${mockLap}: 🚀 ${d2.code} has overtaken ${d1.code} for P${d2.position}!`
+              }
+            });
+            break;
+          }
+        }
+      }
+
+      // Random Pit Stop trigger (1.5% chance)
+      mockDrivers.forEach(d => {
+        if (!d.retired && !d.inPit && Math.random() < 0.02) {
+          d.inPit = true;
+          d.tyreAge = 0;
+          d.gap += 22.0;
           const timeStamp = new Date().toTimeString().split(' ')[0];
           broadcastToLocalClients({
             source: 'F1_PROXY_MOCK',
             channel: 'TerminalEvent',
             mockUpdate: {
-              event: `[${timeStamp}] LAP ${mockLap}: 🚀 ${d2.code} has overtaken ${d1.code} for P${d2.position}!`
+              event: `[${timeStamp}] LAP ${mockLap}: 🔧 ${d.code} enters the pit lane for tyre change.`
             }
           });
-          break; // Max 1 overtake per tick
+
+          setTimeout(() => {
+            d.inPit = false;
+            const releaseStamp = new Date().toTimeString().split(' ')[0];
+            broadcastToLocalClients({
+              source: 'F1_PROXY_MOCK',
+              channel: 'TerminalEvent',
+              mockUpdate: {
+                event: `[${releaseStamp}] LAP ${mockLap}: 🟢 ${d.code} pit stop complete. Returning to track.`
+              }
+            });
+          }, 5000);
         }
-      }
-    }
+      });
 
-    // Random Pit Stop trigger (1.5% chance)
-    mockDrivers.forEach(d => {
-      if (!d.retired && !d.inPit && Math.random() < 0.02) {
-        d.inPit = true;
-        d.tyreAge = 0;
-        d.gap += 22.0; // Pit lane loss
-        const timeStamp = new Date().toTimeString().split(' ')[0];
-        broadcastToLocalClients({
-          source: 'F1_PROXY_MOCK',
-          channel: 'TerminalEvent',
-          mockUpdate: {
-            event: `[${timeStamp}] LAP ${mockLap}: 🔧 ${d.code} enters the pit lane for tyre change.`
-          }
-        });
-
-        // Release after 5 seconds
-        setTimeout(() => {
-          d.inPit = false;
-          const releaseStamp = new Date().toTimeString().split(' ')[0];
+      // Random DNF trigger (0.3% chance)
+      mockDrivers.forEach(d => {
+        if (!d.retired && !d.inPit && Math.random() < 0.003) {
+          d.retired = true;
+          const timeStamp = new Date().toTimeString().split(' ')[0];
           broadcastToLocalClients({
             source: 'F1_PROXY_MOCK',
             channel: 'TerminalEvent',
             mockUpdate: {
-              event: `[${releaseStamp}] LAP ${mockLap}: 🟢 ${d.code} pit stop complete. Returning to track.`
+              event: `[${timeStamp}] ⚠️ DNF: ${d.code} retired from session (Mechanical failure).`
             }
           });
-        }, 5000);
-      }
-    });
+        }
+      });
 
-    // Random DNF trigger (0.3% chance)
-    mockDrivers.forEach(d => {
-      if (!d.retired && !d.inPit && Math.random() < 0.003) {
-        d.retired = true;
-        const timeStamp = new Date().toTimeString().split(' ')[0];
-        broadcastToLocalClients({
-          source: 'F1_PROXY_MOCK',
-          channel: 'TerminalEvent',
-          mockUpdate: {
-            event: `[${timeStamp}] ⚠️ DNF: ${d.code} retired from session (Mechanical failure).`
-          }
-        });
-      }
-    });
+      let activeRacing = mockDrivers.filter(d => !d.retired);
+      let retired = mockDrivers.filter(d => d.retired);
 
-    // Recalculate Gaps
-    let activeRacing = mockDrivers.filter(d => !d.retired);
-    let retired = mockDrivers.filter(d => d.retired);
+      activeRacing.forEach((d, idx) => {
+        d.position = idx + 1;
+        if (idx === 0) {
+          d.gap = 0;
+        } else {
+          d.gap = activeRacing[idx - 1].gap + (Math.random() * 0.4 + 0.1);
+        }
+        d.tyreAge++;
+        d.lastLap = 78.0 + Math.random() * 1.5;
+      });
 
-    activeRacing.forEach((d, idx) => {
-      d.position = idx + 1;
-      if (idx === 0) {
-        d.gap = 0;
-      } else {
-        d.gap = activeRacing[idx - 1].gap + (Math.random() * 0.4 + 0.1);
-      }
-      d.tyreAge++;
-      d.lastLap = 78.0 + Math.random() * 1.5;
-    });
+      retired.forEach((d, idx) => {
+        d.position = activeRacing.length + idx + 1;
+        d.gap = 999.9;
+      });
 
-    retired.forEach((d, idx) => {
-      d.position = activeRacing.length + idx + 1;
-      d.gap = 999.9;
-    });
+      mockDrivers.sort((a, b) => a.position - b.position);
 
-    // Reassemble driver list order
-    mockDrivers.sort((a, b) => a.position - b.position);
+      const Lines = {};
+      mockDrivers.forEach(d => {
+        const min = Math.floor(d.lastLap / 60);
+        const sec = (d.lastLap % 60).toFixed(3);
+        Lines[d.number] = {
+          Position: d.position,
+          LastLapTime: { Value: `${min}:${sec.toString().padStart(6, '0')}` },
+          Speeds: { ST: String(Math.floor(Math.random() * 20) + 315) },
+          InPit: d.inPit,
+          Retired: d.retired,
+          GapToLeader: String(d.gap.toFixed(3))
+        };
+      });
 
-    // Format into standard TimingData payload structure
-    const Lines = {};
-    mockDrivers.forEach(d => {
-      const min = Math.floor(d.lastLap / 60);
-      const sec = (d.lastLap % 60).toFixed(3);
-      Lines[d.number] = {
-        Position: d.position,
-        LastLapTime: { Value: `${min}:${sec.toString().padStart(6, '0')}` },
-        Speeds: { ST: String(Math.floor(Math.random() * 20) + 315) },
-        InPit: d.inPit,
-        Retired: d.retired,
-        GapToLeader: String(d.gap.toFixed(3))
-      };
-    });
-
-    // Broadcast official format to local client
-    broadcastToLocalClients({
-      source: 'F1_LIVE_SERVER',
-      channel: 'TimingData',
-      data: { Lines }
-    });
+      broadcastToLocalClients({
+        source: 'F1_LIVE_SERVER',
+        channel: 'TimingData',
+        data: { Lines }
+      });
+    }
   }
 }, 3000);
 

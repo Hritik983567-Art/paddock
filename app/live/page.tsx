@@ -96,6 +96,12 @@ export default function LiveTelemetryPage() {
     if (matched) {
       setActiveRace(matched);
     }
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify({
+        type: 'SET_CIRCUIT',
+        circuitId: circuitId
+      }));
+    }
   };
 
   const [activeDriverCode, setActiveDriverCode] = useState<string | null>(null);
@@ -139,6 +145,10 @@ export default function LiveTelemetryPage() {
       setProxyStatus('CONNECTED');
       const timeStr = new Date().toTimeString().split(' ')[0];
       setLogs(l => [...l, `[${timeStr}] PROXY: Connection to local gateway ws://127.0.0.1:8080 established.`]);
+      socket.send(JSON.stringify({
+        type: 'SET_CIRCUIT',
+        circuitId: selectedCircuit
+      }));
     };
 
     socket.onmessage = (event) => {
