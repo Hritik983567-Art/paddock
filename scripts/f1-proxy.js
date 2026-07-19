@@ -87,6 +87,8 @@ async function connectToF1Live() {
     });
 
     let handshaked = false;
+    let uniqueDriversWithPositions = new Set();
+    let lastPositionReset = Date.now();
 
     f1Socket.on('open', () => {
       console.log('[PROXY F1]: WebSocket tunnel opened. Sending handshake protocol...');
@@ -96,7 +98,7 @@ async function connectToF1Live() {
       f1Socket.send(handshake);
       
       isF1Connected = true;
-      lastF1DataFrameTime = Date.now(); // Reset data watchdog
+      lastF1DataFrameTime = 0; // Initialize to 0 so we check for active drivers first
     });
 
     f1Socket.on('message', (rawData) => {
@@ -134,8 +136,27 @@ async function connectToF1Live() {
 
               if (decompressed) {
                 if (channel === 'TimingData') {
-                  lastF1DataFrameTime = Date.now();
+                  // Track how many unique drivers are getting active position updates
+                  if (decompressed.Lines) {
+                    Object.entries(decompressed.Lines).forEach(([num, line]) => {
+                      if (line && line.Position !== undefined) {
+                        uniqueDriversWithPositions.add(num);
+                      }
+                    });
+                  }
+
+                  // Reset unique tracker every 15s to ensure continuous real data flow
+                  if (Date.now() - lastPositionReset > 15000) {
+                    uniqueDriversWithPositions.clear();
+                    lastPositionReset = Date.now();
+                  }
+
+                  // Only flag as active real-time streaming if >= 5 drivers are actively updating positions
+                  if (uniqueDriversWithPositions.size >= 5) {
+                    lastF1DataFrameTime = Date.now();
+                  }
                 }
+
                 broadcastToLocalClients({
                   source: 'F1_LIVE_SERVER',
                   channel,
