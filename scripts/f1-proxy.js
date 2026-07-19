@@ -136,25 +136,7 @@ async function connectToF1Live() {
 
               if (decompressed) {
                 if (channel === 'TimingData') {
-                  // Track how many unique drivers are getting active position updates
-                  if (decompressed.Lines) {
-                    Object.entries(decompressed.Lines).forEach(([num, line]) => {
-                      if (line && line.Position !== undefined) {
-                        uniqueDriversWithPositions.add(num);
-                      }
-                    });
-                  }
-
-                  // Reset unique tracker every 15s to ensure continuous real data flow
-                  if (Date.now() - lastPositionReset > 15000) {
-                    uniqueDriversWithPositions.clear();
-                    lastPositionReset = Date.now();
-                  }
-
-                  // Only flag as active real-time streaming if >= 5 drivers are actively updating positions
-                  if (uniqueDriversWithPositions.size >= 5) {
-                    lastF1DataFrameTime = Date.now();
-                  }
+                  lastF1DataFrameTime = Date.now();
                 }
 
                 broadcastToLocalClients({
