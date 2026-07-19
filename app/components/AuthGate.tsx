@@ -3,6 +3,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
+// Decode base64url encoded JWT payload client-side without external dependencies
+function decodeJwt(token: string) {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch (e) {
+    return null;
+  }
+}
+
 export default function AuthGate() {
   const { login } = useAuth();
   
@@ -24,10 +41,62 @@ export default function AuthGate() {
   // Google OAuth popup modal state
   const [showGoogleModal, setShowGoogleModal] = useState(false);
   const [googleConnecting, setGoogleConnecting] = useState(false);
+  
+  // Custom Google input form state (Simulator mode)
+  const [customGoogleEmail, setCustomGoogleEmail] = useState('');
+  const [customGoogleName, setCustomGoogleName] = useState('');
 
   // UI feedback
   const [error, setError] = useState('');
   const [shake, setShake] = useState(false);
+
+  // Read Google Client ID from Next.js environment
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+  const isRealGoogleConfigured = clientId && clientId !== 'your-google-client-id-here';
+
+  // Load official Google Identity Services SDK if configured
+  useEffect(() => {
+    if (!isRealGoogleConfigured) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://accounts.google.com/gsi/client';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      if (window.google) {
+        window.google.accounts.id.initialize({
+          client_id: clientId,
+          callback: (response: any) => {
+            const payload = decodeJwt(response.credential);
+            if (payload) {
+              login('google', {
+                email: payload.email,
+                name: payload.name
+              });
+            }
+          }
+        });
+        
+        window.google.accounts.id.renderButton(
+          document.getElementById('googleBtnDiv'),
+          { 
+            theme: 'filled_black', 
+            size: 'large', 
+            width: 320,
+            text: 'continue_with'
+          }
+        );
+      }
+    };
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, [isRealGoogleConfigured, clientId]);
 
   // Countdown timer logic for phone OTP
   useEffect(() => {
@@ -57,14 +126,12 @@ export default function AuthGate() {
       return;
     }
 
-    // 1. Detect Admin
     if (value.toLowerCase() === 'admin') {
       setIdentifierType('admin');
       setStep(2);
       return;
     }
 
-    // 2. Detect Email
     if (value.includes('@')) {
       if (value.length < 5) {
         setError('Please enter a valid email address.');
@@ -76,16 +143,14 @@ export default function AuthGate() {
       return;
     }
 
-    // 3. Detect Phone (contains mostly digits)
     const cleanPhone = value.replace(/\D/g, '');
     if (cleanPhone.length >= 10) {
       setIdentifierType('phone');
       setStep(2);
-      setOtpTimer(30); // Send OTP simulation
+      setOtpTimer(30);
       return;
     }
 
-    // 4. Unrecognized format fallback
     setError('Enter a valid email address or 10-digit phone number.');
     triggerShake();
   };
@@ -152,7 +217,7 @@ export default function AuthGate() {
 
     setTimeout(() => {
       setGoogleConnecting(false);
-    }, 1500);
+    }, 1200);
   };
 
   const selectGoogleAccount = (profile: { email: string; name: string }) => {
@@ -160,10 +225,21 @@ export default function AuthGate() {
     setShowGoogleModal(false);
   };
 
+  const handleCustomGoogleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!customGoogleEmail.includes('@') || !customGoogleName.trim()) {
+      setError('Please provide a valid custom email and name.');
+      return;
+    }
+    selectGoogleAccount({
+      email: customGoogleEmail.trim().toLowerCase(),
+      name: customGoogleName.trim()
+    });
+  };
+
   return (
     <div id="authGate">
       <style>{`
-        /* Self-contained style rules for the unified merged login screen */
         .google-btn {
           width: 100%;
           display: flex;
@@ -270,7 +346,7 @@ export default function AuthGate() {
           background: #FFFFFF;
           color: #111827;
           width: 100%;
-          max-width: 380px;
+          max-width: 400px;
           border-radius: 12px;
           padding: 24px;
           box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
@@ -278,7 +354,7 @@ export default function AuthGate() {
         }
         .oauth-hdr {
           text-align: center;
-          margin-bottom: 20px;
+          margin-bottom: 16px;
         }
         .oauth-hdr h3 {
           margin: 6px 0 2px;
@@ -339,6 +415,55 @@ export default function AuthGate() {
           height: 28px;
           animation: spin 800ms linear infinite;
           margin: 20px auto;
+        }
+        .sim-form-title {
+          font-size: 11px;
+          color: #9CA3AF;
+          font-family: var(--font-mono);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin: 14px 0 8px;
+          display: flex;
+          align-items: center;
+        }
+        .sim-form-title::after {
+          content: '';
+          flex: 1;
+          border-bottom: 1px solid #E5E7EB;
+          margin-left: 8px;
+        }
+        .sim-field {
+          margin-bottom: 10px;
+        }
+        .sim-field label {
+          display: block;
+          font-size: 10px;
+          color: #4B5563;
+          margin-bottom: 4px;
+          font-weight: 500;
+        }
+        .sim-field input {
+          width: 100%;
+          border: 1px solid #D1D5DB;
+          border-radius: 6px;
+          padding: 8px 10px;
+          font-size: 12.5px;
+          color: #111827;
+        }
+        .sim-submit {
+          width: 100%;
+          background: #111827;
+          color: #FFF;
+          border: none;
+          padding: 8px 0;
+          border-radius: 6px;
+          font-size: 12.5px;
+          font-weight: 500;
+          cursor: pointer;
+          margin-top: 6px;
+        }
+        .sim-submit:hover {
+          background: #1F2937;
         }
         @keyframes spin {
           0% { transform: rotate(0deg); }
@@ -498,25 +623,28 @@ export default function AuthGate() {
           {/* Google OAuth Section */}
           <div className="auth-divider">Or continue with</div>
           
-          <button 
-            type="button" 
-            className="google-btn"
-            onClick={startGoogleLogin}
-          >
-            {/* Google official SVG G-Logo */}
-            <svg width="18" height="18" viewBox="0 0 18 18">
-              <path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84c-.21 1.12-.84 2.07-1.79 2.7v2.25h2.9c1.69-1.55 2.69-3.85 2.69-6.58z"/>
-              <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.2l-2.9-2.25c-.8.54-1.83.86-3.06.86-2.35 0-4.34-1.58-5.05-3.71H.96v2.33C2.44 15.93 5.48 18 9 18z"/>
-              <path fill="#FBBC05" d="M3.95 10.7c-.18-.54-.28-1.12-.28-1.7s.1-1.16.28-1.7V4.97H.96C.35 6.18 0 7.55 0 9s.35 2.82.96 4.03l2.99-2.33z"/>
-              <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35L15 2.4C13.46.97 11.43 0 9 0 5.48 0 2.44 2.07.96 4.97L3.95 7.3c.71-2.13 2.7-3.72 5.05-3.72z"/>
-            </svg>
-            Continue with Google
-          </button>
+          {isRealGoogleConfigured ? (
+            <div id="googleBtnDiv" style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}></div>
+          ) : (
+            <button 
+              type="button" 
+              className="google-btn"
+              onClick={startGoogleLogin}
+            >
+              <svg width="18" height="18" viewBox="0 0 18 18">
+                <path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.47h4.84c-.21 1.12-.84 2.07-1.79 2.7v2.25h2.9c1.69-1.55 2.69-3.85 2.69-6.58z"/>
+                <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.2l-2.9-2.25c-.8.54-1.83.86-3.06.86-2.35 0-4.34-1.58-5.05-3.71H.96v2.33C2.44 15.93 5.48 18 9 18z"/>
+                <path fill="#FBBC05" d="M3.95 10.7c-.18-.54-.28-1.12-.28-1.7s.1-1.16.28-1.7V4.97H.96C.35 6.18 0 7.55 0 9s.35 2.82.96 4.03l2.99-2.33z"/>
+                <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35L15 2.4C13.46.97 11.43 0 9 0 5.48 0 2.44 2.07.96 4.97L3.95 7.3c.71-2.13 2.7-3.72 5.05-3.72z"/>
+              </svg>
+              Continue with Google
+            </button>
+          )}
         </div>
       </div>
 
       {/* Google Accounts Chooser Popup */}
-      {showGoogleModal && (
+      {showGoogleModal && !isRealGoogleConfigured && (
         <div className="oauth-overlay">
           <div className="oauth-modal">
             <div className="oauth-hdr">
@@ -527,7 +655,7 @@ export default function AuthGate() {
                 <path fill="#EA4335" d="M12.18 5.83c1.43 0 2.7.49 3.7 1.45l2.78-2.77C16.96 2.91 14.78 2 12.18 2 6.9 2 2.92 4.7 1.28 7.92L5.5 11.14c.94-2.83 3.57-4.93 6.68-4.93z"/>
               </svg>
               <h3>Sign in with Google</h3>
-              <p>to continue to Paddock Analytics</p>
+              <p>Google Accounts Simulator</p>
             </div>
 
             {googleConnecting ? (
@@ -538,32 +666,65 @@ export default function AuthGate() {
                 </div>
               </div>
             ) : (
-              <div className="oauth-accounts">
-                <button 
-                  className="oauth-account"
-                  onClick={() => selectGoogleAccount({ email: 'hritik.kumar@gmail.com', name: 'Hritik Kumar' })}
-                >
-                  <div className="oauth-avatar" style={{ background: '#3F51B5', color: '#FFF' }}>H</div>
-                  <div className="oauth-info">
-                    <div>Hritik Kumar</div>
-                    <small>hritik.kumar@gmail.com</small>
+              <div>
+                <div className="oauth-accounts">
+                  <div style={{ fontSize: '11px', color: '#6B7280', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', marginBottom: '4px' }}>
+                    Select account
                   </div>
-                </button>
-                
-                <button 
-                  className="oauth-account"
-                  onClick={() => selectGoogleAccount({ email: 'guest.paddock@gmail.com', name: 'Guest User' })}
-                >
-                  <div className="oauth-avatar" style={{ background: '#E0E0E0', color: '#666' }}>G</div>
-                  <div className="oauth-info">
-                    <div>Guest User</div>
-                    <small>guest.paddock@gmail.com</small>
+                  <button 
+                    className="oauth-account"
+                    onClick={() => selectGoogleAccount({ email: 'hritik.kumar@gmail.com', name: 'Hritik Kumar' })}
+                  >
+                    <div className="oauth-avatar" style={{ background: '#3F51B5', color: '#FFF' }}>H</div>
+                    <div className="oauth-info">
+                      <div>Hritik Kumar</div>
+                      <small>hritik.kumar@gmail.com</small>
+                    </div>
+                  </button>
+                  
+                  <button 
+                    className="oauth-account"
+                    onClick={() => selectGoogleAccount({ email: 'guest.paddock@gmail.com', name: 'Guest User' })}
+                  >
+                    <div className="oauth-avatar" style={{ background: '#E0E0E0', color: '#666' }}>G</div>
+                    <div className="oauth-info">
+                      <div>Guest User</div>
+                      <small>guest.paddock@gmail.com</small>
+                    </div>
+                  </button>
+                </div>
+
+                <div className="sim-form-title">Or use custom Google profile</div>
+
+                <form onSubmit={handleCustomGoogleSubmit}>
+                  <div className="sim-field">
+                    <label htmlFor="simName">Full Name</label>
+                    <input 
+                      type="text" 
+                      id="simName" 
+                      value={customGoogleName} 
+                      onChange={(e) => setCustomGoogleName(e.target.value)} 
+                      placeholder="e.g. Sebastian Vettel" 
+                      required 
+                    />
                   </div>
-                </button>
+                  <div className="sim-field">
+                    <label htmlFor="simEmail">Google Email</label>
+                    <input 
+                      type="email" 
+                      id="simEmail" 
+                      value={customGoogleEmail} 
+                      onChange={(e) => setCustomGoogleEmail(e.target.value)} 
+                      placeholder="vettel@gmail.com" 
+                      required 
+                    />
+                  </div>
+                  <button type="submit" className="sim-submit">Sign In as Custom User</button>
+                </form>
 
                 <button 
                   className="oauth-account"
-                  style={{ justifyContent: 'center', borderStyle: 'dashed', borderColor: '#D1D5DB' }}
+                  style={{ justifyContent: 'center', borderStyle: 'dashed', borderColor: '#D1D5DB', marginTop: '12px' }}
                   onClick={() => setShowGoogleModal(false)}
                 >
                   <div style={{ fontSize: '12.5px', color: '#4B5563', fontWeight: 500 }}>
