@@ -9,6 +9,7 @@ const F1_NEGOTIATE_URL = `https://${F1_HOST}/signalr/negotiate?clientProtocol=1.
 let activeLocalClients = new Set();
 let f1Socket = null;
 let isF1Connected = false;
+let lastF1DataFrameTime = 0; // Watchdog timer for active data packets
 
 // HTTP GET Helper for negotiation
 function httpGet(url) {
@@ -70,6 +71,7 @@ async function connectToF1Live() {
     f1Socket.on('open', () => {
       console.log('[PROXY F1]: Connected to official live timing server!');
       isF1Connected = true;
+      lastF1DataFrameTime = Date.now(); // Reset data watchdog on open
 
       // Subscribe to all live telemetry channels
       const subscribePayload = {
@@ -94,6 +96,9 @@ async function connectToF1Live() {
               const decompressed = decompressPayload(compressedData);
 
               if (decompressed) {
+                if (channel === 'TimingData') {
+                  lastF1DataFrameTime = Date.now(); // Feed watchdog with active data
+                }
                 broadcastToLocalClients({
                   source: 'F1_LIVE_SERVER',
                   channel,
@@ -121,7 +126,6 @@ async function connectToF1Live() {
 
   } catch (err) {
     console.error('[PROXY F1 NEGOTIATION ERROR]:', err.message);
-    console.log('[PROXY F1]: Live timing is restricted or offline during live F1 session. Generating rich standby data stream...');
     isF1Connected = false;
   }
 }
@@ -133,10 +137,11 @@ localWss.on('connection', (ws) => {
   console.log('[PROXY LOCAL]: Next.js dashboard client connected.');
   activeLocalClients.add(ws);
 
+  const isActuallyStreaming = isF1Connected && (Date.now() - lastF1DataFrameTime < 10000);
   ws.send(JSON.stringify({
     source: 'F1_PROXY_SYSTEM',
-    status: isF1Connected ? 'CONNECTED' : 'STANDBY',
-    message: isF1Connected 
+    status: isActuallyStreaming ? 'CONNECTED' : 'STANDBY',
+    message: isActuallyStreaming 
       ? 'Connected to F1 live stream.' 
       : 'F1 server restricted / offline. Local high-fidelity timing generator active.'
   }));
@@ -158,33 +163,38 @@ function broadcastToLocalClients(msg) {
 
 // Local Timing Generator State
 const mockDrivers = [
-  { number: '1', code: 'VER', position: 1, gap: 0.0, lastLap: 78.42, tyreAge: 4, inPit: false, retired: false },
-  { number: '4', code: 'NOR', position: 2, gap: 1.2, lastLap: 78.51, tyreAge: 4, inPit: false, retired: false },
-  { number: '16', code: 'LEC', position: 3, gap: 2.8, lastLap: 78.63, tyreAge: 6, inPit: false, retired: false },
-  { number: '44', code: 'HAM', position: 4, gap: 4.1, lastLap: 78.45, tyreAge: 5, inPit: false, retired: false },
-  { number: '81', code: 'PIA', position: 5, gap: 5.5, lastLap: 78.82, tyreAge: 4, inPit: false, retired: false },
-  { number: '63', code: 'RUS', position: 6, gap: 7.9, lastLap: 78.99, tyreAge: 3, inPit: false, retired: false },
-  { number: '55', code: 'SAI', position: 7, gap: 9.8, lastLap: 79.12, tyreAge: 7, inPit: false, retired: false },
-  { number: '14', code: 'ALO', position: 8, gap: 12.3, lastLap: 79.34, tyreAge: 8, inPit: false, retired: false },
-  { number: '11', code: 'PER', position: 9, gap: 14.2, lastLap: 79.45, tyreAge: 9, inPit: false, retired: false },
-  { number: '10', code: 'GAS', position: 10, gap: 18.5, lastLap: 79.78, tyreAge: 10, inPit: false, retired: false },
-  { number: '22', code: 'TSU', position: 11, gap: 21.0, lastLap: 79.92, tyreAge: 8, inPit: false, retired: false },
-  { number: '23', code: 'ALB', position: 12, gap: 24.5, lastLap: 79.89, tyreAge: 12, inPit: false, retired: false },
-  { number: '27', code: 'HUL', position: 13, gap: 28.0, lastLap: 80.12, tyreAge: 11, inPit: false, retired: false },
-  { number: '30', code: 'LAW', position: 14, gap: 30.5, lastLap: 80.34, tyreAge: 13, inPit: false, retired: false },
-  { number: '87', code: 'BEA', position: 15, gap: 32.8, lastLap: 80.55, tyreAge: 9, inPit: false, retired: false },
-  { number: '18', code: 'STR', position: 16, gap: 35.1, lastLap: 80.89, tyreAge: 14, inPit: false, retired: false },
-  { number: '12', code: 'BOR', position: 17, gap: 38.4, lastLap: 81.11, tyreAge: 11, inPit: false, retired: false },
-  { number: '7', code: 'DOO', position: 18, gap: 41.2, lastLap: 81.43, tyreAge: 15, inPit: false, retired: false },
-  { number: '43', code: 'COL', position: 19, gap: 44.9, lastLap: 81.89, tyreAge: 16, inPit: false, retired: false },
-  { number: '31', code: 'OCO', position: 20, gap: 48.0, lastLap: 82.09, tyreAge: 13, inPit: false, retired: false }
+  { number: '12', code: 'ANT', position: 1, gap: 0.0, lastLap: 78.42, tyreAge: 4, inPit: false, retired: false },
+  { number: '63', code: 'RUS', position: 2, gap: 1.2, lastLap: 78.51, tyreAge: 4, inPit: false, retired: false },
+  { number: '44', code: 'HAM', position: 3, gap: 2.8, lastLap: 78.63, tyreAge: 6, inPit: false, retired: false },
+  { number: '16', code: 'LEC', position: 4, gap: 4.1, lastLap: 78.45, tyreAge: 5, inPit: false, retired: false },
+  { number: '1', code: 'NOR', position: 5, gap: 5.5, lastLap: 78.82, tyreAge: 4, inPit: false, retired: false },
+  { number: '81', code: 'PIA', position: 6, gap: 7.9, lastLap: 78.99, tyreAge: 3, inPit: false, retired: false },
+  { number: '3', code: 'VER', position: 7, gap: 9.8, lastLap: 79.12, tyreAge: 7, inPit: false, retired: false },
+  { number: '6', code: 'HAD', position: 8, gap: 12.3, lastLap: 79.34, tyreAge: 8, inPit: false, retired: false },
+  { number: '10', code: 'GAS', position: 9, gap: 14.2, lastLap: 79.45, tyreAge: 9, inPit: false, retired: false },
+  { number: '30', code: 'LAW', position: 10, gap: 18.5, lastLap: 79.78, tyreAge: 10, inPit: false, retired: false },
+  { number: '41', code: 'LIN', position: 11, gap: 21.0, lastLap: 79.92, tyreAge: 8, inPit: false, retired: false },
+  { number: '87', code: 'BEA', position: 12, gap: 24.5, lastLap: 79.89, tyreAge: 12, inPit: false, retired: false },
+  { number: '43', code: 'COL', position: 13, gap: 28.0, lastLap: 80.12, tyreAge: 11, inPit: false, retired: false },
+  { number: '5', code: 'BOR', position: 14, gap: 30.5, lastLap: 80.34, tyreAge: 13, inPit: false, retired: false },
+  { number: '55', code: 'SAI', position: 15, gap: 32.8, lastLap: 80.55, tyreAge: 9, inPit: false, retired: false },
+  { number: '23', code: 'ALB', position: 16, gap: 35.1, lastLap: 80.89, tyreAge: 14, inPit: false, retired: false },
+  { number: '31', code: 'OCO', position: 17, gap: 38.4, lastLap: 81.11, tyreAge: 11, inPit: false, retired: false },
+  { number: '14', code: 'ALO', position: 18, gap: 41.2, lastLap: 81.43, tyreAge: 15, inPit: false, retired: false },
+  { number: '27', code: 'HUL', position: 19, gap: 44.9, lastLap: 81.89, tyreAge: 16, inPit: false, retired: false },
+  { number: '77', code: 'BOT', position: 20, gap: 48.0, lastLap: 82.09, tyreAge: 13, inPit: false, retired: false },
+  { number: '11', code: 'PER', position: 21, gap: 51.5, lastLap: 82.45, tyreAge: 10, inPit: false, retired: false },
+  { number: '18', code: 'STR', position: 22, gap: 55.0, lastLap: 82.89, tyreAge: 14, inPit: false, retired: false }
 ];
 
 let mockLap = 14;
 
-// Fallback Mock Streamer: Streams simulated updates if no live GP is running
+// Fallback Mock Streamer: Streams simulated updates if F1 live timing is disconnected or restricted
 setInterval(() => {
-  if (activeLocalClients.size > 0 && !isF1Connected) {
+  const isF1Restricted = isF1Connected && (Date.now() - lastF1DataFrameTime > 10000);
+  const shouldMock = !isF1Connected || isF1Restricted;
+
+  if (activeLocalClients.size > 0 && shouldMock) {
     mockLap++;
 
     // Overtake logic: check close gaps

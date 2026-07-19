@@ -3,7 +3,7 @@ export const API_BASE = 'https://api.jolpi.ca/ergast/f1';
 export const TEAM_COLORS: Record<string, string> = {
     red_bull: '#3671C6', ferrari: '#E8002D', mercedes: '#27F4D2', mclaren: '#FF8000',
     aston_martin: '#229971', alpine: '#00A1E8', williams: '#1868DB', rb: '#6C98FF',
-    sauber: '#01C00E', haas: '#B6BABD', cadillac: '#8B5CF6', alphatauri: '#2B4562',
+    sauber: '#01C00E', haas: '#B6BABD', cadillac: '#8B5CF6', audi: '#01C00E', alphatauri: '#2B4562',
     alfa: '#B12039', renault: '#FFF200', racing_point: '#F596C8'
 };
 
