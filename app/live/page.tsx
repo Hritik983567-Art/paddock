@@ -127,15 +127,15 @@ export default function LiveTelemetryPage() {
     }
 
     setProxyStatus('CONNECTING');
-    setLogs(l => [...l, `[${new Date().toTimeString().split(' ')[0]}] PROXY: Connecting to local gateway at ws://localhost:8080...`]);
+    setLogs(l => [...l, `[${new Date().toTimeString().split(' ')[0]}] PROXY: Connecting to local gateway at ws://127.0.0.1:8080...`]);
 
-    const socket = new WebSocket('ws://localhost:8080');
+    const socket = new WebSocket('ws://127.0.0.1:8080');
     wsRef.current = socket;
 
     socket.onopen = () => {
       setProxyStatus('CONNECTED');
       const timeStr = new Date().toTimeString().split(' ')[0];
-      setLogs(l => [...l, `[${timeStr}] PROXY: Connection to local gateway ws://localhost:8080 established.`]);
+      setLogs(l => [...l, `[${timeStr}] PROXY: Connection to local gateway ws://127.0.0.1:8080 established.`]);
     };
 
     socket.onmessage = (event) => {
@@ -218,7 +218,7 @@ export default function LiveTelemetryPage() {
     socket.onclose = () => {
       setProxyStatus('OFFLINE');
       const timeStr = new Date().toTimeString().split(' ')[0];
-      setLogs(l => [...l, `[${timeStr}] PROXY: Connection to ws://localhost:8080 disconnected.`]);
+      setLogs(l => [...l, `[${timeStr}] PROXY: Connection to ws://127.0.0.1:8080 disconnected.`]);
     };
 
     socket.onerror = () => {
