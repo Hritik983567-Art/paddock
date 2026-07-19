@@ -4,29 +4,43 @@ const https = require('https');
 
 const LOCAL_PORT = 8080;
 const F1_HOST = 'livetiming.formula1.com';
-const F1_NEGOTIATE_URL = `https://${F1_HOST}/signalr/negotiate?clientProtocol=1.5&connectionData=%5B%7B%22name%22%3A%22StreamingHub%22%7D%5D`;
 
 let activeLocalClients = new Set();
 let f1Socket = null;
 let isF1Connected = false;
 let lastF1DataFrameTime = 0; // Watchdog timer for active data packets
 
-// HTTP GET Helper for negotiation
-function httpGet(url) {
+// HTTP POST Helper for modern SignalR Core negotiation
+function negotiateF1() {
   return new Promise((resolve, reject) => {
-    https.get(url, (res) => {
+    const options = {
+      hostname: F1_HOST,
+      path: '/signalrcore/negotiate?negotiateVersion=1',
+      method: 'POST',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Origin': 'https://www.formula1.com',
+        'Referer': 'https://www.formula1.com/',
+        'Content-Length': 0
+      }
+    };
+
+    const req = https.request(options, (res) => {
       let data = '';
       res.on('data', (chunk) => data += chunk);
       res.on('end', () => {
         try {
-          resolve(JSON.parse(data));
+          const parsed = JSON.parse(data);
+          const cookies = res.headers['set-cookie'] || [];
+          resolve({ parsed, cookies });
         } catch (e) {
-          reject(new Error(`Failed to parse negotiation data: ${data}`));
+          reject(new Error(`Failed to parse negotiate body: ${data}`));
         }
       });
-    }).on('error', (err) => {
-      reject(err);
     });
+
+    req.on('error', reject);
+    req.end();
   });
 }
 
@@ -50,54 +64,77 @@ function decompressPayload(base64Str) {
 
 // Connect to official F1 Streaming Hub
 async function connectToF1Live() {
-  console.log('[PROXY F1]: Negotiating connection parameters...');
+  console.log('[PROXY F1]: Negotiating connection parameters with F1 SignalR Core servers...');
   try {
-    const negData = await httpGet(F1_NEGOTIATE_URL);
-    const token = negData.ConnectionToken;
+    const { parsed, cookies } = await negotiateF1();
+    const token = parsed.connectionToken;
     if (!token) {
       throw new Error('ConnectionToken missing in negotiation data.');
     }
 
-    const wsUrl = `wss://${F1_HOST}/signalr/connect?transport=webSockets&clientProtocol=1.5&connectionToken=${encodeURIComponent(token)}&connectionData=%5B%7B%22name%22%3A%22StreamingHub%22%7D%5D`;
-    console.log('[PROXY F1]: Parameter negotiation success. Connecting to Streaming Hub...');
+    // Extract load-balancer cookies
+    const cookieHeader = cookies.map(c => c.split(';')[0]).join('; ');
+    const wsUrl = `wss://${F1_HOST}/signalrcore?id=${encodeURIComponent(token)}`;
+    console.log('[PROXY F1]: Negotiation successful. Connecting to WebSocket tunnel...');
 
     f1Socket = new WebSocket(wsUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-        'Accept-Encoding': 'gzip, deflate, br'
+        'Cookie': cookieHeader,
+        'Origin': 'https://www.formula1.com',
+        'Referer': 'https://www.formula1.com/'
       }
     });
 
-    f1Socket.on('open', () => {
-      console.log('[PROXY F1]: Connected to official live timing server!');
-      isF1Connected = true;
-      lastF1DataFrameTime = Date.now(); // Reset data watchdog on open
+    let handshaked = false;
 
-      // Subscribe to all live telemetry channels
-      const subscribePayload = {
-        H: "StreamingHub",
-        M: "Subscribe",
-        A: [["Heartbeat", "CarData", "TimingData", "TimingStats", "TimingAppData", "WeatherData", "TrackStatus", "SessionInfo"]],
-        I: 1
-      };
-      f1Socket.send(JSON.stringify(subscribePayload));
-      console.log('[PROXY F1]: Subscribed to timing, car telemetry, track flags and weather feeds.');
+    f1Socket.on('open', () => {
+      console.log('[PROXY F1]: WebSocket tunnel opened. Sending handshake protocol...');
+      
+      // Send handshake message
+      const handshake = JSON.stringify({ protocol: "json", version: 1 }) + String.fromCharCode(0x1e);
+      f1Socket.send(handshake);
+      
+      isF1Connected = true;
+      lastF1DataFrameTime = Date.now(); // Reset data watchdog
     });
 
     f1Socket.on('message', (rawData) => {
       try {
-        const payload = JSON.parse(rawData.toString());
-        
-        if (payload.M && Array.isArray(payload.M)) {
-          payload.M.forEach((message) => {
-            if (message.M === 'feed' && message.A && message.A.length >= 2) {
-              const channel = message.A[0];
-              const compressedData = message.A[1];
-              const decompressed = decompressPayload(compressedData);
+        const frames = rawData.toString().split(String.fromCharCode(0x1e));
+        for (const frame of frames) {
+          if (!frame) continue;
+
+          if (!handshaked) {
+            const parsedFrame = JSON.parse(frame);
+            if (Object.keys(parsedFrame).length === 0 || parsedFrame.type === undefined) {
+              console.log('[PROXY F1]: Handshake accepted. Subscribing to live timing feeds...');
+              handshaked = true;
+
+              // Subscribe to channels
+              const subscribe = JSON.stringify({
+                arguments: [["Heartbeat", "CarData", "TimingData", "TimingStats", "TimingAppData", "WeatherData", "TrackStatus", "SessionInfo"]],
+                target: "Subscribe",
+                type: 1
+              }) + String.fromCharCode(0x1e);
+              f1Socket.send(subscribe);
+            }
+          } else {
+            const msg = JSON.parse(frame);
+            if (msg.type === 1 && msg.target === 'feed' && msg.arguments && msg.arguments.length >= 2) {
+              const channel = msg.arguments[0];
+              const payload = msg.arguments[1];
+
+              let decompressed = null;
+              if (typeof payload === 'string') {
+                decompressed = decompressPayload(payload);
+              } else {
+                decompressed = payload;
+              }
 
               if (decompressed) {
                 if (channel === 'TimingData') {
-                  lastF1DataFrameTime = Date.now(); // Feed watchdog with active data
+                  lastF1DataFrameTime = Date.now();
                 }
                 broadcastToLocalClients({
                   source: 'F1_LIVE_SERVER',
@@ -106,7 +143,7 @@ async function connectToF1Live() {
                 });
               }
             }
-          });
+          }
         }
       } catch (err) {
         // Skip unparseable heartbeat keep-alives
@@ -116,12 +153,14 @@ async function connectToF1Live() {
     f1Socket.on('close', () => {
       console.log('[PROXY F1]: Connection to F1 server closed. Retrying in 10s...');
       isF1Connected = false;
+      handshaked = false;
       setTimeout(connectToF1Live, 10000);
     });
 
     f1Socket.on('error', (err) => {
       console.error('[PROXY F1 ERROR]:', err.message);
       isF1Connected = false;
+      handshaked = false;
     });
 
   } catch (err) {
@@ -137,7 +176,7 @@ localWss.on('connection', (ws) => {
   console.log('[PROXY LOCAL]: Next.js dashboard client connected.');
   activeLocalClients.add(ws);
 
-  const isActuallyStreaming = isF1Connected && (Date.now() - lastF1DataFrameTime < 10000);
+  const isActuallyStreaming = isF1Connected && (Date.now() - lastF1DataFrameTime < 15000);
   ws.send(JSON.stringify({
     source: 'F1_PROXY_SYSTEM',
     status: isActuallyStreaming ? 'CONNECTED' : 'STANDBY',
@@ -161,7 +200,7 @@ function broadcastToLocalClients(msg) {
   });
 }
 
-// Local Timing Generator State
+// Local Timing Generator State (2026 Rosters)
 const mockDrivers = [
   { number: '12', code: 'ANT', position: 1, gap: 0.0, lastLap: 78.42, tyreAge: 4, inPit: false, retired: false },
   { number: '63', code: 'RUS', position: 2, gap: 1.2, lastLap: 78.51, tyreAge: 4, inPit: false, retired: false },
@@ -191,8 +230,8 @@ let mockLap = 14;
 
 // Fallback Mock Streamer: Streams simulated updates if F1 live timing is disconnected or restricted
 setInterval(() => {
-  const isF1Restricted = isF1Connected && (Date.now() - lastF1DataFrameTime > 10000);
-  const shouldMock = !isF1Connected || isF1Restricted;
+  const isActuallyStreaming = isF1Connected && (Date.now() - lastF1DataFrameTime < 15000);
+  const shouldMock = !isF1Connected || !isActuallyStreaming;
 
   if (activeLocalClients.size > 0 && shouldMock) {
     mockLap++;
