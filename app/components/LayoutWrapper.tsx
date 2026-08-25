@@ -73,6 +73,15 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
       {/* Translucent Team Background Wallpaper */}
       <div className="f1-theme-wallpaper"></div>
 
+      {/* Mobile Drawer Overlay Backdrop */}
+      {mobileMenuOpen && (
+        <div 
+          className="mobile-backdrop-overlay" 
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       <header className="top-header">
         <button 
           className="mobile-menu-btn"
@@ -81,38 +90,41 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
         >
           {mobileMenuOpen ? '✕' : '☰'}
         </button>
+        
         <div className="brand">
           <span className="dot"></span>PADDOCK<small>ANALYTICS &amp; RACE TRACKER</small>
         </div>
-        
-        <select 
-          id="seasonSelect" 
-          title="Season"
-          value={selectedSeason}
-          onChange={(e) => setSelectedSeason(e.target.value)}
-        >
-          <option value="current">Current season</option>
-          {seasons.map(y => (
-            <option key={y} value={y.toString()}>{y}</option>
-          ))}
-        </select>
 
-        <select 
-          id="themeSelect" 
-          title="F1 Team Theme"
-          value={activeTheme}
-          onChange={(e) => handleThemeChange(e.target.value)}
-          style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}
-        >
-          <option value="default">🏎️ Theme: Pit-Wall Red</option>
-          <option value="ferrari">🔴 Scuderia Ferrari</option>
-          <option value="redbull">🔵 Red Bull Racing</option>
-          <option value="mercedes">🟢 Mercedes Petronas</option>
-          <option value="mclaren">🟠 McLaren Papaya</option>
-          <option value="aston">💚 Aston Martin Green</option>
-        </select>
+        <div className="header-controls">
+          <select 
+            id="seasonSelect" 
+            title="Season"
+            value={selectedSeason}
+            onChange={(e) => setSelectedSeason(e.target.value)}
+          >
+            <option value="current">Current season</option>
+            {seasons.map(y => (
+              <option key={y} value={y.toString()}>{y}</option>
+            ))}
+          </select>
 
-        <button id="logoutLink" onClick={logout}>Log out</button>
+          <select 
+            id="themeSelect" 
+            title="F1 Team Theme"
+            value={activeTheme}
+            onChange={(e) => handleThemeChange(e.target.value)}
+            style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}
+          >
+            <option value="default">🏎️ Pit-Wall Red</option>
+            <option value="ferrari">🔴 Ferrari</option>
+            <option value="redbull">🔵 Red Bull</option>
+            <option value="mercedes">🟢 Mercedes</option>
+            <option value="mclaren">🟠 McLaren</option>
+            <option value="aston">💚 Aston Martin</option>
+          </select>
+
+          <button id="logoutLink" onClick={logout}>Log out</button>
+        </div>
       </header>
 
       <aside className={`side-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
