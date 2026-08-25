@@ -1119,13 +1119,55 @@ footer {
 
 .f1-spec-welcome h1 {
     font-family: var(--font-body);
-    font-size: 44px;
+    font-size: clamp(28px, 6vw, 44px);
     font-weight: 800;
     color: #dae5da;
     margin: 0 0 8px;
     letter-spacing: -0.02em;
     text-transform: uppercase;
     line-height: 1.1;
+}
+
+@media(max-width:600px) {
+    #authGate.centered-login-screen {
+        padding: 16px 12px;
+    }
+
+    .centered-login-card {
+        padding: 32px 20px;
+        border-radius: 16px;
+        max-width: 100%;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.95), 0 0 25px rgba(0, 255, 156, 0.2);
+    }
+
+    .f1-spec-brand {
+        margin-bottom: 24px;
+    }
+
+    .f1-spec-welcome p {
+        font-size: 12px;
+        margin-bottom: 24px;
+    }
+
+    .f1-spec-field input {
+        height: 46px;
+        font-size: 16px; /* Prevents iOS Safari auto-zoom on focus */
+    }
+
+    .f1-spec-options {
+        font-size: 13px;
+    }
+
+    .spec-sign-in-btn,
+    .spec-google-btn {
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .f1-spec-footer {
+        margin-top: 28px;
+        font-size: 13px;
+    }
 }
 
 .f1-spec-welcome p {
