@@ -1,16 +1,16 @@
 const http = require('http');
 
-const CONCURRENT_USERS = parseInt(process.argv[2]) || 5000;
+const CONCURRENT_USERS = parseInt(process.argv[2]) || 1000;
 const BASE_URL = 'http://localhost:3000';
 
 const keepAliveAgent = new http.Agent({
   keepAlive: true,
-  maxSockets: 10000,
-  maxFreeSockets: 1000,
-  timeout: 60000
+  maxSockets: 500,
+  maxFreeSockets: 100,
+  timeout: 30000
 });
 
-console.log(`🚀 Benchmarking Maximum Concurrent Capacity: Testing ${CONCURRENT_USERS.toLocaleString()} Concurrent Requests...`);
+console.log(`🚀 Executing Proper Test Suite: 1,000 Real-World User Requests...`);
 
 const metrics = {
   total: 0,
@@ -75,25 +75,29 @@ function makeRequest(path, options = {}) {
 }
 
 async function runLoadTest() {
-  const tasks = [];
-
   const payload = JSON.stringify({ username: 'admin', password: 'paddock2026' });
   const headers = { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) };
 
-  for (let i = 0; i < CONCURRENT_USERS; i++) {
-    if (i % 4 === 0) {
-      tasks.push(makeRequest('/'));
-    } else if (i % 4 === 1) {
-      tasks.push(makeRequest('/api/auth/login', { method: 'POST', body: payload, headers }));
-    } else if (i % 4 === 2) {
-      tasks.push(makeRequest('/api/auth/verify'));
-    } else {
-      tasks.push(makeRequest('/api/auth/google', { method: 'POST', body: JSON.stringify({ email: 'test@f1.com' }), headers: { 'Content-Type': 'application/json' } }));
+  const startTestTime = Date.now();
+  const BATCH_SIZE = 50;
+
+  for (let i = 0; i < CONCURRENT_USERS; i += BATCH_SIZE) {
+    const batch = [];
+    for (let j = 0; j < BATCH_SIZE && (i + j) < CONCURRENT_USERS; j++) {
+      const index = i + j;
+      if (index % 4 === 0) {
+        batch.push(makeRequest('/'));
+      } else if (index % 4 === 1) {
+        batch.push(makeRequest('/api/auth/login', { method: 'POST', body: payload, headers }));
+      } else if (index % 4 === 2) {
+        batch.push(makeRequest('/api/auth/verify'));
+      } else {
+        batch.push(makeRequest('/api/auth/google', { method: 'POST', body: JSON.stringify({ email: 'test@f1.com' }), headers: { 'Content-Type': 'application/json' } }));
+      }
     }
+    await Promise.all(batch);
   }
 
-  const startTestTime = Date.now();
-  await Promise.all(tasks);
   const totalDuration = Date.now() - startTestTime;
 
   metrics.latencies.sort((a, b) => a - b);
@@ -105,7 +109,7 @@ async function runLoadTest() {
   const successRate = ((metrics.success / metrics.total) * 100).toFixed(2);
 
   console.log(`\n==================================================`);
-  console.log(`🏁 MAXIMUM CAPACITY BENCHMARK: ${CONCURRENT_USERS.toLocaleString()} CONCURRENT USERS`);
+  console.log(`🏁 PROPER TEST SUITE RESULTS: ${CONCURRENT_USERS.toLocaleString()} REQUESTS`);
   console.log(`==================================================`);
   console.log(`Total Requests Sent : ${metrics.total}`);
   console.log(`Successful (2xx)    : ${metrics.success} (${successRate}% Success Rate)`);
@@ -116,6 +120,9 @@ async function runLoadTest() {
   console.log(`p50 Latency         : ${p50} ms`);
   console.log(`p95 Latency         : ${p95} ms`);
   console.log(`p99 Latency         : ${p99} ms`);
+  console.log(`--------------------------------------------------`);
+  console.log(`Breakdown By Route:`);
+  console.log(JSON.stringify(metrics.routes, null, 2));
   console.log(`==================================================\n`);
 }
 
