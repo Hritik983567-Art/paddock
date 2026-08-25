@@ -1,17 +1,16 @@
 const http = require('http');
 
-const CONCURRENT_USERS = 1000;
+const CONCURRENT_USERS = parseInt(process.argv[2]) || 5000;
 const BASE_URL = 'http://localhost:3000';
 
-// High-concurrency HTTP Keep-Alive Agent for socket pooling
 const keepAliveAgent = new http.Agent({
   keepAlive: true,
-  maxSockets: 1000,
-  maxFreeSockets: 200,
+  maxSockets: 10000,
+  maxFreeSockets: 1000,
   timeout: 60000
 });
 
-console.log(`🚀 Executing High-Concurrency 1,000 User Stress Audit with Socket Pooling...`);
+console.log(`🚀 Benchmarking Maximum Concurrent Capacity: Testing ${CONCURRENT_USERS.toLocaleString()} Concurrent Requests...`);
 
 const metrics = {
   total: 0,
@@ -82,7 +81,6 @@ async function runLoadTest() {
   const headers = { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) };
 
   for (let i = 0; i < CONCURRENT_USERS; i++) {
-    // Distribute 1,000 concurrent requests across key app routes
     if (i % 4 === 0) {
       tasks.push(makeRequest('/'));
     } else if (i % 4 === 1) {
@@ -104,12 +102,13 @@ async function runLoadTest() {
   const p95 = metrics.latencies[Math.floor(metrics.latencies.length * 0.95)];
   const p99 = metrics.latencies[Math.floor(metrics.latencies.length * 0.99)];
   const reqPerSec = ((metrics.total / totalDuration) * 1000).toFixed(2);
+  const successRate = ((metrics.success / metrics.total) * 100).toFixed(2);
 
   console.log(`\n==================================================`);
-  console.log(`🏁 1,000 CONCURRENT USER STRESS AUDIT RESULTS`);
+  console.log(`🏁 MAXIMUM CAPACITY BENCHMARK: ${CONCURRENT_USERS.toLocaleString()} CONCURRENT USERS`);
   console.log(`==================================================`);
   console.log(`Total Requests Sent : ${metrics.total}`);
-  console.log(`Successful (2xx)    : ${metrics.success}`);
+  console.log(`Successful (2xx)    : ${metrics.success} (${successRate}% Success Rate)`);
   console.log(`Failed (4xx/5xx/Err): ${metrics.failed}`);
   console.log(`Throughput          : ${reqPerSec} requests/sec`);
   console.log(`Total Duration      : ${totalDuration} ms`);
@@ -117,9 +116,6 @@ async function runLoadTest() {
   console.log(`p50 Latency         : ${p50} ms`);
   console.log(`p95 Latency         : ${p95} ms`);
   console.log(`p99 Latency         : ${p99} ms`);
-  console.log(`--------------------------------------------------`);
-  console.log(`Breakdown By Route:`);
-  console.log(JSON.stringify(metrics.routes, null, 2));
   console.log(`==================================================\n`);
 }
 
