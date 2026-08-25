@@ -83,16 +83,18 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
       )}
 
       <header className="top-header">
-        <button 
-          className="mobile-menu-btn"
-          aria-label="Toggle Navigation Menu"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? '✕' : '☰'}
-        </button>
-        
-        <div className="brand">
-          <span className="dot"></span>PADDOCK<small>ANALYTICS &amp; RACE TRACKER</small>
+        <div className="top-header-brand-row">
+          <button 
+            className="mobile-menu-btn"
+            aria-label="Toggle Navigation Menu"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? '✕' : '☰'}
+          </button>
+          
+          <div className="brand">
+            <span className="dot"></span>PADDOCK<small>ANALYTICS &amp; RACE TRACKER</small>
+          </div>
         </div>
 
         <div className="header-controls">
@@ -126,6 +128,22 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
           <button id="logoutLink" onClick={logout}>Log out</button>
         </div>
       </header>
+
+      {/* Mobile Quick Navigation Strip (visible on mobile web & tablets) */}
+      <div className="mobile-subnav-strip">
+        {navLinks.map(link => {
+          const isActive = pathname === link.path;
+          return (
+            <Link 
+              key={link.path} 
+              href={link.path} 
+              className={`mobile-subnav-pill ${isActive ? 'active' : ''}`}
+            >
+              {link.name}
+            </Link>
+          );
+        })}
+      </div>
 
       <aside className={`side-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         <div className="side-nav-head">
