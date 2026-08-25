@@ -184,9 +184,10 @@ export default function OverviewPage() {
 
   return (
     <section className="view" id="view-overview">
+      {/* Hero Gantry Header Card */}
       <div className="hero">
         <div className="hero-left">
-          <div className="eyebrow">Next on the calendar</div>
+          <div className="eyebrow">NEXT ON THE CALENDAR</div>
           <h1>{nextRace ? nextRace.raceName : 'Loading grid…'}</h1>
           <p>
             {nextRace 
@@ -208,79 +209,88 @@ export default function OverviewPage() {
           </div>
           <div className="countdown" dangerouslySetInnerHTML={{ __html: countdownText }}></div>
         </div>
+
         <div className="hero-right">
-          <div className="next-race-name">{nextRace ? nextRace.raceName : '—'}</div>
+          <div className="eyebrow" style={{ fontSize: '11px', marginBottom: '8px' }}>SESSION METRICS // ROUND {nextRace ? nextRace.round : '—'}</div>
           <div className="meta-row">
-            <span>Round</span>
+            <span>Championship Round</span>
             <span>{nextRace ? `${nextRace.round} / ${totalRaces}` : '—'}</span>
           </div>
           <div className="meta-row">
-            <span>Circuit</span>
+            <span>Circuit Venue</span>
             <span>{nextRace ? nextRace.Circuit.circuitName : '—'}</span>
           </div>
           <div className="meta-row">
-            <span>Locality</span>
+            <span>Location</span>
             <span>{nextRace ? `${nextRace.Circuit.Location.locality}, ${nextRace.Circuit.Location.country}` : '—'}</span>
           </div>
           <div className="meta-row">
-            <span>Session date</span>
+            <span>Scheduled Start</span>
             <span>{nextRace ? new Date(nextRace.date + 'T' + (nextRace.time || '13:00:00Z')).toUTCString().replace(' GMT', ' UTC') : '—'}</span>
           </div>
 
-          <div style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px dashed var(--line)' }}>
-            <div className="eyebrow" style={{ fontSize: '10px', marginBottom: '6px' }}>Circuit Weather</div>
+          <div style={{ marginTop: '16px', paddingTop: '14px', borderTop: '1px dashed var(--line)' }}>
+            <div className="eyebrow" style={{ fontSize: '11px', marginBottom: '10px' }}>LIVE VENUE WEATHER TELEMETRY</div>
             {weatherLoading ? (
-              <span className="footnote">Tracking radar...</span>
+              <span className="footnote" style={{ color: 'var(--paper)' }}>Tracking weather radar...</span>
             ) : weatherError ? (
               <span className="footnote" style={{ color: 'var(--amber)' }}>{weatherError}</span>
             ) : weather ? (
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', marginBottom: '4px' }}>
-                  <span>Condition</span>
-                  <span style={{ fontWeight: 600, color: 'var(--paper)' }}>{weather.description}</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', marginBottom: '4px' }}>
-                  <span>Temp / Humidity</span>
-                  <span style={{ fontWeight: 600, color: 'var(--paper)' }}>{weather.temp}°C / {weather.humidity}%</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', marginBottom: '4px' }}>
-                  <span>Wind / Rain</span>
-                  <span style={{ fontWeight: 600, color: 'var(--paper)' }}>{weather.windSpeed} km/h / {weather.rain} mm</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
+                  <span style={{ color: '#BAC4D8' }}>Weather Condition</span>
+                  <span style={{ fontWeight: 600, color: '#FFFFFF' }}>{weather.description}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
-                  <span>Tyre Compound</span>
+                  <span style={{ color: '#BAC4D8' }}>Track Temp / Humidity</span>
+                  <span style={{ fontWeight: 600, color: '#FFFFFF' }}>{weather.temp}°C / {weather.humidity}%</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
+                  <span style={{ color: '#BAC4D8' }}>Wind Speed / Rain</span>
+                  <span style={{ fontWeight: 600, color: '#FFFFFF' }}>{weather.windSpeed} km/h / {weather.rain} mm</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
+                  <span style={{ color: '#BAC4D8' }}>Tyre Allocation</span>
                   <span style={{ fontWeight: 600, color: weather.trackStatus === 'Dry' ? 'var(--cyan)' : 'var(--amber)' }}>
                     {weather.tyreRecommendation}
                   </span>
                 </div>
               </div>
             ) : (
-              <span className="footnote">No weather data</span>
+              <span className="footnote" style={{ color: 'var(--dim)' }}>No weather data available</span>
             )}
           </div>
+        </div>
+      </div>
 
-          {nextRace && nextRace.Circuit.circuitId && (
-            <div style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px dashed var(--line)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div>
-                <div className="eyebrow" style={{ fontSize: '10px', marginBottom: '8px' }}>Circuit Map Outline</div>
+      {/* 3D Isometric Circuit Radar & GPS Satellite Radar */}
+      {nextRace && nextRace.Circuit.circuitId && (
+        <div style={{ marginBottom: '28px' }}>
+          <div className="grid cols-2" style={{ gap: '20px' }}>
+            <div className="panel" style={{ display: 'flex', flexDirection: 'column', gap: '14px', height: '100%' }}>
+              <div className="eyebrow" style={{ fontSize: '11px', marginBottom: '0' }}>📐 3D ISOMETRIC TELEMETRY CONSOLE</div>
+              <div style={{ flex: 1 }}>
                 <CircuitMap circuitId={nextRace.Circuit.circuitId} showStats={false} />
               </div>
-              {nextRace.Circuit.Location.lat && nextRace.Circuit.Location.long && (
-                <div>
-                  <div className="eyebrow" style={{ fontSize: '10px', marginBottom: '6px' }}>GPS Satellite Location</div>
+            </div>
+
+            {nextRace.Circuit.Location.lat && nextRace.Circuit.Location.long && (
+              <div className="panel" style={{ display: 'flex', flexDirection: 'column', gap: '14px', height: '100%' }}>
+                <div className="eyebrow" style={{ fontSize: '11px', marginBottom: '0' }}>🛰️ GPS SATELLITE RADAR</div>
+                <div style={{ flex: 1, minHeight: '340px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--line)' }}>
                   <iframe
                     src={`https://maps.google.com/maps?q=${nextRace.Circuit.Location.lat},${nextRace.Circuit.Location.long}&t=k&z=14&output=embed`}
                     width="100%"
-                    height="160"
-                    style={{ border: '1px solid var(--line)', borderRadius: '4px', opacity: 0.85 }}
+                    height="100%"
+                    style={{ border: 0, opacity: 0.9, width: '100%', height: '100%', minHeight: '340px' }}
                     allowFullScreen
                   />
                 </div>
-              )}
-            </div>
-          )}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {selectedSeason !== 'current' ? (
         <div className="grid cols-2">

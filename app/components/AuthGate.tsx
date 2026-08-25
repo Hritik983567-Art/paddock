@@ -4,90 +4,186 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function AuthGate() {
-  const { login } = useAuth();
-  const [username, setUsername] = useState('');
+  const { login, loginWithGoogle } = useAuth();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [remember, setRemember] = useState(true);
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [shake, setShake] = useState(false);
-  const [showCreds, setShowCreds] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleAutofill = () => {
+    setEmail('admin@paddock.f1');
+    setPassword('paddock2026');
+    setError('');
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const success = login(username, password);
+    setError('');
+    setIsSubmitting(true);
+
+    const usernameInput = email.includes('@') ? email.split('@')[0] : email;
+    const success = await login(usernameInput, password);
+
     if (success) {
       setError('');
     } else {
-      setError('Incorrect username or password.');
+      setIsSubmitting(false);
+      setError('Invalid credentials. Try admin@paddock.f1 / paddock2026');
       setShake(true);
-      setTimeout(() => setShake(false), 400);
+      setTimeout(() => setShake(false), 450);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setError('');
+    setIsSubmitting(true);
+    const success = await loginWithGoogle('engineer.f1@gmail.com', 'F1 Telemetry User');
+
+    if (!success) {
+      setIsSubmitting(false);
+      setError('Google Sign-In failed. Please try again.');
+      setShake(true);
+      setTimeout(() => setShake(false), 450);
     }
   };
 
   return (
-    <div id="authGate">
-      <div className={`gate-box ${shake ? 'shake' : ''}`} id="gateBox">
-        <div className="gate-pitch">
-          <div className="gate-checkers"></div>
-          <div className="gate-wordmark">
-            <div className="stripe"></div>
-            <h1>PAD<span>DOCK</span></h1>
-            <div className="tagline">F1 Analytics &amp; Race Tracker</div>
+    <div id="authGate" className="centered-login-screen">
+      {/* Full-Screen 3D F1 Car Wallpaper */}
+      <div className="login-wallpaper-wrapper">
+        <img 
+          src="/images/f1-login-car.png" 
+          alt="Formula 1 Car Wallpaper" 
+          className="login-wallpaper-img" 
+        />
+        <div className="login-wallpaper-overlay"></div>
+      </div>
+
+      {/* Centered Login Form Card */}
+      <div className={`centered-login-card ${shake ? 'shake' : ''}`}>
+        <div className="f1-spec-form-inner">
+          
+          {/* Brand Header */}
+          <div className="f1-spec-brand">
+            <div className="f1-spec-grid-icon">
+              <span className="cell cell-dark"></span>
+              <span className="cell cell-dark"></span>
+              <span className="cell cell-green"></span>
+              <span className="cell cell-dark"></span>
+            </div>
+            <span className="f1-spec-brand-text">PADDOCK<span className="accent-slash">//</span>ANALYTICS</span>
           </div>
-          <p>A final-year project built on real public race data: live standings, session replay, driver profiles, teammate head-to-heads, cross-era circuit comparisons, and a pit-strategy simulator.</p>
-          <ul className="gate-features">
-            <li>Live driver &amp; constructor standings</li>
-            <li>Race &amp; qualifying replay</li>
-            <li>Full career driver profiles</li>
-            <li>Teammate battle tracker</li>
-            <li>Pit strategy simulator</li>
-          </ul>
-        </div>
-        <div className="gate-form">
-          <h2>Sign in</h2>
-          <p className="gate-sub">Demo access — this is a client-side gate for presentation, not a real authentication system.</p>
-          <div className="gate-error" id="gateError">{error}</div>
-          <form id="gateFormEl" onSubmit={handleSubmit}>
-            <div className="gate-field">
-              <label htmlFor="gateUser">Username</label>
+
+          {/* Welcome Text */}
+          <div className="f1-spec-welcome">
+            <h1>WELCOME BACK</h1>
+            <p>Please enter your details to access live F1 telemetry</p>
+          </div>
+
+          {error && <div className="f1-spec-error">{error}</div>}
+
+          {/* Login Form */}
+          <form onSubmit={handleSubmit} className="f1-spec-form">
+            {/* Email */}
+            <div className="f1-spec-field">
+              <label htmlFor="specEmail">EMAIL ADDRESS</label>
               <input 
-                type="text" 
-                id="gateUser" 
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                autoComplete="username" 
-                placeholder="admin"
+                type="email" 
+                id="specEmail" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@paddock.f1"
                 required
+                disabled={isSubmitting}
+                autoComplete="email"
               />
             </div>
-            <div className="gate-field">
-              <label htmlFor="gatePass">Password</label>
-              <input 
-                type="password" 
-                id="gatePass" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password" 
-                placeholder="••••••••"
-                required
-              />
+
+            {/* Password */}
+            <div className="f1-spec-field">
+              <label htmlFor="specPass">PASSWORD</label>
+              <div className="spec-password-wrapper">
+                <input 
+                  type={showPassword ? 'text' : 'password'} 
+                  id="specPass" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••••••"
+                  required
+                  disabled={isSubmitting}
+                  autoComplete="current-password"
+                />
+                <button 
+                  type="button" 
+                  className="spec-eye-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label="Toggle password visibility"
+                >
+                  {showPassword ? '🙈' : '👁️'}
+                </button>
+              </div>
             </div>
-            <label className="gate-remember">
-              <input type="checkbox" id="gateRemember" defaultChecked /> Remember me on this device
-            </label>
-            <button type="submit" className="gate-submit">Enter Dashboard</button>
+
+            {/* Options */}
+            <div className="f1-spec-options">
+              <label className="spec-checkbox-label">
+                <input 
+                  type="checkbox" 
+                  checked={remember}
+                  onChange={(e) => setRemember(e.target.checked)}
+                />
+                <span>Remember for 30 days</span>
+              </label>
+              <button 
+                type="button" 
+                className="spec-forgot-btn"
+                onClick={handleAutofill}
+              >
+                Forgot password?
+              </button>
+            </div>
+
+            {/* Actions */}
+            <div className="f1-spec-actions">
+              <button 
+                type="submit" 
+                className="spec-sign-in-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'AUTHENTICATING...' : 'SIGN IN'}
+              </button>
+
+              <button 
+                type="button" 
+                className="spec-google-btn"
+                onClick={handleGoogleSignIn}
+                disabled={isSubmitting}
+              >
+                <svg className="spec-google-icon" width="20" height="20" viewBox="0 0 24 24" style={{ width: '20px', height: '20px', minWidth: '20px', maxWidth: '20px', flexShrink: 0 }}>
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.58c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.1H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.9l3.66-2.81z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.1l3.66 2.81c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                <span>Sign in with Google</span>
+              </button>
+            </div>
           </form>
-          <div className="gate-demo-note">
-            <span 
-              id="gateCredToggle" 
-              onClick={() => setShowCreds(!showCreds)}
-              style={{ cursor: 'pointer', textDecoration: 'underline dotted' }}
+
+          <p className="f1-spec-footer">
+            Don&apos;t have an account?{' '}
+            <button 
+              type="button" 
+              className="spec-signup-btn"
+              onClick={handleAutofill}
             >
-              {showCreds ? 'Hide credentials' : 'Need the demo credentials?'}
-            </span>
-            {showCreds && (
-              <span id="gateCredValue"> — <b>admin</b> / <b>paddock2026</b></span>
-            )}
-          </div>
+              Sign up
+            </button>
+          </p>
+
         </div>
       </div>
     </div>

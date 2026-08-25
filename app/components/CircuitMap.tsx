@@ -882,6 +882,8 @@ export default function CircuitMap({
   const [pathLength, setPathLength] = useState(0);
   const [driverPoints, setDriverPoints] = useState<Record<string, { x: number; y: number; code: string; color: string; position: number; status: string }>>({});
   const [virtualLapProgress, setVirtualLapProgress] = useState(0);
+  const [tiltPreset, setTiltPreset] = useState<'high' | 'medium' | 'flat'>('medium');
+  const [zoomLevel, setZoomLevel] = useState(1);
 
   useEffect(() => {
     if (pathRef.current) {
@@ -956,88 +958,162 @@ export default function CircuitMap({
 
   const activeCorners = track.corners || [];
 
+  const get3DTransform = () => {
+    const rx = tiltPreset === 'high' ? '54deg' : tiltPreset === 'medium' ? '40deg' : '0deg';
+    const rz = tiltPreset === 'flat' ? '0deg' : '-22deg';
+    return `rotateX(${rx}) rotateZ(${rz}) scale(${zoomLevel * 0.94})`;
+  };
+
   return (
     <div className="flex flex-col gap-4 w-full">
       <div 
         style={{
-          background: '#07090E',
+          background: 'var(--carbon)',
           border: '1px solid var(--line)',
-          borderRadius: '8px',
-          padding: '16px',
+          borderRadius: '10px',
+          padding: '18px',
           position: 'relative',
           overflow: 'hidden',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
-          backgroundImage: 'radial-gradient(rgba(42, 47, 58, 0.15) 1px, transparent 1px)',
-          backgroundSize: '16px 16px'
+          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--theme-glow)',
+          backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
+          backgroundSize: '20px 20px'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', borderBottom: '1px solid rgba(42, 47, 58, 0.4)', paddingBottom: '8px' }}>
-          <span style={{ fontSize: '24px' }}>{track.flag}</span>
-          <div>
-            <h3 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '20px', letterSpacing: '0.5px', color: 'var(--paper)' }}>
-              {track.name.toUpperCase()}
-            </h3>
-            <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>
-              {track.country.toUpperCase()} &bull; TRACK RADAR CONSOLE
-            </span>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px', borderBottom: '1px solid rgba(42, 47, 58, 0.4)', paddingBottom: '10px', flexWrap: 'wrap', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontSize: '26px' }}>{track.flag}</span>
+            <div>
+              <h3 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '21px', letterSpacing: '0.8px', color: 'var(--paper)', textTransform: 'uppercase' }}>
+                {track.name}
+              </h3>
+              <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--cyan)', letterSpacing: '1px' }}>
+                {track.country.toUpperCase()} &bull; 3D ISOMETRIC TELEMETRY CONSOLE
+              </span>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+            <div className="map-controls-strip">
+              <span style={{ color: 'var(--dim)', fontSize: '10px' }}>3D TILT:</span>
+              <button className={`map-control-btn ${tiltPreset === 'medium' ? 'active' : ''}`} onClick={() => setTiltPreset('medium')}>40° ISO</button>
+              <button className={`map-control-btn ${tiltPreset === 'high' ? 'active' : ''}`} onClick={() => setTiltPreset('high')}>54° ISO</button>
+              <button className={`map-control-btn ${tiltPreset === 'flat' ? 'active' : ''}`} onClick={() => setTiltPreset('flat')}>0° FLAT</button>
+            </div>
           </div>
         </div>
 
-        <svg 
-          viewBox={track.viewBox || "0 0 600 400"} 
-          width="100%" 
-          style={{ display: 'block', width: '100%', height: '320px', maxHeight: '350px' }}
-        >
-          <defs>
-            <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-              <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.03)" strokeWidth="1" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
+        <div className="circuit-3d-stage" style={{ padding: tiltPreset !== 'flat' ? '20px 10px 30px' : '0' }}>
+          <div 
+            className="circuit-3d-canvas circuit-3d-active"
+            style={{ transform: get3DTransform() }}
+          >
+            <svg 
+              viewBox={track.viewBox || "0 0 500 500"} 
+              width="100%" 
+              style={{ display: 'block', width: '100%', height: '460px', maxHeight: '520px' }}
+            >
+              <defs>
+                <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(52, 228, 200, 0.04)" strokeWidth="1" />
+                </pattern>
+                <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="4" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
 
-          <path 
-            ref={pathRef} 
-            d={track.fullPath} 
-            fill="none" 
-            stroke="transparent" 
-            strokeWidth="0" 
-          />
+              <path 
+                ref={pathRef} 
+                d={track.fullPath} 
+                fill="none" 
+                stroke="transparent" 
+                strokeWidth="0" 
+              />
 
-          {/* Asphalt Backing Roads for enhanced visual clarity */}
-          <path 
-            d={track.fullPath} 
-            fill="none" 
-            stroke="#12151B" 
-            strokeWidth="9" 
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ opacity: 0.95 }}
-          />
-          <path 
-            d={track.fullPath} 
-            fill="none" 
-            stroke="#1B1F27" 
-            strokeWidth="7" 
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ opacity: 0.8 }}
-          />
+              {/* 3D Depth Ground Shadow */}
+              {tiltPreset !== 'flat' && (
+                <>
+                  <path 
+                    d={track.fullPath} 
+                    fill="none" 
+                    stroke="rgba(0, 0, 0, 0.7)" 
+                    strokeWidth="20" 
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    transform="translate(12, 18)"
+                    style={{ filter: 'blur(4px)' }}
+                  />
+                  <path 
+                    d={track.fullPath} 
+                    fill="none" 
+                    stroke="rgba(52, 228, 200, 0.15)" 
+                    strokeWidth="24" 
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    transform="translate(6, 9)"
+                    style={{ filter: 'blur(6px)' }}
+                  />
+                </>
+              )}
+
+              {/* Asphalt Backing Roads */}
+              <path 
+                d={track.fullPath} 
+                fill="none" 
+                stroke="#080A0E" 
+                strokeWidth="16" 
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ opacity: 0.95 }}
+              />
+              {/* Red and White High-Precision Racing Kerbs / Rumble Strips */}
+              <path 
+                d={track.fullPath} 
+                fill="none" 
+                stroke="#E8302A" 
+                strokeWidth="13" 
+                strokeDasharray="8 8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ opacity: 0.75 }}
+              />
+              <path 
+                d={track.fullPath} 
+                fill="none" 
+                stroke="#FFFFFF" 
+                strokeWidth="13" 
+                strokeDasharray="8 8"
+                strokeDashoffset="8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ opacity: 0.75 }}
+              />
+              <path 
+                d={track.fullPath} 
+                fill="none" 
+                stroke="#171C26" 
+                strokeWidth="10" 
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ opacity: 0.95 }}
+              />
 
           {/* Sector 1 (Red) - Glow & Main Stroke */}
           <path 
             d={track.s1} 
             fill="none" 
             stroke="var(--red)" 
-            strokeWidth="5" 
+            strokeWidth="9" 
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ opacity: 0.25, filter: 'blur(3px)' }}
+            style={{ opacity: 0.35, filter: 'blur(3px)' }}
           />
           <path 
             d={track.s1} 
             fill="none" 
             stroke="var(--red)" 
-            strokeWidth="3.2" 
+            strokeWidth="5.5" 
             strokeLinecap="round"
             strokeLinejoin="round"
             style={{ opacity: 0.95 }}
@@ -1048,16 +1124,16 @@ export default function CircuitMap({
             d={track.s2} 
             fill="none" 
             stroke="var(--cyan)" 
-            strokeWidth="5" 
+            strokeWidth="9" 
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ opacity: 0.25, filter: 'blur(3px)' }}
+            style={{ opacity: 0.35, filter: 'blur(3px)' }}
           />
           <path 
             d={track.s2} 
             fill="none" 
             stroke="var(--cyan)" 
-            strokeWidth="3.2" 
+            strokeWidth="5.5" 
             strokeLinecap="round"
             strokeLinejoin="round"
             style={{ opacity: 0.95 }}
@@ -1068,16 +1144,16 @@ export default function CircuitMap({
             d={track.s3} 
             fill="none" 
             stroke="var(--purple)" 
-            strokeWidth="5" 
+            strokeWidth="9" 
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ opacity: 0.25, filter: 'blur(3px)' }}
+            style={{ opacity: 0.35, filter: 'blur(3px)' }}
           />
           <path 
             d={track.s3} 
             fill="none" 
             stroke="var(--purple)" 
-            strokeWidth="3.2" 
+            strokeWidth="5.5" 
             strokeLinecap="round"
             strokeLinejoin="round"
             style={{ opacity: 0.95 }}
@@ -1190,6 +1266,8 @@ export default function CircuitMap({
             );
           })}
         </svg>
+        </div>
+        </div>
 
         <div 
           style={{
