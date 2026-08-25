@@ -141,7 +141,7 @@ Route (app)
 ### C. Git Repository Synchronization
 - **Repository URL**: [`https://github.com/Hritik983567-Art/paddock.git`](https://github.com/Hritik983567-Art/paddock.git)
 - **Branch**: `main`
-- **Latest Commit**: `59ac420` (`feat: centered 3D F1 car login stage, GPU 60fps animations, multi-theme contrast fixes, and technical documentation`)
+- **Latest Commit**: `ccd0018` (`docs: expand DOCUMENTATION.md with comprehensive departmental system audits`)
 
 ---
 
@@ -157,3 +157,18 @@ npm run build
 # 3. Launch Optimized Production Server
 npm start
 ```
+
+---
+
+## 📜 7. Revision & Technical Changelog History
+
+| Version | Date | Division | Changelog Highlights |
+| :--- | :--- | :--- | :--- |
+| **v1.7** | 2026-08-26 | **DevOps / QA** | Added complete Departmental System Audits and pushed commit `ccd0018` to GitHub. |
+| **v1.6** | 2026-08-26 | **UI/UX** | Fixed Overview page contrast — solid carbon backdrops (`position: relative; z-index: 5; background: var(--carbon);`) & wallpaper fade masks. |
+| **v1.5** | 2026-08-26 | **UI/UX / Perf** | Implemented 60FPS GPU hardware acceleration (`will-change`, `translate3d`) for right-to-left F1 car entrance animation. |
+| **v1.4** | 2026-08-25 | **UI/UX** | Rendered top-down 3D F1 car wallpaper asset (`/images/f1-login-car.png`) and centered glassmorphism login card. |
+| **v1.3** | 2026-08-25 | **Frontend** | Integrated F1 Paddock Analytics login template, password eye toggle, and Google SSO button. |
+| **v1.2** | 2026-08-25 | **Backend** | HMAC-SHA256 JWT Authentication Engine & HttpOnly session cookie handler APIs (`/api/auth/*`). |
+| **v1.1** | 2026-08-25 | **Frontend** | 6 Constructor Team Themes (Ferrari, Red Bull, Mercedes, McLaren, Aston Martin, Default) with CSS design token bindings. |
+| **v1.0** | 2026-08-25 | **Core** | Initial Paddock Analytics Next.js 16 Telemetry App Release across 17 routes. |
