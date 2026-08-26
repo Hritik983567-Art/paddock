@@ -18,12 +18,6 @@ export default function AuthGate() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [shake, setShake] = useState(false);
 
-  const handleAutofill = () => {
-    setEmail('admin@paddock.f1');
-    setPassword('paddock2026');
-    setError('');
-  };
-
   const handleToggleMode = () => {
     setIsSignUp(!isSignUp);
     setError('');
@@ -39,18 +33,18 @@ export default function AuthGate() {
       const res = await register(name, email, password, team);
       if (!res.success) {
         setIsSubmitting(false);
-        setError(res.message || 'Registration failed. Try again.');
+        setError(res.message || 'Registration failed. Please try again.');
         setShake(true);
         setTimeout(() => setShake(false), 450);
       }
     } else {
       // Handle Sign In
       const usernameInput = email.includes('@') ? email.split('@')[0] : email;
-      const success = await login(usernameInput, password);
+      const success = await login(usernameInput, password, remember);
 
       if (!success) {
         setIsSubmitting(false);
-        setError('Invalid credentials. Try admin@paddock.f1 / paddock2026');
+        setError('Invalid credentials provided. Please try again.');
         setShake(true);
         setTimeout(() => setShake(false), 450);
       }
@@ -60,11 +54,11 @@ export default function AuthGate() {
   const handleGoogleSignIn = async () => {
     setError('');
     setIsSubmitting(true);
-    const success = await loginWithGoogle('engineer.f1@gmail.com', 'F1 Telemetry User');
+    const success = await loginWithGoogle();
 
     if (!success) {
       setIsSubmitting(false);
-      setError('Google Sign-In failed. Please try again.');
+      setError('Google Sign-In authentication failed. Please try again.');
       setShake(true);
       setTimeout(() => setShake(false), 450);
     }
@@ -137,7 +131,7 @@ export default function AuthGate() {
                 id="specEmail" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={isSignUp ? 'engineer@ferrari.f1' : 'admin@paddock.f1'}
+                placeholder="engineer@paddock.f1"
                 required
                 disabled={isSubmitting}
                 autoComplete="email"
@@ -210,13 +204,6 @@ export default function AuthGate() {
                   />
                   <span>Remember for 30 days</span>
                 </label>
-                <button 
-                  type="button" 
-                  className="spec-forgot-btn"
-                  onClick={handleAutofill}
-                >
-                  Forgot password?
-                </button>
               </div>
             )}
 
@@ -275,6 +262,13 @@ export default function AuthGate() {
               </>
             )}
           </p>
+
+          {/* Privacy & Terms Policy Notice (P-12) */}
+          <div style={{ marginTop: '16px', fontSize: '11px', color: 'var(--dim)', textAlign: 'center', fontFamily: 'var(--font-mono)' }}>
+            By continuing, you agree to Paddock Telemetry&apos;s{' '}
+            <a href="#" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>Terms of Service</a> and{' '}
+            <a href="#" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>Privacy Policy</a>.
+          </div>
 
         </div>
       </div>

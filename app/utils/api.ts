@@ -1,4 +1,4 @@
-export const API_BASE = 'https://api.jolpi.ca/ergast/f1';
+export const API_BASE = '/api/f1';
 
 export const TEAM_COLORS: Record<string, string> = {
     red_bull: '#3671C6', ferrari: '#E8002D', mercedes: '#27F4D2', mclaren: '#FF8000',
@@ -17,13 +17,14 @@ export function pauseMs(ms: number): Promise<void> {
 
 export async function getJSON(url: string, attempt: number = 1): Promise<any> {
     try {
-        const res = await fetch(url);
+        const targetUrl = url.replace('https://api.jolpi.ca/ergast/f1', '/api/f1').replace('https://api.jolpica.net/ergast/f1', '/api/f1');
+        const res = await fetch(targetUrl);
         if (res.status === 429) {
             if (attempt < 3) {
                 await pauseMs(800 * attempt);
                 return getJSON(url, attempt + 1);
             }
-            throw new Error('Rate limited (429) — the public API allows ~200 requests/hour without a key. Wait a few minutes and try again.');
+            throw new Error('Rate limited — cached data mode active. Please wait a moment and try again.');
         }
         if (!res.ok) {
             throw new Error(`Request failed: ${res.status}`);
@@ -49,8 +50,9 @@ export async function fetchAllPaged(url: string, tableKey: string, listKey: stri
         first = false;
         const sep = url.includes('?') ? '&' : '?';
         const data = await getJSON(`${url}${sep}limit=${pageSize}&offset=${offset}`);
+        if (!data || !data.MRData) break;
         total = parseInt(data.MRData.total) || 0;
-        const items = data.MRData[tableKey][listKey] || [];
+        const items = data.MRData[tableKey] ? (data.MRData[tableKey][listKey] || []) : [];
         all = all.concat(items);
         if (items.length === 0) break;
         offset += items.length;

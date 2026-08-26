@@ -19,7 +19,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   user: JWTPayload | null;
   token: string | null;
-  login: (user: string, pass: string) => Promise<boolean>;
+  login: (user: string, pass: string, remember?: boolean) => Promise<boolean>;
   register: (name: string, email: string, pass: string, team?: string) => Promise<{ success: boolean; message?: string }>;
   loginWithGoogle: (email?: string, name?: string, picture?: string) => Promise<boolean>;
   logout: () => void;
@@ -53,12 +53,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     checkToken();
   }, []);
 
-  const login = async (usernameInput: string, passwordInput: string): Promise<boolean> => {
+  const login = async (usernameInput: string, passwordInput: string, remember?: boolean): Promise<boolean> => {
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: usernameInput, password: passwordInput })
+        body: JSON.stringify({ username: usernameInput, password: passwordInput, remember })
       });
 
       const data = await res.json();

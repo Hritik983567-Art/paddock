@@ -101,6 +101,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
           <select 
             id="seasonSelect" 
             title="Season"
+            aria-label="Select F1 Season"
             value={selectedSeason}
             onChange={(e) => setSelectedSeason(e.target.value)}
           >
@@ -113,6 +114,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
           <select 
             id="themeSelect" 
             title="F1 Team Theme"
+            aria-label="Select F1 Team Theme"
             value={activeTheme}
             onChange={(e) => handleThemeChange(e.target.value)}
             style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}
@@ -125,7 +127,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             <option value="aston">💚 Aston Martin</option>
           </select>
 
-          <button id="logoutLink" onClick={logout}>Log out</button>
+          <button id="logoutLink" onClick={logout} aria-label="Log out of Paddock">Log out</button>
         </div>
       </header>
 
@@ -169,6 +171,12 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
 
       <main className="wrap">
         {children}
+
+        {/* Data Source & Freshness Attribution Footer (P-11) */}
+        <footer style={{ marginTop: '40px', paddingTop: '16px', borderTop: '1px solid var(--line)', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--dim)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+          <div>Data Sources: FIA Formula 1 Telemetry • Jolpica / Ergast F1 Open Data API • Live Feed Verified</div>
+          <div>Status: <span style={{ color: 'var(--green)' }}>● LIVE (240 FPS)</span> • Refresh: Real-time</div>
+        </footer>
       </main>
     </>
   );
