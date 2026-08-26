@@ -3,6 +3,11 @@ import { signJWT } from '../../../lib/jwt';
 import { checkRateLimit } from '../../../lib/rateLimit';
 import { verifyGoogleIDToken } from '../../../lib/googleOAuth';
 
+export async function GET() {
+  const clientId = process.env.GOOGLE_CLIENT_ID || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
+  return NextResponse.json({ clientId });
+}
+
 export async function POST(request: Request) {
   try {
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || '127.0.0.1';

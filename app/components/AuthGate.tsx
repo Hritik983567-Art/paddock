@@ -17,6 +17,7 @@ export default function AuthGate() {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [shake, setShake] = useState(false);
+  const [googleClientId, setGoogleClientId] = useState<string>('');
 
   // Clear form fields explicitly on mount
   useEffect(() => {
@@ -24,35 +25,44 @@ export default function AuthGate() {
     setEmail('');
     setPassword('');
     setError('');
-  }, []);
 
-  // Initialize Google Identity Services if client ID exists
-  useEffect(() => {
-    const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-    if (googleClientId && typeof window !== 'undefined') {
-      const script = document.createElement('script');
-      script.src = 'https://accounts.google.com/gsi/client';
-      script.async = true;
-      script.defer = true;
-      script.onload = () => {
-        if ((window as any).google?.accounts?.id) {
-          (window as any).google.accounts.id.initialize({
-            client_id: googleClientId,
-            callback: async (response: any) => {
-              if (response.credential) {
-                setIsSubmitting(true);
-                const success = await loginWithGoogle(response.credential);
-                if (!success) {
-                  setIsSubmitting(false);
-                  setError('Google OAuth token verification failed.');
+    // Fetch Google Client ID from server API (supports GOOGLE_CLIENT_ID secret & NEXT_PUBLIC_GOOGLE_CLIENT_ID)
+    async function fetchClientId() {
+      try {
+        const res = await fetch('/api/auth/google');
+        const data = await res.json();
+        const cid = data.clientId || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
+        setGoogleClientId(cid);
+
+        if (cid && typeof window !== 'undefined') {
+          const script = document.createElement('script');
+          script.src = 'https://accounts.google.com/gsi/client';
+          script.async = true;
+          script.defer = true;
+          script.onload = () => {
+            if ((window as any).google?.accounts?.id) {
+              (window as any).google.accounts.id.initialize({
+                client_id: cid,
+                callback: async (response: any) => {
+                  if (response.credential) {
+                    setIsSubmitting(true);
+                    const success = await loginWithGoogle(response.credential);
+                    if (!success) {
+                      setIsSubmitting(false);
+                      setError('Google OAuth token verification failed.');
+                    }
+                  }
                 }
-              }
+              });
             }
-          });
+          };
+          document.body.appendChild(script);
         }
-      };
-      document.body.appendChild(script);
+      } catch {
+        // ignore
+      }
     }
+    fetchClientId();
   }, [loginWithGoogle]);
 
   const handleToggleMode = () => {
@@ -95,7 +105,7 @@ export default function AuthGate() {
     setError('');
     setIsSubmitting(true);
 
-    if (typeof window !== 'undefined' && (window as any).google?.accounts?.id) {
+    if (typeof window !== 'undefined' && (window as any).google?.accounts?.id && googleClientId) {
       (window as any).google.accounts.id.prompt((notification: any) => {
         if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
           setError('Google Identity One-Tap prompt unavailable on current domain.');
@@ -104,7 +114,7 @@ export default function AuthGate() {
       });
     } else {
       setIsSubmitting(false);
-      setError('Google SSO requires NEXT_PUBLIC_GOOGLE_CLIENT_ID in Vercel settings. Use email/password sign up below or see setup guide.');
+      setError('Google SSO requires GOOGLE_CLIENT_ID in Vercel environment variables. Use email/password sign up below or see setup guide.');
       setShake(true);
       setTimeout(() => setShake(false), 450);
     }
