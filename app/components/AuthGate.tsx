@@ -104,7 +104,7 @@ export default function AuthGate() {
       });
     } else {
       setIsSubmitting(false);
-      setError('Google Sign-In OAuth requires NEXT_PUBLIC_GOOGLE_CLIENT_ID environment variable.');
+      setError('Google SSO requires NEXT_PUBLIC_GOOGLE_CLIENT_ID in Vercel settings. Use email/password sign up below or see setup guide.');
       setShake(true);
       setTimeout(() => setShake(false), 450);
     }

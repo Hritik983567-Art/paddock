@@ -10,7 +10,8 @@ export async function GET(
   try {
     const { path } = await params;
     const pathString = path ? path.join('/') : '';
-    const targetUrl = `https://api.jolpica.net/ergast/f1/${pathString}.json`;
+    const cleanPath = pathString.endsWith('.json') ? pathString : `${pathString}.json`;
+    const targetUrl = `https://api.jolpica.net/ergast/f1/${cleanPath}`;
 
     // Check Cache
     const cached = cache.get(targetUrl);
@@ -29,7 +30,15 @@ export async function GET(
       if (cached) {
         return NextResponse.json(cached.data, { headers: { 'X-Cache': 'STALE' } });
       }
-      return NextResponse.json({ MRData: { RaceTable: { Races: [] } }, error: 'Upstream API unavailable' }, { status: 502 });
+      return NextResponse.json({
+        MRData: {
+          StandingsTable: { StandingsLists: [] },
+          RaceTable: { Races: [] },
+          DriverTable: { Drivers: [] },
+          total: '0'
+        },
+        error: 'Upstream API unavailable'
+      }, { status: 200 });
     }
 
     const data = await res.json();
@@ -39,6 +48,14 @@ export async function GET(
       headers: { 'X-Cache': 'MISS', 'Cache-Control': 'public, max-age=300' }
     });
   } catch (error) {
-    return NextResponse.json({ error: 'Server proxy failure' }, { status: 500 });
+    return NextResponse.json({
+      MRData: {
+        StandingsTable: { StandingsLists: [] },
+        RaceTable: { Races: [] },
+        DriverTable: { Drivers: [] },
+        total: '0'
+      },
+      error: 'Server proxy processing failure'
+    }, { status: 200 });
   }
 }
