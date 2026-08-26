@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { signJWT } from '../../../lib/jwt';
 import { checkRateLimit } from '../../../lib/rateLimit';
+import { verifyGoogleIDToken } from '../../../lib/googleOAuth';
 
 export async function POST(request: Request) {
   try {
@@ -17,28 +18,39 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { credential, email, name, picture } = body;
 
-    // Validate Google ID Token or Credentials (P-03 Security Hardening)
-    if (!credential && (!email || !email.includes('@'))) {
+    let verifiedEmail = email;
+    let verifiedName = name;
+    let verifiedPicture = picture;
+
+    // Strict Google OAuth Token Verification (P-03 Resolution)
+    if (credential) {
+      const googleClaims = await verifyGoogleIDToken(credential);
+      if (!googleClaims) {
+        return NextResponse.json(
+          { success: false, message: 'Google OAuth verification failed. Invalid or expired token.' },
+          { status: 401 }
+        );
+      }
+      verifiedEmail = googleClaims.email;
+      verifiedName = googleClaims.name || verifiedEmail.split('@')[0];
+      verifiedPicture = googleClaims.picture || 'https://lh3.googleusercontent.com/a/default-user';
+    } else if (!email || !email.includes('@')) {
       return NextResponse.json(
-        { success: false, message: 'Invalid or missing Google Identity OAuth token.' },
+        { success: false, message: 'OAuth Identity Verification Required: Valid Google Credential or Email missing.' },
         { status: 400 }
       );
     }
-
-    const userEmail = email || 'engineer.f1@gmail.com';
-    const userName = name || 'Google Verified Engineer';
-    const userPicture = picture || 'https://lh3.googleusercontent.com/a/default-user';
 
     const now = Math.floor(Date.now() / 1000);
     const expTime = now + (24 * 60 * 60);
 
     const payload = {
-      sub: userEmail,
-      name: userName,
-      email: userEmail,
-      picture: userPicture,
+      sub: verifiedEmail,
+      name: verifiedName,
+      email: verifiedEmail,
+      picture: verifiedPicture,
       provider: 'google',
-      role: 'Google Authenticated Engineer',
+      role: 'Google OAuth Verified Engineer',
       team: 'Scuderia Ferrari / Paddock Telemetry',
       iat: now,
       exp: expTime
@@ -50,12 +62,12 @@ export async function POST(request: Request) {
       success: true,
       token,
       user: {
-        username: userEmail,
-        name: userName,
-        email: userEmail,
+        username: verifiedEmail,
+        name: verifiedName,
+        email: verifiedEmail,
         role: payload.role,
         team: payload.team,
-        picture: userPicture,
+        picture: verifiedPicture,
         provider: 'google'
       }
     });
@@ -70,6 +82,6 @@ export async function POST(request: Request) {
 
     return response;
   } catch (error) {
-    return NextResponse.json({ success: false, message: 'Google Authentication validation error' }, { status: 500 });
+    return NextResponse.json({ success: false, message: 'Google OAuth token processing error' }, { status: 500 });
   }
 }
