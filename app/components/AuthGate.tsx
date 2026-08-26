@@ -121,7 +121,21 @@ export default function AuthGate() {
   };
 
   return (
-    <div id="authGate" className="centered-login-screen">
+    <div id="authGate" className="centered-login-screen" style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      width: '100vw',
+      height: '100vh',
+      zIndex: 99999,
+      background: '#0a0d12',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflowY: 'auto'
+    }}>
       {/* Full-Screen 3D F1 Car Wallpaper */}
       <div className="login-wallpaper-wrapper">
         <img 
