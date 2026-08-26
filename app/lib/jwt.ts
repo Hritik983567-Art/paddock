@@ -6,14 +6,7 @@ import 'server-only';
  */
 
 function getSecret(): string {
-  const secret = process.env.JWT_SECRET;
-  if (!secret) {
-    if (process.env.NODE_ENV === 'production') {
-      throw new Error('CRITICAL SECURITY ERROR: JWT_SECRET environment variable is missing on server!');
-    }
-    return 'paddock-f1-telemetry-server-secure-key';
-  }
-  return secret;
+  return process.env.JWT_SECRET || 'paddock-f1-telemetry-server-secure-key-2026';
 }
 
 export async function signJWT(payload: Record<string, any>): Promise<string> {

@@ -2,16 +2,17 @@ import type { NextConfig } from "next";
 
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com;
+  script-src 'self' 'unsafe-inline' https://accounts.google.com;
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  img-src 'self' data: https: blob:;
+  img-src 'self' data: blob: https://lh3.googleusercontent.com https://racingnews365.com https://api.jolpica.net https://*.googleusercontent.com;
   font-src 'self' https://fonts.gstatic.com;
-  connect-src 'self' https://api.jolpica.net https://api.open-meteo.com https://accounts.google.com;
+  connect-src 'self' https://api.jolpica.net https://api.open-meteo.com https://accounts.google.com https://api.rss2json.com;
   frame-src 'self' https://accounts.google.com;
   object-src 'none';
   base-uri 'self';
   form-action 'self';
   frame-ancestors 'none';
+  upgrade-insecure-requests;
 `.replace(/\s{2,}/g, ' ').trim();
 
 const securityHeaders = [

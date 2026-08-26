@@ -68,9 +68,10 @@ export async function POST(request: Request) {
     });
 
     return response;
-  } catch (error) {
+  } catch (error: any) {
+    console.error('Registration API Error:', error);
     return NextResponse.json(
-      { success: false, message: 'Registration server error. Please try again.' },
+      { success: false, message: error?.message || 'Registration server error. Please try again.' },
       { status: 500 }
     );
   }
