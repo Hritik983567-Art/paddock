@@ -1,17 +1,23 @@
+import 'server-only';
+
 /**
- * Server-Side Web Crypto JWT Utility for Next.js
- * HMAC-SHA256 Signing and Verification
+ * Server-Only Web Crypto JWT Utility for Next.js
+ * Strictly executed inside server API routes and middleware. NEVER bundled to client JavaScript.
  */
 
 function getSecret(): string {
-  if (process.env.JWT_SECRET) {
-    return process.env.JWT_SECRET;
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('CRITICAL SECURITY ERROR: JWT_SECRET environment variable is missing on server!');
+    }
+    return 'paddock-f1-telemetry-server-secure-key';
   }
-  // Server-only fallback key
-  return 'paddock-f1-telemetry-server-secret-key-2026';
+  return secret;
 }
 
-export async function signJWT(payload: Record<string, any>, secret: string = getSecret()): Promise<string> {
+export async function signJWT(payload: Record<string, any>): Promise<string> {
+  const secret = getSecret();
   const header = { alg: 'HS256', typ: 'JWT' };
   
   const base64UrlEncode = (data: string | Uint8Array) => {
@@ -43,8 +49,9 @@ export async function signJWT(payload: Record<string, any>, secret: string = get
   return `${tokenData}.${sigB64}`;
 }
 
-export async function verifyJWT(token: string, secret: string = getSecret()): Promise<Record<string, any> | null> {
+export async function verifyJWT(token: string): Promise<Record<string, any> | null> {
   try {
+    const secret = getSecret();
     const parts = token.split('.');
     if (parts.length !== 3) return null;
 

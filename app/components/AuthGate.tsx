@@ -1,25 +1,65 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function AuthGate() {
   const { login, register, loginWithGoogle } = useAuth();
   const [isSignUp, setIsSignUp] = useState(false);
 
-  // Form State
+  // Form State - Cleared by default on component mount / tab reload
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [team, setTeam] = useState('Scuderia Ferrari / Paddock Telemetry');
   const [showPassword, setShowPassword] = useState(false);
-  const [remember, setRemember] = useState(true);
+  const [remember, setRemember] = useState(false); // Default to false (clears on tab close)
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [shake, setShake] = useState(false);
 
+  // Clear form fields explicitly on mount
+  useEffect(() => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setError('');
+  }, []);
+
+  // Initialize Google Identity Services if client ID exists
+  useEffect(() => {
+    const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    if (googleClientId && typeof window !== 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        if ((window as any).google?.accounts?.id) {
+          (window as any).google.accounts.id.initialize({
+            client_id: googleClientId,
+            callback: async (response: any) => {
+              if (response.credential) {
+                setIsSubmitting(true);
+                const success = await loginWithGoogle(response.credential);
+                if (!success) {
+                  setIsSubmitting(false);
+                  setError('Google OAuth token verification failed.');
+                }
+              }
+            }
+          });
+        }
+      };
+      document.body.appendChild(script);
+    }
+  }, [loginWithGoogle]);
+
   const handleToggleMode = () => {
     setIsSignUp(!isSignUp);
+    setName('');
+    setEmail('');
+    setPassword('');
     setError('');
   };
 
@@ -54,11 +94,17 @@ export default function AuthGate() {
   const handleGoogleSignIn = async () => {
     setError('');
     setIsSubmitting(true);
-    const success = await loginWithGoogle();
 
-    if (!success) {
+    if (typeof window !== 'undefined' && (window as any).google?.accounts?.id) {
+      (window as any).google.accounts.id.prompt((notification: any) => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          setError('Google Identity One-Tap prompt unavailable on current domain.');
+          setIsSubmitting(false);
+        }
+      });
+    } else {
       setIsSubmitting(false);
-      setError('Google Sign-In authentication failed. Please try again.');
+      setError('Google Sign-In OAuth requires NEXT_PUBLIC_GOOGLE_CLIENT_ID environment variable.');
       setShake(true);
       setTimeout(() => setShake(false), 450);
     }
@@ -104,7 +150,7 @@ export default function AuthGate() {
           {error && <div className="f1-spec-error">{error}</div>}
 
           {/* Authentication Form */}
-          <form onSubmit={handleSubmit} className="f1-spec-form">
+          <form onSubmit={handleSubmit} className="f1-spec-form" autoComplete="off">
             
             {/* Full Name Field (Sign Up Mode Only) */}
             {isSignUp && (
@@ -118,7 +164,7 @@ export default function AuthGate() {
                   placeholder="e.g. Charles Leclerc"
                   required={isSignUp}
                   disabled={isSubmitting}
-                  autoComplete="name"
+                  autoComplete="off"
                 />
               </div>
             )}
@@ -134,7 +180,7 @@ export default function AuthGate() {
                 placeholder="engineer@paddock.f1"
                 required
                 disabled={isSubmitting}
-                autoComplete="email"
+                autoComplete="off"
               />
             </div>
 
@@ -180,7 +226,7 @@ export default function AuthGate() {
                   placeholder="••••••••••••"
                   required
                   disabled={isSubmitting}
-                  autoComplete={isSignUp ? 'new-password' : 'current-password'}
+                  autoComplete="off"
                 />
                 <button 
                   type="button" 
@@ -263,7 +309,7 @@ export default function AuthGate() {
             )}
           </p>
 
-          {/* Privacy & Terms Policy Notice (P-12) */}
+          {/* Privacy & Terms Policy Notice */}
           <div style={{ marginTop: '16px', fontSize: '11px', color: 'var(--dim)', textAlign: 'center', fontFamily: 'var(--font-mono)' }}>
             By continuing, you agree to Paddock Telemetry&apos;s{' '}
             <a href="#" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>Terms of Service</a> and{' '}

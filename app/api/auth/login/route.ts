@@ -4,9 +4,9 @@ import { checkRateLimit } from '../../../lib/rateLimit';
 
 export async function POST(request: Request) {
   try {
-    // 1. Rate Limiting Check (P-05)
+    // 1. Rate Limiting Check
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || '127.0.0.1';
-    const rateLimit = checkRateLimit(ip, 10, 15 * 60 * 1000); // Max 10 attempts per 15 minutes
+    const rateLimit = checkRateLimit(ip, 10, 15 * 60 * 1000);
 
     if (!rateLimit.allowed) {
       return NextResponse.json(
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     const { username, email, password, remember } = body;
     const userInput = username || email || '';
 
-    // 2. Validate Credentials (P-01 - Clean validation without hardcoded hints)
+    // 2. Validate Credentials
     if (!userInput || !password || password.length < 4) {
       return NextResponse.json(
         { success: false, message: 'Invalid credentials provided.' },
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     }
 
     const now = Math.floor(Date.now() / 1000);
-    const durationDays = remember ? 30 : 1; // P-10: Support "Remember for 30 days"
+    const durationDays = remember ? 30 : 1;
     const expTime = now + (durationDays * 24 * 60 * 60);
 
     const payload = {
@@ -41,7 +41,6 @@ export async function POST(request: Request) {
 
     const token = await signJWT(payload);
 
-    // 3. Return JSON and set HttpOnly, Secure, SameSite=Lax Cookie (P-04)
     const response = NextResponse.json({
       success: true,
       token,
@@ -53,13 +52,19 @@ export async function POST(request: Request) {
       }
     });
 
-    response.cookies.set('paddock_auth_token', token, {
+    // 3. Set HttpOnly Cookie (If remember === true, 30 days maxAge; if false, session cookie that clears on tab/browser close)
+    const cookieConfig: any = {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      path: '/',
-      maxAge: durationDays * 24 * 60 * 60
-    });
+      path: '/'
+    };
+
+    if (remember) {
+      cookieConfig.maxAge = 30 * 24 * 60 * 60; // 30 days persistent
+    }
+
+    response.cookies.set('paddock_auth_token', token, cookieConfig);
 
     return response;
   } catch (error) {

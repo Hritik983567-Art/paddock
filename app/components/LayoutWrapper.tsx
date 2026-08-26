@@ -98,6 +98,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
         </div>
 
         <div className="header-controls">
+          <label htmlFor="seasonSelect" className="sr-only" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>Select F1 Season</label>
           <select 
             id="seasonSelect" 
             title="Season"
@@ -111,6 +112,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             ))}
           </select>
 
+          <label htmlFor="themeSelect" className="sr-only" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>Select F1 Team Theme</label>
           <select 
             id="themeSelect" 
             title="F1 Team Theme"
@@ -172,9 +174,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
       <main className="wrap">
         {children}
 
-        {/* Data Source & Freshness Attribution Footer (P-11) */}
+        {/* Data Source & Freshness Attribution Footer (P-11 / R-07) */}
         <footer style={{ marginTop: '40px', paddingTop: '16px', borderTop: '1px solid var(--line)', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--dim)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
-          <div>Data Sources: FIA Formula 1 Telemetry • Jolpica / Ergast F1 Open Data API • Live Feed Verified</div>
+          <div>Data Sources: FIA Formula 1 Telemetry • Jolpica / Ergast F1 Open Data Proxy • Server Cached</div>
           <div>Status: <span style={{ color: 'var(--green)' }}>● LIVE (240 FPS)</span> • Refresh: Real-time</div>
         </footer>
       </main>

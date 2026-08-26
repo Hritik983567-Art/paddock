@@ -1,6 +1,24 @@
 import type { NextConfig } from "next";
 
+const cspHeader = `
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' data: https: blob:;
+  font-src 'self' https://fonts.gstatic.com;
+  connect-src 'self' https://api.jolpica.net https://api.open-meteo.com https://accounts.google.com;
+  frame-src 'self' https://accounts.google.com;
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+  frame-ancestors 'none';
+`.replace(/\s{2,}/g, ' ').trim();
+
 const securityHeaders = [
+  {
+    key: 'Content-Security-Policy',
+    value: cspHeader
+  },
   {
     key: 'Strict-Transport-Security',
     value: 'max-age=63072000; includeSubDomains; preload'
