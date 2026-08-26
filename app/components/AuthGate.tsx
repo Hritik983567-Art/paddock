@@ -26,7 +26,7 @@ export default function AuthGate() {
     setPassword('');
     setError('');
 
-    // Fetch Google Client ID from server API (supports GOOGLE_CLIENT_ID secret & NEXT_PUBLIC_GOOGLE_CLIENT_ID)
+    // Fetch Google Client ID from server API
     async function fetchClientId() {
       try {
         const res = await fetch('/api/auth/google');
@@ -130,7 +130,6 @@ export default function AuthGate() {
       width: '100vw',
       height: '100vh',
       zIndex: 99999,
-      background: '#0a0d12',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

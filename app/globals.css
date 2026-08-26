@@ -2384,8 +2384,8 @@ footer {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.22;
-    filter: brightness(0.7) contrast(1.1) saturate(1.2);
+    opacity: 0.55;
+    filter: brightness(0.95) contrast(1.15) saturate(1.2);
     transition: background-image 0.6s ease-in-out, opacity 0.6s ease-in-out;
     background-image: url('/images/default-bg.png');
 }
@@ -2394,36 +2394,37 @@ footer {
 :root[data-theme="default"] .f1-theme-wallpaper,
 body[data-theme="default"] .f1-theme-wallpaper {
     background-image: url('/images/default-bg.png');
+    opacity: 0.55;
 }
 
 :root[data-theme="ferrari"] .f1-theme-wallpaper,
 body[data-theme="ferrari"] .f1-theme-wallpaper {
     background-image: url('/images/ferrari-bg.png');
-    opacity: 0.28;
+    opacity: 0.60;
 }
 
 :root[data-theme="redbull"] .f1-theme-wallpaper,
 body[data-theme="redbull"] .f1-theme-wallpaper {
     background-image: url('/images/redbull-bg.png');
-    opacity: 0.28;
+    opacity: 0.60;
 }
 
 :root[data-theme="mercedes"] .f1-theme-wallpaper,
 body[data-theme="mercedes"] .f1-theme-wallpaper {
     background-image: url('/images/mercedes-bg.png');
-    opacity: 0.28;
+    opacity: 0.60;
 }
 
 :root[data-theme="mclaren"] .f1-theme-wallpaper,
 body[data-theme="mclaren"] .f1-theme-wallpaper {
     background-image: url('/images/mclaren-bg.png');
-    opacity: 0.28;
+    opacity: 0.60;
 }
 
 :root[data-theme="aston"] .f1-theme-wallpaper,
 body[data-theme="aston"] .f1-theme-wallpaper {
     background-image: url('/images/aston-bg.png');
-    opacity: 0.28;
+    opacity: 0.60;
 }
 
 /* Auth Gate 3D Car Wallpaper Styling */
@@ -2438,6 +2439,7 @@ body[data-theme="aston"] .f1-theme-wallpaper {
     overflow: hidden;
     z-index: 1;
     pointer-events: none;
+    background: #0a0d12;
 }
 
 .login-wallpaper-img {
@@ -2445,7 +2447,8 @@ body[data-theme="aston"] .f1-theme-wallpaper {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    filter: brightness(0.65) contrast(1.15);
+    filter: brightness(0.95) contrast(1.15);
+    opacity: 0.95;
     transform: scale(1.02);
     transition: transform 10s ease-out;
 }
@@ -2456,7 +2459,7 @@ body[data-theme="aston"] .f1-theme-wallpaper {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(10, 13, 18, 0.45) 0%, rgba(10, 13, 18, 0.92) 85%);
+    background: radial-gradient(circle at center, rgba(10, 13, 18, 0.25) 0%, rgba(10, 13, 18, 0.75) 85%);
     pointer-events: none;
 }
 
@@ -2464,5 +2467,6 @@ body[data-theme="aston"] .f1-theme-wallpaper {
     position: relative;
     z-index: 10;
 }
+
 
 
