@@ -14,7 +14,7 @@ Welcome to the official technical documentation and departmental audit report fo
 ├───────────────────────────────┼─────────────────────────────┼───────────────────┤
 │ 🎨 Frontend & UI/UX           │ 60FPS GPU Animations, Themes│ ✓ 100% PASS       │
 │ ⚙️ Backend & Security         │ HttpOnly Cookies, JWT HS256 │ ✓ 100% PASS       │
-│ 🛡️ Security Audit (R-01-R-07) │ CSP, Rate Limits, Server JWT│ ✓ 100% RE-CLEARED │
+│ 🛡️ Security Audit (v4 Pass)   │ CSP Hardened, 0 Public Secrets│ ✓ 100% RE-CLEARED │
 │ 📱 Laptop & Mobile Web        │ Mobile Pill Subnav & Touch  │ ✓ 100% PASS       │
 │ ⚡ 1,000 Real User Test Suite │ 1,000 Concurrent Requests   │ ✓ 100% PASS (0% Err)│
 └───────────────────────────────┴─────────────────────────────┴───────────────────┘
@@ -22,17 +22,17 @@ Welcome to the official technical documentation and departmental audit report fo
 
 ---
 
-## 🔒 2. Security Audit & Recheck Remediation Matrix (R-01 to R-07)
+## 🔒 2. Strict Live Recheck Audit Matrix (v4 Resolution)
 
-| Audit ID | Severity | Category | Remediation Details |
+| Area / Audit Item | Verdict | Status | Implementation Details |
 | :--- | :--- | :--- | :--- |
-| **R-01** | **Critical** | Server-Only JWT Secret | Enforced `import 'server-only'` in `app/lib/jwt.ts`. Removed client bundle JWT verification & fallback secrets. |
-| **R-02** | **High** | Google OAuth Verification | Integrated Google Identity Services (GIS) SDK and native server-side ID token verification in `app/lib/googleOAuth.ts`. |
-| **R-03** | **High** | HttpOnly Session Cookies | **Eliminated `localStorage` token storage.** Sessions rely 100% on `HttpOnly`, `Secure`, `SameSite=Lax` cookies. |
-| **R-04** | **Medium** | Content Security Policy | Added strict `Content-Security-Policy` header in `next.config.ts`. |
-| **R-05** | **Medium** | Server Rendering | Instant server-side cookie verification via `GET /api/auth/verify`. |
-| **R-06** | **Medium** | Accessibility Labels | Added `<label>` elements with `.sr-only` accessibility classes for screen-readers. |
-| **R-07** | **Medium** | Server Cached Proxy | Routed F1 data fetches through `/api/f1/[...path]` server proxy with 5-min caching. |
+| **Session Restore** | **PASS** | **✓ VERIFIED** | `/api/auth/verify` reads `HttpOnly` cookies server-side & returns structured JSON (`valid`, `authenticated`). |
+| **JWT Secret Exposure** | **PASS** | **✓ VERIFIED** | `import 'server-only'` enforced in `app/lib/jwt.ts`. **Zero secrets in client JavaScript bundles.** |
+| **Browser Token Storage** | **PASS** | **✓ VERIFIED** | **`localStorage` token storage eliminated.** `localStorage` only stores non-sensitive UI theme preferences. |
+| **Google Identity Flow** | **PASS** | **✓ VERIFIED** | GIS SDK client script loaded with server-side ID token verification in `app/lib/googleOAuth.ts`. |
+| **Public Route Methods** | **PASS** | **✓ VERIFIED** | Invalid HTTP methods return HTTP `405 Method Not Allowed` with OPTIONS headers. |
+| **Security Headers** | **PASS** | **✓ VERIFIED** | HSTS, `DENY` framing, `nosniff`, Referrer Policy and Permissions Policy served across all routes. |
+| **CSP Hardening (V4-01)** | **PASS** | **✓ VERIFIED** | **Removed `'unsafe-eval'`** from `script-src`. Restricted `img-src` to explicitly declared host origins in `next.config.ts`. |
 
 ---
 
@@ -101,6 +101,7 @@ npm start
 
 | Version | Date | Division | Changelog Highlights |
 | :--- | :--- | :--- | :--- |
+| **v4.0** | 2026-08-26 | **Security / QA** | Recheck audit v4 re-cleared: Hardened CSP (removed `'unsafe-eval'`), server-side JWT key fallback fix, session cookie validation. |
 | **v2.5** | 2026-08-26 | **Security / QA** | Tab-close credential clearing, browser session cookies, and complete R-01 to R-07 recheck resolution. |
 | **v2.4** | 2026-08-26 | **Security** | Integrated Native Google OAuth ID Token Claims Verifier (`app/lib/googleOAuth.ts`). |
 | **v2.3** | 2026-08-26 | **Security / QA** | Complete P-01 to P-12 Security Audit Resolution (Rate limits, HttpOnly cookies, CSP, robots.txt, sitemap.xml). |
