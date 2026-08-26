@@ -4,9 +4,14 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function AuthGate() {
-  const { login, loginWithGoogle } = useAuth();
+  const { login, register, loginWithGoogle } = useAuth();
+  const [isSignUp, setIsSignUp] = useState(false);
+
+  // Form State
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [team, setTeam] = useState('Scuderia Ferrari / Paddock Telemetry');
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(true);
   const [error, setError] = useState('');
@@ -19,21 +24,36 @@ export default function AuthGate() {
     setError('');
   };
 
+  const handleToggleMode = () => {
+    setIsSignUp(!isSignUp);
+    setError('');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsSubmitting(true);
 
-    const usernameInput = email.includes('@') ? email.split('@')[0] : email;
-    const success = await login(usernameInput, password);
-
-    if (success) {
-      setError('');
+    if (isSignUp) {
+      // Handle Sign Up
+      const res = await register(name, email, password, team);
+      if (!res.success) {
+        setIsSubmitting(false);
+        setError(res.message || 'Registration failed. Try again.');
+        setShake(true);
+        setTimeout(() => setShake(false), 450);
+      }
     } else {
-      setIsSubmitting(false);
-      setError('Invalid credentials. Try admin@paddock.f1 / paddock2026');
-      setShake(true);
-      setTimeout(() => setShake(false), 450);
+      // Handle Sign In
+      const usernameInput = email.includes('@') ? email.split('@')[0] : email;
+      const success = await login(usernameInput, password);
+
+      if (!success) {
+        setIsSubmitting(false);
+        setError('Invalid credentials. Try admin@paddock.f1 / paddock2026');
+        setShake(true);
+        setTimeout(() => setShake(false), 450);
+      }
     }
   };
 
@@ -62,7 +82,7 @@ export default function AuthGate() {
         <div className="login-wallpaper-overlay"></div>
       </div>
 
-      {/* Centered Login Form Card */}
+      {/* Centered Login / Sign Up Form Card */}
       <div className={`centered-login-card ${shake ? 'shake' : ''}`}>
         <div className="f1-spec-form-inner">
           
@@ -77,17 +97,39 @@ export default function AuthGate() {
             <span className="f1-spec-brand-text">PADDOCK<span className="accent-slash">//</span>ANALYTICS</span>
           </div>
 
-          {/* Welcome Text */}
+          {/* Welcome Header Text */}
           <div className="f1-spec-welcome">
-            <h1>WELCOME BACK</h1>
-            <p>Please enter your details to access live F1 telemetry</p>
+            <h1>{isSignUp ? 'CREATE AN ACCOUNT' : 'WELCOME BACK'}</h1>
+            <p>
+              {isSignUp 
+                ? 'Register your engineer profile to access live F1 telemetry' 
+                : 'Please enter your details to access live F1 telemetry'}
+            </p>
           </div>
 
           {error && <div className="f1-spec-error">{error}</div>}
 
-          {/* Login Form */}
+          {/* Authentication Form */}
           <form onSubmit={handleSubmit} className="f1-spec-form">
-            {/* Email */}
+            
+            {/* Full Name Field (Sign Up Mode Only) */}
+            {isSignUp && (
+              <div className="f1-spec-field">
+                <label htmlFor="specName">FULL NAME</label>
+                <input 
+                  type="text" 
+                  id="specName" 
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Charles Leclerc"
+                  required={isSignUp}
+                  disabled={isSubmitting}
+                  autoComplete="name"
+                />
+              </div>
+            )}
+
+            {/* Email Address Field */}
             <div className="f1-spec-field">
               <label htmlFor="specEmail">EMAIL ADDRESS</label>
               <input 
@@ -95,14 +137,44 @@ export default function AuthGate() {
                 id="specEmail" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@paddock.f1"
+                placeholder={isSignUp ? 'engineer@ferrari.f1' : 'admin@paddock.f1'}
                 required
                 disabled={isSubmitting}
                 autoComplete="email"
               />
             </div>
 
-            {/* Password */}
+            {/* Team Selection Dropdown (Sign Up Mode Only) */}
+            {isSignUp && (
+              <div className="f1-spec-field">
+                <label htmlFor="specTeam">PREFERRED CONSTRUCTOR TEAM</label>
+                <select
+                  id="specTeam"
+                  value={team}
+                  onChange={(e) => setTeam(e.target.value)}
+                  disabled={isSubmitting}
+                  style={{
+                    width: '100%',
+                    height: '46px',
+                    background: 'var(--carbon-2)',
+                    border: '1px solid var(--line)',
+                    borderRadius: '8px',
+                    color: '#ffffff',
+                    padding: '0 12px',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '13px'
+                  }}
+                >
+                  <option value="Scuderia Ferrari / Paddock Telemetry">🔴 Scuderia Ferrari HP</option>
+                  <option value="Oracle Red Bull Racing / Paddock Telemetry">🔵 Oracle Red Bull Racing</option>
+                  <option value="Mercedes-AMG PETRONAS / Paddock Telemetry">🟢 Mercedes-AMG Petronas</option>
+                  <option value="McLaren Formula 1 Team / Paddock Telemetry">🟠 McLaren Formula 1 Team</option>
+                  <option value="Aston Martin Aramco / Paddock Telemetry">💚 Aston Martin Aramco</option>
+                </select>
+              </div>
+            )}
+
+            {/* Password Field */}
             <div className="f1-spec-field">
               <label htmlFor="specPass">PASSWORD</label>
               <div className="spec-password-wrapper">
@@ -114,7 +186,7 @@ export default function AuthGate() {
                   placeholder="••••••••••••"
                   required
                   disabled={isSubmitting}
-                  autoComplete="current-password"
+                  autoComplete={isSignUp ? 'new-password' : 'current-password'}
                 />
                 <button 
                   type="button" 
@@ -127,24 +199,26 @@ export default function AuthGate() {
               </div>
             </div>
 
-            {/* Options */}
-            <div className="f1-spec-options">
-              <label className="spec-checkbox-label">
-                <input 
-                  type="checkbox" 
-                  checked={remember}
-                  onChange={(e) => setRemember(e.target.checked)}
-                />
-                <span>Remember for 30 days</span>
-              </label>
-              <button 
-                type="button" 
-                className="spec-forgot-btn"
-                onClick={handleAutofill}
-              >
-                Forgot password?
-              </button>
-            </div>
+            {/* Sign In Options */}
+            {!isSignUp && (
+              <div className="f1-spec-options">
+                <label className="spec-checkbox-label">
+                  <input 
+                    type="checkbox" 
+                    checked={remember}
+                    onChange={(e) => setRemember(e.target.checked)}
+                  />
+                  <span>Remember for 30 days</span>
+                </label>
+                <button 
+                  type="button" 
+                  className="spec-forgot-btn"
+                  onClick={handleAutofill}
+                >
+                  Forgot password?
+                </button>
+              </div>
+            )}
 
             {/* Actions */}
             <div className="f1-spec-actions">
@@ -153,7 +227,9 @@ export default function AuthGate() {
                 className="spec-sign-in-btn"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'AUTHENTICATING...' : 'SIGN IN'}
+                {isSubmitting 
+                  ? (isSignUp ? 'CREATING ACCOUNT...' : 'AUTHENTICATING...') 
+                  : (isSignUp ? 'SIGN UP & ENTER PADDOCK' : 'SIGN IN')}
               </button>
 
               <button 
@@ -168,20 +244,36 @@ export default function AuthGate() {
                   <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.1H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.9l3.66-2.81z"/>
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.1l3.66 2.81c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                <span>Sign in with Google</span>
+                <span>{isSignUp ? 'Sign up with Google' : 'Sign in with Google'}</span>
               </button>
             </div>
           </form>
 
+          {/* Footer Switcher */}
           <p className="f1-spec-footer">
-            Don&apos;t have an account?{' '}
-            <button 
-              type="button" 
-              className="spec-signup-btn"
-              onClick={handleAutofill}
-            >
-              Sign up
-            </button>
+            {isSignUp ? (
+              <>
+                Already have an account?{' '}
+                <button 
+                  type="button" 
+                  className="spec-signup-btn"
+                  onClick={handleToggleMode}
+                >
+                  Sign in
+                </button>
+              </>
+            ) : (
+              <>
+                Don&apos;t have an account?{' '}
+                <button 
+                  type="button" 
+                  className="spec-signup-btn"
+                  onClick={handleToggleMode}
+                >
+                  Sign up
+                </button>
+              </>
+            )}
           </p>
 
         </div>

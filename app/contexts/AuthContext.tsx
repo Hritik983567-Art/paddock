@@ -20,6 +20,7 @@ interface AuthContextType {
   user: JWTPayload | null;
   token: string | null;
   login: (user: string, pass: string) => Promise<boolean>;
+  register: (name: string, email: string, pass: string, team?: string) => Promise<{ success: boolean; message?: string }>;
   loginWithGoogle: (email?: string, name?: string, picture?: string) => Promise<boolean>;
   logout: () => void;
   isLoading: boolean;
@@ -75,6 +76,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const register = async (name: string, email: string, passwordInput: string, team?: string): Promise<{ success: boolean; message?: string }> => {
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password: passwordInput, team })
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success && data.token) {
+        localStorage.setItem(JWT_TOKEN_KEY, data.token);
+        const payload = await verifyJWT(data.token);
+        setToken(data.token);
+        setUser(payload as JWTPayload);
+        setIsAuthenticated(true);
+        return { success: true, message: data.message };
+      }
+      return { success: false, message: data.message || 'Registration failed.' };
+    } catch (err) {
+      return { success: false, message: 'Server connection error during registration.' };
+    }
+  };
+
   const loginWithGoogle = async (email?: string, name?: string, picture?: string): Promise<boolean> => {
     try {
       const res = await fetch('/api/auth/google', {
@@ -106,7 +130,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, token, login, loginWithGoogle, logout, isLoading }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, token, login, register, loginWithGoogle, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
