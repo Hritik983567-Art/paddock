@@ -11,7 +11,12 @@ export async function GET(
     const { path } = await params;
     const pathString = path ? path.join('/') : '';
     const cleanPath = pathString.endsWith('.json') ? pathString : `${pathString}.json`;
-    const targetUrl = `https://api.jolpica.net/ergast/f1/${cleanPath}`;
+
+    // Preserve query parameters (e.g., ?limit=100&offset=0)
+    const { search } = new URL(request.url);
+    
+    // Primary API: api.jolpi.ca (fastest & reliable F1 Ergast proxy)
+    const targetUrl = `https://api.jolpi.ca/ergast/f1/${cleanPath}${search}`;
 
     // Check Cache
     const cached = cache.get(targetUrl);
@@ -21,12 +26,22 @@ export async function GET(
       });
     }
 
-    const res = await fetch(targetUrl, {
-      headers: { 'User-Agent': 'PaddockAnalytics/2.0' },
-      next: { revalidate: 300 }
-    });
+    let res: Response | null = null;
+    try {
+      res = await fetch(targetUrl, {
+        headers: { 'User-Agent': 'PaddockAnalytics/2.0' },
+        next: { revalidate: 300 }
+      });
+    } catch {
+      // Fallback API: ergast.com
+      const fallbackUrl = `https://ergast.com/api/f1/${cleanPath}${search}`;
+      res = await fetch(fallbackUrl, {
+        headers: { 'User-Agent': 'PaddockAnalytics/2.0' },
+        next: { revalidate: 300 }
+      });
+    }
 
-    if (!res.ok) {
+    if (!res || !res.ok) {
       if (cached) {
         return NextResponse.json(cached.data, { headers: { 'X-Cache': 'STALE' } });
       }
@@ -47,7 +62,7 @@ export async function GET(
     return NextResponse.json(data, {
       headers: { 'X-Cache': 'MISS', 'Cache-Control': 'public, max-age=300' }
     });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({
       MRData: {
         StandingsTable: { StandingsLists: [] },
@@ -55,7 +70,7 @@ export async function GET(
         DriverTable: { Drivers: [] },
         total: '0'
       },
-      error: 'Server proxy processing failure'
+      error: error?.message || 'Server proxy processing failure'
     }, { status: 200 });
   }
 }
