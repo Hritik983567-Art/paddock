@@ -2370,3 +2370,99 @@ footer {
     }
 }
 
+/* ===== F1 Theme Background Wallpaper & Login Wallpaper ===== */
+.f1-theme-wallpaper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.22;
+    filter: brightness(0.7) contrast(1.1) saturate(1.2);
+    transition: background-image 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    background-image: url('/images/default-bg.png');
+}
+
+/* Data-theme background car wallpapers */
+:root[data-theme="default"] .f1-theme-wallpaper,
+body[data-theme="default"] .f1-theme-wallpaper {
+    background-image: url('/images/default-bg.png');
+}
+
+:root[data-theme="ferrari"] .f1-theme-wallpaper,
+body[data-theme="ferrari"] .f1-theme-wallpaper {
+    background-image: url('/images/ferrari-bg.png');
+    opacity: 0.28;
+}
+
+:root[data-theme="redbull"] .f1-theme-wallpaper,
+body[data-theme="redbull"] .f1-theme-wallpaper {
+    background-image: url('/images/redbull-bg.png');
+    opacity: 0.28;
+}
+
+:root[data-theme="mercedes"] .f1-theme-wallpaper,
+body[data-theme="mercedes"] .f1-theme-wallpaper {
+    background-image: url('/images/mercedes-bg.png');
+    opacity: 0.28;
+}
+
+:root[data-theme="mclaren"] .f1-theme-wallpaper,
+body[data-theme="mclaren"] .f1-theme-wallpaper {
+    background-image: url('/images/mclaren-bg.png');
+    opacity: 0.28;
+}
+
+:root[data-theme="aston"] .f1-theme-wallpaper,
+body[data-theme="aston"] .f1-theme-wallpaper {
+    background-image: url('/images/aston-bg.png');
+    opacity: 0.28;
+}
+
+/* Auth Gate 3D Car Wallpaper Styling */
+.login-wallpaper-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.login-wallpaper-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.65) contrast(1.15);
+    transform: scale(1.02);
+    transition: transform 10s ease-out;
+}
+
+.login-wallpaper-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(10, 13, 18, 0.45) 0%, rgba(10, 13, 18, 0.92) 85%);
+    pointer-events: none;
+}
+
+.centered-login-card {
+    position: relative;
+    z-index: 10;
+}
+
+
