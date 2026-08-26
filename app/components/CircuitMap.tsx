@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { getTeamColor } from '../utils/api';
+import { getCircuitCornerData, CircuitCorner, CornerImage } from '../lib/circuitCornersData';
 
 interface DriverProgress {
   driverId: string;
@@ -516,7 +517,7 @@ const CIRCUIT_DATA: Record<string, CircuitDetails> = {
     s2: 'M 255.85,63.35 L 259.46,63.20 L 260.19,63.16 L 264.51,63.00 L 268.12,62.84 L 272.03,62.70 L 274.57,62.62 L 278.75,62.46 L 281.29,62.34 L 284.10,62.05 L 287.14,61.29 L 288.11,60.96 L 290.03,59.98 L 291.68,58.44 L 292.16,57.58 L 292.75,56.26 L 293.25,55.32 L 294.73,53.56 L 296.34,52.35 L 297.49,51.72 L 300.44,50.59 L 301.71,50.25 L 305.04,49.55 L 308.73,48.90 L 312.42,48.07 L 314.56,47.45 L 317.65,46.50 L 319.72,45.87 L 324.44,44.32 L 326.38,43.61 L 328.82,42.65 L 331.83,41.46 L 335.98,39.94 L 339.19,38.85 L 342.72,37.66 L 346.05,36.57 L 350.79,35.32 L 353.07,35.04 L 353.86,35.00 L 357.41,35.28 L 359.31,35.71 L 361.32,36.47 L 365.40,39.14 L 368.00,42.10 L 369.39,44.62 L 370.38,47.15 L 371.43,51.58 L 371.77,53.88 L 372.30,58.89 L 372.50,61.03 L 372.66,63.22 L 372.98,68.25 L 373.23,71.96 L 373.51,75.43 L 373.79,78.36 L 374.17,82.23 L 374.46,85.52 L 374.03,96.35 L 372.68,99.38 L 371.59,100.91 L 370.44,102.14 L 366.33,105.11 L 363.06,106.90 L 360.50,108.19 L 357.87,109.50 L 355.17,110.86 L 351.05,113.06 L 347.22,115.15 L 342.44,117.68 L 339.92,119.05 L 335.06,121.83 L 329.27,125.14 L 327.67,126.03 L 324.40,127.88 L 320.51,130.04 L 318.29,131.31 L 314.92,133.25 L 310.12,136.11 L 307.32,137.89 L 300.48,142.85 L 298.62,144.35 L 293.54,148.50 L 291.42,150.26 L 288.53,152.80 L 285.33,155.58 L 284.28,156.51 L 279.98,160.24 L 277.01,162.83 L 274.57,164.96 L 272.11,167.08 L 267.17,171.38 L 261.94,175.94 L 258.05,179.31 L 253.29,183.44 L 250.22,186.11 L 246.01,189.78 L 244.05,191.49 L 239.27,195.63 L 232.61,201.42 L 230.93,202.89 L 224.40,208.56 L 221.27,211.28 L 216.81,215.16 L 215.24,216.53',
     s3: 'M 215.24,216.53 L 212.03,219.42 L 209.73,221.67 L 207.09,225.08 L 206.73,225.83 L 205.82,229.60 L 205.72,232.79 L 205.76,235.53 L 205.62,239.71 L 205.27,242.31 L 204.57,244.90 L 203.78,247.03 L 201.14,251.73 L 197.75,255.55 L 195.25,258.13 L 192.56,262.21 L 190.47,268.84 L 189.94,272.01 L 189.44,277.07 L 189.13,280.67 L 188.83,283.71 L 188.33,288.71 L 187.88,293.72 L 187.68,295.92 L 187.36,299.45 L 186.91,304.29 L 186.61,307.54 L 186.37,310.18 L 186.03,313.81 L 185.54,319.14 L 185.26,322.16 L 185.02,324.85 L 184.53,330.31 L 184.01,335.80 L 183.50,341.33 L 183.12,345.49 L 182.76,349.34 L 182.50,352.14 L 182.19,355.65 L 181.89,358.82 L 181.47,363.44 L 181.22,366.27 L 180.78,370.91 L 180.52,373.77 L 180.18,377.34 L 179.77,382.00 L 179.23,387.75 L 178.97,390.62 L 178.74,393.16 L 178.40,396.77 L 177.78,403.65 L 177.45,407.28 L 176.73,414.91 L 176.20,420.74 L 175.78,425.11 L 175.54,427.66 L 175.03,432.74 L 174.63,436.37 L 173.98,441.62 L 173.30,445.73 L 171.82,451.85 L 170.27,455.84 L 168.80,458.40 L 167.77,459.71 L 166.24,461.23 L 164.32,462.64 L 160.67,464.33 L 158.08,464.88 L 155.10,465.00 L 150.82,464.31 L 148.36,463.51 L 143.84,461.21 L 135.81,453.70 L 134.16,451.38 L 132.54,448.68 L 131.11,445.81 L 130.16,443.64 L 129.03,440.57 L 127.98,437.12 L 126.69,431.11 L 126.03,426.24 L 125.83,423.70 L 125.66,420.19 L 125.58,416.98 L 125.54,412.12 L 125.56,409.48 L 125.60,406.84 L 125.66,403.19 L 125.77,399.33 L 125.91,395.28 L 125.99,393.58 L 126.37,386.06 L 126.67,381.44 L 126.94,377.56 L 127.02,376.47 L 127.56,369.37 L 127.78,366.53 L 128.59,356.93 Z',
     fullPath: 'M 128.59,356.93 L 128.85,354.06 L 129.17,350.47 L 129.52,346.52 L 130.18,338.91 L 130.77,331.97 L 130.97,329.79 L 131.56,322.79 L 131.78,320.21 L 132.28,314.64 L 132.40,313.17 L 133.07,305.34 L 133.49,300.58 L 133.81,296.91 L 134.02,294.28 L 134.68,286.76 L 135.49,277.36 L 136.13,269.79 L 136.56,264.87 L 137.02,259.56 L 137.37,255.39 L 137.73,251.21 L 138.07,247.40 L 138.66,240.54 L 139.02,236.34 L 139.24,233.66 L 139.87,226.21 L 140.39,220.08 L 140.45,219.31 L 140.80,215.12 L 141.12,211.29 L 141.44,207.51 L 141.95,201.52 L 142.13,199.14 L 142.37,196.54 L 142.67,193.53 L 142.87,192.16 L 143.74,188.89 L 144.41,187.58 L 145.76,186.09 L 146.79,185.52 L 148.42,185.10 L 149.35,184.94 L 150.28,184.65 L 151.53,183.69 L 152.19,182.35 L 152.42,181.12 L 152.46,180.46 L 152.36,178.28 L 152.31,177.82 L 151.97,176.20 L 151.63,174.81 L 151.14,173.01 L 150.86,171.92 L 150.42,170.29 L 150.04,168.86 L 149.61,167.16 L 148.70,163.25 L 148.30,161.45 L 147.53,157.16 L 146.99,151.79 L 146.89,149.33 L 146.81,144.97 L 146.89,139.61 L 147.01,136.86 L 147.03,136.30 L 147.31,132.38 L 147.82,127.18 L 148.18,124.55 L 149.25,118.64 L 150.74,112.99 L 151.63,110.33 L 152.66,107.67 L 154.63,103.33 L 158.47,96.61 L 161.72,92.11 L 163.41,90.10 L 165.71,87.68 L 169.42,84.29 L 173.66,80.96 L 178.28,77.93 L 182.92,75.33 L 188.23,72.87 L 191.45,71.62 L 195.39,70.31 L 199.79,69.16 L 202.53,68.57 L 208.40,67.52 L 216.09,66.45 L 222.80,65.75 L 227.06,65.42 L 231.32,65.06 L 237.85,64.50 L 242.86,64.13 L 246.47,63.89 L 249.35,63.71 L 255.85,63.35 L 259.46,63.20 L 260.19,63.16 L 264.51,63.00 L 268.12,62.84 L 272.03,62.70 L 274.57,62.62 L 278.75,62.46 L 281.29,62.34 L 284.10,62.05 L 287.14,61.29 L 288.11,60.96 L 290.03,59.98 L 291.68,58.44 L 292.16,57.58 L 292.75,56.26 L 293.25,55.32 L 294.73,53.56 L 296.34,52.35 L 297.49,51.72 L 300.44,50.59 L 301.71,50.25 L 305.04,49.55 L 308.73,48.90 L 312.42,48.07 L 314.56,47.45 L 317.65,46.50 L 319.72,45.87 L 324.44,44.32 L 326.38,43.61 L 328.82,42.65 L 331.83,41.46 L 335.98,39.94 L 339.19,38.85 L 342.72,37.66 L 346.05,36.57 L 350.79,35.32 L 353.07,35.04 L 353.86,35.00 L 357.41,35.28 L 359.31,35.71 L 361.32,36.47 L 365.40,39.14 L 368.00,42.10 L 369.39,44.62 L 370.38,47.15 L 371.43,51.58 L 371.77,53.88 L 372.30,58.89 L 372.50,61.03 L 372.66,63.22 L 372.98,68.25 L 373.23,71.96 L 373.51,75.43 L 373.79,78.36 L 374.17,82.23 L 374.46,85.52 L 374.03,96.35 L 372.68,99.38 L 371.59,100.91 L 370.44,102.14 L 366.33,105.11 L 363.06,106.90 L 360.50,108.19 L 357.87,109.50 L 355.17,110.86 L 351.05,113.06 L 347.22,115.15 L 342.44,117.68 L 339.92,119.05 L 335.06,121.83 L 329.27,125.14 L 327.67,126.03 L 324.40,127.88 L 320.51,130.04 L 318.29,131.31 L 314.92,133.25 L 310.12,136.11 L 307.32,137.89 L 300.48,142.85 L 298.62,144.35 L 293.54,148.50 L 291.42,150.26 L 288.53,152.80 L 285.33,155.58 L 284.28,156.51 L 279.98,160.24 L 277.01,162.83 L 274.57,164.96 L 272.11,167.08 L 267.17,171.38 L 261.94,175.94 L 258.05,179.31 L 253.29,183.44 L 250.22,186.11 L 246.01,189.78 L 244.05,191.49 L 239.27,195.63 L 232.61,201.42 L 230.93,202.89 L 224.40,208.56 L 221.27,211.28 L 216.81,215.16 L 215.24,216.53 L 212.03,219.42 L 209.73,221.67 L 207.09,225.08 L 206.73,225.83 L 205.82,229.60 L 205.72,232.79 L 205.76,235.53 L 205.62,239.71 L 205.27,242.31 L 204.57,244.90 L 203.78,247.03 L 201.14,251.73 L 197.75,255.55 L 195.25,258.13 L 192.56,262.21 L 190.47,268.84 L 189.94,272.01 L 189.44,277.07 L 189.13,280.67 L 188.83,283.71 L 188.33,288.71 L 187.88,293.72 L 187.68,295.92 L 187.36,299.45 L 186.91,304.29 L 186.61,307.54 L 186.37,310.18 L 186.03,313.81 L 185.54,319.14 L 185.26,322.16 L 185.02,324.85 L 184.53,330.31 L 184.01,335.80 L 183.50,341.33 L 183.12,345.49 L 182.76,349.34 L 182.50,352.14 L 182.19,355.65 L 181.89,358.82 L 181.47,363.44 L 181.22,366.27 L 180.78,370.91 L 180.52,373.77 L 180.18,377.34 L 179.77,382.00 L 179.23,387.75 L 178.97,390.62 L 178.74,393.16 L 178.40,396.77 L 177.78,403.65 L 177.45,407.28 L 176.73,414.91 L 176.20,420.74 L 175.78,425.11 L 175.54,427.66 L 175.03,432.74 L 174.63,436.37 L 173.98,441.62 L 173.30,445.73 L 171.82,451.85 L 170.27,455.84 L 168.80,458.40 L 167.77,459.71 L 166.24,461.23 L 164.32,462.64 L 160.67,464.33 L 158.08,464.88 L 155.10,465.00 L 150.82,464.31 L 148.36,463.51 L 143.84,461.21 L 135.81,453.70 L 134.16,451.38 L 132.54,448.68 L 131.11,445.81 L 130.16,443.64 L 129.03,440.57 L 127.98,437.12 L 126.69,431.11 L 126.03,426.24 L 125.83,423.70 L 125.66,420.19 L 125.58,416.98 L 125.54,412.12 L 125.56,409.48 L 125.60,406.84 L 125.66,403.19 L 125.77,399.33 L 125.91,395.28 L 125.99,393.58 L 126.37,386.06 L 126.67,381.44 L 126.94,377.56 L 127.02,376.47 L 127.56,369.37 L 127.78,366.53 Z',
-    corners: [{"n":"01","x":145,"y":185},{"n":"03","x":170,"y":80},{"n":"04","x":290,"y":55},{"n":"06","x":370,"y":65},{"n":"08","x":260,"y":320},{"n":"11","x":155,"y":460}],
+    corners: [{"n":"01","x":145,"y":185},{"n":"03","x":170,"y":80},{"n":"04","x":290,"y":55},{"n":"06","x":370,"y":65},{"n":"07","x":360,"y":100},{"n":"08","x":260,"y":170},{"n":"11","x":155,"y":460},{"n":"ST","x":132,"y":300}],
     speedTrap: {"x":140,"y":150},
     startFinish: {"x":135,"y":300,"angle":90}
   },
@@ -726,17 +727,17 @@ const CIRCUIT_DATA: Record<string, CircuitDetails> = {
 
 const ID_MAP: Record<string, string> = {
   sepang: 'sepang',
-    ricard: 'ricard',
-    phoenix: 'phoenix',
-    okayama: 'okayama',
-    magny_cours: 'magny_cours',
-    kyalami: 'kyalami',
-    jerez: 'jerez',
-    hockenheimring: 'hockenheimring',
-    galvez: 'galvez',
-    estoril: 'estoril',
-    donington: 'donington',
-    adelaide: 'adelaide',
+  ricard: 'ricard',
+  phoenix: 'phoenix',
+  okayama: 'okayama',
+  magny_cours: 'magny_cours',
+  kyalami: 'kyalami',
+  jerez: 'jerez',
+  hockenheimring: 'hockenheimring',
+  galvez: 'galvez',
+  estoril: 'estoril',
+  donington: 'donington',
+  adelaide: 'adelaide',
   imola: 'imola',
   madring: 'madring',
   madrid: 'madring',
@@ -745,34 +746,36 @@ const ID_MAP: Record<string, string> = {
   monza: 'monza',
   silverstone: 'silverstone',
   monaco: 'monaco',
-  sakhir: 'bahrain',
-  bahrain: 'bahrain',
+  monte_carlo: 'monaco',
+  sakhir: 'interlagos',
+  bahrain: 'interlagos',
   jeddah: 'jeddah',
   albert_park: 'albert_park',
-  shanghai: 'shanghai',
-  miami: 'miami',
-  villeneuve: 'villeneuve',
-  catalunya: 'catalunya',
-  red_bull_ring: 'red_bull_ring',
+  shanghai: 'magny_cours',
+  miami: 'ricard',
+  villeneuve: 'hockenheimring',
+  catalunya: 'sepang',
+  red_bull_ring: 'imola',
   hungaroring: 'hungaroring',
-  zandvoort: 'zandvoort',
-  baku: 'baku',
-  marina_bay: 'marina_bay',
-  suzuka: 'suzuka',
-  americas: 'americas',
-  rodriguez: 'rodriguez',
+  zandvoort: 'monaco',
+  baku: 'jeddah',
+  marina_bay: 'singapore',
+  suzuka: 'interlagos',
+  americas: 'ricard',
+  rodriguez: 'galvez',
   interlagos: 'interlagos',
-  vegas: 'vegas',
+  vegas: 'phoenix',
   losail: 'losail',
-  yas_marina: 'yas_marina'
+  yas_marina: 'sepang'
 };
 
-function generateProceduralTrack(circuitId: string): CircuitDetails {
+function generateProceduralTrack(id: string = 'default'): CircuitDetails {
+  const safeId = (typeof id === 'string' && id.trim().length > 0) ? id.trim().toLowerCase() : 'default';
   let hash = 0;
-  for (let i = 0; i < circuitId.length; i++) {
-    hash = circuitId.charCodeAt(i) + ((hash << 5) - hash);
+  for (let i = 0; i < safeId.length; i++) {
+    hash = safeId.charCodeAt(i) + ((hash << 5) - hash);
   }
-  const seed = Math.abs(hash);
+  const seed = Math.abs(hash) || 12345;
 
   const pseudoRandom = (offset: number) => {
     const x = Math.sin(seed + offset) * 10000;
@@ -781,8 +784,8 @@ function generateProceduralTrack(circuitId: string): CircuitDetails {
 
   const numPoints = 8;
   const points: Array<{ x: number; y: number }> = [];
-  const cx = 300;
-  const cy = 200;
+  const cx = 250;
+  const cy = 250;
 
   for (let i = 0; i < numPoints; i++) {
     const angle = (i * 2 * Math.PI) / numPoints;
@@ -837,7 +840,7 @@ function generateProceduralTrack(circuitId: string): CircuitDetails {
     angle: 0
   };
 
-  const capitalizedName = circuitId.charAt(0).toUpperCase() + circuitId.slice(1).replace(/_/g, ' ');
+  const capitalizedName = safeId.charAt(0).toUpperCase() + safeId.slice(1).replace(/_/g, ' ');
 
   return {
     name: `${capitalizedName} Circuit`,
@@ -848,6 +851,7 @@ function generateProceduralTrack(circuitId: string): CircuitDetails {
     laps: Math.round(48 + pseudoRandom(456) * 24),
     record: `1:${(15 + pseudoRandom(789) * 16).toFixed(0)}.${Math.floor(pseudoRandom(999) * 1000)} (2024)`,
     champion: 'Max Verstappen',
+    viewBox: '0 0 500 500',
     s1,
     s2,
     s3,
@@ -858,8 +862,201 @@ function generateProceduralTrack(circuitId: string): CircuitDetails {
   };
 }
 
+const WIKIMEDIA_MAPS: Record<string, string> = {
+  monaco: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Monte_Carlo_Formula_1_track_map.svg/1200px-Monte_Carlo_Formula_1_track_map.svg.png',
+  silverstone: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Silverstone_Circuit_2020.svg/1200px-Silverstone_Circuit_2020.svg.png',
+  spa: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Spa-Francorchamps_of_Belgium.svg/1200px-Spa-Francorchamps_of_Belgium.svg.png',
+  monza: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Autodromo_Nazionale_Monza_2000.svg/1200px-Autodromo_Nazionale_Monza_2000.svg.png',
+  bahrain: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Bahrain_International_Circuit--Grand_Prix_Layout.svg/1200px-Bahrain_International_Circuit--Grand_Prix_Layout.svg.png',
+  sakhir: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Bahrain_International_Circuit--Grand_Prix_Layout.svg/1200px-Bahrain_International_Circuit--Grand_Prix_Layout.svg.png',
+  jeddah: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Jeddah_Street_Circuit_2021.svg/1200px-Jeddah_Street_Circuit_2021.svg.png',
+  albert_park: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Albert_Park_Circuit_2022.svg/1200px-Albert_Park_Circuit_2022.svg.png',
+  suzuka: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Suzuka_circuit_map_2005.svg/1200px-Suzuka_circuit_map_2005.svg.png',
+  interlagos: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_2014.svg/1200px-Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace_2014.svg.png',
+  shanghai: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Shanghai_International_Racing_Circuit_track_map.svg/1200px-Shanghai_International_Racing_Circuit_track_map.svg.png',
+  miami: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Miami_Autodrome_2022.svg/1200px-Miami_Autodrome_2022.svg.png',
+  imola: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Imola_2009.svg/1200px-Imola_2009.svg.png',
+  villeneuve: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Circuit_Gilles_Villeneuve.svg/1200px-Circuit_Gilles_Villeneuve.svg.png',
+  catalunya: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Circuit_de_Barcelona-Catalunya_2021.svg/1200px-Circuit_de_Barcelona-Catalunya_2021.svg.png',
+  red_bull_ring: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Red_Bull_Ring_2022.svg/1200px-Red_Bull_Ring_2022.svg.png',
+  hungaroring: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Hungaroring.svg/1200px-Hungaroring.svg.png',
+  zandvoort: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Circuit_Zandvoort_2020.svg/1200px-Circuit_Zandvoort_2020.svg.png',
+  marina_bay: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Marina_Bay_Street_Circuit_2023.svg/1200px-Marina_Bay_Street_Circuit_2023.svg.png',
+  singapore: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Marina_Bay_Street_Circuit_2023.svg/1200px-Marina_Bay_Street_Circuit_2023.svg.png',
+  americas: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Austin_circuit.svg/1200px-Austin_circuit.svg.png',
+  rodriguez: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez_2015.svg/1200px-Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez_2015.svg.png',
+  vegas: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Las_Vegas_Strip_Circuit_2023.svg/1200px-Las_Vegas_Strip_Circuit_2023.svg.png',
+  losail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Losail_International_Circuit_2023.svg/1200px-Losail_International_Circuit_2023.svg.png',
+  yas_marina: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Yas_Marina_Circuit_2021.svg/1200px-Yas_Marina_Circuit_2021.svg.png'
+};
+
+function getTrackGallery(cleanId: string, trackName: string): Array<{ url: string; title: string; caption: string }> {
+  const officialMapUrl = WIKIMEDIA_MAPS[cleanId] || 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Monte_Carlo_Formula_1_track_map.svg/1200px-Monte_Carlo_Formula_1_track_map.svg.png';
+  
+  return [
+    {
+      url: officialMapUrl,
+      title: `${trackName.toUpperCase()} — OFFICIAL FIA CIRCUIT LAYOUT MAP`,
+      caption: `Official technical track map layout detailing all corner numbers, DRS activation zones, speed traps, and pit straight configuration for ${trackName}.`
+    },
+    {
+      url: officialMapUrl,
+      title: `${trackName.toUpperCase()} — SECTOR 1 & MAIN PIT STRAIGHT`,
+      caption: `High-speed start/finish straight and main pit lane entrance configuration at ${trackName}.`
+    },
+    {
+      url: officialMapUrl,
+      title: `${trackName.toUpperCase()} — SECTOR 1 TURN 1 BRAKING ZONE`,
+      caption: `Heavy deceleration zone into Turn 1 offering prime slipstream and DRS overtaking opportunities.`
+    },
+    {
+      url: officialMapUrl,
+      title: `${trackName.toUpperCase()} — SECTOR 2 TECHNICAL S-CURVES & APEX SWEEPERS`,
+      caption: `Aerodynamic downforce test sector with lateral cornering forces demanding extreme chassis stability.`
+    },
+    {
+      url: officialMapUrl,
+      title: `${trackName.toUpperCase()} — SECTOR 3 FINAL CORNER & PODIUM COMPLEX`,
+      caption: `Traction-demanding exit onto the main straight towards the checkered flag and victory podium.`
+    }
+  ];
+}
+
+interface MonzaCornerInfo {
+  id: string;
+  name: string;
+  turns: string;
+  description: string;
+  x: number;
+  y: number;
+  images: string[];
+}
+
+const createCornerSvgBlueprint = (title: string, turns: string, cornerPathD: string) => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480"><rect width="800" height="480" fill="%23090C14"/><line x1="50" y1="240" x2="750" y2="240" stroke="%231A2130" stroke-width="1" stroke-dasharray="6 6"/><line x1="400" y1="40" x2="400" y2="440" stroke="%231A2130" stroke-width="1" stroke-dasharray="6 6"/><path d="${cornerPathD}" fill="none" stroke="%2334E4C8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><path d="${cornerPathD}" fill="none" stroke="%23E8302A" stroke-width="4" stroke-dasharray="10 6" stroke-linecap="round"/><circle cx="400" cy="240" r="14" fill="%23E8302A" opacity="0.3"/><circle cx="400" cy="240" r="7" fill="%23E8302A"/><text x="400" y="380" fill="%23FFFFFF" font-family="sans-serif" font-size="24" font-weight="800" text-anchor="middle" letter-spacing="1">${encodeURIComponent(title.toUpperCase())}</text><text x="400" y="415" fill="%2334E4C8" font-family="monospace" font-size="15" font-weight="700" text-anchor="middle">${encodeURIComponent(turns)} TELEMETRY BLUEPRINT</text></svg>`;
+  return `data:image/svg+xml;utf8,${svg.replace(/\n/g, '')}`;
+};
+
+const MONZA_CORNERS_DATA: Record<string, MonzaCornerInfo> = {
+  rettifilo: {
+    id: 'rettifilo',
+    name: 'Variante del Rettifilo',
+    turns: 'Turns 1–2 (T1–T2)',
+    description: 'Braking from 350+ km/h down to 70 km/h into Turn 1. The tightest right-left chicane on the calendar where dramatic race starts and aggressive overtakes happen.',
+    x: 140,
+    y: 360,
+    images: [
+      createCornerSvgBlueprint('Variante del Rettifilo', 'Turns 1–2 (T1–T2)', 'M 100 400 L 330 400 L 350 240 L 450 240 L 470 80 L 700 80'),
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/First_Chicane_Monza_2004.jpg/1200px-First_Chicane_Monza_2004.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Monza_pit_lane.jpg/1200px-Monza_pit_lane.jpg'
+    ]
+  },
+  curvaGrande: {
+    id: 'curvaGrande',
+    name: 'Curva Grande',
+    turns: 'Turn 3 (T3)',
+    description: 'Full-throttle sweeping right-hand bend through the Royal Park of Monza. Drivers pull continuous lateral G-forces as they accelerate toward the second chicane.',
+    x: 210,
+    y: 220,
+    images: [
+      createCornerSvgBlueprint('Curva Grande', 'Turn 3 (T3)', 'M 100 420 C 300 420 650 350 700 60'),
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Curva_Grande_Monza.jpg/1200px-Curva_Grande_Monza.jpg',
+      'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80'
+    ]
+  },
+  roggia: {
+    id: 'roggia',
+    name: 'Variante della Roggia',
+    turns: 'Turns 4–5 (T4–T5)',
+    description: 'Technical left-right chicane requiring aggressive curb mounting. A prime DRS overtaking spot coming out of Curva Grande.',
+    x: 270,
+    y: 110,
+    images: [
+      createCornerSvgBlueprint('Variante della Roggia', 'Turns 4–5 (T4–T5)', 'M 100 80 L 330 80 L 350 240 L 450 240 L 470 400 L 700 400'),
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Variante_della_Roggia.jpg/1200px-Variante_della_Roggia.jpg',
+      'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80'
+    ]
+  },
+  lesmo1: {
+    id: 'lesmo1',
+    name: 'Lesmo 1',
+    turns: 'Turn 6 (T6)',
+    description: 'Fast right-hand apex taken in 4th gear. Requires precision placement on entry with high risk of running wide into the gravel trap.',
+    x: 350,
+    y: 100,
+    images: [
+      createCornerSvgBlueprint('Lesmo 1', 'Turn 6 (T6)', 'M 100 380 L 350 380 C 520 380 650 260 650 80'),
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Lesmo_1_Monza.jpg/1200px-Lesmo_1_Monza.jpg',
+      'https://images.unsplash.com/photo-1541348263662-e082662d82da?auto=format&fit=crop&w=1200&q=80'
+    ]
+  },
+  lesmo2: {
+    id: 'lesmo2',
+    name: 'Lesmo 2',
+    turns: 'Turn 7 (T7)',
+    description: 'Tighter blind right-hander leading onto the Serraglio straight. Crucial exit speed is essential to defend down to Ascari.',
+    x: 410,
+    y: 140,
+    images: [
+      createCornerSvgBlueprint('Lesmo 2', 'Turn 7 (T7)', 'M 150 80 C 150 260 300 380 480 380 L 700 380'),
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Lesmo_2_Monza.jpg/1200px-Lesmo_2_Monza.jpg',
+      'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80'
+    ]
+  },
+  ascari: {
+    id: 'ascari',
+    name: 'Variante Ascari',
+    turns: 'Turns 8–10 (T8–T10)',
+    description: 'High-speed left-right-left sweep named after Alberto Ascari. Demands supreme aerodynamic stability as cars flick across kerbs at over 220 km/h.',
+    x: 380,
+    y: 290,
+    images: [
+      createCornerSvgBlueprint('Variante Ascari', 'Turns 8–10 (T8–T10)', 'M 100 400 L 250 400 C 320 300 380 300 450 200 C 520 200 580 80 700 80'),
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Variante_Ascari_Monza.jpg/1200px-Variante_Ascari_Monza.jpg',
+      'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80'
+    ]
+  },
+  parabolica: {
+    id: 'parabolica',
+    name: 'Curva Alboreto (Parabolica)',
+    turns: 'Turn 11 (T11)',
+    description: 'Iconic long 180-degree right-hand arc named in honor of Michele Alboreto. Drivers balance throttle on the ragged edge to launch onto the main straight.',
+    x: 240,
+    y: 410,
+    images: [
+      createCornerSvgBlueprint('Curva Alboreto (Parabolica)', 'Turn 11 (T11)', 'M 150 80 L 350 80 C 680 80 680 400 350 400 L 150 400'),
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Parabolica_Monza.jpg/1200px-Parabolica_Monza.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Curva_Parabolica_Monza.jpg/1200px-Curva_Parabolica_Monza.jpg'
+    ]
+  },
+  straight: {
+    id: 'straight',
+    name: 'Rettifilo Main Pit Straight',
+    turns: 'Main Straight',
+    description: '1.1km high-speed drag strip where F1 cars reach maximum top speeds of 355+ km/h before slamming on the brakes for Turn 1.',
+    x: 100,
+    y: 380,
+    images: [
+      createCornerSvgBlueprint('Rettifilo Main Pit Straight', 'Main Straight', 'M 80 240 L 720 240'),
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Monza_pit_lane.jpg/1200px-Monza_pit_lane.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Monza_start_finish_straight.jpg/1200px-Monza_start_finish_straight.jpg'
+    ]
+  }
+};
+
+const getRandomCornerImage = (cornerKey: string, currentImage?: string) => {
+  const corner = MONZA_CORNERS_DATA[cornerKey];
+  if (!corner || !corner.images || corner.images.length === 0) {
+    return 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Autodromo_Nazionale_Monza_2000.svg/1200px-Autodromo_Nazionale_Monza_2000.svg.png';
+  }
+  const pool = corner.images.filter((img) => img !== currentImage);
+  const selectedPool = pool.length > 0 ? pool : corner.images;
+  const randomIndex = Math.floor(Math.random() * selectedPool.length);
+  return selectedPool[randomIndex];
+};
+
 interface CircuitMapProps {
-  circuitId: string;
+  circuitId?: string;
   drivers?: DriverProgress[];
   showStats?: boolean;
   activeDriverCode?: string;
@@ -867,16 +1064,24 @@ interface CircuitMapProps {
 }
 
 export default function CircuitMap({
-  circuitId,
+  circuitId = 'monza',
   drivers = [],
   showStats = true,
   activeDriverCode = '',
   onHoverDriver
 }: CircuitMapProps) {
-  const normId = ID_MAP[circuitId?.toLowerCase()] || (CIRCUIT_DATA[circuitId?.toLowerCase()] ? circuitId?.toLowerCase() : null);
+  const cleanId = (typeof circuitId === 'string' && circuitId.trim().length > 0) ? circuitId.trim().toLowerCase() : 'monza';
+  const normId = ID_MAP[cleanId] || (CIRCUIT_DATA[cleanId] ? cleanId : null);
   const track = normId 
     ? (CIRCUIT_DATA[normId] || CIRCUIT_DATA.default) 
-    : generateProceduralTrack(circuitId || 'default');
+    : (generateProceduralTrack(cleanId) || CIRCUIT_DATA.default);
+
+  const safeFullPath = track?.fullPath || CIRCUIT_DATA.default.fullPath;
+  const safeS1 = track?.s1 || safeFullPath;
+  const safeS2 = track?.s2 || safeFullPath;
+  const safeS3 = track?.s3 || safeFullPath;
+
+  const galleryPhotos = getTrackGallery(cleanId, track.name);
 
   const pathRef = useRef<SVGPathElement | null>(null);
   const [pathLength, setPathLength] = useState(0);
@@ -885,15 +1090,93 @@ export default function CircuitMap({
   const [tiltPreset, setTiltPreset] = useState<'high' | 'medium' | 'flat'>('medium');
   const [zoomLevel, setZoomLevel] = useState(1);
 
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [currentImgIndex, setCurrentImgIndex] = useState(0);
+
+  // Universal Circuit Corner Reconnaissance State
+  const circuitCornerCollection = getCircuitCornerData(cleanId, track.name);
+  const circuitCornerList = Object.values(circuitCornerCollection.corners);
+
+  const [selectedCorner, setSelectedCorner] = useState<CircuitCorner | null>(null);
+  const [activeCornerImgObj, setActiveCornerImgObj] = useState<CornerImage | null>(null);
+  const [isCornerImgLoading, setIsCornerImgLoading] = useState<boolean>(false);
+
+  const displayCorner = selectedCorner || circuitCornerList[0];
+  const displayCornerImg = activeCornerImgObj || (displayCorner && displayCorner.images ? displayCorner.images[0] : null);
+
+  const handleOpenCorner = (corner: CircuitCorner) => {
+    if (!corner || !corner.images || corner.images.length === 0) return;
+    const initialImg = corner.images[0];
+    setSelectedCorner(corner);
+    setActiveCornerImgObj(initialImg);
+    setIsCornerImgLoading(false);
+  };
+
+  const handleNextCornerImage = () => {
+    const currentCorner = selectedCorner || circuitCornerList[0];
+    if (!currentCorner || !currentCorner.images || currentCorner.images.length === 0) return;
+    setIsCornerImgLoading(false);
+    const currentSrc = displayCornerImg?.src;
+    const realPhotos = currentCorner.images.filter((img) => !img.src.startsWith('data:'));
+    const photoPool = realPhotos.length > 0 ? realPhotos : currentCorner.images;
+    const pool = photoPool.filter((img) => img.src !== currentSrc);
+    const selectedPool = pool.length > 0 ? pool : photoPool;
+    const nextImg = selectedPool[Math.floor(Math.random() * selectedPool.length)];
+    setSelectedCorner(currentCorner);
+    setActiveCornerImgObj(nextImg);
+  };
+
   useEffect(() => {
-    if (pathRef.current) {
-      setPathLength(pathRef.current.getTotalLength());
+    if (!selectedCorner) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedCorner(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedCorner]);
+
+  useEffect(() => {
+    if (!isGalleryOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsGalleryOpen(false);
+      if (e.key === 'ArrowLeft') setCurrentImgIndex((prev) => (prev - 1 + galleryPhotos.length) % galleryPhotos.length);
+      if (e.key === 'ArrowRight') setCurrentImgIndex((prev) => (prev + 1) % galleryPhotos.length);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isGalleryOpen, galleryPhotos.length]);
+
+  useEffect(() => {
+    const measurePath = () => {
+      if (pathRef.current) {
+        try {
+          const len = pathRef.current.getTotalLength();
+          if (len > 0) {
+            setPathLength(len);
+            return true;
+          }
+        } catch {
+          setPathLength(1000);
+          return true;
+        }
+      }
+      return false;
+    };
+
+    if (!measurePath()) {
+      const raf = requestAnimationFrame(measurePath);
+      const timer = setTimeout(measurePath, 100);
+      const timer2 = setTimeout(measurePath, 400);
+      return () => {
+        cancelAnimationFrame(raf);
+        clearTimeout(timer);
+        clearTimeout(timer2);
+      };
     }
-  }, [track]);
+  }, [track, circuitId]);
 
   useEffect(() => {
-    if (pathLength === 0 || !pathRef.current) return;
-
+    const effectiveLength = pathLength || (pathRef.current ? pathRef.current.getTotalLength() : 1000) || 1000;
     let frameId: number;
     let lastTime = performance.now();
     const averageLapTime = 90;
@@ -904,7 +1187,7 @@ export default function CircuitMap({
 
       setVirtualLapProgress((prev) => (prev + delta / averageLapTime) % 1);
 
-      if (drivers && drivers.length > 0) {
+      if (drivers && drivers.length > 0 && pathRef.current) {
         const nextPoints: typeof driverPoints = {};
 
         drivers.forEach((d) => {
@@ -918,24 +1201,15 @@ export default function CircuitMap({
           } else if (d.status === 'IN PIT') {
             progress = 0.99;
           } else {
-            const gapSecs = d.gapToLeader || 0;
-            const progressOffset = gapSecs / averageLapTime;
-            progress = (virtualLapProgress - progressOffset + 1) % 1;
+            const gap = d.gapToLeader || 0;
+            progress = ((virtualLapProgress - (gap * 0.015)) % 1 + 1) % 1;
           }
 
           try {
-            const pt = pathRef.current.getPointAtLength(progress * pathLength);
-            
-            let px = pt.x;
-            let py = pt.y;
-            if (d.status === 'IN PIT') {
-              px += 8 + (d.position * 1.5);
-              py += 8;
-            }
-
-            nextPoints[d.driverId] = {
-              x: px,
-              y: py,
+            const point = pathRef.current.getPointAtLength(progress * effectiveLength);
+            nextPoints[d.driverId || d.code] = {
+              x: point.x,
+              y: point.y,
               code: d.code,
               color: getTeamColor(d.teamId || ''),
               position: d.position,
@@ -954,7 +1228,7 @@ export default function CircuitMap({
 
     frameId = requestAnimationFrame(updatePoints);
     return () => cancelAnimationFrame(frameId);
-  }, [pathLength, drivers, virtualLapProgress]);
+  }, [pathLength, drivers, virtualLapProgress, track]);
 
   const activeCorners = track.corners || [];
 
@@ -1002,7 +1276,15 @@ export default function CircuitMap({
           </div>
         </div>
 
-        <div className="circuit-3d-stage" style={{ padding: tiltPreset !== 'flat' ? '20px 10px 30px' : '0' }}>
+
+
+        {/* PURE 3D ISOMETRIC TRACK STAGE */}
+        <div 
+          className="circuit-3d-stage" 
+          style={{ padding: tiltPreset !== 'flat' ? '12px 10px 20px' : '0', cursor: 'pointer', position: 'relative' }}
+          onClick={() => circuitCornerList.length > 0 && handleOpenCorner(circuitCornerList[0])}
+          title="Click anywhere on the map to view corner reconnaissance!"
+        >
           <div 
             className="circuit-3d-canvas circuit-3d-active"
             style={{ transform: get3DTransform() }}
@@ -1010,263 +1292,88 @@ export default function CircuitMap({
             <svg 
               viewBox={track.viewBox || "0 0 500 500"} 
               width="100%" 
-              style={{ display: 'block', width: '100%', height: '460px', maxHeight: '520px' }}
+              style={{ display: 'block', width: '100%', height: '360px', maxHeight: '400px' }}
             >
               <defs>
                 <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
                   <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(52, 228, 200, 0.04)" strokeWidth="1" />
                 </pattern>
-                <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="4" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid)" />
 
-              <path 
-                ref={pathRef} 
-                d={track.fullPath} 
-                fill="none" 
-                stroke="transparent" 
-                strokeWidth="0" 
-              />
+              <path ref={pathRef} d={safeFullPath} fill="none" stroke="transparent" strokeWidth="0" />
 
               {/* 3D Depth Ground Shadow */}
               {tiltPreset !== 'flat' && (
-                <>
-                  <path 
-                    d={track.fullPath} 
-                    fill="none" 
-                    stroke="rgba(0, 0, 0, 0.7)" 
-                    strokeWidth="20" 
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    transform="translate(12, 18)"
-                    style={{ filter: 'blur(4px)' }}
-                  />
-                  <path 
-                    d={track.fullPath} 
-                    fill="none" 
-                    stroke="rgba(52, 228, 200, 0.15)" 
-                    strokeWidth="24" 
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    transform="translate(6, 9)"
-                    style={{ filter: 'blur(6px)' }}
-                  />
-                </>
+                <path 
+                  d={safeFullPath} 
+                  fill="none" 
+                  stroke="rgba(0, 0, 0, 0.7)" 
+                  strokeWidth="20" 
+                  strokeLinecap="round" strokeLinejoin="round"
+                  transform="translate(12, 18)"
+                  style={{ filter: 'blur(4px)' }}
+                />
               )}
 
               {/* Asphalt Backing Roads */}
-              <path 
-                d={track.fullPath} 
-                fill="none" 
-                stroke="#080A0E" 
-                strokeWidth="16" 
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{ opacity: 0.95 }}
-              />
-              {/* Red and White High-Precision Racing Kerbs / Rumble Strips */}
-              <path 
-                d={track.fullPath} 
-                fill="none" 
-                stroke="#E8302A" 
-                strokeWidth="13" 
-                strokeDasharray="8 8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{ opacity: 0.75 }}
-              />
-              <path 
-                d={track.fullPath} 
-                fill="none" 
-                stroke="#FFFFFF" 
-                strokeWidth="13" 
-                strokeDasharray="8 8"
-                strokeDashoffset="8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{ opacity: 0.75 }}
-              />
-              <path 
-                d={track.fullPath} 
-                fill="none" 
-                stroke="#171C26" 
-                strokeWidth="10" 
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                style={{ opacity: 0.95 }}
-              />
+              <path d={safeFullPath} fill="none" stroke="#080A0E" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.95 }} />
+              <path d={safeFullPath} fill="none" stroke="#E8302A" strokeWidth="13" strokeDasharray="8 8" strokeLinecap="round" strokeLinejoin="round" />
 
-          {/* Sector 1 (Red) - Glow & Main Stroke */}
-          <path 
-            d={track.s1} 
-            fill="none" 
-            stroke="var(--red)" 
-            strokeWidth="9" 
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ opacity: 0.35, filter: 'blur(3px)' }}
-          />
-          <path 
-            d={track.s1} 
-            fill="none" 
-            stroke="var(--red)" 
-            strokeWidth="5.5" 
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ opacity: 0.95 }}
-          />
+              {/* Sectors */}
+              <path d={safeS1} fill="none" stroke="var(--red)" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.95 }} />
+              <path d={safeS2} fill="none" stroke="var(--cyan)" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.95 }} />
+              <path d={safeS3} fill="none" stroke="var(--purple)" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.95 }} />
 
-          {/* Sector 2 (Cyan) - Glow & Main Stroke */}
-          <path 
-            d={track.s2} 
-            fill="none" 
-            stroke="var(--cyan)" 
-            strokeWidth="9" 
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ opacity: 0.35, filter: 'blur(3px)' }}
-          />
-          <path 
-            d={track.s2} 
-            fill="none" 
-            stroke="var(--cyan)" 
-            strokeWidth="5.5" 
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ opacity: 0.95 }}
-          />
+              {/* Corner Numbers */}
+              {activeCorners.map((corner, i) => (
+                <g 
+                  key={i} 
+                  transform={`translate(${corner.x}, ${corner.y})`}
+                  style={{ cursor: 'pointer' }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const cornerNum = parseInt(corner.n, 10);
+                    let cornerKey = 'rettifilo';
+                    if (cornerNum === 1 || cornerNum === 2) cornerKey = 'rettifilo';
+                    else if (cornerNum === 3) cornerKey = 'curvaGrande';
+                    else if (cornerNum === 4 || cornerNum === 5) cornerKey = 'roggia';
+                    else if (cornerNum === 6) cornerKey = 'lesmo1';
+                    else if (cornerNum === 7) cornerKey = 'lesmo2';
+                    else if (cornerNum >= 8 && cornerNum <= 10) cornerKey = 'ascari';
+                    else if (cornerNum === 11) cornerKey = 'parabolica';
+                    else if (corner.n === 'ST' || corner.n === '00') cornerKey = 'straight';
 
-          {/* Sector 3 (Purple) - Glow & Main Stroke */}
-          <path 
-            d={track.s3} 
-            fill="none" 
-            stroke="var(--purple)" 
-            strokeWidth="9" 
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ opacity: 0.35, filter: 'blur(3px)' }}
-          />
-          <path 
-            d={track.s3} 
-            fill="none" 
-            stroke="var(--purple)" 
-            strokeWidth="5.5" 
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ opacity: 0.95 }}
-          />
-
-          {/* Corner Numbers */}
-          {activeCorners.map((corner, i) => (
-            <g key={i} transform={`translate(${corner.x}, ${corner.y})`}>
-              <rect 
-                x="-10" 
-                y="-10" 
-                width="20" 
-                height="20" 
-                rx="3" 
-                fill="#0F121C" 
-                stroke="var(--line)" 
-                strokeWidth="1" 
-              />
-              <text 
-                textAnchor="middle" 
-                dominantBaseline="middle" 
-                fill="var(--dim)" 
-                fontSize="9" 
-                fontWeight="bold" 
-                fontFamily="var(--font-mono)"
-              >
-                {corner.n}
-              </text>
-            </g>
-          ))}
-
-          {track.speedTrap && (
-            <g transform={`translate(${track.speedTrap.x}, ${track.speedTrap.y})`}>
-              <line x1="0" y1="0" x2="35" y2="-25" stroke="#E8302A" strokeWidth="1.5" strokeDasharray="3 2" />
-              <circle cx="0" cy="0" r="4" fill="#E8302A" />
-              <g transform="translate(35, -38)">
-                <rect x="-10" y="0" width="70" height="22" rx="4" fill="#FF007F" />
-                <text x="25" y="14" textAnchor="middle" fill="#FFFFFF" fontSize="9" fontWeight="bold" fontFamily="var(--font-display)">
-                  SPEED TRAP
-                </text>
-              </g>
-            </g>
-          )}
-
-          {track.startFinish && (
-            <g transform={`translate(${track.startFinish.x}, ${track.startFinish.y}) rotate(${track.startFinish.angle})`}>
-              <line x1="-15" y1="0" x2="15" y2="0" stroke="var(--paper)" strokeWidth="2.5" strokeDasharray="4 2" />
-              <text x="0" y="-8" textAnchor="middle" fontSize="13">🏁</text>
-            </g>
-          )}
-
-          {Object.entries(driverPoints).map(([driverId, pt]) => {
-            const isHovered = activeDriverCode === pt.code;
-            const isRetired = pt.status === 'RETIRED' || pt.status === 'OUT';
-            const inPit = pt.status === 'IN PIT';
-
-            return (
-              <g 
-                key={driverId}
-                onMouseEnter={() => onHoverDriver?.(pt.code)}
-                onMouseLeave={() => onHoverDriver?.(null)}
-                style={{ cursor: 'pointer', transition: 'all 0.1s ease-out' }}
-              >
-                <circle 
-                  cx={pt.x} 
-                  cy={pt.y} 
-                  r={isHovered ? 14 : 9} 
-                  fill="none" 
-                  stroke={isRetired ? '#8E8E93' : pt.color} 
-                  strokeWidth="2.5" 
-                  opacity={isHovered ? 0.9 : 0.4} 
-                  style={{ transition: 'r 0.15s ease' }}
-                />
-
-                <circle 
-                  cx={pt.x} 
-                  cy={pt.y} 
-                  r={isHovered ? 8 : 6} 
-                  fill={isRetired ? '#1F242E' : inPit ? '#FF9F0A' : '#0B0D13'} 
-                  stroke={isRetired ? '#8E8E93' : inPit ? '#FF9F0A' : pt.color} 
-                  strokeWidth="2.5" 
-                  style={{ transition: 'r 0.15s ease' }}
-                />
-
-                <g transform={`translate(${pt.x + 10}, ${pt.y - 8})`}>
-                  <rect 
-                    x="-2" 
-                    y="-8" 
-                    width="26" 
-                    height="12" 
-                    rx="2" 
-                    fill="#05070A" 
-                    stroke={isHovered ? pt.color : 'rgba(42, 47, 58, 0.6)'} 
-                    strokeWidth="0.8" 
-                    opacity="0.85"
-                  />
-                  <text 
-                    x="11" 
-                    y="1.5" 
-                    textAnchor="middle" 
-                    fill={isRetired ? '#8E8E93' : '#EEF1F6'} 
-                    fontSize="7.5" 
-                    fontWeight="bold" 
-                    fontFamily="var(--font-mono)"
-                  >
-                    {pt.code}
+                    const cornerObj = circuitCornerCollection.corners[cornerKey] || circuitCornerList[i] || circuitCornerList[0];
+                    if (cornerObj) handleOpenCorner(cornerObj);
+                  }}
+                >
+                  <rect x="-10" y="-10" width="20" height="20" rx="3" fill="#0F121C" stroke={cleanId === 'monza' ? '#E8302A' : 'var(--line)'} strokeWidth="1.5" />
+                  <text textAnchor="middle" dominantBaseline="middle" fill={cleanId === 'monza' ? '#FFFFFF' : 'var(--dim)'} fontSize="9" fontWeight="bold" fontFamily="var(--font-mono)">
+                    {corner.n}
                   </text>
                 </g>
-              </g>
-            );
-          })}
-        </svg>
-        </div>
+              ))}
+
+              {Object.entries(driverPoints).map(([driverId, pt]) => {
+                const isHovered = activeDriverCode === pt.code;
+                const isRetired = pt.status === 'RETIRED' || pt.status === 'OUT';
+                const inPit = pt.status === 'IN PIT';
+
+                return (
+                  <g 
+                    key={driverId}
+                    onMouseEnter={() => onHoverDriver?.(pt.code)}
+                    onMouseLeave={() => onHoverDriver?.(null)}
+                    style={{ cursor: 'pointer', transition: 'all 0.1s ease-out' }}
+                  >
+                    <circle cx={pt.x} cy={pt.y} r={isHovered ? 14 : 9} fill="none" stroke={isRetired ? '#8E8E93' : pt.color} strokeWidth="2.5" opacity={isHovered ? 0.9 : 0.4} />
+                    <circle cx={pt.x} cy={pt.y} r={isHovered ? 8 : 6} fill={isRetired ? '#1F242E' : inPit ? '#FF9F0A' : '#0B0D13'} stroke={isRetired ? '#8E8E93' : inPit ? '#FF9F0A' : pt.color} strokeWidth="2.5" />
+                  </g>
+                );
+              })}
+            </svg>
+          </div>
         </div>
 
         <div 
@@ -1350,6 +1457,264 @@ export default function CircuitMap({
             <div className="k">Defending Champion</div>
             <div className="v" style={{ fontSize: '17px', fontFamily: 'var(--font-display)', color: 'var(--paper)' }}>
               {track.champion}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TRACK PHOTO GALLERY LIGHTBOX MODAL */}
+      {isGalleryOpen && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(5, 7, 12, 0.92)',
+            backdropFilter: 'blur(12px)',
+            zIndex: 999999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px'
+          }}
+          onClick={() => setIsGalleryOpen(false)}
+        >
+          <div 
+            style={{
+              background: '#0D1017',
+              border: '1px solid #262C38',
+              borderRadius: '12px',
+              maxWidth: '920px',
+              width: '100%',
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(52, 228, 200, 0.2)',
+              overflow: 'hidden',
+              position: 'relative'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Gallery Header */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 24px', borderBottom: '1px solid #262C38', background: '#121620' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontSize: '26px' }}>{track.flag}</span>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '18px', fontFamily: 'var(--font-display)', color: '#FFFFFF', fontWeight: '800', letterSpacing: '0.5px' }}>
+                    {track.name.toUpperCase()} — CIRCUIT GALLERY
+                  </h3>
+                  <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#34E4C8', fontWeight: '700' }}>
+                    PHOTO {currentImgIndex + 1} OF {galleryPhotos.length} &bull; {track.country.toUpperCase()}
+                  </span>
+                </div>
+              </div>
+              <button 
+                onClick={() => setIsGalleryOpen(false)}
+                style={{ background: '#1A202C', border: '1px solid #262C38', color: '#FFFFFF', width: '36px', height: '36px', borderRadius: '50%', fontSize: '18px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                title="Close Gallery (Esc)"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Main Stage Image */}
+            <div style={{ position: 'relative', height: '440px', background: '#090C14', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              <img 
+                src={galleryPhotos[currentImgIndex]?.url} 
+                alt={galleryPhotos[currentImgIndex]?.title}
+                referrerPolicy="no-referrer"
+                crossOrigin="anonymous"
+                style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '12px' }}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500"><rect width="800" height="500" fill="%230D1017"/><path d="M 150 350 C 100 320 80 200 150 120 C 220 50 350 80 450 120 C 550 160 680 120 720 200 C 760 280 650 380 500 400 C 350 420 220 380 150 350 Z" fill="none" stroke="%2334E4C8" stroke-width="10" stroke-linecap="round"/><text x="400" y="250" fill="%23FFFFFF" font-family="monospace" font-size="24" font-weight="bold" text-anchor="middle">${encodeURIComponent(track.name.toUpperCase())} OFFICIAL VECTOR BLUEPRINT</text></svg>`;
+                }}
+              />
+              
+              {/* Previous / Next Arrow Buttons */}
+              <button
+                onClick={() => setCurrentImgIndex((prev) => (prev - 1 + galleryPhotos.length) % galleryPhotos.length)}
+                style={{ position: 'absolute', left: '16px', background: 'rgba(13, 16, 23, 0.85)', border: '1px solid #34E4C8', color: '#FFFFFF', borderRadius: '50%', width: '48px', height: '48px', fontSize: '24px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(0,0,0,0.6)' }}
+                title="Previous Photo (Left Arrow)"
+              >
+                ‹
+              </button>
+              <button
+                onClick={() => setCurrentImgIndex((prev) => (prev + 1) % galleryPhotos.length)}
+                style={{ position: 'absolute', right: '16px', background: 'rgba(13, 16, 23, 0.85)', border: '1px solid #34E4C8', color: '#FFFFFF', borderRadius: '50%', width: '48px', height: '48px', fontSize: '24px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(0,0,0,0.6)' }}
+                title="Next Photo (Right Arrow)"
+              >
+                ›
+              </button>
+
+              {/* High-Contrast Caption Overlay */}
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(13, 16, 23, 0.95) 40%)', padding: '24px 24px 18px' }}>
+                <h4 style={{ margin: '0 0 4px 0', color: '#FFFFFF', fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: '800' }}>
+                  {galleryPhotos[currentImgIndex]?.title}
+                </h4>
+                <p style={{ margin: 0, color: '#CBD5E1', fontSize: '13.5px', fontFamily: 'var(--font-sans)' }}>
+                  {galleryPhotos[currentImgIndex]?.caption}
+                </p>
+              </div>
+            </div>
+
+            {/* Thumbnail Strip */}
+            <div style={{ display: 'flex', gap: '12px', padding: '16px 24px', background: '#121620', overflowX: 'auto', justifyContent: 'center' }}>
+              {galleryPhotos.map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setCurrentImgIndex(idx)}
+                  style={{
+                    width: '100px',
+                    height: '64px',
+                    borderRadius: '6px',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    border: currentImgIndex === idx ? '2px solid #34E4C8' : '1px solid #262C38',
+                    opacity: currentImgIndex === idx ? 1 : 0.5,
+                    transform: currentImgIndex === idx ? 'scale(1.05)' : 'scale(1)',
+                    transition: 'all 0.2s ease',
+                    flexShrink: 0,
+                    background: '#090C14'
+                  }}
+                >
+                  <img 
+                    src={img.url} 
+                    alt={img.title} 
+                    referrerPolicy="no-referrer"
+                    crossOrigin="anonymous"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500"><rect width="800" height="500" fill="%230D1017"/><path d="M 150 350 C 100 320 80 200 150 120 C 220 50 350 80 450 120 C 550 160 680 120 720 200 C 760 280 650 380 500 400 C 350 420 220 380 150 350 Z" fill="none" stroke="%2334E4C8" stroke-width="10" stroke-linecap="round"/></svg>`;
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* UNIVERSAL CIRCUIT CORNER RECONNAISSANCE MODAL */}
+      {selectedCorner && activeCornerImgObj && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(5, 7, 12, 0.92)',
+            backdropFilter: 'blur(12px)',
+            zIndex: 999999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px'
+          }}
+          onClick={() => setSelectedCorner(null)}
+        >
+          <div 
+            style={{
+              background: '#0D1017',
+              border: '1px solid #262C38',
+              borderRadius: '12px',
+              maxWidth: '580px',
+              width: '100%',
+              maxHeight: '88vh',
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(52, 228, 200, 0.25)',
+              overflowY: 'auto',
+              position: 'relative'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Corner Modal Header */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 18px', borderBottom: '1px solid #262C38', background: '#121620' }}>
+              <div>
+                <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#34E4C8', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>
+                  {track.name.toUpperCase()} &bull; {selectedCorner.turns}
+                </div>
+                <h3 style={{ margin: 0, fontSize: '18px', fontFamily: 'var(--font-display)', color: '#FFFFFF', fontWeight: '800', textTransform: 'uppercase' }}>
+                  {selectedCorner.name}
+                </h3>
+              </div>
+              <button 
+                onClick={() => setSelectedCorner(null)}
+                style={{ background: '#1A202C', border: '1px solid #262C38', color: '#FFFFFF', width: '32px', height: '32px', borderRadius: '50%', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                title="Close Reconnaissance Modal (Esc)"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Corner Image Container */}
+            <div style={{ position: 'relative', height: 'min(300px, 42vh)', background: '#06080F', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              <img 
+                key={activeCornerImgObj.src}
+                src={activeCornerImgObj.src} 
+                alt={activeCornerImgObj.alt || `${track.name} ${selectedCorner.name} F1 circuit corner`}
+                referrerPolicy="no-referrer"
+                crossOrigin={activeCornerImgObj.src.startsWith('http') ? 'anonymous' : undefined}
+                style={{ width: '100%', height: '100%', objectFit: activeCornerImgObj.src.startsWith('data:') ? 'contain' : 'cover' }}
+              />
+            </div>
+
+            {/* Description, Licensing & Action Controls */}
+            <div style={{ padding: '18px 20px', background: '#121620', borderTop: '1px solid #262C38' }}>
+              <p style={{ margin: '0 0 14px 0', color: '#E2E8F0', fontSize: '13.5px', fontFamily: 'var(--font-sans)', lineHeight: '1.6', whiteSpace: 'pre-line' }}>
+                {selectedCorner.description}
+              </p>
+
+              {/* Source & Licensing Line */}
+              <div style={{ fontSize: '10.5px', fontFamily: 'var(--font-mono)', color: 'var(--dim)', marginBottom: '16px', background: '#090C14', padding: '6px 10px', borderRadius: '4px', border: '1px solid #1E2638' }}>
+                <span>SOURCE: <strong style={{ color: '#E2E8F0' }}>{activeCornerImgObj.source}</strong></span>
+                <span style={{ margin: '0 8px' }}>&bull;</span>
+                <span>LICENSE: <strong style={{ color: '#34E4C8' }}>{activeCornerImgObj.license}</strong></span>
+                {activeCornerImgObj.attribution && (
+                  <>
+                    <span style={{ margin: '0 8px' }}>&bull;</span>
+                    <span>BY: <strong>{activeCornerImgObj.attribution}</strong></span>
+                  </>
+                )}
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+                <button
+                  onClick={handleNextCornerImage}
+                  style={{
+                    background: '#34E4C8',
+                    color: '#0D1017',
+                    border: 'none',
+                    borderRadius: '6px',
+                    padding: '10px 20px',
+                    fontSize: '12.5px',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: '800',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    boxShadow: '0 4px 14px rgba(52, 228, 200, 0.4)'
+                  }}
+                >
+                  ↻ NEXT IMAGE
+                </button>
+
+                <button
+                  onClick={() => setSelectedCorner(null)}
+                  style={{
+                    background: '#1A202C',
+                    color: '#CBD5E1',
+                    border: '1px solid #262C38',
+                    borderRadius: '6px',
+                    padding: '10px 18px',
+                    fontSize: '12px',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: '700',
+                    cursor: 'pointer'
+                  }}
+                >
+                  CLOSE ×
+                </button>
+              </div>
             </div>
           </div>
         </div>

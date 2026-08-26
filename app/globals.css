@@ -5,8 +5,8 @@
     --carbon: #15181E;
     --carbon-2: #1C2028;
     --line: #2A2F3A;
-    --paper: #EEF1F6;
-    --dim: #8791A3;
+    --paper: #FFFFFF;
+    --dim: #CBD5E1;
     --red: #E8302A;
     --red-dim: #5A1613;
     --cyan: #34E4C8;
@@ -26,7 +26,7 @@
     --carbon-2: #2B0A0D;
     --line: #4D0E12;
     --paper: #FFFFFF;
-    --dim: #BAC4D8;
+    --dim: #E2E8F0;
     --red: #E8002D;
     --cyan: #FFDE00;
     --purple: #FF5252;
@@ -41,7 +41,7 @@
     --carbon-2: #101F40;
     --line: #1D3260;
     --paper: #FFFFFF;
-    --dim: #BAC4D8;
+    --dim: #E2E8F0;
     --red: #EA0027;
     --cyan: #3671C6;
     --purple: #7C3AED;
@@ -56,7 +56,7 @@
     --carbon-2: #16242B;
     --line: #223742;
     --paper: #FFFFFF;
-    --dim: #BAC4D8;
+    --dim: #E2E8F0;
     --red: #27F4D2;
     --cyan: #00E5FF;
     --purple: #38BDF8;
@@ -71,7 +71,7 @@
     --carbon-2: #301B0C;
     --line: #4D2B14;
     --paper: #FFFFFF;
-    --dim: #BAC4D8;
+    --dim: #E2E8F0;
     --red: #FF8000;
     --cyan: #00A3E0;
     --purple: #FB923C;
@@ -114,65 +114,66 @@ body {
         repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.008) 0px, rgba(255, 255, 255, 0.008) 1px, transparent 1px, transparent 3px);
 }
 
-/* Clean Ambient Team Wallpaper Overlay (High Contrast & Zero Text Interference) */
+/* Clean Ambient Team Wallpaper Overlay (High Contrast & High Visibility) */
 .f1-theme-wallpaper {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    opacity: 0;
-    transition: opacity 0.6s ease-in-out;
+    opacity: 0.75;
+    transition: opacity 0.6s ease-in-out, background-image 0.6s ease-in-out;
     background-size: cover;
     background-position: center right;
     background-repeat: no-repeat;
+    filter: brightness(0.95) contrast(1.1);
 }
 
 /* Default / Pit-Wall Red Theme Wallpaper */
 :root[data-theme="default"] .f1-theme-wallpaper,
 :root:not([data-theme]) .f1-theme-wallpaper {
-    opacity: 0.35;
+    opacity: 0.75;
     background-image: 
-        linear-gradient(to right, #0C0E12 0%, #0C0E12 40%, rgba(12, 14, 18, 0.6) 70%, transparent 100%),
+        linear-gradient(to right, #0C0E12 0%, #0C0E12 25%, rgba(12, 14, 18, 0.35) 60%, transparent 100%),
         url('/images/default-bg.png');
 }
 
 /* Scuderia Ferrari Car Wallpaper */
 :root[data-theme="ferrari"] .f1-theme-wallpaper {
-    opacity: 0.35;
+    opacity: 0.75;
     background-image: 
-        linear-gradient(to right, #120304 0%, #120304 40%, rgba(18, 3, 4, 0.6) 70%, transparent 100%),
+        linear-gradient(to right, #120304 0%, #120304 25%, rgba(18, 3, 4, 0.35) 60%, transparent 100%),
         url('/images/ferrari-bg.png');
 }
 
 /* Red Bull Racing Car Wallpaper */
 :root[data-theme="redbull"] .f1-theme-wallpaper {
-    opacity: 0.35;
+    opacity: 0.75;
     background-image: 
-        linear-gradient(to right, #040A18 0%, #040A18 40%, rgba(4, 10, 24, 0.6) 70%, transparent 100%),
+        linear-gradient(to right, #040A18 0%, #040A18 25%, rgba(4, 10, 24, 0.35) 60%, transparent 100%),
         url('/images/redbull-bg.png');
 }
 
 /* McLaren F1 Car Wallpaper */
 :root[data-theme="mclaren"] .f1-theme-wallpaper {
-    opacity: 0.35;
+    opacity: 0.75;
     background-image: 
-        linear-gradient(to right, #140B04 0%, #140B04 40%, rgba(20, 11, 4, 0.6) 70%, transparent 100%),
+        linear-gradient(to right, #140B04 0%, #140B04 25%, rgba(20, 11, 4, 0.35) 60%, transparent 100%),
         url('/images/mclaren-bg.png');
 }
 
 /* Aston Martin Aramco Car Wallpaper */
 :root[data-theme="aston"] .f1-theme-wallpaper {
-    opacity: 0.35;
+    opacity: 0.75;
     background-image: 
-        linear-gradient(to right, #03100B 0%, #03100B 40%, rgba(3, 16, 11, 0.6) 70%, transparent 100%),
+        linear-gradient(to right, #03100B 0%, #03100B 25%, rgba(3, 16, 11, 0.35) 60%, transparent 100%),
         url('/images/aston-bg.png');
 }
 
 /* Mercedes-AMG Petronas Wallpaper */
 :root[data-theme="mercedes"] .f1-theme-wallpaper {
-    opacity: 0.35;
+    opacity: 0.75;
     background-image: 
-        linear-gradient(to right, #060B0E 0%, #060B0E 40%, rgba(6, 11, 14, 0.6) 70%, transparent 100%),
+        linear-gradient(to right, #060B0E 0%, #060B0E 25%, rgba(6, 11, 14, 0.35) 60%, transparent 100%),
         url('/images/mercedes-bg.png');
 }
 
@@ -1144,11 +1145,9 @@ footer {
 
 @keyframes f1CarRightEntrance {
     0% {
-        transform: translate3d(60%, 0, 0);
         opacity: 0;
     }
     100% {
-        transform: translate3d(0, 0, 0);
         opacity: 0.95;
     }
 }
@@ -2370,103 +2369,7 @@ footer {
     }
 }
 
-/* ===== F1 Theme Background Wallpaper & Login Wallpaper ===== */
-.f1-theme-wallpaper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    opacity: 0.55;
-    filter: brightness(0.95) contrast(1.15) saturate(1.2);
-    transition: background-image 0.6s ease-in-out, opacity 0.6s ease-in-out;
-    background-image: url('/images/default-bg.png');
-}
 
-/* Data-theme background car wallpapers */
-:root[data-theme="default"] .f1-theme-wallpaper,
-body[data-theme="default"] .f1-theme-wallpaper {
-    background-image: url('/images/default-bg.png');
-    opacity: 0.55;
-}
-
-:root[data-theme="ferrari"] .f1-theme-wallpaper,
-body[data-theme="ferrari"] .f1-theme-wallpaper {
-    background-image: url('/images/ferrari-bg.png');
-    opacity: 0.60;
-}
-
-:root[data-theme="redbull"] .f1-theme-wallpaper,
-body[data-theme="redbull"] .f1-theme-wallpaper {
-    background-image: url('/images/redbull-bg.png');
-    opacity: 0.60;
-}
-
-:root[data-theme="mercedes"] .f1-theme-wallpaper,
-body[data-theme="mercedes"] .f1-theme-wallpaper {
-    background-image: url('/images/mercedes-bg.png');
-    opacity: 0.60;
-}
-
-:root[data-theme="mclaren"] .f1-theme-wallpaper,
-body[data-theme="mclaren"] .f1-theme-wallpaper {
-    background-image: url('/images/mclaren-bg.png');
-    opacity: 0.60;
-}
-
-:root[data-theme="aston"] .f1-theme-wallpaper,
-body[data-theme="aston"] .f1-theme-wallpaper {
-    background-image: url('/images/aston-bg.png');
-    opacity: 0.60;
-}
-
-/* Auth Gate 3D Car Wallpaper Styling */
-.login-wallpaper-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
-    pointer-events: none;
-    background: #0a0d12;
-}
-
-.login-wallpaper-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    filter: brightness(0.95) contrast(1.15);
-    opacity: 0.95;
-    transform: scale(1.02);
-    transition: transform 10s ease-out;
-}
-
-.login-wallpaper-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at center, rgba(10, 13, 18, 0.25) 0%, rgba(10, 13, 18, 0.75) 85%);
-    pointer-events: none;
-}
-
-.centered-login-card {
-    position: relative;
-    z-index: 10;
-}
 
 
 

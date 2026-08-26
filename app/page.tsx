@@ -263,7 +263,7 @@ export default function OverviewPage() {
         </div>
       </div>
 
-      {/* 3D Isometric Circuit Radar & GPS Satellite Radar */}
+      {/* 3D Isometric Circuit Radar (Left) & GPS Satellite Radar (Right) */}
       {nextRace && nextRace.Circuit.circuitId && (
         <div style={{ marginBottom: '28px' }}>
           <div className="grid cols-2" style={{ gap: '20px' }}>
@@ -276,14 +276,18 @@ export default function OverviewPage() {
 
             {nextRace.Circuit.Location.lat && nextRace.Circuit.Location.long && (
               <div className="panel" style={{ display: 'flex', flexDirection: 'column', gap: '14px', height: '100%' }}>
-                <div className="eyebrow" style={{ fontSize: '11px', marginBottom: '0' }}>🛰️ GPS SATELLITE RADAR</div>
-                <div style={{ flex: 1, minHeight: '340px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--line)' }}>
+                <div className="eyebrow" style={{ fontSize: '11px', marginBottom: '0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span>🛰️ GPS SATELLITE &amp; TRACK RADAR</span>
+                  <span style={{ fontSize: '10px', color: 'var(--cyan)' }}>LIVE LAT/LONG GPS</span>
+                </div>
+                <div style={{ flex: 1, minHeight: '340px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--line)', position: 'relative' }}>
                   <iframe
-                    src={`https://maps.google.com/maps?q=${nextRace.Circuit.Location.lat},${nextRace.Circuit.Location.long}&t=k&z=14&output=embed`}
+                    src={`https://www.openstreetmap.org/export/embed.html?bbox=${(parseFloat(nextRace.Circuit.Location.long) - 0.03).toFixed(4)},${(parseFloat(nextRace.Circuit.Location.lat) - 0.02).toFixed(4)},${(parseFloat(nextRace.Circuit.Location.long) + 0.03).toFixed(4)},${(parseFloat(nextRace.Circuit.Location.lat) + 0.02).toFixed(4)}&layer=mapnik&marker=${nextRace.Circuit.Location.lat},${nextRace.Circuit.Location.long}`}
                     width="100%"
                     height="100%"
                     style={{ border: 0, opacity: 0.9, width: '100%', height: '100%', minHeight: '340px' }}
                     allowFullScreen
+                    title="GPS Satellite Track Radar"
                   />
                 </div>
               </div>

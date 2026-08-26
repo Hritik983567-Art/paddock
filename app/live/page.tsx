@@ -609,8 +609,8 @@ export default function LiveTelemetryPage() {
           </div>
         </div>
 
-        {/* Live Grid Layout */}
-        <div className="grid cols-2" style={{ gridTemplateColumns: '1.4fr 1fr', alignItems: 'start', gap: '20px' }}>
+        {/* Live Grid Layout (50-50 Equal Split) */}
+        <div className="grid cols-2" style={{ gridTemplateColumns: '1fr 1fr', alignItems: 'start', gap: '20px' }}>
           
           {/* Left Column: Live Track Radar & Standings */}
           <div className="flex flex-col gap-4">
@@ -768,14 +768,15 @@ export default function LiveTelemetryPage() {
             {/* GPS Satellite Track Locator */}
             <div className="panel">
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '16px', marginBottom: '10px' }}>
-                GPS Track Locator (Satellite)
+                GPS Track Locator (Satellite Radar)
               </h3>
               <iframe
-                src={`https://maps.google.com/maps?q=${activeRace?.Circuit?.Location?.lat || '50.4372'},${activeRace?.Circuit?.Location?.long || '5.9714'}&t=k&z=14&output=embed`}
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=${(parseFloat(activeRace?.Circuit?.Location?.long || '5.9714') - 0.03).toFixed(4)},${(parseFloat(activeRace?.Circuit?.Location?.lat || '50.4372') - 0.02).toFixed(4)},${(parseFloat(activeRace?.Circuit?.Location?.long || '5.9714') + 0.03).toFixed(4)},${(parseFloat(activeRace?.Circuit?.Location?.lat || '50.4372') + 0.02).toFixed(4)}&layer=mapnik&marker=${activeRace?.Circuit?.Location?.lat || '50.4372'},${activeRace?.Circuit?.Location?.long || '5.9714'}`}
                 width="100%"
                 height="220"
-                style={{ border: '1px solid var(--line)', borderRadius: '6px', opacity: 0.85 }}
+                style={{ border: '1px solid var(--line)', borderRadius: '6px', opacity: 0.9 }}
                 allowFullScreen
+                title="GPS Track Locator"
               />
             </div>
 
