@@ -1,57 +1,75 @@
-# 🏎️ Paddock
+# 🏎️ PADDOCK TELEMETRY
 
-**A premium F1 telemetry and pit-wall command center featuring live timing, session replay, tyre strategy simulation, and satellite circuit maps — powered by Next.js, TypeScript, and the Jolpica F1 API.**
+**A state-of-the-art F1 telemetry and pit-wall command center featuring real-time timing, interactive race replay, teammate head-to-head analytics, satellite circuit maps, and enterprise-grade Supabase PKCE authentication — powered by Next.js 16 (App Router), TypeScript, and Tailwind CSS.**
 
 ---
 
-## ⚡ Core Features
+## ⚡ Key Systems & Features
 
-### 1. 📡 Live Telemetry Console ("Mission Control")
-* **Dual Connection Toggles**: Switch between a local simulation engine and a live connection to official F1 timing feeds.
-* **Live Timing classifications**: Real-time position shifts, speed traps, tyre choices, and tyre ages.
-* **Pit Radio Terminal Event Log**: Retro green command-line terminal displaying pit lane entries, safety car conditions, and simulated radio transcript logs.
+### 🔐 1. End-to-End Supabase PKCE Auth & Security
+- **Mandatory Email Verification Gate**: Strict access restriction requiring users to confirm their email address before entering the telemetry dashboard.
+- **Supabase Google OAuth 2.0 Integration**: Multi-account device chooser (`prompt: 'select_account consent'`) with dynamic origin detection (`getURL()`) for seamless local and Vercel production deployment.
+- **PKCE Password Recovery Journey**: Public `/forgot-password` request form, server-side token exchange via `/auth/callback?next=/update-password`, and authenticated `/update-password` interface.
+- **Dual-Layer Hard Credential Validation**: Server-side password verification in `/api/auth/login` via `@supabase/supabase-js` that blocks fake or incorrect credentials.
+- **Complete Logout Session Revocation**: Invokes global `supabase.auth.signOut()`, clears HttpOnly session cookies, and purges browser storage (`localStorage`, `sessionStorage`) to eliminate auto-relogin bugs on refresh.
 
-### 2. 🗺️ Real Race Tracker Timing Center
-* **Telemetry Timing Board**: Deep historical classifications sheet.
-* **Dynamic Satellite Mapping**: Embeds Google Maps satellite imagery centered on the selected Grand Prix circuit coordinates.
-* **Pit Lane Logs**: Chronological timeline showing stop counts and total pit lane durations.
-* **Live weather feeds**: Displays venue coordinates temperature, humidity, wind speed, and precipitation.
+### 🏎️ 2. Hardware-Accelerated F1 Entrance Sweep & Flow Engine
+- **2.4s Entrance Sweep**: High-performance right-to-left F1 car entrance (`f1CarRightEntrance`) transitioning into continuous floating flow (`f1CarFloatingFlow`).
+- **60fps GPU Compositor**: Uses hardware-accelerated CSS properties (`translate3d`, `opacity`, `.f1-entry-speed-streaks`, `.f1-ambient-flow-glow`) with zero CPU blur overhead.
 
-### 3. ⏮️ Interactive Session Replay
-* **Step-by-Step Scrubbing**: Inspect races at your own pace with `⏮ Step Back` and `⏭ Step Fwd` controls.
-* **Custom Playback Speeds**: Slow (1.6s) and Super Slow (3.2s) options.
-* **Hover Cross-Highlighting**: Highlight a driver's trace line and standing row simultaneously.
+### 🗺️ 3. 24 GP Circuit Satellite Maps & Corner Telemetry
+- **Interactive Track Canvas**: High-precision SVG and canvas map engine for all 24 Grand Prix venues in the 2026 F1 calendar.
+- **Corner Telemetry Inspector**: Detailed sector data including apex speeds, lateral G-forces, braking points, and gear selections (`CornerDetails.tsx`).
+- **Corner Photo Gallery**: Lightbox gallery showcasing high-resolution apex photography with EXIF metadata (`CornerImageGallery.tsx`).
 
-### 4. 🧸 Teammate PVC Showroom
-* Driver pairings side-by-side represented as glossy, team-colored PVC collectible figures displaying permanent numbers (`#44 · HAM`) and three-letter timing codes.
+### ⏱️ 4. Interactive Race Replay Engine (`/replay`)
+- **Real-Time Canvas Trajectories**: 60fps telemetry playback engine displaying car positions, gaps, and telemetry graphs.
+- **Scrubber & Speed Controls**: Variable playback rates (1x, 2x, 5x, 10x), step-by-step frame stepping, and interactive scrubber timeline (`ReplayTimeline.tsx`).
+- **Live Telemetry & Pit Monitors**: Gauges for RPM, speed, DRS, ERS charge percentage, and tire stint degradation (`TelemetryPanel.tsx`, `TyreStrategy.tsx`).
+
+### ⚔️ 5. Teammate Head-to-Head Battle Portal (`/teammates`)
+- **Constructor Team Comparisons**: Detailed head-to-head rivalries across all 10 F1 constructor teams.
+- **Telemetry Delta Graphs**: Cumulative championship points progression, qualifying pace deltas, and race finish charts (`PointsProgressionChart.tsx`, `QualifyingH2H.tsx`).
+
+---
+
+## 🛠️ Environment Setup (`.env.local`)
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+JWT_SECRET=your-secure-jwt-secret-key
+```
 
 ---
 
 ## 🚀 Running Locally
 
-### 1. Start the Next.js Frontend
 ```bash
+# 1. Install dependencies
 npm install
+
+# 2. Run the Next.js development server
 npm run dev
 ```
-Open **`http://localhost:3000`** in your browser.
 
-### 2. Launch the F1 Timing Proxy Server
-To connect to the F1 Timing Server (stands by with a mock stream on non-race days):
-```bash
-node scripts/f1-proxy.js
-```
-Then, toggle the connection selector on the **Live Telemetry** page to "Connect to F1 Live Server".
+Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 ---
 
 ## 🛩️ Deploying to Vercel
 
-1. Push this codebase to a new repository on GitHub:
+1. Push your changes to GitHub:
    ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-   git branch -M main
-   git push -u origin main
+   git add .
+   git commit -m "feat: production build"
+   git push origin main
    ```
-2. Import the repository inside your Vercel Dashboard at **[vercel.com](https://vercel.com)**.
-3. Click **Deploy**!
+2. Import the repository in **[Vercel Dashboard](https://vercel.com)**.
+3. Configure environment variables (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_VERCEL_URL`) in Vercel settings.
+4. Click **Deploy**!
+

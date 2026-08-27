@@ -119,14 +119,18 @@ Component Distribution Chart:
 
 ---
 
-## 🔒 4. Security Audit & Recheck Remediation Matrix (v4 Resolution)
+## 🔒 4. Security Audit & Recheck Remediation Matrix (v6.0 Resolution)
 
 | Area / Audit Item | Verdict | Status | Implementation Details |
 | :--- | :--- | :--- | :--- |
+| **Mandatory Email Verification** | **PASS** | **✓ VERIFIED** | Unconfirmed email users are held on Awaiting Verification screen. Site access is strictly blocked until email link is verified. |
+| **Server Credential Guard** | **PASS** | **✓ VERIFIED** | `/api/auth/login` verifies credentials server-side via Supabase `signInWithPassword`. Fake/wrong passwords return HTTP 401 with no session cookie. |
+| **Logout Session Revocation** | **PASS** | **✓ VERIFIED** | `logout()` triggers global `supabase.auth.signOut()`, clears HttpOnly cookies, and purges `localStorage`/`sessionStorage` to prevent auto-relogin. |
+| **OAuth PKCE Callback** | **PASS** | **✓ VERIFIED** | `/auth/callback` handles PKCE code exchange, sets signed HttpOnly cookies, and redirects cleanly without URL parameter leakages. |
 | **Session Restore** | **PASS** | **✓ VERIFIED** | `/api/auth/verify` reads `HttpOnly` cookies server-side & returns structured JSON (`valid`, `authenticated`). |
 | **JWT Secret Exposure** | **PASS** | **✓ VERIFIED** | `import 'server-only'` enforced in `app/lib/jwt.ts`. **Zero secrets in client JavaScript bundles.** |
 | **Browser Token Storage** | **PASS** | **✓ VERIFIED** | **`localStorage` token storage eliminated.** `localStorage` only stores non-sensitive UI theme preferences. |
-| **Google Identity Flow** | **PASS** | **✓ VERIFIED** | GIS SDK client script loaded with server-side ID token verification in `app/lib/googleOAuth.ts`. |
+| **Google Identity Flow** | **PASS** | **✓ VERIFIED** | GIS SDK client script loaded with server-side ID token verification in `app/lib/googleOAuth.ts` and `prompt: 'select_account consent'`. |
 | **Public Route Methods** | **PASS** | **✓ VERIFIED** | Invalid HTTP methods return HTTP `405 Method Not Allowed` with OPTIONS headers. |
 | **Security Headers** | **PASS** | **✓ VERIFIED** | HSTS, `DENY` framing, `nosniff`, Referrer Policy and Permissions Policy served across all routes. |
 | **CSP Hardening (V4-01)** | **PASS** | **✓ VERIFIED** | **Removed `'unsafe-eval'`** from `script-src`. Restricted `img-src` to explicitly declared host origins in `next.config.ts`. |
@@ -178,6 +182,7 @@ npm start
 
 | Version | Date | Division | Changelog Highlights |
 | :--- | :--- | :--- | :--- |
+| **v6.0** | 2026-08-28 | **Security & Auth** | Implemented Mandatory Email Verification Gate, PKCE Password Recovery (`/forgot-password` & `/update-password`), Server-side Supabase credential guards in `/api/auth/login`, and full session revocation on logout. Executed 48-component deep audit with 23/23 clean static page compilation. |
 | **v5.0** | 2026-08-26 | **Architecture** | Added complete Mermaid system architecture diagram and 59.1% Frontend / 32.0% Backend percentage metric distribution. |
 | **v4.0** | 2026-08-26 | **Security / QA** | Recheck audit v4 re-cleared: Hardened CSP (removed `'unsafe-eval'`), server-side JWT key fallback fix, session cookie validation. |
 | **v2.5** | 2026-08-26 | **Security / QA** | Tab-close credential clearing, browser session cookies, and complete R-01 to R-07 recheck resolution. |
