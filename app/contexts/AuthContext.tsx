@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
 
 interface UserState {
   username: string;
@@ -28,7 +29,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<UserState | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Check HttpOnly Cookie session via server /api/auth/verify on startup
+  // Check HttpOnly Cookie session via server /api/auth/verify and Supabase session on startup
   useEffect(() => {
     async function checkSession() {
       try {
@@ -38,8 +39,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser(data.user);
           setIsAuthenticated(true);
         } else {
-          setUser(null);
-          setIsAuthenticated(false);
+          // Check Supabase session fallback
+          const { data: sbData } = await supabase.auth.getSession();
+          if (sbData?.session?.user) {
+            const u = sbData.session.user;
+            const email = u.email || '';
+            const name = u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
+            setUser({
+              username: email,
+              name: name,
+              email: email,
+              role: 'Google OAuth Verified Engineer',
+              team: 'Scuderia Ferrari / Paddock Telemetry',
+              picture: u.user_metadata?.avatar_url || u.user_metadata?.picture
+            });
+            setIsAuthenticated(true);
+          } else {
+            setUser(null);
+            setIsAuthenticated(false);
+          }
         }
       } catch {
         setIsAuthenticated(false);
@@ -47,7 +65,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setIsLoading(false);
       }
     }
+
     checkSession();
+
+    // Real-time listener for Supabase Auth state changes
+    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (session?.user) {
+        const u = session.user;
+        const email = u.email || '';
+        const name = u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
+        setUser({
+          username: email,
+          name: name,
+          email: email,
+          role: 'Google OAuth Verified Engineer',
+          team: 'Scuderia Ferrari / Paddock Telemetry',
+          picture: u.user_metadata?.avatar_url || u.user_metadata?.picture
+        });
+        setIsAuthenticated(true);
+      }
+    });
+
+    return () => {
+      authListener?.subscription.unsubscribe();
+    };
   }, []);
 
   const login = async (usernameInput: string, passwordInput: string, remember?: boolean): Promise<boolean> => {
