@@ -1,95 +1,96 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSeason } from '../contexts/SeasonContext';
-import { getJSON, pauseMs, API_BASE, getTeamColor, parseLapTime } from '../utils/api';
+import {
+  fetchSeasonRounds,
+  loadReplaySession,
+  FullReplaySessionData,
+  RaceReplaySessionData,
+  RaceEvent
+} from '../lib/replayDataService';
 
-interface RoundItem {
-  round: string;
-  raceName: string;
-}
-
-interface DriverMeta {
-  code: string;
-  name: string;
-  team: string;
-}
-
-interface RaceReplayData {
-  mode: 'race';
-  labels: number[];
-  series: Record<string, (number | null)[]>;
-  driverMeta: Record<string, DriverMeta>;
-}
-
-interface QualiRow {
-  driverId: string;
-  time: number;
-}
-
-interface QualiFrame {
-  label: string;
-  rows: QualiRow[];
-}
-
-interface QualiReplayData {
-  mode: 'quali';
-  frames: QualiFrame[];
-  driverMeta: Record<string, Omit<DriverMeta, 'name'>>;
-}
-
-type ReplayData = RaceReplayData | QualiReplayData;
+// Import Modular Workstation Sub-Components
+import { ReplayHeader } from '../components/replay/ReplayHeader';
+import { RaceSelector } from '../components/replay/RaceSelector';
+import { CircuitReplay } from '../components/replay/CircuitReplay';
+import { ReplayTimeline } from '../components/replay/ReplayTimeline';
+import { LapNavigator } from '../components/replay/LapNavigator';
+import { EventFeed } from '../components/replay/EventFeed';
+import { DriverComparison } from '../components/replay/DriverComparison';
+import { TelemetryPanel } from '../components/replay/TelemetryPanel';
+import { LapDelta } from '../components/replay/LapDelta';
+import { PitStopPanel } from '../components/replay/PitStopPanel';
+import { TyreStrategy } from '../components/replay/TyreStrategy';
+import { PositionChart } from '../components/replay/PositionChart';
+import { ReplaySummary } from '../components/replay/ReplaySummary';
+import { JumpToMenu } from '../components/replay/JumpToMenu';
+import { KeyboardShortcutsModal } from '../components/replay/KeyboardShortcutsModal';
+import { ALL_F1_SEASONS } from '../utils/api';
 
 export default function ReplayPage() {
-  const { selectedSeason } = useSeason();
+  const { selectedSeason, setSelectedSeason } = useSeason();
+  const seasons = ALL_F1_SEASONS;
 
-  const [rounds, setRounds] = useState<RoundItem[]>([]);
+  const [rounds, setRounds] = useState<{ round: string; raceName: string; circuitId: string; date: string; hasSprint?: boolean }[]>([]);
   const [selectedRound, setSelectedRound] = useState('');
-  const [mode, setMode] = useState<'race' | 'quali'>('race');
-  
-  const [loadingRounds, setLoadingRounds] = useState(true);
-  const [roundsError, setRoundsError] = useState('');
+  const [sessionType, setSessionType] = useState<'race' | 'quali' | 'sprint_quali' | 'sprint'>('race');
 
+  // Reset sprint session type to race if newly selected round doesn't have a sprint
+  useEffect(() => {
+    const currentRoundObj = rounds.find(r => r.round === selectedRound);
+    if (currentRoundObj && !currentRoundObj.hasSprint && (sessionType === 'sprint' || sessionType === 'sprint_quali')) {
+      setSessionType('race');
+    }
+  }, [selectedRound, rounds, sessionType]);
+
+  const [loadingRounds, setLoadingRounds] = useState(true);
   const [loadingSession, setLoadingSession] = useState(false);
   const [sessionError, setSessionError] = useState('');
-  const [replayData, setReplayData] = useState<ReplayData | null>(null);
 
-  // Playback states
-  const [frameIdx, setFrameIdx] = useState(0);
+  const [sessionData, setSessionData] = useState<FullReplaySessionData | null>(null);
+
+  // Playback & Interactive Selection States
+  const [currentLap, setCurrentLap] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [speed, setSpeed] = useState(1600); // Default to Slow (1600ms) for better readability
-  const [hoveredDriverId, setHoveredDriverId] = useState<string | null>(null);
-  
-  const playIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [speed, setSpeed] = useState(800); // Default to Normal 800ms per lap
 
-  // Fetch completed rounds for season
+  const [selectedDriverId, setSelectedDriverId] = useState<string | null>(null);
+  const [driverAId, setDriverAId] = useState<string | null>(null);
+  const [driverBId, setDriverBId] = useState<string | null>(null);
+  const [hoveredDriverId, setHoveredDriverId] = useState<string | null>(null);
+  const [showTraces, setShowTraces] = useState(false);
+
+  const [isMiniMap, setIsMiniMap] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showShortcutsModal, setShowShortcutsModal] = useState(false);
+
+  const playTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // 1. Fetch completed rounds for chosen season
   useEffect(() => {
     async function loadRounds() {
       setLoadingRounds(true);
-      setRoundsError('');
-      setReplayData(null);
+      setSessionError('');
+      setSessionData(null);
       setSelectedRound('');
       setIsPlaying(false);
+
       try {
-        const res = await getJSON(`${API_BASE}/${selectedSeason}.json`);
-        const raceList = res.MRData.RaceTable.Races || [];
-        const now = new Date();
-        const completed = raceList.map((r: any) => ({
-          round: r.round,
-          raceName: r.raceName,
-          date: r.date
-        }));
+        const roundList = await fetchSeasonRounds(selectedSeason);
+        setRounds(roundList);
 
-        setRounds(completed);
-
-        const pastCompleted = raceList.filter((r: any) => new Date(r.date) <= now);
-        if (pastCompleted.length > 0) {
-          setSelectedRound(pastCompleted[pastCompleted.length - 1].round);
-        } else if (completed.length > 0) {
-          setSelectedRound(completed[0].round);
+        if (roundList.length > 0) {
+          const now = new Date();
+          const past = roundList.filter((r: any) => new Date(r.date) <= now);
+          if (past.length > 0) {
+            setSelectedRound(past[past.length - 1].round);
+          } else {
+            setSelectedRound(roundList[0].round);
+          }
         }
       } catch (e: any) {
-        setRoundsError(e.message || 'Couldn\'t load session rounds.');
+        setSessionError(e.message || 'Could not fetch session rounds.');
       } finally {
         setLoadingRounds(false);
       }
@@ -98,183 +99,86 @@ export default function ReplayPage() {
     loadRounds();
   }, [selectedSeason]);
 
-  // Clean interval on unmount or mode change
+  // Clean play timer on unmount
   useEffect(() => {
     return () => {
-      if (playIntervalRef.current) clearInterval(playIntervalRef.current);
+      if (playTimerRef.current) clearInterval(playTimerRef.current);
     };
   }, []);
 
-  const stopPlayback = () => {
+  const stopPlayback = useCallback(() => {
     setIsPlaying(false);
-    if (playIntervalRef.current) {
-      clearInterval(playIntervalRef.current);
-      playIntervalRef.current = null;
+    if (playTimerRef.current) {
+      clearInterval(playTimerRef.current);
+      playTimerRef.current = null;
     }
-  };
+  }, []);
 
-  const fetchAllLaps = async (season: string, round: string) => {
-    const pageSize = 100;
-    let offset = 0, total = Infinity, allLaps: any[] = [];
-    let first = true;
-    while (offset < total) {
-      if (!first) await pauseMs(350);
-      first = false;
-      const data = await getJSON(`${API_BASE}/${season}/${round}/laps.json?limit=${pageSize}&offset=${offset}`);
-      total = parseInt(data.MRData.total) || 0;
-      const race = data.MRData.RaceTable.Races[0];
-      const laps = race ? race.Laps : [];
-      if (!laps || laps.length === 0) break;
-      allLaps = allLaps.concat(laps);
-      const timingsCount = laps.reduce((s: number, l: any) => s + l.Timings.length, 0);
-      if (timingsCount === 0) break;
-      offset += timingsCount;
-    }
-    const map: Record<string, any> = {};
-    allLaps.forEach(l => {
-      if (!map[l.number]) map[l.number] = { number: l.number, Timings: [] };
-      map[l.number].Timings = map[l.number].Timings.concat(l.Timings);
-    });
-    return Object.values(map).sort((a, b) => parseInt(a.number) - parseInt(b.number));
-  };
-
-  const loadSession = async () => {
+  // 2. Fetch & Load Session Replay Data
+  const handleLoadSession = async () => {
     stopPlayback();
     setSessionError('');
-    setReplayData(null);
+    setSessionData(null);
 
     if (!selectedRound) {
-      setSessionError('No round selected.');
+      setSessionError('Please select a Grand Prix round.');
       return;
     }
 
     setLoadingSession(true);
 
     try {
-      if (mode === 'race') {
-        const [resultsData, laps] = await Promise.all([
-          getJSON(`${API_BASE}/${selectedSeason}/${selectedRound}/results.json`),
-          fetchAllLaps(selectedSeason, selectedRound)
-        ]);
+      const data = await loadReplaySession(selectedSeason, selectedRound, sessionType);
+      setSessionData(data);
+      setCurrentLap(1);
 
-        const results = resultsData.MRData.RaceTable.Races[0]?.Results || [];
-        if (results.length === 0) {
-          throw new Error('No race results on record.');
+      if (data.mode === 'race') {
+        const dIds = data.driverIds;
+        if (dIds.length >= 2) {
+          setSelectedDriverId(dIds[0]);
+          setDriverAId(dIds[0]);
+          setDriverBId(dIds[1]);
         }
-
-        if (laps.length === 0) {
-          throw new Error('No lap-by-lap telemetry on record for this round.');
-        }
-
-        const driverMeta: Record<string, DriverMeta> = {};
-        results.forEach((r: any) => {
-          driverMeta[r.Driver.driverId] = {
-            code: r.Driver.code || r.Driver.familyName.slice(0, 3).toUpperCase(),
-            name: `${r.Driver.givenName} ${r.Driver.familyName}`,
-            team: r.Constructor.constructorId
-          };
-        });
-
-        const labels = laps.map(l => parseInt(l.number));
-        const series: Record<string, (number | null)[]> = {};
-
-        laps.forEach((lap, i) => {
-          lap.Timings.forEach((t: any) => {
-            if (!series[t.driverId]) {
-              series[t.driverId] = new Array(labels.length).fill(null);
-            }
-            series[t.driverId][i] = parseInt(t.position);
-          });
-        });
-
-        setReplayData({ mode: 'race', labels, series, driverMeta });
-        setFrameIdx(0);
-      } else {
-        const data = await getJSON(`${API_BASE}/${selectedSeason}/${selectedRound}/qualifying.json`);
-        const qres = data.MRData.RaceTable.Races[0]?.QualifyingResults || [];
-        if (qres.length === 0) {
-          throw new Error('No qualifying session telemetry on record.');
-        }
-
-        const driverMeta: Record<string, Omit<DriverMeta, 'name'>> = {};
-        qres.forEach((q: any) => {
-          driverMeta[q.Driver.driverId] = {
-            code: q.Driver.code || q.Driver.familyName.slice(0, 3).toUpperCase(),
-            team: q.Constructor.constructorId
-          };
-        });
-
-        const stages = ['Q1', 'Q2', 'Q3'];
-        const frames: QualiFrame[] = stages.map(stage => {
-          const rows = qres.map((q: any) => {
-            const t = parseLapTime(q[stage]);
-            return t != null ? { driverId: q.Driver.driverId, time: t } : null;
-          }).filter(Boolean) as QualiRow[];
-          
-          rows.sort((a, b) => a.time - b.time);
-          return { label: stage, rows };
-        }).filter(f => f.rows.length > 0);
-
-        if (frames.length === 0) {
-          throw new Error('No qualifying timed laps available.');
-        }
-
-        setReplayData({ mode: 'quali', frames, driverMeta });
-        setFrameIdx(0);
       }
     } catch (e: any) {
-      setSessionError(e.message || 'Couldn\'t load the replay session.');
+      setSessionError(e.message || 'Replay data unavailable for this session.');
     } finally {
       setLoadingSession(false);
     }
   };
 
-  const stepPrev = () => {
-    stopPlayback();
-    setFrameIdx(prev => Math.max(0, prev - 1));
-  };
-
-  const stepNext = () => {
-    if (!replayData) return;
-    stopPlayback();
-    const total = replayData.mode === 'race' ? replayData.labels.length : replayData.frames.length;
-    setFrameIdx(prev => Math.min(total - 1, prev + 1));
-  };
-
-  // Handle Play/Pause
-  const togglePlay = () => {
+  // 3. Playback Timing Loop
+  const togglePlay = useCallback(() => {
     if (isPlaying) {
       stopPlayback();
       return;
     }
 
-    if (!replayData) return;
+    if (!sessionData || sessionData.mode !== 'race') return;
     setIsPlaying(true);
 
-    const total = replayData.mode === 'race' ? replayData.labels.length : replayData.frames.length;
-
-    playIntervalRef.current = setInterval(() => {
-      setFrameIdx(prev => {
+    const total = sessionData.totalLaps;
+    playTimerRef.current = setInterval(() => {
+      setCurrentLap(prev => {
         const next = prev + 1;
-        if (next >= total) {
+        if (next > total) {
           stopPlayback();
           return prev;
         }
         return next;
       });
     }, speed);
-  };
+  }, [isPlaying, sessionData, speed, stopPlayback]);
 
-  // Re-initialize interval when speed changes while playing
+  // Re-sync interval speed changes while playing
   useEffect(() => {
-    if (isPlaying && replayData) {
-      if (playIntervalRef.current) clearInterval(playIntervalRef.current);
-      
-      const total = replayData.mode === 'race' ? replayData.labels.length : replayData.frames.length;
-      playIntervalRef.current = setInterval(() => {
-        setFrameIdx(prev => {
+    if (isPlaying && sessionData && sessionData.mode === 'race') {
+      if (playTimerRef.current) clearInterval(playTimerRef.current);
+      const total = sessionData.totalLaps;
+      playTimerRef.current = setInterval(() => {
+        setCurrentLap(prev => {
           const next = prev + 1;
-          if (next >= total) {
+          if (next > total) {
             stopPlayback();
             return prev;
           }
@@ -282,313 +186,286 @@ export default function ReplayPage() {
         });
       }, speed);
     }
-  }, [speed, isPlaying, replayData]);
+  }, [speed, isPlaying, sessionData, stopPlayback]);
 
-  // Render SVG telemetry path map
-  const renderRaceSVG = () => {
-    if (!replayData || replayData.mode !== 'race') return null;
-    const { labels, series, driverMeta } = replayData;
-
-    const allVals = Object.values(series).flat().filter((v): v is number => v !== null);
-    const maxPos = Math.max(...allVals, 1);
-    
-    const w = 700;
-    const h = 320;
-    const padL = 36;
-    const padR = 24;
-    const padT = 16;
-    const padB = 26;
-    
-    const plotW = w - padL - padR;
-    const plotH = h - padT - padB;
-    const nLaps = labels.length;
-
-    const xFor = (i: number) => padL + (nLaps <= 1 ? 0 : (i / (nLaps - 1)) * plotW);
-    const yFor = (pos: number) => padT + ((pos - 1) / ((maxPos - 1) || 1)) * plotH;
-
-    // Draw horizontal grid lines
-    const gridLines = [];
-    const step = Math.max(1, Math.round(maxPos / 8));
-    for (let p = 1; p <= maxPos; p += step) {
-      const y = yFor(p);
-      gridLines.push(
-        <g key={`grid-${p}`}>
-          <line x1={padL} y1={y} x2={w - padR} y2={y} stroke="#2A2F3A" strokeWidth="1" />
-          <text 
-            x={padL - 8} 
-            y={y + 3} 
-            fontSize="9" 
-            fill="#8791A3" 
-            fontFamily="var(--font-mono)" 
-            textAnchor="end"
-          >
-            P{p}
-          </text>
-        </g>
-      );
-    }
-
-    // Draw lines for each driver
-    const lines = Object.entries(series).map(([id, arr]) => {
-      const meta = driverMeta[id];
-      const color = getTeamColor(meta?.team || '');
-      const pts = [];
-
-      for (let i = 0; i <= frameIdx; i++) {
-        const val = arr[i];
-        if (val !== null && val !== undefined) {
-          pts.push({ x: xFor(i), y: yFor(val), pos: val });
-        }
+  // 4. Keyboard Shortcuts Handler
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore when typing inside input elements
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) {
+        return;
       }
 
-      if (pts.length === 0) return null;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        togglePlay();
+      } else if (e.code === 'ArrowLeft') {
+        e.preventDefault();
+        stopPlayback();
+        if (e.shiftKey) {
+          setCurrentLap(prev => Math.max(1, prev - 1));
+        } else {
+          setCurrentLap(prev => Math.max(1, prev - 1));
+        }
+      } else if (e.code === 'ArrowRight') {
+        e.preventDefault();
+        stopPlayback();
+        const total = sessionData && sessionData.mode === 'race' ? sessionData.totalLaps : 58;
+        if (e.shiftKey) {
+          setCurrentLap(prev => Math.min(total, prev + 1));
+        } else {
+          setCurrentLap(prev => Math.min(total, prev + 1));
+        }
+      } else if (e.key === 'r' || e.key === 'R') {
+        stopPlayback();
+        setCurrentLap(1);
+      } else if (e.key === '1') setSpeed(3200);
+      else if (e.key === '2') setSpeed(1600);
+      else if (e.key === '3') setSpeed(800);
+      else if (e.key === '4') setSpeed(400);
+      else if (e.key === '5') setSpeed(200);
+      else if (e.code === 'Escape') {
+        setShowShortcutsModal(false);
+        setIsFullscreen(false);
+      } else if (e.key === '?') {
+        setShowShortcutsModal(prev => !prev);
+      }
+    };
 
-      const pointsString = pts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
-      const lastPoint = pts[pts.length - 1];
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [togglePlay, stopPlayback, sessionData]);
 
-      const isHighlighted = hoveredDriverId === id;
-      const isAnyHovered = hoveredDriverId !== null;
-      const opacity = isAnyHovered ? (isHighlighted ? 1.0 : 0.12) : 0.85;
-      const strokeWidth = isHighlighted ? 4.5 : 2;
-
-      return (
-        <g 
-          key={id}
-          style={{ cursor: 'pointer', transition: 'opacity 0.2s' }}
-          onMouseEnter={() => setHoveredDriverId(id)}
-          onMouseLeave={() => setHoveredDriverId(null)}
-        >
-          <polyline points={pointsString} fill="none" stroke={color} strokeWidth={strokeWidth} opacity={opacity} />
-          <circle cx={lastPoint.x} cy={lastPoint.y} r={isHighlighted ? 5.5 : 3.5} fill={color} opacity={opacity} />
-          <text 
-            x={lastPoint.x + 6} 
-            y={lastPoint.y + 3} 
-            fontSize={isHighlighted ? 11 : 9} 
-            fill={color} 
-            fontFamily="var(--font-mono)" 
-            fontWeight="bold"
-            opacity={opacity}
-          >
-            {meta?.code || id.slice(0, 3).toUpperCase()}
-          </text>
-        </g>
-      );
-    });
-
-    return (
-      <svg viewBox={`0 0 ${w} ${h}`} width="100%" height="100%">
-        {gridLines}
-        {lines}
-        <text x={padL} y={h - 6} fontSize="9" fill="#8791A3" fontFamily="var(--font-mono)">Lap 1</text>
-        <text x={w - padR} y={h - 6} fontSize="9" fill="#8791A3" fontFamily="var(--font-mono)" textAnchor="end">Lap {labels[labels.length - 1]}</text>
-      </svg>
-    );
+  // Handle Event Clicking & Direct Jump
+  const handleSelectEvent = (ev: RaceEvent) => {
+    stopPlayback();
+    setCurrentLap(ev.lap);
   };
 
-  const getStandingsList = () => {
-    if (!replayData) return [];
-    if (replayData.mode === 'race') {
-      const { series, driverMeta } = replayData;
-      return Object.entries(series)
-        .map(([id, arr]) => ({ id, pos: arr[frameIdx] }))
-        .filter((r): r is { id: string; pos: number } => r.pos !== null)
-        .sort((a, b) => a.pos - b.pos)
-        .map(r => {
-          const meta = driverMeta[r.id];
-          return {
-            id: r.id,
-            code: meta?.code || r.id,
-            pos: r.pos.toString(),
-            color: getTeamColor(meta?.team || ''),
-            time: ''
-          };
-        });
-    } else {
-      const { frames, driverMeta } = replayData;
-      const frame = frames[frameIdx];
-      return (frame?.rows || []).map((r, i) => {
-        const meta = driverMeta[r.driverId];
-        return {
-          id: r.driverId,
-          code: meta?.code || r.driverId,
-          pos: (i + 1).toString(),
-          color: getTeamColor(meta?.team || ''),
-          time: `${r.time.toFixed(3)}s`
-        };
-      });
-    }
-  };
-
-  const currentStandings = getStandingsList();
+  const isRaceMode = sessionData && sessionData.mode === 'race';
+  const raceData = isRaceMode ? (sessionData as RaceReplaySessionData) : null;
+  const currentLapData = raceData ? raceData.laps.find(l => l.lapNumber === currentLap) || raceData.laps[0] : null;
 
   return (
-    <section className="view" id="view-replay">
-      <div className="panel">
-        <h2>Session replay</h2>
-        <p className="sub">
-          No public API exposes live in-session telemetry — that belongs to F1&apos;s own broadcast feed. What&apos;s here is real: race mode replays actual lap-by-lap position data as a position chart; qualifying mode replays each driver&apos;s real best time per stage as a bar chart. Playback defaults to slow — use the speed control to pick up the pace once you&apos;ve got your bearings.
-        </p>
+    <section className="min-h-screen bg-[#050810] text-slate-100 p-4 md:p-6 font-sans">
+      <div className="max-w-7xl mx-auto">
+        {/* Workstation Header */}
+        <ReplayHeader
+          season={selectedSeason}
+          raceName={sessionData?.raceName || ''}
+          circuitName={sessionData?.circuitName || ''}
+          sessionType={sessionType}
+          isPlaying={isPlaying}
+          onOpenShortcuts={() => setShowShortcutsModal(true)}
+        />
 
-        {loadingRounds ? (
-          <div className="loading">Loading rounds…</div>
-        ) : roundsError ? (
-          <div className="err">{roundsError}</div>
-        ) : (
-          <div className="replay-controls">
-            <div className="mode-toggle">
-              <button 
-                className={mode === 'race' ? 'active' : ''} 
-                onClick={() => setMode('race')}
-              >
-                Race
-              </button>
-              <button 
-                className={mode === 'quali' ? 'active' : ''} 
-                onClick={() => setMode('quali')}
-              >
-                Qualifying
-              </button>
-            </div>
-            <select 
-              value={selectedRound} 
-              onChange={(e) => setSelectedRound(e.target.value)}
-            >
-              <option value="">Select a round…</option>
-              {rounds.map(r => (
-                <option key={r.round} value={r.round}>R{r.round} — {r.raceName}</option>
-              ))}
-            </select>
-            <button className="btn primary" onClick={loadSession} disabled={loadingSession}>
-              {loadingSession ? 'Loading…' : 'Load'}
-            </button>
+        {/* Race & Session Selector */}
+        <RaceSelector
+          seasons={seasons}
+          selectedSeason={selectedSeason}
+          onSelectSeason={setSelectedSeason}
+          rounds={rounds}
+          selectedRound={selectedRound}
+          onSelectRound={setSelectedRound}
+          sessionType={sessionType}
+          onSelectSessionType={setSessionType}
+          onLoadSession={handleLoadSession}
+          loadingRounds={loadingRounds}
+          loadingSession={loadingSession}
+          sessionError={sessionError}
+        />
+
+        {/* Initial Empty State / Instructions */}
+        {!sessionData && !loadingSession && !sessionError && (
+          <div className="p-12 text-center bg-[#080C14] border border-slate-800 rounded-xl shadow-xl font-mono">
+            <span className="text-4xl block mb-3">🏁</span>
+            <h2 className="text-base font-black text-white uppercase tracking-wider mb-2">
+              F1 REPLAY & TIMING WORKSTATION
+            </h2>
+            <p className="text-xs text-slate-400 max-w-xl mx-auto mb-4">
+              Select a Grand Prix season, round, and session above, then click <span className="text-cyan-400 font-bold">LOAD REPLAY</span> to explore race telemetry, driver positioning, event feeds, and pit stop timing.
+            </p>
           </div>
         )}
 
-        {loadingSession && (
-          <div id="replayStatus" className="loading">Pulling telemetry data…</div>
-        )}
+        {/* Active Replay Workstation Display */}
+        {sessionData && (
+          <div>
+            {/* Quick-Jump Milestone Menu */}
+            {raceData && (
+              <JumpToMenu
+                events={raceData.events}
+                totalLaps={raceData.totalLaps}
+                onJumpToLap={(lap) => {
+                  stopPlayback();
+                  setCurrentLap(lap);
+                }}
+              />
+            )}
 
-        {sessionError && (
-          <div className="err" style={{ marginTop: '16px' }}>{sessionError}</div>
-        )}
+            {/* Main Circuit Canvas + Right Event/Leaderboard Panel */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
+              {/* 2D Circuit Map (2 Columns on Desktop) */}
+              <div className="lg:col-span-2">
+                <CircuitReplay
+                  circuitId={sessionData.circuitId}
+                  circuitName={sessionData.circuitName}
+                  currentLap={currentLap}
+                  totalLaps={raceData ? raceData.totalLaps : 1}
+                  positions={currentLapData ? currentLapData.positions : {}}
+                  lapTimes={currentLapData ? currentLapData.lapTimes : {}}
+                  gaps={currentLapData ? currentLapData.gaps : {}}
+                  driverMeta={sessionData.driverMeta}
+                  selectedDriverId={selectedDriverId}
+                  driverAId={driverAId}
+                  driverBId={driverBId}
+                  showTraces={showTraces}
+                  hoveredDriverId={hoveredDriverId}
+                  onSelectDriver={(id) => {
+                    setSelectedDriverId(id);
+                    if (!driverAId) setDriverAId(id);
+                    else if (!driverBId && id !== driverAId) setDriverBId(id);
+                  }}
+                  onHoverDriver={setHoveredDriverId}
+                  isMiniMap={isMiniMap}
+                  onToggleMiniMap={() => setIsMiniMap(!isMiniMap)}
+                  isFullscreen={isFullscreen}
+                  onToggleFullscreen={() => setIsFullscreen(!isFullscreen)}
+                />
+              </div>
 
-        {replayData && (
-          <div id="replayView" style={{ marginTop: '20px' }}>
-            <div className="replay-layout">
-              <div className="chart-wrap">
-                {replayData.mode === 'race' ? (
-                  <div id="replayChart">
-                    {renderRaceSVG()}
-                  </div>
+              {/* Race Event Feed (1 Column on Desktop) */}
+              <div>
+                {raceData ? (
+                  <EventFeed
+                    events={raceData.events}
+                    currentLap={currentLap}
+                    onSelectEvent={handleSelectEvent}
+                  />
                 ) : (
-                  <div id="replayChart" className="quali-bars">
-                    {(() => {
-                      const f = replayData.frames[frameIdx];
-                      if (!f || f.rows.length === 0) return null;
-                      const best = f.rows[0].time;
-                      return f.rows.map(r => {
-                        const meta = replayData.driverMeta[r.driverId];
-                        const color = getTeamColor(meta?.team || '');
-                        const pct = Math.max(6, (best / r.time) * 100);
-                        return (
-                          <div key={r.driverId} className="qb-row">
-                            <span className="qb-name">{meta?.code || r.driverId}</span>
-                            <div className="qb-track">
-                              <div className="qb-fill" style={{ width: `${pct}%`, background: color }}></div>
-                            </div>
-                            <span className="qb-time">{r.time.toFixed(3)}s</span>
-                          </div>
-                        );
-                      });
-                    })()}
+                  <div className="p-4 bg-[#080C14] border border-slate-800 rounded-xl h-[400px] flex items-center justify-center font-mono text-xs text-slate-500">
+                    Qualifying Replay Active
                   </div>
                 )}
               </div>
-
-              <div className="replay-board">
-                <div style={{ padding: '6px 8px', fontSize: '11px', color: 'var(--dim)', fontFamily: 'var(--font-mono)', borderBottom: '1px solid var(--line)', textAlign: 'center' }}>
-                  HOVER DRIVER TO HIGHLIGHT TRACK
-                </div>
-                {currentStandings.map((s, index) => {
-                  const isHighlighted = hoveredDriverId === s.id;
-                  return (
-                    <div 
-                      key={index} 
-                      className="rb-row"
-                      style={{ 
-                        background: isHighlighted ? 'rgba(52, 228, 200, 0.08)' : 'transparent',
-                        cursor: 'pointer',
-                        transition: 'background 0.15s'
-                      }}
-                      onMouseEnter={() => setHoveredDriverId(s.id)}
-                      onMouseLeave={() => setHoveredDriverId(null)}
-                    >
-                      <span>{s.pos}</span>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span className="rb-chip" style={{ background: s.color }}></span>
-                        {s.code}
-                      </span>
-                      <span>{s.time}</span>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
 
-            <div className="playback-row">
-              <button className="btn" onClick={stepPrev} disabled={frameIdx === 0}>
-                ⏮ Step Back
-              </button>
-              <button className="btn" onClick={togglePlay}>
-                {isPlaying ? '⏸ Pause' : '▶ Play'}
-              </button>
-              <button 
-                className="btn" 
-                onClick={stepNext} 
-                disabled={
-                  replayData.mode === 'race' 
-                    ? frameIdx === replayData.labels.length - 1 
-                    : frameIdx === replayData.frames.length - 1
-                }
-              >
-                ⏭ Step Fwd
-              </button>
-              <input 
-                type="range" 
-                min="0" 
-                max={replayData.mode === 'race' ? replayData.labels.length - 1 : replayData.frames.length - 1} 
-                value={frameIdx}
-                onChange={(e) => {
-                  stopPlayback();
-                  setFrameIdx(parseInt(e.target.value));
-                }}
+            {/* Timeline Scrubber & Controls */}
+            {raceData && (
+              <ReplayTimeline
+                currentLap={currentLap}
+                totalLaps={raceData.totalLaps}
+                isPlaying={isPlaying}
+                onTogglePlay={togglePlay}
+                speed={speed}
+                onSelectSpeed={setSpeed}
+                onStepBack10s={() => { stopPlayback(); setCurrentLap(prev => Math.max(1, prev - 1)); }}
+                onStepFwd10s={() => { stopPlayback(); setCurrentLap(prev => Math.min(raceData.totalLaps, prev + 1)); }}
+                onStepPrevLap={() => { stopPlayback(); setCurrentLap(prev => Math.max(1, prev - 1)); }}
+                onStepNextLap={() => { stopPlayback(); setCurrentLap(prev => Math.min(raceData.totalLaps, prev + 1)); }}
+                onReset={() => { stopPlayback(); setCurrentLap(1); }}
+                onScrubLap={(lap) => { stopPlayback(); setCurrentLap(lap); }}
+                events={raceData.events}
+                onSelectEvent={handleSelectEvent}
               />
-              <span className="lap-counter">
-                {replayData.mode === 'race' 
-                  ? `Lap ${replayData.labels[frameIdx]} / ${replayData.labels[replayData.labels.length - 1]}`
-                  : replayData.frames[frameIdx]?.label || '—'
-                }
-              </span>
-              <select 
-                value={speed} 
-                onChange={(e) => setSpeed(parseInt(e.target.value))}
-              >
-                <option value={3200}>Super Slow (3.2s)</option>
-                <option value={1600}>Slow (1.6s)</option>
-                <option value={800}>Normal (0.8s)</option>
-                <option value={350}>Fast (0.3s)</option>
-              </select>
-            </div>
+            )}
 
-            <div className="footnote" id="replayFootnote">
-              {replayData.mode === 'race'
-                ? `Real lap-by-lap classification, ${replayData.labels.length} laps.`
-                : `Each frame represents a qualifying stage (Q1→Q2→Q3) using each driver's real best time for that stage.`
-              }
-            </div>
+            {/* Lap Navigator Bar */}
+            {raceData && (
+              <div className="flex justify-center mb-4">
+                <LapNavigator
+                  currentLap={currentLap}
+                  totalLaps={raceData.totalLaps}
+                  onSelectLap={(lap) => { stopPlayback(); setCurrentLap(lap); }}
+                  onPrevLap={() => { stopPlayback(); setCurrentLap(prev => Math.max(1, prev - 1)); }}
+                  onNextLap={() => { stopPlayback(); setCurrentLap(prev => Math.min(raceData.totalLaps, prev + 1)); }}
+                />
+              </div>
+            )}
+
+            {/* Driver Live Telemetry & Driver Comparison */}
+            {raceData && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <TelemetryPanel
+                  driverId={selectedDriverId}
+                  driverMeta={raceData.driverMeta}
+                  currentLap={currentLap}
+                  position={selectedDriverId && currentLapData ? currentLapData.positions[selectedDriverId] : null}
+                  lapTime={selectedDriverId && currentLapData ? currentLapData.lapTimes[selectedDriverId] : null}
+                  gap={selectedDriverId && currentLapData ? currentLapData.gaps[selectedDriverId] || 'N/A' : 'N/A'}
+                />
+
+                <DriverComparison
+                  driverIds={raceData.driverIds}
+                  driverMeta={raceData.driverMeta}
+                  driverAId={driverAId}
+                  driverBId={driverBId}
+                  onSelectDriverA={setDriverAId}
+                  onSelectDriverB={setDriverBId}
+                  currentLap={currentLap}
+                  positions={currentLapData ? currentLapData.positions : {}}
+                  lapTimes={currentLapData ? currentLapData.lapTimes : {}}
+                  gaps={currentLapData ? currentLapData.gaps : {}}
+                  pitStops={raceData.pitStops}
+                  tyreStints={raceData.tyreStints}
+                  showTraces={showTraces}
+                  onToggleTraces={() => setShowTraces(!showTraces)}
+                />
+              </div>
+            )}
+
+            {/* Lap Delta & Pit Stop Analysis */}
+            {raceData && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <LapDelta
+                  driverId={selectedDriverId}
+                  driverMeta={raceData.driverMeta}
+                  laps={raceData.laps}
+                  totalLaps={raceData.totalLaps}
+                />
+
+                <PitStopPanel
+                  pitStops={raceData.pitStops}
+                  currentLap={currentLap}
+                  onJumpToPitLap={(lap) => { stopPlayback(); setCurrentLap(lap); }}
+                />
+              </div>
+            )}
+
+            {/* Tyre Strategy Timeline */}
+            {raceData && (
+              <TyreStrategy
+                driverIds={raceData.driverIds}
+                driverMeta={raceData.driverMeta}
+                tyreStints={raceData.tyreStints}
+                totalLaps={raceData.totalLaps}
+              />
+            )}
+
+            {/* Lap-by-Lap Position History SVG Chart */}
+            {raceData && (
+              <PositionChart
+                laps={raceData.laps}
+                driverMeta={raceData.driverMeta}
+                currentLap={currentLap}
+                selectedDriverId={selectedDriverId}
+                hoveredDriverId={hoveredDriverId}
+                onHoverDriver={setHoveredDriverId}
+                onSelectDriver={setSelectedDriverId}
+              />
+            )}
+
+            {/* Collapsible Race Summary */}
+            {raceData && <ReplaySummary sessionData={raceData} />}
           </div>
         )}
       </div>
+
+      {/* Keyboard Shortcuts Helper Modal */}
+      <KeyboardShortcutsModal
+        isOpen={showShortcutsModal}
+        onClose={() => setShowShortcutsModal(false)}
+      />
     </section>
   );
 }

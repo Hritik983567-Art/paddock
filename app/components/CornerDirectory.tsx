@@ -21,7 +21,8 @@ export const CornerDirectory: React.FC<CornerDirectoryProps> = ({
   return (
     <nav 
       aria-label="F1 Corner Directory Navigation"
-      className="bg-[#080C14] border-2 border-slate-700/90 rounded-xl px-4 py-3 my-4 shadow-2xl backdrop-blur-2xl"
+      style={{ backgroundColor: '#070A10', background: '#070A10', opacity: 1 }}
+      className="border-2 border-slate-700/80 rounded-xl px-4 py-3 my-4 shadow-2xl relative z-10"
     >
       <div className="flex items-center justify-between gap-3 mb-2.5 px-1">
         <div className="flex items-center gap-2">

@@ -46,7 +46,7 @@ export const CornerDetails: React.FC<CornerDetailsProps> = ({ corner, circuitNam
         </div>
       </div>
 
-      {/* Description Paragraphs — 100% High Contrast Pure White Text */}
+      {/* Description Paragraphs */}
       <div className="text-sm font-sans leading-relaxed text-white space-y-2.5 bg-[#0D121F] p-4 rounded-xl border border-slate-700 shadow-lg">
         {corner.description ? (
           corner.description.split('\n\n').map((paragraph, idx) => (
@@ -61,7 +61,7 @@ export const CornerDetails: React.FC<CornerDetailsProps> = ({ corner, circuitNam
         )}
       </div>
 
-      {/* Technical Telemetry Specs Grid — 100% Solid Cards & High Contrast Labels */}
+      {/* Technical Telemetry Specs Grid */}
       <div>
         <div className="flex items-center justify-between mb-2.5">
           <h3 className="text-xs font-mono font-black uppercase tracking-widest text-cyan-400 flex items-center gap-1.5">
@@ -96,7 +96,7 @@ export const CornerDetails: React.FC<CornerDetailsProps> = ({ corner, circuitNam
 
           <div className="bg-[#0D121F] p-3 rounded-lg border-2 border-slate-700/80 shadow-md">
             <span className="block text-[11px] font-mono font-black text-cyan-400 uppercase tracking-wider mb-1">TYPICAL GEAR</span>
-            <span className="text-base font-mono font-black text-amber-400">
+            <span className="text-sm font-mono font-black text-amber-400">
               {tech.typicalGear || 'N/A'}
             </span>
           </div>
@@ -124,7 +124,7 @@ export const CornerDetails: React.FC<CornerDetailsProps> = ({ corner, circuitNam
         </div>
       </div>
 
-      {/* Racing Dynamics Grid — High Contrast Crisp Text */}
+      {/* Racing Dynamics Grid */}
       <div>
         <div className="flex items-center justify-between mb-2.5">
           <h3 className="text-xs font-mono font-black uppercase tracking-widest text-slate-200 flex items-center gap-1.5">
@@ -166,7 +166,7 @@ export const CornerDetails: React.FC<CornerDetailsProps> = ({ corner, circuitNam
         </div>
       </div>
 
-      {/* History Section — Pure White Text */}
+      {/* History Section */}
       {corner.history && (
         <div className="bg-[#0D121F] p-4 rounded-xl border border-slate-700 text-xs shadow-md">
           <h3 className="font-mono font-black uppercase text-amber-400 mb-1.5 flex items-center gap-1.5 text-xs">

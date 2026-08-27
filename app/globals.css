@@ -1154,34 +1154,13 @@ footer {
 }
 
 @keyframes f1CarRightEntrance {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 0.95;
-    }
+    0% { opacity: 0; }
+    100% { opacity: 0.95; }
 }
 
 @keyframes f1CardSequentialEntrance {
-    0% {
-        opacity: 0;
-        transform: translate3d(0, 25px, 0);
-    }
-    100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes fadeInOverlay {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-@media(max-width:540px) {
-    .centered-login-card {
-        padding: 32px 24px;
-    }
+    0% { opacity: 0; transform: translate3d(0, 25px, 0); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 .f1-spec-form-inner {
@@ -1233,48 +1212,6 @@ footer {
     letter-spacing: -0.02em;
     text-transform: uppercase;
     line-height: 1.1;
-}
-
-@media(max-width:600px) {
-    #authGate.centered-login-screen {
-        padding: 16px 12px;
-    }
-
-    .centered-login-card {
-        padding: 32px 20px;
-        border-radius: 16px;
-        max-width: 100%;
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.95), 0 0 25px rgba(0, 255, 156, 0.2);
-    }
-
-    .f1-spec-brand {
-        margin-bottom: 24px;
-    }
-
-    .f1-spec-welcome p {
-        font-size: 12px;
-        margin-bottom: 24px;
-    }
-
-    .f1-spec-field input {
-        height: 46px;
-        font-size: 16px; /* Prevents iOS Safari auto-zoom on focus */
-    }
-
-    .f1-spec-options {
-        font-size: 13px;
-    }
-
-    .spec-sign-in-btn,
-    .spec-google-btn {
-        height: 48px;
-        font-size: 16px;
-    }
-
-    .f1-spec-footer {
-        margin-top: 28px;
-        font-size: 13px;
-    }
 }
 
 .f1-spec-welcome p {
@@ -1390,21 +1327,6 @@ footer {
     border-radius: 2px;
 }
 
-.spec-forgot-btn {
-    background: transparent;
-    border: none;
-    color: #00e38a;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 0;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-.spec-forgot-btn:hover {
-    color: #00ff9c;
-}
-
 .f1-spec-actions {
     display: flex;
     flex-direction: column;
@@ -1485,199 +1407,7 @@ footer {
 .spec-signup-btn:hover {
     color: #00ff9c;
 }
-
-/* Right Column - Telemetry Vis Stage */
-.f1-spec-vis-column {
-    background: #18221b;
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-@media(max-width:960px) {
-    .f1-spec-vis-column {
-        display: none;
-    }
-}
-
-.f1-spec-top-tags {
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 20;
-}
-
-.spec-chip {
-    background: rgba(22, 24, 29, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 9999px;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: #dae5da;
-    letter-spacing: 0.1em;
-}
-
-.spec-chip.gold-border {
-    border-color: rgba(0, 255, 156, 0.3);
-}
-
-.red-pulse-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #ff3b3b;
-    box-shadow: 0 0 8px #ff3b3b;
-}
-
-.gold-lock {
-    font-size: 14px;
-}
-
-.gold-text {
-    color: #eab308;
-    font-weight: 600;
-}
-
-.f1-spec-center-stage {
-    position: relative;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.grid-pattern-bg {
-    position: absolute;
-    inset: 0;
-    opacity: 0.04;
-    pointer-events: none;
-    background-image: linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px);
-    background-size: 40px 40px;
-}
-
-.car-vector-wrapper {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    pointer-events: none;
-}
-
-.wireframe-car-svg,
-.f1-rendered-car-img {
-    width: 90%;
-    height: auto;
-    max-width: 540px;
-    object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 25px rgba(232, 0, 45, 0.35));
-    transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-.f1-rendered-car-img:hover {
-    transform: scale(1.03);
-    filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 35px rgba(232, 0, 45, 0.65));
-}
-
-.spec-callouts {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    max-width: 700px;
-    max-height: 480px;
-    z-index: 20;
-}
-
-.spec-callout {
-    position: absolute;
-    background: rgba(22, 24, 29, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 9999px;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: #dae5da;
-    letter-spacing: 0.1em;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-.spec-callout.top-speed { top: 20%; left: 8%; }
-.spec-callout.drs { top: 38%; right: 8%; border-color: rgba(0, 255, 156, 0.4); }
-.spec-callout.brakes { bottom: 35%; left: 5%; border-color: rgba(255, 138, 101, 0.4); }
-.spec-callout.purple-s3 { bottom: 20%; left: 32%; border-color: rgba(179, 136, 255, 0.4); }
-
-.spec-callout .icon { font-size: 14px; }
-.spec-callout .text-white { color: #FFFFFF; font-weight: 700; }
-.spec-callout .text-green { color: #00ff9c; font-weight: 700; }
-.spec-callout .text-orange { color: #ff8a65; font-weight: 700; }
-.spec-callout .text-purple { color: #b388ff; font-weight: 700; }
-
-.f1-spec-bottom-bar {
-    height: 80px;
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(24, 34, 27, 0.85);
-    backdrop-filter: blur(12px);
-    display: flex;
-    align-items: center;
-    padding: 0 40px;
-    gap: 40px;
-    z-index: 20;
-}
-
-.status-col {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.col-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 700;
-    color: #b9cbbc;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-}
-
-.col-val {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.green-flex {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #00ff9c;
-}
-
-.green-pulse {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #00ff9c;
-    box-shadow: 0 0 8px rgba(0, 255, 156, 0.8);
-}
-
-.col-val.gold { color: #eab308; }
-.col-val.purple { color: #b388ff; }
-
-.f1-spec-card.shake {
+.shake {
     animation: gateShake 450ms ease;
 }
 
@@ -1687,39 +1417,6 @@ footer {
     40% { transform: translateX(8px); }
     60% { transform: translateX(-5px); }
     80% { transform: translateX(5px); }
-}
-
-.gate-submit {
-    width: 100%;
-    border: none;
-    border-radius: 7px;
-    padding: 11px 0;
-    cursor: pointer;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 14px;
-    color: #fff;
-    background: linear-gradient(180deg, #ec3f38, var(--red));
-    box-shadow: 0 4px 14px rgba(232, 48, 42, 0.25);
-    transition: box-shadow 180ms ease, transform 100ms ease;
-}
-
-.gate-submit:hover {
-    box-shadow: 0 6px 18px rgba(232, 48, 42, 0.35);
-}
-
-.gate-submit:active {
-    transform: translateY(1px);
-}
-
-.gate-demo-note {
-    font-size: 11px;
-    color: var(--dim);
-    font-family: var(--font-mono);
-    margin-top: 16px;
-    padding-top: 12px;
-    border-top: 1px solid var(--line);
-    opacity: 0.7;
 }
 
 #logoutLink {

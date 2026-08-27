@@ -2,242 +2,191 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSeason } from '../contexts/SeasonContext';
-import { getJSON, API_BASE, getTeamColor } from '../utils/api';
+import {
+  fetchSeasonTeams,
+  loadTeammateComparison,
+  TeamOption,
+  TeammateComparisonData,
+  DriverInfo
+} from '../lib/teammateDataService';
 
-interface DriverItem {
-  driverId: string;
-  code: string;
-  givenName: string;
-  familyName: string;
-  permanentNumber?: string;
-}
-
-interface TeamRoster {
-  constructorId: string;
-  constructorName: string;
-  drivers: DriverItem[];
-}
+// Import Modular Teammates Workstation Sub-Components
+import { TeammateHeader } from '../components/teammates/TeammateHeader';
+import { DriverVsCard } from '../components/teammates/DriverVsCard';
+import { H2HScorecard } from '../components/teammates/H2HScorecard';
+import { TeammateBattleOverview } from '../components/teammates/TeammateBattleOverview';
+import { QualifyingH2H } from '../components/teammates/QualifyingH2H';
+import { RaceH2H } from '../components/teammates/RaceH2H';
+import { PointsProgressionChart } from '../components/teammates/PointsProgressionChart';
+import { PositionHistoryCharts } from '../components/teammates/PositionHistoryCharts';
+import { RecentForm } from '../components/teammates/RecentForm';
+import { TeammateGaps } from '../components/teammates/TeammateGaps';
+import { CircuitPerformance } from '../components/teammates/CircuitPerformance';
+import { ReliabilityDNFs } from '../components/teammates/ReliabilityDNFs';
+import { RaceByRaceTable } from '../components/teammates/RaceByRaceTable';
 
 export default function TeammatesPage() {
-  const { selectedSeason } = useSeason();
-  const [rosters, setRosters] = useState<TeamRoster[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { selectedSeason, setSelectedSeason } = useSeason();
+  const [teams, setTeams] = useState<TeamOption[]>([]);
+  const [selectedTeamId, setSelectedTeamId] = useState<string>('');
+  const [mode, setMode] = useState<'current' | 'historical'>('current');
+
+  const [customDriverAId, setCustomDriverAId] = useState<string>('');
+  const [customDriverBId, setCustomDriverBId] = useState<string>('');
+
+  const [data, setData] = useState<TeammateComparisonData | null>(null);
+  const [loadingTeams, setLoadingTeams] = useState(true);
+  const [loadingData, setLoadingData] = useState(false);
   const [error, setError] = useState('');
 
+  // 1. Load Teams for Season
   useEffect(() => {
-    async function loadTeammates() {
-      setLoading(true);
+    async function loadTeams() {
+      setLoadingTeams(true);
       setError('');
+      setData(null);
+      setCustomDriverAId('');
+      setCustomDriverBId('');
+
       try {
-        const data = await getJSON(`${API_BASE}/${selectedSeason}/driverStandings.json`);
-        const standingsList = data.MRData.StandingsTable.StandingsLists[0]?.DriverStandings || [];
+        const teamList = await fetchSeasonTeams(selectedSeason);
+        setTeams(teamList);
 
-        if (standingsList.length === 0) {
-          setError('No driver rosters found for this season.');
-          setLoading(false);
-          return;
+        if (teamList.length > 0) {
+          // Default to McLaren or first team
+          const mclaren = teamList.find(t => t.constructorId === 'mclaren') || teamList[0];
+          setSelectedTeamId(mclaren.constructorId);
         }
-
-        // Group drivers by constructor
-        const groupings: Record<string, { name: string; drivers: DriverItem[] }> = {};
-        standingsList.forEach((item: any) => {
-          const constr = item.Constructors[0];
-          if (!constr) return;
-
-          const cid = constr.constructorId;
-          const cname = constr.name;
-          const driver = item.Driver;
-
-          if (!groupings[cid]) {
-            groupings[cid] = { name: cname, drivers: [] };
-          }
-
-          // Add driver details (avoiding duplicate drivers if any)
-          if (!groupings[cid].drivers.some(d => d.driverId === driver.driverId)) {
-            groupings[cid].drivers.push({
-              driverId: driver.driverId,
-              code: driver.code || driver.familyName.slice(0, 3).toUpperCase(),
-              givenName: driver.givenName,
-              familyName: driver.familyName,
-              permanentNumber: driver.permanentNumber
-            });
-          }
-        });
-
-        const compiledRosters: TeamRoster[] = Object.entries(groupings).map(([cid, info]) => ({
-          constructorId: cid,
-          constructorName: info.name,
-          drivers: info.drivers
-        }));
-
-        setRosters(compiledRosters);
       } catch (err: any) {
-        setError(err.message || 'Failed to fetch team rosters.');
+        setError(err.message || 'Failed to fetch constructor team list.');
       } finally {
-        setLoading(false);
+        setLoadingTeams(false);
       }
     }
 
-    loadTeammates();
+    loadTeams();
   }, [selectedSeason]);
 
-  const renderPVCFigure = (color: string, code: string) => {
-    return (
-      <svg viewBox="0 0 100 132" width="92" height="122" className="fig" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="figGloss" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.5"/>
-            <stop offset="45%" stopColor="#ffffff" stopOpacity="0.06"/>
-            <stop offset="100%" stopColor="#000000" stopOpacity="0.28"/>
-          </linearGradient>
-          <radialGradient id="figHi" cx="32%" cy="22%" r="55%">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.75"/>
-            <stop offset="100%" stopColor="#ffffff" stopOpacity="0"/>
-          </radialGradient>
-          <linearGradient id="podiumTop" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#3A404C"/>
-            <stop offset="100%" stopColor="#22262E"/>
-          </linearGradient>
-        </defs>
-        
-        {/* podium base */}
-        <ellipse cx="50" cy="122" rx="34" ry="7" fill="#000" opacity="0.35"/>
-        <path d="M18 116 L82 116 L74 100 L26 100 Z" fill="url(#podiumTop)" stroke="#0A0B0D" strokeWidth="1"/>
-        <rect x="26" y="100" width="12" height="4" fill="var(--red)"/>
-        <rect x="38" y="100" width="12" height="4" fill="var(--paper)"/>
-        <rect x="50" y="100" width="12" height="4" fill="var(--red)"/>
-        <rect x="62" y="100" width="12" height="4" fill="var(--paper)"/>
+  // 2. Load Teammate Comparison Dataset
+  useEffect(() => {
+    async function loadData() {
+      if (!selectedTeamId) return;
 
-        {/* legs victory */}
-        <rect x="34" y="76" width="12" height="26" rx="6" fill="#15181E"/>
-        <rect x="54" y="76" width="12" height="26" rx="6" fill="#15181E"/>
-        <rect x="32" y="97" width="16" height="7" rx="3" fill="#0A0B0D"/>
-        <rect x="52" y="97" width="16" height="7" rx="3" fill="#0A0B0D"/>
+      setLoadingData(true);
+      setError('');
 
-        {/* torso */}
-        <rect x="30" y="52" width="40" height="30" rx="14" fill={color}/>
-        <rect x="30" y="52" width="40" height="30" rx="14" fill="url(#figGloss)"/>
-        <circle cx="50" cy="66" r="6" fill="#0A0B0D" opacity="0.55"/>
+      try {
+        const compData = await loadTeammateComparison(
+          selectedSeason,
+          selectedTeamId,
+          customDriverAId || undefined,
+          customDriverBId || undefined
+        );
+        setData(compData);
+      } catch (err: any) {
+        setError(err.message || 'Unable to load teammate comparison data.');
+      } finally {
+        setLoadingData(false);
+      }
+    }
 
-        {/* Driver chest code tag */}
-        <text 
-          x="50" 
-          y="70" 
-          fill="#FFF" 
-          fontSize="9" 
-          fontWeight="700" 
-          fontFamily="var(--font-mono)" 
-          textAnchor="middle"
-        >
-          {code}
-        </text>
-        
-        {/* victory arm left */}
-        <rect x="14" y="30" width="12" height="30" rx="6" fill={color} transform="rotate(-28 20 55)"/>
-        <circle cx="12" cy="32" r="8" fill="#15181E"/>
-        
-        {/* arm hip right */}
-        <rect x="68" y="54" width="11" height="24" rx="5.5" fill={color}/>
-        <circle cx="73" cy="80" r="7" fill="#15181E"/>
+    loadData();
+  }, [selectedSeason, selectedTeamId, customDriverAId, customDriverBId]);
 
-        {/* bobblehead */}
-        <ellipse cx="50" cy="28" rx="24" ry="25" fill={color}/>
-        <rect x="28" y="21" width="44" height="13" rx="6.5" fill="#0A0B0D"/>
-        <ellipse cx="50" cy="28" rx="24" ry="25" fill="url(#figGloss)"/>
-        <ellipse cx="50" cy="28" rx="24" ry="25" fill="url(#figHi)"/>
-      </svg>
-    );
-  };
+  // Extract all available drivers in current team or season for historical selection
+  const allDriversInTeam = teams.find(t => t.constructorId === selectedTeamId)?.drivers || [];
+  const allSeasonDrivers: DriverInfo[] = teams.flatMap(t => t.drivers);
 
   return (
-    <section className="view" id="view-teammates">
-      <div className="panel">
-        <h2>Teammate Showroom — Season {selectedSeason === 'current' ? 'Live' : selectedSeason}</h2>
-        <p className="sub">Visual F1 garage lineups. Teammate driver pairings represented as collectible glossy PVC figures wearing their official team colors.</p>
+    <section className="min-h-screen bg-[#050810] text-slate-100 p-4 md:p-6 font-sans">
+      <div className="max-w-7xl mx-auto">
+        {/* Workstation Header */}
+        <TeammateHeader
+          season={selectedSeason}
+          onSelectSeason={setSelectedSeason}
+          teams={teams}
+          selectedTeamId={selectedTeamId}
+          onSelectTeam={(tId) => {
+            setSelectedTeamId(tId);
+            setCustomDriverAId('');
+            setCustomDriverBId('');
+          }}
+          mode={mode}
+          onToggleMode={setMode}
+        />
 
-        {loading ? (
-          <div className="loading">Opening garages…</div>
-        ) : error ? (
-          <div className="err">{error}</div>
-        ) : (
+        {/* Loading Indicator */}
+        {(loadingTeams || loadingData) && (
           <div 
-            style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))', 
-              gap: '20px',
-              marginTop: '20px'
-            }}
+            style={{ backgroundColor: '#070A10', background: '#070A10', opacity: 1 }}
+            className="p-12 text-center border-2 border-slate-700/80 rounded-xl shadow-2xl font-mono mb-4"
           >
-            {rosters.map(team => {
-              const color = getTeamColor(team.constructorId);
-              return (
-                <div 
-                  key={team.constructorId} 
-                  className="panel" 
-                  style={{ borderTop: `4px solid ${color}`, display: 'flex', flexDirection: 'column', gap: '16px' }}
-                >
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', margin: 0, textTransform: 'uppercase', color: 'var(--paper)', textAlign: 'center' }}>
-                    {team.constructorName}
-                  </h3>
+            <span className="w-8 h-8 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin inline-block mb-3"></span>
+            <h2 className="text-base font-black text-white uppercase tracking-wider">
+              LOADING TEAMMATE COMPARISON DATA...
+            </h2>
+            <p className="text-xs text-slate-400 mt-1">
+              Fetching real historical F1 race results, qualifying classifications, and driver standings.
+            </p>
+          </div>
+        )}
 
-                  <div 
-                    style={{ 
-                      display: 'flex', 
-                      justifyContent: 'center', 
-                      gap: '24px', 
-                      flexWrap: 'wrap' 
-                    }}
-                  >
-                    {team.drivers.slice(0, 3).map(driver => (
-                      <div 
-                        key={driver.driverId} 
-                        style={{ 
-                          display: 'flex', 
-                          flexDirection: 'column', 
-                          alignItems: 'center', 
-                          width: '100px', 
-                          textAlign: 'center' 
-                        }}
-                      >
-                        <div 
-                          className="profile-head" 
-                          style={{ margin: 0, display: 'block', pointerEvents: 'none' }}
-                        >
-                          <div className="fig" style={{ animationDuration: '3.6s' }}>
-                            {renderPVCFigure(color, driver.code)}
-                          </div>
-                        </div>
-                        <div 
-                          style={{ 
-                            fontSize: '13px', 
-                            fontWeight: 600, 
-                            color: 'var(--paper)', 
-                            marginTop: '6px',
-                            lineHeight: '1.2' 
-                          }}
-                        >
-                          {driver.givenName}<br />
-                          {driver.familyName}
-                        </div>
-                        <span 
-                          style={{ 
-                            fontFamily: 'var(--font-mono)', 
-                            fontSize: '10.5px', 
-                            color: 'var(--dim)', 
-                            marginTop: '3px',
-                            background: 'var(--carbon-2)',
-                            padding: '1px 5px',
-                            borderRadius: '3px'
-                          }}
-                        >
-                          {driver.permanentNumber ? `#${driver.permanentNumber} · ` : ''}{driver.code}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+        {/* Error / Empty State */}
+        {error && !loadingData && (
+          <div className="p-4 bg-red-950/80 border-2 border-red-500 rounded-xl text-red-200 font-mono text-xs mb-4 flex items-center gap-2">
+            <span className="text-lg">⚠️</span>
+            <span>{error}</span>
+          </div>
+        )}
+
+        {/* Active Workstation View */}
+        {data && !loadingData && (
+          <div>
+            {/* 1. Driver A vs Driver B Header Card */}
+            <DriverVsCard
+              driverA={data.driverA}
+              driverB={data.driverB}
+              allDrivers={allSeasonDrivers}
+              selectedDriverAId={customDriverAId || data.driverA.driverId}
+              selectedDriverBId={customDriverBId || data.driverB.driverId}
+              onSelectDriverA={setCustomDriverAId}
+              onSelectDriverB={setCustomDriverBId}
+              teamColor={data.teamColor}
+              mode={mode}
+            />
+
+            {/* 2. Immediate Teammate Battle Overview */}
+            <TeammateBattleOverview data={data} />
+
+            {/* 3. Central Head-to-Head Scorecard */}
+            <H2HScorecard data={data} />
+
+            {/* 4. Qualifying H2H & Race H2H Side-by-Side */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <QualifyingH2H data={data} />
+              <RaceH2H data={data} />
+            </div>
+
+            {/* 5. Championship Points Progression SVG Chart */}
+            <PointsProgressionChart data={data} />
+
+            {/* 6. Race-by-Race Qualifying & Finish Position Charts */}
+            <PositionHistoryCharts data={data} />
+
+            {/* 7. Recent Form (Last 5 Races) & Teammate Gaps */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <RecentForm data={data} />
+              <TeammateGaps data={data} />
+            </div>
+
+            {/* 8. Circuit Performance & Reliability / DNFs */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <CircuitPerformance data={data} />
+              <ReliabilityDNFs data={data} />
+            </div>
+
+            {/* 10. Expandable Sortable Race-by-Race Table */}
+            <RaceByRaceTable data={data} />
           </div>
         )}
       </div>

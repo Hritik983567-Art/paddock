@@ -1,5 +1,10 @@
 export const API_BASE = '/api/f1';
 
+export const ALL_F1_SEASONS: string[] = Array.from(
+  { length: 2026 - 1950 + 1 },
+  (_, i) => String(2026 - i)
+);
+
 export const TEAM_COLORS: Record<string, string> = {
     red_bull: '#3671C6', ferrari: '#E8002D', mercedes: '#27F4D2', mclaren: '#FF8000',
     aston_martin: '#229971', alpine: '#00A1E8', williams: '#1868DB', rb: '#6C98FF',

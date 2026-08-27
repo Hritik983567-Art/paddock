@@ -18,7 +18,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 }
 
 function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading, logout } = useAuth();
+  const { isAuthenticated, user, isLoading, logout } = useAuth();
   const { selectedSeason, setSelectedSeason } = useSeason();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
@@ -48,7 +48,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     return <AuthGate />;
   }
 
-  const thisYear = new Date().getFullYear();
+  const thisYear = Math.max(2026, new Date().getFullYear());
   const seasons: number[] = [];
   for (let y = thisYear; y >= 1950; y--) {
     seasons.push(y);
@@ -130,7 +130,27 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             <option value="aston">💚 Aston Martin</option>
           </select>
 
-          <button id="logoutLink" onClick={logout} aria-label="Log out of Paddock">Log out</button>
+          {user && (
+            <div className="flex items-center gap-2 px-2.5 py-1 bg-[#0D121F] border border-slate-700 rounded-lg text-xs font-mono">
+              <span className="w-6 h-6 rounded-full bg-[#6542A5] text-white flex items-center justify-center font-black text-[10px]">
+                {user.name ? user.name.slice(0, 2).toUpperCase() : user.username ? user.username.slice(0, 2).toUpperCase() : 'F1'}
+              </span>
+              <div className="hidden sm:block text-left">
+                <span className="font-black text-white block text-[11px] leading-tight">{user.name || user.username}</span>
+                <span className="text-[9px] text-purple-400 font-bold block">{user.role || 'Telemetry Analyst'}</span>
+              </div>
+            </div>
+          )}
+
+          <button 
+            id="logoutLink" 
+            onClick={logout} 
+            aria-label="Log out of Paddock"
+            className="px-3 py-1.5 bg-red-950/80 hover:bg-red-900 border border-red-700 text-red-300 font-mono font-black text-xs rounded-lg transition-all shadow-md flex items-center gap-1"
+          >
+            <span>LOGOUT</span>
+            <span>🚪</span>
+          </button>
         </div>
       </header>
 

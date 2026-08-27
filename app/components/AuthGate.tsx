@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function AuthGate() {
   const { login, register, loginWithGoogle } = useAuth();
   const [isSignUp, setIsSignUp] = useState(false);
+  const gsiInitializedRef = useRef(false);
 
   // Form State - Cleared by default on component mount / tab reload
   const [name, setName] = useState('');
@@ -13,21 +14,34 @@ export default function AuthGate() {
   const [password, setPassword] = useState('');
   const [team, setTeam] = useState('Scuderia Ferrari / Paddock Telemetry');
   const [showPassword, setShowPassword] = useState(false);
-  const [remember, setRemember] = useState(false); // Default to false (clears on tab close)
+  const [remember, setRemember] = useState(false);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [shake, setShake] = useState(false);
   const [googleClientId, setGoogleClientId] = useState<string>('');
 
-  // Clear form fields explicitly on mount
   useEffect(() => {
     setName('');
     setEmail('');
     setPassword('');
     setError('');
 
-    // Fetch Google Client ID from server API
+    // Global listener to silence Google Identity GSI FedCM console abort error overlays
+    const handleRejection = (event: PromiseRejectionEvent) => {
+      const reason = event?.reason;
+      const msg = String(reason?.message || reason || '');
+      if (msg.includes('FedCM') || msg.includes('GSI_LOGGER') || msg.includes('signal is aborted')) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('unhandledrejection', handleRejection);
+    }
+
     async function fetchClientId() {
+      if (gsiInitializedRef.current) return;
       try {
         const res = await fetch('/api/auth/google');
         const data = await res.json();
@@ -35,34 +49,55 @@ export default function AuthGate() {
         setGoogleClientId(cid);
 
         if (cid && typeof window !== 'undefined') {
-          const script = document.createElement('script');
-          script.src = 'https://accounts.google.com/gsi/client';
-          script.async = true;
-          script.defer = true;
-          script.onload = () => {
-            if ((window as any).google?.accounts?.id) {
-              (window as any).google.accounts.id.initialize({
-                client_id: cid,
-                callback: async (response: any) => {
-                  if (response.credential) {
-                    setIsSubmitting(true);
-                    const success = await loginWithGoogle(response.credential);
-                    if (!success) {
-                      setIsSubmitting(false);
-                      setError('Google OAuth token verification failed.');
+          const initGsi = () => {
+            if ((window as any).google?.accounts?.id && !gsiInitializedRef.current) {
+              try {
+                gsiInitializedRef.current = true;
+                (window as any).google.accounts.id.initialize({
+                  client_id: cid,
+                  use_fedcm_for_prompt: false,
+                  auto_select: false,
+                  callback: async (response: any) => {
+                    if (response.credential) {
+                      setIsSubmitting(true);
+                      const success = await loginWithGoogle(response.credential);
+                      if (!success) {
+                        setIsSubmitting(false);
+                        setError('Google OAuth token verification failed.');
+                      }
                     }
                   }
-                }
-              });
+                });
+              } catch {
+                // Ignore GSI re-initialization errors
+              }
             }
           };
-          document.body.appendChild(script);
+
+          if ((window as any).google?.accounts?.id) {
+            initGsi();
+          } else if (!document.getElementById('google-gsi-script')) {
+            const script = document.createElement('script');
+            script.id = 'google-gsi-script';
+            script.src = 'https://accounts.google.com/gsi/client';
+            script.async = true;
+            script.defer = true;
+            script.onload = initGsi;
+            document.body.appendChild(script);
+          }
         }
       } catch {
         // ignore
       }
     }
+
     fetchClientId();
+
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('unhandledrejection', handleRejection);
+      }
+    };
   }, [loginWithGoogle]);
 
   const handleToggleMode = () => {
@@ -79,7 +114,6 @@ export default function AuthGate() {
     setIsSubmitting(true);
 
     if (isSignUp) {
-      // Handle Sign Up
       const res = await register(name, email, password, team);
       if (!res.success) {
         setIsSubmitting(false);
@@ -88,7 +122,6 @@ export default function AuthGate() {
         setTimeout(() => setShake(false), 450);
       }
     } else {
-      // Handle Sign In
       const usernameInput = email.includes('@') ? email.split('@')[0] : email;
       const success = await login(usernameInput, password, remember);
 
@@ -106,15 +139,18 @@ export default function AuthGate() {
     setIsSubmitting(true);
 
     if (typeof window !== 'undefined' && (window as any).google?.accounts?.id && googleClientId) {
-      (window as any).google.accounts.id.prompt((notification: any) => {
-        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-          setError('Google Identity One-Tap prompt unavailable on current domain.');
-          setIsSubmitting(false);
-        }
-      });
+      try {
+        (window as any).google.accounts.id.prompt((notification: any) => {
+          if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+            setIsSubmitting(false);
+          }
+        });
+      } catch {
+        setIsSubmitting(false);
+      }
     } else {
       setIsSubmitting(false);
-      setError('Google SSO requires GOOGLE_CLIENT_ID in Vercel environment variables. Use email/password sign up below or see setup guide.');
+      setError('Google SSO requires GOOGLE_CLIENT_ID configured in environment variables.');
       setShake(true);
       setTimeout(() => setShake(false), 450);
     }
@@ -135,7 +171,6 @@ export default function AuthGate() {
       justifyContent: 'center',
       overflowY: 'auto'
     }}>
-      {/* Full-Screen 3D F1 Car Wallpaper */}
       <div className="login-wallpaper-wrapper">
         <img 
           src="/images/f1-login-car.png" 
@@ -145,11 +180,8 @@ export default function AuthGate() {
         <div className="login-wallpaper-overlay"></div>
       </div>
 
-      {/* Centered Login / Sign Up Form Card */}
       <div className={`centered-login-card ${shake ? 'shake' : ''}`}>
         <div className="f1-spec-form-inner">
-          
-          {/* Brand Header */}
           <div className="f1-spec-brand">
             <div className="f1-spec-grid-icon">
               <span className="cell cell-dark"></span>
@@ -160,7 +192,6 @@ export default function AuthGate() {
             <span className="f1-spec-brand-text">PADDOCK<span className="accent-slash">//</span>ANALYTICS</span>
           </div>
 
-          {/* Welcome Header Text */}
           <div className="f1-spec-welcome">
             <h1>{isSignUp ? 'CREATE AN ACCOUNT' : 'WELCOME BACK'}</h1>
             <p>
@@ -172,10 +203,7 @@ export default function AuthGate() {
 
           {error && <div className="f1-spec-error">{error}</div>}
 
-          {/* Authentication Form */}
           <form onSubmit={handleSubmit} className="f1-spec-form" autoComplete="off">
-            
-            {/* Full Name Field (Sign Up Mode Only) */}
             {isSignUp && (
               <div className="f1-spec-field">
                 <label htmlFor="specName">FULL NAME</label>
@@ -192,7 +220,6 @@ export default function AuthGate() {
               </div>
             )}
 
-            {/* Email Address Field */}
             <div className="f1-spec-field">
               <label htmlFor="specEmail">EMAIL ADDRESS</label>
               <input 
@@ -207,7 +234,6 @@ export default function AuthGate() {
               />
             </div>
 
-            {/* Team Selection Dropdown (Sign Up Mode Only) */}
             {isSignUp && (
               <div className="f1-spec-field">
                 <label htmlFor="specTeam">PREFERRED CONSTRUCTOR TEAM</label>
@@ -237,7 +263,6 @@ export default function AuthGate() {
               </div>
             )}
 
-            {/* Password Field */}
             <div className="f1-spec-field">
               <label htmlFor="specPass">PASSWORD</label>
               <div className="spec-password-wrapper">
@@ -262,7 +287,6 @@ export default function AuthGate() {
               </div>
             </div>
 
-            {/* Sign In Options */}
             {!isSignUp && (
               <div className="f1-spec-options">
                 <label className="spec-checkbox-label">
@@ -276,7 +300,6 @@ export default function AuthGate() {
               </div>
             )}
 
-            {/* Actions */}
             <div className="f1-spec-actions">
               <button 
                 type="submit" 
@@ -305,7 +328,6 @@ export default function AuthGate() {
             </div>
           </form>
 
-          {/* Footer Switcher */}
           <p className="f1-spec-footer">
             {isSignUp ? (
               <>
@@ -332,13 +354,11 @@ export default function AuthGate() {
             )}
           </p>
 
-          {/* Privacy & Terms Policy Notice */}
           <div style={{ marginTop: '16px', fontSize: '11px', color: 'var(--dim)', textAlign: 'center', fontFamily: 'var(--font-mono)' }}>
             By continuing, you agree to Paddock Telemetry&apos;s{' '}
             <a href="#" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>Terms of Service</a> and{' '}
             <a href="#" style={{ color: 'var(--cyan)', textDecoration: 'none' }}>Privacy Policy</a>.
           </div>
-
         </div>
       </div>
     </div>

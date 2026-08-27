@@ -122,6 +122,7 @@ export default function LiveTelemetryPage() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
   const autoReconnectRef = useRef(true);
+  const reconnectCountRef = useRef(0);
 
   // Auto-scroll logs to bottom
   useEffect(() => {
@@ -140,116 +141,124 @@ export default function LiveTelemetryPage() {
     }
 
     setProxyStatus('CONNECTING');
-    setLogs(l => [...l, `[${new Date().toTimeString().split(' ')[0]}] PROXY: Connecting to local gateway at ws://127.0.0.1:8080...`]);
+    setLogs(l => [...l, `[${new Date().toTimeString().split(' ')[0]}] PROXY: Connecting to gateway at ws://127.0.0.1:8080...`]);
 
-    const socket = new WebSocket('ws://127.0.0.1:8080');
-    wsRef.current = socket;
+    try {
+      const socket = new WebSocket('ws://127.0.0.1:8080');
+      wsRef.current = socket;
 
-    socket.onopen = () => {
-      setProxyStatus('CONNECTED');
-      const timeStr = new Date().toTimeString().split(' ')[0];
-      setLogs(l => [...l, `[${timeStr}] PROXY: Connection to local gateway ws://127.0.0.1:8080 established.`]);
-      socket.send(JSON.stringify({
-        type: 'SET_CIRCUIT',
-        circuitId: selectedCircuit
-      }));
-    };
-
-    socket.onmessage = (event) => {
-      try {
-        const msg = JSON.parse(event.data);
+      socket.onopen = () => {
+        setProxyStatus('CONNECTED');
+        reconnectCountRef.current = 0;
         const timeStr = new Date().toTimeString().split(' ')[0];
+        setLogs(l => [...l, `[${timeStr}] PROXY: Connection to local gateway ws://127.0.0.1:8080 established.`]);
+        socket.send(JSON.stringify({
+          type: 'SET_CIRCUIT',
+          circuitId: selectedCircuit
+        }));
+      };
 
-        if (msg.source === 'F1_PROXY_SYSTEM') {
-          setLogs(l => [...l, `[${timeStr}] SYSTEM: ${msg.message}`]);
-        } 
-        
-        // Handle mock streaming updates from F1 proxy
-        else if (msg.source === 'F1_PROXY_MOCK') {
-          const update = msg.mockUpdate;
-          if (msg.channel === 'TerminalEvent') {
-            if (update.event) {
-              setLogs(l => [...l, update.event]);
-            }
-          } else {
-            setDrivers(prev => {
-              return prev.map(d => {
-                if (d.code === update.driverCode) {
-                  return {
-                    ...d,
-                    lastLapTime: update.lapTime,
-                    speedTrap: update.speedTrap,
-                    isFastestSector: Math.random() > 0.8
-                  };
-                }
-                return d;
-              });
-            });
-            if (update.event) {
-              setLogs(l => [...l, `[${timeStr}] ${update.event}`]);
-            }
-          }
-        }
+      socket.onmessage = (event) => {
+        try {
+          const msg = JSON.parse(event.data);
+          const timeStr = new Date().toTimeString().split(' ')[0];
 
-        // Handle actual live data decompressed from official F1 SignalR feed!
-        else if (msg.source === 'F1_LIVE_SERVER') {
-          if (msg.channel === 'TimingData' && msg.data && msg.data.Lines) {
-            setDrivers(prev => {
-              let list = prev.map(d => ({ ...d }));
-              const lines = msg.data.Lines;
-
-              Object.entries(lines).forEach(([driverNum, dataLine]: [string, any]) => {
-                const matched = list.find(d => d.number === driverNum);
-                if (matched) {
-                  if (dataLine.Position) matched.position = parseInt(dataLine.Position) || matched.position;
-                  if (dataLine.LastLapTime && dataLine.LastLapTime.Value) matched.lastLapTime = dataLine.LastLapTime.Value;
-                  if (dataLine.Speeds && dataLine.Speeds.ST) matched.speedTrap = parseInt(dataLine.Speeds.ST) || matched.speedTrap;
-                  if (dataLine.InPit !== undefined) matched.status = dataLine.InPit ? 'IN PIT' : 'RACING';
-                  if (dataLine.Retired !== undefined) matched.status = dataLine.Retired ? 'RETIRED' : matched.status;
-                  if (dataLine.GapToLeader !== undefined) {
-                    matched.gapToLeader = parseFloat(dataLine.GapToLeader) || 0;
+          if (msg.source === 'F1_PROXY_SYSTEM') {
+            setLogs(l => [...l, `[${timeStr}] SYSTEM: ${msg.message}`]);
+          } 
+          
+          // Handle mock streaming updates from F1 proxy
+          else if (msg.source === 'F1_PROXY_MOCK') {
+            const update = msg.mockUpdate;
+            if (msg.channel === 'TerminalEvent') {
+              if (update.event) {
+                setLogs(l => [...l, update.event]);
+              }
+            } else {
+              setDrivers(prev => {
+                return prev.map(d => {
+                  if (d.code === update.driverCode) {
+                    return {
+                      ...d,
+                      lastLapTime: update.lapTime,
+                      speedTrap: update.speedTrap,
+                      isFastestSector: Math.random() > 0.8
+                    };
                   }
-                }
+                  return d;
+                });
               });
-
-              // Sort list based on position
-              list.sort((a, b) => a.position - b.position);
-              return list;
-            });
+              if (update.event) {
+                setLogs(l => [...l, `[${timeStr}] ${update.event}`]);
+              }
+            }
           }
 
-          if (msg.channel === 'TrackStatus' && msg.data && msg.data.Status) {
-            // F1 Status: 1 = Green, 2 = Yellow, 4 = Safety Car
-            const statusVal = msg.data.Status;
-            if (statusVal === '1') setFlagStatus('GREEN');
-            else if (statusVal === '2') setFlagStatus('YELLOW');
-            else if (statusVal === '4') setFlagStatus('SAFETY CAR');
-            setLogs(l => [...l, `[${timeStr}] TRACK UPDATE: Flag status changed to ${statusVal === '1' ? 'GREEN' : statusVal === '2' ? 'YELLOW' : 'SAFETY CAR'}`]);
+          // Handle actual live data decompressed from official F1 SignalR feed!
+          else if (msg.source === 'F1_LIVE_SERVER') {
+            if (msg.channel === 'TimingData' && msg.data && msg.data.Lines) {
+              setDrivers(prev => {
+                let list = prev.map(d => ({ ...d }));
+                const lines = msg.data.Lines;
+
+                Object.entries(lines).forEach(([driverNum, dataLine]: [string, any]) => {
+                  const matched = list.find(d => d.number === driverNum);
+                  if (matched) {
+                    if (dataLine.Position) matched.position = parseInt(dataLine.Position) || matched.position;
+                    if (dataLine.LastLapTime && dataLine.LastLapTime.Value) matched.lastLapTime = dataLine.LastLapTime.Value;
+                    if (dataLine.Speeds && dataLine.Speeds.ST) matched.speedTrap = parseInt(dataLine.Speeds.ST) || matched.speedTrap;
+                    if (dataLine.InPit !== undefined) matched.status = dataLine.InPit ? 'IN PIT' : 'RACING';
+                    if (dataLine.Retired !== undefined) matched.status = dataLine.Retired ? 'RETIRED' : matched.status;
+                    if (dataLine.GapToLeader !== undefined) {
+                      matched.gapToLeader = parseFloat(dataLine.GapToLeader) || 0;
+                    }
+                  }
+                });
+
+                // Sort list based on position
+                list.sort((a, b) => a.position - b.position);
+                return list;
+              });
+            }
+
+            if (msg.channel === 'TrackStatus' && msg.data && msg.data.Status) {
+              // F1 Status: 1 = Green, 2 = Yellow, 4 = Safety Car
+              const statusVal = msg.data.Status;
+              if (statusVal === '1') setFlagStatus('GREEN');
+              else if (statusVal === '2') setFlagStatus('YELLOW');
+              else if (statusVal === '4') setFlagStatus('SAFETY CAR');
+              setLogs(l => [...l, `[${timeStr}] TRACK UPDATE: Flag status changed to ${statusVal === '1' ? 'GREEN' : statusVal === '2' ? 'YELLOW' : 'SAFETY CAR'}`]);
+            }
           }
+        } catch (err) {
+          console.error('[WS DATA ERROR]:', err);
         }
-      } catch (err) {
-        console.error('[WS DATA ERROR]:', err);
-      }
-    };
+      };
 
-    socket.onclose = () => {
-      setProxyStatus('OFFLINE');
-      const timeStr = new Date().toTimeString().split(' ')[0];
-      setLogs(l => [...l, `[${timeStr}] PROXY: Connection to ws://127.0.0.1:8080 disconnected.`]);
-      
-      if (autoReconnectRef.current) {
-        setLogs(l => [...l, `[${timeStr}] PROXY: Reconnecting in 3s...`]);
-        setTimeout(() => {
-          connectToProxy();
-        }, 3000);
-      }
-    };
+      socket.onclose = () => {
+        setProxyStatus('OFFLINE');
+        const timeStr = new Date().toTimeString().split(' ')[0];
+        
+        if (autoReconnectRef.current && reconnectCountRef.current < 2) {
+          reconnectCountRef.current += 1;
+          setLogs(l => [...l, `[${timeStr}] PROXY: Reconnecting in 3s (Attempt ${reconnectCountRef.current}/2)...`]);
+          setTimeout(() => {
+            connectToProxy();
+          }, 3000);
+        } else {
+          autoReconnectRef.current = false;
+          setConnectionMode('SIMULATOR');
+          setLogs(l => [...l, `[${timeStr}] PROXY: Local gateway offline. Automatically running high-fidelity Telemetry Simulator.`]);
+        }
+      };
 
-    socket.onerror = () => {
+      socket.onerror = () => {
+        setProxyStatus('OFFLINE');
+      };
+    } catch {
       setProxyStatus('OFFLINE');
-      const timeStr = new Date().toTimeString().split(' ')[0];
-      setLogs(l => [...l, `[${timeStr}] ⚠️ PROXY ERROR: Could not reach gateway. Verify scripts/f1-proxy.js is running.`]);
-    };
+      setConnectionMode('SIMULATOR');
+    }
   };
 
   const disconnectFromProxy = () => {
@@ -468,8 +477,8 @@ export default function LiveTelemetryPage() {
   };
 
   return (
-    <section className="view" id="view-live">
-      <div className="panel">
+    <section className="view w-full max-w-[1440px] mx-auto overflow-hidden box-border px-2 sm:px-4" id="view-live">
+      <div className="panel w-full max-w-full overflow-hidden">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
           <div>
             <h2>Live Telemetry Console // Pit Wall</h2>
@@ -609,75 +618,75 @@ export default function LiveTelemetryPage() {
           </div>
         </div>
 
-        {/* Live Grid Layout (50-50 Equal Split) */}
-        <div className="grid cols-2" style={{ gridTemplateColumns: '1fr 1fr', alignItems: 'start', gap: '20px' }}>
+        {/* Live Responsive Desktop Grid Layout — Clean Full-Width Display */}
+        <div className="flex flex-col gap-4 w-full max-w-full overflow-hidden">
           
-          {/* Left Column: Live Track Radar & Standings */}
-          <div className="flex flex-col gap-4">
-            {/* Live Track Radar Map */}
-            <div className="panel" style={{ padding: 0, border: 'none', background: 'transparent' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <span className="footnote" style={{ color: 'var(--dim)', fontWeight: 'bold', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>SELECT ACTIVE VENUE RADAR:</span>
-                <select
-                  value={selectedCircuit}
-                  onChange={(e) => handleCircuitChange(e.target.value)}
-                  style={{
-                    background: 'var(--carbon-2)',
-                    border: '1px solid var(--line)',
-                    color: 'var(--paper)',
-                    fontSize: '11px',
-                    padding: '3px 6px',
-                    borderRadius: '4px',
-                    fontFamily: 'var(--font-mono)'
-                  }}
-                >
-                  {races.length > 0 ? (
-                    races.map((r: any) => (
-                      <option key={r.Circuit.circuitId} value={r.Circuit.circuitId}>
-                        🏁 {r.Circuit.Location.country} - {r.Circuit.circuitName}
-                      </option>
-                    ))
-                  ) : (
-                    <>
-                      <option value="spa">🇧🇪 Spa-Francorchamps</option>
-                      <option value="monza">🇮🇹 Monza</option>
-                      <option value="silverstone">🇬🇧 Silverstone</option>
-                      <option value="monaco">🇲🇨 Monaco</option>
-                    </>
-                  )}
-                </select>
-              </div>
-              <CircuitMap 
-                circuitId={selectedCircuit} 
-                drivers={drivers}
-                showStats={false}
-                activeDriverCode={activeDriverCode || ''}
-                onHoverDriver={setActiveDriverCode}
-              />
-            </div>
-
-            {/* Live Timing Classification Board */}
-            <div className="panel" style={{ overflowX: 'auto' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '17px', margin: 0 }}>
-                  Live Timing classification
-                </h3>
-                {connectionMode === 'SIMULATOR' && (
-                  <div style={{ display: 'flex', gap: '6px' }}>
-                    <span className="footnote" style={{ color: 'var(--dim)' }}>Polling Speed:</span>
-                    <select 
-                      value={speed} 
-                      onChange={(e) => setSpeed(parseInt(e.target.value))}
-                      style={{ background: 'var(--carbon-2)', border: '1px solid var(--line)', color: 'var(--paper)', fontSize: '11px', padding: '2px 4px' }}
-                    >
-                      <option value={1000}>1.0s (Fast)</option>
-                      <option value={2500}>2.5s (Normal)</option>
-                      <option value={5000}>5.0s (Slow)</option>
-                    </select>
-                  </div>
+          {/* Live Track Radar Map */}
+          <div className="panel w-full max-w-full overflow-hidden" style={{ padding: 0, border: 'none', background: 'transparent' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <span className="footnote" style={{ color: 'var(--dim)', fontWeight: 'bold', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>SELECT ACTIVE VENUE RADAR:</span>
+              <select
+                value={selectedCircuit}
+                onChange={(e) => handleCircuitChange(e.target.value)}
+                style={{
+                  background: 'var(--carbon-2)',
+                  border: '1px solid var(--line)',
+                  color: 'var(--paper)',
+                  fontSize: '11px',
+                  padding: '3px 8px',
+                  borderRadius: '4px',
+                  fontFamily: 'var(--font-mono)'
+                }}
+              >
+                {races.length > 0 ? (
+                  races.map((r: any) => (
+                    <option key={r.Circuit.circuitId} value={r.Circuit.circuitId}>
+                      🏁 {r.Circuit.Location.country} - {r.Circuit.circuitName}
+                    </option>
+                  ))
+                ) : (
+                  <>
+                    <option value="spa">🇧🇪 Spa-Francorchamps</option>
+                    <option value="monza">🇮🇹 Monza</option>
+                    <option value="silverstone">🇬🇧 Silverstone</option>
+                    <option value="monaco">🇲🇨 Monaco</option>
+                  </>
                 )}
-              </div>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '13.0px' }}>
+              </select>
+            </div>
+            <CircuitMap 
+              circuitId={selectedCircuit} 
+              drivers={drivers}
+              showStats={false}
+              showCorners={false}
+              activeDriverCode={activeDriverCode || ''}
+              onHoverDriver={setActiveDriverCode}
+            />
+          </div>
+
+          {/* Live Timing Classification Board */}
+          <div className="panel w-full max-w-full overflow-hidden">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '16px', margin: 0 }}>
+                Live Timing classification
+              </h3>
+              {connectionMode === 'SIMULATOR' && (
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  <span className="footnote" style={{ color: 'var(--dim)' }}>Polling Speed:</span>
+                  <select 
+                    value={speed} 
+                    onChange={(e) => setSpeed(parseInt(e.target.value))}
+                    style={{ background: 'var(--carbon-2)', border: '1px solid var(--line)', color: 'var(--paper)', fontSize: '11px', padding: '2px 4px' }}
+                  >
+                    <option value={1000}>1.0s (Fast)</option>
+                    <option value={2500}>2.5s (Normal)</option>
+                    <option value={5000}>5.0s (Slow)</option>
+                  </select>
+                </div>
+              )}
+            </div>
+            <div style={{ maxHeight: '260px', overflowY: 'auto', overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12.5px' }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid var(--line)', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--dim)' }}>
                     <th style={{ padding: '6px 4px' }}>POS</th>
@@ -714,22 +723,22 @@ export default function LiveTelemetryPage() {
                           transition: 'background 0.15s ease'
                         }}
                       >
-                        <td style={{ padding: '6px 4px', fontWeight: 'bold', color: isHovered ? 'var(--cyan)' : 'inherit' }}>P{row.position}</td>
-                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>#{row.number}</td>
-                        <td style={{ padding: '6px 4px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <td style={{ padding: '5px 4px', fontWeight: 'bold', color: isHovered ? 'var(--cyan)' : 'inherit' }}>P{row.position}</td>
+                        <td style={{ padding: '5px 4px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>#{row.number}</td>
+                        <td style={{ padding: '5px 4px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '6px' }}>
                           <span style={{ width: '3px', height: '14px', background: color, display: 'inline-block', borderRadius: '1px' }}></span>
                           {row.name}
                         </td>
-                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)' }}>
+                        <td style={{ padding: '5px 4px', fontFamily: 'var(--font-mono)' }}>
                           {row.position === 1 ? 'Leader' : `+${row.gapToLeader.toFixed(3)}s`}
                         </td>
-                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', color: isFastest ? 'var(--purple)' : 'var(--paper)' }}>
+                        <td style={{ padding: '5px 4px', fontFamily: 'var(--font-mono)', color: isFastest ? 'var(--purple)' : 'var(--paper)' }}>
                           {row.lastLapTime}
                         </td>
-                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>
+                        <td style={{ padding: '5px 4px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>
                           {row.speedTrap} <small>km/h</small>
                         </td>
-                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)' }}>
+                        <td style={{ padding: '5px 4px', fontFamily: 'var(--font-mono)' }}>
                           <span 
                             style={{
                               background: row.tyre === 'S' ? 'var(--red)' : row.tyre === 'M' ? 'var(--amber)' : 'var(--paper)',
@@ -745,7 +754,7 @@ export default function LiveTelemetryPage() {
                           </span>
                           <small style={{ color: 'var(--dim)' }}>{row.tyreAge}</small>
                         </td>
-                        <td style={{ padding: '6px 4px', fontFamily: 'var(--font-mono)', fontSize: '11px' }}>
+                        <td style={{ padding: '5px 4px', fontFamily: 'var(--font-mono)', fontSize: '11px' }}>
                           {inPit ? (
                             <span style={{ color: 'var(--amber)', background: 'rgba(232, 180, 42, 0.1)', padding: '1px 4px', borderRadius: '3px' }}>IN PIT</span>
                           ) : retired ? (
@@ -760,75 +769,6 @@ export default function LiveTelemetryPage() {
                 </tbody>
               </table>
             </div>
-          </div>
-
-          {/* Right Column: GPS Location & Events */}
-          <div className="flex flex-col gap-4">
-            
-            {/* GPS Satellite Track Locator */}
-            <div className="panel">
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '16px', marginBottom: '10px' }}>
-                GPS Track Locator (Satellite Radar)
-              </h3>
-              <iframe
-                src={`https://www.openstreetmap.org/export/embed.html?bbox=${(parseFloat(activeRace?.Circuit?.Location?.long || '5.9714') - 0.03).toFixed(4)},${(parseFloat(activeRace?.Circuit?.Location?.lat || '50.4372') - 0.02).toFixed(4)},${(parseFloat(activeRace?.Circuit?.Location?.long || '5.9714') + 0.03).toFixed(4)},${(parseFloat(activeRace?.Circuit?.Location?.lat || '50.4372') + 0.02).toFixed(4)}&layer=mapnik&marker=${activeRace?.Circuit?.Location?.lat || '50.4372'},${activeRace?.Circuit?.Location?.long || '5.9714'}`}
-                width="100%"
-                height="220"
-                style={{ border: '1px solid var(--line)', borderRadius: '6px', opacity: 0.9 }}
-                allowFullScreen
-                title="GPS Track Locator"
-              />
-            </div>
-
-            {/* Action simulation buttons */}
-            <div className="panel">
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '16px', marginBottom: '10px' }}>Tactical interventions</h3>
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                <button 
-                  className="btn primary" 
-                  onClick={triggerManualOvertake} 
-                  disabled={connectionMode !== 'SIMULATOR' || !isPlaying}
-                >
-                  ⚔️ Trigger Overtake
-                </button>
-                <button 
-                  className="btn" 
-                  onClick={triggerSafetyCar} 
-                  disabled={connectionMode !== 'SIMULATOR' || !isPlaying}
-                >
-                  ⚠️ Deploy Safety Car
-                </button>
-              </div>
-            </div>
-
-            {/* Event Log Console terminal */}
-            <div className="panel">
-              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '16px', marginBottom: '10px' }}>
-                Mission Control Event Terminal
-              </h3>
-              <div 
-                ref={logConsoleRef}
-                style={{ 
-                  background: '#0B0D13', 
-                  border: '1px solid var(--line)', 
-                  borderRadius: '6px', 
-                  height: '380px', 
-                  overflowY: 'auto', 
-                  padding: '10px',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '11.5px',
-                  lineHeight: '1.5',
-                  color: '#39ff14'
-                }}
-              >
-                {logs.map((log, index) => (
-                  <div key={index} style={{ marginBottom: '6px', borderBottom: '1px solid rgba(255,255,255,0.02)', paddingBottom: '4px' }}>
-                    {log}
-                  </div>
-                ))}
-              </div>
-            </div>
-
           </div>
         </div>
       </div>

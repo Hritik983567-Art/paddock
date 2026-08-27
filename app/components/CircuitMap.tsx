@@ -1063,6 +1063,7 @@ interface CircuitMapProps {
   circuitId?: string;
   drivers?: DriverProgress[];
   showStats?: boolean;
+  showCorners?: boolean;
   activeDriverCode?: string;
   onHoverDriver?: (code: string | null) => void;
 }
@@ -1071,6 +1072,7 @@ export default function CircuitMap({
   circuitId = 'monza',
   drivers = [],
   showStats = true,
+  showCorners = true,
   activeDriverCode = '',
   onHoverDriver
 }: CircuitMapProps) {
@@ -1536,19 +1538,22 @@ export default function CircuitMap({
         </div>
       )}
 
-      {/* CORNER DIRECTORY TAB BAR */}
-      <CornerDirectory
-        corners={circuitCornerCollection.corners}
-        selectedCornerId={selectedCornerId || (circuitCornerList[0]?.id || '')}
-        onSelectCorner={(id) => setSelectedCornerId(id)}
-      />
+      {/* CORNER DIRECTORY TAB BAR & RECONNAISSANCE GALLERY */}
+      {showCorners && (
+        <>
+          <CornerDirectory
+            corners={circuitCornerCollection.corners}
+            selectedCornerId={selectedCornerId || (circuitCornerList[0]?.id || '')}
+            onSelectCorner={(id) => setSelectedCornerId(id)}
+          />
 
-      {/* RECONNAISSANCE CORNER GALLERY & DETAILS PANEL */}
-      {activeCorner && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2">
-          <CornerImageGallery corner={activeCorner} />
-          <CornerDetails corner={activeCorner} circuitName={track.name} />
-        </div>
+          {activeCorner && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2 items-start">
+              <CornerImageGallery corner={activeCorner} />
+              <CornerDetails corner={activeCorner} circuitName={track.name} />
+            </div>
+          )}
+        </>
       )}
 
       {/* TRACK PHOTO GALLERY LIGHTBOX MODAL */}
