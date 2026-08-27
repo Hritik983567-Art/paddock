@@ -1118,23 +1118,47 @@ footer {
     background: #080C0A;
 }
 
+.f1-entry-speed-streaks {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.f1-entry-speed-streaks .streak {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 156, 0.8) 50%, rgba(255, 59, 59, 0.9) 80%, transparent 100%);
+    border-radius: 999px;
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: f1SpeedStreakSweep 2.2s cubic-bezier(0.12, 0.8, 0.24, 1) forwards;
+}
+
+.f1-entry-speed-streaks .streak-1 { top: 25%; width: 60vw; height: 3px; animation-delay: 0.1s; }
+.f1-entry-speed-streaks .streak-2 { top: 45%; width: 80vw; height: 2px; animation-delay: 0.25s; }
+.f1-entry-speed-streaks .streak-3 { top: 65%; width: 70vw; height: 4px; animation-delay: 0.15s; }
+.f1-entry-speed-streaks .streak-4 { top: 80%; width: 50vw; height: 2px; animation-delay: 0.3s; }
+
 .login-wallpaper-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     opacity: 0.95;
-    will-change: transform, opacity;
+    will-change: transform, opacity, filter;
     transform: translateZ(0);
     backface-visibility: hidden;
-    animation: f1CarRightEntrance 1.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: f1CarRightEntrance 2.8s cubic-bezier(0.12, 0.8, 0.24, 1) forwards;
 }
 
 .login-wallpaper-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(8, 12, 10, 0.45) 0%, rgba(8, 12, 10, 0.85) 100%);
+    background: radial-gradient(circle at center, rgba(8, 12, 10, 0.3) 0%, rgba(8, 12, 10, 0.85) 100%);
     pointer-events: none;
+    z-index: 2;
 }
 
 .centered-login-card {
@@ -1142,25 +1166,60 @@ footer {
     z-index: 10;
     max-width: 480px;
     width: 100%;
-    padding: 48px 40px;
-    background: rgba(12, 21, 15, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 44px 38px;
+    background: rgba(12, 21, 15, 0.94);
+    border: 1.5px solid rgba(0, 255, 156, 0.3);
     border-radius: 20px;
-    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95), 0 0 40px rgba(0, 255, 156, 0.25);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(0, 255, 156, 0.25);
     will-change: transform, opacity;
     transform: translateZ(0);
     backface-visibility: hidden;
-    animation: f1CardSequentialEntrance 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.9s backwards;
+    animation: f1CardSequentialEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.8s backwards;
+}
+
+@keyframes f1SpeedStreakSweep {
+    0% {
+        opacity: 0;
+        transform: translate3d(100vw, 0, 0) scaleX(2);
+    }
+    30% {
+        opacity: 0.9;
+    }
+    70% {
+        opacity: 0.6;
+        transform: translate3d(-30vw, 0, 0) scaleX(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(-100vw, 0, 0) scaleX(0.5);
+    }
 }
 
 @keyframes f1CarRightEntrance {
-    0% { opacity: 0; }
-    100% { opacity: 0.95; }
+    0% { 
+        opacity: 0; 
+        transform: translate3d(100vw, -20px, 0) scale(1.35) skewX(-12deg);
+        filter: blur(12px) brightness(2) contrast(1.4);
+    }
+    20% {
+        opacity: 0.9;
+        filter: blur(6px) brightness(1.6) contrast(1.3);
+    }
+    65% {
+        opacity: 1;
+        transform: translate3d(8vw, 5px, 0) scale(1.04) skewX(-2deg);
+        filter: blur(1px) brightness(1.2) contrast(1.1);
+    }
+    100% { 
+        opacity: 0.95; 
+        transform: translate3d(0, 0, 0) scale(1) skewX(0deg);
+        filter: blur(0px) brightness(1) contrast(1);
+    }
 }
 
 @keyframes f1CardSequentialEntrance {
-    0% { opacity: 0; transform: translate3d(0, 25px, 0); }
-    100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    0% { opacity: 0; transform: translate3d(0, 40px, 0) scale(0.94); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
 }
 
 .f1-spec-form-inner {
