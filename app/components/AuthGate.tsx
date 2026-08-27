@@ -195,8 +195,7 @@ export default function AuthGate() {
         }
       }
 
-      const usernameInput = email.includes('@') ? email.split('@')[0] : email;
-      const success = await login(usernameInput, password, remember);
+      const success = await login(email, password, remember);
 
       if (!success) {
         setIsSubmitting(false);
