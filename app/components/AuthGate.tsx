@@ -130,15 +130,71 @@ export default function AuthGate() {
     setError('');
     setIsSubmitting(true);
 
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+
     if (isSignUp) {
+      // Sign Up Flow with Supabase Auth Hard Validation
+      if (supabaseUrl && !supabaseUrl.includes('placeholder')) {
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: name,
+              team: team,
+            },
+          },
+        });
+
+        if (error) {
+          setError(error.message);
+          setIsSubmitting(false);
+          setShake(true);
+          setTimeout(() => setShake(false), 450);
+          return; // CRITICAL: Stop execution here
+        }
+
+        // If data.session exists (Confirm Email is disabled), instantly transition user to dashboard view
+        if (data.session) {
+          await register(name, email, password, team);
+          setIsSubmitting(false);
+          return;
+        }
+      }
+
       const res = await register(name, email, password, team);
       if (!res.success) {
         setIsSubmitting(false);
         setError(res.message || 'Registration failed. Please try again.');
         setShake(true);
         setTimeout(() => setShake(false), 450);
+        return;
       }
     } else {
+      // Sign In Flow with Hard Guard Validation
+      if (supabaseUrl && !supabaseUrl.includes('placeholder')) {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (error) {
+          setError(error.message);
+          setIsSubmitting(false);
+          setShake(true);
+          setTimeout(() => setShake(false), 450);
+          return; // CRITICAL: Stop execution here
+        }
+
+        if (!data.session) {
+          setError("Session failed to initiate.");
+          setIsSubmitting(false);
+          setShake(true);
+          setTimeout(() => setShake(false), 450);
+          return; // CRITICAL: Stop execution here
+        }
+      }
+
       const usernameInput = email.includes('@') ? email.split('@')[0] : email;
       const success = await login(usernameInput, password, remember);
 
@@ -147,6 +203,7 @@ export default function AuthGate() {
         setError('Invalid credentials provided. Please try again.');
         setShake(true);
         setTimeout(() => setShake(false), 450);
+        return;
       }
     }
   };
