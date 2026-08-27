@@ -56,6 +56,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
 
   const navLinks = [
     { name: 'Overview', path: '/' },
+    { name: 'Gallery', path: '/gallery' },
     { name: 'Standings', path: '/standings' },
     { name: 'Schedule', path: '/schedule' },
     { name: 'Circuit Specialist', path: '/compare' },

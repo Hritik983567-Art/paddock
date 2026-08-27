@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070A12" />
+      <stop offset="50%" stop-color="#0F1424" />
+      <stop offset="100%" stop-color="#05070D" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Dark Pit-Wall Background -->
+  <rect width="1200" height="675" fill="url(#bg)" />
+  <rect width="1200" height="675" fill="url(#grid)" />
+  <circle cx="600" cy="337" r="350" fill="url(#glow)" />
+
+  <!-- Outer Telemetry Reticle -->
+  <circle cx="600" cy="337" r="280" fill="none" stroke="rgba(239, 68, 68, 0.3)" stroke-width="1.5" stroke-dasharray="8 8" />
+  <circle cx="600" cy="337" r="200" fill="none" stroke="rgba(52, 228, 200, 0.2)" stroke-width="1" />
+
+  <!-- Track Arc Curve -->
+  <path d="M 250 500 C 400 200, 800 200, 950 500" fill="none" stroke="#0D111A" stroke-width="48" stroke-linecap="round" />
+  <path d="M 250 500 C 400 200, 800 200, 950 500" fill="none" stroke="#ef4444" stroke-width="36" stroke-linecap="round" opacity="0.9" />
+  <path d="M 250 500 C 400 200, 800 200, 950 500" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="16 16" stroke-linecap="round" />
+
+  <!-- Apex Indicator Pin -->
+  <circle cx="600" cy="275" r="16" fill="#ef4444" stroke="#ffffff" stroke-width="4" />
+  <circle cx="600" cy="275" r="28" fill="none" stroke="#ef4444" stroke-width="2" opacity="0.6">
+    <animate attributeName="r" values="20;36;20" dur="2s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Top Header Telemetry -->
+  <rect x="50" y="40" width="300" height="40" rx="6" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(239, 68, 68, 0.5)" stroke-width="1" />
+  <text x="65" y="65" font-family="monospace" font-size="14" font-weight="bold" fill="#ef4444" letter-spacing="2">AERIAL RECONNAISSANCE PHOTO</text>
+
+  <rect x="850" y="40" width="300" height="40" rx="6" fill="rgba(239, 68, 68, 0.9)" />
+  <text x="1000" y="65" font-family="monospace" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Turns 1–2 (T1–T2)</text>
+
+  <!-- Center Titles -->
+  <text x="600" y="120" font-family="monospace" font-size="16" font-weight="bold" fill="#34e4c8" text-anchor="middle" letter-spacing="3">JEDDAH CORNICHE CIRCUIT</text>
+  <text x="600" y="165" font-family="sans-serif" font-size="38" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1">Turn 1 & 2 First Corner</text>
+
+  <!-- Bottom Telemetry HUD Bar -->
+  <rect x="150" y="560" width="900" height="75" rx="10" fill="rgba(11, 15, 25, 0.9)" stroke="rgba(51, 65, 85, 0.8)" stroke-width="1.5" />
+  
+  <text x="250" y="590" font-family="monospace" font-size="11" fill="#64748b" text-anchor="middle">APEX SPEED</text>
+  <text x="250" y="618" font-family="monospace" font-size="22" font-weight="bold" fill="#ef4444" text-anchor="middle">105 km/h</text>
+
+  <text x="480" y="590" font-family="monospace" font-size="11" fill="#64748b" text-anchor="middle">TYPICAL GEAR</text>
+  <text x="480" y="618" font-family="monospace" font-size="22" font-weight="bold" fill="#fbbf24" text-anchor="middle">3rd</text>
+
+  <text x="710" y="590" font-family="monospace" font-size="11" fill="#64748b" text-anchor="middle">LATERAL G-FORCE</text>
+  <text x="710" y="618" font-family="monospace" font-size="22" font-weight="bold" fill="#34e4c8" text-anchor="middle">4.8 G</text>
+
+  <text x="940" y="590" font-family="monospace" font-size="11" fill="#64748b" text-anchor="middle">STATUS</text>
+  <text x="940" y="618" font-family="monospace" font-size="16" font-weight="bold" fill="#10b981" text-anchor="middle">VERIFIED ✓</text>
+</svg>

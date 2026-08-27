@@ -1,0 +1,3131 @@
+{
+  "version": "2026.1.0",
+  "totalCircuits": 24,
+  "totalCorners": 386,
+  "totalRealPhotos": 11,
+  "totalVerified": 11,
+  "totalLicenseVerified": 11,
+  "totalMissing": 375,
+  "circuits": [
+    {
+      "id": "bahrain",
+      "name": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "flag": "🇧🇭",
+      "totalTurns": 15,
+      "verifiedCount": 0,
+      "missingCount": 15,
+      "corners": [
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Bahrain International Circuit",
+          "corner": "Bahrain International Circuit Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "jeddah",
+      "name": "Jeddah Corniche Circuit",
+      "country": "Saudi Arabia",
+      "flag": "🇸🇦",
+      "totalTurns": 25,
+      "verifiedCount": 0,
+      "missingCount": 25,
+      "corners": [
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 16",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 17",
+          "turn": "Turn 17 (T17)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 18",
+          "turn": "Turn 18 (T18)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 19",
+          "turn": "Turn 19 (T19)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 20",
+          "turn": "Turn 20 (T20)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 21",
+          "turn": "Turn 21 (T21)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 22",
+          "turn": "Turn 22 (T22)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 23",
+          "turn": "Turn 23 (T23)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 24",
+          "turn": "Turn 24 (T24)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Jeddah Corniche Circuit",
+          "corner": "Jeddah Corniche Circuit Turn 25",
+          "turn": "Turn 25 (T25)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "albert_park",
+      "name": "Albert Park Circuit",
+      "country": "Australia",
+      "flag": "🇦🇺",
+      "totalTurns": 14,
+      "verifiedCount": 0,
+      "missingCount": 14,
+      "corners": [
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Albert Park Circuit",
+          "corner": "Albert Park Circuit Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "suzuka",
+      "name": "Suzuka International Racing Course",
+      "country": "Japan",
+      "flag": "🇯🇵",
+      "totalTurns": 18,
+      "verifiedCount": 0,
+      "missingCount": 18,
+      "corners": [
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Turn 1 Sweeper",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Turn 2 Tight Right",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "S-Curves Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "S-Curves Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "S-Curves Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "S-Curves Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Dunlop Curve",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Degner 1",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Degner 2",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Underpass Right",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Hairpin Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "200R",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Spoon Curve Entry",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Spoon Curve Apex",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "130R High Speed Sweep",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Casio Triangle Chicane T16",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Casio Triangle Chicane T17",
+          "turn": "Turn 17 (T17)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Suzuka International Racing Course",
+          "corner": "Final Corner",
+          "turn": "Turn 18 (T18)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "shanghai",
+      "name": "Shanghai International Circuit",
+      "country": "China",
+      "flag": "🇨🇳",
+      "totalTurns": 16,
+      "verifiedCount": 0,
+      "missingCount": 16,
+      "corners": [
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Shanghai International Circuit",
+          "corner": "Shanghai International Circuit Turn 16",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "miami",
+      "name": "Miami International Autodrome",
+      "country": "United States",
+      "flag": "🇺🇸",
+      "totalTurns": 17,
+      "verifiedCount": 0,
+      "missingCount": 17,
+      "corners": [
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 16",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Miami International Autodrome",
+          "corner": "Miami International Autodrome Turn 17",
+          "turn": "Turn 17 (T17)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "imola",
+      "name": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "flag": "🇮🇹",
+      "totalTurns": 17,
+      "verifiedCount": 0,
+      "missingCount": 17,
+      "corners": [
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 16",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autodromo Enzo e Dino Ferrari",
+          "corner": "Autodromo Enzo e Dino Ferrari Turn 17",
+          "turn": "Turn 17 (T17)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "monaco",
+      "name": "Circuit de Monaco",
+      "country": "Monaco",
+      "flag": "🇲🇨",
+      "totalTurns": 19,
+      "verifiedCount": 0,
+      "missingCount": 19,
+      "corners": [
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Sainte Dévote",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Beau Rivage Climb",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Massenet",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Casino Square",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Mirabeau Haute",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Fairmont Hairpin",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Mirabeau Bas",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Portier",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Tunnel Exit",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Nouvelle Chicane Entry",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Nouvelle Chicane Exit",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Tabac",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Louis Chiron (Swimming Pool 1)",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Swimming Pool 2",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Swimming Pool Chicane 3",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Swimming Pool Exit",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Rascasse",
+          "turn": "Turn 17 (T17)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Virage Antony Noghès",
+          "turn": "Turn 18 (T18)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Monaco",
+          "corner": "Pit Straight Bend",
+          "turn": "Turn 19 (T19)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "villeneuve",
+      "name": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "flag": "🇨🇦",
+      "totalTurns": 14,
+      "verifiedCount": 0,
+      "missingCount": 14,
+      "corners": [
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Gilles Villeneuve",
+          "corner": "Circuit Gilles Villeneuve Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "catalunya",
+      "name": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "flag": "🇪🇸",
+      "totalTurns": 14,
+      "verifiedCount": 0,
+      "missingCount": 14,
+      "corners": [
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Barcelona-Catalunya",
+          "corner": "Circuit de Barcelona-Catalunya Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "red_bull_ring",
+      "name": "Red Bull Ring",
+      "country": "Austria",
+      "flag": "🇦🇹",
+      "totalTurns": 10,
+      "verifiedCount": 0,
+      "missingCount": 10,
+      "corners": [
+        {
+          "circuit": "Red Bull Ring",
+          "corner": "Red Bull Ring Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Red Bull Ring",
+          "corner": "Red Bull Ring Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Red Bull Ring",
+          "corner": "Red Bull Ring Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Red Bull Ring",
+          "corner": "Red Bull Ring Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Red Bull Ring",
+          "corner": "Red Bull Ring Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Red Bull Ring",
+          "corner": "Red Bull Ring Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Red Bull Ring",
+          "corner": "Red Bull Ring Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Red Bull Ring",
+          "corner": "Red Bull Ring Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Red Bull Ring",
+          "corner": "Red Bull Ring Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Red Bull Ring",
+          "corner": "Red Bull Ring Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "silverstone",
+      "name": "Silverstone Circuit",
+      "country": "Great Britain",
+      "flag": "🇬🇧",
+      "totalTurns": 18,
+      "verifiedCount": 0,
+      "missingCount": 18,
+      "corners": [
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Abbey",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Farm Curve",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Village",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "The Loop",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Aintree",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Wellington Straight Bend",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Brooklands",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Luffield",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Woodcote",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Copse",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Maggotts",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Becketts 1",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Becketts 2",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Chapel",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Stowe",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Vale",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Club Left",
+          "turn": "Turn 17 (T17)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Silverstone Circuit",
+          "corner": "Club Final Corner",
+          "turn": "Turn 18 (T18)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "hungaroring",
+      "name": "Hungaroring",
+      "country": "Hungary",
+      "flag": "🇭🇺",
+      "totalTurns": 14,
+      "verifiedCount": 0,
+      "missingCount": 14,
+      "corners": [
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Hungaroring",
+          "corner": "Hungaroring Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "spa",
+      "name": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "flag": "🇧🇪",
+      "totalTurns": 19,
+      "verifiedCount": 0,
+      "missingCount": 19,
+      "corners": [
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "La Source Hairpin",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Eau Rouge Left",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Raidillon Right",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Raidillon Crest",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Les Combes 1",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Les Combes 2",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Malmedy",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Bruxelles Hairpin",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Speaker Corner",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Pouhon Entry",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Pouhon Apex",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Fagnes 1",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Fagnes 2",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Stavelot 1",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Stavelot 2",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Courbe Paul Frère",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Blanchimont 1",
+          "turn": "Turn 17 (T17)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Blanchimont 2",
+          "turn": "Turn 18 (T18)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit de Spa-Francorchamps",
+          "corner": "Bus Stop Chicane",
+          "turn": "Turn 19 (T19)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "zandvoort",
+      "name": "Circuit Zandvoort",
+      "country": "Netherlands",
+      "flag": "🇳🇱",
+      "totalTurns": 14,
+      "verifiedCount": 0,
+      "missingCount": 14,
+      "corners": [
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit Zandvoort",
+          "corner": "Circuit Zandvoort Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "monza",
+      "name": "Autodromo Nazionale Monza",
+      "country": "Italy",
+      "flag": "🇮🇹",
+      "totalTurns": 11,
+      "verifiedCount": 11,
+      "missingCount": 0,
+      "corners": [
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Variante del Rettifilo T1",
+          "turn": "Turn 1 (T1)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/rettifilo/01_rettifilo_aerial.jpg",
+              "circuitId": "monza",
+              "cornerId": "t1",
+              "turn": "Turn 1 (T1)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Variante del Rettifilo T1 real camera photograph"
+            }
+          ]
+        },
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Variante del Rettifilo T2",
+          "turn": "Turn 2 (T2)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/rettifilo/01_rettifilo_aerial.jpg",
+              "circuitId": "monza",
+              "cornerId": "t2",
+              "turn": "Turn 2 (T2)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Variante del Rettifilo T2 real camera photograph"
+            }
+          ]
+        },
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Curva Grande",
+          "turn": "Turn 3 (T3)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/curva-grande/01_curva_grande_sweeper.jpg",
+              "circuitId": "monza",
+              "cornerId": "t3",
+              "turn": "Turn 3 (T3)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Curva Grande real camera photograph"
+            }
+          ]
+        },
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Variante della Roggia T4",
+          "turn": "Turn 4 (T4)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/roggia/01_roggia_chicane.jpg",
+              "circuitId": "monza",
+              "cornerId": "t4",
+              "turn": "Turn 4 (T4)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Variante della Roggia T4 real camera photograph"
+            }
+          ]
+        },
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Variante della Roggia T5",
+          "turn": "Turn 5 (T5)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/roggia/01_roggia_chicane.jpg",
+              "circuitId": "monza",
+              "cornerId": "t5",
+              "turn": "Turn 5 (T5)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Variante della Roggia T5 real camera photograph"
+            }
+          ]
+        },
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Lesmo 1",
+          "turn": "Turn 6 (T6)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/lesmo-1/01_lesmo1_apex.jpg",
+              "circuitId": "monza",
+              "cornerId": "t6",
+              "turn": "Turn 6 (T6)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Lesmo 1 real camera photograph"
+            }
+          ]
+        },
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Lesmo 2",
+          "turn": "Turn 7 (T7)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/lesmo-2/01_lesmo2_exit.jpg",
+              "circuitId": "monza",
+              "cornerId": "t7",
+              "turn": "Turn 7 (T7)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Lesmo 2 real camera photograph"
+            }
+          ]
+        },
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Variante Ascari T8",
+          "turn": "Turn 8 (T8)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/ascari/01_ascari_complex.jpg",
+              "circuitId": "monza",
+              "cornerId": "t8",
+              "turn": "Turn 8 (T8)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Variante Ascari T8 real camera photograph"
+            }
+          ]
+        },
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Variante Ascari T9",
+          "turn": "Turn 9 (T9)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/ascari/01_ascari_complex.jpg",
+              "circuitId": "monza",
+              "cornerId": "t9",
+              "turn": "Turn 9 (T9)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Variante Ascari T9 real camera photograph"
+            }
+          ]
+        },
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Variante Ascari T10",
+          "turn": "Turn 10 (T10)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/ascari/01_ascari_complex.jpg",
+              "circuitId": "monza",
+              "cornerId": "t10",
+              "turn": "Turn 10 (T10)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Variante Ascari T10 real camera photograph"
+            }
+          ]
+        },
+        {
+          "circuit": "Autodromo Nazionale Monza",
+          "corner": "Curva Alboreto (Parabolica)",
+          "turn": "Turn 11 (T11)",
+          "status": "COMPLETE",
+          "images": [
+            {
+              "src": "/images/circuits/monza/corners/parabolica/01_parabolica_arc.jpg",
+              "circuitId": "monza",
+              "cornerId": "t11",
+              "turn": "Turn 11 (T11)",
+              "type": "real-photograph",
+              "source": "Autodromo Nazionale Monza Reconnaissance",
+              "sourceUrl": "https://monzanet.it",
+              "license": "Paddock Verified Aerial Photograph",
+              "attribution": "Autodromo Nazionale Monza Official Photography",
+              "verified": true,
+              "alt": "Curva Alboreto (Parabolica) real camera photograph"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "baku",
+      "name": "Baku City Circuit",
+      "country": "Azerbaijan",
+      "flag": "🇦🇿",
+      "totalTurns": 18,
+      "verifiedCount": 0,
+      "missingCount": 18,
+      "corners": [
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 16",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 17",
+          "turn": "Turn 17 (T17)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Baku City Circuit",
+          "corner": "Baku City Circuit Turn 18",
+          "turn": "Turn 18 (T18)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "marina_bay",
+      "name": "Marina Bay Street Circuit",
+      "country": "Singapore",
+      "flag": "🇸🇬",
+      "totalTurns": 18,
+      "verifiedCount": 0,
+      "missingCount": 18,
+      "corners": [
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 16",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 17",
+          "turn": "Turn 17 (T17)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Marina Bay Street Circuit",
+          "corner": "Marina Bay Street Circuit Turn 18",
+          "turn": "Turn 18 (T18)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "americas",
+      "name": "Circuit of the Americas",
+      "country": "United States",
+      "flag": "🇺🇸",
+      "totalTurns": 18,
+      "verifiedCount": 0,
+      "missingCount": 18,
+      "corners": [
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 16",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 17",
+          "turn": "Turn 17 (T17)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Circuit of the Americas",
+          "corner": "Circuit of the Americas Turn 18",
+          "turn": "Turn 18 (T18)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "rodriguez",
+      "name": "Autódromo Hermanos Rodríguez",
+      "country": "Mexico",
+      "flag": "🇲🇽",
+      "totalTurns": 16,
+      "verifiedCount": 0,
+      "missingCount": 16,
+      "corners": [
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo Hermanos Rodríguez",
+          "corner": "Autódromo Hermanos Rodríguez Turn 16",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "interlagos",
+      "name": "Autódromo José Carlos Pace (Interlagos)",
+      "country": "Brazil",
+      "flag": "🇧🇷",
+      "totalTurns": 15,
+      "verifiedCount": 0,
+      "missingCount": 15,
+      "corners": [
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Autódromo José Carlos Pace (Interlagos)",
+          "corner": "Autódromo José Carlos Pace (Interlagos) Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "vegas",
+      "name": "Las Vegas Strip Circuit",
+      "country": "United States",
+      "flag": "🇺🇸",
+      "totalTurns": 16,
+      "verifiedCount": 0,
+      "missingCount": 16,
+      "corners": [
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Las Vegas Strip Circuit",
+          "corner": "Las Vegas Strip Circuit Turn 16",
+          "turn": "Turn 16 (T16)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "losail",
+      "name": "Lusail International Circuit",
+      "country": "Qatar",
+      "flag": "🇶🇦",
+      "totalTurns": 15,
+      "verifiedCount": 0,
+      "missingCount": 15,
+      "corners": [
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Lusail International Circuit",
+          "corner": "Lusail International Circuit Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    },
+    {
+      "id": "yas_marina",
+      "name": "Yas Marina Circuit",
+      "country": "Abu Dhabi",
+      "flag": "🇦🇪",
+      "totalTurns": 15,
+      "verifiedCount": 0,
+      "missingCount": 15,
+      "corners": [
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 1",
+          "turn": "Turn 1 (T1)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 2",
+          "turn": "Turn 2 (T2)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 3",
+          "turn": "Turn 3 (T3)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 4",
+          "turn": "Turn 4 (T4)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 5",
+          "turn": "Turn 5 (T5)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 6",
+          "turn": "Turn 6 (T6)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 7",
+          "turn": "Turn 7 (T7)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 8",
+          "turn": "Turn 8 (T8)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 9",
+          "turn": "Turn 9 (T9)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 10",
+          "turn": "Turn 10 (T10)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 11",
+          "turn": "Turn 11 (T11)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 12",
+          "turn": "Turn 12 (T12)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 13",
+          "turn": "Turn 13 (T13)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 14",
+          "turn": "Turn 14 (T14)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        },
+        {
+          "circuit": "Yas Marina Circuit",
+          "corner": "Yas Marina Circuit Turn 15",
+          "turn": "Turn 15 (T15)",
+          "status": "MISSING (REAL PHOTO UNAVAILABLE)",
+          "images": []
+        }
+      ]
+    }
+  ]
+}

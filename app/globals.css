@@ -19,6 +19,16 @@
     --font-mono: var(--font-mono), 'JetBrains Mono', monospace;
 }
 
+/* Ultra-Sharp High-Definition Photo Rendering */
+.sharp-f1-photo {
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: crisp-edges !important;
+  filter: contrast(1.08) brightness(1.03) saturate(1.06) !important;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+
 /* F1 Team Themes - Official Constructor Branding */
 :root[data-theme="ferrari"] {
     --asphalt: #120304;

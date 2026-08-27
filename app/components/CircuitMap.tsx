@@ -2,7 +2,11 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { getTeamColor } from '../utils/api';
-import { getCircuitCornerData, CircuitCorner, CornerImage } from '../lib/circuitCornersData';
+import { getCircuitCorners, CircuitCorner, CornerImage } from '../lib/circuitCornersData';
+import { CornerDirectory } from './CornerDirectory';
+import { CornerImageGallery } from './CornerImageGallery';
+import { CornerDetails } from './CornerDetails';
+import { CircuitInventoryReport } from './CircuitInventoryReport';
 
 interface DriverProgress {
   driverId: string;
@@ -1094,46 +1098,20 @@ export default function CircuitMap({
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
   // Universal Circuit Corner Reconnaissance State
-  const circuitCornerCollection = getCircuitCornerData(cleanId, track.name);
-  const circuitCornerList = Object.values(circuitCornerCollection.corners);
+  const circuitCornerCollection = getCircuitCorners(cleanId, track.name);
+  const circuitCornerList = Object.values(circuitCornerCollection.corners || {});
 
-  const [selectedCorner, setSelectedCorner] = useState<CircuitCorner | null>(null);
-  const [activeCornerImgObj, setActiveCornerImgObj] = useState<CornerImage | null>(null);
-  const [isCornerImgLoading, setIsCornerImgLoading] = useState<boolean>(false);
-
-  const displayCorner = selectedCorner || circuitCornerList[0];
-  const displayCornerImg = activeCornerImgObj || (displayCorner && displayCorner.images ? displayCorner.images[0] : null);
-
-  const handleOpenCorner = (corner: CircuitCorner) => {
-    if (!corner || !corner.images || corner.images.length === 0) return;
-    const initialImg = corner.images[0];
-    setSelectedCorner(corner);
-    setActiveCornerImgObj(initialImg);
-    setIsCornerImgLoading(false);
-  };
-
-  const handleNextCornerImage = () => {
-    const currentCorner = selectedCorner || circuitCornerList[0];
-    if (!currentCorner || !currentCorner.images || currentCorner.images.length === 0) return;
-    setIsCornerImgLoading(false);
-    const currentSrc = displayCornerImg?.src;
-    const realPhotos = currentCorner.images.filter((img) => !img.src.startsWith('data:'));
-    const photoPool = realPhotos.length > 0 ? realPhotos : currentCorner.images;
-    const pool = photoPool.filter((img) => img.src !== currentSrc);
-    const selectedPool = pool.length > 0 ? pool : photoPool;
-    const nextImg = selectedPool[Math.floor(Math.random() * selectedPool.length)];
-    setSelectedCorner(currentCorner);
-    setActiveCornerImgObj(nextImg);
-  };
+  const [selectedCornerId, setSelectedCornerId] = useState<string>('');
 
   useEffect(() => {
-    if (!selectedCorner) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSelectedCorner(null);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedCorner]);
+    if (circuitCornerList.length > 0) {
+      setSelectedCornerId(circuitCornerList[0].id);
+    }
+  }, [cleanId, circuitCornerCollection.circuitId]);
+
+  const activeCorner = (selectedCornerId && circuitCornerCollection.corners[selectedCornerId]) 
+    ? circuitCornerCollection.corners[selectedCornerId] 
+    : (circuitCornerList[0] || null);
 
   useEffect(() => {
     if (!isGalleryOpen) return;
@@ -1282,7 +1260,7 @@ export default function CircuitMap({
         <div 
           className="circuit-3d-stage" 
           style={{ padding: tiltPreset !== 'flat' ? '12px 10px 20px' : '0', cursor: 'pointer', position: 'relative' }}
-          onClick={() => circuitCornerList.length > 0 && handleOpenCorner(circuitCornerList[0])}
+          onClick={() => circuitCornerList.length > 0 && setSelectedCornerId(circuitCornerList[0].id)}
           title="Click anywhere on the map to view corner reconnaissance!"
         >
           <div 
@@ -1326,34 +1304,48 @@ export default function CircuitMap({
               <path d={safeS3} fill="none" stroke="var(--purple)" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.95 }} />
 
               {/* Corner Numbers */}
-              {activeCorners.map((corner, i) => (
-                <g 
-                  key={i} 
-                  transform={`translate(${corner.x}, ${corner.y})`}
-                  style={{ cursor: 'pointer' }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    const cornerNum = parseInt(corner.n, 10);
-                    let cornerKey = 'rettifilo';
-                    if (cornerNum === 1 || cornerNum === 2) cornerKey = 'rettifilo';
-                    else if (cornerNum === 3) cornerKey = 'curvaGrande';
-                    else if (cornerNum === 4 || cornerNum === 5) cornerKey = 'roggia';
-                    else if (cornerNum === 6) cornerKey = 'lesmo1';
-                    else if (cornerNum === 7) cornerKey = 'lesmo2';
-                    else if (cornerNum >= 8 && cornerNum <= 10) cornerKey = 'ascari';
-                    else if (cornerNum === 11) cornerKey = 'parabolica';
-                    else if (corner.n === 'ST' || corner.n === '00') cornerKey = 'straight';
+              {activeCorners.map((corner, i) => {
+                const cornerNum = parseInt(corner.n, 10);
+                let cornerKey = 'rettifilo';
+                if (cornerNum === 1 || cornerNum === 2) cornerKey = 'rettifilo';
+                else if (cornerNum === 3) cornerKey = 'curvaGrande';
+                else if (cornerNum === 4 || cornerNum === 5) cornerKey = 'roggia';
+                else if (cornerNum === 6) cornerKey = 'lesmo1';
+                else if (cornerNum === 7) cornerKey = 'lesmo2';
+                else if (cornerNum >= 8 && cornerNum <= 10) cornerKey = 'ascari';
+                else if (cornerNum === 11) cornerKey = 'parabolica';
 
-                    const cornerObj = circuitCornerCollection.corners[cornerKey] || circuitCornerList[i] || circuitCornerList[0];
-                    if (cornerObj) handleOpenCorner(cornerObj);
-                  }}
-                >
-                  <rect x="-10" y="-10" width="20" height="20" rx="3" fill="#0F121C" stroke={cleanId === 'monza' ? '#E8302A' : 'var(--line)'} strokeWidth="1.5" />
-                  <text textAnchor="middle" dominantBaseline="middle" fill={cleanId === 'monza' ? '#FFFFFF' : 'var(--dim)'} fontSize="9" fontWeight="bold" fontFamily="var(--font-mono)">
-                    {corner.n}
-                  </text>
-                </g>
-              ))}
+                const cornerObj = circuitCornerCollection.corners[cornerKey] || circuitCornerList[i] || circuitCornerList[0];
+                const isSelected = activeCorner && cornerObj && activeCorner.id === cornerObj.id;
+
+                return (
+                  <g 
+                    key={i} 
+                    transform={`translate(${corner.x}, ${corner.y})`}
+                    style={{ cursor: 'pointer' }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (cornerObj) {
+                        setSelectedCornerId(cornerObj.id);
+                      }
+                    }}
+                  >
+                    <rect 
+                      x="-11" y="-11" width="22" height="22" rx="4" 
+                      fill={isSelected ? '#E8302A' : '#0F121C'} 
+                      stroke={isSelected ? '#FFFFFF' : '#34E4C8'} 
+                      strokeWidth={isSelected ? '2.5' : '1.5'} 
+                    />
+                    <text 
+                      textAnchor="middle" dominantBaseline="middle" 
+                      fill={isSelected ? '#FFFFFF' : 'var(--paper)'} 
+                      fontSize="9" fontWeight="bold" fontFamily="var(--font-mono)"
+                    >
+                      {corner.n}
+                    </text>
+                  </g>
+                );
+              })}
 
               {Object.entries(driverPoints).map(([driverId, pt]) => {
                 const isHovered = activeDriverCode === pt.code;
@@ -1420,45 +1412,142 @@ export default function CircuitMap({
 
       {showStats && (
         <div 
-          className="stat-grid" 
           style={{ 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-            gap: '12px'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+            gap: '12px',
+            margin: '16px 0',
+            position: 'relative',
+            zIndex: 10
           }}
         >
-          <div className="stat-box" style={{ borderLeft: '3px solid var(--red)' }}>
-            <div className="k">Circuit Length</div>
-            <div className="v" style={{ fontSize: '19px', fontFamily: 'var(--font-display)', color: 'var(--paper)' }}>
+          <div 
+            style={{ 
+              backgroundColor: '#050810',
+              background: '#050810',
+              borderLeft: '4px solid #EF4444', 
+              borderTop: '1.5px solid #334155', 
+              borderRight: '1.5px solid #334155', 
+              borderBottom: '1.5px solid #334155', 
+              borderRadius: '10px', 
+              padding: '14px 16px',
+              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.98)',
+              opacity: 1
+            }}
+          >
+            <div style={{ color: '#38BDF8', fontFamily: 'var(--font-mono)', fontSize: '11.5px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+              Circuit Length
+            </div>
+            <div style={{ color: '#FFFFFF', fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 900, marginTop: '4px' }}>
               {track.length}
             </div>
           </div>
-          <div className="stat-box" style={{ borderLeft: '3px solid var(--cyan)' }}>
-            <div className="k">Race Distance</div>
-            <div className="v" style={{ fontSize: '19px', fontFamily: 'var(--font-display)', color: 'var(--paper)' }}>
+
+          <div 
+            style={{ 
+              backgroundColor: '#050810',
+              background: '#050810',
+              borderLeft: '4px solid #38BDF8', 
+              borderTop: '1.5px solid #334155', 
+              borderRight: '1.5px solid #334155', 
+              borderBottom: '1.5px solid #334155', 
+              borderRadius: '10px', 
+              padding: '14px 16px',
+              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.98)',
+              opacity: 1
+            }}
+          >
+            <div style={{ color: '#38BDF8', fontFamily: 'var(--font-mono)', fontSize: '11.5px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+              Race Distance
+            </div>
+            <div style={{ color: '#FFFFFF', fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 900, marginTop: '4px' }}>
               {track.distance}
             </div>
           </div>
-          <div className="stat-box" style={{ borderLeft: '3px solid var(--amber)' }}>
-            <div className="k">Number of Laps</div>
-            <div className="v" style={{ fontSize: '19px', fontFamily: 'var(--font-display)', color: 'var(--paper)' }}>
-              {track.laps}
+
+          <div 
+            style={{ 
+              backgroundColor: '#050810',
+              background: '#050810',
+              borderLeft: '4px solid #F59E0B', 
+              borderTop: '1.5px solid #334155', 
+              borderRight: '1.5px solid #334155', 
+              borderBottom: '1.5px solid #334155', 
+              borderRadius: '10px', 
+              padding: '14px 16px',
+              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.98)',
+              opacity: 1
+            }}
+          >
+            <div style={{ color: '#38BDF8', fontFamily: 'var(--font-mono)', fontSize: '11.5px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+              Number of Laps
+            </div>
+            <div style={{ color: '#FFFFFF', fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 900, marginTop: '4px' }}>
+              {track.laps} Laps
             </div>
           </div>
-          <div className="stat-box" style={{ borderLeft: '3px solid var(--purple)' }}>
-            <div className="k">Lap Record</div>
-            <div className="v" style={{ fontSize: '15px', color: 'var(--paper)' }}>
+
+          <div 
+            style={{ 
+              backgroundColor: '#050810',
+              background: '#050810',
+              borderLeft: '4px solid #A855F7', 
+              borderTop: '1.5px solid #334155', 
+              borderRight: '1.5px solid #334155', 
+              borderBottom: '1.5px solid #334155', 
+              borderRadius: '10px', 
+              padding: '14px 16px',
+              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.98)',
+              opacity: 1
+            }}
+          >
+            <div style={{ color: '#38BDF8', fontFamily: 'var(--font-mono)', fontSize: '11.5px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+              Lap Record
+            </div>
+            <div style={{ color: '#00F0FF', fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 900, marginTop: '4px' }}>
               {track.record.split(' ')[0]}
             </div>
-            <div className="footnote" style={{ fontSize: '9px', marginTop: '2px' }}>
+            <div style={{ color: '#FFCC00', fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: 800, marginTop: '3px' }}>
               {track.record.split(' ').slice(1).join(' ')}
             </div>
           </div>
-          <div className="stat-box" style={{ borderLeft: '3px solid var(--green)' }}>
-            <div className="k">Defending Champion</div>
-            <div className="v" style={{ fontSize: '17px', fontFamily: 'var(--font-display)', color: 'var(--paper)' }}>
+
+          <div 
+            style={{ 
+              backgroundColor: '#050810',
+              background: '#050810',
+              borderLeft: '4px solid #00FF88', 
+              borderTop: '1.5px solid #334155', 
+              borderRight: '1.5px solid #334155', 
+              borderBottom: '1.5px solid #334155', 
+              borderRadius: '10px', 
+              padding: '14px 16px',
+              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.98)',
+              opacity: 1
+            }}
+          >
+            <div style={{ color: '#38BDF8', fontFamily: 'var(--font-mono)', fontSize: '11.5px', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+              Defending Champion
+            </div>
+            <div style={{ color: '#00FF88', fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 900, marginTop: '4px' }}>
               {track.champion}
             </div>
           </div>
+        </div>
+      )}
+
+      {/* CORNER DIRECTORY TAB BAR */}
+      <CornerDirectory
+        corners={circuitCornerCollection.corners}
+        selectedCornerId={selectedCornerId || (circuitCornerList[0]?.id || '')}
+        onSelectCorner={(id) => setSelectedCornerId(id)}
+      />
+
+      {/* RECONNAISSANCE CORNER GALLERY & DETAILS PANEL */}
+      {activeCorner && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-2">
+          <CornerImageGallery corner={activeCorner} />
+          <CornerDetails corner={activeCorner} circuitName={track.name} />
         </div>
       )}
 
@@ -1593,132 +1682,6 @@ export default function CircuitMap({
         </div>
       )}
 
-      {/* UNIVERSAL CIRCUIT CORNER RECONNAISSANCE MODAL */}
-      {selectedCorner && activeCornerImgObj && (
-        <div 
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(5, 7, 12, 0.92)',
-            backdropFilter: 'blur(12px)',
-            zIndex: 999999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '16px'
-          }}
-          onClick={() => setSelectedCorner(null)}
-        >
-          <div 
-            style={{
-              background: '#0D1017',
-              border: '1px solid #262C38',
-              borderRadius: '12px',
-              maxWidth: '580px',
-              width: '100%',
-              maxHeight: '88vh',
-              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(52, 228, 200, 0.25)',
-              overflowY: 'auto',
-              position: 'relative'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Corner Modal Header */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 18px', borderBottom: '1px solid #262C38', background: '#121620' }}>
-              <div>
-                <div style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: '#34E4C8', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>
-                  {track.name.toUpperCase()} &bull; {selectedCorner.turns}
-                </div>
-                <h3 style={{ margin: 0, fontSize: '18px', fontFamily: 'var(--font-display)', color: '#FFFFFF', fontWeight: '800', textTransform: 'uppercase' }}>
-                  {selectedCorner.name}
-                </h3>
-              </div>
-              <button 
-                onClick={() => setSelectedCorner(null)}
-                style={{ background: '#1A202C', border: '1px solid #262C38', color: '#FFFFFF', width: '32px', height: '32px', borderRadius: '50%', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                title="Close Reconnaissance Modal (Esc)"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* Corner Image Container */}
-            <div style={{ position: 'relative', height: 'min(300px, 42vh)', background: '#06080F', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-              <img 
-                key={activeCornerImgObj.src}
-                src={activeCornerImgObj.src} 
-                alt={activeCornerImgObj.alt || `${track.name} ${selectedCorner.name} F1 circuit corner`}
-                referrerPolicy="no-referrer"
-                crossOrigin={activeCornerImgObj.src.startsWith('http') ? 'anonymous' : undefined}
-                style={{ width: '100%', height: '100%', objectFit: activeCornerImgObj.src.startsWith('data:') ? 'contain' : 'cover' }}
-              />
-            </div>
-
-            {/* Description, Licensing & Action Controls */}
-            <div style={{ padding: '18px 20px', background: '#121620', borderTop: '1px solid #262C38' }}>
-              <p style={{ margin: '0 0 14px 0', color: '#E2E8F0', fontSize: '13.5px', fontFamily: 'var(--font-sans)', lineHeight: '1.6', whiteSpace: 'pre-line' }}>
-                {selectedCorner.description}
-              </p>
-
-              {/* Source & Licensing Line */}
-              <div style={{ fontSize: '10.5px', fontFamily: 'var(--font-mono)', color: 'var(--dim)', marginBottom: '16px', background: '#090C14', padding: '6px 10px', borderRadius: '4px', border: '1px solid #1E2638' }}>
-                <span>SOURCE: <strong style={{ color: '#E2E8F0' }}>{activeCornerImgObj.source}</strong></span>
-                <span style={{ margin: '0 8px' }}>&bull;</span>
-                <span>LICENSE: <strong style={{ color: '#34E4C8' }}>{activeCornerImgObj.license}</strong></span>
-                {activeCornerImgObj.attribution && (
-                  <>
-                    <span style={{ margin: '0 8px' }}>&bull;</span>
-                    <span>BY: <strong>{activeCornerImgObj.attribution}</strong></span>
-                  </>
-                )}
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-                <button
-                  onClick={handleNextCornerImage}
-                  style={{
-                    background: '#34E4C8',
-                    color: '#0D1017',
-                    border: 'none',
-                    borderRadius: '6px',
-                    padding: '10px 20px',
-                    fontSize: '12.5px',
-                    fontFamily: 'var(--font-mono)',
-                    fontWeight: '800',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    boxShadow: '0 4px 14px rgba(52, 228, 200, 0.4)'
-                  }}
-                >
-                  ↻ NEXT IMAGE
-                </button>
-
-                <button
-                  onClick={() => setSelectedCorner(null)}
-                  style={{
-                    background: '#1A202C',
-                    color: '#CBD5E1',
-                    border: '1px solid #262C38',
-                    borderRadius: '6px',
-                    padding: '10px 18px',
-                    fontSize: '12px',
-                    fontFamily: 'var(--font-mono)',
-                    fontWeight: '700',
-                    cursor: 'pointer'
-                  }}
-                >
-                  CLOSE ×
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
