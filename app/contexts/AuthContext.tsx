@@ -70,7 +70,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Real-time listener for Supabase Auth state changes
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (session?.user) {
+      if (event === 'SIGNED_OUT' || !session) {
+        setUser(null);
+        setIsAuthenticated(false);
+      } else if (session?.user) {
         const u = session.user;
         const email = u.email || '';
         const name = u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
@@ -153,10 +156,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async () => {
     try {
+      // 1. Sign out of Supabase Auth to invalidate session and clear local storage auth tokens
+      await supabase.auth.signOut({ scope: 'global' });
+    } catch {
+      // ignore
+    }
+
+    try {
+      // 2. Clear server HttpOnly cookie
       await fetch('/api/auth/logout', { method: 'POST' });
     } catch {
       // ignore
     }
+
+    // 3. Clear browser storage to prevent auto-login on refresh
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.clear();
+        sessionStorage.clear();
+      } catch {
+        // ignore
+      }
+    }
+
     setUser(null);
     setIsAuthenticated(false);
   };
