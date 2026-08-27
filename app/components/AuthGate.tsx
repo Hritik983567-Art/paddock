@@ -172,11 +172,13 @@ export default function AuthGate() {
       overflowY: 'auto'
     }}>
       <div className="login-wallpaper-wrapper">
+        <div className="f1-ambient-flow-glow"></div>
         <div className="f1-entry-speed-streaks">
           <span className="streak streak-1"></span>
           <span className="streak streak-2"></span>
           <span className="streak streak-3"></span>
           <span className="streak streak-4"></span>
+          <span className="streak streak-5"></span>
         </div>
         <img 
           src="/images/f1-login-car.png" 
