@@ -33,31 +33,39 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function checkSession() {
       try {
+        // First check Supabase session for email confirmation state
+        const { data: sbData } = await supabase.auth.getSession();
+        if (sbData?.session?.user && !sbData.session.user.email_confirmed_at && sbData.session.user.app_metadata?.provider === 'email') {
+          // REVOKE UNCONFIRMED EMAIL SESSIONS IMMEDIATELY
+          await supabase.auth.signOut({ scope: 'global' });
+          await fetch('/api/auth/logout', { method: 'POST' });
+          setUser(null);
+          setIsAuthenticated(false);
+          setIsLoading(false);
+          return;
+        }
+
         const res = await fetch('/api/auth/verify');
         const data = await res.json();
         if (res.ok && data.authenticated && data.user) {
           setUser(data.user);
           setIsAuthenticated(true);
+        } else if (sbData?.session?.user && (sbData.session.user.email_confirmed_at || sbData.session.user.app_metadata?.provider !== 'email')) {
+          const u = sbData.session.user;
+          const email = u.email || '';
+          const name = u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
+          setUser({
+            username: email,
+            name: name,
+            email: email,
+            role: 'Paddock Verified Engineer',
+            team: 'Scuderia Ferrari / Paddock Telemetry',
+            picture: u.user_metadata?.avatar_url || u.user_metadata?.picture
+          });
+          setIsAuthenticated(true);
         } else {
-          // Check Supabase session fallback
-          const { data: sbData } = await supabase.auth.getSession();
-          if (sbData?.session?.user) {
-            const u = sbData.session.user;
-            const email = u.email || '';
-            const name = u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
-            setUser({
-              username: email,
-              name: name,
-              email: email,
-              role: 'Google OAuth Verified Engineer',
-              team: 'Scuderia Ferrari / Paddock Telemetry',
-              picture: u.user_metadata?.avatar_url || u.user_metadata?.picture
-            });
-            setIsAuthenticated(true);
-          } else {
-            setUser(null);
-            setIsAuthenticated(false);
-          }
+          setUser(null);
+          setIsAuthenticated(false);
         }
       } catch {
         setIsAuthenticated(false);
@@ -74,6 +82,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(null);
         setIsAuthenticated(false);
       } else if (session?.user) {
+        if (!session.user.email_confirmed_at && session.user.app_metadata?.provider === 'email') {
+          // REJECT UNCONFIRMED EMAIL USER
+          setUser(null);
+          setIsAuthenticated(false);
+          return;
+        }
         const u = session.user;
         const email = u.email || '';
         const name = u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
@@ -81,7 +95,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           username: email,
           name: name,
           email: email,
-          role: 'Google OAuth Verified Engineer',
+          role: 'Paddock Verified Engineer',
           team: 'Scuderia Ferrari / Paddock Telemetry',
           picture: u.user_metadata?.avatar_url || u.user_metadata?.picture
         });
