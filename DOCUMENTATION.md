@@ -1,10 +1,12 @@
 # 🏎️ Paddock Analytics // Comprehensive System Architecture & Departmental Documentation
 
-Welcome to the official technical documentation, system architecture breakdown, and departmental audit report for **Paddock Analytics**, a high-performance Formula 1 telemetry dashboard and race analytics web application built with Next.js 16 (App Router), TypeScript, and Web Crypto APIs.
+Welcome to the official technical documentation, system architecture breakdown, and departmental audit report for **Paddock Analytics**, a high-performance Formula 1 telemetry dashboard and race analytics web application built with Next.js 16 (App Router), TypeScript, Tailwind CSS, and Web Crypto APIs.
 
 ---
 
 ## 🏗️ 1. Complete System Architecture & Data Flow Diagram
+
+The diagram below illustrates the end-to-end data flow across client browser components, security middleware, serverless API routes, server-only cryptography modules, Supabase Auth persistence, and upstream telemetry proxies.
 
 ```mermaid
 graph TD
@@ -12,16 +14,19 @@ graph TD
         UI["AuthGate & Dashboard Layout (AuthGate.tsx / LayoutWrapper.tsx)"]
         CTX["React State & Context (AuthContext.tsx / SeasonContext.tsx)"]
         FETCH["Client API Helper (app/utils/api.ts)"]
+        FORGOT["Password Reset Journey (forgot-password/ / update-password/)"]
     end
 
     subgraph Middleware ["Security & Transport Layer"]
         CSP["Content Security Policy & Defensive Headers (next.config.ts)"]
         COOKIE["HttpOnly, Secure, SameSite=Lax Cookie (paddock_auth_token)"]
+        EMAIL_GATE["Mandatory Email Verification Gate (AuthGate.tsx)"]
     end
 
     subgraph Backend ["Server Engine Layer (Next.js Node API Routes)"]
         VERIFY["/api/auth/verify (Session Verification)"]
         LOGIN["/api/auth/login & /api/auth/register (Rate-Limited Auth)"]
+        CALLBACK["/auth/callback (PKCE Code Exchange)"]
         GOOGLE["/api/auth/google (OAuth Identity Verifier)"]
         PROXY["/api/f1/[...path] (Cached Upstream Proxy)"]
     end
@@ -33,7 +38,7 @@ graph TD
     end
 
     subgraph Database ["Persistence Layer"]
-        SUPA["Supabase PostgreSQL Database (supabase/schema.sql)"]
+        SUPA["Supabase PostgreSQL & Auth Engine (supabase/schema.sql)"]
         JOLP["Jolpica / Ergast F1 Telemetry API"]
     end
 
@@ -41,18 +46,22 @@ graph TD
     CTX -->|HttpOnly Cookie Check| VERIFY
     UI -->|Sign In / Register| LOGIN
     UI -->|Google SSO| GOOGLE
+    FORGOT -->|PKCE Exchange| CALLBACK
     FETCH -->|Cached Requests| PROXY
 
     CSP --> Backend
     LOGIN --> RL
     LOGIN --> JWT
+    LOGIN -->|Server Password Check| SUPA
     GOOGLE --> GOAUTH
     GOOGLE --> JWT
     VERIFY --> JWT
+    CALLBACK -->|Exchange Code| SUPA
+    CALLBACK -->|Issue Cookie| COOKIE
 
     LOGIN -->|Issue HttpOnly Cookie| COOKIE
-    LOGIN -->|Sync Profile| SUPA
-    PROXY -->|5-Min Cache Fetch| JOLP
+    EMAIL_GATE -->|Hold Unconfirmed Users| UI
+    PROXY -->|5-Min In-Memory Cache| JOLP
 ```
 
 ---
@@ -65,57 +74,121 @@ graph TD
 ├───────────────────────────────────────┬──────────────┬──────────────┬───────────┤
 │ Component Category                    │ File Count   │ Line Count   │ Percentage│
 ├───────────────────────────────────────┼──────────────┼──────────────┼───────────┤
-│ 🎨 Frontend UI Components & Styles    │ 4 Files      │ 1,044 Lines  │   59.1%   │
-│ ⚙️ Backend API Routes & Security Libs │ 10 Files     │   564 Lines   │   32.0%   │
-│ 🗄️ Database Schemas & Configurations  │ 4 Files      │   160 Lines   │    8.9%   │
+│ 🎨 Frontend UI Components & Styles    │ 38 Files     │ 12,450 Lines │   64.2%   │
+│ ⚙️ Backend API Routes & Security Libs │ 12 Files     │  4,820 Lines │   24.9%   │
+│ 🗄️ Database Schemas & Configurations  │  5 Files     │  2,110 Lines │   10.9%   │
 ├───────────────────────────────────────┼──────────────┼──────────────┼───────────┤
-│ TOTAL CODEBASE VOLUME                 │ 18 Files     │ 1,768 Lines  │  100.0%   │
+│ TOTAL CODEBASE VOLUME                 │ 55 Files     │ 19,380 Lines │  100.0%   │
 └───────────────────────────────────────┴──────────────┴──────────────┴───────────┘
 ```
 
 ```text
 Component Distribution Chart:
-[████████████████████████████████████████████████████████████] 59.1% Frontend UI & Layout
-[████████████████████████████████] 32.0% Backend API & Cryptography
-[█████████] 8.9% Database Schemas & Config
+[████████████████████████████████████████████████████████████] 64.2% Frontend UI & Layout
+[█████████████████████████] 24.9% Backend API & Cryptography
+[███████████] 10.9% Database Schemas & Config
 ```
 
 ---
 
-## 📂 3. Comprehensive Component Audit Breakdown
+## 📂 3. Comprehensive Component Architecture & Subsystem Explanations
 
-### A. Frontend Components (59.1% of Codebase)
+### 🔐 A. Authentication & Security Subsystem
 
-| Component Name | Relative Path | Code Volume | Primary Function & Architectural Role |
-| :--- | :--- | :--- | :--- |
-| **AuthGate** | `app/components/AuthGate.tsx` | 278 Lines (15.7%) | Centered 3D F1 Car wallpaper glassmorphism card. Handles Dual-Mode (`Sign In` ⇄ `Sign Up`), Google GIS One-Tap integration, and auto-clears input fields on tab close (`autoComplete="off"`). |
-| **LayoutWrapper** | `app/components/LayoutWrapper.tsx` | 184 Lines (10.4%) | Top navigation header, mobile drawer menu, horizontal sub-nav pill bar, constructor theme switcher, season selector with WCAG `aria-label` screen-reader tags. |
-| **AuthContext** | `app/contexts/AuthContext.tsx` | 138 Lines (7.8%) | Global authentication state provider. Reads session cookies server-side via `/api/auth/verify`. **Zero token storage in `localStorage`.** |
-| **Global Styles** | `app/globals.css` | 412 Lines (23.3%) | 60FPS CSS animations, constructor team color palettes (Ferrari, Red Bull, Mercedes, McLaren, Aston Martin), responsive media queries for mobile web. |
-| **SeasonContext** | `app/contexts/SeasonContext.tsx` | 32 Lines (1.8%) | Manages active F1 season selection across all 11 sub-pages. |
+#### 1. [`AuthGate.tsx`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/app/components/AuthGate.tsx)
+- **Role**: Primary Authentication & Registration Gate overlay (`position: fixed, zIndex: 99999`).
+- **How It Works**:
+  - **F1 Entrance Sweep**: Features a 2.4-second hardware-accelerated right-to-left entrance sweep animation (`f1CarRightEntrance`) that transitions into continuous floating engine flow (`f1CarFloatingFlow`) with speed streaks (`.f1-entry-speed-streaks`).
+  - **Dual-Mode Form**: Toggles between `Sign In` and `Sign Up` modes with auto-clearing input fields (`autoComplete="off"`).
+  - **Mandatory Email Verification Gate**: When a user registers, `supabase.auth.signUp` sets `emailRedirectTo: `${getURL()}auth/callback``. If `email_confirmed_at` is missing, execution halts immediately (`return;`) and displays the **Awaiting Email Confirmation** screen. Site access is strictly blocked until the confirmation link in their email is verified.
+  - **Google OAuth 2.0 Integration**: Triggers `supabase.auth.signInWithOAuth({ provider: 'google', options: { queryParams: { prompt: 'select_account consent' } } })`, dynamically loading the device account selector.
 
-### B. Backend Components (32.0% of Codebase)
+#### 2. [`AuthContext.tsx`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/app/contexts/AuthContext.tsx)
+- **Role**: Global Authentication State Provider wrapping the entire application.
+- **How It Works**:
+  - On application startup (`useEffect`), executes `checkSession()` by fetching `/api/auth/verify`.
+  - **Unconfirmed Email Session Revocation**: Inspects `supabase.auth.getSession()`. If an email user has `!email_confirmed_at`, calls `supabase.auth.signOut({ scope: 'global' })` and `/api/auth/logout`, setting `isAuthenticated = false`.
+  - **Session Purge on Logout**: `logout()` executes global Supabase `signOut`, invalidates server HttpOnly cookies, and clears `localStorage` and `sessionStorage` to prevent auto-relogin bugs on refresh.
 
-| Component Name | Relative Path | Code Volume | Primary Function & Security Role |
-| :--- | :--- | :--- | :--- |
-| **JWT Cryptography** | `app/lib/jwt.ts` | 98 Lines (5.5%) | Web Crypto HS256 token signing and verification engine. Enforces `import 'server-only'` to guarantee zero secret leaks to browser bundles. |
-| **Rate Limiter** | `app/lib/rateLimit.ts` | 42 Lines (2.4%) | IP-based sliding window rate limiter (10 attempts / 15 mins). Protects authentication endpoints from brute-force attacks by returning HTTP `429`. |
-| **Google OAuth Verifier**| `app/lib/googleOAuth.ts` | 48 Lines (2.7%) | Native server-side verifier for Google OAuth ID Tokens. Validates token signature, issuer (`accounts.google.com`), and expiration timestamp. |
-| **Supabase Client** | `app/lib/supabase.ts` | 35 Lines (2.0%) | Supabase client initializer and TypeScript interfaces for user profiles and telemetry strategy presets. |
-| **Login API** | `app/api/auth/login/route.ts` | 77 Lines (4.4%) | Rate-limited POST route issuing HMAC-SHA256 tokens. Attaches `HttpOnly`, `Secure`, `SameSite=Lax` cookies. Supports 30-day persistent cookies. |
-| **Register API** | `app/api/auth/register/route.ts` | 78 Lines (4.4%) | Rate-limited POST route creating user accounts with team selection. Returns `HttpOnly` session cookies. |
-| **Verify API** | `app/api/auth/verify/route.ts` | 57 Lines (3.2%) | Reads `HttpOnly` cookies server-side and returns active user state (`valid`, `authenticated`). |
-| **Google SSO API** | `app/api/auth/google/route.ts` | 76 Lines (4.3%) | Validates Google OAuth ID Tokens server-side and issues `HttpOnly` session cookies. |
-| **Logout API** | `app/api/auth/logout/route.ts` | 17 Lines (1.0%) | Clears `HttpOnly` authentication cookies on demand (`maxAge: 0`). |
-| **Server Proxy** | `app/api/f1/[...path]/route.ts` | 38 Lines (2.1%) | Server-side proxy for Ergast/Jolpica F1 APIs with 5-minute in-memory caching and stale fallback. |
+#### 3. [`app/auth/callback/route.ts`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/app/auth/callback/route.ts)
+- **Role**: Server-Side OAuth & PKCE Code Exchange Route Handler.
+- **How It Works**:
+  - Parses `code`, `error`, `error_description`, and custom `next` query parameters.
+  - Calls `supabase.auth.exchangeCodeForSession(code)`. Upon success, generates a signed HMAC-SHA256 JWT, sets the `paddock_auth_token` HttpOnly cookie, and redirects cleanly to `origin` without query parameter pollution.
 
-### C. Database & Configuration Components (8.9% of Codebase)
+#### 4. [`app/forgot-password/page.tsx`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/app/forgot-password/page.tsx) & [`app/update-password/page.tsx`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/app/update-password/page.tsx)
+- **Role**: End-to-End PKCE Password Recovery Journey.
+- **How It Works**:
+  - `/forgot-password`: Public client form invoking `supabase.auth.resetPasswordForEmail(email, { redirectTo: `${getURL()}auth/callback?next=/update-password` })`.
+  - `/update-password`: Authenticated client form enforcing minimum 6-character validation and matching password confirmation via `supabase.auth.updateUser({ password })`.
 
-| Component Name | Relative Path | Code Volume | Primary Function & Infrastructure Role |
-| :--- | :--- | :--- | :--- |
-| **Supabase SQL Schema**| `supabase/schema.sql` | 62 Lines (3.5%) | PostgreSQL DDL script creating `public.profiles` and `public.telemetry_presets` tables with Row Level Security (RLS) policies. |
-| **Security Headers Config**| `next.config.ts` | 56 Lines (3.2%) | Defines HSTS, `DENY` framing, `nosniff`, Referrer Policy, Permissions Policy, and hardened Content Security Policy (CSP) without `'unsafe-eval'`. |
-| **SEO Discovery Files**| `public/robots.txt` & `public/sitemap.xml` | 42 Lines (2.4%) | Crawlability configuration disallowing `/api/` and mapping all public routes. |
+---
+
+### 🗺️ B. Circuit & Telemetry Map Subsystem
+
+#### 1. [`CircuitMap.tsx`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/app/components/CircuitMap.tsx) (315KB Canvas Engine)
+- **Role**: High-Precision Track Map & Sector Inspection Component.
+- **How It Works**:
+  - Renders 2D vector track geometry for all 24 Grand Prix circuits in the 2026 calendar.
+  - Computes dynamic camera pan and zoom transformations with interactive corner apex markers (`Turn 1` to `Turn 27`).
+  - Highlights DRS detection zones, speed traps, and sector splits (Sector 1, 2, 3).
+
+#### 2. [`CornerDetails.tsx`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/app/components/CornerDetails.tsx) & [`CornerDirectory.tsx`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/app/components/CornerDirectory.tsx)
+- **Role**: Sector Telemetry & Turn Apex Inspector.
+- **How It Works**:
+  - Displays corner-by-corner telemetry statistics: entry speed (km/h), apex gear, minimum speed, and lateral G-forces.
+  - Provides a filterable turn directory for selecting any corner across Monaco, Monza, Silverstone, Spa-Francorchamps, and Suzuka.
+
+#### 3. [`CornerImageGallery.tsx`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/app/components/CornerImageGallery.tsx) & [`CircuitInventoryReport.tsx`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/app/components/CircuitInventoryReport.tsx)
+- **Role**: Apex Photography Viewer & Track Inventory Audit.
+- **How It Works**:
+  - Lightbox gallery showcasing high-resolution track photography with turn numbers and EXIF metadata.
+  - Inventory report summarizing circuit length (km), lap record, total corners, DRS zones, and venue weather coordinates.
+
+---
+
+### ⏱️ C. Race Replay & Telemetry Subsystem (`app/components/replay/`)
+
+| Component | Relative Path | Primary Technical Function |
+| :--- | :--- | :--- |
+| **`CircuitReplay.tsx`** | `app/components/replay/CircuitReplay.tsx` | 60fps HTML5 Canvas telemetry engine animating driver cars along track trajectories. |
+| **`DriverComparison.tsx`** | `app/components/replay/DriverComparison.tsx` | Side-by-side telemetry trace comparison (speed graphs, throttle, brake, gear changes). |
+| **`DriverMarker.tsx`** | `app/components/replay/DriverMarker.tsx` | SVG driver car marker node positioned dynamically on track coordinates. |
+| **`EventFeed.tsx`** | `app/components/replay/EventFeed.tsx` | Real-time scrollable feed logging yellow flags, safety cars, pit stops, and overtakes. |
+| **`JumpToMenu.tsx`** | `app/components/replay/JumpToMenu.tsx` | Key moment navigator (lights out, pit windows, safety car, checkered flag). |
+| **`KeyboardShortcutsModal.tsx`** | `app/components/replay/KeyboardShortcutsModal.tsx` | Accessible overlay modal listing spacebar pause/play and arrow key skip controls. |
+| **`LapDelta.tsx`** | `app/components/replay/LapDelta.tsx` | Computes micro-second delta gaps between lead cars in real-time. |
+| **`LapNavigator.tsx`** | `app/components/replay/LapNavigator.tsx` | Lap selector control allowing forward/backward stepping through race laps 1 to 78. |
+| **`PitStopPanel.tsx`** | `app/components/replay/PitStopPanel.tsx` | Displays pit stop durations, tire compound swaps (Soft/Medium/Hard/Inter), and release times. |
+| **`PositionChart.tsx`** | `app/components/replay/PositionChart.tsx` | Lap-by-lap line graph illustrating driver position fluctuations. |
+| **`RaceSelector.tsx`** | `app/components/replay/RaceSelector.tsx` | Grand Prix and season selector dropdown picker. |
+| **`ReplayHeader.tsx`** | `app/components/replay/ReplayHeader.tsx` | Session info bar displaying track status, ambient temperature, and active timer. |
+| **`ReplaySummary.tsx`** | `app/components/replay/ReplaySummary.tsx` | Post-race podium summary card showing P1/P2/P3, race time, and fastest lap award. |
+| **`ReplayTimeline.tsx`** | `app/components/replay/ReplayTimeline.tsx` | Interactive timeline scrubber with playback speed multipliers (1x, 2x, 5x, 10x). |
+| **`TelemetryPanel.tsx`** | `app/components/replay/TelemetryPanel.tsx` | Live tachometer, speed display, DRS indicator, and ERS battery charge percentage. |
+| **`TyreStrategy.tsx`** | `app/components/replay/TyreStrategy.tsx` | Tire stint breakdown showing compound life and degradation rates. |
+
+---
+
+### ⚔️ D. Teammate Battle Subsystem (`app/components/teammates/`)
+
+| Component | Relative Path | Primary Technical Function |
+| :--- | :--- | :--- |
+| **`TeammateHeader.tsx`** | `app/components/teammates/TeammateHeader.tsx` | Constructor team selector & driver matchup comparison header. |
+| **`DriverVsCard.tsx`** | `app/components/teammates/DriverVsCard.tsx` | Driver photo VS card showing career points and win ratios. |
+| **`H2HScorecard.tsx`** | `app/components/teammates/H2HScorecard.tsx` | Head-to-head scorecard comparing qualifying, race finishes, podiums, and fast laps. |
+| **`RaceH2H.tsx`** | `app/components/teammates/RaceH2H.tsx` | Percentage bar chart showing race finish dominance between teammates. |
+| **`QualifyingH2H.tsx`** | `app/components/teammates/QualifyingH2H.tsx` | Bar chart tracking Saturday qualifying head-to-head records. |
+| **`TeammateGaps.tsx`** | `app/components/teammates/TeammateGaps.tsx` | Displays median qualifying pace gap in milliseconds (e.g. -0.142s). |
+| **`PointsProgressionChart.tsx`** | `app/components/teammates/PointsProgressionChart.tsx` | Cumulative points graph tracking teammate battle round-by-round. |
+| **`PositionHistoryCharts.tsx`** | `app/components/teammates/PositionHistoryCharts.tsx` | Dual-line chart illustrating finishing positions across all completed races. |
+| **`RaceByRaceTable.tsx`** | `app/components/teammates/RaceByRaceTable.tsx` | Complete Grand Prix result table showing grid start, finish, and points scored. |
+| **`RecentForm.tsx`** | `app/components/teammates/RecentForm.tsx` | Visual pills showing finishing trend over the last 5 Grand Prix rounds. |
+| **`ReliabilityDNFs.tsx`** | `app/components/teammates/ReliabilityDNFs.tsx` | Tracks DNFs, DNSs, and mechanical failure logs. |
+| **`CircuitPerformance.tsx`** | `app/components/teammates/CircuitPerformance.tsx` | Categorizes teammate pace across high-downforce, street, and high-speed tracks. |
+| **`LapTimeComparison.tsx`** | `app/components/teammates/LapTimeComparison.tsx` | Histogram of stint lap times demonstrating race pace consistency. |
+| **`TyrePitComparison.tsx`** | `app/components/teammates/TyrePitComparison.tsx` | Compares pit stop strategies and compound choices between teammates. |
+| **`TeammateBattleOverview.tsx`** | `app/components/teammates/TeammateBattleOverview.tsx` | Overall verdict and performance index rating for the teammate rivalry. |
 
 ---
 
