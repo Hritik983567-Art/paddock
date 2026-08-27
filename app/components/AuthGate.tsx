@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { supabase } from '../lib/supabase';
 
 export default function AuthGate() {
   const { login, register, loginWithGoogle } = useAuth();
@@ -17,6 +18,7 @@ export default function AuthGate() {
   const [remember, setRemember] = useState(false);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [shake, setShake] = useState(false);
   const [googleClientId, setGoogleClientId] = useState<string>('');
 
@@ -134,23 +136,84 @@ export default function AuthGate() {
     }
   };
 
+  const getURL = () => {
+    let url =
+      process?.env?.NEXT_PUBLIC_SITE_URL ??
+      process?.env?.NEXT_PUBLIC_VERCEL_URL ??
+      (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000/');
+    url = url.includes('http') ? url : `https://${url}`;
+    url = url.charAt(url.length - 1) === '/' ? url : `${url}/`;
+    return url;
+  };
+
+  const triggerGoogleOAuthPopup = (clientId: string) => {
+    if (typeof window === 'undefined') return;
+
+    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
+      `client_id=${encodeURIComponent(clientId)}&` +
+      `redirect_uri=${encodeURIComponent(window.location.origin)}&` +
+      `response_type=id_token%20token&` +
+      `scope=${encodeURIComponent('openid email profile')}&` +
+      `prompt=select_account&` +
+      `nonce=${Math.random().toString(36).substring(2)}`;
+
+    const width = 520;
+    const height = 640;
+    const left = window.screen.width / 2 - width / 2;
+    const top = window.screen.height / 2 - height / 2;
+
+    const popup = window.open(
+      googleAuthUrl,
+      'GoogleSignInPopup',
+      `width=${width},height=${height},top=${top},left=${left},scrollbars=yes,status=yes`
+    );
+
+    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+      setIsGoogleLoading(false);
+      setError('Google Sign-In popup was blocked by browser. Please allow popups for this domain.');
+      setShake(true);
+      setTimeout(() => setShake(false), 450);
+      return;
+    }
+
+    const timer = setInterval(() => {
+      if (popup.closed) {
+        clearInterval(timer);
+        setIsGoogleLoading(false);
+      }
+    }, 1000);
+  };
+
   const handleGoogleSignIn = async () => {
     setError('');
-    setIsSubmitting(true);
+    setIsGoogleLoading(true);
 
-    if (typeof window !== 'undefined' && (window as any).google?.accounts?.id && googleClientId) {
-      try {
-        (window as any).google.accounts.id.prompt((notification: any) => {
-          if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-            setIsSubmitting(false);
-          }
-        });
-      } catch {
-        setIsSubmitting(false);
+    try {
+      const redirectUrl = `${getURL()}auth/callback`;
+
+      // 1. Trigger Supabase OAuth flow
+      const { data, error: oauthError } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: redirectUrl,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'select_account consent',
+          },
+        },
+      });
+
+      if (oauthError) {
+        setIsGoogleLoading(false);
+        setError(`Google Sign-In Error: ${oauthError.message}`);
+        setShake(true);
+        setTimeout(() => setShake(false), 450);
+        return;
       }
-    } else {
-      setIsSubmitting(false);
-      setError('Google SSO requires GOOGLE_CLIENT_ID configured in environment variables.');
+    } catch (err: unknown) {
+      setIsGoogleLoading(false);
+      const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred during Google sign-in.';
+      setError(`Google Sign-In Error: ${errorMessage}`);
       setShake(true);
       setTimeout(() => setShake(false), 450);
     }
@@ -323,7 +386,7 @@ export default function AuthGate() {
                 type="button" 
                 className="spec-google-btn"
                 onClick={handleGoogleSignIn}
-                disabled={isSubmitting}
+                disabled={isSubmitting || isGoogleLoading}
               >
                 <svg className="spec-google-icon" width="20" height="20" viewBox="0 0 24 24" style={{ width: '20px', height: '20px', minWidth: '20px', maxWidth: '20px', flexShrink: 0 }}>
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.58c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -331,7 +394,11 @@ export default function AuthGate() {
                   <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.1H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.9l3.66-2.81z"/>
                   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.1l3.66 2.81c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                <span>{isSignUp ? 'Sign up with Google' : 'Sign in with Google'}</span>
+                <span>
+                  {isGoogleLoading 
+                    ? (isSignUp ? 'Redirecting to Google...' : 'Redirecting...') 
+                    : (isSignUp ? 'Sign up with Google' : 'Sign in with Google')}
+                </span>
               </button>
             </div>
           </form>
