@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 
@@ -373,7 +374,7 @@ export default function AuthGate() {
             </div>
 
             {!isSignUp && (
-              <div className="f1-spec-options">
+              <div className="f1-spec-options" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px' }}>
                 <label className="spec-checkbox-label">
                   <input 
                     type="checkbox" 
@@ -382,6 +383,20 @@ export default function AuthGate() {
                   />
                   <span>Remember for 30 days</span>
                 </label>
+                <Link 
+                  href="/forgot-password" 
+                  style={{
+                    color: '#00ff9c',
+                    fontSize: '12px',
+                    textDecoration: 'none',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: 500,
+                    transition: 'color 0.2s ease'
+                  }}
+                  className="hover:underline"
+                >
+                  Forgot your password?
+                </Link>
               </div>
             )}
 
