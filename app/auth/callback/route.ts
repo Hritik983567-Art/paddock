@@ -3,14 +3,26 @@ import { supabase } from '@/app/lib/supabase';
 import { signJWT } from '@/app/lib/jwt';
 
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url);
-  const code = searchParams.get('code');
-  const next = searchParams.get('next') ?? '/';
+  const requestUrl = new URL(request.url);
+  const code = requestUrl.searchParams.get('code');
+  const error = requestUrl.searchParams.get('error');
+  const error_description = requestUrl.searchParams.get('error_description');
+
+  const origin = requestUrl.origin;
+
+  if (error) {
+    return NextResponse.redirect(`${origin}/?error=${encodeURIComponent(error_description || error || 'OAuth Failed')}`);
+  }
 
   if (code) {
     try {
-      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
-      if (!error && data?.user) {
+      const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
+      
+      if (exchangeError) {
+        return NextResponse.redirect(`${origin}/?error=${encodeURIComponent(exchangeError.message || 'Failed to establish session')}`);
+      }
+
+      if (data?.user) {
         const email = data.user.email || '';
         const name = data.user.user_metadata?.full_name || data.user.user_metadata?.name || email.split('@')[0];
         const picture = data.user.user_metadata?.avatar_url || data.user.user_metadata?.picture || 'https://lh3.googleusercontent.com/a/default-user';
@@ -31,8 +43,7 @@ export async function GET(request: Request) {
         };
 
         const token = await signJWT(payload);
-        const redirectUrl = `${origin}${next.startsWith('/') ? next : '/' + next}`;
-        const response = NextResponse.redirect(redirectUrl);
+        const response = NextResponse.redirect(origin);
 
         response.cookies.set({
           name: 'paddock_auth_token',
@@ -46,10 +57,12 @@ export async function GET(request: Request) {
 
         return response;
       }
-    } catch {
-      // ignore
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Failed to establish session';
+      return NextResponse.redirect(`${origin}/?error=${encodeURIComponent(msg)}`);
     }
   }
 
-  return NextResponse.redirect(`${origin}/?auth_error=OAuthCallbackFailed`);
+  // Success / Default: Redirect to home page with NO query parameters
+  return NextResponse.redirect(origin);
 }

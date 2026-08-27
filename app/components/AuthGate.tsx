@@ -40,6 +40,20 @@ export default function AuthGate() {
 
     if (typeof window !== 'undefined') {
       window.addEventListener('unhandledrejection', handleRejection);
+
+      // Clean query parameters from URL (auth_error, error, error_description)
+      const urlParams = new URLSearchParams(window.location.search);
+      const authError = urlParams.get('auth_error');
+      const errorParam = urlParams.get('error');
+      const errorDesc = urlParams.get('error_description');
+
+      const rawMsg = authError || errorDesc || errorParam;
+      if (rawMsg) {
+        setError(`Authentication Notice: ${decodeURIComponent(rawMsg)}`);
+        setShake(true);
+        setTimeout(() => setShake(false), 450);
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
     }
 
     async function fetchClientId() {
