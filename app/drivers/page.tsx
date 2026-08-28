@@ -202,56 +202,63 @@ export default function DriversPage() {
   };
 
   const renderPVCFigure = (color: string) => {
+    const mainColor = color || '#38BDF8';
     return (
-      <svg viewBox="0 0 100 132" width="92" height="122" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 120 140" width="100" height="120" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-2xl">
         <defs>
-          <linearGradient id="figGloss" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.5"/>
-            <stop offset="45%" stopColor="#ffffff" stopOpacity="0.06"/>
-            <stop offset="100%" stopColor="#000000" stopOpacity="0.28"/>
+          <linearGradient id="helmetGlow" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor={mainColor} stopOpacity="0.9"/>
+            <stop offset="100%" stopColor="#050810" stopOpacity="0.95"/>
           </linearGradient>
-          <radialGradient id="figHi" cx="32%" cy="22%" r="55%">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.75"/>
-            <stop offset="100%" stopColor="#ffffff" stopOpacity="0"/>
-          </radialGradient>
-          <linearGradient id="podiumTop" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#3A404C"/>
-            <stop offset="100%" stopColor="#22262E"/>
+          <linearGradient id="visorReflect" x1="0" y1="0" x2="1" y2="0.8">
+            <stop offset="0%" stopColor="#00F0FF" stopOpacity="0.9"/>
+            <stop offset="35%" stopColor="#3B82F6" stopOpacity="0.75"/>
+            <stop offset="70%" stopColor="#8B5CF6" stopOpacity="0.8"/>
+            <stop offset="100%" stopColor="#EC4899" stopOpacity="0.65"/>
+          </linearGradient>
+          <linearGradient id="carbonBase" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#1E293B"/>
+            <stop offset="100%" stopColor="#0F172A"/>
           </linearGradient>
         </defs>
+
+        {/* Ambient Hologram Platform */}
+        <ellipse cx="60" cy="128" rx="42" ry="8" fill="#000000" opacity="0.5"/>
+        <ellipse cx="60" cy="128" rx="38" ry="6" fill="none" stroke={mainColor} strokeWidth="1.5" opacity="0.6"/>
+        <ellipse cx="60" cy="128" rx="24" ry="4" fill="none" stroke="#00F0FF" strokeWidth="1" strokeDasharray="4 3"/>
+
+        {/* Driver HANS & Collar Base */}
+        <path d="M 28 116 C 36 100 84 100 92 116 C 96 122 24 122 28 116 Z" fill="url(#carbonBase)" stroke="#334155" strokeWidth="1.5"/>
+        <path d="M 38 102 L 82 102 L 78 114 L 42 114 Z" fill={mainColor} opacity="0.85"/>
+        <rect x="52" y="104" width="16" height="4" rx="2" fill="#FFFFFF" opacity="0.9"/>
+
+        {/* Main Aerodynamic Helmet Shell */}
+        <path d="M 26 66 C 26 28 42 14 60 14 C 78 14 94 28 94 66 C 94 88 88 104 60 104 C 32 104 26 88 26 66 Z" fill="url(#helmetGlow)" stroke="#475569" strokeWidth="2"/>
+
+        {/* Rear Winglet & Air Vents */}
+        <path d="M 24 50 C 20 40 28 28 40 22 C 34 32 30 42 28 54 Z" fill={mainColor} opacity="0.9"/>
+        <path d="M 96 50 C 100 40 92 28 80 22 C 86 32 90 42 92 54 Z" fill={mainColor} opacity="0.9"/>
         
-        {/* podium base */}
-        <ellipse cx="50" cy="122" rx="34" ry="7" fill="#000" opacity="0.35"/>
-        <path d="M18 116 L82 116 L74 100 L26 100 Z" fill="url(#podiumTop)" stroke="#0A0B0D" strokeWidth="1"/>
-        <rect x="26" y="100" width="12" height="4" fill="#E8302A"/>
-        <rect x="38" y="100" width="12" height="4" fill="#EEF1F6"/>
-        <rect x="50" y="100" width="12" height="4" fill="#E8302A"/>
-        <rect x="62" y="100" width="12" height="4" fill="#EEF1F6"/>
+        {/* Helmet Crown Racing Stripes */}
+        <path d="M 52 15 L 68 15 L 66 52 L 54 52 Z" fill="#FFFFFF" opacity="0.85"/>
+        <path d="M 56 15 L 64 15 L 63 52 L 57 52 Z" fill={mainColor}/>
 
-        {/* legs victory */}
-        <rect x="34" y="76" width="12" height="26" rx="6" fill="#15181E"/>
-        <rect x="54" y="76" width="12" height="26" rx="6" fill="#15181E"/>
-        <rect x="32" y="97" width="16" height="7" rx="3" fill="#0A0B0D"/>
-        <rect x="52" y="97" width="16" height="7" rx="3" fill="#0A0B0D"/>
-
-        {/* torso */}
-        <rect x="30" y="52" width="40" height="30" rx="14" fill={color}/>
-        <rect x="30" y="52" width="40" height="30" rx="14" fill="url(#figGloss)"/>
-        <circle cx="50" cy="66" r="6" fill="#0A0B0D" opacity="0.55"/>
-
-        {/* victory arm left */}
-        <rect x="14" y="30" width="12" height="30" rx="6" fill={color} transform="rotate(-28 20 55)"/>
-        <circle cx="12" cy="32" r="8" fill="#15181E"/>
+        {/* High-Tech Iridescent Visor Banner & Shield */}
+        <path d="M 32 46 C 45 42 75 42 88 46 C 94 64 92 78 84 82 C 60 86 36 84 36 82 C 28 78 26 64 32 46 Z" fill="url(#visorReflect)" stroke="#00F0FF" strokeWidth="1.5"/>
         
-        {/* arm hip right */}
-        <rect x="68" y="54" width="11" height="24" rx="5.5" fill={color}/>
-        <circle cx="73" cy="80" r="7" fill="#15181E"/>
+        {/* Visor Glare Highlights */}
+        <path d="M 36 50 C 50 46 70 46 84 50 C 78 54 42 54 36 50 Z" fill="#FFFFFF" opacity="0.4"/>
+        <circle cx="44" cy="60" r="2" fill="#FFFFFF" opacity="0.8"/>
 
-        {/* bobblehead */}
-        <ellipse cx="50" cy="28" rx="24" ry="25" fill={color}/>
-        <rect x="28" y="21" width="44" height="13" rx="6.5" fill="#0A0B0D"/>
-        <ellipse cx="50" cy="28" rx="24" ry="25" fill="url(#figGloss)"/>
-        <ellipse cx="50" cy="28" rx="24" ry="25" fill="url(#figHi)"/>
+        {/* Aero Tear-Off Posts */}
+        <circle cx="34" cy="62" r="3.5" fill="#1E293B" stroke="#00F0FF" strokeWidth="1"/>
+        <circle cx="86" cy="62" r="3.5" fill="#1E293B" stroke="#00F0FF" strokeWidth="1"/>
+
+        {/* Chin Bar Vents */}
+        <path d="M 46 90 L 74 90 L 70 96 L 50 96 Z" fill="#0F172A" stroke="#334155" strokeWidth="1"/>
+        <line x1="54" y1="90" x2="54" y2="96" stroke={mainColor} strokeWidth="1.5"/>
+        <line x1="60" y1="90" x2="60" y2="96" stroke="#FFFFFF" strokeWidth="1.5"/>
+        <line x1="66" y1="90" x2="66" y2="96" stroke={mainColor} strokeWidth="1.5"/>
       </svg>
     );
   };
