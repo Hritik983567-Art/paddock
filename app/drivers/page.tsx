@@ -201,77 +201,51 @@ export default function DriversPage() {
     }
   };
 
+  const DRIVER_HOLOGRAM_IMAGES: Record<string, string> = {
+    hulkenberg: '/images/holograms/hulkenberg.jpg',
+    verstappen: '/images/holograms/verstappen.jpg',
+    hamilton: '/images/holograms/hamilton.jpg',
+    leclerc: '/images/holograms/leclerc.jpg',
+    bortoleto: '/images/holograms/bortoleto.jpg',
+    albon: '/images/holograms/albon.jpg',
+  };
+
   const renderPVCFigure = (color: string) => {
     const mainColor = color || '#38BDF8';
+    const numberStr = profile?.permanentNumber || '—';
+    const surname = (profile?.familyName || 'DRIVER').toUpperCase();
+    const idKey = selectedDriverId || 'drv';
+    const numDisplay = numberStr && numberStr !== '—' ? `#${numberStr}` : '#00';
+    const customImg = DRIVER_HOLOGRAM_IMAGES[idKey];
+
+    const imgSrc = customImg || '/images/holograms/default.jpg';
+
     return (
-      <svg viewBox="0 0 140 150" width="112" height="128" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-2xl">
-        <defs>
-          <linearGradient id="helmetGlow" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor={mainColor} stopOpacity="0.95"/>
-            <stop offset="60%" stopColor="#0F172A" stopOpacity="0.9"/>
-            <stop offset="100%" stopColor="#050810" stopOpacity="0.98"/>
-          </linearGradient>
-          <linearGradient id="visorReflect" x1="0" y1="0" x2="1" y2="0.8">
-            <stop offset="0%" stopColor="#00F0FF" stopOpacity="0.95"/>
-            <stop offset="35%" stopColor="#3B82F6" stopOpacity="0.8"/>
-            <stop offset="70%" stopColor="#8B5CF6" stopOpacity="0.85"/>
-            <stop offset="100%" stopColor="#EC4899" stopOpacity="0.75"/>
-          </linearGradient>
-          <linearGradient id="carbonBase" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#334155"/>
-            <stop offset="100%" stopColor="#0F172A"/>
-          </linearGradient>
-          <pattern id="hexGrid" width="8" height="8" patternUnits="userSpaceOnUse">
-            <path d="M 4 0 L 8 2 L 8 6 L 4 8 L 0 6 L 0 2 Z" fill="none" stroke="#38BDF8" strokeWidth="0.4" opacity="0.15"/>
-          </pattern>
-        </defs>
+      <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,240,255,0.35)] border-2 border-cyan-400/80 bg-slate-950 group hover:scale-[1.03] hover:border-cyan-300 hover:shadow-[0_0_60px_rgba(0,240,255,0.6)] transition-all duration-300 ring-1 ring-cyan-500/50">
+        {/* High Sharpening & Contrast Filter applied to render */}
+        <img 
+          src={imgSrc} 
+          alt={surname} 
+          className="w-full h-full object-cover rounded-2xl contrast-[1.18] brightness-[1.05] saturate-[1.2] drop-shadow-[0_0_35px_rgba(0,240,255,0.6)]" 
+          style={{ imageRendering: '-webkit-optimize-contrast' }}
+        />
 
-        {/* Carbon Fiber HUD Frame Background */}
-        <polygon points="70,6 126,36 126,110 70,140 14,110 14,36" fill="url(#carbonBase)" stroke="#1E293B" strokeWidth="2.5"/>
-        <polygon points="70,6 126,36 126,110 70,140 14,110 14,36" fill="url(#hexGrid)"/>
-        <polygon points="70,10 122,38 122,108 70,136 18,108 18,38" fill="none" stroke={mainColor} strokeWidth="1.5" opacity="0.6"/>
-
-        {/* Outer Orbiting Telemetry Arc Gauges */}
-        <circle cx="70" cy="72" r="58" fill="none" stroke="#00F0FF" strokeWidth="1" strokeDasharray="6 4" opacity="0.4"/>
-        <path d="M 22 72 A 48 48 0 0 1 118 72" fill="none" stroke={mainColor} strokeWidth="2" strokeDasharray="3 3" opacity="0.8"/>
-
-        {/* HUD Corner Tech Brackets */}
-        <path d="M 22 42 L 22 34 L 30 34" fill="none" stroke="#00F0FF" strokeWidth="2"/>
-        <path d="M 118 42 L 118 34 L 110 34" fill="none" stroke="#00F0FF" strokeWidth="2"/>
-        <path d="M 22 102 L 22 110 L 30 110" fill="none" stroke="#00F0FF" strokeWidth="2"/>
-        <path d="M 118 102 L 118 110 L 110 110" fill="none" stroke="#00F0FF" strokeWidth="2"/>
-
-        {/* Ambient Hologram Platform Base */}
-        <ellipse cx="70" cy="132" rx="36" ry="6" fill="#000000" opacity="0.6"/>
-        <ellipse cx="70" cy="132" rx="32" ry="4" fill="none" stroke={mainColor} strokeWidth="1.5" opacity="0.8"/>
-
-        {/* Driver HANS & Suit Collar */}
-        <path d="M 38 118 C 46 102 94 102 102 118 C 106 124 34 124 38 118 Z" fill="url(#carbonBase)" stroke="#475569" strokeWidth="1.5"/>
-        <path d="M 48 106 L 92 106 L 88 116 L 52 116 Z" fill={mainColor} opacity="0.85"/>
-        <rect x="62" y="108" width="16" height="4" rx="2" fill="#FFFFFF" opacity="0.9"/>
-
-        {/* Aerodynamic Helmet Shell */}
-        <path d="M 36 66 C 36 28 52 14 70 14 C 88 14 104 28 104 66 C 104 88 98 104 70 104 C 42 104 36 88 36 66 Z" fill="url(#helmetGlow)" stroke="#64748B" strokeWidth="2"/>
-
-        {/* Helmet Crown Stripes */}
-        <path d="M 62 15 L 78 15 L 76 52 L 64 52 Z" fill="#FFFFFF" opacity="0.85"/>
-        <path d="M 66 15 L 74 15 L 73 52 L 67 52 Z" fill={mainColor}/>
-
-        {/* High-Tech Visor & Shield */}
-        <path d="M 42 46 C 55 42 85 42 98 46 C 104 64 102 78 94 82 C 70 86 46 84 46 82 C 38 78 36 64 42 46 Z" fill="url(#visorReflect)" stroke="#00F0FF" strokeWidth="1.5"/>
+        {/* Laser Overhead Ring Beam Glare */}
+        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-90 shadow-[0_0_12px_#00f0ff]"></div>
         
-        {/* Animated Laser Scanline across Visor */}
-        <line x1="42" y1="62" x2="98" y2="62" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" strokeDasharray="8 4"/>
+        {/* Sharp Tech HUD Corner Crosshairs */}
+        <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-cyan-400/90 pointer-events-none"></div>
+        <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-cyan-400/90 pointer-events-none"></div>
+        <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-cyan-400/90 pointer-events-none"></div>
+        <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-cyan-400/90 pointer-events-none"></div>
 
-        {/* Visor Telemetry Text Overlay */}
-        <text x="70" y="66" fill="#FFFFFF" fontFamily="monospace" fontSize="11" fontWeight="900" textAnchor="middle" letterSpacing="1">F1 TELEMETRY</text>
-        
-        {/* Chin Vent Details */}
-        <path d="M 56 90 L 84 90 L 80 96 L 60 96 Z" fill="#0F172A" stroke="#334155" strokeWidth="1"/>
-        <line x1="64" y1="90" x2="64" y2="96" stroke={mainColor} strokeWidth="1.5"/>
-        <line x1="70" y1="90" x2="70" y2="96" stroke="#FFFFFF" strokeWidth="1.5"/>
-        <line x1="76" y1="90" x2="76" y2="96" stroke={mainColor} strokeWidth="1.5"/>
-      </svg>
+        {/* Bottom Ultra-Crisp Nameplate Badge */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-slate-950/90 border border-cyan-400 backdrop-blur-lg text-xs sm:text-sm font-black text-cyan-300 tracking-widest font-mono shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center gap-2 whitespace-nowrap">
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#00f0ff]"></span>
+          <span className="text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">{surname}</span>
+          <span className="text-amber-400 font-bold drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]">{numDisplay}</span>
+        </div>
+      </div>
     );
   };
 
