@@ -7,6 +7,8 @@ import AuthGate from './AuthGate';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import OfflineState from './states/OfflineState';
+
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <AuthProvider>
@@ -67,10 +69,15 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     { name: 'Strategy Lab', path: '/lab' },
     { name: 'Race Tracker', path: '/tracker' },
     { name: 'Live Telemetry', path: '/live' },
+    { name: 'Account Settings', path: '/account' },
+    { name: 'Help & Support', path: '/support' },
   ];
 
   return (
     <>
+      {/* Network Offline Listener Banner */}
+      <OfflineState />
+
       {/* Translucent Team Background Wallpaper */}
       <div className="f1-theme-wallpaper"></div>
 
@@ -131,15 +138,19 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
           </select>
 
           {user && (
-            <div className="flex items-center gap-2 px-2.5 py-1 bg-[#0D121F] border border-slate-700 rounded-lg text-xs font-mono">
-              <span className="w-6 h-6 rounded-full bg-[#6542A5] text-white flex items-center justify-center font-black text-[10px]">
+            <Link 
+              href="/account"
+              className="flex items-center gap-2 px-2.5 py-1 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 hover:border-cyan-400 rounded-lg text-xs font-mono transition-all shadow-md group"
+              title="View Account Settings & Profile"
+            >
+              <span className="w-6 h-6 rounded-full bg-[#6542A5] group-hover:bg-cyan-500 text-white flex items-center justify-center font-black text-[10px] transition-colors">
                 {user.name ? user.name.slice(0, 2).toUpperCase() : user.username ? user.username.slice(0, 2).toUpperCase() : 'F1'}
               </span>
               <div className="hidden sm:block text-left">
-                <span className="font-black text-white block text-[11px] leading-tight">{user.name || user.username}</span>
-                <span className="text-[9px] text-purple-400 font-bold block">{user.role || 'Telemetry Analyst'}</span>
+                <span className="font-black text-white group-hover:text-cyan-300 block text-[11px] leading-tight transition-colors">{user.name || user.username}</span>
+                <span className="text-[9px] text-purple-400 block">{user.role || 'Telemetry Analyst'}</span>
               </div>
-            </div>
+            </Link>
           )}
 
           <button 
@@ -195,10 +206,35 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
       <main className="wrap">
         {children}
 
-        {/* Data Source & Freshness Attribution Footer (P-11 / R-07) */}
-        <footer style={{ marginTop: '40px', paddingTop: '16px', borderTop: '1px solid var(--line)', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--dim)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
-          <div>Data Sources: FIA Formula 1 Telemetry • Jolpica / Ergast F1 Open Data Proxy • Server Cached</div>
-          <div>Status: <span style={{ color: 'var(--green)' }}>● LIVE (240 FPS)</span> • Refresh: Real-time</div>
+        {/* Data Source & Legal Attribution Footer */}
+        <footer className="mt-12 pt-6 border-t border-slate-800 font-mono text-xs text-slate-400 space-y-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+              <span className="font-bold text-white block mb-0.5">PADDOCK TELEMETRY ANALYTICS</span>
+              <span className="text-[11px] text-slate-500">Data Sources: FIA Formula 1 Telemetry • Jolpica / Ergast F1 Open Data Proxy</span>
+            </div>
+            <div className="text-[11px]">
+              Status: <span className="text-emerald-400 font-bold">● LIVE (240 FPS)</span> • Server Refresh: Real-Time Proxy
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-slate-400 pt-2 border-t border-slate-800/60">
+            <Link href="/privacy" className="hover:text-cyan-300 transition-colors">Privacy Policy</Link>
+            <span>•</span>
+            <Link href="/terms" className="hover:text-cyan-300 transition-colors">Terms of Service</Link>
+            <span>•</span>
+            <Link href="/cookies" className="hover:text-cyan-300 transition-colors">Cookie Policy</Link>
+            <span>•</span>
+            <Link href="/disclaimer" className="hover:text-cyan-300 transition-colors">F1 Open Data Disclaimer</Link>
+            <span>•</span>
+            <Link href="/accessibility" className="hover:text-cyan-300 transition-colors">Accessibility Statement</Link>
+            <span>•</span>
+            <Link href="/acceptable-use" className="hover:text-cyan-300 transition-colors">Acceptable Use</Link>
+            <span>•</span>
+            <Link href="/security" className="hover:text-cyan-300 transition-colors">Security &amp; Vulnerability Disclosure</Link>
+            <span>•</span>
+            <Link href="/support" className="hover:text-cyan-300 transition-colors">Help Center &amp; FAQ</Link>
+          </div>
         </footer>
       </main>
     </>
