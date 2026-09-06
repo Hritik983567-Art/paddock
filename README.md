@@ -1,35 +1,60 @@
-# 🏎️ PADDOCK TELEMETRY
+# 🏎️ PADDOCK TELEMETRY — F1 Command Center & Telemetry Reconnaissance
 
-**A state-of-the-art F1 telemetry and pit-wall command center featuring real-time timing, interactive race replay, teammate head-to-head analytics, satellite circuit maps, and enterprise-grade Supabase PKCE authentication — powered by Next.js 16 (App Router), TypeScript, and Tailwind CSS.**
+[![Next.js 16](https://img.shields.io/badge/Next.js-16%20(Turbopack)-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Supabase PKCE](https://img.shields.io/badge/Supabase-Auth%20PKCE-3ECF8E?style=for-the-badge&logo=supabase)](https://supabase.com/)
+[![FastF1 Telemetry](https://img.shields.io/badge/FastF1-Python%20Engine-FF1801?style=for-the-badge&logo=formula1)](https://github.com/theOdev/FastF1)
+[![Circuits Supported](https://img.shields.io/badge/F1%20Circuits-78%20Tracks-E10600?style=for-the-badge&logo=formula1)](https://www.formula1.com/)
+
+**Paddock Telemetry** is a state-of-the-art Formula 1 telemetry, pit-wall reconnaissance, and race replay command center. Built with **Next.js 16 (App Router)**, **TypeScript**, **Supabase PKCE Auth**, and **FastF1 Python telemetry data integration**, Paddock delivers real-time driver tracking, 60fps vector track canvas rendering, teammate head-to-head battle metrics, and comprehensive corner telemetry for **78 F1 circuits**.
 
 ---
 
-## ⚡ Key Systems & Features
+## 📘 Comprehensive Architecture & Pitch Documentation
 
-### 🔐 1. End-to-End Supabase PKCE Auth & Security
-- **Mandatory Email Verification Gate**: Strict access restriction requiring users to confirm their email address before entering the telemetry dashboard.
-- **Supabase Google OAuth 2.0 Integration**: Multi-account device chooser (`prompt: 'select_account consent'`) with dynamic origin detection (`getURL()`) for seamless local and Vercel production deployment.
-- **PKCE Password Recovery Journey**: Public `/forgot-password` request form, server-side token exchange via `/auth/callback?next=/update-password`, and authenticated `/update-password` interface.
-- **Dual-Layer Hard Credential Validation**: Server-side password verification in `/api/auth/login` via `@supabase/supabase-js` that blocks fake or incorrect credentials.
-- **Complete Logout Session Revocation**: Invokes global `supabase.auth.signOut()`, clears HttpOnly session cookies, and purges browser storage (`localStorage`, `sessionStorage`) to eliminate auto-relogin bugs on refresh.
+For full architectural documentation, Mermaid sequence diagrams, data transformation pipelines, and company pitch materials, see:
 
-### 🏎️ 2. Hardware-Accelerated F1 Entrance Sweep & Flow Engine
-- **2.4s Entrance Sweep**: High-performance right-to-left F1 car entrance (`f1CarRightEntrance`) transitioning into continuous floating flow (`f1CarFloatingFlow`).
-- **60fps GPU Compositor**: Uses hardware-accelerated CSS properties (`translate3d`, `opacity`, `.f1-entry-speed-streaks`, `.f1-ambient-flow-glow`) with zero CPU blur overhead.
+👉 **[DOCUMENTATION.md](./DOCUMENTATION.md)**
 
-### 🗺️ 3. 24 GP Circuit Satellite Maps & Corner Telemetry
-- **Interactive Track Canvas**: High-precision SVG and canvas map engine for all 24 Grand Prix venues in the 2026 F1 calendar.
-- **Corner Telemetry Inspector**: Detailed sector data including apex speeds, lateral G-forces, braking points, and gear selections (`CornerDetails.tsx`).
-- **Corner Photo Gallery**: Lightbox gallery showcasing high-resolution apex photography with EXIF metadata (`CornerImageGallery.tsx`).
+---
 
-### ⏱️ 4. Interactive Race Replay Engine (`/replay`)
-- **Real-Time Canvas Trajectories**: 60fps telemetry playback engine displaying car positions, gaps, and telemetry graphs.
-- **Scrubber & Speed Controls**: Variable playback rates (1x, 2x, 5x, 10x), step-by-step frame stepping, and interactive scrubber timeline (`ReplayTimeline.tsx`).
-- **Live Telemetry & Pit Monitors**: Gauges for RPM, speed, DRS, ERS charge percentage, and tire stint degradation (`TelemetryPanel.tsx`, `TyreStrategy.tsx`).
+## ⚡ Key Systems & Core Features
 
-### ⚔️ 5. Teammate Head-to-Head Battle Portal (`/teammates`)
-- **Constructor Team Comparisons**: Detailed head-to-head rivalries across all 10 F1 constructor teams.
-- **Telemetry Delta Graphs**: Cumulative championship points progression, qualifying pace deltas, and race finish charts (`PointsProgressionChart.tsx`, `QualifyingH2H.tsx`).
+### 🗺️ 1. 78 F1 Circuit Satellite Canvas & Corner Reconnaissance (`/gallery`)
+- **Complete Track Coverage**: Supports all 24 modern Grand Prix venues, historic retro circuits (Nürburgring Nordschleife, Brands Hatch, Kyalami, Sepang), and iconic street courses.
+- **Apex Telemetry Specs**: Displays technical telemetry metrics per corner — entry/apex/exit speeds (km/h), lateral/longitudinal G-forces, braking intensity, and gear selection.
+- **Intelligent Apex Matcher**: Dynamically maps corner selections to verified high-resolution apex photography and fallback team wallpapers.
+
+### ⏱️ 2. 60fps Interactive Race Replay Engine (`/replay`)
+- **GPU-Accelerated Canvas Engine**: 60fps telemetry playback engine displaying car positions, gaps, and telemetry graphs.
+- **Playback Controls**: Variable rates (1x, 2x, 5x, 10x), scrubber timeline, frame stepping, and lap-by-lap playback.
+- **Telemetry Gauges**: Real-time tachometers, speed monitors, DRS status, ERS charge %, and tire compound degradation indicators.
+
+### ⚔️ 3. Teammate Head-to-Head Battle Portal (`/teammates`)
+- **Constructor Rivalries**: H2H comparisons across all 10 F1 constructor teams.
+- **Telemetry Delta Graphs**: Cumulative championship points progression curves, qualifying pace deltas, and finishing statistics.
+
+### 🔬 4. High-Contrast Telemetry Lab & Pace Analyzer (`/lab`)
+- **Lap Overlay Comparison**: Compare telemetry lap traces, speed deltas, and throttle application across drivers.
+
+### 🔐 5. Enterprise Supabase PKCE Auth & Security
+- **Hard Credential Verification**: Multi-layer password authentication with Supabase PKCE.
+- **Google OAuth 2.0 PKCE**: Seamless single sign-on with multi-account device chooser (`prompt: 'select_account'`).
+- **Mandatory Email Gate**: Enforces verified email status before granting pit-wall telemetry access.
+
+---
+
+## 📐 System Architecture Summary
+
+```mermaid
+graph LR
+    Client["🖥️ Client (Next.js 16 App Router)"] --> API["⚡ API Gateway (/api/circuits)"]
+    API --> Engine["🏎️ Coordinate Engine (circuitTransform.ts)"]
+    API --> Proxy["🐍 FastF1 Python Telemetry Proxy"]
+    Proxy --> FastF1["🌐 Official F1 Timing & Telemetry Data"]
+    Client --> Supabase["🔐 Supabase PKCE Auth & Session Guard"]
+```
 
 ---
 
@@ -53,7 +78,7 @@ JWT_SECRET=your-secure-jwt-secret-key
 # 1. Install dependencies
 npm install
 
-# 2. Run the Next.js development server
+# 2. Start Next.js development server
 npm run dev
 ```
 
@@ -61,15 +86,11 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 ---
 
-## 🛩️ Deploying to Vercel
+## 🛩️ Deployment
 
-1. Push your changes to GitHub:
-   ```bash
-   git add .
-   git commit -m "feat: production build"
-   git push origin main
-   ```
-2. Import the repository in **[Vercel Dashboard](https://vercel.com)**.
-3. Configure environment variables (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_VERCEL_URL`) in Vercel settings.
-4. Click **Deploy**!
+```bash
+# Production build check
+npm run build
+```
 
+Deploy seamlessly to **[Vercel](https://vercel.com)** by connecting your GitHub repository.
