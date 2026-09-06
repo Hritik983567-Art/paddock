@@ -117,6 +117,19 @@ export default function AuthGate() {
     };
   }, [loginWithGoogle]);
 
+  // Clear input fields on mount and mode toggle to ensure form always starts BLANK
+  useEffect(() => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    const timer = setTimeout(() => {
+      setName('');
+      setEmail('');
+      setPassword('');
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [isSignUp]);
+
   const handleToggleMode = () => {
     setIsSignUp(!isSignUp);
     setName('');
@@ -481,13 +494,14 @@ export default function AuthGate() {
 
             {error && <div className="f1-spec-error">{error}</div>}
 
-            <form onSubmit={handleSubmit} className="f1-spec-form" autoComplete="off">
+            <form onSubmit={handleSubmit} className="f1-spec-form" autoComplete="none" key={isSignUp ? 'signup-form' : 'signin-form'}>
               {isSignUp && (
                 <div className="f1-spec-field">
                   <label htmlFor="specName">FULL NAME</label>
                   <input 
                     type="text" 
                     id="specName" 
+                    name="paddock_full_name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g. Charles Leclerc"
@@ -503,6 +517,7 @@ export default function AuthGate() {
                 <input 
                   type="email" 
                   id="specEmail" 
+                  name="paddock_user_email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="engineer@paddock.f1"
@@ -517,6 +532,7 @@ export default function AuthGate() {
                   <label htmlFor="specTeam">PREFERRED CONSTRUCTOR TEAM</label>
                   <select
                     id="specTeam"
+                    name="paddock_team_select"
                     value={team}
                     onChange={(e) => setTeam(e.target.value)}
                     disabled={isSubmitting}
@@ -547,12 +563,13 @@ export default function AuthGate() {
                   <input 
                     type={showPassword ? 'text' : 'password'} 
                     id="specPass" 
+                    name="paddock_user_password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••••••"
                     required
                     disabled={isSubmitting}
-                    autoComplete="off"
+                    autoComplete="new-password"
                   />
                   <button 
                     type="button" 
