@@ -3,7 +3,12 @@
 import React from 'react';
 
 export default function OfflineState() {
-  const [isOffline, setIsOffline] = React.useState(false);
+  const [isOffline, setIsOffline] = React.useState(() => {
+    if (typeof window !== 'undefined') {
+      return !navigator.onLine;
+    }
+    return false;
+  });
 
   React.useEffect(() => {
     function handleOnline() {
@@ -13,18 +18,12 @@ export default function OfflineState() {
       setIsOffline(true);
     }
 
-    // Initialize state
-    if (typeof window !== 'undefined') {
-      setIsOffline(!navigator.onLine);
-      window.addEventListener('online', handleOnline);
-      window.addEventListener('offline', handleOffline);
-    }
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
 
     return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('online', handleOnline);
-        window.removeEventListener('offline', handleOffline);
-      }
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
     };
   }, []);
 

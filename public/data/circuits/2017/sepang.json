@@ -1,0 +1,9 @@
+{
+  "circuit": {
+    "id": "sepang",
+    "name": "Sepang",
+    "year": 2017
+  },
+  "status": "DATA UNAVAILABLE",
+  "reason": "No valid FastF1 position telemetry cached for circuit 'sepang' across years [2017, 2016, 2015, 2014]."
+}

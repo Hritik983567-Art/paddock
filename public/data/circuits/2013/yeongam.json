@@ -1,0 +1,9 @@
+{
+  "circuit": {
+    "id": "yeongam",
+    "name": "Yeongam",
+    "year": 2013
+  },
+  "status": "DATA UNAVAILABLE",
+  "reason": "No valid FastF1 position telemetry cached for circuit 'yeongam' across years [2013, 2012, 2011, 2010]."
+}

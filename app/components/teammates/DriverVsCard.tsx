@@ -21,7 +21,6 @@ export const DriverVsCard: React.FC<DriverVsCardProps> = ({
   selectedDriverBId,
   onSelectDriverA,
   onSelectDriverB,
-  teamColor,
   mode
 }) => {
   const DRIVER_HOLOGRAM_IMAGES: Record<string, string> = {
@@ -33,7 +32,8 @@ export const DriverVsCard: React.FC<DriverVsCardProps> = ({
     albon: '/images/holograms/albon.jpg',
   };
 
-  const renderInitialsAvatar = (name: string, code: string, number?: string, isCyan?: boolean) => {
+  const renderInitialsAvatar = (name: string, code: string, number?: string, _isCyan?: boolean) => {
+    void _isCyan;
     const surname = (name.split(' ').pop() || name).toUpperCase();
     const numDisplay = number && number !== '—' ? `#${number}` : '#00';
     const key = (code || surname).toLowerCase();

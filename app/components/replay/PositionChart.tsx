@@ -107,19 +107,33 @@ export const PositionChart: React.FC<PositionChartProps> = ({
     );
   });
 
+  const activeHoveredMeta = (hoveredDriverId || selectedDriverId) ? driverMeta[hoveredDriverId || selectedDriverId!] : null;
+  const activeHoveredPos = (hoveredDriverId || selectedDriverId) && laps[activeLapIdx]?.positions[hoveredDriverId || selectedDriverId!] !== undefined
+    ? laps[activeLapIdx].positions[hoveredDriverId || selectedDriverId!]
+    : null;
+
   return (
     <div 
       style={{ backgroundColor: '#070A10', background: '#070A10', opacity: 1 }}
       className="border-2 border-slate-700/80 rounded-xl p-4 shadow-2xl mb-4 font-mono relative z-10"
     >
-      <div className="flex items-center justify-between pb-3 mb-2 border-b border-slate-800">
+      <div className="flex items-center justify-between pb-3 mb-2 border-b border-slate-800 flex-wrap gap-2">
         <div className="flex items-center gap-2">
           <span className="text-base">📈</span>
           <h3 className="text-xs font-black text-white uppercase tracking-wider">
             LAP-BY-LAP POSITION HISTORY CHART
           </h3>
         </div>
-        <span className="text-[10px] text-slate-400">HOVER OR CLICK DRIVER TO HIGHLIGHT TRACE</span>
+        
+        {activeHoveredMeta && activeHoveredPos !== null ? (
+          <div className="flex items-center gap-2 text-xs font-black px-3 py-1 rounded bg-slate-900 border border-slate-700">
+            <span style={{ color: getTeamColor(activeHoveredMeta.team || '') }}>● {activeHoveredMeta.code || activeHoveredMeta.name}</span>
+            <span className="text-slate-300">({activeHoveredMeta.team})</span>
+            <span className="text-cyan-400">P{activeHoveredPos} @ Lap {activeLapIdx + 1}</span>
+          </div>
+        ) : (
+          <span className="text-[10px] text-slate-400">HOVER OR CLICK DRIVER TO HIGHLIGHT TRACE</span>
+        )}
       </div>
 
       <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-auto">

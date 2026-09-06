@@ -7,16 +7,16 @@ import Link from 'next/link';
 export default function AccountSettingsPage() {
   const { user, logout } = useAuth();
   const [displayName, setDisplayName] = React.useState(user?.name || user?.username || '');
-  const [activeTheme, setActiveTheme] = React.useState('default');
+  const [activeTheme, setActiveTheme] = React.useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('paddock_theme') || 'default';
+    }
+    return 'default';
+  });
   const [savedSuccess, setSavedSuccess] = React.useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = React.useState(false);
   const [deleteReason, setDeleteReason] = React.useState('');
   const [deletionSubmitted, setDeletionSubmitted] = React.useState(false);
-
-  React.useEffect(() => {
-    const saved = localStorage.getItem('paddock_theme') || 'default';
-    setActiveTheme(saved);
-  }, []);
 
   const handleThemeChange = (theme: string) => {
     setActiveTheme(theme);

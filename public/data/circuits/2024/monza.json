@@ -1,0 +1,1591 @@
+{
+  "circuit": {
+    "id": "monza",
+    "name": "Italian Grand Prix",
+    "country": "Italy",
+    "location": "Monza",
+    "year": 2024
+  },
+  "sourceSession": "R",
+  "telemetryDriver": "NOR",
+  "telemetryLap": 53,
+  "rotation": 95.0,
+  "layout": {
+    "source": "FastF1 telemetry",
+    "coordinateSystem": "fastf1_xy",
+    "pointCount": 317,
+    "points": [
+      {
+        "x": -1369.0,
+        "y": -622.0
+      },
+      {
+        "x": -1340.0,
+        "y": -284.0
+      },
+      {
+        "x": -1317.0,
+        "y": -34.0
+      },
+      {
+        "x": -1298.0,
+        "y": 181.0
+      },
+      {
+        "x": -1281.0,
+        "y": 380.0
+      },
+      {
+        "x": -1249.0,
+        "y": 742.0
+      },
+      {
+        "x": -1232.0,
+        "y": 942.0
+      },
+      {
+        "x": -1217.0,
+        "y": 1125.0
+      },
+      {
+        "x": -1191.0,
+        "y": 1417.0
+      },
+      {
+        "x": -1185.0,
+        "y": 1491.0
+      },
+      {
+        "x": -1152.0,
+        "y": 1877.0
+      },
+      {
+        "x": -1131.0,
+        "y": 2116.0
+      },
+      {
+        "x": -1115.0,
+        "y": 2301.0
+      },
+      {
+        "x": -1107.0,
+        "y": 2398.0
+      },
+      {
+        "x": -1090.0,
+        "y": 2595.0
+      },
+      {
+        "x": -1074.0,
+        "y": 2780.0
+      },
+      {
+        "x": -1055.0,
+        "y": 3002.0
+      },
+      {
+        "x": -1031.0,
+        "y": 3281.0
+      },
+      {
+        "x": -1018.0,
+        "y": 3430.0
+      },
+      {
+        "x": -989.0,
+        "y": 3766.0
+      },
+      {
+        "x": -966.0,
+        "y": 4027.0
+      },
+      {
+        "x": -950.0,
+        "y": 4214.0
+      },
+      {
+        "x": -934.0,
+        "y": 4401.0
+      },
+      {
+        "x": -913.0,
+        "y": 4644.0
+      },
+      {
+        "x": -883.0,
+        "y": 5000.0
+      },
+      {
+        "x": -865.0,
+        "y": 5206.0
+      },
+      {
+        "x": -847.0,
+        "y": 5412.0
+      },
+      {
+        "x": -831.0,
+        "y": 5599.0
+      },
+      {
+        "x": -815.0,
+        "y": 5787.0
+      },
+      {
+        "x": -786.0,
+        "y": 6124.0
+      },
+      {
+        "x": -770.0,
+        "y": 6312.0
+      },
+      {
+        "x": -756.0,
+        "y": 6487.0
+      },
+      {
+        "x": -738.0,
+        "y": 6693.0
+      },
+      {
+        "x": -716.0,
+        "y": 6954.0
+      },
+      {
+        "x": -700.0,
+        "y": 7146.0
+      },
+      {
+        "x": -685.0,
+        "y": 7330.0
+      },
+      {
+        "x": -669.0,
+        "y": 7518.0
+      },
+      {
+        "x": -655.0,
+        "y": 7685.0
+      },
+      {
+        "x": -604.0,
+        "y": 8057.0
+      },
+      {
+        "x": -589.0,
+        "y": 8104.0
+      },
+      {
+        "x": -583.0,
+        "y": 8119.0
+      },
+      {
+        "x": -531.0,
+        "y": 8211.0
+      },
+      {
+        "x": -475.0,
+        "y": 8267.0
+      },
+      {
+        "x": -435.0,
+        "y": 8289.0
+      },
+      {
+        "x": -401.0,
+        "y": 8301.0
+      },
+      {
+        "x": -361.0,
+        "y": 8310.0
+      },
+      {
+        "x": -325.0,
+        "y": 8316.0
+      },
+      {
+        "x": -277.0,
+        "y": 8328.0
+      },
+      {
+        "x": -237.0,
+        "y": 8344.0
+      },
+      {
+        "x": -199.0,
+        "y": 8373.0
+      },
+      {
+        "x": -166.0,
+        "y": 8427.0
+      },
+      {
+        "x": -153.0,
+        "y": 8467.0
+      },
+      {
+        "x": -147.0,
+        "y": 8497.0
+      },
+      {
+        "x": -145.0,
+        "y": 8512.0
+      },
+      {
+        "x": -142.0,
+        "y": 8603.0
+      },
+      {
+        "x": -144.0,
+        "y": 8632.0
+      },
+      {
+        "x": -153.0,
+        "y": 8700.0
+      },
+      {
+        "x": -161.0,
+        "y": 8739.0
+      },
+      {
+        "x": -191.0,
+        "y": 8859.0
+      },
+      {
+        "x": -218.0,
+        "y": 8959.0
+      },
+      {
+        "x": -238.0,
+        "y": 9035.0
+      },
+      {
+        "x": -266.0,
+        "y": 9142.0
+      },
+      {
+        "x": -286.0,
+        "y": 9223.0
+      },
+      {
+        "x": -327.0,
+        "y": 9395.0
+      },
+      {
+        "x": -361.0,
+        "y": 9554.0
+      },
+      {
+        "x": -382.0,
+        "y": 9671.0
+      },
+      {
+        "x": -402.0,
+        "y": 9816.0
+      },
+      {
+        "x": -412.0,
+        "y": 9909.0
+      },
+      {
+        "x": -414.0,
+        "y": 9944.0
+      },
+      {
+        "x": -422.0,
+        "y": 10102.0
+      },
+      {
+        "x": -426.0,
+        "y": 10248.0
+      },
+      {
+        "x": -426.0,
+        "y": 10494.0
+      },
+      {
+        "x": -417.0,
+        "y": 10750.0
+      },
+      {
+        "x": -414.0,
+        "y": 10792.0
+      },
+      {
+        "x": -390.0,
+        "y": 11101.0
+      },
+      {
+        "x": -363.0,
+        "y": 11332.0
+      },
+      {
+        "x": -338.0,
+        "y": 11493.0
+      },
+      {
+        "x": -327.0,
+        "y": 11552.0
+      },
+      {
+        "x": -293.0,
+        "y": 11714.0
+      },
+      {
+        "x": -209.0,
+        "y": 12010.0
+      },
+      {
+        "x": -121.0,
+        "y": 12245.0
+      },
+      {
+        "x": -56.0,
+        "y": 12390.0
+      },
+      {
+        "x": 46.0,
+        "y": 12589.0
+      },
+      {
+        "x": 220.0,
+        "y": 12862.0
+      },
+      {
+        "x": 297.0,
+        "y": 12968.0
+      },
+      {
+        "x": 457.0,
+        "y": 13156.0
+      },
+      {
+        "x": 661.0,
+        "y": 13353.0
+      },
+      {
+        "x": 777.0,
+        "y": 13451.0
+      },
+      {
+        "x": 924.0,
+        "y": 13563.0
+      },
+      {
+        "x": 1064.0,
+        "y": 13659.0
+      },
+      {
+        "x": 1200.0,
+        "y": 13743.0
+      },
+      {
+        "x": 1834.0,
+        "y": 14041.0
+      },
+      {
+        "x": 2217.0,
+        "y": 14154.0
+      },
+      {
+        "x": 2456.0,
+        "y": 14205.0
+      },
+      {
+        "x": 2543.0,
+        "y": 14221.0
+      },
+      {
+        "x": 2908.0,
+        "y": 14278.0
+      },
+      {
+        "x": 3276.0,
+        "y": 14321.0
+      },
+      {
+        "x": 3506.0,
+        "y": 14340.0
+      },
+      {
+        "x": 3648.0,
+        "y": 14352.0
+      },
+      {
+        "x": 3968.0,
+        "y": 14379.0
+      },
+      {
+        "x": 4261.0,
+        "y": 14403.0
+      },
+      {
+        "x": 4438.0,
+        "y": 14416.0
+      },
+      {
+        "x": 4633.0,
+        "y": 14429.0
+      },
+      {
+        "x": 4989.0,
+        "y": 14449.0
+      },
+      {
+        "x": 5185.0,
+        "y": 14459.0
+      },
+      {
+        "x": 5486.0,
+        "y": 14471.0
+      },
+      {
+        "x": 5767.0,
+        "y": 14483.0
+      },
+      {
+        "x": 5927.0,
+        "y": 14488.0
+      },
+      {
+        "x": 6163.0,
+        "y": 14496.0
+      },
+      {
+        "x": 6365.0,
+        "y": 14506.0
+      },
+      {
+        "x": 6485.0,
+        "y": 14519.0
+      },
+      {
+        "x": 6577.0,
+        "y": 14537.0
+      },
+      {
+        "x": 6666.0,
+        "y": 14563.0
+      },
+      {
+        "x": 6807.0,
+        "y": 14631.0
+      },
+      {
+        "x": 6859.0,
+        "y": 14677.0
+      },
+      {
+        "x": 6897.0,
+        "y": 14733.0
+      },
+      {
+        "x": 6920.0,
+        "y": 14784.0
+      },
+      {
+        "x": 6948.0,
+        "y": 14843.0
+      },
+      {
+        "x": 6992.0,
+        "y": 14906.0
+      },
+      {
+        "x": 7028.0,
+        "y": 14943.0
+      },
+      {
+        "x": 7096.0,
+        "y": 14996.0
+      },
+      {
+        "x": 7160.0,
+        "y": 15035.0
+      },
+      {
+        "x": 7257.0,
+        "y": 15077.0
+      },
+      {
+        "x": 7320.0,
+        "y": 15097.0
+      },
+      {
+        "x": 7420.0,
+        "y": 15123.0
+      },
+      {
+        "x": 7556.0,
+        "y": 15150.0
+      },
+      {
+        "x": 7704.0,
+        "y": 15176.0
+      },
+      {
+        "x": 7803.0,
+        "y": 15195.0
+      },
+      {
+        "x": 7922.0,
+        "y": 15224.0
+      },
+      {
+        "x": 8069.0,
+        "y": 15267.0
+      },
+      {
+        "x": 8179.0,
+        "y": 15301.0
+      },
+      {
+        "x": 8292.0,
+        "y": 15336.0
+      },
+      {
+        "x": 8420.0,
+        "y": 15376.0
+      },
+      {
+        "x": 8657.0,
+        "y": 15461.0
+      },
+      {
+        "x": 8779.0,
+        "y": 15509.0
+      },
+      {
+        "x": 8903.0,
+        "y": 15557.0
+      },
+      {
+        "x": 8965.0,
+        "y": 15581.0
+      },
+      {
+        "x": 9105.0,
+        "y": 15632.0
+      },
+      {
+        "x": 9234.0,
+        "y": 15676.0
+      },
+      {
+        "x": 9445.0,
+        "y": 15747.0
+      },
+      {
+        "x": 9646.0,
+        "y": 15813.0
+      },
+      {
+        "x": 9778.0,
+        "y": 15850.0
+      },
+      {
+        "x": 9991.0,
+        "y": 15882.0
+      },
+      {
+        "x": 10112.0,
+        "y": 15879.0
+      },
+      {
+        "x": 10341.0,
+        "y": 15830.0
+      },
+      {
+        "x": 10483.0,
+        "y": 15760.0
+      },
+      {
+        "x": 10555.0,
+        "y": 15709.0
+      },
+      {
+        "x": 10660.0,
+        "y": 15612.0
+      },
+      {
+        "x": 10781.0,
+        "y": 15434.0
+      },
+      {
+        "x": 10841.0,
+        "y": 15291.0
+      },
+      {
+        "x": 10883.0,
+        "y": 15138.0
+      },
+      {
+        "x": 10906.0,
+        "y": 15015.0
+      },
+      {
+        "x": 10932.0,
+        "y": 14814.0
+      },
+      {
+        "x": 10957.0,
+        "y": 14539.0
+      },
+      {
+        "x": 10974.0,
+        "y": 14282.0
+      },
+      {
+        "x": 10995.0,
+        "y": 13977.0
+      },
+      {
+        "x": 11009.0,
+        "y": 13806.0
+      },
+      {
+        "x": 11020.0,
+        "y": 13693.0
+      },
+      {
+        "x": 11044.0,
+        "y": 13450.0
+      },
+      {
+        "x": 11055.0,
+        "y": 13326.0
+      },
+      {
+        "x": 11064.0,
+        "y": 13197.0
+      },
+      {
+        "x": 11067.0,
+        "y": 13055.0
+      },
+      {
+        "x": 11067.0,
+        "y": 13044.0
+      },
+      {
+        "x": 11058.0,
+        "y": 12913.0
+      },
+      {
+        "x": 11038.0,
+        "y": 12812.0
+      },
+      {
+        "x": 10957.0,
+        "y": 12627.0
+      },
+      {
+        "x": 10883.0,
+        "y": 12532.0
+      },
+      {
+        "x": 10725.0,
+        "y": 12400.0
+      },
+      {
+        "x": 10625.0,
+        "y": 12337.0
+      },
+      {
+        "x": 10537.0,
+        "y": 12289.0
+      },
+      {
+        "x": 10394.0,
+        "y": 12216.0
+      },
+      {
+        "x": 10213.0,
+        "y": 12125.0
+      },
+      {
+        "x": 10013.0,
+        "y": 12022.0
+      },
+      {
+        "x": 9990.0,
+        "y": 12010.0
+      },
+      {
+        "x": 9747.0,
+        "y": 11879.0
+      },
+      {
+        "x": 9525.0,
+        "y": 11760.0
+      },
+      {
+        "x": 9377.0,
+        "y": 11680.0
+      },
+      {
+        "x": 9327.0,
+        "y": 11653.0
+      },
+      {
+        "x": 9137.0,
+        "y": 11546.0
+      },
+      {
+        "x": 8983.0,
+        "y": 11457.0
+      },
+      {
+        "x": 8826.0,
+        "y": 11367.0
+      },
+      {
+        "x": 8692.0,
+        "y": 11292.0
+      },
+      {
+        "x": 8666.0,
+        "y": 11277.0
+      },
+      {
+        "x": 8421.0,
+        "y": 11141.0
+      },
+      {
+        "x": 8215.0,
+        "y": 11024.0
+      },
+      {
+        "x": 8076.0,
+        "y": 10944.0
+      },
+      {
+        "x": 7895.0,
+        "y": 10838.0
+      },
+      {
+        "x": 7771.0,
+        "y": 10762.0
+      },
+      {
+        "x": 7579.0,
+        "y": 10635.0
+      },
+      {
+        "x": 7391.0,
+        "y": 10499.0
+      },
+      {
+        "x": 7273.0,
+        "y": 10405.0
+      },
+      {
+        "x": 7182.0,
+        "y": 10329.0
+      },
+      {
+        "x": 6918.0,
+        "y": 10115.0
+      },
+      {
+        "x": 6724.0,
+        "y": 9947.0
+      },
+      {
+        "x": 6502.0,
+        "y": 9754.0
+      },
+      {
+        "x": 6384.0,
+        "y": 9651.0
+      },
+      {
+        "x": 6212.0,
+        "y": 9501.0
+      },
+      {
+        "x": 6039.0,
+        "y": 9351.0
+      },
+      {
+        "x": 5972.0,
+        "y": 9293.0
+      },
+      {
+        "x": 5838.0,
+        "y": 9176.0
+      },
+      {
+        "x": 5677.0,
+        "y": 9036.0
+      },
+      {
+        "x": 5380.0,
+        "y": 8778.0
+      },
+      {
+        "x": 5271.0,
+        "y": 8683.0
+      },
+      {
+        "x": 5053.0,
+        "y": 8493.0
+      },
+      {
+        "x": 4888.0,
+        "y": 8350.0
+      },
+      {
+        "x": 4696.0,
+        "y": 8183.0
+      },
+      {
+        "x": 4462.0,
+        "y": 7980.0
+      },
+      {
+        "x": 4324.0,
+        "y": 7860.0
+      },
+      {
+        "x": 3974.0,
+        "y": 7555.0
+      },
+      {
+        "x": 3877.0,
+        "y": 7471.0
+      },
+      {
+        "x": 3696.0,
+        "y": 7314.0
+      },
+      {
+        "x": 3544.0,
+        "y": 7182.0
+      },
+      {
+        "x": 3349.0,
+        "y": 7013.0
+      },
+      {
+        "x": 3228.0,
+        "y": 6907.0
+      },
+      {
+        "x": 3099.0,
+        "y": 6795.0
+      },
+      {
+        "x": 2997.0,
+        "y": 6706.0
+      },
+      {
+        "x": 2906.0,
+        "y": 6624.0
+      },
+      {
+        "x": 2823.0,
+        "y": 6547.0
+      },
+      {
+        "x": 2740.0,
+        "y": 6464.0
+      },
+      {
+        "x": 2635.0,
+        "y": 6335.0
+      },
+      {
+        "x": 2580.0,
+        "y": 6219.0
+      },
+      {
+        "x": 2553.0,
+        "y": 6107.0
+      },
+      {
+        "x": 2544.0,
+        "y": 5988.0
+      },
+      {
+        "x": 2546.0,
+        "y": 5759.0
+      },
+      {
+        "x": 2544.0,
+        "y": 5650.0
+      },
+      {
+        "x": 2520.0,
+        "y": 5426.0
+      },
+      {
+        "x": 2471.0,
+        "y": 5256.0
+      },
+      {
+        "x": 2408.0,
+        "y": 5111.0
+      },
+      {
+        "x": 2333.0,
+        "y": 4983.0
+      },
+      {
+        "x": 2271.0,
+        "y": 4902.0
+      },
+      {
+        "x": 2229.0,
+        "y": 4852.0
+      },
+      {
+        "x": 2146.0,
+        "y": 4766.0
+      },
+      {
+        "x": 2042.0,
+        "y": 4660.0
+      },
+      {
+        "x": 1958.0,
+        "y": 4558.0
+      },
+      {
+        "x": 1888.0,
+        "y": 4443.0
+      },
+      {
+        "x": 1825.0,
+        "y": 4286.0
+      },
+      {
+        "x": 1791.0,
+        "y": 4160.0
+      },
+      {
+        "x": 1754.0,
+        "y": 3974.0
+      },
+      {
+        "x": 1736.0,
+        "y": 3828.0
+      },
+      {
+        "x": 1719.0,
+        "y": 3634.0
+      },
+      {
+        "x": 1698.0,
+        "y": 3407.0
+      },
+      {
+        "x": 1681.0,
+        "y": 3233.0
+      },
+      {
+        "x": 1664.0,
+        "y": 3060.0
+      },
+      {
+        "x": 1646.0,
+        "y": 2872.0
+      },
+      {
+        "x": 1632.0,
+        "y": 2714.0
+      },
+      {
+        "x": 1621.0,
+        "y": 2587.0
+      },
+      {
+        "x": 1588.0,
+        "y": 2231.0
+      },
+      {
+        "x": 1569.0,
+        "y": 2018.0
+      },
+      {
+        "x": 1543.0,
+        "y": 1736.0
+      },
+      {
+        "x": 1529.0,
+        "y": 1585.0
+      },
+      {
+        "x": 1492.0,
+        "y": 1180.0
+      },
+      {
+        "x": 1476.0,
+        "y": 1010.0
+      },
+      {
+        "x": 1462.0,
+        "y": 855.0
+      },
+      {
+        "x": 1438.0,
+        "y": 596.0
+      },
+      {
+        "x": 1417.0,
+        "y": 370.0
+      },
+      {
+        "x": 1404.0,
+        "y": 230.0
+      },
+      {
+        "x": 1377.0,
+        "y": -67.0
+      },
+      {
+        "x": 1359.0,
+        "y": -261.0
+      },
+      {
+        "x": 1344.0,
+        "y": -421.0
+      },
+      {
+        "x": 1313.0,
+        "y": -757.0
+      },
+      {
+        "x": 1292.0,
+        "y": -989.0
+      },
+      {
+        "x": 1289.0,
+        "y": -1020.0
+      },
+      {
+        "x": 1276.0,
+        "y": -1163.0
+      },
+      {
+        "x": 1250.0,
+        "y": -1451.0
+      },
+      {
+        "x": 1235.0,
+        "y": -1614.0
+      },
+      {
+        "x": 1221.0,
+        "y": -1758.0
+      },
+      {
+        "x": 1206.0,
+        "y": -1921.0
+      },
+      {
+        "x": 1191.0,
+        "y": -2085.0
+      },
+      {
+        "x": 1170.0,
+        "y": -2321.0
+      },
+      {
+        "x": 1151.0,
+        "y": -2522.0
+      },
+      {
+        "x": 1124.0,
+        "y": -2814.0
+      },
+      {
+        "x": 1103.0,
+        "y": -3052.0
+      },
+      {
+        "x": 1076.0,
+        "y": -3346.0
+      },
+      {
+        "x": 1065.0,
+        "y": -3456.0
+      },
+      {
+        "x": 1046.0,
+        "y": -3658.0
+      },
+      {
+        "x": 1018.0,
+        "y": -3953.0
+      },
+      {
+        "x": 994.0,
+        "y": -4192.0
+      },
+      {
+        "x": 980.0,
+        "y": -4318.0
+      },
+      {
+        "x": 927.0,
+        "y": -4724.0
+      },
+      {
+        "x": 883.0,
+        "y": -4952.0
+      },
+      {
+        "x": 825.0,
+        "y": -5163.0
+      },
+      {
+        "x": 801.0,
+        "y": -5232.0
+      },
+      {
+        "x": 765.0,
+        "y": -5320.0
+      },
+      {
+        "x": 669.0,
+        "y": -5485.0
+      },
+      {
+        "x": 612.0,
+        "y": -5553.0
+      },
+      {
+        "x": 497.0,
+        "y": -5655.0
+      },
+      {
+        "x": 442.0,
+        "y": -5691.0
+      },
+      {
+        "x": 345.0,
+        "y": -5740.0
+      },
+      {
+        "x": 188.0,
+        "y": -5787.0
+      },
+      {
+        "x": 87.0,
+        "y": -5800.0
+      },
+      {
+        "x": -51.0,
+        "y": -5798.0
+      },
+      {
+        "x": -74.0,
+        "y": -5795.0
+      },
+      {
+        "x": -204.0,
+        "y": -5772.0
+      },
+      {
+        "x": -321.0,
+        "y": -5736.0
+      },
+      {
+        "x": -509.0,
+        "y": -5650.0
+      },
+      {
+        "x": -578.0,
+        "y": -5610.0
+      },
+      {
+        "x": -734.0,
+        "y": -5494.0
+      },
+      {
+        "x": -813.0,
+        "y": -5422.0
+      },
+      {
+        "x": -915.0,
+        "y": -5313.0
+      },
+      {
+        "x": -1033.0,
+        "y": -5161.0
+      },
+      {
+        "x": -1145.0,
+        "y": -4981.0
+      },
+      {
+        "x": -1216.0,
+        "y": -4840.0
+      },
+      {
+        "x": -1295.0,
+        "y": -4652.0
+      },
+      {
+        "x": -1334.0,
+        "y": -4540.0
+      },
+      {
+        "x": -1412.0,
+        "y": -4249.0
+      },
+      {
+        "x": -1436.0,
+        "y": -4129.0
+      },
+      {
+        "x": -1481.0,
+        "y": -3770.0
+      },
+      {
+        "x": -1490.0,
+        "y": -3628.0
+      },
+      {
+        "x": -1498.0,
+        "y": -3339.0
+      },
+      {
+        "x": -1498.0,
+        "y": -2963.0
+      },
+      {
+        "x": -1493.0,
+        "y": -2664.0
+      },
+      {
+        "x": -1480.0,
+        "y": -2271.0
+      },
+      {
+        "x": -1470.0,
+        "y": -2050.0
+      },
+      {
+        "x": -1456.0,
+        "y": -1809.0
+      },
+      {
+        "x": -1443.0,
+        "y": -1602.0
+      },
+      {
+        "x": -1411.0,
+        "y": -1145.0
+      },
+      {
+        "x": -1399.0,
+        "y": -988.0
+      }
+    ]
+  },
+  "corners": [
+    {
+      "number": 1,
+      "letter": "",
+      "name": "Variante del Rettifilo (Entry)",
+      "turn": "Turn 1 (T1)",
+      "x": -569.58,
+      "y": 8153.72,
+      "angle": 153.79,
+      "distance": 876.83,
+      "nearestTrackDistance": 37.23,
+      "alignmentValid": true,
+      "type": "Chicane",
+      "direction": "Right",
+      "gear": 2,
+      "speed_kph": 75,
+      "characteristics": "Heavy braking from ~350 km/h; sausage kerbs",
+      "history": "Heavy 350 km/h braking zone into Monza's tightest chicane. Famous for opening-lap scrambles, including Max Verstappen's car landing on top of Lewis Hamilton's Halo in 2021.",
+      "images": [
+        {
+          "src": "/images/circuits/monza/corners/rettifilo/01_rettifilo_aerial.jpg",
+          "source": "Autodromo Nazionale Monza Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Autodromo Nazionale Monza Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Variante del Rettifilo T1 photograph"
+        }
+      ],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 2,
+      "letter": "",
+      "name": "Variante del Rettifilo (Exit)",
+      "turn": "Turn 2 (T2)",
+      "x": -146.75,
+      "y": 8474.98,
+      "angle": -13.84,
+      "distance": 936.19,
+      "nearestTrackDistance": 10.13,
+      "alignmentValid": true,
+      "type": "Chicane",
+      "direction": "Left",
+      "gear": 2,
+      "speed_kph": 85,
+      "characteristics": "Traction critical for Curva Grande run",
+      "history": "Traction-critical exit from the Rettifilo chicane. A driver's launch here dictates top speed all the way down Curva Grande towards Lesmo.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 3,
+      "letter": "",
+      "name": "Curva Grande (Curva Biassono)",
+      "turn": "Turn 3 (T3)",
+      "x": 611.6,
+      "y": 13310.62,
+      "angle": 133.03,
+      "distance": 1459.73,
+      "nearestTrackDistance": 65.09,
+      "alignmentValid": true,
+      "type": "Sweeper",
+      "direction": "Right",
+      "gear": 8,
+      "speed_kph": 305,
+      "characteristics": "Flat-out high-lateral load sweeping curve",
+      "history": "A flat-out 305 km/h sweeping curve through Monza's royal park, pulling 3.5G while accelerating into the dense forest canopy.",
+      "images": [
+        {
+          "src": "/images/circuits/monza/corners/curva-grande/01_curva_grande_sweeper.jpg",
+          "source": "Autodromo Nazionale Monza Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Autodromo Nazionale Monza Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Curva Grande photograph"
+        }
+      ],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 4,
+      "letter": "",
+      "name": "Variante della Roggia (Entry)",
+      "turn": "Turn 4 (T4)",
+      "x": 6808.66,
+      "y": 14630.75,
+      "angle": -54.04,
+      "distance": 2085.08,
+      "nearestTrackDistance": 1.67,
+      "alignmentValid": true,
+      "type": "Chicane",
+      "direction": "Left",
+      "gear": 3,
+      "speed_kph": 120,
+      "characteristics": "Trail braking over exit kerbs",
+      "history": "Second chicane named after the ancient water canal below the track. A primary slipstream overtaking zone where cars bounce aggressively over sausage kerbs at 120 km/h.",
+      "images": [
+        {
+          "src": "/images/circuits/monza/corners/roggia/01_roggia_chicane.jpg",
+          "source": "Autodromo Nazionale Monza Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Autodromo Nazionale Monza Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Variante della Roggia T4 photograph"
+        }
+      ],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 5,
+      "letter": "",
+      "name": "Variante della Roggia (Exit)",
+      "turn": "Turn 5 (T5)",
+      "x": 7130.87,
+      "y": 15023.12,
+      "angle": 121.75,
+      "distance": 2144.22,
+      "nearestTrackDistance": 31.46,
+      "alignmentValid": true,
+      "type": "Chicane",
+      "direction": "Right",
+      "gear": 3,
+      "speed_kph": 130,
+      "characteristics": "Aggressive kerb riding needed",
+      "history": "Exit of Roggia chicane where drivers clip the kerb to maximize acceleration towards the twin Lesmo curves.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 6,
+      "letter": "",
+      "name": "Curva di Lesmo 1",
+      "turn": "Turn 6 (T6)",
+      "x": 10554.86,
+      "y": 15713.8,
+      "angle": 54.64,
+      "distance": 2499.93,
+      "nearestTrackDistance": 4.81,
+      "alignmentValid": true,
+      "type": "Medium-Speed",
+      "direction": "Right",
+      "gear": 4,
+      "speed_kph": 170,
+      "characteristics": "Blind apex, critical entry speed",
+      "history": "Blind right-hand apex surrounded by royal pine trees. Demands total commitment at 170 km/h where any drift wide costs vital momentum.",
+      "images": [
+        {
+          "src": "/images/circuits/monza/corners/lesmo-1/01_lesmo1_apex.jpg",
+          "source": "Autodromo Nazionale Monza Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Autodromo Nazionale Monza Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Lesmo 1 photograph"
+        }
+      ],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 7,
+      "letter": "",
+      "name": "Curva di Lesmo 2",
+      "turn": "Turn 7 (T7)",
+      "x": 10972.64,
+      "y": 12648.36,
+      "angle": -29.05,
+      "distance": 2813.28,
+      "nearestTrackDistance": 26.47,
+      "alignmentValid": true,
+      "type": "Medium-Speed",
+      "direction": "Right",
+      "gear": 4,
+      "speed_kph": 160,
+      "characteristics": "Late apex opening into Curva del Serraglio",
+      "history": "Technical right-hand corner opening into Curva del Serraglio. Site of famous overtakes by Charles Leclerc, Sebastian Vettel, and Michael Schumacher fighting for Tifosi glory.",
+      "images": [
+        {
+          "src": "/images/circuits/monza/corners/lesmo-2/01_lesmo2_exit.jpg",
+          "source": "Autodromo Nazionale Monza Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Autodromo Nazionale Monza Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Lesmo 2 photograph"
+        }
+      ],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 8,
+      "letter": "",
+      "name": "Variante Ascari (Entry)",
+      "turn": "Turn 8 (T8)",
+      "x": 2562.92,
+      "y": 6171.02,
+      "angle": 163.07,
+      "distance": 3873.43,
+      "nearestTrackDistance": 50.93,
+      "alignmentValid": true,
+      "type": "High-Speed Chicane",
+      "direction": "Left",
+      "gear": 5,
+      "speed_kph": 215,
+      "characteristics": "Fast directional transition",
+      "history": "Fast left-right-left chicane named after 2-time World Champion Alberto Ascari, who tragically lost his life nearby in 1955. Demands razor-sharp balance at 240 km/h.",
+      "images": [
+        {
+          "src": "/images/circuits/monza/corners/ascari/01_ascari_complex.jpg",
+          "source": "Autodromo Nazionale Monza Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Autodromo Nazionale Monza Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Variante Ascari T8 photograph"
+        }
+      ],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 9,
+      "letter": "",
+      "name": "Variante Ascari (Mid)",
+      "turn": "Turn 9 (T9)",
+      "x": 2478.04,
+      "y": 5270.56,
+      "angle": -21.07,
+      "distance": 3975.59,
+      "nearestTrackDistance": 16.18,
+      "alignmentValid": true,
+      "type": "High-Speed Chicane",
+      "direction": "Right",
+      "gear": 6,
+      "speed_kph": 240,
+      "characteristics": "Platform stability test",
+      "history": "Mid-section of Variante Ascari where cars pull maximum lateral G-forces across the high-speed direction change.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 10,
+      "letter": "",
+      "name": "Variante Ascari (Exit)",
+      "turn": "Turn 10 (T10)",
+      "x": 1890.11,
+      "y": 4451.19,
+      "angle": 152.54,
+      "distance": 4077.9,
+      "nearestTrackDistance": 8.45,
+      "alignmentValid": true,
+      "type": "High-Speed Chicane",
+      "direction": "Left",
+      "gear": 6,
+      "speed_kph": 260,
+      "characteristics": "Maximizing run towards Rettifilo Centrale",
+      "history": "Exit of Ascari launching cars onto the back straight towards Parabolica at over 260 km/h.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 11,
+      "letter": "",
+      "name": "Curva Parabolica (Curva Alboreto)",
+      "turn": "Turn 11 (T11)",
+      "x": -55.33,
+      "y": -5800.17,
+      "angle": -95.85,
+      "distance": 5157.72,
+      "nearestTrackDistance": 4.84,
+      "alignmentValid": true,
+      "type": "Increasing-Radius Sweeper",
+      "direction": "Right",
+      "gear": 5,
+      "speed_kph": 210,
+      "characteristics": "Long progressive acceleration to main straight",
+      "history": "Iconic 180-degree sweeping right-hand arc renamed in 2021 after Italian hero Michele Alboreto. Drivers balance on the edge of grip at 210 km/h to rocket down the 1.1km pit straight.",
+      "images": [
+        {
+          "src": "/images/circuits/monza/corners/parabolica/01_parabolica_arc.jpg",
+          "source": "Autodromo Nazionale Monza Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Autodromo Nazionale Monza Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Curva Alboreto (Parabolica) photograph"
+        }
+      ],
+      "technical": null,
+      "racing": null
+    }
+  ]
+}

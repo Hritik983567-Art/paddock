@@ -61,11 +61,12 @@ export default function SchedulePage() {
       setLoading(true);
       setError('');
       try {
-        const res = await getJSON(`${API_BASE}/${selectedSeason}.json`);
-        const raceList = res.MRData.RaceTable.Races as Race[];
+        const res = await getJSON(`${API_BASE}/${selectedSeason}.json`) as { MRData?: { RaceTable?: { Races?: Race[] } } };
+        const raceList = res?.MRData?.RaceTable?.Races || [];
         setRaces(raceList);
-      } catch (e: any) {
-        setError(e.message || 'Could not fetch Grand Prix calendar.');
+      } catch (e: unknown) {
+        const err = e as Error;
+        setError(err.message || 'Could not fetch Grand Prix calendar.');
       } finally {
         setLoading(false);
       }
@@ -88,15 +89,15 @@ export default function SchedulePage() {
     setRoundDataCache(prev => ({ ...prev, [rnd]: { loading: true } }));
 
     try {
-      const res = await getJSON(`${API_BASE}/${selectedSeason}/${rnd}/results.json`);
+      const res = await getJSON(`${API_BASE}/${selectedSeason}/${rnd}/results.json`) as { MRData?: { RaceTable?: { Races?: Array<{ Results: unknown[] }> } } };
       const race = res?.MRData?.RaceTable?.Races?.[0];
-      const rres = race?.Results || [];
+      const rres = (race?.Results || []) as RaceResult[];
 
       setRoundDataCache(prev => ({
         ...prev,
         [rnd]: { raceResults: rres, loading: false }
       }));
-    } catch (err: any) {
+    } catch {
       setRoundDataCache(prev => ({
         ...prev,
         [rnd]: { loading: false, error: 'Session results unavailable' }

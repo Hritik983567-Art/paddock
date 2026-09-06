@@ -24,17 +24,17 @@ export const RaceByRaceTable: React.FC<RaceByRaceTableProps> = ({ data }) => {
     }
   };
 
-  const sortedRounds = [...rounds].sort((a: any, b: any) => {
-    let valA = a[sortKey];
-    let valB = b[sortKey];
+  const sortedRounds = [...rounds].sort((a: RaceRoundResult, b: RaceRoundResult) => {
+    let valA = a[sortKey] as string | number | null | undefined;
+    let valB = b[sortKey] as string | number | null | undefined;
 
     if (valA === null || valA === undefined) valA = 999;
     if (valB === null || valB === undefined) valB = 999;
 
-    if (typeof valA === 'string') {
+    if (typeof valA === 'string' && typeof valB === 'string') {
       return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
     }
-    return sortAsc ? valA - valB : valB - valA;
+    return sortAsc ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
   });
 
   return (

@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useSeason } from './contexts/SeasonContext';
-import { getJSON, API_BASE, getTeamColor, fetchCircuitWeather, WeatherData } from './utils/api';
+import { getJSON, API_BASE, fetchCircuitWeather, WeatherData } from './utils/api';
 
 interface Race {
   raceName: string;
@@ -48,11 +47,8 @@ interface ConstructorStanding {
 }
 
 export default function OverviewPage() {
-  const { selectedSeason } = useSeason();
-
   // Next race states
   const [nextRace, setNextRace] = useState<Race | null>(null);
-  const [lastRace, setLastRace] = useState<Race | null>(null);
   const [totalRaces, setTotalRaces] = useState<number>(0);
   const [countdownText, setCountdownText] = useState('Loading countdown…');
   const [litCount, setLitCount] = useState(0);
@@ -73,11 +69,10 @@ export default function OverviewPage() {
   useEffect(() => {
     async function fetchCalendar() {
       try {
-        const sched = await getJSON(`${API_BASE}/current.json`);
-        const races = sched.MRData.RaceTable.Races as Race[];
+        const sched = await getJSON(`${API_BASE}/current.json`) as { MRData: { RaceTable: { Races: Race[] } } };
+        const races = sched?.MRData?.RaceTable?.Races || [];
         setTotalRaces(races.length);
         const now = new Date();
-        const past = races.filter(r => new Date(r.date + 'T' + (r.time || '00:00:00Z')) <= now);
         const future = races.filter(r => new Date(r.date + 'T' + (r.time || '00:00:00Z')) > now);
 
         if (future.length > 0) {
@@ -85,11 +80,7 @@ export default function OverviewPage() {
         } else if (races.length > 0) {
           setNextRace(races[races.length - 1]);
         }
-
-        if (past.length > 0) {
-          setLastRace(past[past.length - 1]);
-        }
-      } catch (e: any) {
+      } catch {
         setCountdownText('Countdown feed unavailable');
       }
     }
@@ -107,7 +98,7 @@ export default function OverviewPage() {
       try {
         const wData = await fetchCircuitWeather(lat!, long!);
         setWeather(wData);
-      } catch (err: any) {
+      } catch {
         // Fallback gracefully
       } finally {
         setWeatherLoading(false);
@@ -164,12 +155,15 @@ export default function OverviewPage() {
           getJSON(`${API_BASE}/current/constructorStandings.json`).catch(() => null)
         ]);
 
-        const dList = dRes?.MRData?.StandingsTable?.StandingsLists?.[0]?.DriverStandings || [];
-        const cList = cRes?.MRData?.StandingsTable?.StandingsLists?.[0]?.ConstructorStandings || [];
+        const dObj = dRes as { MRData?: { StandingsTable?: { StandingsLists?: Array<{ DriverStandings: DriverStanding[] }> } } } | null;
+        const cObj = cRes as { MRData?: { StandingsTable?: { StandingsLists?: Array<{ ConstructorStandings: ConstructorStanding[] }> } } } | null;
+
+        const dList = dObj?.MRData?.StandingsTable?.StandingsLists?.[0]?.DriverStandings || [];
+        const cList = cObj?.MRData?.StandingsTable?.StandingsLists?.[0]?.ConstructorStandings || [];
 
         setDrivers(dList);
         setConstructors(cList);
-      } catch (e: any) {
+      } catch {
         // Fallback gracefully
       } finally {
         setStandingsLoading(false);

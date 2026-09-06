@@ -1,4 +1,4 @@
-import { getJSON, API_BASE, parseLapTime, getTeamColor } from '../utils/api';
+import { getJSON, API_BASE, parseLapTime } from '../utils/api';
 
 export interface DriverMeta {
   code: string;
@@ -115,14 +115,17 @@ export type FullReplaySessionData = RaceReplaySessionData | QualiReplaySessionDa
 export async function fetchSeasonRounds(season: string) {
   const data = await getJSON(`${API_BASE}/${season}.json`);
   const raceList = data?.MRData?.RaceTable?.Races || [];
-  return raceList.map((r: any) => ({
-    round: r.round,
-    raceName: r.raceName,
-    circuitId: r.Circuit?.circuitId || 'unknown',
-    circuitName: r.Circuit?.circuitName || r.raceName,
-    date: r.date,
-    hasSprint: Boolean(r.Sprint || r.SprintQualifying || r.SprintShootout)
-  }));
+  return raceList.map((r: Record<string, unknown>) => {
+    const rObj = r as { round: string; raceName: string; date: string; Circuit?: { circuitId?: string; circuitName?: string }; Sprint?: unknown; SprintQualifying?: unknown; SprintShootout?: unknown };
+    return {
+      round: rObj.round,
+      raceName: rObj.raceName,
+      circuitId: rObj.Circuit?.circuitId || 'unknown',
+      circuitName: rObj.Circuit?.circuitName || rObj.raceName,
+      date: rObj.date,
+      hasSprint: Boolean(rObj.Sprint || rObj.SprintQualifying || rObj.SprintShootout)
+    };
+  });
 }
 
 export async function loadReplaySession(
@@ -140,30 +143,33 @@ export async function loadReplaySession(
     }
 
     const driverMeta: Record<string, DriverMeta> = {};
-    qres.forEach((q: any) => {
-      const code = q.Driver.code || q.Driver.familyName.slice(0, 3).toUpperCase();
-      driverMeta[q.Driver.driverId] = {
-        driverId: q.Driver.driverId,
+    qres.forEach((q: Record<string, unknown>) => {
+      const qObj = q as { Driver: { driverId: string; code?: string; familyName: string; givenName: string; permanentNumber?: string }; Constructor: { constructorId: string }; number?: string };
+      const code = qObj.Driver.code || qObj.Driver.familyName.slice(0, 3).toUpperCase();
+      driverMeta[qObj.Driver.driverId] = {
+        driverId: qObj.Driver.driverId,
         code,
-        name: `${q.Driver.givenName} ${q.Driver.familyName}`,
-        team: q.Constructor.constructorId,
-        permanentNumber: q.Driver.permanentNumber || q.number
+        name: `${qObj.Driver.givenName} ${qObj.Driver.familyName}`,
+        team: qObj.Constructor.constructorId,
+        permanentNumber: qObj.Driver.permanentNumber || qObj.number
       };
     });
 
     const stages: ('Q1' | 'Q2' | 'Q3')[] = ['Q1', 'Q2', 'Q3'];
     const frames: QualiStageFrame[] = stages.map(stg => {
-      const rows = qres.map((q: any) => {
-        const timeStr = q[stg];
+      const rows = qres.map((q: Record<string, unknown>) => {
+        const qObj = q as Record<string, string>;
+        const timeStr = qObj[stg];
         const timeSec = parseLapTime(timeStr);
         if (timeSec === null) return null;
+        const qDriverObj = q as { Driver: { driverId: string }; Q1?: string; Q2?: string; Q3?: string };
         return {
-          driverId: q.Driver.driverId,
+          driverId: qDriverObj.Driver.driverId,
           timeSec,
           timeStr,
-          q1: q.Q1,
-          q2: q.Q2,
-          q3: q.Q3
+          q1: qDriverObj.Q1,
+          q2: qDriverObj.Q2,
+          q3: qDriverObj.Q3
         };
       }).filter(Boolean) as QualiRowData[];
 
@@ -201,22 +207,23 @@ export async function loadReplaySession(
   const initialGridPos: Record<string, number> = {};
   const finalPosMap: Record<string, number> = {};
 
-  results.forEach((r: any) => {
-    const dId = r.Driver.driverId;
-    const code = r.Driver.code || r.Driver.familyName.slice(0, 3).toUpperCase();
+  results.forEach((r: Record<string, unknown>) => {
+    const rObj = r as { Driver: { driverId: string; code?: string; familyName: string; givenName: string; permanentNumber?: string }; Constructor: { constructorId: string }; number?: string; grid?: string; position?: string };
+    const dId = rObj.Driver.driverId;
+    const code = rObj.Driver.code || rObj.Driver.familyName.slice(0, 3).toUpperCase();
     driverMeta[dId] = {
       driverId: dId,
       code,
-      name: `${r.Driver.givenName} ${r.Driver.familyName}`,
-      team: r.Constructor.constructorId,
-      permanentNumber: r.Driver.permanentNumber || r.number
+      name: `${rObj.Driver.givenName} ${rObj.Driver.familyName}`,
+      team: rObj.Constructor.constructorId,
+      permanentNumber: rObj.Driver.permanentNumber || rObj.number
     };
-    initialGridPos[dId] = parseInt(r.grid) || 20;
-    finalPosMap[dId] = parseInt(r.position) || 20;
+    initialGridPos[dId] = parseInt(rObj.grid || '20') || 20;
+    finalPosMap[dId] = parseInt(rObj.position || '20') || 20;
   });
 
   // Fetch all lap-by-lap data
-  let allLapsRaw: any[] = [];
+  let allLapsRaw: Record<string, unknown>[] = [];
   const pageSize = 100;
   let offset = 0;
   let total = Infinity;
@@ -231,17 +238,18 @@ export async function loadReplaySession(
     const rLaps = lapsRes.MRData.RaceTable?.Races?.[0]?.Laps || [];
     if (rLaps.length === 0) break;
     allLapsRaw = allLapsRaw.concat(rLaps);
-    const timingsInLaps = rLaps.reduce((s: number, l: any) => s + (l.Timings?.length || 0), 0);
+    const timingsInLaps = rLaps.reduce((s: number, l: Record<string, unknown>) => s + ((l as { Timings?: unknown[] }).Timings?.length || 0), 0);
     if (timingsInLaps === 0) break;
     offset += timingsInLaps;
   }
 
   // Aggregate raw laps
   const lapMap: Record<number, Record<string, { pos: number; timeSec: number; timeStr: string }>> = {};
-  allLapsRaw.forEach((l: any) => {
-    const lNum = parseInt(l.number);
+  allLapsRaw.forEach((l: Record<string, unknown>) => {
+    const lObj = l as { number: string; Timings?: Array<{ driverId: string; position: string; time: string }> };
+    const lNum = parseInt(lObj.number);
     if (!lapMap[lNum]) lapMap[lNum] = {};
-    (l.Timings || []).forEach((t: any) => {
+    (lObj.Timings || []).forEach(t => {
       lapMap[lNum][t.driverId] = {
         pos: parseInt(t.position),
         timeSec: parseLapTime(t.time) || 90.0,
@@ -280,7 +288,6 @@ export async function loadReplaySession(
     const currentGaps: Record<string, string> = {};
 
     const rawCurrent = lapMap[lNum] || {};
-    let leaderTimeCumulative = 0;
 
     // Leader position P1
     const p1Driver = Object.keys(rawCurrent).find(dId => rawCurrent[dId].pos === 1);
@@ -331,20 +338,20 @@ export async function loadReplaySession(
   // Parse Pit Stops
   const pitStops: PitStopItem[] = [];
   const rawPitList = pitStopsRes?.MRData?.RaceTable?.Races?.[0]?.PitStops || [];
-
-  rawPitList.forEach((ps: any) => {
-    const dId = ps.driverId;
+  rawPitList.forEach((ps: Record<string, unknown>) => {
+    const psObj = ps as { driverId: string; lap: string; duration?: string; stop?: string; time?: string };
+    const dId = psObj.driverId;
     const meta = driverMeta[dId];
-    const lapNum = parseInt(ps.lap);
-    const dur = parseFloat(ps.duration) || 2.5;
+    const lapNum = parseInt(psObj.lap);
+    const dur = parseFloat(psObj.duration || '2.5') || 2.5;
 
     pitStops.push({
       driverId: dId,
       driverCode: meta?.code || dId,
       team: meta?.team || 'generic',
       lap: lapNum,
-      stopNumber: parseInt(ps.stop) || 1,
-      timeStr: ps.time || 'N/A',
+      stopNumber: parseInt(psObj.stop || '1') || 1,
+      timeStr: psObj.time || 'N/A',
       duration: `${dur.toFixed(2)}s`,
       durationSec: dur,
       tyreBefore: lapNum > 25 ? 'MEDIUM' : 'SOFT',
@@ -374,7 +381,7 @@ export async function loadReplaySession(
     } else {
       dStops.forEach((ps, idx) => {
         const comp = idx === 0 ? 'MEDIUM' : (idx === 1 ? 'HARD' : 'SOFT');
-        stints.push({ driverId: dId, compound: comp as any, startLap, endLap: ps.lap });
+        stints.push({ driverId: dId, compound: comp as TyreStint['compound'], startLap, endLap: ps.lap });
         startLap = ps.lap + 1;
       });
       stints.push({ driverId: dId, compound: 'HARD', startLap, endLap: totalLaps });
@@ -402,20 +409,24 @@ export async function loadReplaySession(
     time: winnerResult.Time?.time || '1:21:44.204'
   } : undefined;
 
-  const podium = results.slice(0, 3).map((r: any, idx: number) => ({
-    code: driverMeta[r.Driver.driverId]?.code || r.Driver.driverId,
-    team: r.Constructor.constructorId,
-    pos: idx + 1
-  }));
+  const podium = results.slice(0, 3).map((r: Record<string, unknown>, idx: number) => {
+    const rObj = r as { Driver: { driverId: string }; Constructor: { constructorId: string } };
+    return {
+      code: driverMeta[rObj.Driver.driverId]?.code || rObj.Driver.driverId,
+      team: rObj.Constructor.constructorId,
+      pos: idx + 1
+    };
+  });
 
   // Fastest Lap
   let fastestLap: { driverCode: string; lap: number; timeStr: string } | undefined;
-  results.forEach((r: any) => {
-    if (r.FastestLap) {
+  results.forEach((r: Record<string, unknown>) => {
+    const rObj = r as { Driver: { driverId: string }; FastestLap?: { lap: string; Time?: { time: string } } };
+    if (rObj.FastestLap) {
       fastestLap = {
-        driverCode: driverMeta[r.Driver.driverId]?.code || r.Driver.driverId,
-        lap: parseInt(r.FastestLap.lap) || 1,
-        timeStr: r.FastestLap.Time?.time || '1:21.046'
+        driverCode: driverMeta[rObj.Driver.driverId]?.code || rObj.Driver.driverId,
+        lap: parseInt(rObj.FastestLap.lap) || 1,
+        timeStr: rObj.FastestLap.Time?.time || '1:21.046'
       };
     }
   });

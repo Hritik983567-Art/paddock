@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { getJSON, fetchAllPaged, API_BASE } from '../utils/api';
+import { fetchAllPaged, API_BASE } from '../utils/api';
 
 interface Circuit {
   circuitId: string;
@@ -54,21 +54,22 @@ export default function ComparePage() {
       setLoadingIndex(true);
       setIndexError('');
       try {
-        const circs = await fetchAllPaged(`${API_BASE}/circuits.json`, 'CircuitTable', 'Circuits');
+        const circs = (await fetchAllPaged(`${API_BASE}/circuits.json`, 'CircuitTable', 'Circuits')) as Circuit[];
         circs.sort((a, b) => a.circuitName.localeCompare(b.circuitName));
         setCircuits(circs);
 
-        const drivers = await fetchAllPaged(`${API_BASE}/drivers.json`, 'DriverTable', 'Drivers');
+        const drivers = (await fetchAllPaged(`${API_BASE}/drivers.json`, 'DriverTable', 'Drivers')) as Array<{ givenName: string; familyName: string; driverId: string }>;
         const mapping: Record<string, string> = {};
-        const indexList = drivers.map((d: any) => {
+        const indexList = drivers.map(d => {
           const fullName = `${d.givenName} ${d.familyName}`;
           mapping[fullName.toLowerCase()] = d.driverId;
           return { driverId: d.driverId, name: fullName };
         });
         setDriversList(indexList);
         setDriverIndexByName(mapping);
-      } catch (e: any) {
-        setIndexError(e.message || 'Couldn\'t load indices.');
+      } catch (e: unknown) {
+        const err = e as Error;
+        setIndexError(err.message || 'Failed to load driver/circuit index.');
       } finally {
         setLoadingIndex(false);
       }
@@ -109,13 +110,14 @@ export default function ComparePage() {
         return;
       }
 
-      const summarize = (races: any[], qualiRaces: any[]): DriverSummary => {
+      const summarize = (races: Record<string, unknown>[], qualiRaces: Record<string, unknown>[]): DriverSummary => {
         let wins = 0, podiums = 0, points = 0;
         const positions: number[] = [];
         const byYear: Record<string, { position: string; team: string }> = {};
 
         races.forEach(r => {
-          const res = r.Results[0];
+          const raceObj = r as { season: string; Results?: Array<{ position: string; points: string; positionText?: string; Constructor: { name: string } }> };
+          const res = raceObj.Results?.[0];
           if (!res) return;
           const pos = parseInt(res.position);
           if (!isNaN(pos)) {
@@ -124,12 +126,13 @@ export default function ComparePage() {
             if (pos <= 3) podiums++;
           }
           points += parseFloat(res.points) || 0;
-          byYear[r.season] = { position: res.positionText || res.position, team: res.Constructor.name };
+          byYear[raceObj.season] = { position: res.positionText || res.position, team: res.Constructor.name };
         });
 
         let poles = 0;
         qualiRaces.forEach(r => {
-          if (r.QualifyingResults && r.QualifyingResults[0] && r.QualifyingResults[0].position === '1') {
+          const qObj = r as { QualifyingResults?: Array<{ position: string }> };
+          if (qObj.QualifyingResults && qObj.QualifyingResults[0] && qObj.QualifyingResults[0].position === '1') {
             poles++;
           }
         });
@@ -138,8 +141,8 @@ export default function ComparePage() {
         return { starts: races.length, wins, podiums, poles, points, best, byYear };
       };
 
-      const sumA = summarize(resA, qA);
-      const sumB = summarize(resB, qB);
+      const sumA = summarize(resA as Record<string, unknown>[], qA as Record<string, unknown>[]);
+      const sumB = summarize(resB as Record<string, unknown>[], qB as Record<string, unknown>[]);
       
       const years = Array.from(new Set([...Object.keys(sumA.byYear), ...Object.keys(sumB.byYear)]))
         .sort((a, b) => parseInt(b) - parseInt(a));
@@ -151,8 +154,9 @@ export default function ComparePage() {
         sumB,
         years
       });
-    } catch (e: any) {
-      setCompareError(e.message || 'Couldn\'t build comparison data.');
+    } catch (e: unknown) {
+      const err = e as Error;
+      setCompareError(err.message || 'Couldn\'t build comparison data.');
     } finally {
       setLoadingCompare(false);
     }

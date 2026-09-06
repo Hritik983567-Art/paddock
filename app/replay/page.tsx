@@ -36,13 +36,14 @@ export default function ReplayPage() {
   const [selectedRound, setSelectedRound] = useState('');
   const [sessionType, setSessionType] = useState<'race' | 'quali' | 'sprint_quali' | 'sprint'>('race');
 
-  // Reset sprint session type to race if newly selected round doesn't have a sprint
-  useEffect(() => {
+  const [prevRoundForSprint, setPrevRoundForSprint] = useState(selectedRound);
+  if (selectedRound !== prevRoundForSprint) {
+    setPrevRoundForSprint(selectedRound);
     const currentRoundObj = rounds.find(r => r.round === selectedRound);
     if (currentRoundObj && !currentRoundObj.hasSprint && (sessionType === 'sprint' || sessionType === 'sprint_quali')) {
       setSessionType('race');
     }
-  }, [selectedRound, rounds, sessionType]);
+  }
 
   const [loadingRounds, setLoadingRounds] = useState(true);
   const [loadingSession, setLoadingSession] = useState(false);
@@ -82,15 +83,16 @@ export default function ReplayPage() {
 
         if (roundList.length > 0) {
           const now = new Date();
-          const past = roundList.filter((r: any) => new Date(r.date) <= now);
+          const past = roundList.filter((r: { date: string }) => new Date(r.date) <= now);
           if (past.length > 0) {
             setSelectedRound(past[past.length - 1].round);
           } else {
             setSelectedRound(roundList[0].round);
           }
         }
-      } catch (e: any) {
-        setSessionError(e.message || 'Could not fetch session rounds.');
+      } catch (e: unknown) {
+        const err = e as Error;
+        setSessionError(err.message || 'Could not fetch session rounds.');
       } finally {
         setLoadingRounds(false);
       }
@@ -140,8 +142,9 @@ export default function ReplayPage() {
           setDriverBId(dIds[1]);
         }
       }
-    } catch (e: any) {
-      setSessionError(e.message || 'Replay data unavailable for this session.');
+    } catch (e: unknown) {
+      const err = e as Error;
+      setSessionError(err.message || 'Replay data unavailable for this session.');
     } finally {
       setLoadingSession(false);
     }

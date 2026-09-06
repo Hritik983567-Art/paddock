@@ -1,4 +1,4 @@
-import { getJSON, API_BASE, parseLapTime, getTeamColor } from '../utils/api';
+import { getJSON, API_BASE, getTeamColor } from '../utils/api';
 
 export interface DriverInfo {
   driverId: string;
@@ -112,13 +112,14 @@ export async function fetchSeasonTeams(season: string): Promise<TeamOption[]> {
 
   const teamMap: Record<string, { name: string; drivers: DriverInfo[] }> = {};
 
-  standingsList.forEach((item: any) => {
-    const constr = item.Constructors?.[0];
+  standingsList.forEach((item: Record<string, unknown>) => {
+    const itemObj = item as { Constructors?: Array<{ constructorId: string; name: string }>; Driver: { driverId: string; code?: string; familyName: string; givenName: string; permanentNumber?: string; nationality?: string }; number?: string; position: string; points: string; wins: string };
+    const constr = itemObj.Constructors?.[0];
     if (!constr) return;
 
     const cid = constr.constructorId;
     const cname = constr.name;
-    const driver = item.Driver;
+    const driver = itemObj.Driver;
 
     if (!teamMap[cid]) {
       teamMap[cid] = { name: cname, drivers: [] };
@@ -131,13 +132,13 @@ export async function fetchSeasonTeams(season: string): Promise<TeamOption[]> {
         givenName: driver.givenName,
         familyName: driver.familyName,
         name: `${driver.givenName} ${driver.familyName}`,
-        permanentNumber: driver.permanentNumber || item.number,
+        permanentNumber: driver.permanentNumber || itemObj.number,
         nationality: driver.nationality,
         teamId: cid,
         teamName: cname,
-        position: parseInt(item.position) || 0,
-        points: parseFloat(item.points) || 0,
-        wins: parseInt(item.wins) || 0
+        position: parseInt(itemObj.position) || 0,
+        points: parseFloat(itemObj.points) || 0,
+        wins: parseInt(itemObj.wins) || 0
       });
     }
   });
@@ -165,7 +166,7 @@ export async function loadTeammateComparison(
   const standingsList = standingsRes?.MRData?.StandingsTable?.StandingsLists?.[0]?.DriverStandings || [];
 
   // Filter drivers for selected team
-  const teamStandings = standingsList.filter((s: any) => s.Constructors?.[0]?.constructorId === constructorId);
+  const teamStandings = standingsList.filter((s: Record<string, unknown>) => (s as { Constructors?: Array<{ constructorId: string }> }).Constructors?.[0]?.constructorId === constructorId);
 
   let driverAInfo: DriverInfo | null = null;
   let driverBInfo: DriverInfo | null = null;
@@ -207,7 +208,7 @@ export async function loadTeammateComparison(
 
   // Override drivers if custom historical drivers selected
   if (customDriverAId) {
-    const matchA = standingsList.find((s: any) => s.Driver.driverId === customDriverAId);
+    const matchA = standingsList.find((s: Record<string, unknown>) => (s as { Driver: { driverId: string } }).Driver.driverId === customDriverAId);
     if (matchA) {
       driverAInfo = {
         driverId: matchA.Driver.driverId,
@@ -227,7 +228,7 @@ export async function loadTeammateComparison(
   }
 
   if (customDriverBId) {
-    const matchB = standingsList.find((s: any) => s.Driver.driverId === customDriverBId);
+    const matchB = standingsList.find((s: Record<string, unknown>) => (s as { Driver: { driverId: string } }).Driver.driverId === customDriverBId);
     if (matchB) {
       driverBInfo = {
         driverId: matchB.Driver.driverId,
@@ -260,21 +261,22 @@ export async function loadTeammateComparison(
   const roundMap: Record<number, RaceRoundResult> = {};
 
   // Parse Qualifying
-  qualiList.forEach((r: any) => {
-    const rnd = parseInt(r.round);
-    const qres = r.QualifyingResults || [];
-    const resA = qres.find((q: any) => q.Driver.driverId === dAId);
-    const resB = qres.find((q: any) => q.Driver.driverId === dBId);
+  qualiList.forEach((r: Record<string, unknown>) => {
+    const rObj = r as { round: string; raceName: string; date: string; Circuit?: { circuitId?: string; circuitName?: string }; QualifyingResults?: Array<{ Driver: { driverId: string }; position: string }> };
+    const rnd = parseInt(rObj.round);
+    const qres = rObj.QualifyingResults || [];
+    const resA = qres.find(q => q.Driver.driverId === dAId);
+    const resB = qres.find(q => q.Driver.driverId === dBId);
 
     const posA = resA ? parseInt(resA.position) : null;
     const posB = resB ? parseInt(resB.position) : null;
 
     roundMap[rnd] = {
       round: rnd,
-      raceName: r.raceName,
-      circuitId: r.Circuit?.circuitId || 'circuit',
-      circuitName: r.Circuit?.circuitName || r.raceName,
-      date: r.date,
+      raceName: rObj.raceName,
+      circuitId: rObj.Circuit?.circuitId || 'circuit',
+      circuitName: rObj.Circuit?.circuitName || rObj.raceName,
+      date: rObj.date,
       qualiA: posA,
       qualiB: posB,
       qualiStrA: posA ? `P${posA}` : 'N/A',
@@ -325,11 +327,12 @@ export async function loadTeammateComparison(
   let netGainA = 0;
   let netGainB = 0;
 
-  raceList.forEach((r: any) => {
-    const rnd = parseInt(r.round);
-    const rres = r.Results || [];
-    const resA = rres.find((q: any) => q.Driver.driverId === dAId);
-    const resB = rres.find((q: any) => q.Driver.driverId === dBId);
+  raceList.forEach((r: Record<string, unknown>) => {
+    const rObj = r as { round: string; raceName: string; date: string; Circuit?: { circuitId?: string; circuitName?: string }; Results?: Array<{ Driver: { driverId: string }; position: string; points: string; status: string; grid?: string; FastestLap?: { rank?: string } }> };
+    const rnd = parseInt(rObj.round);
+    const rres = rObj.Results || [];
+    const resA = rres.find(q => q.Driver.driverId === dAId);
+    const resB = rres.find(q => q.Driver.driverId === dBId);
 
     const posA = resA ? parseInt(resA.position) : null;
     const posB = resB ? parseInt(resB.position) : null;
@@ -348,11 +351,11 @@ export async function loadTeammateComparison(
 
     if (isDnfA && resA) {
       dnfsA++;
-      dnfDetailsA.push({ round: rnd, raceName: r.raceName, status: statusA });
+      dnfDetailsA.push({ round: rnd, raceName: rObj.raceName, status: statusA });
     }
     if (isDnfB && resB) {
       dnfsB++;
-      dnfDetailsB.push({ round: rnd, raceName: r.raceName, status: statusB });
+      dnfDetailsB.push({ round: rnd, raceName: rObj.raceName, status: statusB });
     }
 
     if (posA && posA <= 3) podiumsA++;
@@ -386,10 +389,10 @@ export async function loadTeammateComparison(
     if (!roundMap[rnd]) {
       roundMap[rnd] = {
         round: rnd,
-        raceName: r.raceName,
-        circuitId: r.Circuit?.circuitId || 'circuit',
-        circuitName: r.Circuit?.circuitName || r.raceName,
-        date: r.date,
+        raceName: rObj.raceName,
+        circuitId: rObj.Circuit?.circuitId || 'circuit',
+        circuitName: rObj.Circuit?.circuitName || rObj.raceName,
+        date: rObj.date,
         qualiA: null,
         qualiB: null,
         qualiStrA: 'N/A',

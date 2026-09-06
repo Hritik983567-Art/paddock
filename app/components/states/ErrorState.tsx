@@ -15,10 +15,14 @@ export default function ErrorState({
   title = 'Telemetry Processing Error',
   message = 'An unexpected error occurred while communicating with the pit-wall telemetry server or data proxy.',
   errorDetails,
-  correlationId = `ERR-${Math.random().toString(36).substring(2, 9).toUpperCase()}`,
+  correlationId,
   onRetry,
 }: ErrorStateProps) {
   const [showTechnical, setShowTechnical] = React.useState(false);
+  const [generatedCorrelationId] = React.useState(
+    () => `ERR-${Math.random().toString(36).substring(2, 9).toUpperCase()}`
+  );
+  const activeCorrelationId = correlationId || generatedCorrelationId;
   const detailStr = typeof errorDetails === 'object' && errorDetails !== null ? errorDetails.message : errorDetails;
 
   return (
@@ -37,7 +41,7 @@ export default function ErrorState({
 
       <div className="flex items-center gap-2 text-[10px] font-mono text-red-400 bg-red-950/60 px-3 py-1 rounded border border-red-800/80 mb-6">
         <span>Correlation ID:</span>
-        <span className="font-bold text-white select-all">{correlationId}</span>
+        <span className="font-bold text-white select-all">{activeCorrelationId}</span>
       </div>
 
       {detailStr && (

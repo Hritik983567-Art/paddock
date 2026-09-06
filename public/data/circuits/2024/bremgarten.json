@@ -1,0 +1,9 @@
+{
+  "circuit": {
+    "id": "bremgarten",
+    "name": "Bremgarten",
+    "year": 2024
+  },
+  "status": "DATA UNAVAILABLE",
+  "reason": "No valid FastF1 position telemetry cached for circuit 'bremgarten' across years [2024, 2023, 2022, 2021, 2020]."
+}

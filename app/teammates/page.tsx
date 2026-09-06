@@ -57,8 +57,9 @@ export default function TeammatesPage() {
           const mclaren = teamList.find(t => t.constructorId === 'mclaren') || teamList[0];
           setSelectedTeamId(mclaren.constructorId);
         }
-      } catch (err: any) {
-        setError(err.message || 'Failed to fetch constructor team list.');
+      } catch (err: unknown) {
+        const errorObj = err as Error;
+        setError(errorObj.message || 'Failed to fetch constructor team list.');
       } finally {
         setLoadingTeams(false);
       }
@@ -83,8 +84,9 @@ export default function TeammatesPage() {
           customDriverBId || undefined
         );
         setData(compData);
-      } catch (err: any) {
-        setError(err.message || 'Unable to load teammate comparison data.');
+      } catch (err: unknown) {
+        const errorObj = err as Error;
+        setError(errorObj.message || 'Unable to load teammate comparison data.');
       } finally {
         setLoadingData(false);
       }
@@ -93,8 +95,7 @@ export default function TeammatesPage() {
     loadData();
   }, [selectedSeason, selectedTeamId, customDriverAId, customDriverBId]);
 
-  // Extract all available drivers in current team or season for historical selection
-  const allDriversInTeam = teams.find(t => t.constructorId === selectedTeamId)?.drivers || [];
+  // Extract all available drivers in current season for historical selection
   const allSeasonDrivers: DriverInfo[] = teams.flatMap(t => t.drivers);
 
   return (

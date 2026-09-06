@@ -1,0 +1,1630 @@
+{
+  "circuit": {
+    "id": "hungaroring",
+    "name": "Hungarian Grand Prix",
+    "country": "Hungary",
+    "location": "Budapest",
+    "year": 2024
+  },
+  "sourceSession": "R",
+  "telemetryDriver": "RUS",
+  "telemetryLap": 55,
+  "rotation": 40.0,
+  "layout": {
+    "source": "FastF1 telemetry",
+    "coordinateSystem": "fastf1_xy",
+    "pointCount": 318,
+    "points": [
+      {
+        "x": -1636.0,
+        "y": 10.0
+      },
+      {
+        "x": -1739.0,
+        "y": 94.0
+      },
+      {
+        "x": -1842.0,
+        "y": 179.0
+      },
+      {
+        "x": -1969.0,
+        "y": 283.0
+      },
+      {
+        "x": -2143.0,
+        "y": 427.0
+      },
+      {
+        "x": -2273.0,
+        "y": 533.0
+      },
+      {
+        "x": -2488.0,
+        "y": 710.0
+      },
+      {
+        "x": -2644.0,
+        "y": 838.0
+      },
+      {
+        "x": -2838.0,
+        "y": 997.0
+      },
+      {
+        "x": -2935.0,
+        "y": 1077.0
+      },
+      {
+        "x": -3045.0,
+        "y": 1168.0
+      },
+      {
+        "x": -3303.0,
+        "y": 1380.0
+      },
+      {
+        "x": -3414.0,
+        "y": 1471.0
+      },
+      {
+        "x": -3563.0,
+        "y": 1593.0
+      },
+      {
+        "x": -3711.0,
+        "y": 1715.0
+      },
+      {
+        "x": -3974.0,
+        "y": 1930.0
+      },
+      {
+        "x": -4115.0,
+        "y": 2041.0
+      },
+      {
+        "x": -4231.0,
+        "y": 2132.0
+      },
+      {
+        "x": -4501.0,
+        "y": 2345.0
+      },
+      {
+        "x": -4695.0,
+        "y": 2497.0
+      },
+      {
+        "x": -4890.0,
+        "y": 2649.0
+      },
+      {
+        "x": -5034.0,
+        "y": 2760.0
+      },
+      {
+        "x": -5204.0,
+        "y": 2892.0
+      },
+      {
+        "x": -5472.0,
+        "y": 3104.0
+      },
+      {
+        "x": -5532.0,
+        "y": 3152.0
+      },
+      {
+        "x": -5717.0,
+        "y": 3310.0
+      },
+      {
+        "x": -5854.0,
+        "y": 3439.0
+      },
+      {
+        "x": -5948.0,
+        "y": 3546.0
+      },
+      {
+        "x": -6020.0,
+        "y": 3653.0
+      },
+      {
+        "x": -6044.0,
+        "y": 3700.0
+      },
+      {
+        "x": -6069.0,
+        "y": 3769.0
+      },
+      {
+        "x": -6082.0,
+        "y": 3830.0
+      },
+      {
+        "x": -6085.0,
+        "y": 3880.0
+      },
+      {
+        "x": -6084.0,
+        "y": 3895.0
+      },
+      {
+        "x": -6069.0,
+        "y": 3970.0
+      },
+      {
+        "x": -6045.0,
+        "y": 4015.0
+      },
+      {
+        "x": -6020.0,
+        "y": 4047.0
+      },
+      {
+        "x": -5991.0,
+        "y": 4074.0
+      },
+      {
+        "x": -5947.0,
+        "y": 4104.0
+      },
+      {
+        "x": -5845.0,
+        "y": 4143.0
+      },
+      {
+        "x": -5775.0,
+        "y": 4156.0
+      },
+      {
+        "x": -5711.0,
+        "y": 4162.0
+      },
+      {
+        "x": -5643.0,
+        "y": 4164.0
+      },
+      {
+        "x": -5535.0,
+        "y": 4160.0
+      },
+      {
+        "x": -5407.0,
+        "y": 4147.0
+      },
+      {
+        "x": -5281.0,
+        "y": 4129.0
+      },
+      {
+        "x": -5145.0,
+        "y": 4103.0
+      },
+      {
+        "x": -5031.0,
+        "y": 4076.0
+      },
+      {
+        "x": -4951.0,
+        "y": 4055.0
+      },
+      {
+        "x": -4861.0,
+        "y": 4028.0
+      },
+      {
+        "x": -4735.0,
+        "y": 3986.0
+      },
+      {
+        "x": -4649.0,
+        "y": 3953.0
+      },
+      {
+        "x": -4465.0,
+        "y": 3872.0
+      },
+      {
+        "x": -4400.0,
+        "y": 3840.0
+      },
+      {
+        "x": -4216.0,
+        "y": 3735.0
+      },
+      {
+        "x": -3968.0,
+        "y": 3565.0
+      },
+      {
+        "x": -3808.0,
+        "y": 3443.0
+      },
+      {
+        "x": -3744.0,
+        "y": 3391.0
+      },
+      {
+        "x": -3638.0,
+        "y": 3303.0
+      },
+      {
+        "x": -3445.0,
+        "y": 3138.0
+      },
+      {
+        "x": -3347.0,
+        "y": 3053.0
+      },
+      {
+        "x": -3206.0,
+        "y": 2929.0
+      },
+      {
+        "x": -3118.0,
+        "y": 2852.0
+      },
+      {
+        "x": -2917.0,
+        "y": 2677.0
+      },
+      {
+        "x": -2816.0,
+        "y": 2590.0
+      },
+      {
+        "x": -2717.0,
+        "y": 2508.0
+      },
+      {
+        "x": -2635.0,
+        "y": 2444.0
+      },
+      {
+        "x": -2511.0,
+        "y": 2354.0
+      },
+      {
+        "x": -2379.0,
+        "y": 2272.0
+      },
+      {
+        "x": -2303.0,
+        "y": 2234.0
+      },
+      {
+        "x": -2204.0,
+        "y": 2195.0
+      },
+      {
+        "x": -2085.0,
+        "y": 2168.0
+      },
+      {
+        "x": -2005.0,
+        "y": 2167.0
+      },
+      {
+        "x": -1929.0,
+        "y": 2177.0
+      },
+      {
+        "x": -1784.0,
+        "y": 2242.0
+      },
+      {
+        "x": -1726.0,
+        "y": 2292.0
+      },
+      {
+        "x": -1654.0,
+        "y": 2392.0
+      },
+      {
+        "x": -1613.0,
+        "y": 2496.0
+      },
+      {
+        "x": -1601.0,
+        "y": 2560.0
+      },
+      {
+        "x": -1597.0,
+        "y": 2642.0
+      },
+      {
+        "x": -1601.0,
+        "y": 2705.0
+      },
+      {
+        "x": -1605.0,
+        "y": 2733.0
+      },
+      {
+        "x": -1618.0,
+        "y": 2798.0
+      },
+      {
+        "x": -1659.0,
+        "y": 2922.0
+      },
+      {
+        "x": -1692.0,
+        "y": 2998.0
+      },
+      {
+        "x": -1726.0,
+        "y": 3067.0
+      },
+      {
+        "x": -1779.0,
+        "y": 3162.0
+      },
+      {
+        "x": -1813.0,
+        "y": 3220.0
+      },
+      {
+        "x": -1909.0,
+        "y": 3386.0
+      },
+      {
+        "x": -1952.0,
+        "y": 3471.0
+      },
+      {
+        "x": -2002.0,
+        "y": 3588.0
+      },
+      {
+        "x": -2057.0,
+        "y": 3778.0
+      },
+      {
+        "x": -2071.0,
+        "y": 3847.0
+      },
+      {
+        "x": -2085.0,
+        "y": 4051.0
+      },
+      {
+        "x": -2081.0,
+        "y": 4125.0
+      },
+      {
+        "x": -2024.0,
+        "y": 4382.0
+      },
+      {
+        "x": -1929.0,
+        "y": 4585.0
+      },
+      {
+        "x": -1865.0,
+        "y": 4703.0
+      },
+      {
+        "x": -1800.0,
+        "y": 4821.0
+      },
+      {
+        "x": -1714.0,
+        "y": 4962.0
+      },
+      {
+        "x": -1598.0,
+        "y": 5152.0
+      },
+      {
+        "x": -1509.0,
+        "y": 5313.0
+      },
+      {
+        "x": -1419.0,
+        "y": 5478.0
+      },
+      {
+        "x": -1320.0,
+        "y": 5658.0
+      },
+      {
+        "x": -1242.0,
+        "y": 5801.0
+      },
+      {
+        "x": -1155.0,
+        "y": 5958.0
+      },
+      {
+        "x": -1090.0,
+        "y": 6077.0
+      },
+      {
+        "x": -973.0,
+        "y": 6290.0
+      },
+      {
+        "x": -907.0,
+        "y": 6411.0
+      },
+      {
+        "x": -825.0,
+        "y": 6559.0
+      },
+      {
+        "x": -712.0,
+        "y": 6761.0
+      },
+      {
+        "x": -589.0,
+        "y": 6978.0
+      },
+      {
+        "x": -430.0,
+        "y": 7224.0
+      },
+      {
+        "x": -332.0,
+        "y": 7361.0
+      },
+      {
+        "x": -211.0,
+        "y": 7524.0
+      },
+      {
+        "x": -60.0,
+        "y": 7720.0
+      },
+      {
+        "x": 34.0,
+        "y": 7862.0
+      },
+      {
+        "x": 47.0,
+        "y": 7885.0
+      },
+      {
+        "x": 126.0,
+        "y": 8051.0
+      },
+      {
+        "x": 183.0,
+        "y": 8285.0
+      },
+      {
+        "x": 190.0,
+        "y": 8387.0
+      },
+      {
+        "x": 171.0,
+        "y": 8595.0
+      },
+      {
+        "x": 149.0,
+        "y": 8692.0
+      },
+      {
+        "x": 76.0,
+        "y": 8915.0
+      },
+      {
+        "x": 19.0,
+        "y": 9063.0
+      },
+      {
+        "x": -57.0,
+        "y": 9263.0
+      },
+      {
+        "x": -156.0,
+        "y": 9575.0
+      },
+      {
+        "x": -178.0,
+        "y": 9668.0
+      },
+      {
+        "x": -202.0,
+        "y": 9871.0
+      },
+      {
+        "x": -196.0,
+        "y": 10000.0
+      },
+      {
+        "x": -179.0,
+        "y": 10092.0
+      },
+      {
+        "x": -134.0,
+        "y": 10219.0
+      },
+      {
+        "x": -72.0,
+        "y": 10324.0
+      },
+      {
+        "x": -29.0,
+        "y": 10376.0
+      },
+      {
+        "x": 24.0,
+        "y": 10427.0
+      },
+      {
+        "x": 84.0,
+        "y": 10470.0
+      },
+      {
+        "x": 233.0,
+        "y": 10534.0
+      },
+      {
+        "x": 315.0,
+        "y": 10551.0
+      },
+      {
+        "x": 391.0,
+        "y": 10557.0
+      },
+      {
+        "x": 517.0,
+        "y": 10549.0
+      },
+      {
+        "x": 596.0,
+        "y": 10533.0
+      },
+      {
+        "x": 676.0,
+        "y": 10509.0
+      },
+      {
+        "x": 791.0,
+        "y": 10463.0
+      },
+      {
+        "x": 871.0,
+        "y": 10422.0
+      },
+      {
+        "x": 1010.0,
+        "y": 10335.0
+      },
+      {
+        "x": 1063.0,
+        "y": 10296.0
+      },
+      {
+        "x": 1245.0,
+        "y": 10144.0
+      },
+      {
+        "x": 1305.0,
+        "y": 10089.0
+      },
+      {
+        "x": 1382.0,
+        "y": 10014.0
+      },
+      {
+        "x": 1501.0,
+        "y": 9891.0
+      },
+      {
+        "x": 1603.0,
+        "y": 9781.0
+      },
+      {
+        "x": 1689.0,
+        "y": 9686.0
+      },
+      {
+        "x": 1758.0,
+        "y": 9610.0
+      },
+      {
+        "x": 1837.0,
+        "y": 9522.0
+      },
+      {
+        "x": 1944.0,
+        "y": 9403.0
+      },
+      {
+        "x": 2052.0,
+        "y": 9284.0
+      },
+      {
+        "x": 2146.0,
+        "y": 9178.0
+      },
+      {
+        "x": 2263.0,
+        "y": 9039.0
+      },
+      {
+        "x": 2301.0,
+        "y": 8987.0
+      },
+      {
+        "x": 2351.0,
+        "y": 8904.0
+      },
+      {
+        "x": 2373.0,
+        "y": 8854.0
+      },
+      {
+        "x": 2398.0,
+        "y": 8760.0
+      },
+      {
+        "x": 2402.0,
+        "y": 8698.0
+      },
+      {
+        "x": 2398.0,
+        "y": 8656.0
+      },
+      {
+        "x": 2355.0,
+        "y": 8533.0
+      },
+      {
+        "x": 2313.0,
+        "y": 8452.0
+      },
+      {
+        "x": 2297.0,
+        "y": 8419.0
+      },
+      {
+        "x": 2277.0,
+        "y": 8373.0
+      },
+      {
+        "x": 2253.0,
+        "y": 8284.0
+      },
+      {
+        "x": 2246.0,
+        "y": 8213.0
+      },
+      {
+        "x": 2245.0,
+        "y": 8131.0
+      },
+      {
+        "x": 2253.0,
+        "y": 8023.0
+      },
+      {
+        "x": 2279.0,
+        "y": 7893.0
+      },
+      {
+        "x": 2333.0,
+        "y": 7714.0
+      },
+      {
+        "x": 2374.0,
+        "y": 7573.0
+      },
+      {
+        "x": 2397.0,
+        "y": 7492.0
+      },
+      {
+        "x": 2420.0,
+        "y": 7400.0
+      },
+      {
+        "x": 2444.0,
+        "y": 7303.0
+      },
+      {
+        "x": 2480.0,
+        "y": 7159.0
+      },
+      {
+        "x": 2510.0,
+        "y": 7065.0
+      },
+      {
+        "x": 2544.0,
+        "y": 6988.0
+      },
+      {
+        "x": 2600.0,
+        "y": 6890.0
+      },
+      {
+        "x": 2668.0,
+        "y": 6803.0
+      },
+      {
+        "x": 2764.0,
+        "y": 6712.0
+      },
+      {
+        "x": 2816.0,
+        "y": 6677.0
+      },
+      {
+        "x": 2899.0,
+        "y": 6637.0
+      },
+      {
+        "x": 3015.0,
+        "y": 6605.0
+      },
+      {
+        "x": 3110.0,
+        "y": 6591.0
+      },
+      {
+        "x": 3257.0,
+        "y": 6580.0
+      },
+      {
+        "x": 3416.0,
+        "y": 6565.0
+      },
+      {
+        "x": 3525.0,
+        "y": 6546.0
+      },
+      {
+        "x": 3606.0,
+        "y": 6523.0
+      },
+      {
+        "x": 3690.0,
+        "y": 6484.0
+      },
+      {
+        "x": 3751.0,
+        "y": 6444.0
+      },
+      {
+        "x": 3835.0,
+        "y": 6375.0
+      },
+      {
+        "x": 3884.0,
+        "y": 6325.0
+      },
+      {
+        "x": 3965.0,
+        "y": 6215.0
+      },
+      {
+        "x": 4020.0,
+        "y": 6081.0
+      },
+      {
+        "x": 4034.0,
+        "y": 6021.0
+      },
+      {
+        "x": 4046.0,
+        "y": 5896.0
+      },
+      {
+        "x": 4039.0,
+        "y": 5757.0
+      },
+      {
+        "x": 4016.0,
+        "y": 5623.0
+      },
+      {
+        "x": 3956.0,
+        "y": 5389.0
+      },
+      {
+        "x": 3904.0,
+        "y": 5207.0
+      },
+      {
+        "x": 3856.0,
+        "y": 5014.0
+      },
+      {
+        "x": 3843.0,
+        "y": 4931.0
+      },
+      {
+        "x": 3824.0,
+        "y": 4760.0
+      },
+      {
+        "x": 3824.0,
+        "y": 4657.0
+      },
+      {
+        "x": 3844.0,
+        "y": 4384.0
+      },
+      {
+        "x": 3858.0,
+        "y": 4308.0
+      },
+      {
+        "x": 3892.0,
+        "y": 4176.0
+      },
+      {
+        "x": 3961.0,
+        "y": 3986.0
+      },
+      {
+        "x": 4084.0,
+        "y": 3772.0
+      },
+      {
+        "x": 4158.0,
+        "y": 3671.0
+      },
+      {
+        "x": 4266.0,
+        "y": 3534.0
+      },
+      {
+        "x": 4354.0,
+        "y": 3405.0
+      },
+      {
+        "x": 4447.0,
+        "y": 3235.0
+      },
+      {
+        "x": 4497.0,
+        "y": 3110.0
+      },
+      {
+        "x": 4534.0,
+        "y": 2972.0
+      },
+      {
+        "x": 4549.0,
+        "y": 2830.0
+      },
+      {
+        "x": 4536.0,
+        "y": 2619.0
+      },
+      {
+        "x": 4500.0,
+        "y": 2480.0
+      },
+      {
+        "x": 4460.0,
+        "y": 2388.0
+      },
+      {
+        "x": 4385.0,
+        "y": 2258.0
+      },
+      {
+        "x": 4341.0,
+        "y": 2196.0
+      },
+      {
+        "x": 4212.0,
+        "y": 2049.0
+      },
+      {
+        "x": 4139.0,
+        "y": 1973.0
+      },
+      {
+        "x": 4047.0,
+        "y": 1880.0
+      },
+      {
+        "x": 3915.0,
+        "y": 1747.0
+      },
+      {
+        "x": 3858.0,
+        "y": 1689.0
+      },
+      {
+        "x": 3708.0,
+        "y": 1535.0
+      },
+      {
+        "x": 3620.0,
+        "y": 1445.0
+      },
+      {
+        "x": 3541.0,
+        "y": 1364.0
+      },
+      {
+        "x": 3451.0,
+        "y": 1272.0
+      },
+      {
+        "x": 3250.0,
+        "y": 1063.0
+      },
+      {
+        "x": 3024.0,
+        "y": 828.0
+      },
+      {
+        "x": 2931.0,
+        "y": 729.0
+      },
+      {
+        "x": 2827.0,
+        "y": 619.0
+      },
+      {
+        "x": 2713.0,
+        "y": 495.0
+      },
+      {
+        "x": 2550.0,
+        "y": 314.0
+      },
+      {
+        "x": 2427.0,
+        "y": 171.0
+      },
+      {
+        "x": 2322.0,
+        "y": 45.0
+      },
+      {
+        "x": 2163.0,
+        "y": -132.0
+      },
+      {
+        "x": 2099.0,
+        "y": -187.0
+      },
+      {
+        "x": 1974.0,
+        "y": -267.0
+      },
+      {
+        "x": 1904.0,
+        "y": -292.0
+      },
+      {
+        "x": 1784.0,
+        "y": -300.0
+      },
+      {
+        "x": 1643.0,
+        "y": -249.0
+      },
+      {
+        "x": 1545.0,
+        "y": -177.0
+      },
+      {
+        "x": 1491.0,
+        "y": -126.0
+      },
+      {
+        "x": 1394.0,
+        "y": -18.0
+      },
+      {
+        "x": 1354.0,
+        "y": 29.0
+      },
+      {
+        "x": 1271.0,
+        "y": 132.0
+      },
+      {
+        "x": 1226.0,
+        "y": 187.0
+      },
+      {
+        "x": 1159.0,
+        "y": 269.0
+      },
+      {
+        "x": 1088.0,
+        "y": 353.0
+      },
+      {
+        "x": 1035.0,
+        "y": 416.0
+      },
+      {
+        "x": 1012.0,
+        "y": 441.0
+      },
+      {
+        "x": 893.0,
+        "y": 576.0
+      },
+      {
+        "x": 790.0,
+        "y": 687.0
+      },
+      {
+        "x": 604.0,
+        "y": 874.0
+      },
+      {
+        "x": 514.0,
+        "y": 951.0
+      },
+      {
+        "x": 342.0,
+        "y": 1053.0
+      },
+      {
+        "x": 235.0,
+        "y": 1085.0
+      },
+      {
+        "x": 86.0,
+        "y": 1092.0
+      },
+      {
+        "x": -23.0,
+        "y": 1066.0
+      },
+      {
+        "x": -85.0,
+        "y": 1037.0
+      },
+      {
+        "x": -124.0,
+        "y": 1010.0
+      },
+      {
+        "x": -188.0,
+        "y": 943.0
+      },
+      {
+        "x": -223.0,
+        "y": 887.0
+      },
+      {
+        "x": -240.0,
+        "y": 848.0
+      },
+      {
+        "x": -253.0,
+        "y": 802.0
+      },
+      {
+        "x": -262.0,
+        "y": 744.0
+      },
+      {
+        "x": -263.0,
+        "y": 706.0
+      },
+      {
+        "x": -245.0,
+        "y": 596.0
+      },
+      {
+        "x": -216.0,
+        "y": 525.0
+      },
+      {
+        "x": -177.0,
+        "y": 461.0
+      },
+      {
+        "x": -149.0,
+        "y": 424.0
+      },
+      {
+        "x": -63.0,
+        "y": 331.0
+      },
+      {
+        "x": 88.0,
+        "y": 206.0
+      },
+      {
+        "x": 163.0,
+        "y": 151.0
+      },
+      {
+        "x": 299.0,
+        "y": 53.0
+      },
+      {
+        "x": 379.0,
+        "y": -3.0
+      },
+      {
+        "x": 495.0,
+        "y": -87.0
+      },
+      {
+        "x": 633.0,
+        "y": -192.0
+      },
+      {
+        "x": 746.0,
+        "y": -287.0
+      },
+      {
+        "x": 856.0,
+        "y": -398.0
+      },
+      {
+        "x": 923.0,
+        "y": -483.0
+      },
+      {
+        "x": 934.0,
+        "y": -500.0
+      },
+      {
+        "x": 990.0,
+        "y": -606.0
+      },
+      {
+        "x": 1022.0,
+        "y": -696.0
+      },
+      {
+        "x": 1042.0,
+        "y": -807.0
+      },
+      {
+        "x": 1045.0,
+        "y": -879.0
+      },
+      {
+        "x": 1035.0,
+        "y": -991.0
+      },
+      {
+        "x": 1019.0,
+        "y": -1064.0
+      },
+      {
+        "x": 984.0,
+        "y": -1154.0
+      },
+      {
+        "x": 892.0,
+        "y": -1288.0
+      },
+      {
+        "x": 838.0,
+        "y": -1340.0
+      },
+      {
+        "x": 732.0,
+        "y": -1411.0
+      },
+      {
+        "x": 603.0,
+        "y": -1463.0
+      },
+      {
+        "x": 515.0,
+        "y": -1483.0
+      },
+      {
+        "x": 499.0,
+        "y": -1485.0
+      },
+      {
+        "x": 423.0,
+        "y": -1492.0
+      },
+      {
+        "x": 272.0,
+        "y": -1483.0
+      },
+      {
+        "x": 161.0,
+        "y": -1454.0
+      },
+      {
+        "x": 68.0,
+        "y": -1416.0
+      },
+      {
+        "x": 40.0,
+        "y": -1402.0
+      },
+      {
+        "x": -96.0,
+        "y": -1318.0
+      },
+      {
+        "x": -203.0,
+        "y": -1238.0
+      },
+      {
+        "x": -344.0,
+        "y": -1120.0
+      },
+      {
+        "x": -497.0,
+        "y": -987.0
+      },
+      {
+        "x": -580.0,
+        "y": -912.0
+      },
+      {
+        "x": -748.0,
+        "y": -758.0
+      },
+      {
+        "x": -854.0,
+        "y": -661.0
+      },
+      {
+        "x": -1000.0,
+        "y": -529.0
+      },
+      {
+        "x": -1124.0,
+        "y": -419.0
+      },
+      {
+        "x": -1260.0,
+        "y": -300.0
+      },
+      {
+        "x": -1434.0,
+        "y": -154.0
+      }
+    ]
+  },
+  "corners": [
+    {
+      "number": 1,
+      "letter": "",
+      "name": "Hungaroring Turn 1",
+      "turn": "Turn 1 (T1)",
+      "x": -6033.73,
+      "y": 4029.27,
+      "angle": 146.52,
+      "distance": 625.9,
+      "nearestTrackDistance": 18.18,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 1 (T1) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 1,
+      "letter": "A",
+      "name": "Hungaroring Turn 1",
+      "turn": "Turn 1 (T1)",
+      "x": -4288.65,
+      "y": 3778.16,
+      "angle": 60.47,
+      "distance": 824.03,
+      "nearestTrackDistance": 84.5,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 1 (T1) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 2,
+      "letter": "",
+      "name": "Hungaroring Turn 2",
+      "turn": "Turn 2 (T2)",
+      "x": -1739.77,
+      "y": 2279.86,
+      "angle": -50.33,
+      "distance": 1132.36,
+      "nearestTrackDistance": 18.35,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 2 (T2) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 3,
+      "letter": "",
+      "name": "Hungaroring Turn 3",
+      "turn": "Turn 3 (T3)",
+      "x": -2081.06,
+      "y": 3944.52,
+      "angle": 5.33,
+      "distance": 1309.06,
+      "nearestTrackDistance": 98.04,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 3 (T3) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 4,
+      "letter": "",
+      "name": "Hungaroring Turn 4",
+      "turn": "Turn 4 (T4)",
+      "x": 137.27,
+      "y": 8089.45,
+      "angle": 158.73,
+      "distance": 1793.74,
+      "nearestTrackDistance": 40.07,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 4 (T4) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 5,
+      "letter": "",
+      "name": "Hungaroring Turn 5",
+      "turn": "Turn 5 (T5)",
+      "x": -20.38,
+      "y": 10382.62,
+      "angle": -45.16,
+      "distance": 2036.12,
+      "nearestTrackDistance": 10.87,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 5 (T5) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 6,
+      "letter": "",
+      "name": "Hungaroring Turn 6",
+      "turn": "Turn 6 (T6)",
+      "x": 2399.32,
+      "y": 8671.93,
+      "angle": -6.84,
+      "distance": 2366.97,
+      "nearestTrackDistance": 15.98,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 6 (T6) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 7,
+      "letter": "",
+      "name": "Hungaroring Turn 7",
+      "turn": "Turn 7 (T7)",
+      "x": 2251.83,
+      "y": 8271.93,
+      "angle": 171.75,
+      "distance": 2407.79,
+      "nearestTrackDistance": 12.13,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 7 (T7) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 8,
+      "letter": "",
+      "name": "Hungaroring Turn 8",
+      "turn": "Turn 8 (T8)",
+      "x": 2747.39,
+      "y": 6726.58,
+      "angle": -132.69,
+      "distance": 2580.52,
+      "nearestTrackDistance": 22.1,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 8 (T8) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 9,
+      "letter": "",
+      "name": "Hungaroring Turn 9",
+      "turn": "Turn 9 (T9)",
+      "x": 3969.89,
+      "y": 6201.39,
+      "angle": 31.12,
+      "distance": 2715.94,
+      "nearestTrackDistance": 14.47,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 9 (T9) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 10,
+      "letter": "",
+      "name": "Hungaroring Turn 10",
+      "turn": "Turn 10 (T10)",
+      "x": 3859.83,
+      "y": 4303.84,
+      "angle": -166.69,
+      "distance": 2912.32,
+      "nearestTrackDistance": 4.55,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 10 (T10) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 11,
+      "letter": "",
+      "name": "Hungaroring Turn 11",
+      "turn": "Turn 11 (T11)",
+      "x": 4508.72,
+      "y": 2507.17,
+      "angle": -16.99,
+      "distance": 3112.43,
+      "nearestTrackDistance": 28.54,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 11 (T11) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 12,
+      "letter": "",
+      "name": "Hungaroring Turn 12",
+      "turn": "Turn 12 (T12)",
+      "x": 1823.33,
+      "y": -301.94,
+      "angle": -88.47,
+      "distance": 3499.49,
+      "nearestTrackDistance": 39.38,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 12 (T12) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 12,
+      "letter": "A",
+      "name": "Hungaroring Turn 12",
+      "turn": "Turn 12 (T12)",
+      "x": 917.19,
+      "y": 547.99,
+      "angle": 42.3,
+      "distance": 3638.18,
+      "nearestTrackDistance": 37.01,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 12 (T12) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 13,
+      "letter": "",
+      "name": "Hungaroring Turn 13",
+      "turn": "Turn 13 (T13)",
+      "x": -202.32,
+      "y": 920.36,
+      "angle": 146.52,
+      "distance": 3769.07,
+      "nearestTrackDistance": 26.79,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 13 (T13) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 14,
+      "letter": "",
+      "name": "Hungaroring Turn 14",
+      "turn": "Turn 14 (T14)",
+      "x": 828.64,
+      "y": -1344.89,
+      "angle": -50.07,
+      "distance": 4061.57,
+      "nearestTrackDistance": 10.56,
+      "alignmentValid": true,
+      "type": "Corner",
+      "direction": "",
+      "gear": null,
+      "speed_kph": null,
+      "characteristics": "",
+      "history": "Turn 14 (T14) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    }
+  ]
+}

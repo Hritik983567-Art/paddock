@@ -1,0 +1,2043 @@
+{
+  "circuit": {
+    "id": "spa",
+    "name": "Belgian Grand Prix",
+    "country": "Belgium",
+    "location": "Spa-Francorchamps",
+    "year": 2024
+  },
+  "sourceSession": "R",
+  "telemetryDriver": "PER",
+  "telemetryLap": 44,
+  "rotation": 91.0,
+  "layout": {
+    "source": "FastF1 telemetry",
+    "coordinateSystem": "fastf1_xy",
+    "pointCount": 396,
+    "points": [
+      {
+        "x": -487.0,
+        "y": 1386.0
+      },
+      {
+        "x": -614.0,
+        "y": 1577.0
+      },
+      {
+        "x": -751.0,
+        "y": 1784.0
+      },
+      {
+        "x": -908.0,
+        "y": 2021.0
+      },
+      {
+        "x": -1019.0,
+        "y": 2190.0
+      },
+      {
+        "x": -1117.0,
+        "y": 2337.0
+      },
+      {
+        "x": -1224.0,
+        "y": 2498.0
+      },
+      {
+        "x": -1349.0,
+        "y": 2687.0
+      },
+      {
+        "x": -1416.0,
+        "y": 2788.0
+      },
+      {
+        "x": -1493.0,
+        "y": 2904.0
+      },
+      {
+        "x": -1595.0,
+        "y": 3059.0
+      },
+      {
+        "x": -1707.0,
+        "y": 3228.0
+      },
+      {
+        "x": -1845.0,
+        "y": 3436.0
+      },
+      {
+        "x": -1934.0,
+        "y": 3571.0
+      },
+      {
+        "x": -2042.0,
+        "y": 3734.0
+      },
+      {
+        "x": -2109.0,
+        "y": 3840.0
+      },
+      {
+        "x": -2178.0,
+        "y": 3954.0
+      },
+      {
+        "x": -2244.0,
+        "y": 4079.0
+      },
+      {
+        "x": -2285.0,
+        "y": 4182.0
+      },
+      {
+        "x": -2304.0,
+        "y": 4259.0
+      },
+      {
+        "x": -2309.0,
+        "y": 4307.0
+      },
+      {
+        "x": -2304.0,
+        "y": 4387.0
+      },
+      {
+        "x": -2266.0,
+        "y": 4476.0
+      },
+      {
+        "x": -2234.0,
+        "y": 4509.0
+      },
+      {
+        "x": -2186.0,
+        "y": 4536.0
+      },
+      {
+        "x": -2117.0,
+        "y": 4550.0
+      },
+      {
+        "x": -2050.0,
+        "y": 4544.0
+      },
+      {
+        "x": -1968.0,
+        "y": 4524.0
+      },
+      {
+        "x": -1930.0,
+        "y": 4512.0
+      },
+      {
+        "x": -1880.0,
+        "y": 4494.0
+      },
+      {
+        "x": -1810.0,
+        "y": 4467.0
+      },
+      {
+        "x": -1764.0,
+        "y": 4447.0
+      },
+      {
+        "x": -1702.0,
+        "y": 4419.0
+      },
+      {
+        "x": -1621.0,
+        "y": 4381.0
+      },
+      {
+        "x": -1349.0,
+        "y": 4242.0
+      },
+      {
+        "x": -1135.0,
+        "y": 4132.0
+      },
+      {
+        "x": -1015.0,
+        "y": 4072.0
+      },
+      {
+        "x": -933.0,
+        "y": 4030.0
+      },
+      {
+        "x": -793.0,
+        "y": 3957.0
+      },
+      {
+        "x": -706.0,
+        "y": 3910.0
+      },
+      {
+        "x": -584.0,
+        "y": 3842.0
+      },
+      {
+        "x": -334.0,
+        "y": 3693.0
+      },
+      {
+        "x": -242.0,
+        "y": 3634.0
+      },
+      {
+        "x": -93.0,
+        "y": 3532.0
+      },
+      {
+        "x": 33.0,
+        "y": 3440.0
+      },
+      {
+        "x": 183.0,
+        "y": 3326.0
+      },
+      {
+        "x": 276.0,
+        "y": 3253.0
+      },
+      {
+        "x": 494.0,
+        "y": 3070.0
+      },
+      {
+        "x": 573.0,
+        "y": 2998.0
+      },
+      {
+        "x": 783.0,
+        "y": 2792.0
+      },
+      {
+        "x": 883.0,
+        "y": 2692.0
+      },
+      {
+        "x": 1037.0,
+        "y": 2533.0
+      },
+      {
+        "x": 1320.0,
+        "y": 2237.0
+      },
+      {
+        "x": 1521.0,
+        "y": 2023.0
+      },
+      {
+        "x": 1735.0,
+        "y": 1793.0
+      },
+      {
+        "x": 1769.0,
+        "y": 1757.0
+      },
+      {
+        "x": 2007.0,
+        "y": 1498.0
+      },
+      {
+        "x": 2155.0,
+        "y": 1336.0
+      },
+      {
+        "x": 2255.0,
+        "y": 1221.0
+      },
+      {
+        "x": 2459.0,
+        "y": 992.0
+      },
+      {
+        "x": 2610.0,
+        "y": 828.0
+      },
+      {
+        "x": 2731.0,
+        "y": 709.0
+      },
+      {
+        "x": 2845.0,
+        "y": 610.0
+      },
+      {
+        "x": 2997.0,
+        "y": 511.0
+      },
+      {
+        "x": 3236.0,
+        "y": 399.0
+      },
+      {
+        "x": 3453.0,
+        "y": 264.0
+      },
+      {
+        "x": 3566.0,
+        "y": 163.0
+      },
+      {
+        "x": 3701.0,
+        "y": -9.0
+      },
+      {
+        "x": 3790.0,
+        "y": -178.0
+      },
+      {
+        "x": 3896.0,
+        "y": -449.0
+      },
+      {
+        "x": 3945.0,
+        "y": -645.0
+      },
+      {
+        "x": 3969.0,
+        "y": -798.0
+      },
+      {
+        "x": 4022.0,
+        "y": -1079.0
+      },
+      {
+        "x": 4113.0,
+        "y": -1307.0
+      },
+      {
+        "x": 4267.0,
+        "y": -1580.0
+      },
+      {
+        "x": 4414.0,
+        "y": -1812.0
+      },
+      {
+        "x": 4499.0,
+        "y": -1940.0
+      },
+      {
+        "x": 4609.0,
+        "y": -2093.0
+      },
+      {
+        "x": 4714.0,
+        "y": -2230.0
+      },
+      {
+        "x": 4983.0,
+        "y": -2590.0
+      },
+      {
+        "x": 5044.0,
+        "y": -2674.0
+      },
+      {
+        "x": 5288.0,
+        "y": -3011.0
+      },
+      {
+        "x": 5494.0,
+        "y": -3315.0
+      },
+      {
+        "x": 5550.0,
+        "y": -3403.0
+      },
+      {
+        "x": 5687.0,
+        "y": -3632.0
+      },
+      {
+        "x": 5763.0,
+        "y": -3771.0
+      },
+      {
+        "x": 5843.0,
+        "y": -3927.0
+      },
+      {
+        "x": 5902.0,
+        "y": -4054.0
+      },
+      {
+        "x": 5985.0,
+        "y": -4248.0
+      },
+      {
+        "x": 6053.0,
+        "y": -4429.0
+      },
+      {
+        "x": 6116.0,
+        "y": -4612.0
+      },
+      {
+        "x": 6210.0,
+        "y": -4895.0
+      },
+      {
+        "x": 6260.0,
+        "y": -5046.0
+      },
+      {
+        "x": 6376.0,
+        "y": -5396.0
+      },
+      {
+        "x": 6437.0,
+        "y": -5580.0
+      },
+      {
+        "x": 6498.0,
+        "y": -5764.0
+      },
+      {
+        "x": 6576.0,
+        "y": -5998.0
+      },
+      {
+        "x": 6633.0,
+        "y": -6169.0
+      },
+      {
+        "x": 6694.0,
+        "y": -6353.0
+      },
+      {
+        "x": 6800.0,
+        "y": -6671.0
+      },
+      {
+        "x": 6845.0,
+        "y": -6804.0
+      },
+      {
+        "x": 6896.0,
+        "y": -6955.0
+      },
+      {
+        "x": 6986.0,
+        "y": -7223.0
+      },
+      {
+        "x": 7048.0,
+        "y": -7408.0
+      },
+      {
+        "x": 7155.0,
+        "y": -7726.0
+      },
+      {
+        "x": 7206.0,
+        "y": -7877.0
+      },
+      {
+        "x": 7285.0,
+        "y": -8111.0
+      },
+      {
+        "x": 7347.0,
+        "y": -8296.0
+      },
+      {
+        "x": 7449.0,
+        "y": -8597.0
+      },
+      {
+        "x": 7505.0,
+        "y": -8765.0
+      },
+      {
+        "x": 7573.0,
+        "y": -8965.0
+      },
+      {
+        "x": 7606.0,
+        "y": -9065.0
+      },
+      {
+        "x": 7651.0,
+        "y": -9198.0
+      },
+      {
+        "x": 7791.0,
+        "y": -9614.0
+      },
+      {
+        "x": 7819.0,
+        "y": -9697.0
+      },
+      {
+        "x": 7908.0,
+        "y": -9968.0
+      },
+      {
+        "x": 7973.0,
+        "y": -10166.0
+      },
+      {
+        "x": 8090.0,
+        "y": -10511.0
+      },
+      {
+        "x": 8187.0,
+        "y": -10797.0
+      },
+      {
+        "x": 8272.0,
+        "y": -11083.0
+      },
+      {
+        "x": 8305.0,
+        "y": -11253.0
+      },
+      {
+        "x": 8312.0,
+        "y": -11414.0
+      },
+      {
+        "x": 8291.0,
+        "y": -11536.0
+      },
+      {
+        "x": 8225.0,
+        "y": -11685.0
+      },
+      {
+        "x": 8158.0,
+        "y": -11773.0
+      },
+      {
+        "x": 8016.0,
+        "y": -11924.0
+      },
+      {
+        "x": 7966.0,
+        "y": -11977.0
+      },
+      {
+        "x": 7906.0,
+        "y": -12047.0
+      },
+      {
+        "x": 7834.0,
+        "y": -12168.0
+      },
+      {
+        "x": 7796.0,
+        "y": -12317.0
+      },
+      {
+        "x": 7792.0,
+        "y": -12475.0
+      },
+      {
+        "x": 7810.0,
+        "y": -12588.0
+      },
+      {
+        "x": 7843.0,
+        "y": -12714.0
+      },
+      {
+        "x": 7871.0,
+        "y": -12792.0
+      },
+      {
+        "x": 7940.0,
+        "y": -12974.0
+      },
+      {
+        "x": 7947.0,
+        "y": -12994.0
+      },
+      {
+        "x": 7999.0,
+        "y": -13143.0
+      },
+      {
+        "x": 8045.0,
+        "y": -13373.0
+      },
+      {
+        "x": 8046.0,
+        "y": -13438.0
+      },
+      {
+        "x": 8001.0,
+        "y": -13670.0
+      },
+      {
+        "x": 7953.0,
+        "y": -13784.0
+      },
+      {
+        "x": 7895.0,
+        "y": -13883.0
+      },
+      {
+        "x": 7840.0,
+        "y": -13958.0
+      },
+      {
+        "x": 7751.0,
+        "y": -14054.0
+      },
+      {
+        "x": 7296.0,
+        "y": -14380.0
+      },
+      {
+        "x": 7062.0,
+        "y": -14540.0
+      },
+      {
+        "x": 6904.0,
+        "y": -14654.0
+      },
+      {
+        "x": 6790.0,
+        "y": -14738.0
+      },
+      {
+        "x": 6564.0,
+        "y": -14908.0
+      },
+      {
+        "x": 6400.0,
+        "y": -15034.0
+      },
+      {
+        "x": 6186.0,
+        "y": -15199.0
+      },
+      {
+        "x": 6079.0,
+        "y": -15284.0
+      },
+      {
+        "x": 5862.0,
+        "y": -15451.0
+      },
+      {
+        "x": 5670.0,
+        "y": -15575.0
+      },
+      {
+        "x": 5533.0,
+        "y": -15654.0
+      },
+      {
+        "x": 5457.0,
+        "y": -15694.0
+      },
+      {
+        "x": 5429.0,
+        "y": -15707.0
+      },
+      {
+        "x": 5296.0,
+        "y": -15758.0
+      },
+      {
+        "x": 5200.0,
+        "y": -15771.0
+      },
+      {
+        "x": 5085.0,
+        "y": -15759.0
+      },
+      {
+        "x": 5018.0,
+        "y": -15740.0
+      },
+      {
+        "x": 4950.0,
+        "y": -15707.0
+      },
+      {
+        "x": 4901.0,
+        "y": -15672.0
+      },
+      {
+        "x": 4874.0,
+        "y": -15648.0
+      },
+      {
+        "x": 4828.0,
+        "y": -15600.0
+      },
+      {
+        "x": 4760.0,
+        "y": -15496.0
+      },
+      {
+        "x": 4722.0,
+        "y": -15356.0
+      },
+      {
+        "x": 4721.0,
+        "y": -15276.0
+      },
+      {
+        "x": 4737.0,
+        "y": -15179.0
+      },
+      {
+        "x": 4775.0,
+        "y": -15076.0
+      },
+      {
+        "x": 4865.0,
+        "y": -14938.0
+      },
+      {
+        "x": 4940.0,
+        "y": -14858.0
+      },
+      {
+        "x": 5043.0,
+        "y": -14771.0
+      },
+      {
+        "x": 5237.0,
+        "y": -14640.0
+      },
+      {
+        "x": 5291.0,
+        "y": -14609.0
+      },
+      {
+        "x": 5514.0,
+        "y": -14491.0
+      },
+      {
+        "x": 5686.0,
+        "y": -14395.0
+      },
+      {
+        "x": 5746.0,
+        "y": -14356.0
+      },
+      {
+        "x": 5885.0,
+        "y": -14249.0
+      },
+      {
+        "x": 5993.0,
+        "y": -14133.0
+      },
+      {
+        "x": 6069.0,
+        "y": -14011.0
+      },
+      {
+        "x": 6108.0,
+        "y": -13900.0
+      },
+      {
+        "x": 6127.0,
+        "y": -13747.0
+      },
+      {
+        "x": 6118.0,
+        "y": -13594.0
+      },
+      {
+        "x": 6094.0,
+        "y": -13472.0
+      },
+      {
+        "x": 6058.0,
+        "y": -13349.0
+      },
+      {
+        "x": 6022.0,
+        "y": -13247.0
+      },
+      {
+        "x": 5946.0,
+        "y": -13066.0
+      },
+      {
+        "x": 5896.0,
+        "y": -12950.0
+      },
+      {
+        "x": 5857.0,
+        "y": -12855.0
+      },
+      {
+        "x": 5786.0,
+        "y": -12684.0
+      },
+      {
+        "x": 5742.0,
+        "y": -12573.0
+      },
+      {
+        "x": 5667.0,
+        "y": -12382.0
+      },
+      {
+        "x": 5625.0,
+        "y": -12263.0
+      },
+      {
+        "x": 5561.0,
+        "y": -12058.0
+      },
+      {
+        "x": 5541.0,
+        "y": -11988.0
+      },
+      {
+        "x": 5477.0,
+        "y": -11747.0
+      },
+      {
+        "x": 5427.0,
+        "y": -11543.0
+      },
+      {
+        "x": 5367.0,
+        "y": -11290.0
+      },
+      {
+        "x": 5335.0,
+        "y": -11139.0
+      },
+      {
+        "x": 5280.0,
+        "y": -10879.0
+      },
+      {
+        "x": 5243.0,
+        "y": -10709.0
+      },
+      {
+        "x": 5207.0,
+        "y": -10537.0
+      },
+      {
+        "x": 5188.0,
+        "y": -10443.0
+      },
+      {
+        "x": 5150.0,
+        "y": -10269.0
+      },
+      {
+        "x": 5101.0,
+        "y": -10045.0
+      },
+      {
+        "x": 5034.0,
+        "y": -9740.0
+      },
+      {
+        "x": 4965.0,
+        "y": -9467.0
+      },
+      {
+        "x": 4914.0,
+        "y": -9317.0
+      },
+      {
+        "x": 4811.0,
+        "y": -9104.0
+      },
+      {
+        "x": 4744.0,
+        "y": -9001.0
+      },
+      {
+        "x": 4591.0,
+        "y": -8832.0
+      },
+      {
+        "x": 4486.0,
+        "y": -8745.0
+      },
+      {
+        "x": 4226.0,
+        "y": -8603.0
+      },
+      {
+        "x": 4127.0,
+        "y": -8574.0
+      },
+      {
+        "x": 3955.0,
+        "y": -8550.0
+      },
+      {
+        "x": 3812.0,
+        "y": -8541.0
+      },
+      {
+        "x": 3656.0,
+        "y": -8536.0
+      },
+      {
+        "x": 3394.0,
+        "y": -8539.0
+      },
+      {
+        "x": 3332.0,
+        "y": -8544.0
+      },
+      {
+        "x": 3210.0,
+        "y": -8560.0
+      },
+      {
+        "x": 3003.0,
+        "y": -8619.0
+      },
+      {
+        "x": 2815.0,
+        "y": -8711.0
+      },
+      {
+        "x": 2589.0,
+        "y": -8863.0
+      },
+      {
+        "x": 2490.0,
+        "y": -8946.0
+      },
+      {
+        "x": 2332.0,
+        "y": -9105.0
+      },
+      {
+        "x": 2194.0,
+        "y": -9284.0
+      },
+      {
+        "x": 2123.0,
+        "y": -9393.0
+      },
+      {
+        "x": 2052.0,
+        "y": -9520.0
+      },
+      {
+        "x": 1928.0,
+        "y": -9789.0
+      },
+      {
+        "x": 1826.0,
+        "y": -10084.0
+      },
+      {
+        "x": 1731.0,
+        "y": -10386.0
+      },
+      {
+        "x": 1680.0,
+        "y": -10544.0
+      },
+      {
+        "x": 1608.0,
+        "y": -10768.0
+      },
+      {
+        "x": 1552.0,
+        "y": -10944.0
+      },
+      {
+        "x": 1500.0,
+        "y": -11106.0
+      },
+      {
+        "x": 1428.0,
+        "y": -11330.0
+      },
+      {
+        "x": 1368.0,
+        "y": -11518.0
+      },
+      {
+        "x": 1279.0,
+        "y": -11795.0
+      },
+      {
+        "x": 1199.0,
+        "y": -12039.0
+      },
+      {
+        "x": 1161.0,
+        "y": -12150.0
+      },
+      {
+        "x": 1117.0,
+        "y": -12267.0
+      },
+      {
+        "x": 1067.0,
+        "y": -12386.0
+      },
+      {
+        "x": 939.0,
+        "y": -12605.0
+      },
+      {
+        "x": 911.0,
+        "y": -12642.0
+      },
+      {
+        "x": 759.0,
+        "y": -12796.0
+      },
+      {
+        "x": 643.0,
+        "y": -12876.0
+      },
+      {
+        "x": 573.0,
+        "y": -12910.0
+      },
+      {
+        "x": 501.0,
+        "y": -12934.0
+      },
+      {
+        "x": 295.0,
+        "y": -12956.0
+      },
+      {
+        "x": 167.0,
+        "y": -12944.0
+      },
+      {
+        "x": 69.0,
+        "y": -12919.0
+      },
+      {
+        "x": -433.0,
+        "y": -12689.0
+      },
+      {
+        "x": -628.0,
+        "y": -12664.0
+      },
+      {
+        "x": -746.0,
+        "y": -12675.0
+      },
+      {
+        "x": -861.0,
+        "y": -12702.0
+      },
+      {
+        "x": -980.0,
+        "y": -12748.0
+      },
+      {
+        "x": -1047.0,
+        "y": -12784.0
+      },
+      {
+        "x": -1154.0,
+        "y": -12857.0
+      },
+      {
+        "x": -1246.0,
+        "y": -12940.0
+      },
+      {
+        "x": -1361.0,
+        "y": -13071.0
+      },
+      {
+        "x": -1473.0,
+        "y": -13227.0
+      },
+      {
+        "x": -1544.0,
+        "y": -13342.0
+      },
+      {
+        "x": -1640.0,
+        "y": -13519.0
+      },
+      {
+        "x": -1698.0,
+        "y": -13634.0
+      },
+      {
+        "x": -1787.0,
+        "y": -13824.0
+      },
+      {
+        "x": -1868.0,
+        "y": -13994.0
+      },
+      {
+        "x": -1941.0,
+        "y": -14141.0
+      },
+      {
+        "x": -2033.0,
+        "y": -14311.0
+      },
+      {
+        "x": -2179.0,
+        "y": -14552.0
+      },
+      {
+        "x": -2302.0,
+        "y": -14703.0
+      },
+      {
+        "x": -2440.0,
+        "y": -14810.0
+      },
+      {
+        "x": -2550.0,
+        "y": -14860.0
+      },
+      {
+        "x": -2678.0,
+        "y": -14883.0
+      },
+      {
+        "x": -2814.0,
+        "y": -14873.0
+      },
+      {
+        "x": -3041.0,
+        "y": -14813.0
+      },
+      {
+        "x": -3143.0,
+        "y": -14767.0
+      },
+      {
+        "x": -3215.0,
+        "y": -14728.0
+      },
+      {
+        "x": -3307.0,
+        "y": -14675.0
+      },
+      {
+        "x": -3446.0,
+        "y": -14587.0
+      },
+      {
+        "x": -3560.0,
+        "y": -14511.0
+      },
+      {
+        "x": -3726.0,
+        "y": -14388.0
+      },
+      {
+        "x": -3794.0,
+        "y": -14333.0
+      },
+      {
+        "x": -3870.0,
+        "y": -14267.0
+      },
+      {
+        "x": -3980.0,
+        "y": -14157.0
+      },
+      {
+        "x": -4050.0,
+        "y": -14077.0
+      },
+      {
+        "x": -4151.0,
+        "y": -13936.0
+      },
+      {
+        "x": -4206.0,
+        "y": -13841.0
+      },
+      {
+        "x": -4316.0,
+        "y": -13558.0
+      },
+      {
+        "x": -4337.0,
+        "y": -13348.0
+      },
+      {
+        "x": -4337.0,
+        "y": -13275.0
+      },
+      {
+        "x": -4311.0,
+        "y": -13016.0
+      },
+      {
+        "x": -4278.0,
+        "y": -12844.0
+      },
+      {
+        "x": -4240.0,
+        "y": -12702.0
+      },
+      {
+        "x": -4158.0,
+        "y": -12463.0
+      },
+      {
+        "x": -4095.0,
+        "y": -12311.0
+      },
+      {
+        "x": -4036.0,
+        "y": -12188.0
+      },
+      {
+        "x": -3948.0,
+        "y": -12027.0
+      },
+      {
+        "x": -3842.0,
+        "y": -11856.0
+      },
+      {
+        "x": -3646.0,
+        "y": -11574.0
+      },
+      {
+        "x": -3519.0,
+        "y": -11411.0
+      },
+      {
+        "x": -3423.0,
+        "y": -11294.0
+      },
+      {
+        "x": -3270.0,
+        "y": -11119.0
+      },
+      {
+        "x": -3205.0,
+        "y": -11048.0
+      },
+      {
+        "x": -3105.0,
+        "y": -10943.0
+      },
+      {
+        "x": -2805.0,
+        "y": -10647.0
+      },
+      {
+        "x": -2696.0,
+        "y": -10548.0
+      },
+      {
+        "x": -2444.0,
+        "y": -10338.0
+      },
+      {
+        "x": -2353.0,
+        "y": -10268.0
+      },
+      {
+        "x": -2190.0,
+        "y": -10154.0
+      },
+      {
+        "x": -2067.0,
+        "y": -10071.0
+      },
+      {
+        "x": -1858.0,
+        "y": -9942.0
+      },
+      {
+        "x": -1625.0,
+        "y": -9809.0
+      },
+      {
+        "x": -1494.0,
+        "y": -9734.0
+      },
+      {
+        "x": -1363.0,
+        "y": -9658.0
+      },
+      {
+        "x": -1203.0,
+        "y": -9564.0
+      },
+      {
+        "x": -1026.0,
+        "y": -9462.0
+      },
+      {
+        "x": -894.0,
+        "y": -9386.0
+      },
+      {
+        "x": -658.0,
+        "y": -9249.0
+      },
+      {
+        "x": -441.0,
+        "y": -9114.0
+      },
+      {
+        "x": -191.0,
+        "y": -8935.0
+      },
+      {
+        "x": -20.0,
+        "y": -8792.0
+      },
+      {
+        "x": 93.0,
+        "y": -8686.0
+      },
+      {
+        "x": 281.0,
+        "y": -8486.0
+      },
+      {
+        "x": 459.0,
+        "y": -8254.0
+      },
+      {
+        "x": 561.0,
+        "y": -8092.0
+      },
+      {
+        "x": 718.0,
+        "y": -7802.0
+      },
+      {
+        "x": 749.0,
+        "y": -7740.0
+      },
+      {
+        "x": 873.0,
+        "y": -7472.0
+      },
+      {
+        "x": 990.0,
+        "y": -7202.0
+      },
+      {
+        "x": 1069.0,
+        "y": -7010.0
+      },
+      {
+        "x": 1101.0,
+        "y": -6929.0
+      },
+      {
+        "x": 1150.0,
+        "y": -6800.0
+      },
+      {
+        "x": 1248.0,
+        "y": -6507.0
+      },
+      {
+        "x": 1303.0,
+        "y": -6291.0
+      },
+      {
+        "x": 1332.0,
+        "y": -6124.0
+      },
+      {
+        "x": 1339.0,
+        "y": -5765.0
+      },
+      {
+        "x": 1308.0,
+        "y": -5527.0
+      },
+      {
+        "x": 1238.0,
+        "y": -5280.0
+      },
+      {
+        "x": 1205.0,
+        "y": -5181.0
+      },
+      {
+        "x": 1090.0,
+        "y": -4876.0
+      },
+      {
+        "x": 985.0,
+        "y": -4623.0
+      },
+      {
+        "x": 958.0,
+        "y": -4560.0
+      },
+      {
+        "x": 904.0,
+        "y": -4435.0
+      },
+      {
+        "x": 788.0,
+        "y": -4168.0
+      },
+      {
+        "x": 726.0,
+        "y": -4026.0
+      },
+      {
+        "x": 652.0,
+        "y": -3852.0
+      },
+      {
+        "x": 585.0,
+        "y": -3694.0
+      },
+      {
+        "x": 540.0,
+        "y": -3582.0
+      },
+      {
+        "x": 451.0,
+        "y": -3358.0
+      },
+      {
+        "x": 365.0,
+        "y": -3115.0
+      },
+      {
+        "x": 328.0,
+        "y": -2983.0
+      },
+      {
+        "x": 289.0,
+        "y": -2813.0
+      },
+      {
+        "x": 263.0,
+        "y": -2695.0
+      },
+      {
+        "x": 227.0,
+        "y": -2526.0
+      },
+      {
+        "x": 182.0,
+        "y": -2305.0
+      },
+      {
+        "x": 147.0,
+        "y": -2118.0
+      },
+      {
+        "x": 132.0,
+        "y": -2033.0
+      },
+      {
+        "x": 84.0,
+        "y": -1746.0
+      },
+      {
+        "x": 61.0,
+        "y": -1604.0
+      },
+      {
+        "x": 27.0,
+        "y": -1379.0
+      },
+      {
+        "x": -4.0,
+        "y": -1132.0
+      },
+      {
+        "x": -12.0,
+        "y": -1032.0
+      },
+      {
+        "x": -9.0,
+        "y": -891.0
+      },
+      {
+        "x": -3.0,
+        "y": -822.0
+      },
+      {
+        "x": 6.0,
+        "y": -766.0
+      },
+      {
+        "x": 18.0,
+        "y": -722.0
+      },
+      {
+        "x": 59.0,
+        "y": -641.0
+      },
+      {
+        "x": 113.0,
+        "y": -587.0
+      },
+      {
+        "x": 150.0,
+        "y": -569.0
+      },
+      {
+        "x": 189.0,
+        "y": -558.0
+      },
+      {
+        "x": 263.0,
+        "y": -552.0
+      },
+      {
+        "x": 319.0,
+        "y": -551.0
+      },
+      {
+        "x": 397.0,
+        "y": -539.0
+      },
+      {
+        "x": 460.0,
+        "y": -514.0
+      },
+      {
+        "x": 494.0,
+        "y": -488.0
+      },
+      {
+        "x": 534.0,
+        "y": -431.0
+      },
+      {
+        "x": 552.0,
+        "y": -350.0
+      },
+      {
+        "x": 548.0,
+        "y": -279.0
+      },
+      {
+        "x": 538.0,
+        "y": -231.0
+      },
+      {
+        "x": 522.0,
+        "y": -178.0
+      },
+      {
+        "x": 500.0,
+        "y": -122.0
+      },
+      {
+        "x": 474.0,
+        "y": -70.0
+      },
+      {
+        "x": 449.0,
+        "y": -24.0
+      },
+      {
+        "x": 421.0,
+        "y": 23.0
+      },
+      {
+        "x": 352.0,
+        "y": 129.0
+      },
+      {
+        "x": 245.0,
+        "y": 286.0
+      },
+      {
+        "x": 188.0,
+        "y": 369.0
+      },
+      {
+        "x": 139.0,
+        "y": 441.0
+      },
+      {
+        "x": 42.0,
+        "y": 585.0
+      },
+      {
+        "x": -10.0,
+        "y": 666.0
+      },
+      {
+        "x": -85.0,
+        "y": 778.0
+      },
+      {
+        "x": -123.0,
+        "y": 836.0
+      },
+      {
+        "x": -198.0,
+        "y": 950.0
+      },
+      {
+        "x": -341.0,
+        "y": 1165.0
+      },
+      {
+        "x": -365.0,
+        "y": 1201.0
+      }
+    ]
+  },
+  "corners": [
+    {
+      "number": 1,
+      "letter": "",
+      "name": "La Source",
+      "turn": "Turn 1 (T1)",
+      "x": -2268.26,
+      "y": 4480.01,
+      "angle": 145.68,
+      "distance": 366.0,
+      "nearestTrackDistance": 4.6,
+      "alignmentValid": true,
+      "type": "Hairpin",
+      "direction": "Right",
+      "gear": 1,
+      "speed_kph": 70,
+      "characteristics": "Downhill braking, wide run-off, tight apex",
+      "history": "Downhill hairpin named after Ardennes mineral springs. Famous for dramatic opening lap scrambles, including the 13-car pileup in 1998 and Fernando Alonso's airborne crash over Leclerc in 2018.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 2,
+      "letter": "",
+      "name": "Eau Rouge",
+      "turn": "Turn 2 (T2)",
+      "x": 3000.0,
+      "y": 504.41,
+      "angle": -118.14,
+      "distance": 1053.24,
+      "nearestTrackDistance": 7.24,
+      "alignmentValid": true,
+      "type": "Compression Kink",
+      "direction": "Left",
+      "gear": 8,
+      "speed_kph": 305,
+      "characteristics": "Extreme vertical G-compression into dip",
+      "history": "Compression dip at the base of Eau Rouge stream. Cars compress under 5G of vertical force before climbing the 17% gradient.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 3,
+      "letter": "",
+      "name": "Raidillon (Bottom)",
+      "turn": "Turn 3 (T3)",
+      "x": 3817.09,
+      "y": -223.76,
+      "angle": 21.62,
+      "distance": 1159.61,
+      "nearestTrackDistance": 53.17,
+      "alignmentValid": true,
+      "type": "Crest Complex",
+      "direction": "Right",
+      "gear": 8,
+      "speed_kph": 300,
+      "characteristics": "Blind uphill climb, 17% gradient",
+      "history": "The blind uphill right turn into Raidillon. Drivers take this crest flat-out at 300+ km/h relying entirely on muscle memory and downforce.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 4,
+      "letter": "",
+      "name": "Raidillon (Summit)",
+      "turn": "Turn 4 (T4)",
+      "x": 4054.82,
+      "y": -1175.58,
+      "angle": -159.37,
+      "distance": 1252.67,
+      "nearestTrackDistance": 102.01,
+      "alignmentValid": true,
+      "type": "Crest Complex",
+      "direction": "Left",
+      "gear": 8,
+      "speed_kph": 305,
+      "characteristics": "Unweighting at crest onto Kemmel Straight",
+      "history": "Summit of Raidillon launching cars onto the 2km Kemmel Straight.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 5,
+      "letter": "",
+      "name": "Les Combes (Entry)",
+      "turn": "Turn 5 (T5)",
+      "x": 8288.38,
+      "y": -11558.16,
+      "angle": -19.04,
+      "distance": 2393.23,
+      "nearestTrackDistance": 22.32,
+      "alignmentValid": true,
+      "type": "Medium-Speed Chicane",
+      "direction": "Right",
+      "gear": 4,
+      "speed_kph": 140,
+      "characteristics": "Key overtaking braking point",
+      "history": "Les Combes chicane at the highest point of the circuit (Hautes Fagnes), the primary overtaking zone after slipstreaming up Kemmel.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 6,
+      "letter": "",
+      "name": "Les Combes (Mid)",
+      "turn": "Turn 6 (T6)",
+      "x": 7822.24,
+      "y": -12185.45,
+      "angle": 162.89,
+      "distance": 2467.16,
+      "nearestTrackDistance": 21.05,
+      "alignmentValid": true,
+      "type": "Medium-Speed Chicane",
+      "direction": "Left",
+      "gear": 4,
+      "speed_kph": 150,
+      "characteristics": "Curb hopping over kerbs",
+      "history": "Middle apex of Les Combes requiring smooth weight transfer.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 7,
+      "letter": "",
+      "name": "Malmedy",
+      "turn": "Turn 7 (T7)",
+      "x": 7960.52,
+      "y": -13774.41,
+      "angle": 153.56,
+      "distance": 2636.94,
+      "nearestTrackDistance": 12.19,
+      "alignmentValid": true,
+      "type": "Medium-Speed",
+      "direction": "Right",
+      "gear": 5,
+      "speed_kph": 180,
+      "characteristics": "Downhill exit towards Bruxelles",
+      "history": "Exit of Les Combes leading downhill towards Malmedy and Bruxelles.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 8,
+      "letter": "",
+      "name": "Bruxelles (Rivage)",
+      "turn": "Turn 8 (T8)",
+      "x": 4795.48,
+      "y": -15569.17,
+      "angle": -147.88,
+      "distance": 3024.46,
+      "nearestTrackDistance": 44.81,
+      "alignmentValid": true,
+      "type": "Hairpin",
+      "direction": "Right",
+      "gear": 3,
+      "speed_kph": 110,
+      "characteristics": "Long off-camber downhill sweeper",
+      "history": "Off-camber 180-degree downhill right hairpin where front tires struggle for grip over the steep gradient.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 9,
+      "letter": "",
+      "name": "Speakers Corner",
+      "turn": "Turn 9 (T9)",
+      "x": 6124.01,
+      "y": -13828.9,
+      "angle": 172.23,
+      "distance": 3264.01,
+      "nearestTrackDistance": 72.88,
+      "alignmentValid": true,
+      "type": "Medium-Speed",
+      "direction": "Left",
+      "gear": 4,
+      "speed_kph": 145,
+      "characteristics": "Downhill plunge toward Double Gauche",
+      "history": "Fast downhill left-hand sweeper leading into the Ardennes forest valley.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 10,
+      "letter": "",
+      "name": "Pouhon (Double Gauche 1)",
+      "turn": "Turn 10 (T10)",
+      "x": 4679.71,
+      "y": -8919.28,
+      "angle": 40.95,
+      "distance": 3781.58,
+      "nearestTrackDistance": 103.97,
+      "alignmentValid": true,
+      "type": "High-Speed Sweeper",
+      "direction": "Left",
+      "gear": 6,
+      "speed_kph": 280,
+      "characteristics": "Massive lateral G (~5G) commitment",
+      "history": "Super-fast 260 km/h downhill left corner pulling 5.2G of lateral load\u2014a true test of driver bravery and aerodynamic downforce.",
+      "images": [
+        {
+          "src": "/images/circuits/spa/corners/pouhon/01_pouhon.jpg",
+          "source": "Circuit de Spa-Francorchamps Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Circuit de Spa-Francorchamps Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Pouhon Entry photograph"
+        },
+        {
+          "src": "/images/circuits/spa/corners/pouhon/01_pouhon.svg",
+          "source": "Circuit de Spa-Francorchamps Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Circuit de Spa-Francorchamps Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Pouhon Entry photograph"
+        }
+      ],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 11,
+      "letter": "",
+      "name": "Pouhon (Double Gauche 2)",
+      "turn": "Turn 11 (T11)",
+      "x": 2442.75,
+      "y": -8984.77,
+      "angle": -46.08,
+      "distance": 4032.56,
+      "nearestTrackDistance": 61.12,
+      "alignmentValid": true,
+      "type": "High-Speed Sweeper",
+      "direction": "Left",
+      "gear": 6,
+      "speed_kph": 285,
+      "characteristics": "Track limit line clipping on exit",
+      "history": "Second apex of Pouhon, taken with progressive throttle as the track opens up.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 12,
+      "letter": "",
+      "name": "Fagnes (Pif-Paf Entry)",
+      "turn": "Turn 12 (T12)",
+      "x": 765.81,
+      "y": -12791.74,
+      "angle": -49.68,
+      "distance": 4446.44,
+      "nearestTrackDistance": 8.03,
+      "alignmentValid": true,
+      "type": "Chicane",
+      "direction": "Right",
+      "gear": 4,
+      "speed_kph": 165,
+      "characteristics": "Downhill transition over kerbs",
+      "history": "Technical right-left chicane over high kerbs surrounded by dense pine forests.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 13,
+      "letter": "",
+      "name": "Fagnes (Pif-Paf Exit)",
+      "turn": "Turn 13 (T13)",
+      "x": -711.81,
+      "y": -12662.15,
+      "angle": 102.9,
+      "distance": 4613.53,
+      "nearestTrackDistance": 36.52,
+      "alignmentValid": true,
+      "type": "Chicane",
+      "direction": "Left",
+      "gear": 4,
+      "speed_kph": 175,
+      "characteristics": "Critical traction zone onto Campus",
+      "history": "Exit of Fagnes heading downhill towards Stavelot.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 14,
+      "letter": "",
+      "name": "Campus",
+      "turn": "Turn 14 (T14)",
+      "x": -2527.07,
+      "y": -14855.04,
+      "angle": -69.16,
+      "distance": 4898.04,
+      "nearestTrackDistance": 23.46,
+      "alignmentValid": true,
+      "type": "Medium-Speed",
+      "direction": "Right",
+      "gear": 5,
+      "speed_kph": 195,
+      "characteristics": "Slightly blind apex",
+      "history": "Banked right-hand curve sweeping past Stavelot village towards the ultra-fast back section.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 15,
+      "letter": "",
+      "name": "Paul Fr\u00e8re",
+      "turn": "Turn 15 (T15)",
+      "x": -4336.47,
+      "y": -13437.9,
+      "angle": -173.39,
+      "distance": 5159.95,
+      "nearestTrackDistance": 89.9,
+      "alignmentValid": true,
+      "type": "High-Speed",
+      "direction": "Right",
+      "gear": 6,
+      "speed_kph": 235,
+      "characteristics": "Opening into Blanchimont",
+      "history": "Fast right kink maintaining 280+ km/h momentum towards Paul Fr\u00e8re corner.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 16,
+      "letter": "",
+      "name": "Blanchimont 1",
+      "turn": "Turn 16 (T16)",
+      "x": 370.26,
+      "y": -8378.49,
+      "angle": 142.67,
+      "distance": 5853.51,
+      "nearestTrackDistance": 139.73,
+      "alignmentValid": true,
+      "type": "Flat Kink",
+      "direction": "Left",
+      "gear": 8,
+      "speed_kph": 315,
+      "characteristics": "Flat-out entry curve",
+      "history": "Sweeping curve named after Belgian racing journalist and driver Paul Fr\u00e8re.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 17,
+      "letter": "",
+      "name": "Blanchimont 2",
+      "turn": "Turn 17 (T17)",
+      "x": 1346.13,
+      "y": -5851.38,
+      "angle": 2.72,
+      "distance": 6138.52,
+      "nearestTrackDistance": 86.68,
+      "alignmentValid": true,
+      "type": "Flat Kink",
+      "direction": "Left",
+      "gear": 8,
+      "speed_kph": 320,
+      "characteristics": "Setup point for heavy braking",
+      "history": "Terrifying 300+ km/h left-hand sweep where Kimi R\u00e4ikk\u00f6nen famously passed Michael Schumacher through thick tire smoke in 2004.",
+      "images": [
+        {
+          "src": "/images/circuits/spa/corners/blanchimont/01_blanchimont.jpg",
+          "source": "Circuit de Spa-Francorchamps Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Circuit de Spa-Francorchamps Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Blanchimont 1 photograph"
+        },
+        {
+          "src": "/images/circuits/spa/corners/blanchimont/01_blanchimont.svg",
+          "source": "Circuit de Spa-Francorchamps Reconnaissance",
+          "license": "PADDOCK VERIFIED ASSET",
+          "attribution": "Circuit de Spa-Francorchamps Official Media",
+          "type": "real",
+          "verified": true,
+          "alt": "Blanchimont 1 photograph"
+        }
+      ],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 18,
+      "letter": "",
+      "name": "Bus Stop Chicane (Entry)",
+      "turn": "Turn 18 (T18)",
+      "x": 24.78,
+      "y": -701.63,
+      "angle": 157.75,
+      "distance": 6667.61,
+      "nearestTrackDistance": 21.47,
+      "alignmentValid": true,
+      "type": "Slow Chicane",
+      "direction": "Right",
+      "gear": 1,
+      "speed_kph": 75,
+      "characteristics": "Maximum deceleration zone from 320+ km/h",
+      "history": "Exit of Blanchimont leading into the final heavy braking zone.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    },
+    {
+      "number": 19,
+      "letter": "",
+      "name": "Bus Stop Chicane (Exit)",
+      "turn": "Turn 19 (T19)",
+      "x": 549.48,
+      "y": -386.91,
+      "angle": -14.52,
+      "distance": 6738.09,
+      "nearestTrackDistance": 37.0,
+      "alignmentValid": true,
+      "type": "Slow Chicane",
+      "direction": "Left",
+      "gear": 2,
+      "speed_kph": 85,
+      "characteristics": "Pit entry split line & main straight sprint",
+      "history": "Bus Stop chicane entry\u2014a massive 320 to 80 km/h braking zone originally routed around an actual public bus stop.",
+      "images": [],
+      "technical": null,
+      "racing": null
+    }
+  ]
+}

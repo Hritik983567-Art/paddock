@@ -19,7 +19,7 @@ export async function verifyGoogleIDToken(idToken: string): Promise<GoogleIdToke
     const parts = idToken.split('.');
     if (parts.length !== 3) return null;
 
-    const [headerB64, payloadB64] = parts;
+    const [, payloadB64] = parts;
     const base64UrlDecode = (str: string) => {
       let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
       while (base64.length % 4) base64 += '=';
@@ -46,7 +46,7 @@ export async function verifyGoogleIDToken(idToken: string): Promise<GoogleIdToke
     }
 
     return payload;
-  } catch (error) {
+  } catch {
     return null;
   }
 }

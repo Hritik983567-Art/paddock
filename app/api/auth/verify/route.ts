@@ -35,7 +35,7 @@ async function handleVerification(request: Request, tokenInput?: string) {
         picture: payload.picture
       }
     }, { status: 200 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ valid: false, authenticated: false, message: 'Token verification failed' }, { status: 200 });
   }
 }

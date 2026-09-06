@@ -4,7 +4,7 @@ import { DriverMeta } from '../../lib/replayDataService';
 interface TelemetryPanelProps {
   driverId: string | null;
   driverMeta: Record<string, DriverMeta>;
-  currentLap: number;
+  currentLap?: number;
   position: number | null;
   lapTime: number | null;
   gap: string;
@@ -13,11 +13,12 @@ interface TelemetryPanelProps {
 export const TelemetryPanel: React.FC<TelemetryPanelProps> = ({
   driverId,
   driverMeta,
-  currentLap,
+  currentLap: _currentLap,
   position,
   lapTime,
   gap
 }) => {
+  void _currentLap;
   const meta = driverId ? driverMeta[driverId] : null;
 
   // Real data verification indicator — display explicit N/A for telemetry metrics not provided by upstream Ergast/Jolpica

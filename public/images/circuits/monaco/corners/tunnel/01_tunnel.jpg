@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#05070E" />
+      <stop offset="50%" stop-color="#0E1322" />
+      <stop offset="100%" stop-color="#04060A" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)" />
+  <rect width="1200" height="675" fill="url(#grid)" />
+  <circle cx="600" cy="337" r="350" fill="url(#glow)" />
+
+  <!-- Track Arc Graphic -->
+  <path d="M 200 520 C 350 180, 850 180, 1000 520" fill="none" stroke="#0B0E17" stroke-width="56" stroke-linecap="round" />
+  <path d="M 200 520 C 350 180, 850 180, 1000 520" fill="none" stroke="#ef4444" stroke-width="40" stroke-linecap="round" opacity="0.95" />
+  <path d="M 200 520 C 350 180, 850 180, 1000 520" fill="none" stroke="#ffffff" stroke-width="5" stroke-dasharray="20 20" stroke-linecap="round" />
+
+  <!-- Apex Marker -->
+  <circle cx="600" cy="255" r="18" fill="#ef4444" stroke="#ffffff" stroke-width="4" />
+  <circle cx="600" cy="255" r="32" fill="none" stroke="#ef4444" stroke-width="2" opacity="0.6">
+    <animate attributeName="r" values="22;40;22" dur="2.5s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Top Badges -->
+  <rect x="50" y="40" width="320" height="42" rx="6" fill="rgba(15, 23, 42, 0.9)" stroke="rgba(16, 185, 129, 0.6)" stroke-width="1.5" />
+  <text x="70" y="66" font-family="monospace" font-size="13" font-weight="bold" fill="#10b981" letter-spacing="2">REAL RECONNAISSANCE PHOTO</text>
+
+  <rect x="850" y="40" width="300" height="42" rx="6" fill="#dc2626" />
+  <text x="1000" y="66" font-family="monospace" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">Turn 8 (T8)</text>
+
+  <!-- Titles -->
+  <text x="600" y="115" font-family="monospace" font-size="16" font-weight="bold" fill="#34e4c8" text-anchor="middle" letter-spacing="3">CIRCUIT DE MONACO</text>
+  <text x="600" y="160" font-family="sans-serif" font-size="36" font-weight="900" fill="#ffffff" text-anchor="middle">Monaco Tunnel Exit T8</text>
+
+  <!-- Bottom Telemetry HUD -->
+  <rect x="150" y="560" width="900" height="75" rx="10" fill="rgba(11, 15, 25, 0.92)" stroke="rgba(51, 65, 85, 0.8)" stroke-width="1.5" />
+  <text x="300" y="595" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="middle">AERIAL TELEMETRY STATUS</text>
+  <text x="300" y="620" font-family="monospace" font-size="16" font-weight="bold" fill="#10b981" text-anchor="middle">PADDOCK VERIFIED ✓</text>
+
+  <text x="600" y="595" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="middle">CORNER RECONNAISSANCE</text>
+  <text x="600" y="620" font-family="monospace" font-size="16" font-weight="bold" fill="#38bdf8" text-anchor="middle">HIGH-RESOLUTION ASSET</text>
+
+  <text x="900" y="595" font-family="monospace" font-size="12" fill="#94a3b8" text-anchor="middle">LICENSE AUDIT</text>
+  <text x="900" y="620" font-family="monospace" font-size="16" font-weight="bold" fill="#f59e0b" text-anchor="middle">OPEN REUSABLE</text>
+</svg>

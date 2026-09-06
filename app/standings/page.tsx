@@ -53,8 +53,11 @@ export default function StandingsPage() {
           getJSON(`${API_BASE}/${selectedSeason}/constructorStandings.json`)
         ]);
 
-        const dTable = dRes?.MRData?.StandingsTable?.StandingsLists?.[0];
-        const cTable = cRes?.MRData?.StandingsTable?.StandingsLists?.[0];
+        const dObj = dRes as { MRData?: { StandingsTable?: { StandingsLists?: Array<{ round: string; DriverStandings: DriverStanding[] }> } } } | null;
+        const cObj = cRes as { MRData?: { StandingsTable?: { StandingsLists?: Array<{ round: string; ConstructorStandings: ConstructorStanding[] }> } } } | null;
+
+        const dTable = dObj?.MRData?.StandingsTable?.StandingsLists?.[0];
+        const cTable = cObj?.MRData?.StandingsTable?.StandingsLists?.[0];
 
         if (!dTable || !cTable) {
           throw new Error('No standings records found for this season.');
@@ -63,8 +66,9 @@ export default function StandingsPage() {
         setRoundInfo(`ROUND ${dTable.round}`);
         setDrivers(dTable.DriverStandings || []);
         setConstructors(cTable.ConstructorStandings || []);
-      } catch (e: any) {
-        setError(e.message || 'Could not fetch championship standings feed.');
+      } catch (e: unknown) {
+        const err = e as Error;
+        setError(err.message || 'Could not fetch championship standings feed.');
       } finally {
         setLoading(false);
       }

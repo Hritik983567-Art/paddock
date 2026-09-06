@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# scratch scripts
+# scratch scripts & local data cache
 scratch/
+cache/
+*.sqlite
+*.ff1pkl
 

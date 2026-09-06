@@ -1,0 +1,9 @@
+{
+  "circuit": {
+    "id": "indianapolis",
+    "name": "Indianapolis",
+    "year": 2007
+  },
+  "status": "DATA UNAVAILABLE",
+  "reason": "No valid FastF1 position telemetry cached for circuit 'indianapolis' across years [2007, 2006, 2005]."
+}

@@ -86,7 +86,7 @@ export async function POST(request: Request) {
     });
 
     return response;
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, message: 'Google OAuth token processing error' }, { status: 500 });
   }
 }

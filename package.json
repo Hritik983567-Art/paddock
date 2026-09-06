@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.4",
+    "@types/three": "^0.185.4",
     "chart.js": "^4.5.1",
     "next": "16.2.10",
     "react": "19.2.4",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "19.2.4",
+    "three": "^0.185.1",
     "ws": "^8.21.1"
   },
   "devDependencies": {

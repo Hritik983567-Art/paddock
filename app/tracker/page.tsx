@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSeason } from '../contexts/SeasonContext';
 import { getJSON, API_BASE, getTeamColor, fetchCircuitWeather, WeatherData } from '../utils/api';
 import CircuitMap from '../components/CircuitMap';
@@ -49,7 +49,7 @@ interface PitStopRow {
   duration: string;
 }
 
-function generateFallbackRaceData(round: string, selectedRaceObj?: any) {
+function generateFallbackRaceData(round: string, selectedRaceObj?: { raceName?: string; Circuit?: { circuitId?: string } }) {
   const name = selectedRaceObj?.raceName || `Grand Prix Round ${round}`;
   const circuit = selectedRaceObj?.Circuit?.circuitId || 'spa';
 
@@ -167,10 +167,10 @@ export default function RaceTrackerPage() {
       setTimingRows([]);
       setPitStops([]);
       try {
-        const res = await getJSON(`${API_BASE}/${selectedSeason}.json`);
-        const raceList = res.MRData.RaceTable.Races || [];
+        const res = await getJSON(`${API_BASE}/${selectedSeason}.json`) as { MRData?: { RaceTable?: { Races?: Array<{ round: string; raceName: string; date: string }> } } };
+        const raceList = res?.MRData?.RaceTable?.Races || [];
         const now = new Date();
-        const completed = raceList.map((r: any) => ({
+        const completed = raceList.map((r: { round: string; raceName: string; date: string }) => ({
           round: r.round,
           raceName: r.raceName,
           date: r.date
@@ -178,14 +178,15 @@ export default function RaceTrackerPage() {
 
         setRounds(completed);
 
-        const pastCompleted = raceList.filter((r: any) => new Date(r.date) <= now);
+        const pastCompleted = raceList.filter((r: { date: string }) => new Date(r.date) <= now);
         if (pastCompleted.length > 0) {
           setSelectedRound(pastCompleted[pastCompleted.length - 1].round);
         } else if (completed.length > 0) {
           setSelectedRound(completed[0].round);
         }
-      } catch (e: any) {
-        setRoundsError(e.message || 'Couldn\'t load completed rounds.');
+      } catch (e: unknown) {
+        const err = e as Error;
+        setRoundsError(err.message || 'Couldn\'t load completed rounds.');
       } finally {
         setLoadingRounds(false);
       }
@@ -195,8 +196,9 @@ export default function RaceTrackerPage() {
   }, [selectedSeason]);
 
   // Load telemetry data on round selector change
-  const loadRaceData = async () => {
+  const loadRaceData = useCallback(async () => {
     if (!selectedRound) return;
+
     setLoadingData(true);
     setDataError('');
     setTimingRows([]);
@@ -210,7 +212,10 @@ export default function RaceTrackerPage() {
         getJSON(`${API_BASE}/${selectedSeason}/${selectedRound}/pitstops.json`).catch(() => null)
       ]);
 
-      const raceInfo = resultsRes?.MRData?.RaceTable?.Races?.[0];
+      const resObj = resultsRes as { MRData?: { RaceTable?: { Races?: Array<{ raceName: string; Circuit?: { circuitId: string; Location?: { lat?: string; long?: string } }; Results: TimingRow[] }> } } } | null;
+      const pitObj = pitRes as { MRData?: { RaceTable?: { Races?: Array<{ PitStops: PitStopRow[] }> } } } | null;
+
+      const raceInfo = resObj?.MRData?.RaceTable?.Races?.[0];
       
       if (raceInfo && raceInfo.Results && raceInfo.Results.length > 0) {
         setRaceName(raceInfo.raceName);
@@ -225,7 +230,7 @@ export default function RaceTrackerPage() {
         });
         setDriverCodeMap(codes);
 
-        const stopsList = (pitRes?.MRData?.RaceTable?.Races[0]?.PitStops || []) as PitStopRow[];
+        const stopsList = (pitObj?.MRData?.RaceTable?.Races?.[0]?.PitStops || []) as PitStopRow[];
         stopsList.sort((a, b) => {
           const lapDiff = parseInt(a.lap) - parseInt(b.lap);
           if (lapDiff !== 0) return lapDiff;
@@ -268,11 +273,14 @@ export default function RaceTrackerPage() {
     } finally {
       setLoadingData(false);
     }
-  };
+  }, [selectedRound, selectedSeason, rounds]);
 
   useEffect(() => {
-    loadRaceData();
-  }, [selectedRound]);
+    const timer = setTimeout(() => {
+      loadRaceData();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [loadRaceData]);
 
   // Calculate quick metrics
   const winnerRow = timingRows.find(r => r.position === '1');

@@ -5,15 +5,16 @@ interface LapDeltaProps {
   driverId: string | null;
   driverMeta: Record<string, DriverMeta>;
   laps: LapLapData[];
-  totalLaps: number;
+  totalLaps?: number;
 }
 
 export const LapDelta: React.FC<LapDeltaProps> = ({
   driverId,
   driverMeta,
   laps,
-  totalLaps
+  totalLaps: _totalLaps
 }) => {
+  void _totalLaps;
   const [lapA, setLapA] = useState(1);
   const [lapB, setLapB] = useState(2);
 

@@ -1,0 +1,9 @@
+{
+  "circuit": {
+    "id": "kyalami",
+    "name": "Kyalami",
+    "year": 1993
+  },
+  "status": "DATA UNAVAILABLE",
+  "reason": "No valid FastF1 position telemetry cached for circuit 'kyalami' across years [1993, 1992]."
+}

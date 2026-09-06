@@ -1,6 +1,5 @@
 import React from 'react';
 import { DriverMeta, PitStopItem, TyreStint } from '../../lib/replayDataService';
-import { getTeamColor } from '../../utils/api';
 
 interface DriverComparisonProps {
   driverIds: string[];

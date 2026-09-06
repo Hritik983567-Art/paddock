@@ -21,17 +21,11 @@ export default function AuthGate() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [shake, setShake] = useState(false);
-  const [googleClientId, setGoogleClientId] = useState<string>('');
   const [isAwaitingVerification, setIsAwaitingVerification] = useState(false);
   const [resendMessage, setResendMessage] = useState('');
   const [resendLoading, setResendLoading] = useState(false);
 
   useEffect(() => {
-    setName('');
-    setEmail('');
-    setPassword('');
-    setError('');
-
     // Global listener to silence Google Identity GSI FedCM console abort error overlays
     const handleRejection = (event: PromiseRejectionEvent) => {
       const reason = event?.reason;
@@ -53,10 +47,13 @@ export default function AuthGate() {
 
       const rawMsg = authError || errorDesc || errorParam;
       if (rawMsg) {
-        setError(`Authentication Notice: ${decodeURIComponent(rawMsg)}`);
-        setShake(true);
-        setTimeout(() => setShake(false), 450);
+        const decoded = decodeURIComponent(rawMsg);
         window.history.replaceState({}, document.title, window.location.pathname);
+        setTimeout(() => {
+          setError(`Authentication Notice: ${decoded}`);
+          setShake(true);
+          setTimeout(() => setShake(false), 450);
+        }, 0);
       }
     }
 
@@ -66,18 +63,18 @@ export default function AuthGate() {
         const res = await fetch('/api/auth/google');
         const data = await res.json();
         const cid = data.clientId || process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
-        setGoogleClientId(cid);
 
         if (cid && typeof window !== 'undefined') {
+          const win = window as unknown as { google?: { accounts?: { id?: { initialize: (opts: { client_id: string; use_fedcm_for_prompt?: boolean; auto_select?: boolean; callback: (res: { credential?: string }) => void }) => void } } } };
           const initGsi = () => {
-            if ((window as any).google?.accounts?.id && !gsiInitializedRef.current) {
+            if (win.google?.accounts?.id && !gsiInitializedRef.current) {
               try {
                 gsiInitializedRef.current = true;
-                (window as any).google.accounts.id.initialize({
+                win.google.accounts.id.initialize({
                   client_id: cid,
                   use_fedcm_for_prompt: false,
                   auto_select: false,
-                  callback: async (response: any) => {
+                  callback: async (response: { credential?: string }) => {
                     if (response.credential) {
                       setIsSubmitting(true);
                       const success = await loginWithGoogle(response.credential);
@@ -94,7 +91,7 @@ export default function AuthGate() {
             }
           };
 
-          if ((window as any).google?.accounts?.id) {
+          if (win.google?.accounts?.id) {
             initGsi();
           } else if (!document.getElementById('google-gsi-script')) {
             const script = document.createElement('script');
@@ -240,44 +237,6 @@ export default function AuthGate() {
     return url;
   };
 
-  const triggerGoogleOAuthPopup = (clientId: string) => {
-    if (typeof window === 'undefined') return;
-
-    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
-      `client_id=${encodeURIComponent(clientId)}&` +
-      `redirect_uri=${encodeURIComponent(window.location.origin)}&` +
-      `response_type=id_token%20token&` +
-      `scope=${encodeURIComponent('openid email profile')}&` +
-      `prompt=select_account&` +
-      `nonce=${Math.random().toString(36).substring(2)}`;
-
-    const width = 520;
-    const height = 640;
-    const left = window.screen.width / 2 - width / 2;
-    const top = window.screen.height / 2 - height / 2;
-
-    const popup = window.open(
-      googleAuthUrl,
-      'GoogleSignInPopup',
-      `width=${width},height=${height},top=${top},left=${left},scrollbars=yes,status=yes`
-    );
-
-    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-      setIsGoogleLoading(false);
-      setError('Google Sign-In popup was blocked by browser. Please allow popups for this domain.');
-      setShake(true);
-      setTimeout(() => setShake(false), 450);
-      return;
-    }
-
-    const timer = setInterval(() => {
-      if (popup.closed) {
-        clearInterval(timer);
-        setIsGoogleLoading(false);
-      }
-    }, 1000);
-  };
-
   const handleGoogleSignIn = async () => {
     setError('');
     setIsGoogleLoading(true);
@@ -286,7 +245,7 @@ export default function AuthGate() {
       const redirectUrl = `${getURL()}auth/callback`;
 
       // 1. Trigger Supabase OAuth flow
-      const { data, error: oauthError } = await supabase.auth.signInWithOAuth({
+      const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
           redirectTo: redirectUrl,
@@ -355,7 +314,7 @@ export default function AuthGate() {
                 <span className="cell cell-green"></span>
                 <span className="cell cell-dark"></span>
               </div>
-              <span className="f1-spec-brand-text">PADDOCK<span className="accent-slash">//</span>TELEMETRY</span>
+              <span className="f1-spec-brand-text">PADDOCK<span className="accent-slash">{'//'}</span>TELEMETRY</span>
             </div>
 
             <div className="f1-spec-welcome" style={{ textAlign: 'center' }}>
@@ -508,7 +467,7 @@ export default function AuthGate() {
                 <span className="cell cell-green"></span>
                 <span className="cell cell-dark"></span>
               </div>
-              <span className="f1-spec-brand-text">PADDOCK<span className="accent-slash">//</span>ANALYTICS</span>
+              <span className="f1-spec-brand-text">PADDOCK<span className="accent-slash">{'//'}</span>ANALYTICS</span>
             </div>
 
             <div className="f1-spec-welcome">

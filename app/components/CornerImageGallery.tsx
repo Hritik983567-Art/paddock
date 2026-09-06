@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CircuitCorner, CornerImage } from '../lib/circuitCornersData';
 
 interface CornerImageGalleryProps {
@@ -8,7 +8,7 @@ interface CornerImageGalleryProps {
 }
 
 function getGuaranteedCornerImages(corner: CircuitCorner): CornerImage[] {
-  const existing = (corner.images || []).map((img: any, idx: number) => {
+  const existing = (corner.images || []).map((img: string | CornerImage, idx: number) => {
     if (typeof img === 'string') {
       return {
         src: img,
@@ -123,14 +123,16 @@ export const CornerImageGallery: React.FC<CornerImageGalleryProps> = ({ corner }
   const [isZoomModalOpen, setIsZoomModalOpen] = useState<boolean>(false);
   const [isZoomedIn, setIsZoomedIn] = useState<boolean>(false);
 
-  // Reset state when corner changes
-  useEffect(() => {
+  const [prevCornerId, setPrevCornerId] = useState(corner.id);
+
+  if (corner.id !== prevCornerId) {
+    setPrevCornerId(corner.id);
     setCurrentIndex(0);
     setFailedIndices(new Set());
     setIsLoading(true);
     setIsZoomModalOpen(false);
     setIsZoomedIn(false);
-  }, [corner.id]);
+  }
 
   const activeImage: CornerImage | undefined = images[currentIndex];
   const isImageValid = Boolean(activeImage && !failedIndices.has(currentIndex));

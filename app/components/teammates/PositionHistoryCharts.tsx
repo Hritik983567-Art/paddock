@@ -6,7 +6,7 @@ interface PositionHistoryChartsProps {
 }
 
 export const PositionHistoryCharts: React.FC<PositionHistoryChartsProps> = ({ data }) => {
-  const { rounds, driverA, driverB } = data;
+  const { rounds } = data;
 
   if (!rounds || rounds.length === 0) return null;
 

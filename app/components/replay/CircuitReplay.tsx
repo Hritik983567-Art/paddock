@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { DriverMarker } from './DriverMarker';
 import { DriverMeta } from '../../lib/replayDataService';
 import { ALL_CIRCUIT_CORNERS } from '../../lib/circuitCornersData';
+import {
+  computeTransformBounds,
+  transformTrackPath,
+  transformCorners,
+  TransformedCorner,
+  TransformedPoint,
+  FastF1Point,
+  FastF1Corner
+} from '../../lib/circuitTransform';
 
 interface CircuitReplayProps {
   circuitId: string;
@@ -46,13 +55,93 @@ export const CircuitReplay: React.FC<CircuitReplayProps> = ({
   isFullscreen,
   onToggleFullscreen
 }) => {
-  // Retrieve corner points for circuit layout SVG
-  const cornerCollection = ALL_CIRCUIT_CORNERS[circuitId] || ALL_CIRCUIT_CORNERS['monza'];
-  const cornerList = Object.values(cornerCollection.corners || {});
+  const [circuitTelemetry, setCircuitTelemetry] = useState<{
+    points: FastF1Point[];
+    corners: FastF1Corner[];
+    rotation: number;
+  } | null>(null);
 
-  // Generate SVG path for circuit layout
-  const points = cornerList.map(c => `${c.x},${c.y}`).join(' L ');
-  const circuitPath = points ? `M ${points} Z` : 'M 100,100 L 700,100 L 700,400 L 100,400 Z';
+  useEffect(() => {
+    let isMounted = true;
+    const targetCircuit = (circuitId || 'monza').toLowerCase();
+
+    fetch(`/api/circuits/2024/${targetCircuit}`)
+      .then(res => (res.ok ? res.json() : null))
+      .then(data => {
+        if (!isMounted) return;
+        if (data && data.status !== 'DATA UNAVAILABLE' && data.layout?.points) {
+          setCircuitTelemetry({
+            points: data.layout.points,
+            corners: data.corners || [],
+            rotation: data.rotation || 0
+          });
+        } else {
+          setCircuitTelemetry(null);
+        }
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setCircuitTelemetry(null);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [circuitId]);
+
+  // Fallback to static corner collection if real telemetry is unavailable
+  const fallbackCollection = ALL_CIRCUIT_CORNERS[circuitId.toLowerCase()] || ALL_CIRCUIT_CORNERS['monza'];
+  const fallbackCornersList = Object.values(fallbackCollection.corners || {});
+  const fallbackPoints: FastF1Point[] = fallbackCornersList.map(c => ({ x: c.x, y: c.y }));
+
+  const rawPoints: FastF1Point[] = circuitTelemetry?.points && circuitTelemetry.points.length > 0
+    ? circuitTelemetry.points
+    : fallbackPoints;
+
+  const rawCorners: FastF1Corner[] = circuitTelemetry?.corners && circuitTelemetry.corners.length > 0
+    ? circuitTelemetry.corners
+    : fallbackCornersList.map((c, i) => ({
+        number: i + 1,
+        letter: '',
+        x: c.x,
+        y: c.y,
+        angle: 90,
+        distance: i * 100,
+        nearestTrackDistance: 0,
+        alignmentValid: true,
+        name: `Turn ${i + 1}`
+      }));
+
+  const rotationDeg = circuitTelemetry?.rotation || 0;
+
+  // Compute unified SVG canvas transform bounds (viewBox: 0 0 800 500)
+  const bounds = computeTransformBounds(rawPoints, rotationDeg, 800, 500, 45);
+  const { pathD: circuitPath, transformedPoints } = transformTrackPath(rawPoints, bounds);
+  const transformedCorners: TransformedCorner[] = transformCorners(rawCorners, bounds, transformedPoints);
+
+  const startPoint: TransformedPoint | null =
+    transformedPoints.length > 0 &&
+    typeof transformedPoints[0]?.x === 'number' &&
+    !isNaN(transformedPoints[0].x) &&
+    typeof transformedPoints[0]?.y === 'number' &&
+    !isNaN(transformedPoints[0].y)
+      ? transformedPoints[0]
+      : null;
+
+  const nextPoint: TransformedPoint | null =
+    transformedPoints.length > 1 &&
+    typeof transformedPoints[1]?.x === 'number' &&
+    !isNaN(transformedPoints[1].x) &&
+    typeof transformedPoints[1]?.y === 'number' &&
+    !isNaN(transformedPoints[1].y)
+      ? transformedPoints[1]
+      : null;
+
+  let startAngle = 0;
+  if (startPoint && nextPoint) {
+    const calcAngle = Math.atan2(nextPoint.y - startPoint.y, nextPoint.x - startPoint.x) * (180 / Math.PI);
+    startAngle = isNaN(calcAngle) ? 0 : calcAngle;
+  }
 
   // Compute driver positions along track path
   const driverEntries = Object.entries(positions).map(([dId, pos]) => {
@@ -60,13 +149,24 @@ export const CircuitReplay: React.FC<CircuitReplayProps> = ({
     if (!meta) return null;
 
     const totalDrivers = Math.max(Object.keys(positions).length, 1);
-    const progress = (pos - 1) / totalDrivers; // Spread drivers along circuit
-    const cornerIndex = Math.floor(progress * (cornerList.length || 1));
-    const targetCorner = cornerList[cornerIndex] || { x: 400, y: 250 };
+    const progress = totalDrivers > 1 ? (pos - 1) / totalDrivers : 0;
+
+    let targetX = 400;
+    let targetY = 250;
+
+    if (transformedPoints.length > 0) {
+      const rawIdx = Math.floor(progress * transformedPoints.length);
+      const idx = Math.min(Math.max(0, rawIdx), transformedPoints.length - 1);
+      const pt = transformedPoints[idx];
+      if (pt && typeof pt.x === 'number' && !isNaN(pt.x) && typeof pt.y === 'number' && !isNaN(pt.y)) {
+        targetX = pt.x;
+        targetY = pt.y;
+      }
+    }
 
     // Apply offset for side-by-side spacing
-    const offsetX = Math.sin(pos * 1.5) * 12;
-    const offsetY = Math.cos(pos * 1.5) * 12;
+    const offsetX = Math.sin(pos * 1.5) * 10;
+    const offsetY = Math.cos(pos * 1.5) * 10;
 
     return {
       driverId: dId,
@@ -74,8 +174,8 @@ export const CircuitReplay: React.FC<CircuitReplayProps> = ({
       name: meta.name,
       team: meta.team,
       position: pos,
-      x: targetCorner.x + offsetX,
-      y: targetCorner.y + offsetY,
+      x: targetX + offsetX,
+      y: targetY + offsetY,
       gap: gaps[dId],
       lapTime: lapTimes[dId]
     };
@@ -141,23 +241,23 @@ export const CircuitReplay: React.FC<CircuitReplayProps> = ({
 
         {/* Track Outer Glow & Asphalt Line */}
         <path
-          d={circuitPath}
+          d={circuitPath || 'M 100,100 L 700,100 L 700,400 L 100,400 Z'}
           fill="none"
           stroke="#1E293B"
-          strokeWidth="24"
+          strokeWidth="20"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          d={circuitPath}
+          d={circuitPath || 'M 100,100 L 700,100 L 700,400 L 100,400 Z'}
           fill="none"
           stroke="#0F172A"
-          strokeWidth="16"
+          strokeWidth="14"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
-          d={circuitPath}
+          d={circuitPath || 'M 100,100 L 700,100 L 700,400 L 100,400 Z'}
           fill="none"
           stroke="url(#trackGlow)"
           strokeWidth="3"
@@ -167,11 +267,48 @@ export const CircuitReplay: React.FC<CircuitReplayProps> = ({
           opacity="0.75"
         />
 
-        {/* DRS Sector Lines */}
-        <circle cx={cornerList[0]?.x || 400} cy={cornerList[0]?.y || 250} r="6" fill="#38BDF8" />
-        <text x={(cornerList[0]?.x || 400) + 10} y={(cornerList[0]?.y || 250) + 4} fontSize="9" fontWeight="900" fill="#38BDF8" fontFamily="var(--font-mono)">
-          START / FINISH 🏁
-        </text>
+        {/* Start / Finish Line Indicator */}
+        {startPoint && (
+          <g transform={`translate(${startPoint.x}, ${startPoint.y}) rotate(${startAngle})`}>
+            <line x1="0" y1="-12" x2="0" y2="12" stroke="#FFFFFF" strokeWidth="3.5" />
+            <line x1="3" y1="-12" x2="3" y2="12" stroke="#000000" strokeWidth="2" strokeDasharray="3 3" />
+            <polygon points="10,0 3,-5 3,5" fill="#38BDF8" />
+          </g>
+        )}
+
+        {/* Corner Label Badges */}
+        {transformedCorners.map(corner => {
+          const lx = Number(corner.labelX);
+          const ly = Number(corner.labelY);
+          if (isNaN(lx) || isNaN(ly)) return null;
+
+          return (
+            <g key={`badge-${corner.number}${corner.letter}`} transform={`translate(${lx}, ${ly})`}>
+              <rect
+                x="-9"
+                y="-7"
+                width="18"
+                height="14"
+                rx="3"
+                fill="#090D16"
+                stroke="#334155"
+                strokeWidth="1"
+                opacity="0.85"
+              />
+              <text
+                x="0"
+                y="3"
+                fill="#94A3B8"
+                fontSize="8.5"
+                fontWeight="800"
+                fontFamily="monospace"
+                textAnchor="middle"
+              >
+                {corner.number}{corner.letter}
+              </text>
+            </g>
+          );
+        })}
 
         {/* Trace Lines for Selected / Comparative Drivers */}
         {showTraces && driverEntries.map(d => {
@@ -220,3 +357,4 @@ export const CircuitReplay: React.FC<CircuitReplayProps> = ({
     </div>
   );
 };
+

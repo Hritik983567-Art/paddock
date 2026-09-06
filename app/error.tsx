@@ -15,13 +15,17 @@ export default function GlobalError({
     console.error('Unhandled Paddock Application Error:', error);
   }, [error]);
 
+  const [correlationId] = React.useState(
+    () => error.digest || `FAULTRUN-${Math.random().toString(36).substring(2, 8).toUpperCase()}`
+  );
+
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6 text-white">
       <ErrorState
         title="Critical Telemetry Fault"
         message="An unhandled error interrupted the Paddock rendering pipeline."
         errorDetails={error}
-        correlationId={error.digest || `FAULTRUN-${Math.random().toString(36).substring(2, 8).toUpperCase()}`}
+        correlationId={correlationId}
         onRetry={reset}
       />
     </div>

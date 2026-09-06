@@ -8,6 +8,9 @@ interface Driver {
   driverId: string;
   givenName: string;
   familyName: string;
+  permanentNumber?: string;
+  nationality?: string;
+  dateOfBirth?: string;
 }
 
 interface DriverProfile {
@@ -52,21 +55,22 @@ export default function DriversPage() {
     async function loadDriverList() {
       setLoadingList(true);
       setListError('');
+      setProfile(null);
       try {
-        const res = await getJSON(`${API_BASE}/${selectedSeason}/drivers.json?limit=60`);
-        const list = res.MRData.DriverTable.Drivers as Driver[];
+        const res = await getJSON(`${API_BASE}/${selectedSeason}/drivers.json?limit=60`) as { MRData: { DriverTable: { Drivers: Driver[] } } };
+        const list = res.MRData.DriverTable.Drivers || [];
         setDrivers(list);
         if (list.length > 0) {
           setSelectedDriverId(list[0].driverId);
         }
-      } catch (e: any) {
-        setListError(e.message || 'Couldn\'t load drivers.');
+      } catch (e: unknown) {
+        const err = e as Error;
+        setListError(err.message || 'Couldn\'t load drivers.');
       } finally {
         setLoadingList(false);
       }
     }
     loadDriverList();
-    setProfile(null);
   }, [selectedSeason]);
 
   const loadProfile = async () => {
@@ -80,8 +84,8 @@ export default function DriversPage() {
       // Active driver check
       let activeDriversSet = new Set<string>();
       try {
-        const activeRes = await getJSON(`${API_BASE}/current/drivers.json?limit=60`);
-        activeDriversSet = new Set(activeRes.MRData.DriverTable.Drivers.map((d: any) => d.driverId));
+        const activeRes = await getJSON(`${API_BASE}/current/drivers.json?limit=60`) as { MRData: { DriverTable: { Drivers: Array<{ driverId: string }> } } };
+        activeDriversSet = new Set((activeRes?.MRData?.DriverTable?.Drivers || []).map(d => d.driverId));
       } catch (e) {
         console.error('Failed to query current active drivers roster', e);
       }
@@ -94,7 +98,8 @@ export default function DriversPage() {
         fetchAllPaged(`${API_BASE}/drivers/${selectedDriverId}/driverStandings.json`, 'StandingsTable', 'StandingsLists').catch(() => [])
       ]);
 
-      const info = infoRes.MRData.DriverTable.Drivers[0];
+      const infoResObj = infoRes as { MRData: { DriverTable: { Drivers: Driver[] } } };
+      const info = infoResObj?.MRData?.DriverTable?.Drivers?.[0];
       if (!info) throw new Error('Driver details not found.');
 
       let wins = 0, podiums = 0, points = 0, dnfs = 0, fastestLaps = 0;
@@ -102,8 +107,10 @@ export default function DriversPage() {
       let latestTeamId = '';
       let latestTeamName = '—';
 
+      const typedRaces = races as Array<{ season: string; round: string; Results: Array<{ position: string; status: string; points: string; FastestLap?: { rank: string }; Constructor: { constructorId: string; name: string } }> }>;
+
       // Sort by season and round to get chronological order
-      const sortedRaces = [...races].sort((a, b) => {
+      const sortedRaces = [...typedRaces].sort((a, b) => {
         const yearDiff = parseInt(a.season) - parseInt(b.season);
         if (yearDiff !== 0) return yearDiff;
         return parseInt(a.round) - parseInt(b.round);
@@ -125,14 +132,16 @@ export default function DriversPage() {
       });
 
       let poles = 0;
-      qualiRaces.forEach(r => {
+      const typedQualiRaces = qualiRaces as Array<{ QualifyingResults?: Array<{ position: string }> }>;
+      typedQualiRaces.forEach(r => {
         if (r.QualifyingResults && r.QualifyingResults[0] && r.QualifyingResults[0].position === '1') {
           poles++;
         }
       });
 
       let sprintPoints = 0, sprintWins = 0;
-      sprintRaces.forEach(r => {
+      const typedSprintRaces = sprintRaces as Array<{ SprintResults?: Array<{ position: string; points: string }> }>;
+      typedSprintRaces.forEach(r => {
         const res = r.SprintResults && r.SprintResults[0];
         if (!res) return;
         sprintPoints += parseFloat(res.points) || 0;
@@ -142,8 +151,10 @@ export default function DriversPage() {
       const totalPoints = points + sprintPoints;
 
       // Championships: last standings entry of each completed season, position 1
-      const bySeason: Record<string, any> = {};
-      standingsList.forEach(sl => {
+      type StandingsItem = { season: string; round: string; DriverStandings?: Array<{ position: string }> };
+      const typedStandingsList = standingsList as StandingsItem[];
+      const bySeason: Record<string, StandingsItem> = {};
+      typedStandingsList.forEach(sl => {
         const prev = bySeason[sl.season];
         if (!prev || parseInt(sl.round) > parseInt(prev.round)) {
           bySeason[sl.season] = sl;
@@ -174,8 +185,8 @@ export default function DriversPage() {
         permanentNumber: info.permanentNumber || '—',
         givenName: info.givenName,
         familyName: info.familyName,
-        nationality: info.nationality,
-        dateOfBirth: info.dateOfBirth,
+        nationality: info.nationality || '—',
+        dateOfBirth: info.dateOfBirth || '—',
         championships,
         latestTeamName,
         active,
@@ -194,8 +205,9 @@ export default function DriversPage() {
         sprintWins,
         color
       });
-    } catch (e: any) {
-      setProfileError(e.message || 'Couldn\'t load career profile.');
+    } catch (e: unknown) {
+      const err = e as Error;
+      setProfileError(err.message || 'Couldn\'t load career profile.');
     } finally {
       setLoadingProfile(false);
     }
@@ -221,7 +233,10 @@ export default function DriversPage() {
     const imgSrc = customImg || '/images/holograms/default.jpg';
 
     return (
-      <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,240,255,0.35)] border-2 border-cyan-400/80 bg-slate-950 group hover:scale-[1.03] hover:border-cyan-300 hover:shadow-[0_0_60px_rgba(0,240,255,0.6)] transition-all duration-300 ring-1 ring-cyan-500/50">
+      <div 
+        style={{ borderColor: mainColor }}
+        className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(0,240,255,0.35)] border-2 bg-slate-950 group hover:scale-[1.03] transition-all duration-300 ring-1 ring-cyan-500/50"
+      >
         {/* High Sharpening & Contrast Filter applied to render */}
         <img 
           src={imgSrc} 

@@ -12,7 +12,8 @@ import {
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
+  TooltipItem
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
@@ -109,6 +110,28 @@ export default function LabPage() {
   const [driverALapTimes, setDriverALapTimes] = useState<number[]>([]);
   const [driverBLapTimes, setDriverBLapTimes] = useState<number[]>([]);
 
+  // OUTLIER & PACE FOCUS MODE CONTROLS (Fixes squished graph scale caused by red flags / stoppages)
+  const [excludeOutliers, setExcludeOutliers] = useState<boolean>(true);
+  const [outlierCutoffMode, setOutlierCutoffMode] = useState<string>('auto'); // 'auto' | '95' | '105' | '120' | '150' | '180'
+  const [smoothLines, setSmoothLines] = useState<boolean>(true);
+  const [showBenchmark, setShowBenchmark] = useState<boolean>(true);
+
+  // Dynamic Effective Threshold Calculation (Auto calculates Median Pace + 12s)
+  const effectiveThreshold = useMemo(() => {
+    if (outlierCutoffMode !== 'auto') {
+      return parseInt(outlierCutoffMode, 10) || 105;
+    }
+
+    const allValid = [...driverALapTimes, ...driverBLapTimes].filter(t => typeof t === 'number' && !isNaN(t) && t > 30);
+    if (allValid.length === 0) return 105;
+
+    const sorted = [...allValid].sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+    const medianPace = sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+
+    return Math.max(92, Math.ceil(medianPace + 12));
+  }, [outlierCutoffMode, driverALapTimes, driverBLapTimes]);
+
   // ===== PIT STRATEGY SIMULATOR INPUTS (Auto-calibrated from real data) =====
   const [laps, setLaps] = useState(58);
   const [baseTime, setBaseTime] = useState(92.0);
@@ -145,9 +168,9 @@ export default function LabPage() {
       setDriverBLapTimes([]);
 
       try {
-        const res = await getJSON(`${API_BASE}/${selectedSeason}.json`);
-        const raceList = res.MRData.RaceTable.Races || [];
-        const formatted = raceList.map((r: any) => ({
+        const res = await getJSON(`${API_BASE}/${selectedSeason}.json`) as { MRData?: { RaceTable?: { Races?: Array<{ round: string; raceName: string; date: string; Circuit?: { circuitId?: string } }> } } };
+        const raceList = res?.MRData?.RaceTable?.Races || [];
+        const formatted = raceList.map(r => ({
           round: r.round,
           raceName: r.raceName,
           date: r.date,
@@ -157,14 +180,15 @@ export default function LabPage() {
         setRounds(formatted);
 
         const now = new Date();
-        const pastCompleted = raceList.filter((r: any) => new Date(r.date) <= now);
+        const pastCompleted = formatted.filter(r => new Date(r.date) <= now);
         if (pastCompleted.length > 0) {
           setSelectedRound(pastCompleted[pastCompleted.length - 1].round);
         } else if (formatted.length > 0) {
           setSelectedRound(formatted[0].round);
         }
-      } catch (e: any) {
-        setErrorMsg(e.message || 'Couldn\'t retrieve season rounds.');
+      } catch (e: unknown) {
+        const err = e as Error;
+        setStatusNote(`Failed to fetch ${selectedSeason} rounds calendar: ${err.message}`);
       } finally {
         setLoadingRounds(false);
       }
@@ -183,8 +207,8 @@ export default function LabPage() {
       setLoadingSessionData(true);
       setStatusNote('Fetching real race results & driver roster...');
       try {
-        const data = await getJSON(`${API_BASE}/${selectedSeason}/${selectedRound}/results.json`);
-        const raceInfo = data.MRData.RaceTable.Races[0];
+        const data = await getJSON(`${API_BASE}/${selectedSeason}/${selectedRound}/results.json`) as { MRData?: { RaceTable?: { Races?: Array<{ raceName: string; season: string; Results?: Record<string, unknown>[] }> } } };
+        const raceInfo = data?.MRData?.RaceTable?.Races?.[0];
         const raceResults = raceInfo?.Results || [];
 
         if (raceResults.length === 0) {
@@ -193,20 +217,21 @@ export default function LabPage() {
           return;
         }
 
-        const parsedDrivers: DriverResultItem[] = raceResults.map((r: any) => {
-          const fastLap = r.FastestLap?.Time?.time ? parseLapTime(r.FastestLap.Time.time) : undefined;
+        const parsedDrivers: DriverResultItem[] = raceResults.map((r: Record<string, unknown>) => {
+          const rObj = r as { Driver: { driverId: string; code?: string; givenName: string; familyName: string }; Constructor: { name: string }; grid: string; position: string; status: string; FastestLap?: { Time?: { time: string }; AverageSpeed?: { speed: string } }; laps: string };
+          const fastLap = rObj.FastestLap?.Time?.time ? parseLapTime(rObj.FastestLap.Time.time) : undefined;
           return {
-            driverId: r.Driver.driverId,
-            code: r.Driver.code || r.Driver.familyName.slice(0, 3).toUpperCase(),
-            givenName: r.Driver.givenName,
-            familyName: r.Driver.familyName,
-            constructorName: r.Constructor.name,
-            grid: r.grid,
-            position: r.position,
-            status: r.status,
+            driverId: rObj.Driver.driverId,
+            code: rObj.Driver.code || rObj.Driver.familyName.slice(0, 3).toUpperCase(),
+            givenName: rObj.Driver.givenName,
+            familyName: rObj.Driver.familyName,
+            constructorName: rObj.Constructor.name,
+            grid: rObj.grid,
+            position: rObj.position,
+            status: rObj.status,
             fastestLapSecs: fastLap || undefined,
-            fastestLapSpeed: r.FastestLap?.AverageSpeed?.speed || undefined,
-            lapsCompleted: parseInt(r.laps) || 0
+            fastestLapSpeed: rObj.FastestLap?.AverageSpeed?.speed || undefined,
+            lapsCompleted: parseInt(rObj.laps) || 0
           };
         });
 
@@ -227,9 +252,12 @@ export default function LabPage() {
         if (maxLapsRun > 0) setLaps(maxLapsRun);
         if (bestTime) setBaseTime(parseFloat(bestTime.toFixed(1)));
 
-        setStatusNote(`Loaded ${raceInfo.raceName} ${raceInfo.season} (${maxLapsRun} Laps). Fastest Lap: ${bestTime.toFixed(3)}s.`);
-      } catch (e: any) {
-        setStatusNote(`Session telemetry unavailable. ${e.message}`);
+        if (raceInfo) {
+          setStatusNote(`Loaded ${raceInfo.raceName} ${raceInfo.season} (${maxLapsRun} Laps). Fastest Lap: ${bestTime.toFixed(3)}s.`);
+        }
+      } catch (e: unknown) {
+        const err = e as Error;
+        setStatusNote(`Session telemetry unavailable. ${err.message}`);
       } finally {
         setLoadingSessionData(false);
       }
@@ -248,10 +276,10 @@ export default function LabPage() {
       setLoadingLaps(true);
       try {
         // 1. Fetch Real Laps for Driver A
-        const resA = await getJSON(`${API_BASE}/${selectedSeason}/${selectedRound}/drivers/${selectedDriverA}/laps.json?limit=100`);
-        const lapDataA = resA.MRData.RaceTable.Races[0]?.Laps || [];
-        const timesA: number[] = lapDataA.map((l: any) => {
-          const t = l.Timings?.find((tm: any) => tm.driverId === selectedDriverA);
+        const resA = await getJSON(`${API_BASE}/${selectedSeason}/${selectedRound}/drivers/${selectedDriverA}/laps.json?limit=100`) as { MRData?: { RaceTable?: { Races?: Array<{ Laps?: Array<{ Timings?: Array<{ driverId: string; time: string }> }> }> } } };
+        const lapDataA = resA?.MRData?.RaceTable?.Races?.[0]?.Laps || [];
+        const timesA: number[] = lapDataA.map((l: { Timings?: Array<{ driverId: string; time: string }> }) => {
+          const t = l.Timings?.find(tm => tm.driverId === selectedDriverA);
           return t ? parseLapTime(t.time) : null;
         }).filter((t: number | null): t is number => t !== null && t > 30);
 
@@ -259,10 +287,10 @@ export default function LabPage() {
 
         // 2. Fetch Real Laps for Driver B
         if (selectedDriverB) {
-          const resB = await getJSON(`${API_BASE}/${selectedSeason}/${selectedRound}/drivers/${selectedDriverB}/laps.json?limit=100`);
-          const lapDataB = resB.MRData.RaceTable.Races[0]?.Laps || [];
-          const timesB: number[] = lapDataB.map((l: any) => {
-            const t = l.Timings?.find((tm: any) => tm.driverId === selectedDriverB);
+          const resB = await getJSON(`${API_BASE}/${selectedSeason}/${selectedRound}/drivers/${selectedDriverB}/laps.json?limit=100`) as { MRData?: { RaceTable?: { Races?: Array<{ Laps?: Array<{ Timings?: Array<{ driverId: string; time: string }> }> }> } } };
+          const lapDataB = resB?.MRData?.RaceTable?.Races?.[0]?.Laps || [];
+          const timesB: number[] = lapDataB.map((l: { Timings?: Array<{ driverId: string; time: string }> }) => {
+            const t = l.Timings?.find(tm => tm.driverId === selectedDriverB);
             return t ? parseLapTime(t.time) : null;
           }).filter((t: number | null): t is number => t !== null && t > 30);
 
@@ -387,9 +415,100 @@ export default function LabPage() {
   };
 
   // -------------------------------------------------------------
+  // DYNAMIC OUTLIER & Y-AXIS SCALE COMPUTATIONS
+  // -------------------------------------------------------------
+  const outlierInfo = useMemo(() => {
+    const listA = driverALapTimes.filter(t => t > effectiveThreshold);
+    const listB = driverBLapTimes.filter(t => t > effectiveThreshold);
+    return {
+      countA: listA.length,
+      countB: listB.length,
+      totalOutliers: listA.length + listB.length,
+      maxOutlierSecs: Math.max(0, ...listA, ...listB)
+    };
+  }, [driverALapTimes, driverBLapTimes, effectiveThreshold]);
+
+  const medianBenchmarkPace = useMemo(() => {
+    const allValid = [...driverALapTimes, ...driverBLapTimes].filter(t => typeof t === 'number' && !isNaN(t) && t > 30 && t <= effectiveThreshold);
+    if (allValid.length === 0) return null;
+    const sorted = [...allValid].sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+  }, [driverALapTimes, driverBLapTimes, effectiveThreshold]);
+
+  const displayLapTimesA = useMemo(() => {
+    if (!excludeOutliers) return driverALapTimes;
+    return driverALapTimes.map(t => (t > effectiveThreshold ? null : t));
+  }, [driverALapTimes, excludeOutliers, effectiveThreshold]);
+
+  const displayLapTimesB = useMemo(() => {
+    if (!excludeOutliers) return driverBLapTimes;
+    return driverBLapTimes.map(t => (t > effectiveThreshold ? null : t));
+  }, [driverBLapTimes, excludeOutliers, effectiveThreshold]);
+
+  const displayDeltaArray = useMemo(() => {
+    const minLen = Math.min(driverALapTimes.length, driverBLapTimes.length);
+    const deltas: (number | null)[] = [];
+    for (let i = 0; i < minLen; i++) {
+      const tA = driverALapTimes[i];
+      const tB = driverBLapTimes[i];
+      if (excludeOutliers && ((tA && tA > effectiveThreshold) || (tB && tB > effectiveThreshold))) {
+        deltas.push(null);
+      } else if (tA !== null && tB !== null) {
+        deltas.push(tA - tB);
+      } else {
+        deltas.push(null);
+      }
+    }
+    return deltas;
+  }, [driverALapTimes, driverBLapTimes, excludeOutliers, effectiveThreshold]);
+
+  // Dynamic Y-Axis Bounds for Real Pace Chart
+  const paceYBounds = useMemo(() => {
+    const allValid = [...driverALapTimes, ...driverBLapTimes].filter(t => typeof t === 'number' && !isNaN(t) && t > 30);
+    if (allValid.length === 0) return { min: 60, max: 120 };
+
+    const cleanValid = excludeOutliers ? allValid.filter(t => t <= effectiveThreshold) : allValid;
+    const targetList = cleanValid.length > 0 ? cleanValid : allValid;
+
+    const minPace = Math.min(...targetList);
+    const maxPace = Math.max(...targetList);
+
+    const min = Math.max(30, Math.floor(minPace - 1.5));
+    const max = Math.ceil(maxPace + (excludeOutliers ? 2 : 15));
+
+    return { min, max };
+  }, [driverALapTimes, driverBLapTimes, excludeOutliers, effectiveThreshold]);
+
+  // Dynamic Y-Axis Bounds for Pace Delta Chart
+  const deltaYBounds = useMemo(() => {
+    const validDeltas = displayDeltaArray.filter((d): d is number => d !== null && !isNaN(d));
+    if (validDeltas.length === 0) return { min: -5, max: 5 };
+
+    const maxAbs = Math.max(...validDeltas.map(d => Math.abs(d)));
+    const bound = Math.ceil(Math.min(40, Math.max(3, maxAbs + 1)));
+    return { min: -bound, max: bound };
+  }, [displayDeltaArray]);
+
+  // -------------------------------------------------------------
   // CHART CONFIGURATIONS (POWERED BY REAL API LAP DATA)
   // -------------------------------------------------------------
   
+  const formatLapTimeTick = (value: unknown) => {
+    const val = Number(value);
+    if (isNaN(val) || val <= 0) return String(value);
+    const m = Math.floor(val / 60);
+    const sec = (val % 60).toFixed(1);
+    return `${m}:${sec.padStart(4, '0')}`;
+  };
+
+  const formatDeltaTick = (value: unknown) => {
+    const val = Number(value);
+    if (isNaN(val)) return String(value);
+    const sign = val > 0 ? '+' : '';
+    return `${sign}${val.toFixed(1)}s`;
+  };
+
   // Chart 1: Real Telemetry & Lap Pace Trace
   const maxLapsComp = Math.max(driverALapTimes.length, driverBLapTimes.length, 1);
   const compLabels = Array.from({ length: maxLapsComp }, (_, i) => `Lap ${i + 1}`);
@@ -399,40 +518,69 @@ export default function LabPage() {
     datasets: [
       {
         label: driverAObj ? `${driverAObj.code} (${driverAObj.constructorName})` : 'Driver A Pace',
-        data: driverALapTimes,
-        borderColor: '#34E4C8',
-        backgroundColor: 'rgba(52, 228, 200, 0.08)',
-        fill: false,
-        borderWidth: 2,
-        tension: 0.25,
-        pointRadius: 2.5
+        data: displayLapTimesA,
+        borderColor: '#00F0FF',
+        backgroundColor: 'rgba(0, 240, 255, 0.08)',
+        fill: true,
+        borderWidth: 3,
+        tension: smoothLines ? 0.25 : 0,
+        pointRadius: 3.5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: '#00F0FF',
+        pointHoverBackgroundColor: '#FFFFFF',
+        pointHoverBorderColor: '#00F0FF',
+        pointHoverBorderWidth: 3,
+        spanGaps: true
       },
       {
         label: driverBObj ? `${driverBObj.code} (${driverBObj.constructorName})` : 'Driver B Pace',
-        data: driverBLapTimes,
-        borderColor: '#E8302A',
-        backgroundColor: 'rgba(232, 48, 42, 0.08)',
+        data: displayLapTimesB,
+        borderColor: '#FF2A55',
+        backgroundColor: 'rgba(255, 42, 85, 0.08)',
+        fill: true,
+        borderWidth: 3,
+        tension: smoothLines ? 0.25 : 0,
+        pointRadius: 3.5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: '#FF2A55',
+        pointHoverBackgroundColor: '#FFFFFF',
+        pointHoverBorderColor: '#FF2A55',
+        pointHoverBorderWidth: 3,
+        spanGaps: true
+      },
+      ...(showBenchmark && medianBenchmarkPace ? [{
+        label: `Median Pace Benchmark (${formatLapTimeTick(medianBenchmarkPace)})`,
+        data: Array(maxLapsComp).fill(medianBenchmarkPace),
+        borderColor: 'rgba(255, 255, 255, 0.4)',
+        borderWidth: 1.5,
+        borderDash: [6, 4],
+        pointRadius: 0,
+        pointHoverRadius: 0,
         fill: false,
-        borderWidth: 2,
-        tension: 0.25,
-        pointRadius: 2.5
-      }
+        spanGaps: true
+      }] : [])
     ]
   };
 
   // Chart 2: Real Lap Delta (Driver A vs Driver B)
   const realDeltaChartData = {
-    labels: Array.from({ length: realDeltaArray.length }, (_, i) => `Lap ${i + 1}`),
+    labels: Array.from({ length: displayDeltaArray.length }, (_, i) => `Lap ${i + 1}`),
     datasets: [
       {
-        label: `Pace Delta (s) — [${driverAObj?.code || 'A'} vs ${driverBObj?.code || 'B'}]`,
-        data: realDeltaArray,
+        label: `Pace Gap Δt (s) — [${driverAObj?.code || 'A'} vs ${driverBObj?.code || 'B'}]`,
+        data: displayDeltaArray,
         borderColor: '#FFB020',
         backgroundColor: 'rgba(255, 176, 32, 0.12)',
         fill: true,
-        borderWidth: 2,
-        tension: 0.2,
-        pointRadius: 2
+        borderWidth: 3,
+        tension: smoothLines ? 0.25 : 0,
+        pointRadius: 3.5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: '#FFB020',
+        pointHoverBackgroundColor: '#FFFFFF',
+        pointHoverBorderColor: '#FFB020',
+        pointHoverBorderWidth: 3,
+        spanGaps: true
       }
     ]
   };
@@ -445,21 +593,21 @@ export default function LabPage() {
       {
         label: `Strategy A (${stopsA}-stop)`,
         data: simResults?.lapTimesA || [],
-        borderColor: '#34E4C8',
-        backgroundColor: 'rgba(52, 228, 200, 0.1)',
+        borderColor: '#00F0FF',
+        backgroundColor: 'rgba(0, 240, 255, 0.1)',
         fill: true,
-        borderWidth: 2,
-        tension: 0.3,
+        borderWidth: 2.5,
+        tension: smoothLines ? 0.3 : 0,
         pointRadius: 0
       },
       {
         label: `Strategy B (${stopsB}-stop)`,
         data: simResults?.lapTimesB || [],
-        borderColor: '#E8302A',
-        backgroundColor: 'rgba(232, 48, 42, 0.1)',
+        borderColor: '#FF2A55',
+        backgroundColor: 'rgba(255, 42, 85, 0.1)',
         fill: true,
-        borderWidth: 2,
-        tension: 0.3,
+        borderWidth: 2.5,
+        tension: smoothLines ? 0.3 : 0,
         pointRadius: 0
       }
     ]
@@ -473,69 +621,76 @@ export default function LabPage() {
       {
         label: 'Soft 🔴 (Fastest / High Wear)',
         data: tyreLabels.map((_, i) => baseTime + softDeg * i),
-        borderColor: '#E8302A',
-        borderWidth: 2,
+        borderColor: '#FF2A55',
+        borderWidth: 2.5,
         pointRadius: 0
       },
       {
         label: 'Medium 🟡 (Balanced Pace)',
         data: tyreLabels.map((_, i) => baseTime + 0.4 + mediumDeg * i),
         borderColor: '#FFB020',
-        borderWidth: 2,
+        borderWidth: 2.5,
         pointRadius: 0
       },
       {
         label: 'Hard ⚪ (Durable / Low Wear)',
         data: tyreLabels.map((_, i) => baseTime + 0.9 + hardDeg * i),
         borderColor: '#FFFFFF',
-        borderWidth: 2,
+        borderWidth: 2.5,
         pointRadius: 0
       }
     ]
   };
 
   // -------------------------------------------------------------
-  // HIGH-CONTRAST CHART OPTIONS WITH PROMINENT X & Y AXIS TITLES
-  // -------------------------------------------------------------
-
-  // -------------------------------------------------------------
   // HIGH-CONTRAST CHART OPTIONS WITH EASY LAP TIME (1:34.2) Y-AXIS TICKS
   // -------------------------------------------------------------
-
-  const formatLapTimeTick = (value: any) => {
-    const val = Number(value);
-    if (isNaN(val) || val <= 0) return value;
-    const m = Math.floor(val / 60);
-    const sec = (val % 60).toFixed(1);
-    return `${m}:${sec.padStart(4, '0')}`;
-  };
-
-  const formatDeltaTick = (value: any) => {
-    const val = Number(value);
-    if (isNaN(val)) return value;
-    const sign = val > 0 ? '+' : '';
-    return `${sign}${val.toFixed(1)}s`;
-  };
 
   // 1. Real Telemetry & Pace Chart Options
   const realPaceChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    interaction: {
+      mode: 'index' as const,
+      intersect: false
+    },
     plugins: {
       legend: {
+        display: true,
+        position: 'top' as const,
         labels: {
           color: '#FFFFFF',
+          usePointStyle: true,
+          pointStyle: 'circle',
+          padding: 16,
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         }
       },
       tooltip: {
+        enabled: true,
+        backgroundColor: '#0F172A',
+        titleColor: '#00F0FF',
+        titleFont: { family: 'var(--font-mono)', size: 13, weight: 'bold' as const },
+        bodyColor: '#F8FAFC',
+        bodyFont: { family: 'var(--font-mono)', size: 12 },
+        borderColor: '#334155',
+        borderWidth: 1.5,
+        padding: 12,
+        boxPadding: 6,
+        usePointStyle: true,
         callbacks: {
-          label: (context: any) => {
-            const val = Number(context.parsed.y);
-            if (isNaN(val)) return `${context.dataset.label}: ${context.raw}`;
+          title: (items: TooltipItem<'line'>[]) => {
+            if (!items.length) return '';
+            return `🏎️ RACE LAP ${items[0].label.replace('Lap ', '')}`;
+          },
+          label: (context: TooltipItem<'line'>) => {
+            const val = context.parsed.y;
+            if (val === null || val === undefined || isNaN(val)) {
+              return ` ${context.dataset.label}: ⚠️ Outlier / Red Flag Excluded`;
+            }
             const m = Math.floor(val / 60);
             const sec = (val % 60).toFixed(3);
-            return `${context.dataset.label}: ${m}:${sec.padStart(6, '0')} (${val.toFixed(3)}s)`;
+            return ` ${context.dataset.label}: ${m}:${sec.padStart(6, '0')} (${val.toFixed(3)}s)`;
           }
         }
       }
@@ -545,13 +700,15 @@ export default function LabPage() {
         title: {
           display: true,
           text: 'RACE LAP NUMBER (1 → N)',
-          color: '#34E4C8',
+          color: '#00F0FF',
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         },
-        ticks: { color: '#CBD5E1', font: { family: 'var(--font-mono)', size: 10 }, maxTicksLimit: 14 },
+        ticks: { color: '#E2E8F0', font: { family: 'var(--font-mono)', size: 10.5 }, maxTicksLimit: 16 },
         grid: { color: 'rgba(255, 255, 255, 0.08)' }
       },
       y: {
+        min: paceYBounds.min,
+        max: paceYBounds.max,
         title: {
           display: true,
           text: 'LAP TIME (MIN:SEC)',
@@ -559,8 +716,8 @@ export default function LabPage() {
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         },
         ticks: {
-          color: '#CBD5E1',
-          font: { family: 'var(--font-mono)', size: 10.5, weight: 'bold' as const },
+          color: '#E2E8F0',
+          font: { family: 'var(--font-mono)', size: 11, weight: 'bold' as const },
           callback: formatLapTimeTick
         },
         grid: { color: 'rgba(255, 255, 255, 0.08)' }
@@ -572,20 +729,46 @@ export default function LabPage() {
   const realDeltaChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    interaction: {
+      mode: 'index' as const,
+      intersect: false
+    },
     plugins: {
       legend: {
+        display: true,
+        position: 'top' as const,
         labels: {
           color: '#FFFFFF',
+          usePointStyle: true,
+          pointStyle: 'circle',
+          padding: 16,
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         }
       },
       tooltip: {
+        enabled: true,
+        backgroundColor: '#0F172A',
+        titleColor: '#FFB020',
+        titleFont: { family: 'var(--font-mono)', size: 13, weight: 'bold' as const },
+        bodyColor: '#F8FAFC',
+        bodyFont: { family: 'var(--font-mono)', size: 12 },
+        borderColor: '#334155',
+        borderWidth: 1.5,
+        padding: 12,
+        boxPadding: 6,
+        usePointStyle: true,
         callbacks: {
-          label: (context: any) => {
-            const val = Number(context.parsed.y);
-            if (isNaN(val)) return `${context.dataset.label}: ${context.raw}`;
+          title: (items: TooltipItem<'line'>[]) => {
+            if (!items.length) return '';
+            return `⏱️ GAP AT LAP ${items[0].label.replace('Lap ', '')}`;
+          },
+          label: (context: TooltipItem<'line'>) => {
+            const val = context.parsed.y;
+            if (val === null || val === undefined || isNaN(val)) {
+              return ` Gap Delta: ⚠️ Outlier Lap Excluded`;
+            }
             const sign = val > 0 ? '+' : '';
-            return `Gap Delta: ${sign}${val.toFixed(3)}s (${val > 0 ? 'Driver A slower' : 'Driver A faster'})`;
+            return ` Gap Delta: ${sign}${val.toFixed(3)}s (${val > 0 ? `${driverAObj?.code || 'Driver A'} Slower` : `${driverAObj?.code || 'Driver A'} Faster`})`;
           }
         }
       }
@@ -598,10 +781,12 @@ export default function LabPage() {
           color: '#FFB020',
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         },
-        ticks: { color: '#CBD5E1', font: { family: 'var(--font-mono)', size: 10 }, maxTicksLimit: 14 },
+        ticks: { color: '#E2E8F0', font: { family: 'var(--font-mono)', size: 10.5 }, maxTicksLimit: 16 },
         grid: { color: 'rgba(255, 255, 255, 0.08)' }
       },
       y: {
+        min: deltaYBounds.min,
+        max: deltaYBounds.max,
         title: {
           display: true,
           text: 'TIME GAP DELTA Δt (SECONDS)',
@@ -609,11 +794,20 @@ export default function LabPage() {
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         },
         ticks: {
-          color: '#CBD5E1',
-          font: { family: 'var(--font-mono)', size: 10.5, weight: 'bold' as const },
+          color: '#E2E8F0',
+          font: { family: 'var(--font-mono)', size: 11, weight: 'bold' as const },
           callback: formatDeltaTick
         },
-        grid: { color: 'rgba(255, 255, 255, 0.08)' }
+        grid: {
+          color: (context: { tick?: { value: number } }) => {
+            if (context.tick && context.tick.value === 0) return 'rgba(0, 240, 255, 0.7)';
+            return 'rgba(255, 255, 255, 0.08)';
+          },
+          lineWidth: (context: { tick?: { value: number } }) => {
+            if (context.tick && context.tick.value === 0) return 2;
+            return 1;
+          }
+        }
       }
     }
   };
@@ -622,21 +816,45 @@ export default function LabPage() {
   const strategyChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    interaction: {
+      mode: 'index' as const,
+      intersect: false
+    },
     plugins: {
       legend: {
+        display: true,
+        position: 'top' as const,
         labels: {
           color: '#FFFFFF',
+          usePointStyle: true,
+          pointStyle: 'circle',
+          padding: 16,
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         }
       },
       tooltip: {
+        enabled: true,
+        backgroundColor: '#0F172A',
+        titleColor: '#00F0FF',
+        titleFont: { family: 'var(--font-mono)', size: 13, weight: 'bold' as const },
+        bodyColor: '#F8FAFC',
+        bodyFont: { family: 'var(--font-mono)', size: 12 },
+        borderColor: '#334155',
+        borderWidth: 1.5,
+        padding: 12,
+        boxPadding: 6,
+        usePointStyle: true,
         callbacks: {
-          label: (context: any) => {
-            const val = Number(context.parsed.y);
-            if (isNaN(val)) return `${context.dataset.label}: ${context.raw}`;
+          title: (items: TooltipItem<'line'>[]) => {
+            if (!items.length) return '';
+            return `🏁 STINT LAP ${items[0].label.replace('Lap ', '')}`;
+          },
+          label: (context: TooltipItem<'line'>) => {
+            const val = context.parsed.y;
+            if (val === null || val === undefined || isNaN(val)) return ` ${context.dataset.label}: ${context.raw}`;
             const m = Math.floor(val / 60);
             const sec = (val % 60).toFixed(2);
-            return `${context.dataset.label}: ${m}:${sec.padStart(5, '0')} (${val.toFixed(2)}s)`;
+            return ` ${context.dataset.label}: ${m}:${sec.padStart(5, '0')} (${val.toFixed(2)}s)`;
           }
         }
       }
@@ -646,10 +864,10 @@ export default function LabPage() {
         title: {
           display: true,
           text: 'STINT LAP PROGRESSION (1 → N)',
-          color: '#34E4C8',
+          color: '#00F0FF',
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         },
-        ticks: { color: '#CBD5E1', font: { family: 'var(--font-mono)', size: 10 }, maxTicksLimit: 14 },
+        ticks: { color: '#E2E8F0', font: { family: 'var(--font-mono)', size: 10.5 }, maxTicksLimit: 16 },
         grid: { color: 'rgba(255, 255, 255, 0.08)' }
       },
       y: {
@@ -660,8 +878,8 @@ export default function LabPage() {
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         },
         ticks: {
-          color: '#CBD5E1',
-          font: { family: 'var(--font-mono)', size: 10.5, weight: 'bold' as const },
+          color: '#E2E8F0',
+          font: { family: 'var(--font-mono)', size: 11, weight: 'bold' as const },
           callback: formatLapTimeTick
         },
         grid: { color: 'rgba(255, 255, 255, 0.08)' }
@@ -673,21 +891,45 @@ export default function LabPage() {
   const tyreChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    interaction: {
+      mode: 'index' as const,
+      intersect: false
+    },
     plugins: {
       legend: {
+        display: true,
+        position: 'top' as const,
         labels: {
           color: '#FFFFFF',
+          usePointStyle: true,
+          pointStyle: 'circle',
+          padding: 16,
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         }
       },
       tooltip: {
+        enabled: true,
+        backgroundColor: '#0F172A',
+        titleColor: '#FF2A55',
+        titleFont: { family: 'var(--font-mono)', size: 13, weight: 'bold' as const },
+        bodyColor: '#F8FAFC',
+        bodyFont: { family: 'var(--font-mono)', size: 12 },
+        borderColor: '#334155',
+        borderWidth: 1.5,
+        padding: 12,
+        boxPadding: 6,
+        usePointStyle: true,
         callbacks: {
-          label: (context: any) => {
-            const val = Number(context.parsed.y);
-            if (isNaN(val)) return `${context.dataset.label}: ${context.raw}`;
+          title: (items: TooltipItem<'line'>[]) => {
+            if (!items.length) return '';
+            return `🔴🟡⚪ TYRE AGE: ${items[0].label.replace('Lap ', '')} Laps`;
+          },
+          label: (context: TooltipItem<'line'>) => {
+            const val = context.parsed.y;
+            if (val === null || val === undefined || isNaN(val)) return ` ${context.dataset.label}: ${context.raw}`;
             const m = Math.floor(val / 60);
             const sec = (val % 60).toFixed(2);
-            return `${context.dataset.label}: ${m}:${sec.padStart(5, '0')} (${val.toFixed(2)}s)`;
+            return ` ${context.dataset.label}: ${m}:${sec.padStart(5, '0')} (${val.toFixed(2)}s)`;
           }
         }
       }
@@ -697,10 +939,10 @@ export default function LabPage() {
         title: {
           display: true,
           text: 'TYRE STINT LAPS COMPLETED',
-          color: '#34E4C8',
+          color: '#00F0FF',
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         },
-        ticks: { color: '#CBD5E1', font: { family: 'var(--font-mono)', size: 10 }, maxTicksLimit: 14 },
+        ticks: { color: '#E2E8F0', font: { family: 'var(--font-mono)', size: 10.5 }, maxTicksLimit: 16 },
         grid: { color: 'rgba(255, 255, 255, 0.08)' }
       },
       y: {
@@ -711,8 +953,8 @@ export default function LabPage() {
           font: { family: 'var(--font-mono)', size: 12, weight: 'bold' as const }
         },
         ticks: {
-          color: '#CBD5E1',
-          font: { family: 'var(--font-mono)', size: 10.5, weight: 'bold' as const },
+          color: '#E2E8F0',
+          font: { family: 'var(--font-mono)', size: 11, weight: 'bold' as const },
           callback: formatLapTimeTick
         },
         grid: { color: 'rgba(255, 255, 255, 0.08)' }
@@ -1056,8 +1298,104 @@ export default function LabPage() {
               )}
             </div>
 
+            {/* Outlier & Pace Focus Control Toolbar */}
+            <div style={{
+              background: '#121620',
+              border: '1px solid #262C38',
+              borderRadius: '8px',
+              padding: '12px 16px',
+              marginBottom: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '12px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => setExcludeOutliers(!excludeOutliers)}
+                  style={{
+                    background: excludeOutliers ? 'rgba(0, 240, 255, 0.15)' : '#0D1017',
+                    border: excludeOutliers ? '1px solid #00F0FF' : '1px solid #262C38',
+                    color: excludeOutliers ? '#00F0FF' : '#94A3B8',
+                    padding: '6px 14px',
+                    borderRadius: '6px',
+                    fontSize: '11px',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: '800',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {excludeOutliers ? '⚡ PACE FOCUS MODE (OUTLIERS TRIMMED)' : '🌐 FULL RANGE MODE (SHOW ALL LAPS)'}
+                </button>
+
+                <button
+                  onClick={() => setSmoothLines(!smoothLines)}
+                  style={{
+                    background: smoothLines ? 'rgba(255, 176, 32, 0.15)' : '#0D1017',
+                    border: smoothLines ? '1px solid #FFB020' : '1px solid #262C38',
+                    color: smoothLines ? '#FFB020' : '#94A3B8',
+                    padding: '6px 12px',
+                    borderRadius: '6px',
+                    fontSize: '11px',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: '800',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {smoothLines ? '📈 SMOOTH CURVES' : '📐 LINEAR TRACE'}
+                </button>
+
+                <button
+                  onClick={() => setShowBenchmark(!showBenchmark)}
+                  style={{
+                    background: showBenchmark ? 'rgba(248, 250, 252, 0.12)' : '#0D1017',
+                    border: showBenchmark ? '1px solid #F8FAFC' : '1px solid #262C38',
+                    color: showBenchmark ? '#F8FAFC' : '#94A3B8',
+                    padding: '6px 12px',
+                    borderRadius: '6px',
+                    fontSize: '11px',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: '800',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {showBenchmark ? '🏁 BENCHMARK LINE ON' : '🏁 BENCHMARK OFF'}
+                </button>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1' }}>
+                  <span>OUTLIER CUTOFF:</span>
+                  <select
+                    value={outlierCutoffMode}
+                    onChange={(e) => setOutlierCutoffMode(e.target.value)}
+                    style={{ background: '#0D1017', border: '1px solid #00F0FF', color: '#00F0FF', padding: '4px 10px', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontSize: '11px', fontWeight: '800', outline: 'none' }}
+                  >
+                    <option value="auto">⚡ AUTO SMART ({formatLapTimeTick(effectiveThreshold)})</option>
+                    <option value="95">1m 35s (95s) — Strict Pace</option>
+                    <option value="105">1m 45s (105s) — Pit/Out Lap Trim</option>
+                    <option value="120">2m 00s (120s) — VSC Trim</option>
+                    <option value="150">2m 30s (150s) — Slow Lap Trim</option>
+                    <option value="180">3m 00s (180s) — Red Flag Trim</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: outlierInfo.totalOutliers > 0 ? '#FFB020' : '#00F0FF', fontWeight: '700' }}>
+                {outlierInfo.totalOutliers > 0 ? (
+                  <span>
+                    ⚠️ {outlierInfo.totalOutliers} Red Flag / Stoppage Outlier{outlierInfo.totalOutliers > 1 ? 's' : ''} Trimmed ({formatSeconds(outlierInfo.maxOutlierSecs)} max). {excludeOutliers ? 'Auto-zoomed Y-axis.' : 'Full scale active.'}
+                  </span>
+                ) : (
+                  <span>✓ Standard Race Pace Range ({formatLapTimeTick(paceYBounds.min)} - {formatLapTimeTick(paceYBounds.max)})</span>
+                )}
+              </div>
+            </div>
+
             {/* Real Race Pace Telemetry Line Chart */}
-            <div style={{ height: '350px', position: 'relative' }}>
+            <div style={{ height: '420px', position: 'relative' }}>
               <Line data={realPaceChartData} options={realPaceChartOptions} />
             </div>
           </div>
@@ -1080,7 +1418,7 @@ export default function LabPage() {
               </div>
             </div>
 
-            <div style={{ height: '350px', position: 'relative' }}>
+            <div style={{ height: '420px', position: 'relative' }}>
               <Line data={realDeltaChartData} options={realDeltaChartOptions} />
             </div>
           </div>

@@ -82,7 +82,13 @@ export async function POST(request: Request) {
       }
     });
 
-    const cookieConfig: any = {
+    const cookieConfig: {
+      httpOnly: boolean;
+      secure: boolean;
+      sameSite: 'lax' | 'strict' | 'none';
+      path: string;
+      maxAge?: number;
+    } = {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
@@ -96,7 +102,7 @@ export async function POST(request: Request) {
     response.cookies.set('paddock_auth_token', token, cookieConfig);
 
     return response;
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { success: false, message: 'Authentication server error.' },
       { status: 500 }

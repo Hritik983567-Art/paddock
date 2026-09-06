@@ -1,4 +1,5 @@
-export const API_BASE = '/api/f1';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export const API_BASE = 'https://api.jolpi.ca/ergast/f1';
 
 export const ALL_F1_SEASONS: string[] = Array.from(
   { length: 2026 - 1950 + 1 },
@@ -20,45 +21,48 @@ export function pauseMs(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export async function getJSON(url: string, attempt: number = 1): Promise<any> {
+export async function getJSON<T = any>(url: string, attempt: number = 1): Promise<T> {
     try {
-        const targetUrl = url.replace('https://api.jolpi.ca/ergast/f1', '/api/f1').replace('https://api.jolpica.net/ergast/f1', '/api/f1');
+        const targetUrl = url;
         const res = await fetch(targetUrl);
         if (res.status === 429) {
             if (attempt < 3) {
                 await pauseMs(800 * attempt);
-                return getJSON(url, attempt + 1);
+                return getJSON<T>(url, attempt + 1);
             }
             throw new Error('Rate limited — cached data mode active. Please wait a moment and try again.');
         }
         if (!res.ok) {
             throw new Error(`Request failed: ${res.status}`);
         }
-        return res.json();
-    } catch (e: any) {
+        return res.json() as Promise<T>;
+    } catch (e: unknown) {
+        const err = e as Error;
         if (attempt < 3) {
             await pauseMs(500 * attempt);
-            return getJSON(url, attempt + 1);
+            return getJSON<T>(url, attempt + 1);
         }
-        throw new Error(e.message || "Network request failed after 3 tries.");
+        throw new Error(err.message || "Network request failed after 3 tries.");
     }
 }
 
-export async function fetchAllPaged(url: string, tableKey: string, listKey: string): Promise<any[]> {
+export async function fetchAllPaged<T = unknown>(url: string, tableKey: string, listKey: string): Promise<T[]> {
     let offset = 0;
     const pageSize = 100;
-    let all: any[] = [];
+    let all: T[] = [];
     let total = Infinity;
     let first = true;
     while (offset < total) {
         if (!first) await pauseMs(350);
         first = false;
         const sep = url.includes('?') ? '&' : '?';
-        const data = await getJSON(`${url}${sep}limit=${pageSize}&offset=${offset}`);
-        if (!data || !data.MRData) break;
-        total = parseInt(data.MRData.total) || 0;
-        const items = data.MRData[tableKey] ? (data.MRData[tableKey][listKey] || []) : [];
-        all = all.concat(items);
+        const data = await getJSON<Record<string, unknown>>(`${url}${sep}limit=${pageSize}&offset=${offset}`);
+        const mrData = data?.MRData as { total?: string; [key: string]: unknown } | undefined;
+        if (!mrData) break;
+        total = parseInt(mrData.total || '0') || 0;
+        const table = mrData[tableKey] as Record<string, T[]> | undefined;
+        const items = table ? (table[listKey] || []) : [];
+        all = all.concat(items as T[]);
         if (items.length === 0) break;
         offset += items.length;
     }
@@ -84,8 +88,8 @@ export interface NewsItem {
 export async function fetchF1News(): Promise<NewsItem[]> {
     const feedUrl = encodeURIComponent('https://racingnews365.com/feed/news.xml');
     const url = `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}`;
-    const data = await getJSON(url);
-    if (data.status !== 'ok' || !data.items) {
+    const data = await getJSON(url) as { status?: string; items?: NewsItem[] } | null;
+    if (!data || data.status !== 'ok' || !data.items) {
         throw new Error('News feed is currently unavailable.');
     }
     return data.items;

@@ -35,6 +35,9 @@ export interface CircuitCorner {
   turns: string;
   direction?: string;
   type?: string;
+  gear?: number;
+  speed_kph?: number;
+  characteristics?: string;
   description: string;
   technical?: CornerTechnicalData;
   racing?: CornerRacingData;
@@ -91,7 +94,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -117,7 +120,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 638, y: 315,
         images: []
@@ -143,7 +146,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 574, y: 369,
         images: []
@@ -169,7 +172,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 402,
         images: []
@@ -195,7 +198,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 373, y: 409,
         images: []
@@ -221,7 +224,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 270, y: 389,
         images: []
@@ -247,7 +250,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 190, y: 344,
         images: []
@@ -273,7 +276,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 146, y: 283,
         images: []
@@ -299,7 +302,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 146, y: 217,
         images: []
@@ -325,7 +328,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 190, y: 156,
         images: []
@@ -351,7 +354,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 270, y: 111,
         images: []
@@ -377,7 +380,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 373, y: 91,
         images: []
@@ -403,7 +406,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 98,
         images: []
@@ -429,7 +432,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 574, y: 131,
         images: []
@@ -455,7 +458,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Bahrain International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 15 (T15) at Bahrain International Circuit (Bahrain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 638, y: 185,
         images: []
@@ -487,7 +490,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -513,7 +516,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 652, y: 290,
         images: []
@@ -539,7 +542,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 628, y: 327,
         images: []
@@ -565,7 +568,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 590, y: 360,
         images: []
@@ -591,7 +594,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 539, y: 385,
         images: []
@@ -617,7 +620,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 402,
         images: []
@@ -643,7 +646,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 416, y: 410,
         images: []
@@ -669,7 +672,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 351, y: 407,
         images: []
@@ -695,7 +698,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 289, y: 395,
         images: []
@@ -721,7 +724,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 234, y: 373,
         images: []
@@ -747,7 +750,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 190, y: 344,
         images: []
@@ -773,7 +776,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 158, y: 309,
         images: []
@@ -799,7 +802,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 142, y: 270,
         images: []
@@ -825,7 +828,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 142, y: 230,
         images: []
@@ -851,7 +854,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 15 (T15) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 158, y: 191,
         images: []
@@ -877,7 +880,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 16 (T16) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 190, y: 156,
         images: []
@@ -903,7 +906,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 17 (T17) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 17 (T17) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 234, y: 127,
         images: []
@@ -929,7 +932,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 18 (T18) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 18 (T18) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 289, y: 105,
         images: []
@@ -955,7 +958,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 19 (T19) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 19 (T19) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 351, y: 93,
         images: []
@@ -981,7 +984,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 20 (T20) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 20 (T20) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 416, y: 90,
         images: []
@@ -1007,7 +1010,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 21 (T21) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 21 (T21) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 98,
         images: []
@@ -1033,7 +1036,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 22 (T22) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 22 (T22) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 539, y: 115,
         images: []
@@ -1059,7 +1062,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 23 (T23) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 23 (T23) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 590, y: 140,
         images: []
@@ -1085,7 +1088,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 24 (T24) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 24 (T24) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 628, y: 173,
         images: []
@@ -1111,7 +1114,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 25 (T25) on the official Jeddah Corniche Circuit 2026 Grand Prix calendar.',
+        history: "Turn 25 (T25) at Jeddah Corniche Circuit (Saudi Arabia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 652, y: 210,
         images: []
@@ -1143,7 +1146,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -1169,7 +1172,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 634, y: 319,
         images: []
@@ -1195,7 +1198,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 562, y: 375,
         images: []
@@ -1221,7 +1224,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 458, y: 406,
         images: []
@@ -1247,7 +1250,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 342, y: 406,
         images: []
@@ -1273,7 +1276,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 238, y: 375,
         images: []
@@ -1299,7 +1302,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 166, y: 319,
         images: []
@@ -1325,7 +1328,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -1351,7 +1354,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 166, y: 181,
         images: []
@@ -1377,7 +1380,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 238, y: 125,
         images: []
@@ -1403,7 +1406,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 342, y: 94,
         images: []
@@ -1429,7 +1432,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 458, y: 94,
         images: []
@@ -1455,7 +1458,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 562, y: 125,
         images: []
@@ -1481,7 +1484,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Albert Park Circuit 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Albert Park Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 634, y: 181,
         images: []
@@ -1513,7 +1516,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Fast sweeping downhill right turn taken at 280 km/h.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -1539,7 +1542,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Tightening right exit leading directly into the rhythmic S-Curves.",
         status: 'MISSING',
         x: 644, y: 305,
         images: []
@@ -1565,7 +1568,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "First left-hand turn of the flowing S-Curves.",
         status: 'MISSING',
         x: 599, y: 353,
         images: []
@@ -1591,7 +1594,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Right-hand rhythm turn requiring smooth weight transfer.",
         status: 'MISSING',
         x: 530, y: 389,
         images: []
@@ -1617,7 +1620,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Left-hand turn through the S-Curves uphill climb.",
         status: 'MISSING',
         x: 445, y: 408,
         images: []
@@ -1643,7 +1646,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Right-hand sweeper leading towards Dunlop.",
         status: 'MISSING',
         x: 355, y: 408,
         images: []
@@ -1669,7 +1672,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Dunlop uphill long left curve where high lateral Gs wear the right-front tire.",
         status: 'MISSING',
         x: 270, y: 389,
         images: []
@@ -1695,7 +1698,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Degner 1—fast 240 km/h right turn named after Ernst Degner who crashed here in 1962.",
         status: 'MISSING',
         x: 201, y: 353,
         images: []
@@ -1721,7 +1724,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Degner 2—tight right-hander under the track bridge.",
         status: 'MISSING',
         x: 156, y: 305,
         images: []
@@ -1747,7 +1750,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Hairpin approach under the 3D crossover bridge.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -1773,7 +1776,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Hairpin—heavy braking zone and top overtaking spot surrounded by passionate Japanese fans.",
         status: 'MISSING',
         x: 156, y: 195,
         images: []
@@ -1799,7 +1802,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "200R long sweeping right turn accelerating towards Spoon.",
         status: 'MISSING',
         x: 201, y: 147,
         images: []
@@ -1825,7 +1828,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Spoon Curve entry—downhill left-hander.",
         status: 'MISSING',
         x: 270, y: 111,
         images: []
@@ -1851,7 +1854,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Spoon Curve exit—off-camber left turn opening onto the back straight.",
         status: 'MISSING',
         x: 355, y: 92,
         images: []
@@ -1877,7 +1880,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Sweeping left hugging inner kerb',
           trackLimits: 'Outer astro-turf & gravel'
         },
-        history: 'Modified in 2003 into a double-apex curve to enhance safety after legendary high-speed crashes.',
+        history: "130R—terrifying 305 km/h left-hand sweep named after its 130m radius, site of Alonso's 2005 pass on Schumacher.",
         status: 'MISSING',
         x: 445, y: 92,
         images: []
@@ -1903,7 +1906,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Casio Triangle chicane entry, site of Prost and Senna's championship-deciding collision in 1989.",
         status: 'MISSING',
         x: 530, y: 111,
         images: []
@@ -1929,7 +1932,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 17 (T17) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Casio Triangle exit onto the main pit straight.",
         status: 'MISSING',
         x: 599, y: 147,
         images: []
@@ -1955,7 +1958,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 18 (T18) on the official Suzuka International Racing Course 2026 Grand Prix calendar.',
+        history: "Turn 18 (T18) at Suzuka International Racing Course (Japan) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 644, y: 195,
         images: []
@@ -1987,7 +1990,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -2013,7 +2016,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 640, y: 311,
         images: []
@@ -2039,7 +2042,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 584, y: 363,
         images: []
@@ -2065,7 +2068,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 499, y: 398,
         images: []
@@ -2091,7 +2094,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 400, y: 410,
         images: []
@@ -2117,7 +2120,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 301, y: 398,
         images: []
@@ -2143,7 +2146,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 216, y: 363,
         images: []
@@ -2169,7 +2172,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 160, y: 311,
         images: []
@@ -2195,7 +2198,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -2221,7 +2224,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 160, y: 189,
         images: []
@@ -2247,7 +2250,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 216, y: 137,
         images: []
@@ -2273,7 +2276,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 301, y: 102,
         images: []
@@ -2299,7 +2302,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 400, y: 90,
         images: []
@@ -2325,7 +2328,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 499, y: 102,
         images: []
@@ -2351,7 +2354,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 15 (T15) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 584, y: 137,
         images: []
@@ -2377,7 +2380,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Shanghai International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 16 (T16) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 640, y: 189,
         images: []
@@ -2409,7 +2412,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -2435,7 +2438,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 642, y: 308,
         images: []
@@ -2461,7 +2464,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 592, y: 358,
         images: []
@@ -2487,7 +2490,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 516, y: 393,
         images: []
@@ -2513,7 +2516,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 424, y: 409,
         images: []
@@ -2539,7 +2542,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 329, y: 404,
         images: []
@@ -2565,7 +2568,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 243, y: 378,
         images: []
@@ -2591,7 +2594,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 179, y: 334,
         images: []
@@ -2617,7 +2620,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 144, y: 279,
         images: []
@@ -2643,7 +2646,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 144, y: 221,
         images: []
@@ -2669,7 +2672,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 179, y: 166,
         images: []
@@ -2695,7 +2698,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 243, y: 122,
         images: []
@@ -2721,7 +2724,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 329, y: 96,
         images: []
@@ -2747,7 +2750,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 424, y: 91,
         images: []
@@ -2773,7 +2776,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 15 (T15) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 516, y: 107,
         images: []
@@ -2799,7 +2802,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 16 (T16) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 592, y: 142,
         images: []
@@ -2825,7 +2828,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 17 (T17) on the official Miami International Autodrome 2026 Grand Prix calendar.',
+        history: "Turn 17 (T17) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 642, y: 192,
         images: []
@@ -2857,7 +2860,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Tamburello chicane entry—reconfigured after the 1994 San Marino GP to honor Ayrton Senna's memory.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -2883,7 +2886,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Right apex of Tamburello chicane.",
         status: 'MISSING',
         x: 642, y: 308,
         images: []
@@ -2909,7 +2912,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Exit of Tamburello accelerating along the Santerno riverbank.",
         status: 'MISSING',
         x: 592, y: 358,
         images: []
@@ -2935,7 +2938,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Villeneuve chicane entry, named after Canadian legend Gilles Villeneuve.",
         status: 'MISSING',
         x: 516, y: 393,
         images: []
@@ -2961,7 +2964,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Villeneuve chicane exit leading to Tosa.",
         status: 'MISSING',
         x: 424, y: 409,
         images: []
@@ -2987,7 +2990,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Tosa braking zone surrounded by the passionate Italian Tifosi hill.",
         status: 'MISSING',
         x: 329, y: 404,
         images: []
@@ -3013,7 +3016,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Tosa hairpin exit—steep uphill acceleration towards Piratella.",
         status: 'MISSING',
         x: 243, y: 378,
         images: []
@@ -3039,7 +3042,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Piratella—blind downhill left-hand corner leading into the Acque Minerali valley.",
         status: 'MISSING',
         x: 179, y: 334,
         images: []
@@ -3065,7 +3068,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Acque Minerali entry—downhill dip into double-right corner named after local mineral springs.",
         status: 'MISSING',
         x: 144, y: 279,
         images: []
@@ -3091,7 +3094,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Acque Minerali apex pulling heavy lateral Gs.",
         status: 'MISSING',
         x: 144, y: 221,
         images: []
@@ -3117,7 +3120,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Variante Alta entry—high kerb chicane at the top of the circuit.",
         status: 'MISSING',
         x: 179, y: 166,
         images: []
@@ -3143,7 +3146,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Variante Alta exit launching downhill towards Rivazza.",
         status: 'MISSING',
         x: 243, y: 122,
         images: []
@@ -3169,7 +3172,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Rivazza 1—downhill braking zone into left turn.",
         status: 'MISSING',
         x: 329, y: 96,
         images: []
@@ -3195,7 +3198,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Rivazza 2—final left turn launching cars onto the pit straight.",
         status: 'MISSING',
         x: 424, y: 91,
         images: []
@@ -3221,7 +3224,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Turn 15 (T15) at Autodromo Enzo e Dino Ferrari (Italy) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 516, y: 107,
         images: []
@@ -3247,7 +3250,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Turn 16 (T16) at Autodromo Enzo e Dino Ferrari (Italy) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 592, y: 142,
         images: []
@@ -3273,7 +3276,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 17 (T17) on the official Autodromo Enzo e Dino Ferrari 2026 Grand Prix calendar.',
+        history: "Turn 17 (T17) at Autodromo Enzo e Dino Ferrari (Italy) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 642, y: 192,
         images: []
@@ -3305,7 +3308,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Clipping inner kerb barrier',
           trackLimits: 'Armco barrier lining turn'
         },
-        history: 'Named after Saint Devota, patron saint of Monaco and the Princely Family.',
+        history: "Right-hand corner named after Monaco's patron saint and 11th-century chapel. Infamous for turn-1 funneling crashes into the Beau Rivage hill.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -3331,7 +3334,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Blind uphill climb past luxury hotel balconies where V10 and hybrid engines echo off Monte Carlo cliffs.",
         status: 'MISSING',
         x: 646, y: 302,
         images: []
@@ -3357,7 +3360,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Long left-hand curve leaning against outer armco barriers past the Opera de Monte-Carlo.",
         status: 'MISSING',
         x: 605, y: 348,
         images: []
@@ -3383,7 +3386,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Sweeping right corner past the Casino de Monte-Carlo, where cars brush barriers inches from high society spectators.",
         status: 'MISSING',
         x: 542, y: 384,
         images: []
@@ -3409,7 +3412,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Downhill right-hand dip into the bumpy braking zone before the hairpin.",
         status: 'MISSING',
         x: 464, y: 405,
         images: []
@@ -3435,7 +3438,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Hugging inner curb inches from metal barrier',
           trackLimits: 'Guardrail barriers'
         },
-        history: 'Previously known as Station Hairpin and Loew Hairpin; iconic backdrop of Monaco Grand Prix.',
+        history: "The slowest corner in F1 (~45 km/h), requiring full steering lock as cars weave past the Fairmont hotel.",
         status: 'MISSING',
         x: 379, y: 409,
         images: []
@@ -3461,7 +3464,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Downhill right turn into Portier where Ayrton Senna famously crashed out while leading the 1988 GP by 55 seconds.",
         status: 'MISSING',
         x: 296, y: 397,
         images: []
@@ -3487,7 +3490,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Tight right turn leading directly into the seaside tunnel.",
         status: 'MISSING',
         x: 224, y: 368,
         images: []
@@ -3513,7 +3516,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Blasting through the dark seaside tunnel at 290 km/h before blinding sunlight hits drivers at the exit.",
         status: 'MISSING',
         x: 171, y: 326,
         images: []
@@ -3539,7 +3542,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Heavy braking zone out of the tunnel onto the harbour edge, site of famous late-braking overtakes.",
         status: 'MISSING',
         x: 144, y: 276,
         images: []
@@ -3565,7 +3568,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Exit of Nouvelle Chicane accelerating along the harbour quay.",
         status: 'MISSING',
         x: 144, y: 224,
         images: []
@@ -3591,7 +3594,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Fast left-hand sweep bordering superyachts, named after the historic tobacco shop on the harbour quay.",
         status: 'MISSING',
         x: 171, y: 174,
         images: []
@@ -3617,7 +3620,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "High-speed S-chicane entry around the Rainier III nautical stadium.",
         status: 'MISSING',
         x: 224, y: 132,
         images: []
@@ -3643,7 +3646,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Right-hand flick over high kerbs inside the Swimming Pool complex.",
         status: 'MISSING',
         x: 296, y: 103,
         images: []
@@ -3669,7 +3672,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Tight left-right chicane exit where cars clip inner barriers at 200 km/h.",
         status: 'MISSING',
         x: 379, y: 91,
         images: []
@@ -3695,7 +3698,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Exit of Swimming Pool heading towards Rascasse.",
         status: 'MISSING',
         x: 464, y: 95,
         images: []
@@ -3721,7 +3724,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 17 (T17) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Tight hairpin named after the Rascasse seafood restaurant, infamous for Michael Schumacher's 2006 qualifying parking incident.",
         status: 'MISSING',
         x: 542, y: 116,
         images: []
@@ -3747,7 +3750,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 18 (T18) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Apex of Rascasse requiring precise throttle control on slippery asphalt.",
         status: 'MISSING',
         x: 605, y: 152,
         images: []
@@ -3773,7 +3776,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 19 (T19) on the official Circuit de Monaco 2026 Grand Prix calendar.',
+        history: "Final right turn named after the founder of the Monaco Grand Prix who organized the first race in 1929.",
         status: 'MISSING',
         x: 646, y: 198,
         images: []
@@ -3805,7 +3808,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -3831,7 +3834,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 634, y: 319,
         images: []
@@ -3857,7 +3860,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 562, y: 375,
         images: []
@@ -3883,7 +3886,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 458, y: 406,
         images: []
@@ -3909,7 +3912,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 342, y: 406,
         images: []
@@ -3935,7 +3938,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 238, y: 375,
         images: []
@@ -3961,7 +3964,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 166, y: 319,
         images: []
@@ -3987,7 +3990,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -4013,7 +4016,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 166, y: 181,
         images: []
@@ -4039,7 +4042,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 238, y: 125,
         images: []
@@ -4065,7 +4068,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 342, y: 94,
         images: []
@@ -4091,7 +4094,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 458, y: 94,
         images: []
@@ -4117,7 +4120,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 562, y: 125,
         images: []
@@ -4143,7 +4146,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Circuit Gilles Villeneuve 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 634, y: 181,
         images: []
@@ -4175,7 +4178,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -4201,7 +4204,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 634, y: 319,
         images: []
@@ -4227,7 +4230,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 562, y: 375,
         images: []
@@ -4253,7 +4256,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 458, y: 406,
         images: []
@@ -4279,7 +4282,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 342, y: 406,
         images: []
@@ -4305,7 +4308,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 238, y: 375,
         images: []
@@ -4331,7 +4334,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 166, y: 319,
         images: []
@@ -4357,7 +4360,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -4383,7 +4386,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 166, y: 181,
         images: []
@@ -4409,7 +4412,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 238, y: 125,
         images: []
@@ -4435,7 +4438,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 342, y: 94,
         images: []
@@ -4461,7 +4464,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 458, y: 94,
         images: []
@@ -4487,7 +4490,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 562, y: 125,
         images: []
@@ -4513,7 +4516,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Circuit de Barcelona-Catalunya 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 634, y: 181,
         images: []
@@ -4545,7 +4548,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Red Bull Ring 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -4571,7 +4574,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Red Bull Ring 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 610, y: 344,
         images: []
@@ -4597,7 +4600,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Red Bull Ring 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 402,
         images: []
@@ -4623,7 +4626,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Red Bull Ring 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 320, y: 402,
         images: []
@@ -4649,7 +4652,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Red Bull Ring 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 190, y: 344,
         images: []
@@ -4675,7 +4678,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Red Bull Ring 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -4701,7 +4704,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Red Bull Ring 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 190, y: 156,
         images: []
@@ -4727,7 +4730,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Red Bull Ring 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 320, y: 98,
         images: []
@@ -4753,7 +4756,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Red Bull Ring 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 98,
         images: []
@@ -4779,7 +4782,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Red Bull Ring 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 610, y: 156,
         images: []
@@ -4811,7 +4814,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Smooth right turn clipping inner kerb',
           trackLimits: 'Exit green paint'
         },
-        history: 'Part of the new Arena layout introduced at Silverstone in 2010.',
+        history: "High-speed 290 km/h right turn opening the lap, named after Luffield Abbey ruins.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -4837,7 +4840,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Left kink leading into the Arena infield section.",
         status: 'MISSING',
         x: 644, y: 305,
         images: []
@@ -4863,7 +4866,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Village corner—a prime overtaking spot in front of packed grandstands.",
         status: 'MISSING',
         x: 599, y: 353,
         images: []
@@ -4889,7 +4892,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Tight left loop requiring patient throttle application.",
         status: 'MISSING',
         x: 530, y: 389,
         images: []
@@ -4915,7 +4918,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Aintree corner launching cars onto the Wellington Straight.",
         status: 'MISSING',
         x: 445, y: 408,
         images: []
@@ -4941,7 +4944,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Brooklands heavy braking zone at the end of Wellington Straight.",
         status: 'MISSING',
         x: 355, y: 408,
         images: []
@@ -4967,7 +4970,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Luffield long right-hand sweeper where drivers modulate throttle.",
         status: 'MISSING',
         x: 270, y: 389,
         images: []
@@ -4993,7 +4996,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Woodcote fast sweep onto the National Pit Straight.",
         status: 'MISSING',
         x: 201, y: 353,
         images: []
@@ -5019,7 +5022,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Flat-out 290 km/h corner named after Copse Wood, scene of the 2021 Hamilton-Verstappen collision.",
         status: 'MISSING',
         x: 156, y: 305,
         images: []
@@ -5045,7 +5048,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Commitment to the inner right kerb',
           trackLimits: 'Gravel run-off area'
         },
-        history: 'Corner of legendary duels including Hamilton and Verstappen clash in 2021.',
+        history: "First right-hand entry of the legendary Maggotts-Becketts flow complex.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -5071,7 +5074,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Dancing across left-right-left kerbs',
           trackLimits: 'Strict track limit lines'
         },
-        history: 'Named after medieval Chapel of St Thomas Beckett which once stood near the circuit perimeter.',
+        history: "Left-hand flick at 290 km/h pulling 5G of lateral force.",
         status: 'MISSING',
         x: 156, y: 195,
         images: []
@@ -5097,7 +5100,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Right-hand apex of Becketts demanding supreme chassis balance.",
         status: 'MISSING',
         x: 201, y: 147,
         images: []
@@ -5123,7 +5126,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Left-hand exit onto Chapel curve.",
         status: 'MISSING',
         x: 270, y: 111,
         images: []
@@ -5149,7 +5152,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Chapel exit launching cars onto the Hangar Straight.",
         status: 'MISSING',
         x: 355, y: 92,
         images: []
@@ -5175,7 +5178,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Deep entry and wide exit power delivery',
           trackLimits: 'Outer asphalt & gravel'
         },
-        history: 'Named after nearby Stowe School, a landmark since the circuit opened as a WWII airfield.',
+        history: "Stowe corner—fast right-hand turn named after Stowe School, terminating Hangar Straight.",
         status: 'MISSING',
         x: 445, y: 92,
         images: []
@@ -5201,7 +5204,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Vale heavy braking dip before the final complex.",
         status: 'MISSING',
         x: 530, y: 111,
         images: []
@@ -5227,7 +5230,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 17 (T17) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Club corner right-hand entry.",
         status: 'MISSING',
         x: 599, y: 147,
         images: []
@@ -5253,7 +5256,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 18 (T18) on the official Silverstone Circuit 2026 Grand Prix calendar.',
+        history: "Club final corner leading onto Hamilton Straight, where Lewis Hamilton won on 3 tires in 2020.",
         status: 'MISSING',
         x: 644, y: 195,
         images: []
@@ -5285,7 +5288,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -5311,7 +5314,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 634, y: 319,
         images: []
@@ -5337,7 +5340,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 562, y: 375,
         images: []
@@ -5363,7 +5366,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 458, y: 406,
         images: []
@@ -5389,7 +5392,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 342, y: 406,
         images: []
@@ -5415,7 +5418,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 238, y: 375,
         images: []
@@ -5441,7 +5444,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 166, y: 319,
         images: []
@@ -5467,7 +5470,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -5493,7 +5496,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 166, y: 181,
         images: []
@@ -5519,7 +5522,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 238, y: 125,
         images: []
@@ -5545,7 +5548,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 342, y: 94,
         images: []
@@ -5571,7 +5574,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 458, y: 94,
         images: []
@@ -5597,7 +5600,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 562, y: 125,
         images: []
@@ -5623,7 +5626,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Hungaroring 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 634, y: 181,
         images: []
@@ -5655,7 +5658,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Tight inner hair-pin clip',
           trackLimits: 'Tarmac run-off area'
         },
-        history: 'Named after the mineral water springs of Spa town nearby.',
+        history: "Downhill hairpin named after Ardennes mineral springs. Famous for dramatic opening lap scrambles, including the 13-car pileup in 1998 and Fernando Alonso's airborne crash over Leclerc in 2018.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -5681,7 +5684,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Left dip across Eau Rouge stream, right blind crest up Raidillon',
           trackLimits: 'Raidillon crest kerb sensors'
         },
-        history: 'Created in 1939 by bypassing the Ancienne Douane hairpin to turn Spa into the fastest circuit in Europe.',
+        history: "Compression dip at the base of Eau Rouge stream. Cars compress under 5G of vertical force before climbing the 17% gradient.",
         status: 'MISSING',
         x: 646, y: 302,
         images: []
@@ -5707,7 +5710,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "The blind uphill right turn into Raidillon. Drivers take this crest flat-out at 300+ km/h relying entirely on muscle memory and downforce.",
         status: 'MISSING',
         x: 605, y: 348,
         images: []
@@ -5733,7 +5736,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Summit of Raidillon launching cars onto the 2km Kemmel Straight.",
         status: 'MISSING',
         x: 542, y: 384,
         images: []
@@ -5759,7 +5762,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Les Combes chicane at the highest point of the circuit (Hautes Fagnes), the primary overtaking zone after slipstreaming up Kemmel.",
         status: 'MISSING',
         x: 464, y: 405,
         images: []
@@ -5785,7 +5788,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Middle apex of Les Combes requiring smooth weight transfer.",
         status: 'MISSING',
         x: 379, y: 409,
         images: []
@@ -5811,7 +5814,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Exit of Les Combes leading downhill towards Malmedy and Bruxelles.",
         status: 'MISSING',
         x: 296, y: 397,
         images: []
@@ -5837,7 +5840,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Off-camber 180-degree downhill right hairpin where front tires struggle for grip over the steep gradient.",
         status: 'MISSING',
         x: 224, y: 368,
         images: []
@@ -5863,7 +5866,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Fast downhill left-hand sweeper leading into the Ardennes forest valley.",
         status: 'MISSING',
         x: 171, y: 326,
         images: []
@@ -5889,7 +5892,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Double apex sweep hugging left kerb',
           trackLimits: 'Outer gravel trap'
         },
-        history: 'Named after the famous Pouhon natural spring water fountain in Spa.',
+        history: "Super-fast 260 km/h downhill left corner pulling 5.2G of lateral load—a true test of driver bravery and aerodynamic downforce.",
         status: 'MISSING',
         x: 144, y: 276,
         images: []
@@ -5915,7 +5918,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Second apex of Pouhon, taken with progressive throttle as the track opens up.",
         status: 'MISSING',
         x: 144, y: 224,
         images: []
@@ -5941,7 +5944,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Technical right-left chicane over high kerbs surrounded by dense pine forests.",
         status: 'MISSING',
         x: 171, y: 174,
         images: []
@@ -5967,7 +5970,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Exit of Fagnes heading downhill towards Stavelot.",
         status: 'MISSING',
         x: 224, y: 132,
         images: []
@@ -5993,7 +5996,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Banked right-hand curve sweeping past Stavelot village towards the ultra-fast back section.",
         status: 'MISSING',
         x: 296, y: 103,
         images: []
@@ -6019,7 +6022,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Fast right kink maintaining 280+ km/h momentum towards Paul Frère corner.",
         status: 'MISSING',
         x: 379, y: 91,
         images: []
@@ -6045,7 +6048,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Sweeping curve named after Belgian racing journalist and driver Paul Frère.",
         status: 'MISSING',
         x: 464, y: 95,
         images: []
@@ -6071,7 +6074,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 17 (T17) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Terrifying 300+ km/h left-hand sweep where Kimi Räikkönen famously passed Michael Schumacher through thick tire smoke in 2004.",
         status: 'MISSING',
         x: 542, y: 116,
         images: []
@@ -6097,7 +6100,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 18 (T18) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Exit of Blanchimont leading into the final heavy braking zone.",
         status: 'MISSING',
         x: 605, y: 152,
         images: []
@@ -6123,7 +6126,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 19 (T19) on the official Circuit de Spa-Francorchamps 2026 Grand Prix calendar.',
+        history: "Bus Stop chicane entry—a massive 320 to 80 km/h braking zone originally routed around an actual public bus stop.",
         status: 'MISSING',
         x: 646, y: 198,
         images: []
@@ -6155,7 +6158,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Tarzanbocht—historic 180-degree right hairpin named after a local dunes legend, famous for round-the-outside overtakes.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -6181,7 +6184,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Gerlachbocht—fast right curve named after Dutch driver Dr. Thomas Gerlach.",
         status: 'MISSING',
         x: 634, y: 319,
         images: []
@@ -6207,7 +6210,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Hugenholtzbocht—18-degree steep banked corner named after circuit architect John Hugenholtz, allowing two parallel racing lines.",
         status: 'MISSING',
         x: 562, y: 375,
         images: []
@@ -6233,7 +6236,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Hunserug—uphill crest leading into the dunes section.",
         status: 'MISSING',
         x: 458, y: 406,
         images: []
@@ -6259,7 +6262,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Rob Slotemakerbocht—fast left-hander named after Dutch racing driver Rob Slotemaker.",
         status: 'MISSING',
         x: 342, y: 406,
         images: []
@@ -6285,7 +6288,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Scheivlak—terrifying high-speed blind right curve over the dune crest taken at 250 km/h.",
         status: 'MISSING',
         x: 238, y: 375,
         images: []
@@ -6311,7 +6314,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Traficbocht—fast right sweep leading to the chicane.",
         status: 'MISSING',
         x: 166, y: 319,
         images: []
@@ -6337,7 +6340,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Arena chicane entry in front of orange-clad Dutch fans.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -6363,7 +6366,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Technical right turn inside the Arena section.",
         status: 'MISSING',
         x: 166, y: 181,
         images: []
@@ -6389,7 +6392,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Hans Ernstbocht chicane entry.",
         status: 'MISSING',
         x: 238, y: 125,
         images: []
@@ -6415,7 +6418,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Hans Ernstbocht chicane exit.",
         status: 'MISSING',
         x: 342, y: 94,
         images: []
@@ -6441,7 +6444,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Kumhobocht—medium speed right turn.",
         status: 'MISSING',
         x: 458, y: 94,
         images: []
@@ -6467,7 +6470,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Arie Luyendykbocht entry—18-degree banked final turn named after Indy 500 champion Arie Luyendyk.",
         status: 'MISSING',
         x: 562, y: 125,
         images: []
@@ -6493,7 +6496,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Circuit Zandvoort 2026 Grand Prix calendar.',
+        history: "Arie Luyendykbocht exit—banked curve taken flat-out with DRS open to the finish line.",
         status: 'MISSING',
         x: 634, y: 181,
         images: []
@@ -6525,9 +6528,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Tight inner curb clip onto Rettifilo sausage kerbs',
           trackLimits: 'Inner kerb sensor enforced'
         },
-        history: 'Site of iconic slipstream passes and Turn 1 wheel-to-wheel battles including Hamilton and Verstappen in 2021.',
+        history: "Heavy 350 km/h braking zone into Monza's tightest chicane. Famous for opening-lap scrambles, including Max Verstappen's car landing on top of Lewis Hamilton's Halo in 2021.",
         status: 'VERIFIED',
-        x: 660, y: 250,
+        x: 1445, y: 555,
         images: [
           {
                     "src": "/images/circuits/monza/corners/rettifilo/01_rettifilo_aerial.jpg",
@@ -6562,9 +6565,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Aggressive left kerb strike for exit momentum',
           trackLimits: 'Outer kerb rumble strip'
         },
-        history: 'Chicane added in 1972 to tame high-speed slipstream packs on Monza main straight.',
+        history: "Traction-critical exit from the Rettifilo chicane. A driver's launch here dictates top speed all the way down Curva Grande towards Lesmo.",
         status: 'VERIFIED',
-        x: 619, y: 337,
+        x: 615, y: 625,
         images: [
           {
                     "src": "/images/circuits/monza/corners/rettifilo/01_rettifilo_aerial.jpg",
@@ -6599,9 +6602,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Smooth hugging inner right line',
           trackLimits: 'Outer asphalt run-off'
         },
-        history: 'Historic bank section originally swept around the park trees of Royal Monza.',
+        history: "A flat-out 305 km/h sweeping curve through Monza's royal park, pulling 3.5G while accelerating into the dense forest canopy.",
         status: 'VERIFIED',
-        x: 508, y: 396,
+        x: 350, y: 720,
         images: [
           {
                     "src": "/images/circuits/monza/corners/curva-grande/01_curva_grande_sweeper.jpg",
@@ -6636,9 +6639,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Heavy left-curb strike',
           trackLimits: 'Gravel trap protection outer exit'
         },
-        history: 'Named after the historic Roggia water stream flowing under the circuit perimeter.',
+        history: "Second chicane named after the ancient water canal below the track. A primary slipstream overtaking zone where cars bounce aggressively over sausage kerbs at 120 km/h.",
         status: 'VERIFIED',
-        x: 363, y: 408,
+        x: 295, y: 445,
         images: [
           {
                     "src": "/images/circuits/monza/corners/roggia/01_roggia_chicane.jpg",
@@ -6673,9 +6676,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Autodromo Nazionale Monza 2026 Grand Prix calendar.',
+        history: "Exit of Roggia chicane where drivers clip the kerb to maximize acceleration towards the twin Lesmo curves.",
         status: 'VERIFIED',
-        x: 230, y: 371,
+        x: 220, y: 445,
         images: [
           {
                     "src": "/images/circuits/monza/corners/roggia/01_roggia_chicane.jpg",
@@ -6710,9 +6713,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Clipping inner rumble strip smoothly',
           trackLimits: 'Gravel trap outer exit'
         },
-        history: 'Modified after 1994 to increase safety while preserving the high-speed forest challenge.',
+        history: "Blind right-hand apex surrounded by royal pine trees. Demands total commitment at 170 km/h where any drift wide costs vital momentum.",
         status: 'VERIFIED',
-        x: 151, y: 295,
+        x: 135, y: 200,
         images: [
           {
                     "src": "/images/circuits/monza/corners/lesmo-1/01_lesmo1_apex.jpg",
@@ -6747,9 +6750,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Tight apex and early power delivery',
           trackLimits: 'Outer gravel trap boundary'
         },
-        history: 'Crucial exit corner setting up DRS slipstream attacks down the back straight.',
+        history: "Technical right-hand corner opening into Curva del Serraglio. Site of famous overtakes by Charles Leclerc, Sebastian Vettel, and Michael Schumacher fighting for Tifosi glory.",
         status: 'VERIFIED',
-        x: 151, y: 205,
+        x: 360, y: 115,
         images: [
           {
                     "src": "/images/circuits/monza/corners/lesmo-2/01_lesmo2_exit.jpg",
@@ -6784,9 +6787,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Flicking left, right, left over kerbs',
           trackLimits: 'Kerb sensors active'
         },
-        history: 'Named in memory of double World Champion Alberto Ascari who tragically crashed testing here in 1955.',
+        history: "Fast left-right-left chicane named after 2-time World Champion Alberto Ascari, who tragically lost his life nearby in 1955. Demands razor-sharp balance at 240 km/h.",
         status: 'VERIFIED',
-        x: 230, y: 129,
+        x: 705, y: 555,
         images: [
           {
                     "src": "/images/circuits/monza/corners/ascari/01_ascari_complex.jpg",
@@ -6821,9 +6824,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Autodromo Nazionale Monza 2026 Grand Prix calendar.',
+        history: "Mid-section of Variante Ascari where cars pull maximum lateral G-forces across the high-speed direction change.",
         status: 'VERIFIED',
-        x: 363, y: 92,
+        x: 775, y: 475,
         images: [
           {
                     "src": "/images/circuits/monza/corners/ascari/01_ascari_complex.jpg",
@@ -6858,9 +6861,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Autodromo Nazionale Monza 2026 Grand Prix calendar.',
+        history: "Exit of Ascari launching cars onto the back straight towards Parabolica at over 260 km/h.",
         status: 'VERIFIED',
-        x: 508, y: 104,
+        x: 810, y: 575,
         images: [
           {
                     "src": "/images/circuits/monza/corners/ascari/01_ascari_complex.jpg",
@@ -6895,9 +6898,9 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Late apex power acceleration',
           trackLimits: 'Outer asphalt kerb strip'
         },
-        history: 'Renamed Curva Alboreto in 2021 to honor Italian F1 legend Michele Alboreto.',
+        history: "Iconic 180-degree sweeping right-hand arc renamed in 2021 after Italian hero Michele Alboreto. Drivers balance on the edge of grip at 210 km/h to rocket down the 1.1km pit straight.",
         status: 'VERIFIED',
-        x: 619, y: 163,
+        x: 1445, y: 555,
         images: [
           {
                     "src": "/images/circuits/monza/corners/parabolica/01_parabolica_arc.jpg",
@@ -6938,7 +6941,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Turn 1—heavy 340 to 90 km/h braking zone at the end of the 2.2km main straight.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -6964,7 +6967,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "90-degree left turn onto 1st Parallel Street.",
         status: 'MISSING',
         x: 644, y: 305,
         images: []
@@ -6990,7 +6993,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "90-degree left turn leading towards the flame towers skyline.",
         status: 'MISSING',
         x: 599, y: 353,
         images: []
@@ -7016,7 +7019,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "90-degree right turn into the government building sector.",
         status: 'MISSING',
         x: 530, y: 389,
         images: []
@@ -7042,7 +7045,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Tight left chicane entry near the Philharmonic Fountain Park.",
         status: 'MISSING',
         x: 445, y: 408,
         images: []
@@ -7068,7 +7071,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Right exit of Philharmonic chicane.",
         status: 'MISSING',
         x: 355, y: 408,
         images: []
@@ -7094,7 +7097,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Narrow left turn leading up to the historic fortress wall.",
         status: 'MISSING',
         x: 270, y: 389,
         images: []
@@ -7120,7 +7123,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Old Town / Castle Section entry—F1's narrowest track section (just 7.6m wide) winding past 12th-century medieval fortress walls.",
         status: 'MISSING',
         x: 201, y: 353,
         images: []
@@ -7146,7 +7149,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Tight left uphill squeeze around the castle tower.",
         status: 'MISSING',
         x: 156, y: 305,
         images: []
@@ -7172,7 +7175,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Blind left exit out of the castle walls.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -7198,7 +7201,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Uphill right turn cresting out of the Old Town.",
         status: 'MISSING',
         x: 156, y: 195,
         images: []
@@ -7224,7 +7227,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Downhill left curve passing the Botanical Gardens.",
         status: 'MISSING',
         x: 201, y: 147,
         images: []
@@ -7250,7 +7253,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "High-speed left sweep past the Philharmonic Hall.",
         status: 'MISSING',
         x: 270, y: 111,
         images: []
@@ -7276,7 +7279,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Heavy braking 90-degree left turn into the lower city.",
         status: 'MISSING',
         x: 355, y: 92,
         images: []
@@ -7302,7 +7305,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Downhill left turn towards the Caspian Sea promenade, site of Max Verstappen's 2021 tire blowout.",
         status: 'MISSING',
         x: 445, y: 92,
         images: []
@@ -7328,7 +7331,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "90-degree left turn onto the seafront boulevard.",
         status: 'MISSING',
         x: 530, y: 111,
         images: []
@@ -7354,7 +7357,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 17 (T17) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Flat-out right kink opening the 2.2km full-throttle straight.",
         status: 'MISSING',
         x: 599, y: 147,
         images: []
@@ -7380,7 +7383,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 18 (T18) on the official Baku City Circuit 2026 Grand Prix calendar.',
+        history: "Flat-out left kink taken at 320 km/h.",
         status: 'MISSING',
         x: 644, y: 195,
         images: []
@@ -7412,7 +7415,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -7438,7 +7441,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 644, y: 305,
         images: []
@@ -7464,7 +7467,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 599, y: 353,
         images: []
@@ -7490,7 +7493,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 530, y: 389,
         images: []
@@ -7516,7 +7519,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 445, y: 408,
         images: []
@@ -7542,7 +7545,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 355, y: 408,
         images: []
@@ -7568,7 +7571,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 270, y: 389,
         images: []
@@ -7594,7 +7597,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 201, y: 353,
         images: []
@@ -7620,7 +7623,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 156, y: 305,
         images: []
@@ -7646,7 +7649,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -7672,7 +7675,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 156, y: 195,
         images: []
@@ -7698,7 +7701,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 201, y: 147,
         images: []
@@ -7724,7 +7727,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 270, y: 111,
         images: []
@@ -7750,7 +7753,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 355, y: 92,
         images: []
@@ -7776,7 +7779,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 15 (T15) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 445, y: 92,
         images: []
@@ -7802,7 +7805,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 16 (T16) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 530, y: 111,
         images: []
@@ -7828,7 +7831,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 17 (T17) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 17 (T17) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 599, y: 147,
         images: []
@@ -7854,7 +7857,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 18 (T18) on the official Marina Bay Street Circuit 2026 Grand Prix calendar.',
+        history: "Turn 18 (T18) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 644, y: 195,
         images: []
@@ -7886,7 +7889,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Turn 1 ('Big Red')—steep 40-meter uphill climb into a blind left hairpin, creating dramatic 5-wide turn 1 starts.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -7912,7 +7915,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Downhill acceleration out of Turn 1 into the high-speed section.",
         status: 'MISSING',
         x: 644, y: 305,
         images: []
@@ -7938,7 +7941,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "First entry of the high-speed S-curves inspired by Silverstone's Maggotts/Becketts.",
         status: 'MISSING',
         x: 599, y: 353,
         images: []
@@ -7964,7 +7967,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Fast left-right direction change pulling over 4.5G.",
         status: 'MISSING',
         x: 530, y: 389,
         images: []
@@ -7990,7 +7993,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Right-hand sweeper through the COTA S-curves.",
         status: 'MISSING',
         x: 445, y: 408,
         images: []
@@ -8016,7 +8019,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Left-hand exit of the S-curves leading to Turn 7.",
         status: 'MISSING',
         x: 355, y: 408,
         images: []
@@ -8042,7 +8045,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Medium speed right turn opening into the infield.",
         status: 'MISSING',
         x: 270, y: 389,
         images: []
@@ -8068,7 +8071,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Technical left turn requiring smooth trail braking.",
         status: 'MISSING',
         x: 201, y: 353,
         images: []
@@ -8094,7 +8097,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Uphill left turn cresting towards Turn 10.",
         status: 'MISSING',
         x: 156, y: 305,
         images: []
@@ -8120,7 +8123,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Blind downhill left kink leading onto the back straight.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -8146,7 +8149,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Hairpin turn before the 1.2km back straight, prime DRS overtaking zone.",
         status: 'MISSING',
         x: 156, y: 195,
         images: []
@@ -8172,7 +8175,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Heavy braking zone at the end of the back straight.",
         status: 'MISSING',
         x: 201, y: 147,
         images: []
@@ -8198,7 +8201,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Slow technical left turn leading into the stadium section.",
         status: 'MISSING',
         x: 270, y: 111,
         images: []
@@ -8224,7 +8227,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Carrousel right turn wrapping around the COTA tower.",
         status: 'MISSING',
         x: 355, y: 92,
         images: []
@@ -8250,7 +8253,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Tight left turn exiting the stadium complex.",
         status: 'MISSING',
         x: 445, y: 92,
         images: []
@@ -8276,7 +8279,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "First apex of the long triple-apex right-hander modeled after Istanbul Park's Turn 8.",
         status: 'MISSING',
         x: 530, y: 111,
         images: []
@@ -8302,7 +8305,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 17 (T17) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Second apex of the multi-apex right-hander.",
         status: 'MISSING',
         x: 599, y: 147,
         images: []
@@ -8328,7 +8331,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 18 (T18) on the official Circuit of the Americas 2026 Grand Prix calendar.',
+        history: "Third apex carrying 230+ km/h momentum.",
         status: 'MISSING',
         x: 644, y: 195,
         images: []
@@ -8360,7 +8363,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -8386,7 +8389,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 640, y: 311,
         images: []
@@ -8412,7 +8415,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 584, y: 363,
         images: []
@@ -8438,7 +8441,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 499, y: 398,
         images: []
@@ -8464,7 +8467,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 400, y: 410,
         images: []
@@ -8490,7 +8493,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 301, y: 398,
         images: []
@@ -8516,7 +8519,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 216, y: 363,
         images: []
@@ -8542,7 +8545,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 160, y: 311,
         images: []
@@ -8568,7 +8571,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -8594,7 +8597,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 160, y: 189,
         images: []
@@ -8620,7 +8623,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 216, y: 137,
         images: []
@@ -8646,7 +8649,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 301, y: 102,
         images: []
@@ -8672,7 +8675,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 400, y: 90,
         images: []
@@ -8698,7 +8701,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 499, y: 102,
         images: []
@@ -8724,7 +8727,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 15 (T15) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 584, y: 137,
         images: []
@@ -8750,7 +8753,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Autódromo Hermanos Rodríguez 2026 Grand Prix calendar.',
+        history: "Turn 16 (T16) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 640, y: 189,
         images: []
@@ -8782,7 +8785,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Senna S entry—downhill left curve designed with input from Ayrton Senna himself.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -8808,7 +8811,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Senna S exit—right-hand transition launching cars towards Curva do Sol.",
         status: 'MISSING',
         x: 638, y: 315,
         images: []
@@ -8834,7 +8837,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Curva do Sol—sweeping left exit onto the Reta Oposta back straight where morning sun historically blinded drivers.",
         status: 'MISSING',
         x: 574, y: 369,
         images: []
@@ -8860,7 +8863,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Descida do Lago—heavy braking double left turn near the lake.",
         status: 'MISSING',
         x: 480, y: 402,
         images: []
@@ -8886,7 +8889,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Second apex of Descida do Lago leading onto the back chute.",
         status: 'MISSING',
         x: 373, y: 409,
         images: []
@@ -8912,7 +8915,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Ferradura—long right-hand horseshoe corner.",
         status: 'MISSING',
         x: 270, y: 389,
         images: []
@@ -8938,7 +8941,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Laranjinha—uphill right turn named after the orange-colored curbs.",
         status: 'MISSING',
         x: 190, y: 344,
         images: []
@@ -8964,7 +8967,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Pinheirinho—tight left turn amidst the natural amphitheater.",
         status: 'MISSING',
         x: 146, y: 283,
         images: []
@@ -8990,7 +8993,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Bico de Pato—slow right-hand hairpin ('Duck's Beak').",
         status: 'MISSING',
         x: 146, y: 217,
         images: []
@@ -9016,7 +9019,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Mergulho—fast downhill left sweep into the valley.",
         status: 'MISSING',
         x: 190, y: 156,
         images: []
@@ -9042,7 +9045,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Junção entry—uphill left-hand traction corner.",
         status: 'MISSING',
         x: 270, y: 111,
         images: []
@@ -9068,7 +9071,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Junção exit—where Lewis Hamilton famously passed Timo Glock on the final lap of 2008 to win his first World Championship.",
         status: 'MISSING',
         x: 373, y: 91,
         images: []
@@ -9094,7 +9097,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Autódromo José Carlos Pace (Interlagos) (Brazil) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 98,
         images: []
@@ -9120,7 +9123,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Autódromo José Carlos Pace (Interlagos) (Brazil) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 574, y: 131,
         images: []
@@ -9146,7 +9149,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Autódromo José Carlos Pace (Interlagos) 2026 Grand Prix calendar.',
+        history: "Turn 15 (T15) at Autódromo José Carlos Pace (Interlagos) (Brazil) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 638, y: 185,
         images: []
@@ -9178,7 +9181,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 1 entry—heavy braking hairpin at the Harmon Avenue intersection.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -9204,7 +9207,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 2 left curve opening into the MSG Sphere complex.",
         status: 'MISSING',
         x: 640, y: 311,
         images: []
@@ -9230,7 +9233,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 3 left turn wrapping around The Sphere.",
         status: 'MISSING',
         x: 584, y: 363,
         images: []
@@ -9256,7 +9259,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 4 right sweeper past The Sphere's LED display.",
         status: 'MISSING',
         x: 499, y: 398,
         images: []
@@ -9282,7 +9285,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 5 technical right turn leading to Sands Avenue.",
         status: 'MISSING',
         x: 400, y: 410,
         images: []
@@ -9308,7 +9311,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 6 chicane entry on Sands Avenue.",
         status: 'MISSING',
         x: 301, y: 398,
         images: []
@@ -9334,7 +9337,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 7 chicane exit heading towards Koval Lane.",
         status: 'MISSING',
         x: 216, y: 363,
         images: []
@@ -9360,7 +9363,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 8 90-degree right turn onto Koval Lane.",
         status: 'MISSING',
         x: 160, y: 311,
         images: []
@@ -9386,7 +9389,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 9 chicane entry near the Sphere parking area.",
         status: 'MISSING',
         x: 140, y: 250,
         images: []
@@ -9412,7 +9415,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 10 left turn onto Westchester Drive.",
         status: 'MISSING',
         x: 160, y: 189,
         images: []
@@ -9438,7 +9441,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 11 90-degree left turn opening onto Las Vegas Boulevard.",
         status: 'MISSING',
         x: 216, y: 137,
         images: []
@@ -9464,7 +9467,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "The Strip Straight entry—1.9km flat-out blast down Las Vegas Boulevard past Venetian, Bellagio, and Caesars Palace at 350+ km/h.",
         status: 'MISSING',
         x: 301, y: 102,
         images: []
@@ -9490,7 +9493,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Mid-point of The Strip straight past the Bellagio Fountains.",
         status: 'MISSING',
         x: 400, y: 90,
         images: []
@@ -9516,7 +9519,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Heavy 350 to 90 km/h braking zone at the end of The Strip straight near Planet Hollywood.",
         status: 'MISSING',
         x: 499, y: 102,
         images: []
@@ -9542,7 +9545,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Left turn onto Harmon Avenue.",
         status: 'MISSING',
         x: 584, y: 137,
         images: []
@@ -9568,7 +9571,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 16 (T16) on the official Las Vegas Strip Circuit 2026 Grand Prix calendar.',
+        history: "Turn 16 chicane before the pit straight, launching cars across the finish line.",
         status: 'MISSING',
         x: 640, y: 189,
         images: []
@@ -9600,7 +9603,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -9626,7 +9629,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 638, y: 315,
         images: []
@@ -9652,7 +9655,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 574, y: 369,
         images: []
@@ -9678,7 +9681,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 402,
         images: []
@@ -9704,7 +9707,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 373, y: 409,
         images: []
@@ -9730,7 +9733,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 270, y: 389,
         images: []
@@ -9756,7 +9759,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 190, y: 344,
         images: []
@@ -9782,7 +9785,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 146, y: 283,
         images: []
@@ -9808,7 +9811,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 146, y: 217,
         images: []
@@ -9834,7 +9837,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 190, y: 156,
         images: []
@@ -9860,7 +9863,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 270, y: 111,
         images: []
@@ -9886,7 +9889,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 373, y: 91,
         images: []
@@ -9912,7 +9915,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 98,
         images: []
@@ -9938,7 +9941,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 574, y: 131,
         images: []
@@ -9964,7 +9967,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Lusail International Circuit 2026 Grand Prix calendar.',
+        history: "Turn 15 (T15) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 638, y: 185,
         images: []
@@ -9996,7 +9999,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 1 (T1) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 1 (T1) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 660, y: 250,
         images: []
@@ -10022,7 +10025,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 2 (T2) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 2 (T2) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 638, y: 315,
         images: []
@@ -10048,7 +10051,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 3 (T3) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 3 (T3) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 574, y: 369,
         images: []
@@ -10074,7 +10077,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 4 (T4) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 4 (T4) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 402,
         images: []
@@ -10100,7 +10103,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 5 (T5) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 5 (T5) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 373, y: 409,
         images: []
@@ -10126,7 +10129,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 6 (T6) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 6 (T6) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 270, y: 389,
         images: []
@@ -10152,7 +10155,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 7 (T7) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 7 (T7) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 190, y: 344,
         images: []
@@ -10178,7 +10181,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 8 (T8) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 8 (T8) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 146, y: 283,
         images: []
@@ -10204,7 +10207,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 9 (T9) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 9 (T9) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 146, y: 217,
         images: []
@@ -10230,7 +10233,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 10 (T10) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 10 (T10) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 190, y: 156,
         images: []
@@ -10256,7 +10259,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 11 (T11) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 11 (T11) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 270, y: 111,
         images: []
@@ -10282,7 +10285,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 12 (T12) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 12 (T12) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 373, y: 91,
         images: []
@@ -10308,7 +10311,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 13 (T13) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 13 (T13) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 480, y: 98,
         images: []
@@ -10334,7 +10337,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 14 (T14) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 14 (T14) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 574, y: 131,
         images: []
@@ -10360,7 +10363,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           racingLine: 'Optimal late apex trajectory and power exit',
           trackLimits: 'Strict FIA track limits enforced on exit kerb'
         },
-        history: 'Historic corner Turn 15 (T15) on the official Yas Marina Circuit 2026 Grand Prix calendar.',
+        history: "Turn 15 (T15) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum.",
         status: 'MISSING',
         x: 638, y: 185,
         images: []

@@ -24,13 +24,14 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { selectedSeason, setSelectedSeason } = useSeason();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [activeTheme, setActiveTheme] = React.useState('default');
-
-  React.useEffect(() => {
-    const saved = localStorage.getItem('paddock_theme') || 'default';
-    setActiveTheme(saved);
-    document.documentElement.setAttribute('data-theme', saved);
-  }, []);
+  const [activeTheme, setActiveTheme] = React.useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('paddock_theme') || 'default';
+      document.documentElement.setAttribute('data-theme', saved);
+      return saved;
+    }
+    return 'default';
+  });
 
   const handleThemeChange = (theme: string) => {
     setActiveTheme(theme);
@@ -207,33 +208,26 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
         {children}
 
         {/* Data Source & Legal Attribution Footer */}
-        <footer className="mt-12 pt-6 border-t border-slate-800 font-mono text-xs text-slate-400 space-y-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <footer className="mt-12 p-4 bg-slate-950/60 border border-slate-800/70 rounded-xl backdrop-blur-md font-sans text-[13px] text-slate-300 space-y-3 shadow-lg">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-left">
             <div>
-              <span className="font-bold text-white block mb-0.5">PADDOCK TELEMETRY ANALYTICS</span>
-              <span className="text-[11px] text-slate-500">Data Sources: FIA Formula 1 Telemetry • Jolpica / Ergast F1 Open Data Proxy</span>
+              <span className="font-semibold text-slate-200 inline mr-2">PADDOCK TELEMETRY ANALYTICS</span>
+              <span className="text-[12px] text-slate-400 font-normal">Data Sources: FIA Formula 1 Telemetry • Jolpica / Ergast F1 Open Data Proxy</span>
             </div>
-            <div className="text-[11px]">
-              Status: <span className="text-emerald-400 font-bold">● LIVE (240 FPS)</span> • Server Refresh: Real-Time Proxy
+            <div className="text-[12px] text-slate-300 font-normal whitespace-nowrap">
+              Status: <span className="text-emerald-400 font-medium">● LIVE (240 FPS)</span> • Real-Time Proxy
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-x-4 gap-y-2 text-[11px] text-slate-400 pt-2 border-t border-slate-800/60">
-            <Link href="/privacy" className="hover:text-cyan-300 transition-colors">Privacy Policy</Link>
-            <span>•</span>
-            <Link href="/terms" className="hover:text-cyan-300 transition-colors">Terms of Service</Link>
-            <span>•</span>
-            <Link href="/cookies" className="hover:text-cyan-300 transition-colors">Cookie Policy</Link>
-            <span>•</span>
-            <Link href="/disclaimer" className="hover:text-cyan-300 transition-colors">F1 Open Data Disclaimer</Link>
-            <span>•</span>
-            <Link href="/accessibility" className="hover:text-cyan-300 transition-colors">Accessibility Statement</Link>
-            <span>•</span>
-            <Link href="/acceptable-use" className="hover:text-cyan-300 transition-colors">Acceptable Use</Link>
-            <span>•</span>
-            <Link href="/security" className="hover:text-cyan-300 transition-colors">Security &amp; Vulnerability Disclosure</Link>
-            <span>•</span>
-            <Link href="/support" className="hover:text-cyan-300 transition-colors">Help Center &amp; FAQ</Link>
+          <div className="flex flex-wrap items-center justify-start gap-x-6 gap-y-2 text-[13px] font-normal text-slate-300 pt-2 border-t border-slate-800/60 text-left">
+            <Link href="/privacy" className="hover:underline hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:underline hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/cookies" className="hover:underline hover:text-white transition-colors">Cookie Policy</Link>
+            <Link href="/disclaimer" className="hover:underline hover:text-white transition-colors">F1 Open Data Disclaimer</Link>
+            <Link href="/accessibility" className="hover:underline hover:text-white transition-colors">Accessibility Statement</Link>
+            <Link href="/acceptable-use" className="hover:underline hover:text-white transition-colors">Acceptable Use</Link>
+            <Link href="/security" className="hover:underline hover:text-white transition-colors">Security &amp; Disclosure</Link>
+            <Link href="/support" className="hover:underline hover:text-white transition-colors">Help &amp; FAQ</Link>
           </div>
         </footer>
       </main>

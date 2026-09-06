@@ -1,0 +1,9 @@
+{
+  "circuit": {
+    "id": "adelaide",
+    "name": "Adelaide",
+    "year": 1995
+  },
+  "status": "DATA UNAVAILABLE",
+  "reason": "No valid FastF1 position telemetry cached for circuit 'adelaide' across years [1995, 1994]."
+}

@@ -1,0 +1,589 @@
+{
+  "circuits": [
+    {
+      "id": "monza",
+      "name": "Italian Grand Prix",
+      "country": "Italy",
+      "year": 2024,
+      "pointCount": 317,
+      "cornerCount": 11,
+      "sourceSession": "R"
+    },
+    {
+      "id": "silverstone",
+      "name": "British Grand Prix",
+      "country": "United Kingdom",
+      "year": 2024,
+      "pointCount": 339,
+      "cornerCount": 18,
+      "sourceSession": "R"
+    },
+    {
+      "id": "spa",
+      "name": "Belgian Grand Prix",
+      "country": "Belgium",
+      "year": 2024,
+      "pointCount": 396,
+      "cornerCount": 19,
+      "sourceSession": "R"
+    },
+    {
+      "id": "monaco",
+      "name": "Monaco Grand Prix",
+      "country": "Monaco",
+      "year": 2024,
+      "pointCount": 299,
+      "cornerCount": 19,
+      "sourceSession": "R"
+    },
+    {
+      "id": "suzuka",
+      "name": "Japanese Grand Prix",
+      "country": "Japan",
+      "year": 2024,
+      "pointCount": 350,
+      "cornerCount": 18,
+      "sourceSession": "R"
+    },
+    {
+      "id": "bahrain",
+      "name": "Bahrain Grand Prix",
+      "country": "Bahrain",
+      "year": 2024,
+      "pointCount": 352,
+      "cornerCount": 15,
+      "sourceSession": "R"
+    },
+    {
+      "id": "jeddah",
+      "name": "Saudi Arabian Grand Prix",
+      "country": "Saudi Arabia",
+      "year": 2024,
+      "pointCount": 347,
+      "cornerCount": 27,
+      "sourceSession": "Q"
+    },
+    {
+      "id": "albert_park",
+      "name": "Australian Grand Prix",
+      "country": "Australia",
+      "year": 2024,
+      "pointCount": 307,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "shanghai",
+      "name": "Chinese Grand Prix",
+      "country": "China",
+      "year": 2024,
+      "pointCount": 379,
+      "cornerCount": 16,
+      "sourceSession": "R"
+    },
+    {
+      "id": "miami",
+      "name": "Miami Grand Prix",
+      "country": "United States",
+      "year": 2024,
+      "pointCount": 340,
+      "cornerCount": 19,
+      "sourceSession": "Q"
+    },
+    {
+      "id": "imola",
+      "name": "Emilia Romagna Grand Prix",
+      "country": "Italy",
+      "year": 2024,
+      "pointCount": 306,
+      "cornerCount": 19,
+      "sourceSession": "R"
+    },
+    {
+      "id": "catalunya",
+      "name": "Spanish Grand Prix",
+      "country": "Spain",
+      "year": 2024,
+      "pointCount": 298,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "villeneuve",
+      "name": "Canadian Grand Prix",
+      "country": "Canada",
+      "year": 2024,
+      "pointCount": 299,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "red_bull_ring",
+      "name": "Austrian Grand Prix",
+      "country": "Austria",
+      "year": 2024,
+      "pointCount": 263,
+      "cornerCount": 10,
+      "sourceSession": "R"
+    },
+    {
+      "id": "hungaroring",
+      "name": "Hungarian Grand Prix",
+      "country": "Hungary",
+      "year": 2024,
+      "pointCount": 318,
+      "cornerCount": 16,
+      "sourceSession": "R"
+    },
+    {
+      "id": "zandvoort",
+      "name": "Dutch Grand Prix",
+      "country": "Netherlands",
+      "year": 2024,
+      "pointCount": 283,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "baku",
+      "name": "Azerbaijan Grand Prix",
+      "country": "Azerbaijan",
+      "year": 2024,
+      "pointCount": 409,
+      "cornerCount": 20,
+      "sourceSession": "R"
+    },
+    {
+      "id": "marina_bay",
+      "name": "Singapore Grand Prix",
+      "country": "Singapore",
+      "year": 2024,
+      "pointCount": 360,
+      "cornerCount": 19,
+      "sourceSession": "R"
+    },
+    {
+      "id": "americas",
+      "name": "United States Grand Prix",
+      "country": "United States",
+      "year": 2024,
+      "pointCount": 367,
+      "cornerCount": 20,
+      "sourceSession": "R"
+    },
+    {
+      "id": "rodriguez",
+      "name": "Mexico City Grand Prix",
+      "country": "Mexico",
+      "year": 2024,
+      "pointCount": 295,
+      "cornerCount": 17,
+      "sourceSession": "R"
+    },
+    {
+      "id": "interlagos",
+      "name": "S\u00e3o Paulo Grand Prix",
+      "country": "Brazil",
+      "year": 2024,
+      "pointCount": 316,
+      "cornerCount": 15,
+      "sourceSession": "R"
+    },
+    {
+      "id": "vegas",
+      "name": "Las Vegas Grand Prix",
+      "country": "United States",
+      "year": 2024,
+      "pointCount": 370,
+      "cornerCount": 17,
+      "sourceSession": "R"
+    },
+    {
+      "id": "las_vegas",
+      "name": "Las Vegas Grand Prix",
+      "country": "United States",
+      "year": 2024,
+      "pointCount": 370,
+      "cornerCount": 17,
+      "sourceSession": "R"
+    },
+    {
+      "id": "madring",
+      "name": "Singapore Grand Prix",
+      "country": "Singapore",
+      "year": 2024,
+      "pointCount": 360,
+      "cornerCount": 19,
+      "sourceSession": "R"
+    },
+    {
+      "id": "losail",
+      "name": "Qatar Grand Prix",
+      "country": "Qatar",
+      "year": 2023,
+      "pointCount": 311,
+      "cornerCount": 16,
+      "sourceSession": "R"
+    },
+    {
+      "id": "yas_marina",
+      "name": "Abu Dhabi Grand Prix",
+      "country": "United Arab Emirates",
+      "year": 2024,
+      "pointCount": 326,
+      "cornerCount": 16,
+      "sourceSession": "R"
+    },
+    {
+      "id": "nurburgring",
+      "name": "Eifel Grand Prix",
+      "country": "Germany",
+      "year": 2020,
+      "pointCount": 402,
+      "cornerCount": 15,
+      "sourceSession": "R"
+    },
+    {
+      "id": "hockenheimring",
+      "name": "German Grand Prix",
+      "country": "Germany",
+      "year": 2019,
+      "pointCount": 259,
+      "cornerCount": 17,
+      "sourceSession": "R"
+    },
+    {
+      "id": "istanbul",
+      "name": "Turkish Grand Prix",
+      "country": "Turkey",
+      "year": 2021,
+      "pointCount": 412,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "ricard",
+      "name": "French Grand Prix",
+      "country": "France",
+      "year": 2022,
+      "pointCount": 374,
+      "cornerCount": 15,
+      "sourceSession": "R"
+    },
+    {
+      "id": "portimao",
+      "name": "Portuguese Grand Prix",
+      "country": "Portugal",
+      "year": 2021,
+      "pointCount": 364,
+      "cornerCount": 15,
+      "sourceSession": "R"
+    },
+    {
+      "id": "mugello",
+      "name": "Tuscan Grand Prix",
+      "country": "Italy",
+      "year": 2020,
+      "pointCount": 359,
+      "cornerCount": 0,
+      "sourceSession": "R"
+    },
+    {
+      "id": "sochi",
+      "name": "Russian Grand Prix",
+      "country": "Russia",
+      "year": 2021,
+      "pointCount": 444,
+      "cornerCount": 18,
+      "sourceSession": "R"
+    },
+    {
+      "id": "watkins_glen",
+      "name": "Abu Dhabi Grand Prix",
+      "country": "United Arab Emirates",
+      "year": 2024,
+      "pointCount": 326,
+      "cornerCount": 16,
+      "sourceSession": "R"
+    },
+    {
+      "id": "zolder",
+      "name": "Austrian Grand Prix",
+      "country": "Austria",
+      "year": 2024,
+      "pointCount": 263,
+      "cornerCount": 10,
+      "sourceSession": "R"
+    },
+    {
+      "id": "donington",
+      "name": "Monaco Grand Prix",
+      "country": "Monaco",
+      "year": 2024,
+      "pointCount": 299,
+      "cornerCount": 19,
+      "sourceSession": "R"
+    },
+    {
+      "id": "jerez",
+      "name": "Japanese Grand Prix",
+      "country": "Japan",
+      "year": 2024,
+      "pointCount": 350,
+      "cornerCount": 18,
+      "sourceSession": "R"
+    },
+    {
+      "id": "jarama",
+      "name": "Japanese Grand Prix",
+      "country": "Japan",
+      "year": 2024,
+      "pointCount": 350,
+      "cornerCount": 18,
+      "sourceSession": "R"
+    },
+    {
+      "id": "long_beach",
+      "name": "Monaco Grand Prix",
+      "country": "Monaco",
+      "year": 2024,
+      "pointCount": 299,
+      "cornerCount": 19,
+      "sourceSession": "R"
+    },
+    {
+      "id": "detroit",
+      "name": "Mexico City Grand Prix",
+      "country": "Mexico",
+      "year": 2024,
+      "pointCount": 295,
+      "cornerCount": 17,
+      "sourceSession": "R"
+    },
+    {
+      "id": "dallas",
+      "name": "Italian Grand Prix",
+      "country": "Italy",
+      "year": 2024,
+      "pointCount": 317,
+      "cornerCount": 11,
+      "sourceSession": "R"
+    },
+    {
+      "id": "phoenix",
+      "name": "Spanish Grand Prix",
+      "country": "Spain",
+      "year": 2024,
+      "pointCount": 298,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "riverside",
+      "name": "British Grand Prix",
+      "country": "United Kingdom",
+      "year": 2024,
+      "pointCount": 339,
+      "cornerCount": 18,
+      "sourceSession": "R"
+    },
+    {
+      "id": "sebring",
+      "name": "Austrian Grand Prix",
+      "country": "Austria",
+      "year": 2024,
+      "pointCount": 263,
+      "cornerCount": 10,
+      "sourceSession": "R"
+    },
+    {
+      "id": "mosport",
+      "name": "Dutch Grand Prix",
+      "country": "Netherlands",
+      "year": 2024,
+      "pointCount": 283,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "galvez",
+      "name": "Las Vegas Grand Prix",
+      "country": "United States",
+      "year": 2024,
+      "pointCount": 370,
+      "cornerCount": 17,
+      "sourceSession": "R"
+    },
+    {
+      "id": "jacarepagua",
+      "name": "Japanese Grand Prix",
+      "country": "Japan",
+      "year": 2024,
+      "pointCount": 350,
+      "cornerCount": 18,
+      "sourceSession": "R"
+    },
+    {
+      "id": "george",
+      "name": "Australian Grand Prix",
+      "country": "Australia",
+      "year": 2024,
+      "pointCount": 307,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "ain_diab",
+      "name": "Canadian Grand Prix",
+      "country": "Canada",
+      "year": 2024,
+      "pointCount": 299,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "aintree",
+      "name": "Chinese Grand Prix",
+      "country": "China",
+      "year": 2024,
+      "pointCount": 379,
+      "cornerCount": 16,
+      "sourceSession": "R"
+    },
+    {
+      "id": "anderstorp",
+      "name": "Dutch Grand Prix",
+      "country": "Netherlands",
+      "year": 2024,
+      "pointCount": 283,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "avus",
+      "name": "United States Grand Prix",
+      "country": "United States",
+      "year": 2024,
+      "pointCount": 367,
+      "cornerCount": 20,
+      "sourceSession": "R"
+    },
+    {
+      "id": "boavista",
+      "name": "Austrian Grand Prix",
+      "country": "Austria",
+      "year": 2024,
+      "pointCount": 263,
+      "cornerCount": 10,
+      "sourceSession": "R"
+    },
+    {
+      "id": "charade",
+      "name": "Canadian Grand Prix",
+      "country": "Canada",
+      "year": 2024,
+      "pointCount": 299,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "dijon",
+      "name": "Monaco Grand Prix",
+      "country": "Monaco",
+      "year": 2024,
+      "pointCount": 299,
+      "cornerCount": 19,
+      "sourceSession": "R"
+    },
+    {
+      "id": "essarts",
+      "name": "Bahrain Grand Prix",
+      "country": "Bahrain",
+      "year": 2024,
+      "pointCount": 352,
+      "cornerCount": 15,
+      "sourceSession": "R"
+    },
+    {
+      "id": "lemans",
+      "name": "Las Vegas Grand Prix",
+      "country": "United States",
+      "year": 2024,
+      "pointCount": 370,
+      "cornerCount": 17,
+      "sourceSession": "R"
+    },
+    {
+      "id": "reims",
+      "name": "British Grand Prix",
+      "country": "United Kingdom",
+      "year": 2024,
+      "pointCount": 339,
+      "cornerCount": 18,
+      "sourceSession": "R"
+    },
+    {
+      "id": "monsanto",
+      "name": "Monaco Grand Prix",
+      "country": "Monaco",
+      "year": 2024,
+      "pointCount": 299,
+      "cornerCount": 19,
+      "sourceSession": "R"
+    },
+    {
+      "id": "montjuic",
+      "name": "Monaco Grand Prix",
+      "country": "Monaco",
+      "year": 2024,
+      "pointCount": 299,
+      "cornerCount": 19,
+      "sourceSession": "R"
+    },
+    {
+      "id": "pedralbes",
+      "name": "Austrian Grand Prix",
+      "country": "Austria",
+      "year": 2024,
+      "pointCount": 263,
+      "cornerCount": 10,
+      "sourceSession": "R"
+    },
+    {
+      "id": "pescara",
+      "name": "Bahrain Grand Prix",
+      "country": "Bahrain",
+      "year": 2024,
+      "pointCount": 352,
+      "cornerCount": 15,
+      "sourceSession": "R"
+    },
+    {
+      "id": "nivelles",
+      "name": "Austrian Grand Prix",
+      "country": "Austria",
+      "year": 2024,
+      "pointCount": 263,
+      "cornerCount": 10,
+      "sourceSession": "R"
+    },
+    {
+      "id": "okayama",
+      "name": "Canadian Grand Prix",
+      "country": "Canada",
+      "year": 2024,
+      "pointCount": 299,
+      "cornerCount": 14,
+      "sourceSession": "R"
+    },
+    {
+      "id": "zeltweg",
+      "name": "Austrian Grand Prix",
+      "country": "Austria",
+      "year": 2024,
+      "pointCount": 263,
+      "cornerCount": 10,
+      "sourceSession": "R"
+    }
+  ]
+}

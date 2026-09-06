@@ -60,27 +60,107 @@ const RADIO_MESSAGES = [
 
 
 
+const ALL_CIRCUITS_ROSTER = [
+  { id: 'monza', name: 'Autodromo Nazionale Monza', flag: '🇮🇹', country: 'Italy' },
+  { id: 'silverstone', name: 'Silverstone Circuit', flag: '🇬🇧', country: 'Great Britain' },
+  { id: 'spa', name: 'Circuit de Spa-Francorchamps', flag: '🇧🇪', country: 'Belgium' },
+  { id: 'monaco', name: 'Circuit de Monaco', flag: '🇲🇨', country: 'Monaco' },
+  { id: 'suzuka', name: 'Suzuka International Racing Course', flag: '🇯🇵', country: 'Japan' },
+  { id: 'bahrain', name: 'Bahrain International Circuit', flag: '🇧🇭', country: 'Bahrain' },
+  { id: 'jeddah', name: 'Jeddah Corniche Circuit', flag: '🇸🇦', country: 'Saudi Arabia' },
+  { id: 'albert_park', name: 'Albert Park Circuit', flag: '🇦🇺', country: 'Australia' },
+  { id: 'shanghai', name: 'Shanghai International Circuit', flag: '🇨🇳', country: 'China' },
+  { id: 'miami', name: 'Miami International Autodrome', flag: '🇺🇸', country: 'United States' },
+  { id: 'imola', name: 'Autodromo Enzo e Dino Ferrari (Imola)', flag: '🇮🇹', country: 'Italy' },
+  { id: 'catalunya', name: 'Circuit de Barcelona-Catalunya', flag: '🇪🇸', country: 'Spain' },
+  { id: 'villeneuve', name: 'Circuit Gilles Villeneuve', flag: '🇨🇦', country: 'Canada' },
+  { id: 'red_bull_ring', name: 'Red Bull Ring', flag: '🇦🇹', country: 'Austria' },
+  { id: 'hungaroring', name: 'Hungaroring', flag: '🇭🇺', country: 'Hungary' },
+  { id: 'zandvoort', name: 'Circuit Zandvoort', flag: '🇳🇱', country: 'Netherlands' },
+  { id: 'baku', name: 'Baku City Circuit', flag: '🇦🇿', country: 'Azerbaijan' },
+  { id: 'marina_bay', name: 'Marina Bay Street Circuit', flag: '🇸🇬', country: 'Singapore' },
+  { id: 'americas', name: 'Circuit of the Americas (COTA)', flag: '🇺🇸', country: 'United States' },
+  { id: 'rodriguez', name: 'Autódromo Hermanos Rodríguez', flag: '🇲🇽', country: 'Mexico' },
+  { id: 'interlagos', name: 'Autódromo José Carlos Pace (Interlagos)', flag: '🇧🇷', country: 'Brazil' },
+  { id: 'vegas', name: 'Las Vegas Strip Circuit', flag: '🇺🇸', country: 'United States' },
+  { id: 'las_vegas', name: 'Las Vegas Street Circuit (Caesars Palace GP)', flag: '🇺🇸', country: 'United States' },
+  { id: 'madring', name: 'Madring Circuit (Madrid)', flag: '🇪🇸', country: 'Spain' },
+  { id: 'losail', name: 'Lusail International Circuit', flag: '🇶🇦', country: 'Qatar' },
+  { id: 'yas_marina', name: 'Yas Marina Circuit', flag: '🇦🇪', country: 'Abu Dhabi' },
+  // HISTORIC & RETRO F1 CIRCUITS
+  { id: 'nurburgring', name: 'Nürburgring Nordschleife & GP-Strecke', flag: '🇩🇪', country: 'Germany' },
+  { id: 'hockenheimring', name: 'Hockenheimring Baden-Württemberg', flag: '🇩🇪', country: 'Germany' },
+  { id: 'sepang', name: 'Sepang International Circuit', flag: '🇲🇾', country: 'Malaysia' },
+  { id: 'indianapolis', name: 'Indianapolis Motor Speedway (IMS)', flag: '🇺🇸', country: 'United States' },
+  { id: 'kyalami', name: 'Kyalami Grand Prix Circuit', flag: '🇿🇦', country: 'South Africa' },
+  { id: 'brands_hatch', name: 'Brands Hatch Circuit', flag: '🇬🇧', country: 'Great Britain' },
+  { id: 'fuji', name: 'Fuji Speedway', flag: '🇯🇵', country: 'Japan' },
+  { id: 'istanbul', name: 'Intercity Istanbul Park', flag: '🇹🇷', country: 'Turkey' },
+  { id: 'ricard', name: 'Circuit Paul Ricard (Le Castellet)', flag: '🇫🇷', country: 'France' },
+  { id: 'portimao', name: 'Autódromo Internacional do Algarve (Portimão)', flag: '🇵🇹', country: 'Portugal' },
+  { id: 'mugello', name: 'Autodromo Internazionale del Mugello', flag: '🇮🇹', country: 'Italy' },
+  { id: 'sochi', name: 'Sochi Autodrom', flag: '🇷🇺', country: 'Russia' },
+  { id: 'magny_cours', name: 'Circuit de Nevers Magny-Cours', flag: '🇫🇷', country: 'France' },
+  { id: 'estoril', name: 'Autódromo do Estoril', flag: '🇵🇹', country: 'Portugal' },
+  { id: 'adelaide', name: 'Adelaide Street Circuit', flag: '🇦🇺', country: 'Australia' },
+  { id: 'buddh', name: 'Buddh International Circuit (Greater Noida)', flag: '🇮🇳', country: 'India' },
+  { id: 'yeongam', name: 'Korean International Circuit (Yeongam)', flag: '🇰🇷', country: 'South Korea' },
+  { id: 'valencia', name: 'Valencia Street Circuit', flag: '🇪🇸', country: 'Spain' },
+  { id: 'watkins_glen', name: 'Watkins Glen International', flag: '🇺🇸', country: 'United States' },
+  { id: 'zolder', name: 'Circuit Zolder', flag: '🇧🇪', country: 'Belgium' },
+  { id: 'donington', name: 'Donington Park', flag: '🇬🇧', country: 'Great Britain' },
+  { id: 'jerez', name: 'Circuito de Jerez-Ángel Nieto', flag: '🇪🇸', country: 'Spain' },
+  { id: 'jarama', name: 'Circuito del Jarama', flag: '🇪🇸', country: 'Spain' },
+  { id: 'long_beach', name: 'Long Beach Street Circuit', flag: '🇺🇸', country: 'United States' },
+  { id: 'detroit', name: 'Detroit Street Circuit', flag: '🇺🇸', country: 'United States' },
+  { id: 'dallas', name: 'Fair Park Dallas Grand Prix Circuit', flag: '🇺🇸', country: 'United States' },
+  { id: 'phoenix', name: 'Phoenix Street Circuit', flag: '🇺🇸', country: 'United States' },
+  { id: 'riverside', name: 'Riverside International Raceway', flag: '🇺🇸', country: 'United States' },
+  { id: 'sebring', name: 'Sebring International Raceway', flag: '🇺🇸', country: 'United States' },
+  { id: 'mosport', name: 'Mosport International Raceway (Canadian Tire Motorsport Park)', flag: '🇨🇦', country: 'Canada' },
+  { id: 'tremblant', name: 'Circuit Mont-Tremblant', flag: '🇨🇦', country: 'Canada' },
+  { id: 'galvez', name: 'Autódromo Juan y Oscar Gálvez (Buenos Aires)', flag: '🇦🇷', country: 'Argentina' },
+  { id: 'jacarepagua', name: 'Autódromo Internacional Nelson Piquet (Jacarepaguá)', flag: '🇧🇷', country: 'Brazil' },
+  { id: 'george', name: 'Prince George Circuit (East London)', flag: '🇿🇦', country: 'South Africa' },
+  { id: 'ain-diab', name: 'Ain-Diab Circuit (Casablanca)', flag: '🇲🇦', country: 'Morocco' },
+  { id: 'aintree', name: 'Aintree Motor Racing Circuit', flag: '🇬🇧', country: 'Great Britain' },
+  { id: 'anderstorp', name: 'Scandinavian Raceway (Anderstorp)', flag: '🇸🇪', country: 'Sweden' },
+  { id: 'avus', name: 'Automobil-Verkehrs- und Übungsstraße (AVUS)', flag: '🇩🇪', country: 'Germany' },
+  { id: 'boavista', name: 'Circuito da Boavista (Porto)', flag: '🇵🇹', country: 'Portugal' },
+  { id: 'bremgarten', name: 'Circuit Bremgarten (Bern)', flag: '🇨🇭', country: 'Switzerland' },
+  { id: 'charade', name: 'Charade Circuit (Circuit Louis Rosier)', flag: '🇫🇷', country: 'France' },
+  { id: 'dijon', name: 'Circuit de Dijon-Prenois', flag: '🇫🇷', country: 'France' },
+  { id: 'essarts', name: 'Rouen-Les-Essarts', flag: '🇫🇷', country: 'France' },
+  { id: 'lemans', name: 'Circuit de la Sarthe / Bugatti (Le Mans)', flag: '🇫🇷', country: 'France' },
+  { id: 'reims', name: 'Reims-Gueux', flag: '🇫🇷', country: 'France' },
+  { id: 'monsanto', name: 'Monsanto Park Circuit (Lisbon)', flag: '🇵🇹', country: 'Portugal' },
+  { id: 'montjuic', name: 'Montjuïc Circuit (Barcelona)', flag: '🇪🇸', country: 'Spain' },
+  { id: 'pedralbes', name: 'Pedralbes Circuit (Barcelona)', flag: '🇪🇸', country: 'Spain' },
+  { id: 'pescara', name: 'Pescara Circuit (Coppa Acerbo)', flag: '🇮🇹', country: 'Italy' },
+  { id: 'nivelles', name: 'Nivelles-Baulers', flag: '🇧🇪', country: 'Belgium' },
+  { id: 'okayama', name: 'TI Circuit Okayama (Aida)', flag: '🇯🇵', country: 'Japan' },
+  { id: 'zeltweg', name: 'Zeltweg Airfield Circuit', flag: '🇦🇹', country: 'Austria' }
+];
+
 export default function LiveTelemetryPage() {
   const [drivers, setDrivers] = useState<LiveDriver[]>(INITIAL_DRIVERS);
   const [selectedCircuit, setSelectedCircuit] = useState('spa');
-  const [races, setRaces] = useState<any[]>([]);
-  const [activeRace, setActiveRace] = useState<any | null>(null);
-
   // Fetch current calendar races on mount
   useEffect(() => {
     async function loadCalendar() {
       try {
-        const res = await getJSON(`${API_BASE}/current.json`);
-        const list = res.MRData.RaceTable.Races || [];
-        setRaces(list);
+        const res = await getJSON(`${API_BASE}/current.json`) as { MRData?: { RaceTable?: { Races?: Record<string, unknown>[] } } };
+        const list = res?.MRData?.RaceTable?.Races || [];
         if (list.length > 0) {
-          const spaRace = list.find((r: any) => r.Circuit.circuitId?.toLowerCase().includes('spa'));
+          const spaRace = list.find((r: Record<string, unknown>) => {
+            const rObj = r as { Circuit?: { circuitId?: string } };
+            return rObj.Circuit?.circuitId?.toLowerCase().includes('spa');
+          }) as { Circuit: { circuitId: string } } | undefined;
           if (spaRace) {
             setSelectedCircuit(spaRace.Circuit.circuitId);
-            setActiveRace(spaRace);
           } else {
-            setSelectedCircuit(list[0].Circuit.circuitId);
-            setActiveRace(list[0]);
+            const firstRace = list[0] as { Circuit: { circuitId: string } };
+            setSelectedCircuit(firstRace.Circuit.circuitId);
           }
         }
       } catch (err) {
@@ -92,10 +172,6 @@ export default function LiveTelemetryPage() {
 
   const handleCircuitChange = (circuitId: string) => {
     setSelectedCircuit(circuitId);
-    const matched = races.find((r: any) => r.Circuit.circuitId === circuitId);
-    if (matched) {
-      setActiveRace(matched);
-    }
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
       wsRef.current.send(JSON.stringify({
         type: 'SET_CIRCUIT',
@@ -132,7 +208,9 @@ export default function LiveTelemetryPage() {
   }, [logs]);
 
   // Connect to F1 Proxy WebSocket Server
-  const connectToProxy = () => {
+  useEffect(() => {
+    if (connectionMode !== 'LIVE_SERVER') return;
+
     autoReconnectRef.current = true;
     if (wsRef.current) {
       wsRef.current.onclose = null;
@@ -140,8 +218,10 @@ export default function LiveTelemetryPage() {
       wsRef.current.close();
     }
 
-    setProxyStatus('CONNECTING');
-    setLogs(l => [...l, `[${new Date().toTimeString().split(' ')[0]}] PROXY: Connecting to gateway at ws://127.0.0.1:8080...`]);
+    const timerId = setTimeout(() => {
+      setProxyStatus('CONNECTING');
+      setLogs(l => [...l, `[${new Date().toTimeString().split(' ')[0]}] PROXY: Connecting to gateway at ws://127.0.0.1:8080...`]);
+    }, 0);
 
     try {
       const socket = new WebSocket('ws://127.0.0.1:8080');
@@ -198,19 +278,20 @@ export default function LiveTelemetryPage() {
           else if (msg.source === 'F1_LIVE_SERVER') {
             if (msg.channel === 'TimingData' && msg.data && msg.data.Lines) {
               setDrivers(prev => {
-                let list = prev.map(d => ({ ...d }));
+                const list = prev.map(d => ({ ...d }));
                 const lines = msg.data.Lines;
 
-                Object.entries(lines).forEach(([driverNum, dataLine]: [string, any]) => {
+                Object.entries(lines).forEach(([driverNum, dataLine]) => {
+                  const lineObj = dataLine as { Position?: string; LastLapTime?: { Value?: string }; Speeds?: { ST?: string }; InPit?: boolean; Retired?: boolean; GapToLeader?: string };
                   const matched = list.find(d => d.number === driverNum);
                   if (matched) {
-                    if (dataLine.Position) matched.position = parseInt(dataLine.Position) || matched.position;
-                    if (dataLine.LastLapTime && dataLine.LastLapTime.Value) matched.lastLapTime = dataLine.LastLapTime.Value;
-                    if (dataLine.Speeds && dataLine.Speeds.ST) matched.speedTrap = parseInt(dataLine.Speeds.ST) || matched.speedTrap;
-                    if (dataLine.InPit !== undefined) matched.status = dataLine.InPit ? 'IN PIT' : 'RACING';
-                    if (dataLine.Retired !== undefined) matched.status = dataLine.Retired ? 'RETIRED' : matched.status;
-                    if (dataLine.GapToLeader !== undefined) {
-                      matched.gapToLeader = parseFloat(dataLine.GapToLeader) || 0;
+                    if (lineObj.Position) matched.position = parseInt(lineObj.Position) || matched.position;
+                    if (lineObj.LastLapTime && lineObj.LastLapTime.Value) matched.lastLapTime = lineObj.LastLapTime.Value;
+                    if (lineObj.Speeds && lineObj.Speeds.ST) matched.speedTrap = parseInt(lineObj.Speeds.ST) || matched.speedTrap;
+                    if (lineObj.InPit !== undefined) matched.status = lineObj.InPit ? 'IN PIT' : 'RACING';
+                    if (lineObj.Retired !== undefined) matched.status = lineObj.Retired ? 'RETIRED' : matched.status;
+                    if (lineObj.GapToLeader !== undefined) {
+                      matched.gapToLeader = parseFloat(lineObj.GapToLeader) || 0;
                     }
                   }
                 });
@@ -242,9 +323,6 @@ export default function LiveTelemetryPage() {
         if (autoReconnectRef.current && reconnectCountRef.current < 2) {
           reconnectCountRef.current += 1;
           setLogs(l => [...l, `[${timeStr}] PROXY: Reconnecting in 3s (Attempt ${reconnectCountRef.current}/2)...`]);
-          setTimeout(() => {
-            connectToProxy();
-          }, 3000);
         } else {
           autoReconnectRef.current = false;
           setConnectionMode('SIMULATOR');
@@ -256,34 +334,24 @@ export default function LiveTelemetryPage() {
         setProxyStatus('OFFLINE');
       };
     } catch {
-      setProxyStatus('OFFLINE');
-      setConnectionMode('SIMULATOR');
+      setTimeout(() => {
+        setProxyStatus('OFFLINE');
+        setConnectionMode('SIMULATOR');
+      }, 0);
     }
-  };
 
-  const disconnectFromProxy = () => {
-    autoReconnectRef.current = false;
-    if (wsRef.current) {
-      wsRef.current.onclose = null;
-      wsRef.current.onerror = null;
-      wsRef.current.close();
-      wsRef.current = null;
-    }
-    setProxyStatus('OFFLINE');
-    setLogs(l => [...l, `[${new Date().toTimeString().split(' ')[0]}] PROXY: Disconnected.`]);
-  };
-
-  // Toggle connection mode
-  useEffect(() => {
-    if (connectionMode === 'LIVE_SERVER') {
-      connectToProxy();
-    } else {
-      disconnectFromProxy();
-    }
     return () => {
-      disconnectFromProxy();
+      clearTimeout(timerId);
+      autoReconnectRef.current = false;
+      if (wsRef.current) {
+        wsRef.current.onclose = null;
+        wsRef.current.onerror = null;
+        wsRef.current.close();
+        wsRef.current = null;
+      }
+      setProxyStatus('OFFLINE');
     };
-  }, [connectionMode]);
+  }, [connectionMode, selectedCircuit]);
 
   // Telemetry simulation tick loop (active only in SIMULATOR mode)
   useEffect(() => {
@@ -294,7 +362,7 @@ export default function LiveTelemetryPage() {
 
     intervalRef.current = setInterval(() => {
       setDrivers(prev => {
-        let list = prev.map(d => ({ ...d }));
+        const list = prev.map(d => ({ ...d }));
 
         list.forEach(d => {
           if (d.status === 'RACING') {
@@ -392,8 +460,8 @@ export default function LiveTelemetryPage() {
           }
         });
 
-        let activeRacing = list.filter(d => d.status !== 'RETIRED');
-        let retired = list.filter(d => d.status === 'RETIRED');
+        const activeRacing = list.filter(d => d.status !== 'RETIRED');
+        const retired = list.filter(d => d.status === 'RETIRED');
 
         activeRacing.forEach((d, idx) => {
           d.position = idx + 1;
@@ -428,7 +496,7 @@ export default function LiveTelemetryPage() {
 
   const triggerManualOvertake = () => {
     setDrivers(prev => {
-      let list = prev.map(d => ({ ...d }));
+      const list = prev.map(d => ({ ...d }));
       for (let i = 0; i < list.length - 1; i++) {
         if (list[i].status === 'RACING' && list[i + 1].status === 'RACING') {
           const d1 = list[i];
@@ -489,7 +557,7 @@ export default function LiveTelemetryPage() {
           <div style={{ display: 'flex', gap: '8px' }}>
             <select
               value={connectionMode}
-              onChange={(e) => setConnectionMode(e.target.value as any)}
+              onChange={(e) => setConnectionMode(e.target.value as 'SIMULATOR' | 'LIVE_SERVER')}
               style={{
                 background: 'var(--carbon-2)',
                 border: '1px solid var(--line)',
@@ -508,13 +576,19 @@ export default function LiveTelemetryPage() {
                 <button className="btn" onClick={() => setIsPlaying(!isPlaying)}>
                   {isPlaying ? '⏸ Pause' : '▶ Resume'}
                 </button>
+                <button className="btn" onClick={triggerManualOvertake}>
+                  🚀 Overtake
+                </button>
+                <button className="btn" onClick={triggerSafetyCar}>
+                  ⚠️ Safety Car
+                </button>
                 <button className="btn" onClick={resetTelemetry}>
                   🔄 Reset
                 </button>
               </>
             )}
             {connectionMode === 'LIVE_SERVER' && (
-              <button className="btn" onClick={connectToProxy} disabled={proxyStatus === 'CONNECTING'}>
+              <button className="btn" onClick={() => setConnectionMode('LIVE_SERVER')} disabled={proxyStatus === 'CONNECTING'}>
                 {proxyStatus === 'CONNECTED' ? '🟢 Reconnect' : '⚡ Connect'}
               </button>
             )}
@@ -638,20 +712,11 @@ export default function LiveTelemetryPage() {
                   fontFamily: 'var(--font-mono)'
                 }}
               >
-                {races.length > 0 ? (
-                  races.map((r: any) => (
-                    <option key={r.Circuit.circuitId} value={r.Circuit.circuitId}>
-                      🏁 {r.Circuit.Location.country} - {r.Circuit.circuitName}
-                    </option>
-                  ))
-                ) : (
-                  <>
-                    <option value="spa">🇧🇪 Spa-Francorchamps</option>
-                    <option value="monza">🇮🇹 Monza</option>
-                    <option value="silverstone">🇬🇧 Silverstone</option>
-                    <option value="monaco">🇲🇨 Monaco</option>
-                  </>
-                )}
+                {ALL_CIRCUITS_ROSTER.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.flag} {c.country} - {c.name}
+                  </option>
+                ))}
               </select>
             </div>
             <CircuitMap 

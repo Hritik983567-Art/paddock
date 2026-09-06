@@ -9,7 +9,7 @@ function getSecret(): string {
   return process.env.JWT_SECRET || 'paddock-f1-telemetry-server-secure-key-2026';
 }
 
-export async function signJWT(payload: Record<string, any>): Promise<string> {
+export async function signJWT(payload: Record<string, unknown>): Promise<string> {
   const secret = getSecret();
   const header = { alg: 'HS256', typ: 'JWT' };
   
@@ -42,7 +42,7 @@ export async function signJWT(payload: Record<string, any>): Promise<string> {
   return `${tokenData}.${sigB64}`;
 }
 
-export async function verifyJWT(token: string): Promise<Record<string, any> | null> {
+export async function verifyJWT(token: string): Promise<Record<string, unknown> | null> {
   try {
     const secret = getSecret();
     const parts = token.split('.');
@@ -84,7 +84,7 @@ export async function verifyJWT(token: string): Promise<Record<string, any> | nu
     }
 
     return payload;
-  } catch (err) {
+  } catch {
     return null;
   }
 }

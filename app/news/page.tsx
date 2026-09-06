@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { fetchF1News, NewsItem } from '../utils/api';
 
 type CategoryFilter = 'ALL' | 'F1' | 'DRIVERS' | 'TEAMS' | 'TECHNICAL' | 'FIA' | 'RACE WEEKEND';
@@ -46,23 +46,27 @@ export default function NewsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
 
-  const loadNews = async () => {
+  const loadNews = useCallback(async () => {
     setLoading(true);
     setError('');
     try {
       const items = await fetchF1News();
       setNews(items || []);
       setLastRefreshed(new Date());
-    } catch (e: any) {
-      setError(e.message || "We couldn't retrieve the latest paddock updates.");
+    } catch (e: unknown) {
+      const err = e as Error;
+      setError(err.message || "We couldn't retrieve the latest paddock updates.");
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    loadNews();
-  }, []);
+    const timer = setTimeout(() => {
+      loadNews();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [loadNews]);
 
   const enrichedNews: EnrichedNewsItem[] = useMemo(() => {
     return news.map((item, idx) => {

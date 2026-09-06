@@ -82,7 +82,7 @@ export default function ForgotPasswordPage() {
               <span className="cell cell-green"></span>
               <span className="cell cell-dark"></span>
             </div>
-            <span className="f1-spec-brand-text">PADDOCK<span className="accent-slash">//</span>TELEMETRY</span>
+            <span className="f1-spec-brand-text">PADDOCK<span className="accent-slash">{'//'}</span>TELEMETRY</span>
           </div>
 
           <div className="f1-spec-welcome">

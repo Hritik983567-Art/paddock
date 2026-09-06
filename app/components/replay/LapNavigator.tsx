@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface LapNavigatorProps {
   currentLap: number;
@@ -17,9 +17,12 @@ export const LapNavigator: React.FC<LapNavigatorProps> = ({
 }) => {
   const [inputVal, setInputVal] = useState(String(currentLap));
 
-  useEffect(() => {
+  const [prevCurrentLap, setPrevCurrentLap] = useState(currentLap);
+
+  if (currentLap !== prevCurrentLap) {
+    setPrevCurrentLap(currentLap);
     setInputVal(String(currentLap));
-  }, [currentLap]);
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
