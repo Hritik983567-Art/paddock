@@ -12,6 +12,7 @@ import {
 } from '../lib/circuitTransform';
 import { CornerDetails } from './CornerDetails';
 import { CornerDirectory } from './CornerDirectory';
+import { getTeamColor } from '../utils/api';
 
 export interface CircuitMapProps {
   circuit?: string;
@@ -32,6 +33,9 @@ export function CircuitMap({
   circuitId,
   year = 2024,
   showStats = true,
+  drivers = [],
+  activeDriverCode = '',
+  onHoverDriver,
   onCornerSelect,
   className = ''
 }: CircuitMapProps) {
@@ -48,6 +52,23 @@ export function CircuitMap({
   const [dragStart, setDragStart] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
   const svgRef = useRef<SVGSVGElement | null>(null);
+
+  const [animProgress, setAnimProgress] = useState<number>(0);
+
+  useEffect(() => {
+    let animId: number;
+    let lastTime = performance.now();
+
+    const tick = (now: number) => {
+      const delta = (now - lastTime) / 1000;
+      lastTime = now;
+      setAnimProgress(prev => (prev + delta / 70) % 1);
+      animId = requestAnimationFrame(tick);
+    };
+
+    animId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animId);
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -203,6 +224,53 @@ export function CircuitMap({
 
   // Format corner object for full CornerDetails component
   const detailedCornerObj = selectedCorner ? cornersDict[selectedKey] : null;
+
+  // Map drivers onto track coordinates along transformedPoints
+  const totalTrackPoints = transformedPoints ? transformedPoints.length : 0;
+  const driverPositions = (drivers || []).map((driver: any) => {
+    const isPit = driver.status === 'IN PIT';
+    const isRetired = driver.status === 'RETIRED';
+
+    const gapSec = typeof driver.gapToLeader === 'number' && !isNaN(driver.gapToLeader)
+      ? driver.gapToLeader
+      : ((driver.position || 1) - 1) * 1.5;
+
+    const gapFraction = gapSec / 75;
+    let driverProgress = (animProgress - gapFraction) % 1;
+    if (driverProgress < 0) driverProgress += 1;
+
+    if (totalTrackPoints < 2) {
+      return { ...driver, x: 0, y: 0, angle: 0, isPit, isRetired };
+    }
+
+    const floatIdx = driverProgress * (totalTrackPoints - 1);
+    const idx1 = Math.floor(floatIdx) % totalTrackPoints;
+    const idx2 = (idx1 + 1) % totalTrackPoints;
+    const t = floatIdx - Math.floor(floatIdx);
+
+    const p1 = transformedPoints[idx1];
+    const p2 = transformedPoints[idx2];
+
+    let x = p1.x + (p2.x - p1.x) * t;
+    let y = p1.y + (p2.y - p1.y) * t;
+    let angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
+
+    if (isPit) {
+      const pitAnchor = transformedPoints[0] || p1;
+      x = pitAnchor.x + 16;
+      y = pitAnchor.y + 16;
+      angle = 0;
+    }
+
+    return {
+      ...driver,
+      x,
+      y,
+      angle,
+      isPit,
+      isRetired
+    };
+  });
 
   return (
     <div className={`flex flex-col gap-4 ${className}`}>
@@ -406,6 +474,88 @@ export function CircuitMap({
                     >
                       {labelText}
                     </text>
+                  </g>
+                );
+              })}
+
+              {/* LAYER 7: Live Telemetry Driver Car Markers */}
+              {driverPositions.map((d: any) => {
+                if (isNaN(d.x) || isNaN(d.y) || d.isRetired) return null;
+
+                const teamColor = getTeamColor(d.teamId);
+                const isActive = activeDriverCode && activeDriverCode.toUpperCase() === (d.code || '').toUpperCase();
+                const radius = isActive ? 9 : 6.5;
+
+                return (
+                  <g
+                    key={`driver-car-${d.driverId || d.code}`}
+                    transform={`translate(${d.x}, ${d.y})`}
+                    className="cursor-pointer transition-transform duration-75"
+                    onMouseEnter={() => onHoverDriver?.(d.code)}
+                    onMouseLeave={() => onHoverDriver?.(null)}
+                  >
+                    {/* Outer Pulse Ring for Active / Hovered Driver */}
+                    {isActive && (
+                      <circle
+                        r={radius + 7}
+                        fill="none"
+                        stroke={teamColor}
+                        strokeWidth="2.5"
+                        opacity="0.8"
+                        className="animate-ping"
+                      />
+                    )}
+
+                    {/* Driver Heading Arrow Indicator */}
+                    {!d.isPit && (
+                      <g transform={`rotate(${isNaN(d.angle) ? 0 : d.angle})`}>
+                        <polygon
+                          points={`${radius + 6},0 ${radius + 1}, -4 ${radius + 1},4`}
+                          fill={teamColor}
+                        />
+                      </g>
+                    )}
+
+                    {/* Main Car Marker Circle */}
+                    <circle
+                      r={radius}
+                      fill={teamColor}
+                      stroke="#090D16"
+                      strokeWidth="2"
+                      filter={isActive ? 'url(#glow)' : undefined}
+                    />
+
+                    {/* Inner Core Dot */}
+                    <circle
+                      r={isActive ? 3.5 : 2}
+                      fill={d.isPit ? '#EAB308' : '#FFFFFF'}
+                    />
+
+                    {/* Driver Tag Badge */}
+                    <g transform={`translate(0, ${radius + 11})`}>
+                      <rect
+                        x="-19"
+                        y="-8"
+                        width="38"
+                        height="14"
+                        rx="4"
+                        fill="#090D16"
+                        stroke={isActive ? '#00D2BE' : teamColor}
+                        strokeWidth={isActive ? '1.5' : '1'}
+                        opacity="0.9"
+                      />
+                      <text
+                        x="0"
+                        y="2.5"
+                        fill={d.isPit ? '#EAB308' : '#FFFFFF'}
+                        fontSize="9"
+                        fontWeight="800"
+                        fontFamily="monospace"
+                        textAnchor="middle"
+                      >
+                        {d.isPit ? 'PIT' : `P${d.position} ${d.code}`}
+                      </text>
+                    </g>
                   </g>
                 );
               })}
