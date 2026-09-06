@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import {
   computeTransformBounds,
   transformTrackPath,
@@ -28,6 +28,167 @@ export interface CircuitMapProps {
   [key: string]: any;
 }
 
+interface LiveDriverOverlayProps {
+  drivers: any[];
+  transformedPoints: TransformedPoint[];
+  activeDriverCode?: string;
+  onHoverDriver?: (code: string | null) => void;
+}
+
+// Subcomponent: Live Driver Overlay with isolated 60FPS animation ticker
+const LiveDriverOverlay = React.memo(function LiveDriverOverlay({
+  drivers,
+  transformedPoints,
+  activeDriverCode,
+  onHoverDriver
+}: LiveDriverOverlayProps) {
+  const [animProgress, setAnimProgress] = useState<number>(0);
+
+  useEffect(() => {
+    let animId: number;
+    let lastTime = performance.now();
+
+    const tick = (now: number) => {
+      const delta = (now - lastTime) / 1000;
+      lastTime = now;
+      setAnimProgress(prev => (prev + delta / 75) % 1);
+      animId = requestAnimationFrame(tick);
+    };
+
+    animId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
+  const totalTrackPoints = transformedPoints ? transformedPoints.length : 0;
+  if (totalTrackPoints < 2 || !drivers || drivers.length === 0) return null;
+
+  const driverPositions = drivers.map((driver: any) => {
+    const isPit = driver.status === 'IN PIT';
+    const isRetired = driver.status === 'RETIRED';
+
+    const gapSec = typeof driver.gapToLeader === 'number' && !isNaN(driver.gapToLeader)
+      ? driver.gapToLeader
+      : ((driver.position || 1) - 1) * 1.5;
+
+    const gapFraction = gapSec / 75;
+    let driverProgress = (animProgress - gapFraction) % 1;
+    if (driverProgress < 0) driverProgress += 1;
+
+    const floatIdx = driverProgress * (totalTrackPoints - 1);
+    const idx1 = Math.floor(floatIdx) % totalTrackPoints;
+    const idx2 = (idx1 + 1) % totalTrackPoints;
+    const t = floatIdx - Math.floor(floatIdx);
+
+    const p1 = transformedPoints[idx1];
+    const p2 = transformedPoints[idx2];
+
+    let x = p1.x + (p2.x - p1.x) * t;
+    let y = p1.y + (p2.y - p1.y) * t;
+    let angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
+
+    if (isPit) {
+      const pitAnchor = transformedPoints[0] || p1;
+      x = pitAnchor.x + 16;
+      y = pitAnchor.y + 16;
+      angle = 0;
+    }
+
+    return {
+      ...driver,
+      x,
+      y,
+      angle,
+      isPit,
+      isRetired
+    };
+  });
+
+  return (
+    <g>
+      {driverPositions.map((d: any) => {
+        if (isNaN(d.x) || isNaN(d.y) || d.isRetired) return null;
+
+        const teamColor = getTeamColor(d.teamId);
+        const isActive = activeDriverCode && activeDriverCode.toUpperCase() === (d.code || '').toUpperCase();
+        const radius = isActive ? 9 : 6.5;
+
+        return (
+          <g
+            key={`driver-car-${d.driverId || d.code}`}
+            transform={`translate(${d.x}, ${d.y})`}
+            className="cursor-pointer transition-transform duration-75"
+            onMouseEnter={() => onHoverDriver?.(d.code)}
+            onMouseLeave={() => onHoverDriver?.(null)}
+          >
+            {/* Outer Pulse Ring for Active Driver */}
+            {isActive && (
+              <circle
+                r={radius + 7}
+                fill="none"
+                stroke={teamColor}
+                strokeWidth="2.5"
+                opacity="0.8"
+                className="animate-ping"
+              />
+            )}
+
+            {/* Driver Heading Arrow Indicator */}
+            {!d.isPit && (
+              <g transform={`rotate(${isNaN(d.angle) ? 0 : d.angle})`}>
+                <polygon
+                  points={`${radius + 6},0 ${radius + 1}, -4 ${radius + 1},4`}
+                  fill={teamColor}
+                />
+              </g>
+            )}
+
+            {/* Main Car Marker Circle */}
+            <circle
+              r={radius}
+              fill={teamColor}
+              stroke="#090D16"
+              strokeWidth="2"
+              filter={isActive ? 'url(#glow)' : undefined}
+            />
+
+            {/* Inner Core Dot */}
+            <circle
+              r={isActive ? 3.5 : 2}
+              fill={d.isPit ? '#EAB308' : '#FFFFFF'}
+            />
+
+            {/* Driver Tag Badge */}
+            <g transform={`translate(0, ${radius + 11})`}>
+              <rect
+                x="-19"
+                y="-8"
+                width="38"
+                height="14"
+                rx="4"
+                fill="#090D16"
+                stroke={isActive ? '#00D2BE' : teamColor}
+                strokeWidth={isActive ? '1.5' : '1'}
+                opacity="0.9"
+              />
+              <text
+                x="0"
+                y="2.5"
+                fill={d.isPit ? '#EAB308' : '#FFFFFF'}
+                fontSize="9"
+                fontWeight="800"
+                fontFamily="monospace"
+                textAnchor="middle"
+              >
+                {d.isPit ? 'PIT' : `P${d.position} ${d.code}`}
+              </text>
+            </g>
+          </g>
+        );
+      })}
+    </g>
+  );
+});
+
 export function CircuitMap({
   circuit,
   circuitId,
@@ -53,30 +214,12 @@ export function CircuitMap({
 
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  const [animProgress, setAnimProgress] = useState<number>(0);
-
-  useEffect(() => {
-    let animId: number;
-    let lastTime = performance.now();
-
-    const tick = (now: number) => {
-      const delta = (now - lastTime) / 1000;
-      lastTime = now;
-      setAnimProgress(prev => (prev + delta / 70) % 1);
-      animId = requestAnimationFrame(tick);
-    };
-
-    animId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(animId);
-  }, []);
-
   useEffect(() => {
     let isMounted = true;
     setLoading(true);
     setError(null);
     setSelectedCorner(null);
 
-    // Fetch real circuit telemetry and corner data from Next.js API
     fetch(`/api/circuits/${year}/${targetCircuit}`)
       .then(res => {
         if (!res.ok) {
@@ -115,7 +258,6 @@ export function CircuitMap({
     }
   };
 
-  // Drag Pan Handlers
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
     setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
@@ -139,6 +281,75 @@ export function CircuitMap({
     setSelectedCorner(null);
   };
 
+  // Memoize all expensive track geometry calculations to run ONLY when circuit data changes!
+  const trackData = useMemo(() => {
+    if (!rawCircuitData || !rawCircuitData.layout || !rawCircuitData.layout.points) {
+      return null;
+    }
+
+    const { circuit: circuitMeta, layout, corners: rawCorners, rotation = 0, sourceSession, telemetryDriver } = rawCircuitData;
+    const bounds: TransformBounds = computeTransformBounds(layout.points, rotation, 1000, 700, 60);
+    const { pathD, transformedPoints } = transformTrackPath(layout.points, bounds);
+    const transformedCorners: TransformedCorner[] = transformCorners(rawCorners || [], bounds, transformedPoints).filter(
+      c =>
+        c &&
+        typeof c.anchorX === 'number' &&
+        !isNaN(c.anchorX) &&
+        typeof c.anchorY === 'number' &&
+        !isNaN(c.anchorY) &&
+        typeof c.labelX === 'number' &&
+        !isNaN(c.labelX) &&
+        typeof c.labelY === 'number' &&
+        !isNaN(c.labelY)
+    );
+
+    const startPoint: TransformedPoint | null =
+      transformedPoints.length > 0 &&
+      typeof transformedPoints[0]?.x === 'number' &&
+      !isNaN(transformedPoints[0].x) &&
+      typeof transformedPoints[0]?.y === 'number' &&
+      !isNaN(transformedPoints[0].y)
+        ? transformedPoints[0]
+        : null;
+
+    const nextPoint: TransformedPoint | null =
+      transformedPoints.length > 1 &&
+      typeof transformedPoints[1]?.x === 'number' &&
+      !isNaN(transformedPoints[1].x) &&
+      typeof transformedPoints[1]?.y === 'number' &&
+      !isNaN(transformedPoints[1].y)
+        ? transformedPoints[1]
+        : null;
+
+    let startAngle = 0;
+    if (startPoint && nextPoint) {
+      const calcAngle = Math.atan2(nextPoint.y - startPoint.y, nextPoint.x - startPoint.x) * (180 / Math.PI);
+      startAngle = isNaN(calcAngle) ? 0 : calcAngle;
+    }
+
+    const cornersDict: Record<string, any> = {};
+    const circuitDisplayName = circuitMeta?.name || targetCircuit.replace(/_/g, ' ').toUpperCase();
+    transformedCorners.forEach(c => {
+      const key = `t${c.number}${c.letter || ''}`.toLowerCase();
+      cornersDict[key] = enrichCornerDetails(c, targetCircuit, circuitDisplayName);
+    });
+
+    return {
+      circuitMeta,
+      layout,
+      rotation,
+      sourceSession,
+      telemetryDriver,
+      bounds,
+      pathD,
+      transformedPoints,
+      transformedCorners,
+      startPoint,
+      startAngle,
+      cornersDict
+    };
+  }, [rawCircuitData, targetCircuit]);
+
   if (loading) {
     return (
       <div className={`flex flex-col items-center justify-center min-h-[450px] bg-slate-950/80 border border-slate-800/80 rounded-2xl p-8 backdrop-blur-md ${className}`}>
@@ -153,7 +364,7 @@ export function CircuitMap({
     );
   }
 
-  if (error || !rawCircuitData || !rawCircuitData.layout || !rawCircuitData.layout.points) {
+  if (error || !trackData) {
     return (
       <div className={`flex flex-col items-center justify-center min-h-[450px] bg-slate-950 border border-red-900/40 rounded-2xl p-8 text-center ${className}`}>
         <div className="w-12 h-12 rounded-full bg-red-950/60 border border-red-500/30 flex items-center justify-center text-red-400 mb-4 text-xl">
@@ -170,107 +381,22 @@ export function CircuitMap({
     );
   }
 
-  const { circuit: circuitMeta, layout, corners: rawCorners, rotation = 0, sourceSession, telemetryDriver } = rawCircuitData;
-
-  // Single unified transform computation
-  const bounds: TransformBounds = computeTransformBounds(layout.points, rotation, 1000, 700, 60);
-  const { pathD, transformedPoints } = transformTrackPath(layout.points, bounds);
-  const transformedCorners: TransformedCorner[] = transformCorners(rawCorners || [], bounds, transformedPoints).filter(
-    c =>
-      c &&
-      typeof c.anchorX === 'number' &&
-      !isNaN(c.anchorX) &&
-      typeof c.anchorY === 'number' &&
-      !isNaN(c.anchorY) &&
-      typeof c.labelX === 'number' &&
-      !isNaN(c.labelX) &&
-      typeof c.labelY === 'number' &&
-      !isNaN(c.labelY)
-  );
-
-  const startPoint: TransformedPoint | null =
-    transformedPoints.length > 0 &&
-    typeof transformedPoints[0]?.x === 'number' &&
-    !isNaN(transformedPoints[0].x) &&
-    typeof transformedPoints[0]?.y === 'number' &&
-    !isNaN(transformedPoints[0].y)
-      ? transformedPoints[0]
-      : null;
-
-  const nextPoint: TransformedPoint | null =
-    transformedPoints.length > 1 &&
-    typeof transformedPoints[1]?.x === 'number' &&
-    !isNaN(transformedPoints[1].x) &&
-    typeof transformedPoints[1]?.y === 'number' &&
-    !isNaN(transformedPoints[1].y)
-      ? transformedPoints[1]
-      : null;
-
-  let startAngle = 0;
-  if (startPoint && nextPoint) {
-    const calcAngle = Math.atan2(nextPoint.y - startPoint.y, nextPoint.x - startPoint.x) * (180 / Math.PI);
-    startAngle = isNaN(calcAngle) ? 0 : calcAngle;
-  }
-
-  // Build enriched corner dictionary for CornerDirectory and CornerDetails components
-  const cornersDict: Record<string, any> = {};
-  const circuitDisplayName = circuitMeta?.name || targetCircuit.replace(/_/g, ' ').toUpperCase();
-  transformedCorners.forEach(c => {
-    const key = `t${c.number}${c.letter || ''}`.toLowerCase();
-    cornersDict[key] = enrichCornerDetails(c, targetCircuit, circuitDisplayName);
-  });
+  const {
+    circuitMeta,
+    layout,
+    rotation,
+    sourceSession,
+    telemetryDriver,
+    pathD,
+    transformedPoints,
+    transformedCorners,
+    startPoint,
+    startAngle,
+    cornersDict
+  } = trackData;
 
   const selectedKey = selectedCorner ? `t${selectedCorner.number}${selectedCorner.letter || ''}`.toLowerCase() : '';
-
-  // Format corner object for full CornerDetails component
   const detailedCornerObj = selectedCorner ? cornersDict[selectedKey] : null;
-
-  // Map drivers onto track coordinates along transformedPoints
-  const totalTrackPoints = transformedPoints ? transformedPoints.length : 0;
-  const driverPositions = (drivers || []).map((driver: any) => {
-    const isPit = driver.status === 'IN PIT';
-    const isRetired = driver.status === 'RETIRED';
-
-    const gapSec = typeof driver.gapToLeader === 'number' && !isNaN(driver.gapToLeader)
-      ? driver.gapToLeader
-      : ((driver.position || 1) - 1) * 1.5;
-
-    const gapFraction = gapSec / 75;
-    let driverProgress = (animProgress - gapFraction) % 1;
-    if (driverProgress < 0) driverProgress += 1;
-
-    if (totalTrackPoints < 2) {
-      return { ...driver, x: 0, y: 0, angle: 0, isPit, isRetired };
-    }
-
-    const floatIdx = driverProgress * (totalTrackPoints - 1);
-    const idx1 = Math.floor(floatIdx) % totalTrackPoints;
-    const idx2 = (idx1 + 1) % totalTrackPoints;
-    const t = floatIdx - Math.floor(floatIdx);
-
-    const p1 = transformedPoints[idx1];
-    const p2 = transformedPoints[idx2];
-
-    let x = p1.x + (p2.x - p1.x) * t;
-    let y = p1.y + (p2.y - p1.y) * t;
-    let angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
-
-    if (isPit) {
-      const pitAnchor = transformedPoints[0] || p1;
-      x = pitAnchor.x + 16;
-      y = pitAnchor.y + 16;
-      angle = 0;
-    }
-
-    return {
-      ...driver,
-      x,
-      y,
-      angle,
-      isPit,
-      isRetired
-    };
-  });
 
   return (
     <div className={`flex flex-col gap-4 ${className}`}>
@@ -449,7 +575,6 @@ export function CircuitMap({
                     className="cursor-pointer transition-transform duration-150"
                     onClick={() => handleCornerClick(corner)}
                   >
-                    {/* Badge Background Rect */}
                     <rect
                       x="-14"
                       y="-11"
@@ -462,7 +587,6 @@ export function CircuitMap({
                       filter={isSelected ? 'url(#cornerGlow)' : undefined}
                     />
 
-                    {/* Corner Number Text */}
                     <text
                       x="0"
                       y="4"
@@ -478,87 +602,13 @@ export function CircuitMap({
                 );
               })}
 
-              {/* LAYER 7: Live Telemetry Driver Car Markers */}
-              {driverPositions.map((d: any) => {
-                if (isNaN(d.x) || isNaN(d.y) || d.isRetired) return null;
-
-                const teamColor = getTeamColor(d.teamId);
-                const isActive = activeDriverCode && activeDriverCode.toUpperCase() === (d.code || '').toUpperCase();
-                const radius = isActive ? 9 : 6.5;
-
-                return (
-                  <g
-                    key={`driver-car-${d.driverId || d.code}`}
-                    transform={`translate(${d.x}, ${d.y})`}
-                    className="cursor-pointer transition-transform duration-75"
-                    onMouseEnter={() => onHoverDriver?.(d.code)}
-                    onMouseLeave={() => onHoverDriver?.(null)}
-                  >
-                    {/* Outer Pulse Ring for Active / Hovered Driver */}
-                    {isActive && (
-                      <circle
-                        r={radius + 7}
-                        fill="none"
-                        stroke={teamColor}
-                        strokeWidth="2.5"
-                        opacity="0.8"
-                        className="animate-ping"
-                      />
-                    )}
-
-                    {/* Driver Heading Arrow Indicator */}
-                    {!d.isPit && (
-                      <g transform={`rotate(${isNaN(d.angle) ? 0 : d.angle})`}>
-                        <polygon
-                          points={`${radius + 6},0 ${radius + 1}, -4 ${radius + 1},4`}
-                          fill={teamColor}
-                        />
-                      </g>
-                    )}
-
-                    {/* Main Car Marker Circle */}
-                    <circle
-                      r={radius}
-                      fill={teamColor}
-                      stroke="#090D16"
-                      strokeWidth="2"
-                      filter={isActive ? 'url(#glow)' : undefined}
-                    />
-
-                    {/* Inner Core Dot */}
-                    <circle
-                      r={isActive ? 3.5 : 2}
-                      fill={d.isPit ? '#EAB308' : '#FFFFFF'}
-                    />
-
-                    {/* Driver Tag Badge */}
-                    <g transform={`translate(0, ${radius + 11})`}>
-                      <rect
-                        x="-19"
-                        y="-8"
-                        width="38"
-                        height="14"
-                        rx="4"
-                        fill="#090D16"
-                        stroke={isActive ? '#00D2BE' : teamColor}
-                        strokeWidth={isActive ? '1.5' : '1'}
-                        opacity="0.9"
-                      />
-                      <text
-                        x="0"
-                        y="2.5"
-                        fill={d.isPit ? '#EAB308' : '#FFFFFF'}
-                        fontSize="9"
-                        fontWeight="800"
-                        fontFamily="monospace"
-                        textAnchor="middle"
-                      >
-                        {d.isPit ? 'PIT' : `P${d.position} ${d.code}`}
-                      </text>
-                    </g>
-                  </g>
-                );
-              })}
+              {/* LAYER 7: Live Telemetry Driver Car Overlay (Isolated 60FPS Render) */}
+              <LiveDriverOverlay
+                drivers={drivers}
+                transformedPoints={transformedPoints}
+                activeDriverCode={activeDriverCode}
+                onHoverDriver={onHoverDriver}
+              />
             </g>
           </svg>
         </div>
