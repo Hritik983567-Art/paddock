@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { useSeason } from '../contexts/SeasonContext';
 import { getJSON, API_BASE, getTeamColor, fetchCircuitWeather, WeatherData } from '../utils/api';
 import CircuitMap from '../components/CircuitMap';
@@ -135,6 +136,7 @@ function generateFallbackRaceData(round: string, selectedRaceObj?: { raceName?: 
 }
 
 export default function RaceTrackerPage() {
+  const router = useRouter();
   const { selectedSeason } = useSeason();
   
   const [rounds, setRounds] = useState<RoundItem[]>([]);
@@ -478,7 +480,16 @@ export default function RaceTrackerPage() {
               <div className="flex flex-col gap-4 lg:col-span-5">
                 {/* Circuit Map */}
                 {circuitId && (
-                  <CircuitMap circuitId={circuitId} showStats={true} />
+                  <CircuitMap 
+                    circuitId={circuitId} 
+                    showStats={true} 
+                    onCornerSelect={(corner) => {
+                      if (corner) {
+                        const cornerKey = `t${corner.number}${corner.letter || ''}`.toLowerCase();
+                        router.push(`/gallery?circuit=${circuitId}&corner=${cornerKey}`);
+                      }
+                    }}
+                  />
                 )}
 
                 {/* Pit Stops Log */}

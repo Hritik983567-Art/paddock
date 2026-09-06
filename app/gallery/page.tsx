@@ -1,8 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import CircuitMap from '../components/CircuitMap';
 import { ALL_GALLERY_MEDIA, GalleryMediaItem } from '../lib/galleryMediaData';
+import { ALL_CIRCUIT_CORNERS, CircuitCorner } from '../lib/circuitCornersData';
+import { enrichCornerDetails, TransformedCorner } from '../lib/circuitTransform';
 
 // List of all supported 78 F1 circuits in Paddock Gallery
 const SUPPORTED_CIRCUITS = [
@@ -87,14 +90,227 @@ const SUPPORTED_CIRCUITS = [
   { id: 'zeltweg', name: 'Zeltweg Airfield Circuit', flag: '🇦🇹', country: 'Austria' }
 ];
 
-export default function GalleryPage() {
+// Fallback circuit wallpaper backgrounds for tracks without dedicated photos
+function getCircuitFallbackImage(circuitId: string): string {
+  const c = circuitId.toLowerCase();
+  if (['monza', 'imola', 'mugello', 'pescara', 'galvez', 'jarama', 'jerez'].includes(c)) return '/images/ferrari-bg.png';
+  if (['silverstone', 'brands_hatch', 'donington', 'adelaide', 'aintree'].includes(c)) return '/images/mclaren-bg.png';
+  if (['nurburgring', 'hockenheimring', 'avus', 'singapore'].includes(c)) return '/images/mercedes-bg.png';
+  if (['red_bull_ring', 'zeltweg', 'hungaroring', 'zandvoort'].includes(c)) return '/images/redbull-bg.png';
+  if (['spa', 'americas', 'monaco', 'suzuka', 'miami', 'vegas'].includes(c)) return '/images/aston-bg.png';
+  return '/images/default-bg.png';
+}
+
+// Intelligent matching between 2D canvas corner clicks / URL params and gallery media items
+function findMatchingMediaItem(
+  mediaList: GalleryMediaItem[],
+  cornerNumber?: number,
+  cornerName?: string,
+  cornerKey?: string,
+  specs?: CircuitCorner | null
+): GalleryMediaItem | undefined {
+  if (!mediaList || mediaList.length === 0) return undefined;
+
+  const keyLower = (cornerKey || '').toLowerCase();
+  const nameLower = (cornerName || '').toLowerCase();
+  const specsNameLower = (specs?.name || '').toLowerCase();
+  const specsIdLower = (specs?.id || '').toLowerCase();
+
+  // 1. Direct ID / Key matching (e.g., "rettifilo", "ascari", "t1", "t10")
+  let match = mediaList.find(m => {
+    const idLower = m.id.toLowerCase();
+    if (keyLower && idLower.includes(keyLower)) return true;
+    if (specsIdLower && idLower.includes(specsIdLower)) return true;
+    return false;
+  });
+  if (match) return match;
+
+  // 2. Keyword matching on corner names (e.g. "rettifilo", "ascari", "parabolica", "lesmo", "source", "eaurouge", "fairmont", "tunnel")
+  const nameToSearch = specsNameLower || nameLower;
+  if (nameToSearch) {
+    const keywords = nameToSearch
+      .split(/[\s\-_\/()]+/)
+      .filter(w => w.length > 3 && !['turn', 'turns', 'curva', 'variante', 'del', 'della', 'the', 'corner', 'circuit'].includes(w.toLowerCase()));
+
+    for (const kw of keywords) {
+      match = mediaList.find(m => {
+        const titleLower = m.title.toLowerCase();
+        const idLower = m.id.toLowerCase();
+        return titleLower.includes(kw.toLowerCase()) || idLower.includes(kw.toLowerCase());
+      });
+      if (match) return match;
+    }
+  }
+
+  // 3. Turn number and range matching (e.g., Turn 1 -> "Turns 1-2", Turn 8 -> "Turns 8-9-10")
+  if (typeof cornerNumber === 'number' && !isNaN(cornerNumber)) {
+    const num = cornerNumber;
+    match = mediaList.find(m => {
+      const titleLower = m.title.toLowerCase();
+      const subLower = m.subtitle.toLowerCase();
+
+      const regexSingle = new RegExp(`\\bturns?\\s*${num}\\b`, 'i');
+      if (regexSingle.test(titleLower) || regexSingle.test(subLower)) return true;
+
+      const ranges = titleLower.matchAll(/\bturns?\s*(\d+)(?:[-–\s]+(\d+))?(?:[-–\s]+(\d+))?\b/gi);
+      for (const r of ranges) {
+        const nums = [r[1], r[2], r[3]].filter(Boolean).map(n => parseInt(n, 10));
+        if (nums.length === 1 && nums[0] === num) return true;
+        if (nums.length >= 2) {
+          const minNum = Math.min(...nums);
+          const maxNum = Math.max(...nums);
+          if (num >= minNum && num <= maxNum) return true;
+        }
+      }
+      return false;
+    });
+    if (match) return match;
+  }
+
+  return undefined;
+}
+
+function GalleryContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const urlCircuit = searchParams.get('circuit');
+  const urlCorner = searchParams.get('corner');
+
   const [selectedCircuitId, setSelectedCircuitId] = useState<string>('monza');
   const [selectedMedia, setSelectedMedia] = useState<GalleryMediaItem | null>(null);
+  const [activeCornerDetails, setActiveCornerDetails] = useState<CircuitCorner | null>(null);
+
+  // Sync selected circuit with URL params if provided
+  useEffect(() => {
+    if (urlCircuit) {
+      const match = SUPPORTED_CIRCUITS.find(c => c.id.toLowerCase() === urlCircuit.toLowerCase());
+      if (match) {
+        setSelectedCircuitId(match.id);
+      }
+    }
+  }, [urlCircuit]);
 
   const selectedCircuitMeta = SUPPORTED_CIRCUITS.find(c => c.id === selectedCircuitId);
 
-  // Strict filtering by selected circuit ID across all 78 circuits
-  const mediaToDisplay = ALL_GALLERY_MEDIA.filter(item => item.circuitId === selectedCircuitId);
+  // Strict filtering by selected circuit ID across all 78 circuits (memoized to prevent infinite re-render loops)
+  const mediaToDisplay = useMemo(
+    () => ALL_GALLERY_MEDIA.filter(item => item.circuitId === selectedCircuitId),
+    [selectedCircuitId]
+  );
+
+  // Helper to resolve full technical corner specs for modal display
+  const resolveCornerSpecs = useCallback((mediaItem: GalleryMediaItem | null, cornerKey?: string): CircuitCorner | null => {
+    const collection = ALL_CIRCUIT_CORNERS[selectedCircuitId];
+    if (!collection || !collection.corners) return null;
+
+    if (cornerKey) {
+      const k = cornerKey.toLowerCase();
+      if (collection.corners[k]) return collection.corners[k];
+    }
+
+    if (mediaItem) {
+      const titleLower = mediaItem.title.toLowerCase();
+      for (const c of Object.values(collection.corners)) {
+        if (
+          mediaItem.id.toLowerCase().includes(c.id.toLowerCase()) ||
+          titleLower.includes(c.name.toLowerCase()) ||
+          (c.turns && titleLower.includes(c.turns.toLowerCase()))
+        ) {
+          return c;
+        }
+      }
+    }
+
+    return null;
+  }, [selectedCircuitId]);
+
+  // Sync corner selection from URL on load
+  useEffect(() => {
+    if (urlCorner) {
+      const specs = resolveCornerSpecs(null, urlCorner);
+      const cornerNumMatch = urlCorner.match(/\d+/);
+      const cornerNum = cornerNumMatch ? parseInt(cornerNumMatch[0], 10) : undefined;
+      const matchingMedia = findMatchingMediaItem(mediaToDisplay, cornerNum, specs?.name, urlCorner, specs);
+
+      if (specs) {
+        setActiveCornerDetails(specs);
+      }
+
+      if (matchingMedia) {
+        setSelectedMedia(matchingMedia);
+      } else {
+        const fallbackTitle = specs?.name ? `${specs.name} (${specs.turns || urlCorner.toUpperCase()})` : `Corner ${urlCorner.toUpperCase()}`;
+        const fallbackSub = `${specs?.type || 'F1 Sector'} — ${selectedCircuitMeta?.name || selectedCircuitId.toUpperCase()}`;
+        const fallbackSrc = specs?.images?.[0]?.src || getCircuitFallbackImage(selectedCircuitId);
+
+        setSelectedMedia({
+          id: `${selectedCircuitId}_${urlCorner}`,
+          circuitId: selectedCircuitId,
+          title: fallbackTitle,
+          subtitle: fallbackSub,
+          category: 'photo',
+          src: fallbackSrc,
+          entrySpeed: specs?.technical?.entrySpeed || 'N/A',
+          typicalGear: specs?.technical?.typicalGear || 'N/A',
+          gForce: specs?.technical?.brakingIntensity || 'N/A',
+          license: 'VERIFIED REAL DATA',
+          description: specs?.description || specs?.history || 'F1 Telemetry Reconnaissance Sector'
+        });
+      }
+    }
+  }, [urlCorner, selectedCircuitId, resolveCornerSpecs, mediaToDisplay, selectedCircuitMeta?.name]);
+
+  // HANDLE CLICKING A PHOTO CARD IN GALLERY -> OPENS FULL INFORMATION MODAL
+  const handleMediaCardClick = (item: GalleryMediaItem) => {
+    setSelectedMedia(item);
+    const specs = resolveCornerSpecs(item);
+    setActiveCornerDetails(specs);
+  };
+
+  // HANDLE CLICKING A CORNER ON THE 2D CIRCUIT MAP -> SCROLLS TO GALLERY & OPENS INFORMATION MODAL
+  const handleCornerSelectOnMap = (corner: TransformedCorner | null) => {
+    if (!corner) return;
+    const cornerKey = `t${corner.number}${corner.letter || ''}`.toLowerCase();
+    const enriched = enrichCornerDetails(corner, selectedCircuitId, selectedCircuitMeta?.name || '');
+    const specs = resolveCornerSpecs(null, cornerKey) || (enriched as unknown as CircuitCorner);
+
+    // Look for matching gallery photo with intelligent matching
+    const matchingMedia = findMatchingMediaItem(mediaToDisplay, corner.number, corner.name, cornerKey, specs);
+
+    if (matchingMedia) {
+      setSelectedMedia(matchingMedia);
+    } else {
+      const fallbackSrc = specs?.images?.[0]?.src || getCircuitFallbackImage(selectedCircuitId);
+      setSelectedMedia({
+        id: `${selectedCircuitId}_${cornerKey}`,
+        circuitId: selectedCircuitId,
+        title: `${enriched.name} (${enriched.turns || `Turn ${corner.number}`})`,
+        subtitle: `${enriched.type || 'F1 Corner'} — ${selectedCircuitMeta?.name || selectedCircuitId.toUpperCase()}`,
+        category: 'photo',
+        src: fallbackSrc,
+        entrySpeed: enriched.technical?.entrySpeed || 'N/A',
+        typicalGear: enriched.technical?.typicalGear || 'N/A',
+        gForce: enriched.technical?.brakingIntensity || 'N/A',
+        license: 'VERIFIED REAL DATA',
+        description: enriched.description || enriched.history || 'F1 Telemetry Reconnaissance Sector'
+      });
+    }
+
+    setActiveCornerDetails(specs);
+
+    // Update URL query parameters cleanly
+    router.replace(`/gallery?circuit=${selectedCircuitId}&corner=${cornerKey}`, { scroll: false });
+
+    // Smooth scroll up to gallery grid section
+    const galleryEl = document.getElementById('gallery-section');
+    if (galleryEl) {
+      galleryEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const tech = activeCornerDetails?.technical || {};
+  const racing = activeCornerDetails?.racing || {};
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-6 lg:p-8 space-y-8">
@@ -123,7 +339,13 @@ export default function GalleryPage() {
           <div className="relative">
             <select
               value={selectedCircuitId}
-              onChange={(e) => setSelectedCircuitId(e.target.value)}
+              onChange={(e) => {
+                const newCircuit = e.target.value;
+                setSelectedCircuitId(newCircuit);
+                setSelectedMedia(null);
+                setActiveCornerDetails(null);
+                router.replace(`/gallery?circuit=${newCircuit}`, { scroll: false });
+              }}
               className="w-full bg-slate-950 border-2 border-red-900/80 hover:border-red-600 focus:border-red-500 rounded-lg px-3 py-2 text-xs font-mono font-bold text-slate-100 focus:outline-none focus:ring-2 focus:ring-red-500/40 transition-all appearance-none cursor-pointer"
             >
               {SUPPORTED_CIRCUITS.map((circuit) => (
@@ -139,126 +361,254 @@ export default function GalleryPage() {
         </div>
       </header>
 
-      {/* Featured Photo Grid or Reconnaissance Banner */}
-      {mediaToDisplay.length === 0 ? (
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-8 text-center space-y-3 shadow-2xl backdrop-blur-md">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-400 text-2xl shadow-inner">
-            🏎️
+      {/* Featured Photo Grid Section */}
+      <section id="gallery-section">
+        {mediaToDisplay.length === 0 ? (
+          <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-8 text-center space-y-3 shadow-2xl backdrop-blur-md">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-400 text-2xl shadow-inner">
+              🏎️
+            </div>
+            <h3 className="text-white font-mono font-extrabold text-lg uppercase tracking-wide">
+              FASTF1 TELEMETRY RECONNAISSANCE MODE ACTIVE — {selectedCircuitMeta?.flag} {selectedCircuitMeta?.name.toUpperCase() || selectedCircuitId.toUpperCase()}
+            </h3>
+            <p className="text-slate-300 font-mono text-xs max-w-xl mx-auto leading-relaxed">
+              FastF1 position centerline points, turn vectors, braking zones, and technical telemetry profiles for <strong className="text-cyan-400">{selectedCircuitMeta?.name}</strong> are loaded on the Interactive 2D Vector Path Canvas below. Click any corner to view full information.
+            </p>
           </div>
-          <h3 className="text-white font-mono font-extrabold text-lg uppercase tracking-wide">
-            FASTF1 TELEMETRY RECONNAISSANCE MODE ACTIVE — {selectedCircuitMeta?.flag} {selectedCircuitMeta?.name.toUpperCase() || selectedCircuitId.toUpperCase()}
-          </h3>
-          <p className="text-slate-300 font-mono text-xs max-w-xl mx-auto leading-relaxed">
-            FastF1 position centerline points, turn vectors, braking zones, and technical telemetry profiles for <strong className="text-cyan-400">{selectedCircuitMeta?.name}</strong> are loaded on the Interactive 2D Vector Path Canvas below.
-          </p>
-        </div>
-      ) : (
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {mediaToDisplay.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => setSelectedMedia(item)}
-              className="group relative bg-slate-900/90 border border-slate-800 hover:border-red-500/80 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20 hover:-translate-y-1 cursor-pointer"
-            >
-              {/* Image Thumbnail */}
-              <div className="relative h-52 w-full overflow-hidden bg-slate-950">
-                <img
-                  src={item.src}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/images/default-bg.png';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
-                
-                {/* Category Badge */}
-                <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-700 text-[10px] font-mono font-bold text-red-400 backdrop-blur-md uppercase tracking-wider">
-                    {item.category === 'photo' ? '📸 REAL PHOTO' : item.category === 'blueprint' ? '📐 FIA VECTOR' : '🏎️ TEAM WALLPAPER'}
-                  </span>
-                </div>
-
-                {/* License Badge */}
-                <div className="absolute top-3 right-3">
-                  <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-700 text-[9px] font-mono font-bold text-emerald-400 backdrop-blur-md">
-                    ✓ VERIFIED
-                  </span>
-                </div>
-              </div>
-
-              {/* Content Details */}
-              <div className="p-4 space-y-2">
-                <h3 className="text-sm font-bold font-mono text-white group-hover:text-red-400 transition-colors line-clamp-1">
-                  {item.title}
-                </h3>
-                <p className="text-xs font-mono text-slate-400 line-clamp-1">
-                  {item.subtitle}
-                </p>
-
-                {/* Technical Telemetry Badges if photo */}
-                {item.entrySpeed && (
-                  <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-800 text-[10px] font-mono">
-                    <span className="px-2 py-0.5 rounded bg-red-950/60 border border-red-900/60 text-red-300 font-bold">
-                      ⚡ {item.entrySpeed}
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {mediaToDisplay.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => handleMediaCardClick(item)}
+                className="group relative bg-slate-900/90 border border-slate-800 hover:border-red-500/80 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20 hover:-translate-y-1 cursor-pointer"
+              >
+                {/* Image Thumbnail */}
+                <div className="relative h-52 w-full overflow-hidden bg-slate-950">
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      const fallback = getCircuitFallbackImage(selectedCircuitId);
+                      if (target.src !== fallback) {
+                        target.src = fallback;
+                      }
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                  
+                  {/* Category Badge */}
+                  <div className="absolute top-3 left-3">
+                    <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-700 text-[10px] font-mono font-bold text-red-400 backdrop-blur-md uppercase tracking-wider">
+                      {item.category === 'photo' ? '📸 REAL PHOTO' : item.category === 'blueprint' ? '📐 FIA VECTOR' : '🏎️ TEAM WALLPAPER'}
                     </span>
+                  </div>
+
+                  {/* License Badge */}
+                  <div className="absolute top-3 right-3">
+                    <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-700 text-[9px] font-mono font-bold text-emerald-400 backdrop-blur-md">
+                      ✓ VERIFIED
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content Details */}
+                <div className="p-4 space-y-2">
+                  <h3 className="text-sm font-bold font-mono text-white group-hover:text-red-400 transition-colors line-clamp-1">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs font-mono text-slate-400 line-clamp-1">
+                    {item.subtitle}
+                  </p>
+
+                  {/* Technical Telemetry Badges */}
+                  <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-800 text-[10px] font-mono">
+                    {item.entrySpeed && (
+                      <span className="px-2 py-0.5 rounded bg-red-950/60 border border-red-900/60 text-red-300 font-bold">
+                        ⚡ {item.entrySpeed}
+                      </span>
+                    )}
                     {item.typicalGear && (
                       <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-bold">
                         ⚙️ {item.typicalGear}
                       </span>
                     )}
+                    <span className="ml-auto text-[10px] text-cyan-400 font-bold">
+                      VIEW INFO →
+                    </span>
                   </div>
-                )}
+                </div>
               </div>
-            </div>
-          ))}
-        </section>
-      )}
+            ))}
+          </div>
+        )}
+      </section>
 
-      {/* Modal for Expanded Media Detail */}
+      {/* FULL CORNER RECONNAISSANCE INFORMATION MODAL */}
       {selectedMedia && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-xl animate-in fade-in duration-200">
-          <div className="relative w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl space-y-4 p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-xl animate-in fade-in duration-200 overflow-y-auto">
+          <div className="relative w-full max-w-4xl my-8 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl space-y-5 p-6 max-h-[90vh] overflow-y-auto">
+            {/* Close Button */}
             <button
               onClick={() => setSelectedMedia(null)}
-              className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-slate-950 border border-slate-700 text-slate-400 hover:text-white font-mono flex items-center justify-center transition"
+              className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-slate-950 border border-slate-700 text-slate-400 hover:text-white font-mono flex items-center justify-center transition"
+              title="Close Reconnaissance Information"
             >
               ✕
             </button>
 
-            <div className="relative h-80 sm:h-96 w-full rounded-xl overflow-hidden bg-slate-950">
+            {/* Corner Photo Preview */}
+            <div className="relative h-72 sm:h-96 w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
               <img
                 src={selectedMedia.src}
                 alt={selectedMedia.title}
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/images/default-bg.png';
+                  const target = e.target as HTMLImageElement;
+                  const fallback = getCircuitFallbackImage(selectedCircuitId);
+                  if (target.src !== fallback) {
+                    target.src = fallback;
+                  }
                 }}
               />
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xl font-bold font-mono text-white">
-                  {selectedMedia.title}
-                </h3>
-                <span className="px-3 py-1 rounded bg-emerald-950 border border-emerald-700 text-xs font-mono font-bold text-emerald-400">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-90"></div>
+              
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                <div>
+                  <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-700 text-xs font-mono font-bold text-red-400 backdrop-blur-md">
+                    {selectedMedia.category === 'photo' ? '📸 REAL APEX PHOTOGRAPHY' : '📐 FIA VECTOR DYNAMICS'}
+                  </span>
+                </div>
+                <span className="px-3 py-1 rounded bg-emerald-950/90 border border-emerald-700 text-xs font-mono font-bold text-emerald-400 backdrop-blur-md">
                   {selectedMedia.license}
                 </span>
               </div>
-              <p className="text-sm font-mono text-cyan-400">
+            </div>
+
+            {/* Corner Information Header */}
+            <div className="space-y-1 border-b border-slate-800 pb-4">
+              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 font-extrabold uppercase">
+                <span>{selectedCircuitMeta?.flag} {selectedCircuitMeta?.name}</span>
+                <span>•</span>
+                <span>{activeCornerDetails?.turns || 'RECONNAISSANCE SECTOR'}</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold font-mono text-white">
+                {activeCornerDetails?.name || selectedMedia.title}
+              </h2>
+              <p className="text-xs font-mono text-slate-400">
                 {selectedMedia.subtitle}
               </p>
+            </div>
 
-              {selectedMedia.gForce && (
-                <div className="inline-block px-3 py-1 bg-amber-950/60 border border-amber-800 rounded text-xs font-mono">
-                  <span className="text-amber-400 font-bold">🏎️ LATERAL FORCE: {selectedMedia.gForce}</span>
+            {/* Technical Telemetry Grid */}
+            <div className="space-y-2">
+              <h3 className="text-xs font-mono font-black uppercase tracking-widest text-cyan-400 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                <span>TECHNICAL TELEMETRY SPECS</span>
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono">
+                <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                  <span className="block text-[10px] text-cyan-400 font-black">ENTRY SPEED</span>
+                  <span className="text-sm font-black text-white">
+                    {selectedMedia.entrySpeed || tech.entrySpeed || 'N/A'}
+                  </span>
                 </div>
-              )}
+                <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                  <span className="block text-[10px] text-cyan-400 font-black">APEX SPEED</span>
+                  <span className="text-sm font-black text-red-400">
+                    {tech.apexSpeed || 'N/A'}
+                  </span>
+                </div>
+                <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                  <span className="block text-[10px] text-cyan-400 font-black">EXIT SPEED</span>
+                  <span className="text-sm font-black text-emerald-400">
+                    {tech.exitSpeed || 'N/A'}
+                  </span>
+                </div>
+                <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                  <span className="block text-[10px] text-cyan-400 font-black">TYPICAL GEAR</span>
+                  <span className="text-sm font-black text-amber-400">
+                    {selectedMedia.typicalGear || tech.typicalGear || 'N/A'}
+                  </span>
+                </div>
+                <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                  <span className="block text-[10px] text-cyan-400 font-black">LATERAL G-FORCE</span>
+                  <span className="text-sm font-black text-white">
+                    {selectedMedia.gForce || 'N/A'}
+                  </span>
+                </div>
+                <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                  <span className="block text-[10px] text-cyan-400 font-black">BRAKING FORCE</span>
+                  <span className="text-sm font-black text-white">
+                    {tech.brakingIntensity || 'N/A'}
+                  </span>
+                </div>
+                <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                  <span className="block text-[10px] text-cyan-400 font-black">ELEVATION</span>
+                  <span className="text-sm font-black text-white">
+                    {tech.elevationChange || 'N/A'}
+                  </span>
+                </div>
+                <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                  <span className="block text-[10px] text-cyan-400 font-black">DRS ZONE</span>
+                  <span className="text-sm font-black text-cyan-300">
+                    {tech.drs || 'Active'}
+                  </span>
+                </div>
+              </div>
+            </div>
 
-              <p className="text-xs font-mono text-slate-400 leading-relaxed">
-                {selectedMedia.description}
+            {/* Racing Dynamics & Strategy */}
+            {(racing.overtakingPotential || racing.brakingZone || racing.racingLine || racing.trackLimits) && (
+              <div className="space-y-2">
+                <h3 className="text-xs font-mono font-black uppercase tracking-widest text-slate-200 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-red-500"></span>
+                  <span>RACING STRATEGY &amp; DYNAMICS</span>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+                  {racing.overtakingPotential && (
+                    <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                      <span className="block text-[10px] text-cyan-400 font-black">OVERTAKING POTENTIAL</span>
+                      <span className="font-bold text-white">{racing.overtakingPotential}</span>
+                    </div>
+                  )}
+                  {racing.brakingZone && (
+                    <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                      <span className="block text-[10px] text-cyan-400 font-black">BRAKING ZONE</span>
+                      <span className="font-bold text-white">{racing.brakingZone}</span>
+                    </div>
+                  )}
+                  {racing.racingLine && (
+                    <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                      <span className="block text-[10px] text-cyan-400 font-black">RACING LINE STRATEGY</span>
+                      <span className="font-bold text-slate-300">{racing.racingLine}</span>
+                    </div>
+                  )}
+                  {racing.trackLimits && (
+                    <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
+                      <span className="block text-[10px] text-cyan-400 font-black">TRACK LIMITS</span>
+                      <span className="font-bold text-slate-300">{racing.trackLimits}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Description & History Narrative */}
+            <div className="space-y-2 bg-slate-950/90 p-4 rounded-xl border border-slate-800 text-xs font-mono">
+              <h3 className="font-bold uppercase text-amber-400 flex items-center gap-1.5">
+                <span>📜 CORNER HISTORY &amp; RECONNAISSANCE NARRATIVE</span>
+              </h3>
+              <p className="text-slate-300 leading-relaxed font-sans text-[13.5px]">
+                {activeCornerDetails?.description || activeCornerDetails?.history || selectedMedia.description}
               </p>
+              {activeCornerDetails?.history && activeCornerDetails.history !== activeCornerDetails.description && (
+                <p className="text-slate-300 leading-relaxed font-sans text-[13.5px] pt-2 border-t border-slate-800">
+                  {activeCornerDetails.history}
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -271,16 +621,29 @@ export default function GalleryPage() {
             <span>🗺️ INTERACTIVE TRACK TELEMETRY CANVAS — {selectedCircuitMeta?.flag} {selectedCircuitMeta?.name.toUpperCase() || selectedCircuitId.toUpperCase()}</span>
           </h2>
           <span className="text-xs font-mono text-cyan-300 font-bold bg-slate-950/80 px-3 py-1 rounded-lg border border-slate-700/80 w-fit">
-            2D VECTOR PATH &amp; CORNER INSPECTOR
+            CLICK ANY CORNER TO GO TO GALLERY &amp; VIEW INFO
           </span>
         </div>
         <main className="w-full">
           <CircuitMap 
             circuitId={selectedCircuitId}
             showStats={true}
+            onCornerSelect={handleCornerSelectOnMap}
           />
         </main>
       </section>
     </div>
+  );
+}
+
+export default function GalleryPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center text-cyan-400 font-mono text-sm uppercase tracking-wider animate-pulse">
+        Loading Corner Reconnaissance Gallery...
+      </div>
+    }>
+      <GalleryContent />
+    </Suspense>
   );
 }

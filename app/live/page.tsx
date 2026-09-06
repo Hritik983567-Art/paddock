@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { getTeamColor, getJSON, API_BASE } from '../utils/api';
 import CircuitMap from '../components/CircuitMap';
 
@@ -143,6 +144,7 @@ const ALL_CIRCUITS_ROSTER = [
 ];
 
 export default function LiveTelemetryPage() {
+  const router = useRouter();
   const [drivers, setDrivers] = useState<LiveDriver[]>(INITIAL_DRIVERS);
   const [selectedCircuit, setSelectedCircuit] = useState('spa');
   // Fetch current calendar races on mount
@@ -723,9 +725,15 @@ export default function LiveTelemetryPage() {
               circuitId={selectedCircuit} 
               drivers={drivers}
               showStats={false}
-              showCorners={false}
+              showCorners={true}
               activeDriverCode={activeDriverCode || ''}
               onHoverDriver={setActiveDriverCode}
+              onCornerSelect={(corner) => {
+                if (corner) {
+                  const cornerKey = `t${corner.number}${corner.letter || ''}`.toLowerCase();
+                  router.push(`/gallery?circuit=${selectedCircuit}&corner=${cornerKey}`);
+                }
+              }}
             />
           </div>
 
