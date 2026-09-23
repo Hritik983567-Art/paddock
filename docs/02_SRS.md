@@ -35,7 +35,7 @@ graph TD
 
     User <-->|HTTPS / Secure Cookies| NextEdge
     NextEdge <-->|PostgreSQL Protocol / REST| SupabaseAuth
-    NextEdge <-->|HTTP Cache Layer (5 min)| TelemetryProxy
+    NextEdge <-->|HTTP Cache Layer - 5 Min Window| TelemetryProxy
     TelemetryProxy <-->|JSON / CSV Telemetry Stream| FastF1Engine
 ```
 

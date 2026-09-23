@@ -16,12 +16,13 @@ This document translates Paddock Telemetry's core product capabilities into agil
 
 ```mermaid
 graph TD
-    EPIC1["Epic 1: Identity & Pit-Wall Authentication"]
-    EPIC2["Epic 2: Circuit Reconnaissance & Corner Telemetry"]
-    EPIC3["Epic 3: 60fps Race Replay & Telemetry Simulation"]
-    EPIC4["Epic 4: Teammate Rivalry & Constructor Head-to-Head"]
-    EPIC5["Epic 5: High-Contrast Telemetry Overlays & Lab"]
-    EPIC6["Epic 6: Pit-Wall Strategy Presets & Cloud Sync"]
+    PADDOCK["🏁 Paddock Engineering Epics"]
+    PADDOCK --> EPIC1["Epic 1: Identity & Pit-Wall Authentication"]
+    PADDOCK --> EPIC2["Epic 2: Circuit Reconnaissance & Corner Telemetry"]
+    PADDOCK --> EPIC3["Epic 3: 60fps Race Replay & Telemetry Simulation"]
+    PADDOCK --> EPIC4["Epic 4: Teammate Rivalry & Constructor Head-to-Head"]
+    PADDOCK --> EPIC5["Epic 5: High-Contrast Telemetry Overlays & Lab"]
+    PADDOCK --> EPIC6["Epic 6: Pit-Wall Strategy Presets & Cloud Sync"]
 ```
 
 ---

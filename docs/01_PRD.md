@@ -90,16 +90,23 @@ pie title Target User Demographics
 ## 7. Product Roadmap
 
 ```mermaid
-timeline
-    title Paddock Telemetry Product Horizon
-    section Phase 1 (Completed)
-        Core Architecture : Next.js 16 App Router migration
-        Canvas Engine : 60fps vector replay and 78 circuits
-        Security Hardening : PKCE Auth, CSP, HttpOnly cookies
-    section Phase 2 (Current)
-        Engineering Docs : 10-file modular engineering specification
-        Telemetry Presets : Cloud strategy saves with Supabase RLS
-    section Phase 3 (Next)
-        Live WebSockets : Real-time sub-second FastF1 telemetry ingestion
-        AI Lap Predictor : Machine learning tire degradation & undercut simulator
+flowchart LR
+    subgraph P1["Phase 1 - Completed"]
+        A1["Next.js 16 App Router"]
+        A2["60fps Canvas Replay"]
+        A3["PKCE Auth & Security"]
+        A1 --> A2 --> A3
+    end
+    subgraph P2["Phase 2 - Current"]
+        B1["Modular System Specs"]
+        B2["Cloud Presets & RLS"]
+        B1 --> B2
+    end
+    subgraph P3["Phase 3 - Horizon"]
+        C1["Sub-Second WebSockets"]
+        C2["AI Strategy Predictor"]
+        C1 --> C2
+    end
+
+    P1 --> P2 --> P3
 ```

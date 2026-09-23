@@ -64,7 +64,7 @@ graph TD
     CANVAS -->|Fetch Circuit Geometry| CIRCUIT_API
     API_HELPER -->|Cached Telemetry Queries| PROXY
 
-    CSP --> ServerLayer
+    CSP --> AUTH_ROUTES
     AUTH_ROUTES --> RATE_LIMIT
     AUTH_ROUTES --> JWT_ENGINE
     AUTH_ROUTES -->|Password Check| SUPABASE_DB

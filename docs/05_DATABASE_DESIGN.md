@@ -36,7 +36,7 @@ erDiagram
     }
 
     PROFILES {
-        uuid id PK, FK "auth.users(id) ON DELETE CASCADE"
+        uuid id PK "auth.users id"
         text email UK "Unique email address"
         text full_name "Display name"
         text preferred_team "Default team theme"
@@ -46,12 +46,12 @@ erDiagram
     }
 
     TELEMETRY_PRESETS {
-        uuid id PK "gen_random_uuid()"
-        uuid user_id FK "profiles(id) ON DELETE CASCADE"
-        text preset_name "Strategy label (e.g. Monza Wet)"
-        text circuit_id "F1 track identifier (e.g. monza)"
-        text driver_1 "Lead driver code (e.g. LEC)"
-        text driver_2 "Comparison driver code (e.g. HAM)"
+        uuid id PK "Primary Key"
+        uuid user_id FK "profiles id"
+        text preset_name "Strategy label"
+        text circuit_id "F1 track identifier"
+        text driver_1 "Lead driver code"
+        text driver_2 "Comparison driver code"
         text notes "Pit-wall tactical notes"
         timestamptz created_at "Created timestamp UTC"
     }
