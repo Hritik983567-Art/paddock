@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { getJSON, API_BASE, fetchCircuitWeather, WeatherData } from './utils/api';
-import { useSeason } from './contexts/SeasonContext';
 
 interface Race {
   raceName: string;
@@ -48,15 +47,12 @@ interface ConstructorStanding {
 }
 
 export default function OverviewPage() {
-  const { selectedSeason } = useSeason();
-
   // Next race states
   const [nextRace, setNextRace] = useState<Race | null>(null);
   const [totalRaces, setTotalRaces] = useState<number>(0);
   const [countdownText, setCountdownText] = useState('Loading countdown…');
   const [litCount, setLitCount] = useState(0);
   const [isLightsOut, setIsLightsOut] = useState(false);
-  const [isSeasonComplete, setIsSeasonComplete] = useState(false);
 
   // Weather states
   const [weather, setWeather] = useState<WeatherData | null>(null);
@@ -69,11 +65,11 @@ export default function OverviewPage() {
 
   const countdownIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Fetch next & last race info for selectedSeason
+  // Fetch next & last race info
   useEffect(() => {
     async function fetchCalendar() {
       try {
-        const sched = await getJSON(`${API_BASE}/${selectedSeason}.json`) as { MRData: { RaceTable: { Races: Race[] } } };
+        const sched = await getJSON(`${API_BASE}/current.json`) as { MRData: { RaceTable: { Races: Race[] } } };
         const races = sched?.MRData?.RaceTable?.Races || [];
         setTotalRaces(races.length);
         const now = new Date();
@@ -81,29 +77,21 @@ export default function OverviewPage() {
 
         if (future.length > 0) {
           setNextRace(future[0]);
-          setIsSeasonComplete(false);
         } else if (races.length > 0) {
           setNextRace(races[races.length - 1]);
-          setIsSeasonComplete(true);
-        } else {
-          setNextRace(null);
-          setIsSeasonComplete(false);
         }
       } catch {
         setCountdownText('Countdown feed unavailable');
       }
     }
     fetchCalendar();
-  }, [selectedSeason]);
+  }, []);
 
   // Fetch weather when nextRace is loaded
   useEffect(() => {
     const lat = nextRace?.Circuit?.Location?.lat;
     const long = nextRace?.Circuit?.Location?.long;
-    if (!lat || !long) {
-      setWeather(null);
-      return;
-    }
+    if (!lat || !long) return;
 
     async function loadWeather() {
       setWeatherLoading(true);
@@ -121,24 +109,7 @@ export default function OverviewPage() {
 
   // Tick countdown interval
   useEffect(() => {
-    if (countdownIntervalRef.current) {
-      clearInterval(countdownIntervalRef.current);
-      countdownIntervalRef.current = null;
-    }
-
-    if (!nextRace) {
-      setCountdownText('NO SCHEDULE DATA AVAILABLE');
-      setLitCount(0);
-      setIsLightsOut(false);
-      return;
-    }
-
-    if (isSeasonComplete) {
-      setIsLightsOut(true);
-      setLitCount(5);
-      setCountdownText(`SEASON ${selectedSeason} CONCLUDED — ALL ${totalRaces} ROUNDS COMPLETED`);
-      return;
-    }
+    if (!nextRace) return;
 
     const raceDate = new Date(nextRace.date + 'T' + (nextRace.time || '13:00:00Z'));
 
@@ -172,16 +143,16 @@ export default function OverviewPage() {
     return () => {
       if (countdownIntervalRef.current) clearInterval(countdownIntervalRef.current);
     };
-  }, [nextRace, isSeasonComplete, selectedSeason, totalRaces]);
+  }, [nextRace]);
 
-  // Fetch standings for selectedSeason
+  // Fetch current standings
   useEffect(() => {
     async function loadStandings() {
       setStandingsLoading(true);
       try {
         const [dRes, cRes] = await Promise.all([
-          getJSON(`${API_BASE}/${selectedSeason}/driverStandings.json`).catch(() => null),
-          getJSON(`${API_BASE}/${selectedSeason}/constructorStandings.json`).catch(() => null)
+          getJSON(`${API_BASE}/current/driverStandings.json`).catch(() => null),
+          getJSON(`${API_BASE}/current/constructorStandings.json`).catch(() => null)
         ]);
 
         const dObj = dRes as { MRData?: { StandingsTable?: { StandingsLists?: Array<{ DriverStandings: DriverStanding[] }> } } } | null;
@@ -193,15 +164,14 @@ export default function OverviewPage() {
         setDrivers(dList);
         setConstructors(cList);
       } catch {
-        setDrivers([]);
-        setConstructors([]);
+        // Fallback gracefully
       } finally {
         setStandingsLoading(false);
       }
     }
 
     loadStandings();
-  }, [selectedSeason]);
+  }, []);
 
   return (
     <section className="min-h-screen bg-[#050810] text-slate-100 p-4 md:p-6 font-mono">
@@ -221,7 +191,7 @@ export default function OverviewPage() {
                   PADDOCK COMMAND CENTER
                 </h1>
                 <span className="px-2.5 py-0.5 text-[10px] font-mono font-black uppercase rounded bg-cyan-950 text-cyan-300 border border-cyan-700 shadow-md">
-                  SEASON {selectedSeason} INTELLIGENCE
+                  LIVE INTELLIGENCE
                 </span>
               </div>
               <p className="text-xs text-slate-400 font-semibold mt-0.5">
@@ -245,7 +215,7 @@ export default function OverviewPage() {
           <div className="lg:col-span-2 space-y-3">
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 text-[10px] font-black uppercase rounded bg-red-950 text-red-400 border border-red-800">
-                {isSeasonComplete ? `SEASON ${selectedSeason} FINALE` : 'NEXT ON THE CALENDAR'}
+                NEXT ON THE CALENDAR
               </span>
               {nextRace && (
                 <span className="text-xs font-bold text-cyan-400">
@@ -336,7 +306,7 @@ export default function OverviewPage() {
               <div className="flex items-center gap-2">
                 <span className="text-base">🏆</span>
                 <h3 className="text-xs font-black text-white uppercase tracking-wider">
-                  DRIVER CHAMPIONSHIP LEADERS ({selectedSeason})
+                  DRIVER CHAMPIONSHIP LEADERS
                 </h3>
               </div>
               <Link href="/standings" className="text-[10px] font-bold text-cyan-400 hover:underline">
@@ -347,8 +317,6 @@ export default function OverviewPage() {
             <div className="space-y-2 text-xs">
               {standingsLoading ? (
                 <p className="text-slate-400 py-4 text-center">Loading standings…</p>
-              ) : drivers.length === 0 ? (
-                <p className="text-slate-400 py-4 text-center">No driver standings records found for season {selectedSeason}.</p>
               ) : drivers.slice(0, 3).map((d) => (
                 <div key={d.Driver.driverId} className="p-3 bg-[#0D121F] rounded-lg border border-slate-800 flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -375,7 +343,7 @@ export default function OverviewPage() {
               <div className="flex items-center gap-2">
                 <span className="text-base">🏎️</span>
                 <h3 className="text-xs font-black text-white uppercase tracking-wider">
-                  CONSTRUCTOR CHAMPIONSHIP LEADERS ({selectedSeason})
+                  CONSTRUCTOR CHAMPIONSHIP LEADERS
                 </h3>
               </div>
               <Link href="/standings" className="text-[10px] font-bold text-cyan-400 hover:underline">
@@ -386,8 +354,6 @@ export default function OverviewPage() {
             <div className="space-y-2 text-xs">
               {standingsLoading ? (
                 <p className="text-slate-400 py-4 text-center">Loading standings…</p>
-              ) : constructors.length === 0 ? (
-                <p className="text-slate-400 py-4 text-center">No constructor standings records found for season {selectedSeason}.</p>
               ) : constructors.slice(0, 3).map((c) => (
                 <div key={c.Constructor.constructorId} className="p-3 bg-[#0D121F] rounded-lg border border-slate-800 flex items-center justify-between">
                   <div className="flex items-center gap-3">
