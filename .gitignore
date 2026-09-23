@@ -45,4 +45,5 @@ scratch/
 cache/
 *.sqlite
 *.ff1pkl
+*_report.md
 
