@@ -225,7 +225,7 @@ export default function SchedulePage() {
                         R{r.round}
                       </span>
                       <div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                           <h3 className="text-base font-black text-white uppercase font-display">
                             {r.raceName}
                           </h3>

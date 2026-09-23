@@ -114,6 +114,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             aria-label="Select F1 Season"
             value={selectedSeason}
             onChange={(e) => setSelectedSeason(e.target.value)}
+            className="max-w-[110px] sm:max-w-none truncate"
           >
             <option value="current">Current season</option>
             {seasons.map(y => (
@@ -129,6 +130,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             value={activeTheme}
             onChange={(e) => handleThemeChange(e.target.value)}
             style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}
+            className="max-w-[125px] sm:max-w-none truncate"
           >
             <option value="default">🏎️ Pit-Wall Red</option>
             <option value="ferrari">🔴 Ferrari</option>

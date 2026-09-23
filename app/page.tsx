@@ -186,7 +186,7 @@ export default function OverviewPage() {
               F1
             </div>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h1 className="text-xl font-black tracking-wider text-white uppercase font-display">
                   PADDOCK COMMAND CENTER
                 </h1>

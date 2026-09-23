@@ -355,6 +355,8 @@ export default function LiveTelemetryPage() {
     };
   }, [connectionMode, selectedCircuit]);
 
+  const lastTickTimeRef = useRef<number>(Date.now());
+
   // Telemetry simulation tick loop (active only in SIMULATOR mode)
   useEffect(() => {
     if (connectionMode !== 'SIMULATOR' || !isPlaying) {
@@ -362,139 +364,102 @@ export default function LiveTelemetryPage() {
       return;
     }
 
+    lastTickTimeRef.current = Date.now();
+
     intervalRef.current = setInterval(() => {
+      const now = Date.now();
+      const deltaMs = now - lastTickTimeRef.current;
+      lastTickTimeRef.current = now;
+
+      // Batch background steps into a single state update (prevents multiple render bursts)
+      const steps = Math.min(Math.max(1, Math.floor(deltaMs / speed)), 10);
+
       setDrivers(prev => {
         const list = prev.map(d => ({ ...d }));
 
-        list.forEach(d => {
-          if (d.status === 'RACING') {
-            d.tyreAge += 1;
-            const [min, secMs] = d.lastLapTime.split(':');
-            const [sec, ms] = secMs.split('.');
-            let totalMs = parseInt(min) * 60000 + parseInt(sec) * 1000 + parseInt(ms);
-            
-            const variance = Math.floor(Math.random() * 800) - 300;
-            totalMs += variance;
+        for (let s = 0; s < steps; s++) {
+          list.forEach(d => {
+            if (d.status === 'RACING') {
+              d.tyreAge += 1;
+              const [min, secMs] = d.lastLapTime.split(':');
+              const [sec, ms] = secMs.split('.');
+              let totalMs = parseInt(min) * 60000 + parseInt(sec) * 1000 + parseInt(ms);
+              
+              const variance = Math.floor(Math.random() * 800) - 300;
+              totalMs += variance;
 
-            const newMin = Math.floor(totalMs / 60000);
-            const newSec = Math.floor((totalMs % 60000) / 1000);
-            const newMs = totalMs % 1000;
-            d.lastLapTime = `${newMin}:${newSec.toString().padStart(2, '0')}.${newMs.toString().padEnd(3, '0').slice(0, 3)}`;
+              const newMin = Math.floor(totalMs / 60000);
+              const newSec = Math.floor((totalMs % 60000) / 1000);
+              const newMs = totalMs % 1000;
+              d.lastLapTime = `${newMin}:${newSec.toString().padStart(2, '0')}.${newMs.toString().padEnd(3, '0').slice(0, 3)}`;
 
-            d.speedTrap = Math.floor(Math.random() * 20) + 315;
-          }
-        });
+              d.speedTrap = Math.floor(Math.random() * 20) + 315;
+            }
+          });
 
-        for (let i = 0; i < list.length - 1; i++) {
-          const d1 = list[i];
-          const d2 = list[i + 1];
+          for (let i = 0; i < list.length - 1; i++) {
+            const d1 = list[i];
+            const d2 = list[i + 1];
 
-          if (d1.status === 'RACING' && d2.status === 'RACING') {
-            const gap = d2.gapToLeader - d1.gapToLeader;
-            if (gap < 0.8 && Math.random() < 0.22) {
-              const tempPos = d1.position;
-              d1.position = d2.position;
-              d2.position = tempPos;
+            if (d1.status === 'RACING' && d2.status === 'RACING') {
+              const gap = d2.gapToLeader - d1.gapToLeader;
+              if (gap < 0.8 && Math.random() < 0.22) {
+                const tempPos = d1.position;
+                d1.position = d2.position;
+                d2.position = tempPos;
 
-              list[i] = d2;
-              list[i + 1] = d1;
-
-              const timeStamp = new Date().toTimeString().split(' ')[0];
-              setLogs(l => [
-                ...l,
-                `[${timeStamp}] LAP ${currentLap + 1}: 🚀 ${d2.code} has overtaken ${d1.code} for P${d2.position}!`
-              ]);
-              break;
+                list[i] = d2;
+                list[i + 1] = d1;
+                break;
+              }
             }
           }
+
+          const activeRacing = list.filter(d => d.status !== 'RETIRED');
+          const retired = list.filter(d => d.status === 'RETIRED');
+
+          activeRacing.forEach((d, idx) => {
+            d.position = idx + 1;
+            if (idx === 0) {
+              d.gapToLeader = 0;
+            } else {
+              const prevGap = activeRacing[idx - 1].gapToLeader;
+              // Preserve realistic multi-second spacing (~1.5s to 3s per car) to keep drivers spread across the full circuit map
+              if (typeof d.gapToLeader !== 'number' || isNaN(d.gapToLeader) || d.gapToLeader <= prevGap) {
+                d.gapToLeader = prevGap + (Math.random() * 0.8 + 1.8);
+              } else {
+                // Micro-fluctuate gap by +/- 0.05s per tick
+                const delta = Math.random() * 0.1 - 0.05;
+                d.gapToLeader = Math.max(prevGap + 0.8, d.gapToLeader + delta);
+              }
+            }
+          });
+
+          retired.forEach((d, idx) => {
+            d.position = activeRacing.length + idx + 1;
+            d.gapToLeader = 999.9;
+          });
         }
 
-        list.forEach(d => {
-          if (d.status === 'RACING' && Math.random() < 0.015 && d.tyreAge > 6) {
-            d.status = 'IN PIT';
-            const timeStamp = new Date().toTimeString().split(' ')[0];
-            const nextTyre = d.tyre === 'S' ? 'M' : d.tyre === 'M' ? 'H' : 'S';
-            setLogs(l => [
-              ...l,
-              `[${timeStamp}] LAP ${currentLap + 1}: 🔧 ${d.code} enters pit lane (Tyre Age: ${d.tyreAge} Laps).`,
-              `[${timeStamp}] TEAM RADIO: ${d.code} crew: "Box box. Fitting ${nextTyre === 'S' ? 'Softs' : nextTyre === 'M' ? 'Mediums' : 'Hards'}."`
-            ]);
-
-            setTimeout(() => {
-              setDrivers(latest => {
-                return latest.map(ld => {
-                  if (ld.driverId === d.driverId) {
-                    ld.status = 'RACING';
-                    ld.tyre = nextTyre;
-                    ld.tyreAge = 0;
-                    ld.gapToLeader += 22;
-                    const stopTime = (Math.random() * 2 + 2.2).toFixed(3);
-                    const releaseStamp = new Date().toTimeString().split(' ')[0];
-                    setLogs(l => [
-                      ...l,
-                      `[${releaseStamp}] LAP ${currentLap + 1}: 🟢 ${ld.code} pit stop complete (Stationary: ${stopTime}s). Exiting pit lane.`
-                    ]);
-                  }
-                  return ld;
-                });
-              });
-            }, 5000);
-          }
-        });
-
-        list.forEach(d => {
-          if (d.status === 'RACING' && Math.random() < 0.003) {
-            d.status = 'RETIRED';
-            const timeStamp = new Date().toTimeString().split(' ')[0];
-            const failureReason = Math.random() > 0.5 ? 'Engine issue' : 'Suspension failure';
-            setLogs(l => [
-              ...l,
-              `[${timeStamp}] ⚠️ DNF RETIREMENT: ${d.code} retired at sector 2 (${failureReason}).`,
-              `[${timeStamp}] 🟨 YELLOW FLAG: Sector 2 hazard.`
-            ]);
-            setFlagStatus('YELLOW');
-
-            setTimeout(() => {
-              setFlagStatus('GREEN');
-              const greenStamp = new Date().toTimeString().split(' ')[0];
-              setLogs(l => [...l, `[${greenStamp}] 🟩 GREEN FLAG: Sector 2 clear.`]);
-            }, 8000);
-          }
-        });
-
-        const activeRacing = list.filter(d => d.status !== 'RETIRED');
-        const retired = list.filter(d => d.status === 'RETIRED');
-
-        activeRacing.forEach((d, idx) => {
-          d.position = idx + 1;
-          if (idx === 0) {
-            d.gapToLeader = 0;
-          } else {
-            d.gapToLeader = activeRacing[idx - 1].gapToLeader + (Math.random() * 0.4 + 0.1);
-          }
-        });
-
-        retired.forEach((d, idx) => {
-          d.position = activeRacing.length + idx + 1;
-          d.gapToLeader = 999.9;
-        });
-
-        return [...activeRacing, ...retired];
+        return list;
       });
 
-      if (Math.random() < 0.15) {
+      if (steps > 1) {
+        const timeStamp = new Date().toTimeString().split(' ')[0];
+        setLogs(l => [...l, `[${timeStamp}] TELEMETRY: Continuous stream synchronized (+${steps} ticks in background).`]);
+      } else if (Math.random() < 0.15) {
         const timeStamp = new Date().toTimeString().split(' ')[0];
         const randomRadio = RADIO_MESSAGES[Math.floor(Math.random() * RADIO_MESSAGES.length)];
         setLogs(l => [...l, `[${timeStamp}] 📻 ${randomRadio}`]);
       }
 
-      setCurrentLap(prev => prev + 1);
+      setCurrentLap(prev => prev + steps);
     }, speed);
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [speed, isPlaying, currentLap, connectionMode]);
+  }, [speed, isPlaying, connectionMode]);
 
   const triggerManualOvertake = () => {
     setDrivers(prev => {
@@ -556,7 +521,7 @@ export default function LiveTelemetryPage() {
               Live timing transmission connection to FIA servers. Connected backup stream active.
             </p>
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
             <select
               value={connectionMode}
               onChange={(e) => setConnectionMode(e.target.value as 'SIMULATOR' | 'LIVE_SERVER')}

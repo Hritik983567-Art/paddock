@@ -93,10 +93,10 @@ export const ReplayTimeline: React.FC<ReplayTimelineProps> = ({
       {/* Control Buttons & Playback Speed Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800/80">
         {/* Playback Controls */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1 sm:gap-1.5">
           <button
             onClick={onReset}
-            className="px-2.5 py-1.5 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono text-xs font-bold transition-colors"
+            className="px-2 sm:px-2.5 py-1 sm:py-1.5 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono text-[11px] sm:text-xs font-bold transition-colors"
             title="Reset to Start (|◀)"
           >
             |◀
@@ -104,14 +104,14 @@ export const ReplayTimeline: React.FC<ReplayTimelineProps> = ({
           <button
             onClick={onStepPrevLap}
             disabled={currentLap <= 1}
-            className="px-2.5 py-1.5 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono text-xs font-bold transition-colors disabled:opacity-40"
+            className="px-2 sm:px-2.5 py-1 sm:py-1.5 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono text-[11px] sm:text-xs font-bold transition-colors disabled:opacity-40"
             title="Previous Lap (Shift + Left)"
           >
             ◀ LAP
           </button>
           <button
             onClick={onStepBack10s}
-            className="px-2.5 py-1.5 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono text-xs font-bold transition-colors"
+            className="px-2 sm:px-2.5 py-1 sm:py-1.5 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono text-[11px] sm:text-xs font-bold transition-colors"
             title="Back 10 Sec (Left Arrow)"
           >
             -10s
@@ -120,7 +120,7 @@ export const ReplayTimeline: React.FC<ReplayTimelineProps> = ({
           {/* Primary Play / Pause Button */}
           <button
             onClick={onTogglePlay}
-            className={`px-5 py-1.5 text-xs font-mono font-black rounded-lg uppercase tracking-wider shadow-lg transition-all ${
+            className={`px-3.5 sm:px-5 py-1 sm:py-1.5 text-[11px] sm:text-xs font-mono font-black rounded-lg uppercase tracking-wider shadow-lg transition-all ${
               isPlaying
                 ? 'bg-amber-500 hover:bg-amber-400 text-slate-950'
                 : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'
@@ -131,7 +131,7 @@ export const ReplayTimeline: React.FC<ReplayTimelineProps> = ({
 
           <button
             onClick={onStepFwd10s}
-            className="px-2.5 py-1.5 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono text-xs font-bold transition-colors"
+            className="px-2 sm:px-2.5 py-1 sm:py-1.5 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono text-[11px] sm:text-xs font-bold transition-colors"
             title="Forward 10 Sec (Right Arrow)"
           >
             +10s
@@ -139,7 +139,7 @@ export const ReplayTimeline: React.FC<ReplayTimelineProps> = ({
           <button
             onClick={onStepNextLap}
             disabled={currentLap >= totalLaps}
-            className="px-2.5 py-1.5 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono text-xs font-bold transition-colors disabled:opacity-40"
+            className="px-2 sm:px-2.5 py-1 sm:py-1.5 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 text-slate-300 rounded font-mono text-[11px] sm:text-xs font-bold transition-colors disabled:opacity-40"
             title="Next Lap (Shift + Right)"
           >
             LAP ▶
@@ -147,8 +147,8 @@ export const ReplayTimeline: React.FC<ReplayTimelineProps> = ({
         </div>
 
         {/* Speed Toggles */}
-        <div className="flex items-center gap-1 bg-[#0D121F] p-1 border border-slate-700/80 rounded-lg">
-          <span className="text-[10px] font-mono font-bold text-slate-400 px-2 uppercase">SPEED:</span>
+        <div className="flex flex-wrap items-center justify-center gap-1 bg-[#0D121F] p-1 border border-slate-700/80 rounded-lg">
+          <span className="text-[10px] font-mono font-bold text-slate-400 px-1.5 uppercase">SPEED:</span>
           {[
             { label: '0.25x', speedMs: 3200 },
             { label: '0.5x', speedMs: 1600 },
@@ -159,7 +159,7 @@ export const ReplayTimeline: React.FC<ReplayTimelineProps> = ({
             <button
               key={s.label}
               onClick={() => onSelectSpeed(s.speedMs)}
-              className={`px-2 py-0.5 text-[11px] font-mono font-bold rounded transition-all ${
+              className={`px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] font-mono font-bold rounded transition-all ${
                 speed === s.speedMs
                   ? 'bg-cyan-500 text-slate-950 font-black'
                   : 'text-slate-400 hover:text-white'

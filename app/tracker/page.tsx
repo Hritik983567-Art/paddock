@@ -437,7 +437,7 @@ export default function RaceTrackerPage() {
               {/* Timing Sheet */}
               <div className="panel lg:col-span-7" style={{ overflowX: 'auto' }}>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '17px', marginBottom: '12px' }}>Timing Classification</h3>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '13.5px' }}>
+                <table style={{ width: '100%', minWidth: '580px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '13.5px' }}>
                   <thead>
                     <tr style={{ borderBottom: '1px solid var(--line)', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--dim)' }}>
                       <th style={{ padding: '8px 4px' }}>POS</th>

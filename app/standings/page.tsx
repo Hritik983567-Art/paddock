@@ -127,11 +127,11 @@ export default function StandingsPage() {
         {/* TAB NAVIGATION */}
         <div 
           style={{ backgroundColor: '#070A10', background: '#070A10', opacity: 1 }}
-          className="p-3 border-2 border-slate-700/80 rounded-xl shadow-2xl relative z-10 flex items-center gap-2"
+          className="p-3 border-2 border-slate-700/80 rounded-xl shadow-2xl relative z-10 flex flex-wrap items-center gap-2"
         >
           <button
             onClick={() => setActiveTab('drivers')}
-            className={`px-4 py-1.5 text-xs font-black rounded-lg transition-all uppercase ${
+            className={`flex-1 sm:flex-none px-4 py-2 text-xs font-black rounded-lg transition-all uppercase text-center ${
               activeTab === 'drivers'
                 ? 'bg-cyan-500 text-slate-950 shadow-md'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
@@ -141,7 +141,7 @@ export default function StandingsPage() {
           </button>
           <button
             onClick={() => setActiveTab('constructors')}
-            className={`px-4 py-1.5 text-xs font-black rounded-lg transition-all uppercase ${
+            className={`flex-1 sm:flex-none px-4 py-2 text-xs font-black rounded-lg transition-all uppercase text-center ${
               activeTab === 'constructors'
                 ? 'bg-cyan-500 text-slate-950 shadow-md'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
@@ -176,9 +176,10 @@ export default function StandingsPage() {
         {!loading && !error && activeTab === 'drivers' && (
           <div 
             style={{ backgroundColor: '#070A10', background: '#070A10', opacity: 1 }}
-            className="p-5 border-2 border-slate-700/80 rounded-xl shadow-2xl relative z-10 space-y-2"
+            className="p-3 sm:p-5 border-2 border-slate-700/80 rounded-xl shadow-2xl relative z-10 overflow-x-auto"
           >
-            <div className="grid grid-cols-12 p-3 bg-[#0D121F] rounded-lg font-black text-[11px] text-slate-400 border border-slate-700 mb-2">
+            <div className="min-w-[560px] space-y-2">
+              <div className="grid grid-cols-12 p-3 bg-[#0D121F] rounded-lg font-black text-[11px] text-slate-400 border border-slate-700 mb-2">
               <span className="col-span-1 text-center">POS</span>
               <span className="col-span-4">DRIVER</span>
               <span className="col-span-3">TEAM</span>
@@ -222,6 +223,7 @@ export default function StandingsPage() {
                 </div>
               );
             })}
+            </div>
           </div>
         )}
 
@@ -229,9 +231,10 @@ export default function StandingsPage() {
         {!loading && !error && activeTab === 'constructors' && (
           <div 
             style={{ backgroundColor: '#070A10', background: '#070A10', opacity: 1 }}
-            className="p-5 border-2 border-slate-700/80 rounded-xl shadow-2xl relative z-10 space-y-2"
+            className="p-3 sm:p-5 border-2 border-slate-700/80 rounded-xl shadow-2xl relative z-10 overflow-x-auto"
           >
-            <div className="grid grid-cols-12 p-3 bg-[#0D121F] rounded-lg font-black text-[11px] text-slate-400 border border-slate-700 mb-2">
+            <div className="min-w-[540px] space-y-2">
+              <div className="grid grid-cols-12 p-3 bg-[#0D121F] rounded-lg font-black text-[11px] text-slate-400 border border-slate-700 mb-2">
               <span className="col-span-1 text-center">POS</span>
               <span className="col-span-6">CONSTRUCTOR TEAM</span>
               <span className="col-span-3 text-center">RACE WINS</span>
@@ -270,6 +273,7 @@ export default function StandingsPage() {
                 </div>
               );
             })}
+            </div>
           </div>
         )}
       </div>

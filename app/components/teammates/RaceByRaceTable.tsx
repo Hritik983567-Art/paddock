@@ -59,7 +59,7 @@ export const RaceByRaceTable: React.FC<RaceByRaceTableProps> = ({ data }) => {
 
       {isExpanded && (
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs border-collapse">
+          <table className="w-full min-w-[580px] text-left text-xs border-collapse">
             <thead>
               <tr className="border-b border-slate-800 text-[10px] text-slate-400 uppercase">
                 <th

@@ -35,23 +35,27 @@ interface LiveDriverOverlayProps {
   onHoverDriver?: (code: string | null) => void;
 }
 
-// Subcomponent: Live Driver Overlay with isolated 60FPS animation ticker
+const LAP_DURATION_MS = 75000; // Continuous 75s lap cycle anchored to wall-clock time
+
+// Subcomponent: Live Driver Overlay with wall-clock continuous time progress
 const LiveDriverOverlay = React.memo(function LiveDriverOverlay({
   drivers,
   transformedPoints,
   activeDriverCode,
   onHoverDriver
 }: LiveDriverOverlayProps) {
-  const [animProgress, setAnimProgress] = useState<number>(0);
+  // Initialize and track animation progress anchored directly to Date.now()
+  const [animProgress, setAnimProgress] = useState<number>(
+    () => (Date.now() % LAP_DURATION_MS) / LAP_DURATION_MS
+  );
 
   useEffect(() => {
     let animId: number;
-    let lastTime = performance.now();
 
-    const tick = (now: number) => {
-      const delta = (now - lastTime) / 1000;
-      lastTime = now;
-      setAnimProgress(prev => (prev + delta / 75) % 1);
+    const tick = () => {
+      // Direct wall-clock calculation: immune to tab-switching pauses or resets
+      const currentProgress = (Date.now() % LAP_DURATION_MS) / LAP_DURATION_MS;
+      setAnimProgress(currentProgress);
       animId = requestAnimationFrame(tick);
     };
 
@@ -110,7 +114,7 @@ const LiveDriverOverlay = React.memo(function LiveDriverOverlay({
 
         const teamColor = getTeamColor(d.teamId);
         const isActive = activeDriverCode && activeDriverCode.toUpperCase() === (d.code || '').toUpperCase();
-        const radius = isActive ? 9 : 6.5;
+        const radius = isActive ? 11 : 8.5;
 
         return (
           <g
@@ -120,29 +124,29 @@ const LiveDriverOverlay = React.memo(function LiveDriverOverlay({
             onMouseEnter={() => onHoverDriver?.(d.code)}
             onMouseLeave={() => onHoverDriver?.(null)}
           >
-            {/* Outer Pulse Ring for Active Driver */}
+            {/* Outer Pulse Ring for Active / Hovered Driver */}
             {isActive && (
               <circle
-                r={radius + 7}
+                r={radius + 8}
                 fill="none"
                 stroke={teamColor}
                 strokeWidth="2.5"
-                opacity="0.8"
+                opacity="0.9"
                 className="animate-ping"
               />
             )}
 
-            {/* Driver Heading Arrow Indicator */}
+            {/* Driver Heading Direction Arrow */}
             {!d.isPit && (
               <g transform={`rotate(${isNaN(d.angle) ? 0 : d.angle})`}>
                 <polygon
-                  points={`${radius + 6},0 ${radius + 1}, -4 ${radius + 1},4`}
+                  points={`${radius + 5},0 ${radius + 1}, -3.5 ${radius + 1},3.5`}
                   fill={teamColor}
                 />
               </g>
             )}
 
-            {/* Main Car Marker Circle */}
+            {/* Clean Team Circle Dot */}
             <circle
               r={radius}
               fill={teamColor}
@@ -151,37 +155,52 @@ const LiveDriverOverlay = React.memo(function LiveDriverOverlay({
               filter={isActive ? 'url(#glow)' : undefined}
             />
 
-            {/* Inner Core Dot */}
-            <circle
-              r={isActive ? 3.5 : 2}
-              fill={d.isPit ? '#EAB308' : '#FFFFFF'}
-            />
+            {/* Driver Code Text inside Circle Dot */}
+            <text
+              x="0"
+              y="3"
+              fill="#FFFFFF"
+              fontSize={isActive ? "9.5" : "7.5"}
+              fontWeight="900"
+              fontFamily="monospace"
+              textAnchor="middle"
+              style={{
+                paintOrder: 'stroke',
+                stroke: '#000000',
+                strokeWidth: '1.5px',
+                strokeLinejoin: 'round'
+              }}
+            >
+              {d.isPit ? 'P' : d.code}
+            </text>
 
-            {/* Driver Tag Badge */}
-            <g transform={`translate(0, ${radius + 11})`}>
-              <rect
-                x="-19"
-                y="-8"
-                width="38"
-                height="14"
-                rx="4"
-                fill="#090D16"
-                stroke={isActive ? '#00D2BE' : teamColor}
-                strokeWidth={isActive ? '1.5' : '1'}
-                opacity="0.9"
-              />
-              <text
-                x="0"
-                y="2.5"
-                fill={d.isPit ? '#EAB308' : '#FFFFFF'}
-                fontSize="9"
-                fontWeight="800"
-                fontFamily="monospace"
-                textAnchor="middle"
-              >
-                {d.isPit ? 'PIT' : `P${d.position} ${d.code}`}
-              </text>
-            </g>
+            {/* Hovered / Active Extended Floating Popover Badge */}
+            {isActive && (
+              <g transform={`translate(0, ${-radius - 18})`} className="pointer-events-none">
+                <rect
+                  x="-45"
+                  y="-11"
+                  width="90"
+                  height="22"
+                  rx="6"
+                  fill="#090D16"
+                  stroke={teamColor}
+                  strokeWidth="2"
+                  filter="url(#cornerGlow)"
+                />
+                <text
+                  x="0"
+                  y="4"
+                  fill="#FFFFFF"
+                  fontSize="10"
+                  fontWeight="900"
+                  fontFamily="monospace"
+                  textAnchor="middle"
+                >
+                  P{d.position} {d.code} • {d.speedTrap || 320} KM/H
+                </text>
+              </g>
+            )}
           </g>
         );
       })}
@@ -272,6 +291,25 @@ export function CircuitMap({
   };
 
   const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      setIsDragging(true);
+      setDragStart({ x: e.touches[0].clientX - pan.x, y: e.touches[0].clientY - pan.y });
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    setPan({
+      x: e.touches[0].clientX - dragStart.x,
+      y: e.touches[0].clientY - dragStart.y
+    });
+  };
+
+  const handleTouchEnd = () => {
     setIsDragging(false);
   };
 
@@ -403,20 +441,20 @@ export function CircuitMap({
       <div className="relative bg-slate-950 border border-slate-800/80 rounded-2xl overflow-hidden shadow-2xl">
         {/* Header Info Panel */}
         {showStats && (
-          <div className="absolute top-4 left-4 z-20 flex flex-col gap-1.5 pointer-events-none">
-            <div className="flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-3.5 py-2 rounded-xl backdrop-blur-md shadow-lg pointer-events-auto">
-              <span className="text-2xl">🏁</span>
-              <div>
-                <h2 className="text-white font-black tracking-wide text-base uppercase leading-tight font-sans">
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 flex flex-col gap-1.5 pointer-events-none max-w-[calc(100%-120px)] sm:max-w-none">
+            <div className="flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-xl backdrop-blur-md shadow-lg pointer-events-auto">
+              <span className="text-xl sm:text-2xl">🏁</span>
+              <div className="min-w-0">
+                <h2 className="text-white font-black tracking-wide text-xs sm:text-base uppercase leading-tight font-sans truncate">
                   {circuitMeta.name || targetCircuit}
                 </h2>
-                <p className="text-cyan-400 font-mono text-[11px] font-medium">
+                <p className="text-cyan-400 font-mono text-[9px] sm:text-[11px] font-medium truncate">
                   {circuitMeta.country} • {circuitMeta.year} • FastF1 {sourceSession ? `${sourceSession} (${telemetryDriver || 'TELEMETRY'})` : 'DATA'}
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 text-[11px] font-mono text-slate-400 bg-slate-900/80 border border-slate-800/80 px-3 py-1.5 rounded-lg backdrop-blur-md">
+            <div className="hidden sm:flex items-center gap-2 text-[11px] font-mono text-slate-400 bg-slate-900/80 border border-slate-800/80 px-3 py-1.5 rounded-lg backdrop-blur-md">
               <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>Centerline Points: <strong className="text-white">{layout.pointCount}</strong></span>
               <span>•</span>
@@ -428,24 +466,24 @@ export function CircuitMap({
         )}
 
         {/* Control Buttons */}
-        <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
+        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-1 sm:gap-2">
           <button
             onClick={() => setZoom(prev => Math.min(prev + 0.25, 3.0))}
-            className="w-8 h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white font-mono font-bold flex items-center justify-center transition backdrop-blur-md shadow-md"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white font-mono font-bold flex items-center justify-center transition backdrop-blur-md shadow-md text-xs sm:text-sm"
             title="Zoom In"
           >
             +
           </button>
           <button
             onClick={() => setZoom(prev => Math.max(prev - 0.25, 0.6))}
-            className="w-8 h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white font-mono font-bold flex items-center justify-center transition backdrop-blur-md shadow-md"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white font-mono font-bold flex items-center justify-center transition backdrop-blur-md shadow-md text-xs sm:text-sm"
             title="Zoom Out"
           >
             -
           </button>
           <button
             onClick={resetView}
-            className="px-2.5 h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-cyan-400 font-mono text-xs font-bold flex items-center justify-center transition backdrop-blur-md shadow-md"
+            className="px-2 h-7 sm:px-2.5 sm:h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-cyan-400 font-mono text-[10px] sm:text-xs font-bold flex items-center justify-center transition backdrop-blur-md shadow-md"
             title="Reset View"
           >
             ↺ Reset
@@ -454,11 +492,14 @@ export function CircuitMap({
 
         {/* SVG Canvas Area */}
         <div
-          className="w-full h-[520px] cursor-grab active:cursor-grabbing select-none overflow-hidden"
+          className="w-full h-[320px] sm:h-[420px] md:h-[520px] cursor-grab active:cursor-grabbing select-none overflow-hidden touch-none"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           <svg
             ref={svgRef}
@@ -602,7 +643,7 @@ export function CircuitMap({
                 );
               })}
 
-              {/* LAYER 7: Live Telemetry Driver Car Overlay (Isolated 60FPS Render) */}
+              {/* LAYER 7: Live Telemetry Driver Car Overlay (Continuous Wall-Clock Render) */}
               <LiveDriverOverlay
                 drivers={drivers}
                 transformedPoints={transformedPoints}

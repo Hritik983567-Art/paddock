@@ -187,35 +187,35 @@ export const CircuitReplay: React.FC<CircuitReplayProps> = ({
         isFullscreen
           ? 'fixed inset-0 z-50 rounded-none border-none p-4'
           : isMiniMap
-          ? 'h-[240px]'
-          : 'h-[460px]'
+          ? 'h-[200px] sm:h-[240px]'
+          : 'h-[280px] sm:h-[360px] md:h-[460px]'
       }`}
     >
       {/* Top Overlay Bar */}
-      <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between pointer-events-none">
-        <div className="flex items-center gap-2 bg-[#0D121F]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-700/80 pointer-events-auto">
-          <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
-          <span className="font-mono text-xs font-black text-white uppercase tracking-wider">
+      <div className="absolute top-2.5 left-2.5 right-2.5 sm:top-3 sm:left-3 sm:right-3 z-20 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+        <div className="flex items-center gap-1.5 sm:gap-2 bg-[#0D121F]/90 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-slate-700/80 pointer-events-auto">
+          <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+          <span className="font-mono text-[10px] sm:text-xs font-black text-white uppercase tracking-wider truncate max-w-[120px] sm:max-w-none">
             {circuitName}
           </span>
           <span className="text-slate-500 font-mono">|</span>
-          <span className="font-mono text-xs font-bold text-cyan-400">
-            LAP {currentLap} / {totalLaps}
+          <span className="font-mono text-[10px] sm:text-xs font-bold text-cyan-400">
+            LAP {currentLap}/{totalLaps}
           </span>
         </div>
 
-        <div className="flex items-center gap-2 pointer-events-auto">
+        <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
           <button
             onClick={onToggleMiniMap}
-            className="px-2.5 py-1 bg-[#0D121F]/90 hover:bg-slate-800 border border-slate-700 rounded text-[11px] font-mono font-bold text-slate-300 transition-colors"
+            className="px-2 py-1 bg-[#0D121F]/90 hover:bg-slate-800 border border-slate-700 rounded text-[10px] sm:text-[11px] font-mono font-bold text-slate-300 transition-colors"
           >
-            {isMiniMap ? 'FULL MAP 🗖' : 'MINI MAP 🗗'}
+            {isMiniMap ? 'FULL 🗖' : 'MINI 🗗'}
           </button>
           <button
             onClick={onToggleFullscreen}
-            className="px-2.5 py-1 bg-[#0D121F]/90 hover:bg-slate-800 border border-slate-700 rounded text-[11px] font-mono font-bold text-cyan-400 transition-colors"
+            className="px-2 py-1 bg-[#0D121F]/90 hover:bg-slate-800 border border-slate-700 rounded text-[10px] sm:text-[11px] font-mono font-bold text-cyan-400 transition-colors"
           >
-            {isFullscreen ? 'EXIT FULLSCREEN ❌' : 'FULLSCREEN ⛶'}
+            {isFullscreen ? 'EXIT ❌' : 'EXPAND ⛶'}
           </button>
         </div>
       </div>

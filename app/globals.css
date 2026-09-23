@@ -969,16 +969,19 @@ label.small {
 
 .circ-timeline {
     margin-top: 18px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .circ-year-row {
     display: grid;
-    grid-template-columns: 60px 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: 55px 1fr 1fr;
+    gap: 8px;
     padding: 6px 0;
     border-bottom: 1px solid var(--line);
-    font-size: 12.5px;
+    font-size: 12px;
     font-family: var(--font-mono);
+    min-width: 300px;
 }
 
 .circ-year-row:last-child {
@@ -1107,7 +1110,8 @@ footer {
     padding: 24px;
     font-family: var(--font-body);
     background-color: #080C0A;
-    overflow: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .login-wallpaper-wrapper {
@@ -2051,7 +2055,7 @@ footer {
 }
 
 /* ==========================================================================
-   📱 💻 CROSS-DEVICE LAPTOP & MOBILE WEB RESPONSIVE UNIFICATION ENGINE
+   📱 💻 CROSS-DEVICE LAPTOP, TABLET & MOBILE WEB RESPONSIVE ENGINE
    ========================================================================== */
 
 /* Laptop & Desktop High Resolution (> 1024px) */
@@ -2072,6 +2076,8 @@ footer {
     .wrap {
         margin-left: 0;
         padding: 24px 20px 60px;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .hero {
@@ -2087,17 +2093,18 @@ footer {
     }
 }
 
-/* Mobile Smartphones (< 768px / 375px - 600px) */
+/* Mobile Smartphones (< 768px / 360px - 767px) */
 @media (max-width: 767px) {
     html, body {
-        overflow-x: hidden !important;
-        width: 100vw;
+        max-width: 100%;
+        overflow-x: clip;
     }
 
     .wrap {
         margin-left: 0 !important;
         padding: 16px 12px 60px !important;
-        max-width: 100vw !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
     }
 
     .hero, 
@@ -2112,6 +2119,7 @@ footer {
     .panel, .hero-left, .hero-right {
         padding: 16px 14px !important;
         border-radius: 12px !important;
+        box-sizing: border-box;
     }
 
     .qb-row {
@@ -2129,25 +2137,88 @@ footer {
         height: 140px !important;
     }
 
-    /* Touch-friendly table wrapper for mobile web */
+    /* Driver Profile Mobile Adaptations */
+    .profile-head {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 14px !important;
+    }
+
+    .profile-head .num {
+        display: none !important;
+    }
+
+    .profile-head .fig {
+        margin: 0 auto;
+    }
+
+    /* Circuit Specialist Comparison */
+    .compare-picks {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .compare-picks .pick {
+        min-width: 100% !important;
+        width: 100%;
+    }
+
+    /* Self-contained responsive tables */
     .table-responsive {
         width: 100%;
+        max-width: 100%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         margin-bottom: 12px;
     }
 
-    /* Prevent iOS Safari auto-zoom on form focus */
-    input, select, textarea {
-        font-size: 16px !important;
-        touch-action: manipulation;
-    }
-
-    button {
-        min-height: 44px;
+    /* Targeted touch sizing for primary action buttons without distorting small controls */
+    .btn.primary,
+    .btn,
+    .tab-btn,
+    .mobile-subnav-pill,
+    .spec-submit-btn {
+        min-height: 42px;
         touch-action: manipulation;
     }
 }
+
+/* Ultra-Compact Mobile (< 480px / 360px - 430px) */
+@media (max-width: 480px) {
+    #authGate.centered-login-screen {
+        padding: 16px 12px !important;
+        align-items: flex-start !important;
+    }
+
+    .centered-login-card {
+        padding: 24px 18px !important;
+        margin: 16px auto !important;
+        border-radius: 16px !important;
+        max-width: 100% !important;
+    }
+
+    .f1-spec-brand {
+        margin-bottom: 24px !important;
+    }
+
+    .top-header {
+        padding: 8px 10px !important;
+    }
+
+    .header-controls {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+
+    .header-controls select,
+    .header-controls button {
+        height: 30px !important;
+        padding: 2px 6px !important;
+        font-size: 11px !important;
+    }
+}
+
 
 
 
