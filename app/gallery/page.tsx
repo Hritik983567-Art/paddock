@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo, useCallback, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import CircuitMap from '../components/CircuitMap';
 import { ALL_GALLERY_MEDIA, GalleryMediaItem } from '../lib/galleryMediaData';
@@ -261,11 +261,56 @@ function GalleryContent() {
     }
   }, [urlCorner, selectedCircuitId, resolveCornerSpecs, mediaToDisplay, selectedCircuitMeta?.name]);
 
+  // View mode & cursor drag-to-scroll slider states
+  const [viewMode, setViewMode] = useState<'slider' | 'grid'>('slider');
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftState, setScrollLeftState] = useState(0);
+  const [hasDragged, setHasDragged] = useState(false);
+
+  const handleSliderMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!sliderRef.current) return;
+    setIsMouseDown(true);
+    setHasDragged(false);
+    setStartX(e.pageX - sliderRef.current.offsetLeft);
+    setScrollLeftState(sliderRef.current.scrollLeft);
+  };
+
+  const handleSliderMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isMouseDown || !sliderRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - sliderRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    if (Math.abs(walk) > 6) {
+      setHasDragged(true);
+    }
+    sliderRef.current.scrollLeft = scrollLeftState - walk;
+  };
+
+  const handleSliderMouseUpOrLeave = () => {
+    setIsMouseDown(false);
+  };
+
+  const scrollSlider = (direction: 'left' | 'right') => {
+    if (!sliderRef.current) return;
+    const scrollAmount = sliderRef.current.clientWidth * 0.75;
+    sliderRef.current.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  };
+
   // HANDLE CLICKING A PHOTO CARD IN GALLERY -> OPENS FULL INFORMATION MODAL
   const handleMediaCardClick = (item: GalleryMediaItem) => {
     setSelectedMedia(item);
     const specs = resolveCornerSpecs(item);
     setActiveCornerDetails(specs);
+  };
+
+  const onCardClick = (item: GalleryMediaItem) => {
+    if (hasDragged) return; // Ignore card clicks if the user dragged the cursor to move
+    handleMediaCardClick(item);
   };
 
   // HANDLE CLICKING A CORNER ON THE 2D CIRCUIT MAP -> SCROLLS TO GALLERY & OPENS INFORMATION MODAL
@@ -361,7 +406,7 @@ function GalleryContent() {
         </div>
       </header>
 
-      {/* Featured Photo Grid Section */}
+      {/* Featured Photo Grid / Drag-to-Scroll Slider Section */}
       <section id="gallery-section">
         {mediaToDisplay.length === 0 ? (
           <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-8 text-center space-y-3 shadow-2xl backdrop-blur-md">
@@ -369,79 +414,170 @@ function GalleryContent() {
               🏎️
             </div>
             <h3 className="text-white font-mono font-extrabold text-lg uppercase tracking-wide">
-              FASTF1 TELEMETRY RECONNAISSANCE MODE ACTIVE — {selectedCircuitMeta?.flag} {selectedCircuitMeta?.name.toUpperCase() || selectedCircuitId.toUpperCase()}
+              TELEMETRY RECONNAISSANCE MODE ACTIVE — {selectedCircuitMeta?.flag} {selectedCircuitMeta?.name.toUpperCase() || selectedCircuitId.toUpperCase()}
             </h3>
             <p className="text-slate-300 font-mono text-xs max-w-xl mx-auto leading-relaxed">
-              FastF1 position centerline points, turn vectors, braking zones, and technical telemetry profiles for <strong className="text-cyan-400">{selectedCircuitMeta?.name}</strong> are loaded on the Interactive 2D Vector Path Canvas below. Click any corner to view full information.
+              Track centerline points, turn vectors, braking zones, and technical telemetry profiles for <strong className="text-cyan-400">{selectedCircuitMeta?.name}</strong> are loaded on the Interactive 2D Vector Path Canvas below. Click any corner to view full information.
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {mediaToDisplay.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => handleMediaCardClick(item)}
-                className="group relative bg-slate-900/90 border border-slate-800 hover:border-red-500/80 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20 hover:-translate-y-1 cursor-pointer"
-              >
-                {/* Image Thumbnail */}
-                <div className="relative h-52 w-full overflow-hidden bg-slate-950">
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      const fallback = getCircuitFallbackImage(selectedCircuitId);
-                      if (target.src !== fallback) {
-                        target.src = fallback;
-                      }
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
-                  
-                  {/* Category Badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-700 text-[10px] font-mono font-bold text-red-400 backdrop-blur-md uppercase tracking-wider">
-                      {item.category === 'photo' ? '📸 REAL PHOTO' : item.category === 'blueprint' ? '📐 FIA VECTOR' : '🏎️ TEAM WALLPAPER'}
-                    </span>
-                  </div>
-
-                  {/* License Badge */}
-                  <div className="absolute top-3 right-3">
-                    <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-700 text-[9px] font-mono font-bold text-emerald-400 backdrop-blur-md">
-                      ✓ VERIFIED
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content Details */}
-                <div className="p-4 space-y-2">
-                  <h3 className="text-sm font-bold font-mono text-white group-hover:text-red-400 transition-colors line-clamp-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs font-mono text-slate-400 line-clamp-1">
-                    {item.subtitle}
-                  </p>
-
-                  {/* Technical Telemetry Badges */}
-                  <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-800 text-[10px] font-mono">
-                    {item.entrySpeed && (
-                      <span className="px-2 py-0.5 rounded bg-red-950/60 border border-red-900/60 text-red-300 font-bold">
-                        ⚡ {item.entrySpeed}
-                      </span>
-                    )}
-                    {item.typicalGear && (
-                      <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-bold">
-                        ⚙️ {item.typicalGear}
-                      </span>
-                    )}
-                    <span className="ml-auto text-[10px] text-cyan-400 font-bold">
-                      VIEW INFO →
-                    </span>
-                  </div>
-                </div>
+          <div className="space-y-3">
+            {/* View Mode & Movement Controls Toolbar */}
+            <div className="flex flex-wrap items-center justify-between gap-3 px-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-mono font-bold uppercase text-slate-300">
+                  {mediaToDisplay.length} CORNER SECTORS
+                </span>
+                {viewMode === 'slider' && (
+                  <span className="hidden sm:inline-block text-[11px] font-mono text-cyan-400/90">
+                    • Click &amp; drag cursor to move
+                  </span>
+                )}
               </div>
-            ))}
+
+              <div className="flex items-center gap-1 bg-slate-900/90 border border-slate-800 p-1 rounded-lg text-[10px] font-mono font-bold">
+                <button
+                  type="button"
+                  onClick={() => setViewMode('slider')}
+                  className={`px-3 py-1 rounded transition-all cursor-pointer ${
+                    viewMode === 'slider' ? 'bg-red-600 text-white shadow' : 'text-slate-400 hover:text-white'
+                  }`}
+                  title="Horizontal draggable slider view"
+                >
+                  ↔ SLIDER
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode('grid')}
+                  className={`px-3 py-1 rounded transition-all cursor-pointer ${
+                    viewMode === 'grid' ? 'bg-red-600 text-white shadow' : 'text-slate-400 hover:text-white'
+                  }`}
+                  title="Multi-column grid view"
+                >
+                  ☵ GRID
+                </button>
+              </div>
+            </div>
+
+            {/* Slider / Grid Container with Invisible Toggle Keys */}
+            <div className="relative group/slider">
+              {viewMode === 'slider' && mediaToDisplay.length > 1 && (
+                <>
+                  {/* Invisible / Subtle Left Toggle Key */}
+                  <button
+                    type="button"
+                    onClick={() => scrollSlider('left')}
+                    className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/40 hover:bg-slate-900/95 border border-slate-700/60 hover:border-red-500 text-white flex items-center justify-center opacity-0 group-hover/slider:opacity-90 hover:!opacity-100 transition-all duration-300 backdrop-blur-md shadow-2xl hover:scale-110 cursor-pointer"
+                    title="Move Left"
+                    aria-label="Move Left"
+                  >
+                    <span className="text-xl sm:text-2xl font-bold font-mono">‹</span>
+                  </button>
+
+                  {/* Invisible / Subtle Right Toggle Key */}
+                  <button
+                    type="button"
+                    onClick={() => scrollSlider('right')}
+                    className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/40 hover:bg-slate-900/95 border border-slate-700/60 hover:border-red-500 text-white flex items-center justify-center opacity-0 group-hover/slider:opacity-90 hover:!opacity-100 transition-all duration-300 backdrop-blur-md shadow-2xl hover:scale-110 cursor-pointer"
+                    title="Move Right"
+                    aria-label="Move Right"
+                  >
+                    <span className="text-xl sm:text-2xl font-bold font-mono">›</span>
+                  </button>
+                </>
+              )}
+
+              <div
+                ref={sliderRef}
+                onMouseDown={viewMode === 'slider' ? handleSliderMouseDown : undefined}
+                onMouseMove={viewMode === 'slider' ? handleSliderMouseMove : undefined}
+                onMouseUp={viewMode === 'slider' ? handleSliderMouseUpOrLeave : undefined}
+                onMouseLeave={viewMode === 'slider' ? handleSliderMouseUpOrLeave : undefined}
+                className={
+                  viewMode === 'slider'
+                    ? `flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-1 snap-x scroll-smooth select-none cursor-grab scrollbar-none ${
+                        isMouseDown ? 'cursor-grabbing' : ''
+                      }`
+                    : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
+                }
+                style={
+                  viewMode === 'slider'
+                    ? { WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }
+                    : undefined
+                }
+              >
+                {mediaToDisplay.map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() => onCardClick(item)}
+                    className={
+                      viewMode === 'slider'
+                        ? 'min-w-[270px] sm:min-w-[310px] md:min-w-[330px] max-w-[350px] flex-shrink-0 snap-start group relative bg-slate-900/90 border border-slate-800 hover:border-red-500/80 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20 hover:-translate-y-1 cursor-pointer select-none'
+                        : 'group relative bg-slate-900/90 border border-slate-800 hover:border-red-500/80 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20 hover:-translate-y-1 cursor-pointer select-none'
+                    }
+                  >
+                    {/* Image Thumbnail */}
+                    <div className="relative h-52 w-full overflow-hidden bg-slate-950 pointer-events-none select-none">
+                      <img
+                        src={item.src}
+                        alt={item.title}
+                        draggable={false}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 pointer-events-none select-none"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          const fallback = getCircuitFallbackImage(selectedCircuitId);
+                          if (target.src !== fallback) {
+                            target.src = fallback;
+                          }
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                      
+                      {/* Category Badge */}
+                      <div className="absolute top-3 left-3">
+                        <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-700 text-[10px] font-mono font-bold text-red-400 backdrop-blur-md uppercase tracking-wider">
+                          {item.category === 'photo' ? '📸 REAL PHOTO' : item.category === 'blueprint' ? '📐 FIA VECTOR' : '🏎️ TEAM WALLPAPER'}
+                        </span>
+                      </div>
+
+                      {/* License Badge */}
+                      <div className="absolute top-3 right-3">
+                        <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-700 text-[9px] font-mono font-bold text-emerald-400 backdrop-blur-md">
+                          ✓ VERIFIED
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Content Details */}
+                    <div className="p-4 space-y-2 pointer-events-none">
+                      <h3 className="text-sm font-bold font-mono text-white group-hover:text-red-400 transition-colors line-clamp-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs font-mono text-slate-400 line-clamp-1">
+                        {item.subtitle}
+                      </p>
+
+                      {/* Technical Telemetry Badges */}
+                      <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-800 text-[10px] font-mono">
+                        {item.entrySpeed && (
+                          <span className="px-2 py-0.5 rounded bg-red-950/60 border border-red-900/60 text-red-300 font-bold">
+                            ⚡ {item.entrySpeed}
+                          </span>
+                        )}
+                        {item.typicalGear && (
+                          <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-bold">
+                            ⚙️ {item.typicalGear}
+                          </span>
+                        )}
+                        <span className="ml-auto text-[10px] text-cyan-400 font-bold">
+                          VIEW INFO →
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </section>

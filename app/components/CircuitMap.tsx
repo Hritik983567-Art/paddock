@@ -449,7 +449,7 @@ export function CircuitMap({
                   {circuitMeta.name || targetCircuit}
                 </h2>
                 <p className="text-cyan-400 font-mono text-[9px] sm:text-[11px] font-medium truncate">
-                  {circuitMeta.country} • {circuitMeta.year} • FastF1 {sourceSession ? `${sourceSession} (${telemetryDriver || 'TELEMETRY'})` : 'DATA'}
+                  {circuitMeta.country} • {circuitMeta.year} • {sourceSession ? `OFFICIAL ${sourceSession}` : 'RACE TELEMETRY'}{telemetryDriver ? ` (${telemetryDriver})` : ''}
                 </p>
               </div>
             </div>

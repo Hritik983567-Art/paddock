@@ -806,7 +806,7 @@ export default function NewsPage() {
           color: #34E4C8 !important;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1023px) {
           .news-hero-card {
             grid-template-columns: 1fr !important;
           }

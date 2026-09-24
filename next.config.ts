@@ -5,7 +5,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const cspHeader = `
   default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com;
-  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com;
   img-src 'self' data: blob: https://lh3.googleusercontent.com https://racingnews365.com https://api.jolpica.net https://api.jolpi.ca https://ergast.com https://*.googleusercontent.com https://maps.google.com https://*.googleapis.com https://*.google.com https://*.openstreetmap.org https://images.unsplash.com https://*.unsplash.com https://upload.wikimedia.org https://*.wikimedia.org https://media.formula1.com https://*.formula1.com https://cdn-1.motorsport.com;
   font-src 'self' https://fonts.gstatic.com;
   connect-src 'self' ws: wss: https://api.jolpica.net https://api.jolpi.ca https://ergast.com https://*.supabase.co https://api.open-meteo.com https://accounts.google.com https://api.rss2json.com;

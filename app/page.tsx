@@ -265,7 +265,7 @@ export default function OverviewPage() {
           <div className="bg-[#0D121F] p-4 rounded-xl border-2 border-slate-700 shadow-xl space-y-2 text-xs">
             <div className="flex items-center justify-between pb-2 border-b border-slate-800">
               <span className="font-black text-white uppercase">CIRCUIT WEATHER RADAR</span>
-              <span className="text-[10px] text-cyan-400 font-bold">OPEN-METEO LIVE</span>
+              <span className="text-[10px] text-cyan-400 font-bold">LIVE RADAR</span>
             </div>
 
             {weatherLoading ? (

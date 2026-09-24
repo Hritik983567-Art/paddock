@@ -214,10 +214,10 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-left">
             <div>
               <span className="font-semibold text-slate-200 inline mr-2">PADDOCK TELEMETRY ANALYTICS</span>
-              <span className="text-[12px] text-slate-400 font-normal">Data Sources: FIA Formula 1 Telemetry • Jolpica / Ergast F1 Open Data Proxy</span>
+              <span className="text-[12px] text-slate-400 font-normal">Official Formula 1 Timing &amp; Circuit Telemetry</span>
             </div>
             <div className="text-[12px] text-slate-300 font-normal whitespace-nowrap">
-              Status: <span className="text-emerald-400 font-medium">● LIVE (240 FPS)</span> • Real-Time Proxy
+              Status: <span className="text-emerald-400 font-medium">● LIVE TELEMETRY (240 FPS)</span>
             </div>
           </div>
 

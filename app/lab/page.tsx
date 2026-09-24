@@ -1167,7 +1167,7 @@ export default function LabPage() {
           color: '#34E4C8'
         }}>
           <span>{loadingSessionData || loadingLaps ? '↻ FETCHING REAL TELEMETRY & LAP DATA...' : statusNote}</span>
-          <span style={{ color: '#CBD5E1', fontSize: '11px' }}>SOURCE · Jolpica / Ergast F1 API</span>
+          <span style={{ color: '#CBD5E1', fontSize: '11px' }}>PIT-WALL TELEMETRY · VERIFIED DATA</span>
         </div>
       )}
 

@@ -13,7 +13,7 @@ interface ErrorStateProps {
 
 export default function ErrorState({
   title = 'Telemetry Processing Error',
-  message = 'An unexpected error occurred while communicating with the pit-wall telemetry server or data proxy.',
+  message = 'An unexpected timing desynchronization occurred while retrieving pit-wall telemetry data.',
   errorDetails,
   correlationId,
   onRetry,

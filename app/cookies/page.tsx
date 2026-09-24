@@ -34,7 +34,7 @@ export default function CookiePolicyPage() {
           </h2>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs font-mono border-collapse">
+            <table className="w-full min-w-[500px] text-left text-xs font-mono border-collapse">
               <thead>
                 <tr className="bg-slate-950 text-cyan-400 border-b border-slate-800">
                   <th className="p-3">Storage Key</th>

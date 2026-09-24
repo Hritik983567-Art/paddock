@@ -53,7 +53,7 @@ export const CircuitInventoryReport: React.FC = () => {
 
           {/* Detailed Inventory Table — 100% High Contrast Pure White Text */}
           <div className="overflow-x-auto max-h-96 overflow-y-auto border border-slate-700 rounded-lg shadow-xl">
-            <table className="w-full text-left border-collapse text-[11.5px]">
+            <table className="w-full min-w-[620px] text-left border-collapse text-[11.5px]">
               <thead className="bg-[#111622] sticky top-0 border-b-2 border-slate-700 text-cyan-400 font-black uppercase tracking-wider">
                 <tr>
                   <th className="p-3">Circuit</th>

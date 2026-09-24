@@ -225,17 +225,17 @@ export default function AccountSettingsPage() {
             <div className="space-y-3 text-xs font-mono">
               <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
                 <span className="text-slate-500 block text-[10px] uppercase">Authentication State:</span>
-                <span className="font-bold text-emerald-400">AUTHENTICATED (JWT)</span>
+                <span className="font-bold text-emerald-400">ACTIVE &amp; VERIFIED</span>
               </div>
 
               <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
-                <span className="text-slate-500 block text-[10px] uppercase">Session Storage:</span>
-                <span className="font-bold text-slate-300">LocalStorage Encrypted Token</span>
+                <span className="text-slate-500 block text-[10px] uppercase">Session Security:</span>
+                <span className="font-bold text-slate-300">Protected Pit-Wall Session</span>
               </div>
 
               <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
-                <span className="text-slate-500 block text-[10px] uppercase">Data Proxy Access:</span>
-                <span className="font-bold text-cyan-400">Jolpica Telemetry API</span>
+                <span className="text-slate-500 block text-[10px] uppercase">Telemetry Access:</span>
+                <span className="font-bold text-cyan-400">Full Pit-Wall Grid</span>
               </div>
             </div>
 

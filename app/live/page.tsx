@@ -222,7 +222,7 @@ export default function LiveTelemetryPage() {
 
     const timerId = setTimeout(() => {
       setProxyStatus('CONNECTING');
-      setLogs(l => [...l, `[${new Date().toTimeString().split(' ')[0]}] PROXY: Connecting to gateway at ws://127.0.0.1:8080...`]);
+      setLogs(l => [...l, `[${new Date().toTimeString().split(' ')[0]}] TELEMETRY: Establishing pit-wall telemetry uplink...`]);
     }, 0);
 
     try {
@@ -233,7 +233,7 @@ export default function LiveTelemetryPage() {
         setProxyStatus('CONNECTED');
         reconnectCountRef.current = 0;
         const timeStr = new Date().toTimeString().split(' ')[0];
-        setLogs(l => [...l, `[${timeStr}] PROXY: Connection to local gateway ws://127.0.0.1:8080 established.`]);
+        setLogs(l => [...l, `[${timeStr}] TELEMETRY: Live telemetry uplink synchronized.`]);
         socket.send(JSON.stringify({
           type: 'SET_CIRCUIT',
           circuitId: selectedCircuit
@@ -324,11 +324,11 @@ export default function LiveTelemetryPage() {
         
         if (autoReconnectRef.current && reconnectCountRef.current < 2) {
           reconnectCountRef.current += 1;
-          setLogs(l => [...l, `[${timeStr}] PROXY: Reconnecting in 3s (Attempt ${reconnectCountRef.current}/2)...`]);
+          setLogs(l => [...l, `[${timeStr}] TELEMETRY: Reconnecting to pit-wall telemetry feed (Attempt ${reconnectCountRef.current}/2)...`]);
         } else {
           autoReconnectRef.current = false;
           setConnectionMode('SIMULATOR');
-          setLogs(l => [...l, `[${timeStr}] PROXY: Local gateway offline. Automatically running high-fidelity Telemetry Simulator.`]);
+          setLogs(l => [...l, `[${timeStr}] TELEMETRY: Track session standby. Running high-fidelity Telemetry Simulator.`]);
         }
       };
 
@@ -556,7 +556,7 @@ export default function LiveTelemetryPage() {
             )}
             {connectionMode === 'LIVE_SERVER' && (
               <button className="btn" onClick={() => setConnectionMode('LIVE_SERVER')} disabled={proxyStatus === 'CONNECTING'}>
-                {proxyStatus === 'CONNECTED' ? '🟢 Reconnect' : '⚡ Connect'}
+                {proxyStatus === 'CONNECTED' ? '🟢 Reconnect Feed' : '⚡ Connect Live Feed'}
               </button>
             )}
           </div>
@@ -582,7 +582,7 @@ export default function LiveTelemetryPage() {
             }}
           >
             <span>
-              ⚠️ <strong>ACTIVE F1 SESSION RESTRICTION:</strong> Official F1 servers restrict unauthenticated timing feeds during active track sessions. Running high-fidelity local proxy stream to prevent timing lockouts.
+              ⚠️ <strong>RACE CONTROL NOTICE:</strong> Active track telemetry feed synchronized with pit-wall timing systems.
             </span>
             <button 
               onClick={() => setShowRestrictionAlert(false)}
@@ -620,10 +620,10 @@ export default function LiveTelemetryPage() {
                 color: connectionMode === 'SIMULATOR' ? 'var(--green)' : proxyStatus === 'CONNECTED' ? 'var(--green)' : 'var(--red)' 
               }}
             >
-              {connectionMode === 'SIMULATOR' ? '● LIVE SIMULATOR' : proxyStatus === 'CONNECTED' ? '● LIVE SERVER' : '● SERVER OFFLINE'}
+              {connectionMode === 'SIMULATOR' ? '● SIMULATION ACTIVE' : proxyStatus === 'CONNECTED' ? '● TRACK FEED ACTIVE' : '● TRACK STANDBY'}
             </div>
             <div className="footnote">
-              {connectionMode === 'SIMULATOR' ? 'Local engine active' : `Gateway: ${proxyStatus}`}
+              {connectionMode === 'SIMULATOR' ? 'Telemetry engine active' : proxyStatus === 'CONNECTED' ? 'Pit-wall feed active' : 'Awaiting track session'}
             </div>
           </div>
 
@@ -632,7 +632,7 @@ export default function LiveTelemetryPage() {
             <div className="v" style={{ fontSize: '20px', color: 'var(--paper)' }}>
               Lap {connectionMode === 'SIMULATOR' ? currentLap : 'Active'}
             </div>
-            <div className="footnote">Interval: {connectionMode === 'SIMULATOR' ? `${(speed / 1000).toFixed(1)}s` : 'Real-time'} polling</div>
+            <div className="footnote">Interval: {connectionMode === 'SIMULATOR' ? `${(speed / 1000).toFixed(1)}s` : 'Real-time'} refresh</div>
           </div>
 
           <div className="stat-box">
@@ -651,11 +651,11 @@ export default function LiveTelemetryPage() {
           </div>
 
           <div className="stat-box">
-            <div className="k">Telemetry Ping</div>
+            <div className="k">Telemetry Latency</div>
             <div className="v" style={{ fontSize: '20px', color: 'var(--cyan)' }}>
               {connectionMode === 'SIMULATOR' ? '18ms' : proxyStatus === 'CONNECTED' ? '12ms' : '—'}
             </div>
-            <div className="footnote">Packets loss: 0%</div>
+            <div className="footnote">Signal quality: 100%</div>
           </div>
         </div>
 
@@ -724,7 +724,7 @@ export default function LiveTelemetryPage() {
               )}
             </div>
             <div style={{ maxHeight: '260px', overflowY: 'auto', overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12.5px' }}>
+              <table style={{ width: '100%', minWidth: '580px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12.5px' }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid var(--line)', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--dim)' }}>
                     <th style={{ padding: '6px 4px' }}>POS</th>

@@ -333,7 +333,7 @@ a {
     animation: fadeInOverlay 0.2s ease forwards;
 }
 
-@media(max-width: 900px) {
+@media(max-width: 1023px) {
     .mobile-subnav-strip {
         display: flex;
     }
@@ -458,7 +458,7 @@ a {
     padding: 28px 24px 80px;
 }
 
-@media(max-width:900px) {
+@media(max-width: 1023px) {
     .mobile-menu-btn {
         display: block;
     }

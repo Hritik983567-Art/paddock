@@ -8,7 +8,7 @@ interface MaintenanceStateProps {
 }
 
 export default function MaintenanceState({
-  reason = 'The Paddock Telemetry Grid is undergoing scheduled server updates & telemetry proxy maintenance.',
+  reason = 'The Paddock Telemetry Grid is undergoing scheduled pit-wall telemetry system calibration.',
   estimatedCompletion = '30 minutes',
 }: MaintenanceStateProps) {
   return (

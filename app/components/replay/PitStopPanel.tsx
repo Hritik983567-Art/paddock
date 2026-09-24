@@ -30,7 +30,7 @@ export const PitStopPanel: React.FC<PitStopPanelProps> = ({
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs border-collapse">
+        <table className="w-full min-w-[480px] text-left text-xs border-collapse">
           <thead>
             <tr className="border-b border-slate-800 text-[10px] text-slate-400 uppercase">
               <th className="py-2 px-3">DRIVER</th>
