@@ -261,13 +261,62 @@ function GalleryContent() {
     }
   }, [urlCorner, selectedCircuitId, resolveCornerSpecs, mediaToDisplay, selectedCircuitMeta?.name]);
 
-  // View mode & cursor drag-to-scroll slider states
-  const [viewMode, setViewMode] = useState<'slider' | 'grid'>('slider');
+  // Track dragging state and active corner navigation in modal
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeftState, setScrollLeftState] = useState(0);
   const [hasDragged, setHasDragged] = useState(false);
+
+  // Active corner index within mediaToDisplay
+  const currentCornerIndex = useMemo(() => {
+    if (!selectedMedia) return 0;
+    const idx = mediaToDisplay.findIndex(m => m.id === selectedMedia.id);
+    return idx >= 0 ? idx : 0;
+  }, [selectedMedia, mediaToDisplay]);
+
+  // Navigate directly to a corner by index
+  const handleSelectCornerIndex = useCallback((index: number) => {
+    if (!mediaToDisplay || mediaToDisplay.length === 0) return;
+    const clampedIndex = (index + mediaToDisplay.length) % mediaToDisplay.length;
+    const targetItem = mediaToDisplay[clampedIndex];
+    if (!targetItem) return;
+
+    setSelectedMedia(targetItem);
+    const specs = resolveCornerSpecs(targetItem);
+    setActiveCornerDetails(specs);
+
+    router.replace(`/gallery?circuit=${selectedCircuitId}&corner=${targetItem.id}`, { scroll: false });
+  }, [mediaToDisplay, resolveCornerSpecs, router, selectedCircuitId]);
+
+  const handlePrevCorner = useCallback(() => {
+    handleSelectCornerIndex(currentCornerIndex - 1);
+  }, [currentCornerIndex, handleSelectCornerIndex]);
+
+  const handleNextCorner = useCallback(() => {
+    handleSelectCornerIndex(currentCornerIndex + 1);
+  }, [currentCornerIndex, handleSelectCornerIndex]);
+
+  // Keyboard navigation when reconnaissance modal is open
+  useEffect(() => {
+    if (!selectedMedia) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        handlePrevCorner();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        handleNextCorner();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        setSelectedMedia(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedMedia, handlePrevCorner, handleNextCorner]);
 
   const handleSliderMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!sliderRef.current) return;
@@ -422,48 +471,23 @@ function GalleryContent() {
           </div>
         ) : (
           <div className="space-y-3">
-            {/* View Mode & Movement Controls Toolbar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 px-1">
+            {/* Corner Sectors Header */}
+            <div className="flex items-center justify-between gap-3 px-1">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono font-bold uppercase text-slate-300">
                   {mediaToDisplay.length} CORNER SECTORS
                 </span>
-                {viewMode === 'slider' && (
-                  <span className="hidden sm:inline-block text-[11px] font-mono text-cyan-400/90">
-                    • Click &amp; drag cursor to move
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-center gap-1 bg-slate-900/90 border border-slate-800 p-1 rounded-lg text-[10px] font-mono font-bold">
-                <button
-                  type="button"
-                  onClick={() => setViewMode('slider')}
-                  className={`px-3 py-1 rounded transition-all cursor-pointer ${
-                    viewMode === 'slider' ? 'bg-red-600 text-white shadow' : 'text-slate-400 hover:text-white'
-                  }`}
-                  title="Horizontal draggable slider view"
-                >
-                  ↔ SLIDER
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setViewMode('grid')}
-                  className={`px-3 py-1 rounded transition-all cursor-pointer ${
-                    viewMode === 'grid' ? 'bg-red-600 text-white shadow' : 'text-slate-400 hover:text-white'
-                  }`}
-                  title="Multi-column grid view"
-                >
-                  ☵ GRID
-                </button>
+                <span className="text-[11px] font-mono text-slate-500 hidden sm:inline">
+                  • Click any corner photo to open reconnaissance telemetry
+                </span>
               </div>
             </div>
 
-            {/* Slider / Grid Container with Invisible Toggle Keys */}
+            {/* Slider Container with subtle Left/Right navigation keys */}
             <div className="relative group/slider">
-              {viewMode === 'slider' && mediaToDisplay.length > 1 && (
+              {mediaToDisplay.length > 1 && (
                 <>
-                  {/* Invisible / Subtle Left Toggle Key */}
+                  {/* Subtle Left Toggle Key */}
                   <button
                     type="button"
                     onClick={() => scrollSlider('left')}
@@ -474,7 +498,7 @@ function GalleryContent() {
                     <span className="text-xl sm:text-2xl font-bold font-mono">‹</span>
                   </button>
 
-                  {/* Invisible / Subtle Right Toggle Key */}
+                  {/* Subtle Right Toggle Key */}
                   <button
                     type="button"
                     onClick={() => scrollSlider('right')}
@@ -489,32 +513,20 @@ function GalleryContent() {
 
               <div
                 ref={sliderRef}
-                onMouseDown={viewMode === 'slider' ? handleSliderMouseDown : undefined}
-                onMouseMove={viewMode === 'slider' ? handleSliderMouseMove : undefined}
-                onMouseUp={viewMode === 'slider' ? handleSliderMouseUpOrLeave : undefined}
-                onMouseLeave={viewMode === 'slider' ? handleSliderMouseUpOrLeave : undefined}
-                className={
-                  viewMode === 'slider'
-                    ? `flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-1 snap-x scroll-smooth select-none cursor-grab scrollbar-none ${
-                        isMouseDown ? 'cursor-grabbing' : ''
-                      }`
-                    : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
-                }
-                style={
-                  viewMode === 'slider'
-                    ? { WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }
-                    : undefined
-                }
+                onMouseDown={handleSliderMouseDown}
+                onMouseMove={handleSliderMouseMove}
+                onMouseUp={handleSliderMouseUpOrLeave}
+                onMouseLeave={handleSliderMouseUpOrLeave}
+                className={`flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-1 snap-x scroll-smooth select-none cursor-grab scrollbar-none ${
+                  isMouseDown ? 'cursor-grabbing' : ''
+                }`}
+                style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 {mediaToDisplay.map((item) => (
                   <div
                     key={item.id}
                     onClick={() => onCardClick(item)}
-                    className={
-                      viewMode === 'slider'
-                        ? 'min-w-[270px] sm:min-w-[310px] md:min-w-[330px] max-w-[350px] flex-shrink-0 snap-start group relative bg-slate-900/90 border border-slate-800 hover:border-red-500/80 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20 hover:-translate-y-1 cursor-pointer select-none'
-                        : 'group relative bg-slate-900/90 border border-slate-800 hover:border-red-500/80 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20 hover:-translate-y-1 cursor-pointer select-none'
-                    }
+                    className="min-w-[270px] sm:min-w-[310px] md:min-w-[330px] max-w-[350px] flex-shrink-0 snap-start group relative bg-slate-900/90 border border-slate-800 hover:border-red-500/80 rounded-xl overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:shadow-red-900/20 hover:-translate-y-1 cursor-pointer select-none"
                   >
                     {/* Image Thumbnail */}
                     <div className="relative h-52 w-full overflow-hidden bg-slate-950 pointer-events-none select-none">
@@ -596,11 +608,12 @@ function GalleryContent() {
             </button>
 
             {/* Corner Photo Preview */}
-            <div className="relative h-72 sm:h-96 w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
+            <div className="relative h-72 sm:h-96 w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800 group/photo">
               <img
+                key={selectedMedia.id}
                 src={selectedMedia.src}
                 alt={selectedMedia.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-opacity duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   const fallback = getCircuitFallbackImage(selectedCircuitId);
@@ -609,9 +622,70 @@ function GalleryContent() {
                   }
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-90"></div>
-              
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-90 pointer-events-none"></div>
+
+              {/* Floating Semi-Transparent Prev / Next Photo Overlay Arrows */}
+              {mediaToDisplay.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePrevCorner();
+                    }}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-950/40 hover:bg-slate-900/80 border border-white/10 text-white/70 hover:text-white backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-lg"
+                    title="Previous Corner (←)"
+                    aria-label="Previous Corner"
+                  >
+                    <span className="text-xl sm:text-2xl font-mono font-bold leading-none mb-0.5">‹</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleNextCorner();
+                    }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-950/40 hover:bg-slate-900/80 border border-white/10 text-white/70 hover:text-white backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-lg"
+                    title="Next Corner (→)"
+                    aria-label="Next Corner"
+                  >
+                    <span className="text-xl sm:text-2xl font-mono font-bold leading-none mb-0.5">›</span>
+                  </button>
+                </>
+              )}
+
+              {/* Floating Blended Semi-Transparent Corner Numbers Strip on Photo */}
+              {mediaToDisplay.length > 1 && (
+                <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-1.5 p-1 sm:p-1.5 rounded-full bg-slate-950/40 backdrop-blur-md border border-white/10 max-w-[calc(100%-4.5rem)] overflow-x-auto scrollbar-none shadow-xl">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-300/70 pl-2 pr-1 select-none shrink-0">
+                    CORNERS:
+                  </span>
+                  <div className="flex items-center gap-1">
+                    {mediaToDisplay.map((item, idx) => {
+                      const isActive = idx === currentCornerIndex;
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => handleSelectCornerIndex(idx)}
+                          title={`${idx + 1}. ${item.title}`}
+                          className={`min-w-[26px] sm:min-w-[30px] h-6 sm:h-7 px-1.5 sm:px-2 rounded-full font-mono text-xs font-bold transition-all duration-200 flex items-center justify-center cursor-pointer select-none shrink-0 ${
+                            isActive
+                              ? 'bg-red-500/40 text-white border border-red-400/60 shadow-[0_0_12px_rgba(239,68,68,0.4)] scale-105'
+                              : 'bg-white/[0.08] hover:bg-white/[0.2] text-slate-200/80 hover:text-white border border-white/10'
+                          }`}
+                        >
+                          <span>{idx + 1}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Bottom Badges in Photo */}
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
                 <div>
                   <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-700 text-xs font-mono font-bold text-red-400 backdrop-blur-md">
                     {selectedMedia.category === 'photo' ? '📸 REAL APEX PHOTOGRAPHY' : '📐 FIA VECTOR DYNAMICS'}
@@ -622,6 +696,70 @@ function GalleryContent() {
                 </span>
               </div>
             </div>
+
+            {/* Blended Semi-Transparent Track Corner Selector Bar */}
+            {mediaToDisplay.length > 1 && (
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 p-3 rounded-xl bg-slate-950/40 border border-white/[0.08] backdrop-blur-md">
+                <div className="flex items-center gap-2 overflow-x-auto scrollbar-none py-1">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400/80 font-bold px-1 select-none shrink-0">
+                    TRACK SECTORS ({mediaToDisplay.length}):
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    {mediaToDisplay.map((item, idx) => {
+                      const isActive = idx === currentCornerIndex;
+                      const turnMatch = item.title.match(/turns?\s*([\d\-\–]+)/i);
+                      const turnLabel = turnMatch ? `T${turnMatch[1]}` : `C${idx + 1}`;
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => handleSelectCornerIndex(idx)}
+                          className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-mono text-xs transition-all duration-200 cursor-pointer select-none shrink-0 ${
+                            isActive
+                              ? 'bg-red-500/25 border border-red-500/50 text-white shadow-[0_0_12px_rgba(239,68,68,0.25)] ring-1 ring-red-500/40'
+                              : 'bg-white/[0.05] hover:bg-white/[0.12] text-slate-300/70 hover:text-white border border-white/[0.08]'
+                          }`}
+                          title={item.title}
+                        >
+                          <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                            isActive ? 'bg-red-500/60 text-white' : 'bg-white/10 text-slate-300/90'
+                          }`}>
+                            {idx + 1}
+                          </span>
+                          <span className="font-semibold text-[11px] text-slate-300">
+                            {turnLabel}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-end gap-2 font-mono text-xs shrink-0 pt-1 sm:pt-0 border-t sm:border-t-0 border-white/[0.06]">
+                  <button
+                    type="button"
+                    onClick={handlePrevCorner}
+                    className="px-2.5 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.12] border border-white/[0.08] text-slate-300/80 hover:text-white flex items-center gap-1 transition cursor-pointer"
+                    title="Previous Corner (←)"
+                  >
+                    <span>‹</span>
+                    <span className="text-[11px]">PREV</span>
+                  </button>
+                  <span className="text-slate-400 font-bold text-xs px-1">
+                    {currentCornerIndex + 1} / {mediaToDisplay.length}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleNextCorner}
+                    className="px-2.5 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.12] border border-white/[0.08] text-slate-300/80 hover:text-white flex items-center gap-1 transition cursor-pointer"
+                    title="Next Corner (→)"
+                  >
+                    <span className="text-[11px]">NEXT</span>
+                    <span>›</span>
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Corner Information Header */}
             <div className="space-y-1 border-b border-slate-800 pb-4">
