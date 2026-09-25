@@ -9,6 +9,17 @@ import CircuitMap from '../components/CircuitMap';
 interface RoundItem {
   round: string;
   raceName: string;
+  date?: string;
+  Circuit?: {
+    circuitId?: string;
+    circuitName?: string;
+    Location?: {
+      lat?: string;
+      long?: string;
+      locality?: string;
+      country?: string;
+    };
+  };
 }
 
 interface TimingRow {
@@ -50,7 +61,7 @@ interface PitStopRow {
   duration: string;
 }
 
-function generateFallbackRaceData(round: string, selectedRaceObj?: { raceName?: string; Circuit?: { circuitId?: string } }) {
+function generateFallbackRaceData(round: string, selectedRaceObj?: RoundItem) {
   const name = selectedRaceObj?.raceName || `Grand Prix Round ${round}`;
   const circuit = selectedRaceObj?.Circuit?.circuitId || 'spa';
 
@@ -169,18 +180,19 @@ export default function RaceTrackerPage() {
       setTimingRows([]);
       setPitStops([]);
       try {
-        const res = await getJSON(`${API_BASE}/${selectedSeason}.json`) as { MRData?: { RaceTable?: { Races?: Array<{ round: string; raceName: string; date: string }> } } };
+        const res = await getJSON(`${API_BASE}/${selectedSeason}.json`) as { MRData?: { RaceTable?: { Races?: RoundItem[] } } };
         const raceList = res?.MRData?.RaceTable?.Races || [];
         const now = new Date();
-        const completed = raceList.map((r: { round: string; raceName: string; date: string }) => ({
+        const completed: RoundItem[] = raceList.map((r: RoundItem) => ({
           round: r.round,
           raceName: r.raceName,
-          date: r.date
+          date: r.date,
+          Circuit: r.Circuit
         }));
 
         setRounds(completed);
 
-        const pastCompleted = raceList.filter((r: { date: string }) => new Date(r.date) <= now);
+        const pastCompleted = raceList.filter((r: RoundItem) => (r.date ? new Date(r.date) <= now : false));
         if (pastCompleted.length > 0) {
           setSelectedRound(pastCompleted[pastCompleted.length - 1].round);
         } else if (completed.length > 0) {
