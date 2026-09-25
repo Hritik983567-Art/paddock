@@ -181,23 +181,23 @@ export default function NewsPage() {
         gap: '16px'
       }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', color: '#34E4C8', fontWeight: '800', fontSize: '12px', fontFamily: 'var(--font-mono)', letterSpacing: '1px' }}>
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#34E4C8', display: 'inline-block', boxShadow: '0 0 10px #34E4C8' }}></span>
-            <span>PADDOCK // NEWS DESK</span>
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="flex items-center gap-1">
+              <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+              <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                PADDOCK NEWS DESK
+              </span>
+            </span>
+            <span className="text-slate-700 font-sans text-xs">•</span>
+            <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+              24/7 F1 INTELLIGENCE
+            </span>
           </div>
-          <h1 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '36px',
-            fontWeight: '800',
-            letterSpacing: '1px',
-            margin: '0 0 6px 0',
-            color: '#FFFFFF',
-            textTransform: 'uppercase'
-          }}>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight f1-text-gradient uppercase mb-1">
             PADDOCK NEWS
           </h1>
-          <p style={{ margin: 0, color: '#E2E8F0', fontSize: '15px', maxWidth: '640px', lineHeight: '1.5', fontWeight: '500' }}>
-            Latest F1 stories, driver updates, team developments &amp; race-weekend news
+          <p className="text-xs font-sans text-slate-400 mt-1 max-w-xl leading-relaxed">
+            Latest F1 stories, driver updates, technical developments &amp; race-weekend intelligence.
           </p>
         </div>
 

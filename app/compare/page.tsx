@@ -165,8 +165,26 @@ export default function ComparePage() {
   return (
     <section className="view" id="view-compare">
       <div className="panel">
-        <h2>Circuit specialist</h2>
-        <p className="sub">Pick a circuit and any two drivers from F1 history — see their whole record at that track, any era, side by side.</p>
+        <div className="mb-5 pb-4 border-b border-slate-800/80">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="flex items-center gap-1">
+              <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+              <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                CIRCUIT SPECIALIST
+              </span>
+            </span>
+            <span className="text-slate-700 font-sans text-xs">•</span>
+            <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+              HISTORIC HEAD-TO-HEAD
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight f1-text-gradient uppercase">
+            CIRCUIT SPECIALIST
+          </h1>
+          <p className="text-xs font-sans text-slate-400 mt-1 max-w-xl leading-relaxed">
+            Pick a circuit and any two drivers from F1 history — inspect their complete record at that track, any era, side by side.
+          </p>
+        </div>
         
         {loadingIndex ? (
           <div id="circStatus" className="loading">Loading the driver and circuit indexes…</div>

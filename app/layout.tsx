@@ -1,24 +1,34 @@
 import type { Metadata } from "next";
-import { Rajdhani, Inter, JetBrains_Mono } from "next/font/google";
+import { Titillium_Web, Inter, Roboto_Condensed, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "./components/LayoutWrapper";
 
-const rajdhani = Rajdhani({
+const titilliumWeb = Titillium_Web({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "600", "700", "900"],
+  display: "swap",
 });
 
 const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const robotoCondensed = Roboto_Condensed({
+  variable: "--font-telemetry",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${rajdhani.variable} ${inter.variable} ${jetbrainsMono.variable} min-h-full antialiased`}>
+      <body className={`${titilliumWeb.variable} ${inter.variable} ${robotoCondensed.variable} ${jetbrainsMono.variable} min-h-full antialiased`}>
         <LayoutWrapper>
           {children}
         </LayoutWrapper>

@@ -980,44 +980,30 @@ export default function LabPage() {
         gap: '16px'
       }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-            <span style={{
-              background: 'rgba(52, 228, 200, 0.15)',
-              border: '1px solid #34E4C8',
-              color: '#34E4C8',
-              padding: '2px 8px',
-              borderRadius: '4px',
-              fontSize: '10.5px',
-              fontFamily: 'var(--font-mono)',
-              fontWeight: '800',
-              letterSpacing: '1px'
-            }}>
-              ● EXPERIMENTAL WORKSTATION
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="flex items-center gap-1">
+              <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+              <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                F1 STRATEGY &amp; TELEMETRY LAB
+              </span>
             </span>
-            <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1' }}>
-              REAL F1 TELEMETRY DATA &amp; STATISTICAL DERIVATIONS
+            <span className="text-slate-700 font-sans text-xs">•</span>
+            <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+              RACE ENGINEERING SIMULATOR
             </span>
           </div>
-          <h1 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '36px',
-            fontWeight: '800',
-            letterSpacing: '1px',
-            margin: '0 0 6px 0',
-            color: '#FFFFFF',
-            textTransform: 'uppercase'
-          }}>
-            PADDOCK LAB
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight f1-text-gradient uppercase mb-1">
+            STRATEGY LAB
           </h1>
-          <p style={{ margin: 0, color: '#E2E8F0', fontSize: '15px', maxWidth: '680px', lineHeight: '1.5', fontWeight: '500' }}>
-            Experimental telemetry, performance analysis &amp; race engineering tools
+          <p className="text-xs font-sans text-slate-400 mt-1 max-w-xl leading-relaxed">
+            Experimental telemetry, pace deltas, tyre degradation models &amp; pit-stop undercut simulation.
           </p>
         </div>
 
         {/* Global Season & Session Selector */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
           {loadingRounds ? (
-            <span style={{ fontSize: '12px', fontFamily: 'var(--font-mono)', color: '#34E4C8' }}>
+            <span style={{ fontSize: '12px', fontFamily: 'var(--font-telemetry)', color: '#00F5D4' }}>
               Loading rounds...
             </span>
           ) : (
@@ -1031,7 +1017,7 @@ export default function LabPage() {
                 padding: '9px 14px',
                 borderRadius: '6px',
                 fontSize: '12.5px',
-                fontFamily: 'var(--font-mono)',
+                fontFamily: 'var(--font-display)',
                 fontWeight: '700',
                 outline: 'none',
                 cursor: 'pointer'
@@ -1050,7 +1036,7 @@ export default function LabPage() {
       {errorMsg && (
         <div style={{
           background: '#1A080A',
-          border: '1px solid #E8302A',
+          border: '1px solid #E10600',
           borderRadius: '12px',
           padding: '24px',
           textAlign: 'center',
@@ -1080,12 +1066,12 @@ export default function LabPage() {
               onClick={() => setActiveTool(tool.id)}
               style={{
                 background: isActive ? '#141822' : '#0D1017',
-                border: isActive ? '1px solid #34E4C8' : '1px solid #262C38',
+                border: isActive ? '1px solid #E10600' : '1px solid #262C38',
                 borderRadius: '10px',
                 padding: '20px',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
-                boxShadow: isActive ? '0 0 20px rgba(52, 228, 200, 0.2)' : '0 4px 16px rgba(0,0,0,0.4)',
+                boxShadow: isActive ? '0 0 20px rgba(225, 6, 0, 0.35)' : '0 4px 16px rgba(0,0,0,0.4)',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
@@ -1097,13 +1083,14 @@ export default function LabPage() {
                   <span style={{ fontSize: '24px' }}>{tool.icon}</span>
                   <span style={{
                     fontSize: '10px',
-                    fontFamily: 'var(--font-mono)',
+                    fontFamily: 'var(--font-display)',
                     fontWeight: '800',
-                    color: isActive ? '#34E4C8' : '#CBD5E1',
-                    background: isActive ? 'rgba(52, 228, 200, 0.15)' : 'rgba(255,255,255,0.06)',
-                    padding: '2px 7px',
+                    color: isActive ? '#FFFFFF' : '#CBD5E1',
+                    background: isActive ? 'linear-gradient(135deg, #E10600 0%, #B30000 100%)' : 'rgba(255,255,255,0.06)',
+                    padding: '3px 8px',
                     borderRadius: '4px',
-                    border: '1px solid rgba(255,255,255,0.1)'
+                    border: isActive ? '1px solid rgba(255, 59, 48, 0.7)' : '1px solid rgba(255,255,255,0.1)',
+                    boxShadow: isActive ? '0 0 10px rgba(225, 6, 0, 0.4)' : 'none'
                   }}>
                     [{tool.badge}]
                   </span>

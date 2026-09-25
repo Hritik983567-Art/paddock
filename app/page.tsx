@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { getJSON, API_BASE, fetchCircuitWeather, WeatherData } from './utils/api';
+import { getJSON, API_BASE } from './utils/api';
+import CircuitWeatherRadar from './components/CircuitWeatherRadar';
 
 interface Race {
   raceName: string;
@@ -54,10 +55,6 @@ export default function OverviewPage() {
   const [litCount, setLitCount] = useState(0);
   const [isLightsOut, setIsLightsOut] = useState(false);
 
-  // Weather states
-  const [weather, setWeather] = useState<WeatherData | null>(null);
-  const [weatherLoading, setWeatherLoading] = useState(false);
-
   // Standings states
   const [drivers, setDrivers] = useState<DriverStanding[]>([]);
   const [constructors, setConstructors] = useState<ConstructorStanding[]>([]);
@@ -86,26 +83,6 @@ export default function OverviewPage() {
     }
     fetchCalendar();
   }, []);
-
-  // Fetch weather when nextRace is loaded
-  useEffect(() => {
-    const lat = nextRace?.Circuit?.Location?.lat;
-    const long = nextRace?.Circuit?.Location?.long;
-    if (!lat || !long) return;
-
-    async function loadWeather() {
-      setWeatherLoading(true);
-      try {
-        const wData = await fetchCircuitWeather(lat!, long!);
-        setWeather(wData);
-      } catch {
-        // Fallback gracefully
-      } finally {
-        setWeatherLoading(false);
-      }
-    }
-    loadWeather();
-  }, [nextRace]);
 
   // Tick countdown interval
   useEffect(() => {
@@ -186,16 +163,23 @@ export default function OverviewPage() {
               F1
             </div>
             <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <h1 className="text-xl font-black tracking-wider text-white uppercase font-display">
-                  PADDOCK COMMAND CENTER
-                </h1>
-                <span className="px-2.5 py-0.5 text-[10px] font-mono font-black uppercase rounded bg-cyan-950 text-cyan-300 border border-cyan-700 shadow-md">
-                  LIVE INTELLIGENCE
+              <div className="flex items-center gap-2 mb-1">
+                <span className="flex items-center gap-1">
+                  <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+                  <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                    F1 MISSION CONTROL
+                  </span>
+                </span>
+                <span className="text-slate-700 font-sans text-xs">•</span>
+                <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+                  2026 WORLD CHAMPIONSHIP
                 </span>
               </div>
-              <p className="text-xs text-slate-400 font-semibold mt-0.5">
-                Official Formula 1 Race Control, Telemetry & Analytics Hub
+              <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight f1-text-gradient uppercase">
+                PADDOCK COMMAND CENTER
+              </h1>
+              <p className="text-xs font-sans text-slate-400 mt-0.5 leading-relaxed">
+                Official Formula 1 Race Control, Telemetry &amp; Analytics Hub
               </p>
             </div>
           </div>
@@ -209,22 +193,28 @@ export default function OverviewPage() {
         {/* HERO: NEXT RACE & LIGHTS OUT COUNTDOWN */}
         <div 
           style={{ backgroundColor: '#070A10', background: '#070A10', opacity: 1 }}
-          className="p-6 border-2 border-slate-700/80 rounded-xl shadow-2xl relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-center"
+          className="p-6 border-2 border-slate-700/80 rounded-xl shadow-2xl relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6 items-start"
         >
           {/* Next Race Info (2 Columns) */}
           <div className="lg:col-span-2 space-y-3">
             <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 text-[10px] font-black uppercase rounded bg-red-950 text-red-400 border border-red-800">
-                NEXT ON THE CALENDAR
+              <span className="flex items-center gap-1">
+                <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+                <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                  NEXT ON THE CALENDAR
+                </span>
               </span>
               {nextRace && (
-                <span className="text-xs font-bold text-cyan-400">
-                  ROUND {nextRace.round} OF {totalRaces}
-                </span>
+                <>
+                  <span className="text-slate-700 font-sans text-xs">•</span>
+                  <span className="text-[11px] font-telemetry font-bold text-cyan-400 uppercase tracking-wider">
+                    ROUND {nextRace.round} OF {totalRaces}
+                  </span>
+                </>
               )}
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-white uppercase font-display tracking-wide">
+            <h2 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white f1-text-gradient uppercase">
               {nextRace ? nextRace.raceName : 'FETCHING CALENDAR…'}
             </h2>
 
@@ -261,37 +251,17 @@ export default function OverviewPage() {
             </div>
           </div>
 
-          {/* Weather Widget (1 Column) */}
-          <div className="bg-[#0D121F] p-4 rounded-xl border-2 border-slate-700 shadow-xl space-y-2 text-xs">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-              <span className="font-black text-white uppercase">CIRCUIT WEATHER RADAR</span>
-              <span className="text-[10px] text-cyan-400 font-bold">LIVE RADAR</span>
-            </div>
-
-            {weatherLoading ? (
-              <p className="text-slate-400 py-4 text-center">Loading weather radar…</p>
-            ) : weather ? (
-              <div className="space-y-1.5 pt-1">
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-400">TRACK TEMP:</span>
-                  <span className="font-black text-amber-400 text-sm">{weather.temp}°C ({Math.round(weather.temp * 1.8 + 32)}°F)</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-400">CONDITIONS:</span>
-                  <span className="font-black text-white">{weather.description}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-400">WIND SPEED:</span>
-                  <span className="font-black text-cyan-300">{weather.windSpeed} km/h</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-slate-400">PRECIPITATION:</span>
-                  <span className="font-black text-emerald-400">{weather.humidity}% Humidity ({weather.trackStatus})</span>
-                </div>
-              </div>
-            ) : (
-              <p className="text-slate-400 py-4 text-center">Weather radar data available near session start.</p>
-            )}
+          {/* Live Doppler Circuit Weather Radar (1 Column) */}
+          <div className="lg:col-span-1">
+            <CircuitWeatherRadar
+              initialLat={nextRace?.Circuit?.Location?.lat}
+              initialLon={nextRace?.Circuit?.Location?.long}
+              circuitName={nextRace?.Circuit?.circuitName}
+              locality={nextRace?.Circuit?.Location?.locality}
+              country={nextRace?.Circuit?.Location?.country}
+              flag="🏁"
+              circuitId={nextRace?.Circuit?.circuitId}
+            />
           </div>
         </div>
 

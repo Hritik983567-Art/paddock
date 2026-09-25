@@ -20,6 +20,8 @@ export interface CircuitMapProps {
   year?: number;
   showStats?: boolean;
   showCorners?: boolean;
+  showCornerDirectory?: boolean;
+  showCornerDetails?: boolean;
   drivers?: any[];
   activeDriverCode?: string;
   onHoverDriver?: (code: string | null) => void;
@@ -213,6 +215,8 @@ export function CircuitMap({
   circuitId,
   year = 2024,
   showStats = true,
+  showCornerDirectory = false,
+  showCornerDetails = false,
   drivers = [],
   activeDriverCode = '',
   onHoverDriver,
@@ -238,6 +242,9 @@ export function CircuitMap({
     setLoading(true);
     setError(null);
     setSelectedCorner(null);
+    setRawCircuitData(null);
+    setPan({ x: 0, y: 0 });
+    setZoom(1.0);
 
     fetch(`/api/circuits/${year}/${targetCircuit}`)
       .then(res => {
@@ -326,7 +333,8 @@ export function CircuitMap({
     }
 
     const { circuit: circuitMeta, layout, corners: rawCorners, rotation = 0, sourceSession, telemetryDriver } = rawCircuitData;
-    const bounds: TransformBounds = computeTransformBounds(layout.points, rotation, 1000, 700, 60);
+    const isFastF1 = layout.coordinateSystem === 'fastf1_xy';
+    const bounds: TransformBounds = computeTransformBounds(layout.points, rotation, 1000, 700, 60, isFastF1);
     const { pathD, transformedPoints } = transformTrackPath(layout.points, bounds);
     const transformedCorners: TransformedCorner[] = transformCorners(rawCorners || [], bounds, transformedPoints).filter(
       c =>
@@ -613,9 +621,10 @@ export function CircuitMap({
                   <g
                     key={`badge-${corner.number}${corner.letter}`}
                     transform={`translate(${lx}, ${ly})`}
-                    className="cursor-pointer transition-transform duration-150"
+                    className="cursor-pointer transition-transform duration-150 hover:scale-110"
                     onClick={() => handleCornerClick(corner)}
                   >
+                    <title>{corner.name ? `${corner.name} (Turn ${labelText})` : `Turn ${labelText}`} • Click to view corner reconnaissance</title>
                     <rect
                       x="-14"
                       y="-11"
@@ -655,8 +664,8 @@ export function CircuitMap({
         </div>
       </div>
 
-      {/* Interactive Corner Directory Navigation Bar */}
-      {transformedCorners.length > 0 && (
+      {/* Interactive Corner Directory Navigation Bar (Hidden by default, shown via modal on photo click) */}
+      {showCornerDirectory && transformedCorners.length > 0 && (
         <CornerDirectory
           corners={cornersDict}
           selectedCornerId={selectedKey}
@@ -669,8 +678,8 @@ export function CircuitMap({
         />
       )}
 
-      {/* Full Detailed Corner Breakdown Panel */}
-      {detailedCornerObj && (
+      {/* Full Detailed Corner Breakdown Panel (Hidden by default, shown via modal on photo click) */}
+      {showCornerDetails && detailedCornerObj && (
         <CornerDetails
           corner={detailedCornerObj}
           circuitName={circuitMeta.name || targetCircuit}

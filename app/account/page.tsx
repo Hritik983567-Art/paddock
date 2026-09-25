@@ -46,10 +46,22 @@ export default function AccountSettingsPage() {
             {displayName ? displayName.slice(0, 2).toUpperCase() : 'F1'}
           </div>
           <div>
-            <h1 className="text-xl sm:text-2xl font-black font-mono tracking-tight text-white uppercase">
-              {displayName || 'Telemetry Analyst'}
+            <div className="flex items-center gap-2 mb-1">
+              <span className="flex items-center gap-1">
+                <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+                <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                  PILOT PROFILE
+                </span>
+              </span>
+              <span className="text-slate-700 font-sans text-xs">•</span>
+              <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+                PADDOCK USER SETTINGS
+              </span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight f1-text-gradient uppercase">
+              {displayName || 'TELEMETRY ANALYST'}
             </h1>
-            <p className="text-xs text-purple-400 font-mono flex items-center gap-2">
+            <p className="text-xs text-purple-400 font-mono flex items-center gap-2 mt-0.5">
               <span>Role: {user?.role || 'Telemetry Analyst'}</span>
               <span>•</span>
               <span className="text-emerald-400 font-bold">● Active Session</span>
@@ -133,7 +145,7 @@ export default function AccountSettingsPage() {
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {[
-                { id: 'default', name: 'Pit-Wall Red', color: 'bg-red-600' },
+                { id: 'default', name: 'Checkered Flag', color: 'bg-slate-200' },
                 { id: 'ferrari', name: 'Scuderia Ferrari', color: 'bg-red-700' },
                 { id: 'redbull', name: 'Red Bull Racing', color: 'bg-blue-600' },
                 { id: 'mercedes', name: 'Mercedes-AMG', color: 'bg-emerald-500' },

@@ -515,10 +515,24 @@ export default function LiveTelemetryPage() {
     <section className="view w-full max-w-[1440px] mx-auto overflow-hidden box-border px-2 sm:px-4" id="view-live">
       <div className="panel w-full max-w-full overflow-hidden">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-          <div>
-            <h2>Live Telemetry Console // Pit Wall</h2>
-            <p className="sub" style={{ margin: 0 }}>
-              Live timing transmission connection to FIA servers. Connected backup stream active.
+          <div className="mb-2">
+            <div className="flex items-center gap-2 mb-1.5">
+              <span className="flex items-center gap-1">
+                <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+                <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                  PIT-WALL TELEMETRY
+                </span>
+              </span>
+              <span className="text-slate-700 font-sans text-xs">•</span>
+              <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+                LIVE STREAM CONSOLE
+              </span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight f1-text-gradient uppercase">
+              LIVE TELEMETRY CONSOLE
+            </h1>
+            <p className="text-xs font-sans text-slate-400 mt-1 max-w-xl leading-relaxed">
+              Official F1 Timing Tower, Micro-Sector Speeds, Race Director Log &amp; Dynamic Circuit Position Tracker.
             </p>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>

@@ -44,6 +44,7 @@ export interface TransformBounds {
   padding: number;
   canvasWidth: number;
   canvasHeight: number;
+  invertY?: boolean;
 }
 
 export interface TransformedPoint {
@@ -104,7 +105,8 @@ export function computeTransformBounds(
   rotationDeg: number = 0,
   canvasWidth: number = 1000,
   canvasHeight: number = 700,
-  padding: number = 60
+  padding: number = 60,
+  invertY: boolean = true
 ): TransformBounds {
   const validPoints = (rawPoints || []).filter(pt => typeof pt?.x === 'number' && !isNaN(pt.x) && typeof pt?.y === 'number' && !isNaN(pt.y));
 
@@ -112,7 +114,8 @@ export function computeTransformBounds(
     return {
       minX: 0, maxX: 1, minY: 0, maxY: 1,
       centerX: 0, centerY: 0, scale: 1,
-      rotationDeg: rotationDeg || 0, padding, canvasWidth, canvasHeight
+      rotationDeg: rotationDeg || 0, padding, canvasWidth, canvasHeight,
+      invertY
     };
   }
 
@@ -149,7 +152,8 @@ export function computeTransformBounds(
     minX, maxX, minY, maxY,
     centerX, centerY, scale,
     rotationDeg: rotationDeg || 0, padding,
-    canvasWidth, canvasHeight
+    canvasWidth, canvasHeight,
+    invertY
   };
 }
 
@@ -165,12 +169,17 @@ export function transformFastF1Point(pt: FastF1Point, bounds: TransformBounds): 
 
   const scale = typeof bounds.scale === 'number' && !isNaN(bounds.scale) && bounds.scale > 0 ? bounds.scale : 1;
   const minX = typeof bounds.minX === 'number' && !isNaN(bounds.minX) ? bounds.minX : 0;
+  const minY = typeof bounds.minY === 'number' && !isNaN(bounds.minY) ? bounds.minY : 0;
   const maxY = typeof bounds.maxY === 'number' && !isNaN(bounds.maxY) ? bounds.maxY : 0;
   const padding = typeof bounds.padding === 'number' && !isNaN(bounds.padding) ? bounds.padding : 60;
 
-  // 2. Scale & Translate to SVG canvas space (Y is inverted for SVG Y-down coordinates)
+  // 2. Scale & Translate to SVG canvas space:
+  // For Cartesian FastF1 coords (Y-up), invertY=true maps to SVG canvas (Y-down).
+  // For SVG / screen coords (Y-down), invertY=false maintains correct upright orientation.
   const canvasX = padding + (rot.x - minX) * scale;
-  const canvasY = padding + (maxY - rot.y) * scale;
+  const canvasY = bounds.invertY !== false
+    ? padding + (maxY - rot.y) * scale
+    : padding + (rot.y - minY) * scale;
 
   return {
     x: isNaN(canvasX) ? 0 : Number(canvasX.toFixed(2)),

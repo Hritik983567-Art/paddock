@@ -31,7 +31,7 @@ export default function SupportHelpCenterPage() {
     {
       category: 'account',
       question: 'How do I change my F1 Team theme accent colors?',
-      answer: 'Open the header dropdown or go to Account Settings (/account) to switch between Scuderia Ferrari, Red Bull, Mercedes, McLaren, Aston Martin, and Pit-Wall Red themes.',
+      answer: 'Open the header dropdown or go to Account Settings (/account) to switch between Scuderia Ferrari, Red Bull, Mercedes, McLaren, Aston Martin, and Checkered Flag themes.',
     },
     {
       category: 'troubleshooting',
@@ -52,11 +52,20 @@ export default function SupportHelpCenterPage() {
     <div className="max-w-4xl mx-auto py-8 px-4 font-sans text-slate-200">
       {/* Hero Title */}
       <div className="text-center mb-10">
-        <div className="inline-block px-4 py-1.5 bg-cyan-500/20 text-cyan-300 border border-cyan-400/60 rounded-full font-mono text-[11px] font-black uppercase tracking-widest mb-3 shadow-[0_0_20px_rgba(6,182,212,0.35)] backdrop-blur-md">
-          SUPPORT &amp; HELP CENTER
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <span className="flex items-center gap-1">
+            <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+            <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+              PADDOCK INTELLIGENCE
+            </span>
+          </span>
+          <span className="text-slate-700 font-sans text-xs">•</span>
+          <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+            HELP &amp; SUPPORT CENTER
+          </span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-black font-mono tracking-tight text-white uppercase mb-3 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-          Pit-Wall Knowledge Base &amp; FAQ
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display tracking-tight f1-text-gradient uppercase mb-3 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+          PIT-WALL KNOWLEDGE BASE &amp; FAQ
         </h1>
         <p className="text-xs sm:text-sm text-slate-200 font-medium max-w-xl mx-auto leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
           Learn how to analyze live telemetry, simulate pit strategies, inspect driver 3D hologram pods, and troubleshoot data connections.

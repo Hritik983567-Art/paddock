@@ -269,8 +269,26 @@ export default function DriversPage() {
   return (
     <section className="view" id="view-drivers">
       <div className="panel">
-        <h2>Driver profile</h2>
-        <p className="sub">Career stats pulled from every result and qualifying session on record for the selected driver.</p>
+        <div className="mb-5 pb-4 border-b border-slate-800/80">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="flex items-center gap-1">
+              <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+              <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                DRIVER ARCHIVE
+              </span>
+            </span>
+            <span className="text-slate-700 font-sans text-xs">•</span>
+            <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+              CAREER TELEMETRY &amp; STATS
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight f1-text-gradient uppercase">
+            DRIVER CAREER PROFILES
+          </h1>
+          <p className="text-xs font-sans text-slate-400 mt-1 max-w-xl leading-relaxed">
+            Career statistics pulled from every Grand Prix result, pole position, and qualifying session on record.
+          </p>
+        </div>
         
         {loadingList ? (
           <div className="loading">Loading driver list…</div>
@@ -310,18 +328,18 @@ export default function DriversPage() {
                 <h3>
                   {profile.givenName} {profile.familyName}
                   {profile.championships > 0 && (
-                    <span style={{ color: 'var(--amber)', fontSize: '16px', marginLeft: '8px' }}>
-                      · {profile.championships}× World Champion
+                    <span style={{ color: '#FFB800', textShadow: '0 0 10px rgba(255, 184, 0, 0.5)', fontSize: '16px', marginLeft: '8px', fontWeight: 800 }}>
+                      🏆 {profile.championships}× World Champion
                     </span>
                   )}
                 </h3>
-                <div className="team-line">
+                <div className="team-line font-sans">
                   {profile.nationality} {flag} · born {profile.dateOfBirth}
                 </div>
-                <div className="team-line">
-                  {profile.active ? 'Current' : 'Last'} team: {profile.latestTeamName} · Career: {profile.careerSpan} ·{' '}
-                  <span style={{ color: profile.active ? 'var(--green)' : 'var(--dim)' }}>
-                    {profile.active ? 'Active' : 'Retired'}
+                <div className="team-line font-sans">
+                  {profile.active ? 'Current' : 'Last'} team: <strong className="text-white">{profile.latestTeamName}</strong> · Career: <span className="font-telemetry font-bold text-slate-200">{profile.careerSpan}</span> ·{' '}
+                  <span style={{ color: profile.active ? '#00F5D4' : '#94A3B8', fontWeight: 700 }}>
+                    {profile.active ? '● Active Driver' : 'Retired'}
                   </span>
                 </div>
               </div>
@@ -330,39 +348,39 @@ export default function DriversPage() {
             <div className="stat-grid">
               <div className="stat-box">
                 <div className="k">Races started</div>
-                <div className="v">{profile.starts}</div>
+                <div className="v text-white">{profile.starts}</div>
               </div>
               <div className="stat-box">
                 <div className="k">GP wins</div>
-                <div className="v" style={{ color: 'var(--amber)' }}>{profile.wins}</div>
+                <div className="v" style={{ color: '#FFB800', textShadow: '0 0 10px rgba(255, 184, 0, 0.45)' }}>{profile.wins}</div>
               </div>
               <div className="stat-box">
                 <div className="k">Podiums</div>
-                <div className="v" style={{ color: 'var(--cyan)' }}>{profile.podiums}</div>
+                <div className="v" style={{ color: '#00F5D4', textShadow: '0 0 10px rgba(0, 245, 212, 0.4)' }}>{profile.podiums}</div>
               </div>
               <div className="stat-box">
                 <div className="k">Poles</div>
-                <div className="v" style={{ color: 'var(--purple)' }}>{profile.poles}</div>
+                <div className="v" style={{ color: '#D946EF', textShadow: '0 0 10px rgba(217, 70, 239, 0.45)' }}>{profile.poles}</div>
               </div>
               <div className="stat-box">
                 <div className="k">Fastest laps</div>
-                <div className="v" style={{ color: 'var(--green)' }}>{profile.fastestLaps}</div>
+                <div className="v" style={{ color: '#B138DD', textShadow: '0 0 10px rgba(177, 56, 221, 0.45)' }}>{profile.fastestLaps}</div>
               </div>
               <div className="stat-box">
                 <div className="k">Career points</div>
-                <div className="v">{profile.totalPoints.toFixed(0)}</div>
+                <div className="v" style={{ color: '#E10600', textShadow: '0 0 10px rgba(225, 6, 0, 0.4)' }}>{profile.totalPoints.toFixed(0)}</div>
               </div>
               <div className="stat-box">
                 <div className="k">Win rate</div>
-                <div className="v">{profile.winPct}%</div>
+                <div className="v" style={{ color: '#FFB800' }}>{profile.winPct}%</div>
               </div>
               <div className="stat-box">
                 <div className="k">Podium rate</div>
-                <div className="v">{profile.podPct}%</div>
+                <div className="v" style={{ color: '#00F5D4' }}>{profile.podPct}%</div>
               </div>
               <div className="stat-box">
                 <div className="k">Non-finishes</div>
-                <div className="v" style={{ color: 'var(--red)' }}>{profile.dnfs}</div>
+                <div className="v" style={{ color: '#FF3B30' }}>{profile.dnfs}</div>
               </div>
             </div>
             

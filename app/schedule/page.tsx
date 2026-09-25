@@ -126,16 +126,23 @@ export default function SchedulePage() {
               F1
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl font-black tracking-wider text-white uppercase font-display">
-                  PADDOCK CALENDAR & SCHEDULE
-                </h1>
-                <span className="px-2.5 py-0.5 text-[10px] font-mono font-black uppercase rounded bg-cyan-950 text-cyan-300 border border-cyan-700 shadow-md">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="flex items-center gap-1">
+                  <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+                  <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                    RACE CALENDAR
+                  </span>
+                </span>
+                <span className="text-slate-700 font-sans text-xs">•</span>
+                <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
                   SEASON {selectedSeason}
                 </span>
               </div>
-              <p className="text-xs text-slate-400 font-semibold mt-0.5">
-                Official Formula 1 Grand Prix Race Dates, Session Times & Results
+              <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight f1-text-gradient uppercase">
+                PADDOCK CALENDAR &amp; SCHEDULE
+              </h1>
+              <p className="text-xs font-sans text-slate-400 mt-0.5 leading-relaxed">
+                Official Formula 1 Grand Prix Race Dates, Session Times &amp; Results
               </p>
             </div>
           </div>

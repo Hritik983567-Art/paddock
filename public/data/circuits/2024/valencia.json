@@ -1,0 +1,1622 @@
+{
+  "circuit": {
+    "id": "valencia",
+    "name": "Valencia Street Circuit",
+    "country": "Spain",
+    "location": "Spain",
+    "year": 2024
+  },
+  "sourceSession": "Authentic Historic Centerline",
+  "telemetryDriver": "HISTORIC",
+  "telemetryLap": 1,
+  "rotation": 0,
+  "layout": {
+    "source": "Authentic Circuit Centerline",
+    "coordinateSystem": "svg_centerline_xy",
+    "pointCount": 300,
+    "points": [
+      {
+        "x": 464.3,
+        "y": 75.6
+      },
+      {
+        "x": 462.7,
+        "y": 70.7
+      },
+      {
+        "x": 461,
+        "y": 65.8
+      },
+      {
+        "x": 459.3,
+        "y": 60.9
+      },
+      {
+        "x": 457.7,
+        "y": 56.1
+      },
+      {
+        "x": 456,
+        "y": 51.2
+      },
+      {
+        "x": 454.3,
+        "y": 46.3
+      },
+      {
+        "x": 452.7,
+        "y": 41.5
+      },
+      {
+        "x": 453.3,
+        "y": 36.5
+      },
+      {
+        "x": 453.2,
+        "y": 32.8
+      },
+      {
+        "x": 448,
+        "y": 33.2
+      },
+      {
+        "x": 442.9,
+        "y": 33.5
+      },
+      {
+        "x": 437.8,
+        "y": 33.9
+      },
+      {
+        "x": 432.6,
+        "y": 34.2
+      },
+      {
+        "x": 427.5,
+        "y": 34.6
+      },
+      {
+        "x": 422.4,
+        "y": 34.9
+      },
+      {
+        "x": 417.2,
+        "y": 35.3
+      },
+      {
+        "x": 412.1,
+        "y": 35.7
+      },
+      {
+        "x": 407.4,
+        "y": 37.7
+      },
+      {
+        "x": 402.9,
+        "y": 40.1
+      },
+      {
+        "x": 398.4,
+        "y": 42.7
+      },
+      {
+        "x": 394,
+        "y": 45.3
+      },
+      {
+        "x": 389.6,
+        "y": 48
+      },
+      {
+        "x": 385.3,
+        "y": 50.8
+      },
+      {
+        "x": 381.1,
+        "y": 53.7
+      },
+      {
+        "x": 376.9,
+        "y": 56.7
+      },
+      {
+        "x": 372.8,
+        "y": 59.8
+      },
+      {
+        "x": 368.7,
+        "y": 63
+      },
+      {
+        "x": 364.8,
+        "y": 66.3
+      },
+      {
+        "x": 360.9,
+        "y": 69.7
+      },
+      {
+        "x": 357.6,
+        "y": 73.6
+      },
+      {
+        "x": 354.3,
+        "y": 77.5
+      },
+      {
+        "x": 350.9,
+        "y": 81.5
+      },
+      {
+        "x": 347.6,
+        "y": 85.4
+      },
+      {
+        "x": 343.1,
+        "y": 87.6
+      },
+      {
+        "x": 338.2,
+        "y": 89.2
+      },
+      {
+        "x": 333.3,
+        "y": 90.8
+      },
+      {
+        "x": 328.4,
+        "y": 92.4
+      },
+      {
+        "x": 323.6,
+        "y": 94.1
+      },
+      {
+        "x": 318.7,
+        "y": 95.7
+      },
+      {
+        "x": 313.8,
+        "y": 97.3
+      },
+      {
+        "x": 309.5,
+        "y": 99.2
+      },
+      {
+        "x": 311.2,
+        "y": 104.1
+      },
+      {
+        "x": 311.7,
+        "y": 108.3
+      },
+      {
+        "x": 306.8,
+        "y": 110
+      },
+      {
+        "x": 302,
+        "y": 111.7
+      },
+      {
+        "x": 297.1,
+        "y": 113.5
+      },
+      {
+        "x": 292.3,
+        "y": 115.2
+      },
+      {
+        "x": 287.4,
+        "y": 116.9
+      },
+      {
+        "x": 282.6,
+        "y": 118.6
+      },
+      {
+        "x": 277.7,
+        "y": 120.4
+      },
+      {
+        "x": 273.1,
+        "y": 122.6
+      },
+      {
+        "x": 268.8,
+        "y": 125.4
+      },
+      {
+        "x": 264.5,
+        "y": 128.3
+      },
+      {
+        "x": 260.1,
+        "y": 130.8
+      },
+      {
+        "x": 255.1,
+        "y": 131.9
+      },
+      {
+        "x": 250,
+        "y": 131.3
+      },
+      {
+        "x": 245.3,
+        "y": 129.2
+      },
+      {
+        "x": 240.7,
+        "y": 127
+      },
+      {
+        "x": 235.9,
+        "y": 128.6
+      },
+      {
+        "x": 232.4,
+        "y": 132.3
+      },
+      {
+        "x": 230.6,
+        "y": 137.1
+      },
+      {
+        "x": 229,
+        "y": 142
+      },
+      {
+        "x": 227.5,
+        "y": 146.9
+      },
+      {
+        "x": 225.9,
+        "y": 151.8
+      },
+      {
+        "x": 224.3,
+        "y": 156.7
+      },
+      {
+        "x": 222.8,
+        "y": 161.6
+      },
+      {
+        "x": 221.2,
+        "y": 166.5
+      },
+      {
+        "x": 219.7,
+        "y": 171.4
+      },
+      {
+        "x": 218.1,
+        "y": 176.3
+      },
+      {
+        "x": 216.5,
+        "y": 181.2
+      },
+      {
+        "x": 215,
+        "y": 186.1
+      },
+      {
+        "x": 213.4,
+        "y": 191
+      },
+      {
+        "x": 211.9,
+        "y": 196
+      },
+      {
+        "x": 210.3,
+        "y": 200.9
+      },
+      {
+        "x": 208.9,
+        "y": 205.8
+      },
+      {
+        "x": 208.5,
+        "y": 210.9
+      },
+      {
+        "x": 209.1,
+        "y": 216
+      },
+      {
+        "x": 210.7,
+        "y": 220.9
+      },
+      {
+        "x": 213.2,
+        "y": 225.4
+      },
+      {
+        "x": 215.9,
+        "y": 229.8
+      },
+      {
+        "x": 218.7,
+        "y": 234.1
+      },
+      {
+        "x": 221.6,
+        "y": 238.3
+      },
+      {
+        "x": 224.7,
+        "y": 242.5
+      },
+      {
+        "x": 227.9,
+        "y": 246.5
+      },
+      {
+        "x": 231.2,
+        "y": 250.4
+      },
+      {
+        "x": 234.7,
+        "y": 254.2
+      },
+      {
+        "x": 238.3,
+        "y": 257.9
+      },
+      {
+        "x": 242,
+        "y": 261.4
+      },
+      {
+        "x": 246,
+        "y": 264.8
+      },
+      {
+        "x": 250,
+        "y": 267.9
+      },
+      {
+        "x": 254.1,
+        "y": 271
+      },
+      {
+        "x": 258.3,
+        "y": 274
+      },
+      {
+        "x": 262.5,
+        "y": 276.9
+      },
+      {
+        "x": 266.8,
+        "y": 279.8
+      },
+      {
+        "x": 271.1,
+        "y": 282.6
+      },
+      {
+        "x": 275.4,
+        "y": 285.4
+      },
+      {
+        "x": 279.8,
+        "y": 288.2
+      },
+      {
+        "x": 284.2,
+        "y": 290.9
+      },
+      {
+        "x": 288.5,
+        "y": 293.6
+      },
+      {
+        "x": 292.9,
+        "y": 296.3
+      },
+      {
+        "x": 297.3,
+        "y": 298.9
+      },
+      {
+        "x": 301.8,
+        "y": 301.6
+      },
+      {
+        "x": 306.2,
+        "y": 304.2
+      },
+      {
+        "x": 310.7,
+        "y": 306.8
+      },
+      {
+        "x": 310.6,
+        "y": 308.7
+      },
+      {
+        "x": 305.6,
+        "y": 309.8
+      },
+      {
+        "x": 300.6,
+        "y": 310.9
+      },
+      {
+        "x": 295.5,
+        "y": 311.9
+      },
+      {
+        "x": 290.5,
+        "y": 312.9
+      },
+      {
+        "x": 285.6,
+        "y": 314.2
+      },
+      {
+        "x": 281.7,
+        "y": 317.6
+      },
+      {
+        "x": 277.8,
+        "y": 320.9
+      },
+      {
+        "x": 273.9,
+        "y": 324.3
+      },
+      {
+        "x": 270,
+        "y": 327.6
+      },
+      {
+        "x": 265.8,
+        "y": 330.5
+      },
+      {
+        "x": 260.9,
+        "y": 332.1
+      },
+      {
+        "x": 256,
+        "y": 333.8
+      },
+      {
+        "x": 251.1,
+        "y": 335.4
+      },
+      {
+        "x": 246.3,
+        "y": 337.1
+      },
+      {
+        "x": 241.4,
+        "y": 338.7
+      },
+      {
+        "x": 236.5,
+        "y": 340.4
+      },
+      {
+        "x": 231.6,
+        "y": 342
+      },
+      {
+        "x": 226.6,
+        "y": 341.5
+      },
+      {
+        "x": 221.5,
+        "y": 340.6
+      },
+      {
+        "x": 216.4,
+        "y": 339.8
+      },
+      {
+        "x": 211.3,
+        "y": 339.3
+      },
+      {
+        "x": 206.3,
+        "y": 340.3
+      },
+      {
+        "x": 201.2,
+        "y": 341.3
+      },
+      {
+        "x": 196.2,
+        "y": 342.3
+      },
+      {
+        "x": 191.1,
+        "y": 343.3
+      },
+      {
+        "x": 186.1,
+        "y": 344.3
+      },
+      {
+        "x": 181,
+        "y": 345.2
+      },
+      {
+        "x": 176,
+        "y": 346.2
+      },
+      {
+        "x": 170.9,
+        "y": 347.2
+      },
+      {
+        "x": 165.9,
+        "y": 348.2
+      },
+      {
+        "x": 160.8,
+        "y": 349.2
+      },
+      {
+        "x": 155.9,
+        "y": 350.5
+      },
+      {
+        "x": 151.2,
+        "y": 352.8
+      },
+      {
+        "x": 147.1,
+        "y": 355.9
+      },
+      {
+        "x": 143.6,
+        "y": 359.6
+      },
+      {
+        "x": 140.9,
+        "y": 364
+      },
+      {
+        "x": 138.5,
+        "y": 368.6
+      },
+      {
+        "x": 136.2,
+        "y": 373.1
+      },
+      {
+        "x": 134.3,
+        "y": 377.9
+      },
+      {
+        "x": 133.3,
+        "y": 383
+      },
+      {
+        "x": 133,
+        "y": 388.1
+      },
+      {
+        "x": 133.6,
+        "y": 393.2
+      },
+      {
+        "x": 134.9,
+        "y": 398.2
+      },
+      {
+        "x": 136.3,
+        "y": 403.1
+      },
+      {
+        "x": 137.7,
+        "y": 408.1
+      },
+      {
+        "x": 136.4,
+        "y": 412.7
+      },
+      {
+        "x": 133.9,
+        "y": 417.2
+      },
+      {
+        "x": 131.4,
+        "y": 421.7
+      },
+      {
+        "x": 128.8,
+        "y": 426.2
+      },
+      {
+        "x": 126,
+        "y": 430.5
+      },
+      {
+        "x": 123.2,
+        "y": 434.8
+      },
+      {
+        "x": 121.3,
+        "y": 439.6
+      },
+      {
+        "x": 121.3,
+        "y": 444.7
+      },
+      {
+        "x": 123.2,
+        "y": 449.4
+      },
+      {
+        "x": 128,
+        "y": 449.2
+      },
+      {
+        "x": 132.5,
+        "y": 446.7
+      },
+      {
+        "x": 136.6,
+        "y": 443.7
+      },
+      {
+        "x": 140.8,
+        "y": 440.7
+      },
+      {
+        "x": 145,
+        "y": 437.7
+      },
+      {
+        "x": 149.1,
+        "y": 434.6
+      },
+      {
+        "x": 153.2,
+        "y": 431.5
+      },
+      {
+        "x": 157.3,
+        "y": 428.4
+      },
+      {
+        "x": 161.5,
+        "y": 425.3
+      },
+      {
+        "x": 165.5,
+        "y": 422.2
+      },
+      {
+        "x": 169.6,
+        "y": 419.1
+      },
+      {
+        "x": 173.7,
+        "y": 415.9
+      },
+      {
+        "x": 177.7,
+        "y": 412.8
+      },
+      {
+        "x": 181.8,
+        "y": 409.6
+      },
+      {
+        "x": 185.8,
+        "y": 406.4
+      },
+      {
+        "x": 189.8,
+        "y": 403.1
+      },
+      {
+        "x": 193.8,
+        "y": 399.9
+      },
+      {
+        "x": 197.8,
+        "y": 396.6
+      },
+      {
+        "x": 201.7,
+        "y": 393.3
+      },
+      {
+        "x": 205.7,
+        "y": 390
+      },
+      {
+        "x": 209.6,
+        "y": 386.6
+      },
+      {
+        "x": 213.5,
+        "y": 383.3
+      },
+      {
+        "x": 217.4,
+        "y": 380
+      },
+      {
+        "x": 221.3,
+        "y": 376.6
+      },
+      {
+        "x": 225.3,
+        "y": 373.3
+      },
+      {
+        "x": 229.3,
+        "y": 370.1
+      },
+      {
+        "x": 233.3,
+        "y": 366.9
+      },
+      {
+        "x": 237.5,
+        "y": 363.9
+      },
+      {
+        "x": 241.9,
+        "y": 361.3
+      },
+      {
+        "x": 246.8,
+        "y": 359.6
+      },
+      {
+        "x": 251.8,
+        "y": 358.2
+      },
+      {
+        "x": 256.7,
+        "y": 356.9
+      },
+      {
+        "x": 261.7,
+        "y": 355.5
+      },
+      {
+        "x": 266.6,
+        "y": 354.1
+      },
+      {
+        "x": 271.6,
+        "y": 352.8
+      },
+      {
+        "x": 276.6,
+        "y": 351.5
+      },
+      {
+        "x": 281.7,
+        "y": 352.3
+      },
+      {
+        "x": 286.7,
+        "y": 353.1
+      },
+      {
+        "x": 291.8,
+        "y": 353.9
+      },
+      {
+        "x": 296.9,
+        "y": 354.7
+      },
+      {
+        "x": 302,
+        "y": 355.5
+      },
+      {
+        "x": 307.1,
+        "y": 356.3
+      },
+      {
+        "x": 312.2,
+        "y": 357.1
+      },
+      {
+        "x": 317.3,
+        "y": 357.9
+      },
+      {
+        "x": 322.3,
+        "y": 358.7
+      },
+      {
+        "x": 327.4,
+        "y": 359.5
+      },
+      {
+        "x": 332.5,
+        "y": 360.1
+      },
+      {
+        "x": 337.6,
+        "y": 359.5
+      },
+      {
+        "x": 342.3,
+        "y": 357.5
+      },
+      {
+        "x": 346.1,
+        "y": 354.1
+      },
+      {
+        "x": 348.8,
+        "y": 349.7
+      },
+      {
+        "x": 350,
+        "y": 344.7
+      },
+      {
+        "x": 350.9,
+        "y": 339.6
+      },
+      {
+        "x": 351.8,
+        "y": 334.5
+      },
+      {
+        "x": 352.7,
+        "y": 329.5
+      },
+      {
+        "x": 353.7,
+        "y": 324.4
+      },
+      {
+        "x": 354.6,
+        "y": 319.4
+      },
+      {
+        "x": 355.5,
+        "y": 314.3
+      },
+      {
+        "x": 358.8,
+        "y": 310.6
+      },
+      {
+        "x": 363.8,
+        "y": 310.5
+      },
+      {
+        "x": 368.6,
+        "y": 312.4
+      },
+      {
+        "x": 373.4,
+        "y": 314.3
+      },
+      {
+        "x": 378.4,
+        "y": 315.2
+      },
+      {
+        "x": 383.3,
+        "y": 313.9
+      },
+      {
+        "x": 387.1,
+        "y": 310.4
+      },
+      {
+        "x": 389,
+        "y": 305.7
+      },
+      {
+        "x": 390.2,
+        "y": 300.7
+      },
+      {
+        "x": 391.4,
+        "y": 295.7
+      },
+      {
+        "x": 392.6,
+        "y": 290.7
+      },
+      {
+        "x": 393.8,
+        "y": 285.7
+      },
+      {
+        "x": 395,
+        "y": 280.7
+      },
+      {
+        "x": 396.2,
+        "y": 275.7
+      },
+      {
+        "x": 397.4,
+        "y": 270.7
+      },
+      {
+        "x": 398.7,
+        "y": 265.7
+      },
+      {
+        "x": 399.9,
+        "y": 260.7
+      },
+      {
+        "x": 401.1,
+        "y": 255.7
+      },
+      {
+        "x": 402.3,
+        "y": 250.7
+      },
+      {
+        "x": 403.5,
+        "y": 245.7
+      },
+      {
+        "x": 404.7,
+        "y": 240.7
+      },
+      {
+        "x": 405.9,
+        "y": 235.7
+      },
+      {
+        "x": 407.1,
+        "y": 230.7
+      },
+      {
+        "x": 408.3,
+        "y": 225.7
+      },
+      {
+        "x": 409.6,
+        "y": 220.7
+      },
+      {
+        "x": 410.8,
+        "y": 215.7
+      },
+      {
+        "x": 412,
+        "y": 210.6
+      },
+      {
+        "x": 413.2,
+        "y": 205.6
+      },
+      {
+        "x": 414.4,
+        "y": 200.6
+      },
+      {
+        "x": 415.6,
+        "y": 195.6
+      },
+      {
+        "x": 416.8,
+        "y": 190.6
+      },
+      {
+        "x": 418,
+        "y": 185.6
+      },
+      {
+        "x": 419.2,
+        "y": 180.6
+      },
+      {
+        "x": 420.5,
+        "y": 175.6
+      },
+      {
+        "x": 421.7,
+        "y": 170.6
+      },
+      {
+        "x": 422.9,
+        "y": 165.6
+      },
+      {
+        "x": 424.1,
+        "y": 160.6
+      },
+      {
+        "x": 425.3,
+        "y": 155.6
+      },
+      {
+        "x": 426.5,
+        "y": 150.6
+      },
+      {
+        "x": 427.7,
+        "y": 145.6
+      },
+      {
+        "x": 428.9,
+        "y": 140.6
+      },
+      {
+        "x": 430.1,
+        "y": 135.6
+      },
+      {
+        "x": 431.4,
+        "y": 130.6
+      },
+      {
+        "x": 432.8,
+        "y": 125.7
+      },
+      {
+        "x": 435,
+        "y": 121
+      },
+      {
+        "x": 437.4,
+        "y": 116.5
+      },
+      {
+        "x": 440,
+        "y": 112
+      },
+      {
+        "x": 442.8,
+        "y": 107.7
+      },
+      {
+        "x": 445.7,
+        "y": 103.5
+      },
+      {
+        "x": 448.8,
+        "y": 99.3
+      },
+      {
+        "x": 452,
+        "y": 95.3
+      },
+      {
+        "x": 455.4,
+        "y": 91.5
+      },
+      {
+        "x": 459,
+        "y": 87.8
+      },
+      {
+        "x": 462.8,
+        "y": 84.3
+      },
+      {
+        "x": 466.8,
+        "y": 81
+      },
+      {
+        "x": 470.9,
+        "y": 77.9
+      },
+      {
+        "x": 475.2,
+        "y": 75.2
+      },
+      {
+        "x": 479.7,
+        "y": 72.6
+      },
+      {
+        "x": 484.3,
+        "y": 70.3
+      },
+      {
+        "x": 489.1,
+        "y": 68.4
+      },
+      {
+        "x": 494,
+        "y": 67.2
+      },
+      {
+        "x": 499.1,
+        "y": 66.6
+      },
+      {
+        "x": 504.2,
+        "y": 66
+      },
+      {
+        "x": 509.3,
+        "y": 65.3
+      },
+      {
+        "x": 514.5,
+        "y": 64.7
+      },
+      {
+        "x": 519.6,
+        "y": 64
+      },
+      {
+        "x": 524.7,
+        "y": 63.4
+      },
+      {
+        "x": 529.4,
+        "y": 61.5
+      },
+      {
+        "x": 533.1,
+        "y": 58
+      },
+      {
+        "x": 529,
+        "y": 58.6
+      },
+      {
+        "x": 524.1,
+        "y": 59.9
+      },
+      {
+        "x": 519.1,
+        "y": 61.2
+      },
+      {
+        "x": 514.1,
+        "y": 62.5
+      },
+      {
+        "x": 509.1,
+        "y": 63.8
+      },
+      {
+        "x": 504.2,
+        "y": 65.1
+      },
+      {
+        "x": 499.2,
+        "y": 66.4
+      },
+      {
+        "x": 494.2,
+        "y": 67.7
+      },
+      {
+        "x": 489.2,
+        "y": 69
+      },
+      {
+        "x": 484.2,
+        "y": 70.3
+      },
+      {
+        "x": 479.3,
+        "y": 71.6
+      },
+      {
+        "x": 474.3,
+        "y": 73
+      },
+      {
+        "x": 469.3,
+        "y": 74.3
+      }
+    ]
+  },
+  "corners": [
+    {
+      "number": 1,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 1",
+      "turn": "Turn 1",
+      "x": 464.3,
+      "y": 75.6,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Heavy Braking Hairpin",
+      "direction": "Right",
+      "gear": 3,
+      "speed_kph": 117
+    },
+    {
+      "number": 2,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 2",
+      "turn": "Turn 2",
+      "x": 453.2,
+      "y": 32.8,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "High-Speed Sweeper",
+      "direction": "Left",
+      "gear": 4,
+      "speed_kph": 124
+    },
+    {
+      "number": 3,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 3",
+      "turn": "Turn 3",
+      "x": 412.1,
+      "y": 35.7,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Technical Chicane",
+      "direction": "Right",
+      "gear": 5,
+      "speed_kph": 131
+    },
+    {
+      "number": 4,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 4",
+      "turn": "Turn 4",
+      "x": 347.6,
+      "y": 85.4,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Heavy Braking Hairpin",
+      "direction": "Left",
+      "gear": 2,
+      "speed_kph": 138
+    },
+    {
+      "number": 5,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 5",
+      "turn": "Turn 5",
+      "x": 313.8,
+      "y": 97.3,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "High-Speed Sweeper",
+      "direction": "Right",
+      "gear": 3,
+      "speed_kph": 145
+    },
+    {
+      "number": 6,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 6",
+      "turn": "Turn 6",
+      "x": 264.5,
+      "y": 128.3,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Technical Chicane",
+      "direction": "Left",
+      "gear": 4,
+      "speed_kph": 152
+    },
+    {
+      "number": 7,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 7",
+      "turn": "Turn 7",
+      "x": 235.9,
+      "y": 128.6,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Heavy Braking Hairpin",
+      "direction": "Right",
+      "gear": 5,
+      "speed_kph": 159
+    },
+    {
+      "number": 8,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 8",
+      "turn": "Turn 8",
+      "x": 208.5,
+      "y": 210.9,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "High-Speed Sweeper",
+      "direction": "Left",
+      "gear": 2,
+      "speed_kph": 166
+    },
+    {
+      "number": 9,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 9",
+      "turn": "Turn 9",
+      "x": 238.3,
+      "y": 257.9,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Technical Chicane",
+      "direction": "Right",
+      "gear": 3,
+      "speed_kph": 173
+    },
+    {
+      "number": 10,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 10",
+      "turn": "Turn 10",
+      "x": 310.6,
+      "y": 308.7,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Heavy Braking Hairpin",
+      "direction": "Left",
+      "gear": 4,
+      "speed_kph": 180
+    },
+    {
+      "number": 11,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 11",
+      "turn": "Turn 11",
+      "x": 265.8,
+      "y": 330.5,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "High-Speed Sweeper",
+      "direction": "Right",
+      "gear": 5,
+      "speed_kph": 187
+    },
+    {
+      "number": 12,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 12",
+      "turn": "Turn 12",
+      "x": 231.6,
+      "y": 342,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Technical Chicane",
+      "direction": "Left",
+      "gear": 2,
+      "speed_kph": 194
+    },
+    {
+      "number": 13,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 13",
+      "turn": "Turn 13",
+      "x": 151.2,
+      "y": 352.8,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Heavy Braking Hairpin",
+      "direction": "Right",
+      "gear": 3,
+      "speed_kph": 201
+    },
+    {
+      "number": 14,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 14",
+      "turn": "Turn 14",
+      "x": 134.3,
+      "y": 377.9,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "High-Speed Sweeper",
+      "direction": "Left",
+      "gear": 4,
+      "speed_kph": 208
+    },
+    {
+      "number": 15,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 15",
+      "turn": "Turn 15",
+      "x": 137.7,
+      "y": 408.1,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Technical Chicane",
+      "direction": "Right",
+      "gear": 5,
+      "speed_kph": 215
+    },
+    {
+      "number": 16,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 16",
+      "turn": "Turn 16",
+      "x": 123.2,
+      "y": 449.4,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Heavy Braking Hairpin",
+      "direction": "Left",
+      "gear": 2,
+      "speed_kph": 222
+    },
+    {
+      "number": 17,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 17",
+      "turn": "Turn 17",
+      "x": 241.9,
+      "y": 361.3,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "High-Speed Sweeper",
+      "direction": "Right",
+      "gear": 3,
+      "speed_kph": 229
+    },
+    {
+      "number": 18,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 18",
+      "turn": "Turn 18",
+      "x": 276.6,
+      "y": 351.5,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Technical Chicane",
+      "direction": "Left",
+      "gear": 4,
+      "speed_kph": 236
+    },
+    {
+      "number": 19,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 19",
+      "turn": "Turn 19",
+      "x": 342.3,
+      "y": 357.5,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Heavy Braking Hairpin",
+      "direction": "Right",
+      "gear": 5,
+      "speed_kph": 243
+    },
+    {
+      "number": 20,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 20",
+      "turn": "Turn 20",
+      "x": 358.8,
+      "y": 310.6,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "High-Speed Sweeper",
+      "direction": "Left",
+      "gear": 2,
+      "speed_kph": 110
+    },
+    {
+      "number": 21,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 21",
+      "turn": "Turn 21",
+      "x": 387.1,
+      "y": 310.4,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Technical Chicane",
+      "direction": "Right",
+      "gear": 3,
+      "speed_kph": 117
+    },
+    {
+      "number": 22,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 22",
+      "turn": "Turn 22",
+      "x": 432.8,
+      "y": 125.7,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Heavy Braking Hairpin",
+      "direction": "Left",
+      "gear": 4,
+      "speed_kph": 124
+    },
+    {
+      "number": 23,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 23",
+      "turn": "Turn 23",
+      "x": 462.8,
+      "y": 84.3,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "High-Speed Sweeper",
+      "direction": "Right",
+      "gear": 5,
+      "speed_kph": 131
+    },
+    {
+      "number": 24,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 24",
+      "turn": "Turn 24",
+      "x": 489.1,
+      "y": 68.4,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Technical Chicane",
+      "direction": "Left",
+      "gear": 2,
+      "speed_kph": 138
+    },
+    {
+      "number": 25,
+      "letter": "",
+      "name": "Valencia Street Circuit Turn 25",
+      "turn": "Turn 25",
+      "x": 533.1,
+      "y": 58,
+      "angle": 45,
+      "distance": 0,
+      "nearestTrackDistance": 0,
+      "alignmentValid": true,
+      "type": "Heavy Braking Hairpin",
+      "direction": "Right",
+      "gear": 3,
+      "speed_kph": 145
+    }
+  ]
+}

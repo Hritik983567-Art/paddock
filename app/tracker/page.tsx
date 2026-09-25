@@ -239,22 +239,6 @@ export default function RaceTrackerPage() {
           return parseInt(a.stop) - parseInt(b.stop);
         });
         setPitStops(stopsList);
-
-        // Fetch Live Weather at Circuit
-        const lat = raceInfo.Circuit?.Location?.lat;
-        const lon = raceInfo.Circuit?.Location?.long;
-        if (lat && lon) {
-          setWeatherLoading(true);
-          setWeatherError('');
-          try {
-            const wData = await fetchCircuitWeather(lat, lon);
-            setWeather(wData);
-          } catch {
-            setWeatherError('Weather radar offline');
-          } finally {
-            setWeatherLoading(false);
-          }
-        }
       } else {
         // High-fidelity fallback telemetry for uncompleted / preview rounds
         const fallback = generateFallbackRaceData(selectedRound, selectedRaceObj);
@@ -264,6 +248,23 @@ export default function RaceTrackerPage() {
         setPitStops(fallback.pitStops);
         setDriverCodeMap(fallback.driverCodeMap);
       }
+
+      // Fetch Live Weather at Circuit for both completed and upcoming Grand Prix
+      const activeCircuitLocation = raceInfo?.Circuit?.Location || selectedRaceObj?.Circuit?.Location;
+      const lat = activeCircuitLocation?.lat;
+      const lon = activeCircuitLocation?.long;
+      if (lat && lon) {
+        setWeatherLoading(true);
+        setWeatherError('');
+        try {
+          const wData = await fetchCircuitWeather(lat, lon);
+          setWeather(wData);
+        } catch {
+          setWeatherError('Weather radar offline');
+        } finally {
+          setWeatherLoading(false);
+        }
+      }
     } catch {
       const selectedRaceObj = rounds.find(r => r.round === selectedRound);
       const fallback = generateFallbackRaceData(selectedRound, selectedRaceObj);
@@ -272,6 +273,12 @@ export default function RaceTrackerPage() {
       setTimingRows(fallback.timingRows);
       setPitStops(fallback.pitStops);
       setDriverCodeMap(fallback.driverCodeMap);
+
+      if (selectedRaceObj?.Circuit?.Location?.lat && selectedRaceObj?.Circuit?.Location?.long) {
+        fetchCircuitWeather(selectedRaceObj.Circuit.Location.lat, selectedRaceObj.Circuit.Location.long)
+          .then(wData => setWeather(wData))
+          .catch(() => setWeatherError('Weather radar offline'));
+      }
     } finally {
       setLoadingData(false);
     }
@@ -332,10 +339,26 @@ export default function RaceTrackerPage() {
   return (
     <section className="view" id="view-tracker">
       <div className="panel">
-        <h2>Real race tracker — Season {selectedSeason === 'current' ? 'Live' : selectedSeason}</h2>
-        <p className="sub">
-          Aggregated post-session racing statistics: full timings sheets, grid starting deltas, pit lane stops, DNF statuses, and satellite track layouts.
-        </p>
+        <div className="mb-5 pb-4 border-b border-slate-800/80">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="flex items-center gap-1">
+              <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+              <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                RACE TELEMETRY TRACKER
+              </span>
+            </span>
+            <span className="text-slate-700 font-sans text-xs">•</span>
+            <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+              SEASON {selectedSeason === 'current' ? 'LIVE' : selectedSeason}
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight f1-text-gradient uppercase">
+            RACE TRACKER
+          </h1>
+          <p className="text-xs font-sans text-slate-400 mt-1 max-w-xl leading-relaxed">
+            Aggregated post-session racing statistics: full timings sheets, grid starting deltas, pit lane stops, DNF statuses &amp; satellite track layouts.
+          </p>
+        </div>
 
         {loadingRounds ? (
           <div className="loading">Loading calendar rounds…</div>
@@ -416,17 +439,17 @@ export default function RaceTrackerPage() {
 
               <div className="stat-box">
                 <div className="k">Track Weather</div>
-                <div className="v" style={{ fontSize: '18px', color: 'var(--cyan)' }}>
+                <div className="v" style={{ fontSize: '16px', color: '#00F5D4' }}>
                   {weatherLoading ? (
                     'Tracking...'
                   ) : weather ? (
-                    `${weather.temp}°C / ${weather.description}`
+                    `Air ${weather.airTemp}°C · Track ${weather.trackTemp}°C`
                   ) : (
                     '—'
                   )}
                 </div>
                 <div className="footnote" style={{ marginTop: '2px', fontSize: '10px' }}>
-                  {weather ? `Tyre: ${weather.tyreRecommendation}` : weatherError || 'radar offline'}
+                  {weather ? `${weather.description} · Wind: ${weather.windSpeed} km/h ${weather.windCompass}` : weatherError || 'radar offline'}
                 </div>
               </div>
             </div>

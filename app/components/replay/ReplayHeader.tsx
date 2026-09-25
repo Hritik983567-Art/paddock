@@ -27,15 +27,22 @@ export const ReplayHeader: React.FC<ReplayHeaderProps> = ({
           F1
         </div>
         <div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-lg font-black tracking-wider text-white uppercase font-display">
-              PADDOCK REPLAY
-            </h1>
-            <span className="px-2 py-0.5 text-[10px] font-mono font-black uppercase rounded bg-cyan-950 text-cyan-300 border border-cyan-700/80 shadow-md">
-              WORKSTATION 2.0
+          <div className="flex items-center gap-2 mb-1">
+            <span className="flex items-center gap-1">
+              <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+              <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                TELEMETRY REPLAY
+              </span>
+            </span>
+            <span className="text-slate-700 font-sans text-xs">•</span>
+            <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+              HISTORIC TIMING STREAM
             </span>
           </div>
-          <p className="text-xs font-mono text-cyan-400 font-bold">
+          <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight f1-text-gradient uppercase">
+            PADDOCK REPLAY
+          </h1>
+          <p className="text-xs font-mono text-cyan-400 font-bold mt-0.5">
             {season} {raceName || 'Formula 1 Grand Prix'} &bull; <span className="text-white font-extrabold">{circuitName || 'Grand Prix Circuit'}</span>
           </p>
         </div>

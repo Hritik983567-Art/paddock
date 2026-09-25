@@ -132,7 +132,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}
             className="max-w-[125px] sm:max-w-none truncate"
           >
-            <option value="default">🏎️ Pit-Wall Red</option>
+            <option value="default">🏁 Checkered Flag</option>
             <option value="ferrari">🔴 Ferrari</option>
             <option value="redbull">🔵 Red Bull</option>
             <option value="mercedes">🟢 Mercedes</option>
@@ -178,7 +178,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
               href={link.path} 
               className={`mobile-subnav-pill ${isActive ? 'active' : ''}`}
             >
-              {link.name}
+              <span className={isActive ? 'f1-text-gradient font-black' : ''}>{link.name}</span>
             </Link>
           );
         })}
@@ -199,7 +199,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                 className={`tab-btn ${isActive ? 'active' : ''}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {link.name}
+                <span className={isActive ? 'f1-text-gradient font-black' : ''}>{link.name}</span>
               </Link>
             );
           })}
