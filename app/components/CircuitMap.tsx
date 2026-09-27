@@ -13,6 +13,7 @@ import {
 import { CornerDetails } from './CornerDetails';
 import { CornerDirectory } from './CornerDirectory';
 import { getTeamColor } from '../utils/api';
+import { TRACKS_REGISTRY } from '../lib/tracksRegistry';
 
 export interface CircuitMapProps {
   circuit?: string;
@@ -277,6 +278,7 @@ export function CircuitMap({
     };
   }, [targetCircuit, year]);
 
+  const lastCornerClickTimeRef = useRef<number>(0);
   const handleCornerClick = (corner: TransformedCorner) => {
     setSelectedCorner(corner);
     if (onCornerSelect) {
@@ -284,39 +286,79 @@ export function CircuitMap({
     }
   };
 
+  const onCornerTrigger = (e: React.SyntheticEvent, corner: TransformedCorner) => {
+    e.stopPropagation();
+    const now = Date.now();
+    if (now - lastCornerClickTimeRef.current < 250) return;
+    lastCornerClickTimeRef.current = now;
+    handleCornerClick(corner);
+  };
+
+  const isMouseDownRef = useRef<boolean>(false);
+  const startMousePos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const hasMovedRef = useRef<boolean>(false);
+  const isTouchDownRef = useRef<boolean>(false);
+  const startTouchPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+
   const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+    const target = e.target as HTMLElement | SVGElement | null;
+    if (target && (target.closest?.('[data-corner="true"]') || target.closest?.('.group\\/anchor') || target.closest?.('.group\\/badge'))) {
+      return;
+    }
+    isMouseDownRef.current = true;
+    hasMovedRef.current = false;
+    startMousePos.current = { x: e.clientX, y: e.clientY };
+    dragStartRef.current = { x: e.clientX - pan.x, y: e.clientY - pan.y };
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
+    if (!isMouseDownRef.current) return;
+    const dx = e.clientX - startMousePos.current.x;
+    const dy = e.clientY - startMousePos.current.y;
+    // 12px threshold ensures micro-movements during clicks never pan or drag the canvas
+    if (!hasMovedRef.current && Math.hypot(dx, dy) < 12) return;
+    hasMovedRef.current = true;
+    setIsDragging(true);
     setPan({
-      x: e.clientX - dragStart.x,
-      y: e.clientY - dragStart.y
+      x: e.clientX - dragStartRef.current.x,
+      y: e.clientY - dragStartRef.current.y
     });
   };
 
   const handleMouseUp = () => {
+    isMouseDownRef.current = false;
     setIsDragging(false);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    const target = e.target as HTMLElement | SVGElement | null;
+    if (target && (target.closest?.('[data-corner="true"]') || target.closest?.('.group\\/anchor') || target.closest?.('.group\\/badge'))) {
+      return;
+    }
     if (e.touches.length === 1) {
-      setIsDragging(true);
-      setDragStart({ x: e.touches[0].clientX - pan.x, y: e.touches[0].clientY - pan.y });
+      isTouchDownRef.current = true;
+      hasMovedRef.current = false;
+      startTouchPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      dragStartRef.current = { x: e.touches[0].clientX - pan.x, y: e.touches[0].clientY - pan.y };
     }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging || e.touches.length !== 1) return;
+    if (!isTouchDownRef.current || e.touches.length !== 1) return;
+    const dx = e.touches[0].clientX - startTouchPos.current.x;
+    const dy = e.touches[0].clientY - startTouchPos.current.y;
+    if (!hasMovedRef.current && Math.hypot(dx, dy) < 12) return;
+    hasMovedRef.current = true;
+    setIsDragging(true);
     setPan({
-      x: e.touches[0].clientX - dragStart.x,
-      y: e.touches[0].clientY - dragStart.y
+      x: e.touches[0].clientX - dragStartRef.current.x,
+      y: e.touches[0].clientY - dragStartRef.current.y
     });
   };
 
   const handleTouchEnd = () => {
+    isTouchDownRef.current = false;
     setIsDragging(false);
   };
 
@@ -334,7 +376,7 @@ export function CircuitMap({
 
     const { circuit: circuitMeta, layout, corners: rawCorners, rotation = 0, sourceSession, telemetryDriver } = rawCircuitData;
     const isFastF1 = layout.coordinateSystem === 'fastf1_xy';
-    const bounds: TransformBounds = computeTransformBounds(layout.points, rotation, 1000, 700, 60, isFastF1);
+    const bounds: TransformBounds = computeTransformBounds(layout.points, rotation, 1000, 700, 75, isFastF1);
     const { pathD, transformedPoints } = transformTrackPath(layout.points, bounds);
     const transformedCorners: TransformedCorner[] = transformCorners(rawCorners || [], bounds, transformedPoints).filter(
       c =>
@@ -403,7 +445,7 @@ export function CircuitMap({
           <div className="absolute inset-0 rounded-full border-4 border-cyan-500/20 border-t-cyan-400 animate-spin"></div>
         </div>
         <p className="text-cyan-400 font-mono text-sm tracking-wider uppercase animate-pulse">
-          Loading FastF1 Circuit Telemetry & Corner Details...
+          Loading Circuit Map & Corner Data...
         </p>
         <p className="text-slate-400 font-mono text-xs mt-1">Circuit: {targetCircuit.toUpperCase()} ({year})</p>
       </div>
@@ -416,13 +458,10 @@ export function CircuitMap({
         <div className="w-12 h-12 rounded-full bg-red-950/60 border border-red-500/30 flex items-center justify-center text-red-400 mb-4 text-xl">
           ⚠️
         </div>
-        <h3 className="text-red-400 font-bold text-lg font-mono tracking-wide">DATA UNAVAILABLE</h3>
+        <h3 className="text-red-400 font-bold text-lg font-mono tracking-wide">CIRCUIT DATA UNAVAILABLE</h3>
         <p className="text-slate-300 font-mono text-xs max-w-md mt-2 leading-relaxed">
-          {error || `No valid FastF1 telemetry or corner coordinates available for circuit "${targetCircuit.toUpperCase()}" (${year}).`}
+          {error || `Circuit layout details are currently unavailable for "${targetCircuit.toUpperCase()}" (${year}).`}
         </p>
-        <div className="mt-6 px-4 py-2 bg-slate-900 border border-slate-800 rounded-lg text-slate-400 font-mono text-xs">
-          Source Strategy: Race → Qualifying → FP3 → FP2 → FP1
-        </div>
       </div>
     );
   }
@@ -441,66 +480,103 @@ export function CircuitMap({
     cornersDict
   } = trackData;
 
+  const trackMeta = TRACKS_REGISTRY[targetCircuit];
+  const trackLengthKm = trackMeta?.length_km;
+
   const selectedKey = selectedCorner ? `t${selectedCorner.number}${selectedCorner.letter || ''}`.toLowerCase() : '';
   const detailedCornerObj = selectedCorner ? cornersDict[selectedKey] : null;
 
   return (
     <div className={`flex flex-col gap-4 ${className}`}>
-      <div className="relative bg-slate-950 border border-slate-800/80 rounded-2xl overflow-hidden shadow-2xl">
-        {/* Header Info Panel */}
+      <div className="bg-slate-950 border border-slate-800/80 rounded-2xl overflow-hidden shadow-2xl flex flex-col relative">
+        {/* Unified Static Header Bar */}
         {showStats && (
-          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 flex flex-col gap-1.5 pointer-events-none max-w-[calc(100%-120px)] sm:max-w-none">
-            <div className="flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-xl backdrop-blur-md shadow-lg pointer-events-auto">
-              <span className="text-xl sm:text-2xl">🏁</span>
+          <div className="px-3.5 py-2.5 sm:px-4 sm:py-3 bg-slate-900/90 border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-2.5 z-10">
+            {/* Left: Circuit Identification & Clean Location Tag */}
+            <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+              <span className="text-lg sm:text-xl shrink-0">🏁</span>
               <div className="min-w-0">
-                <h2 className="text-white font-black tracking-wide text-xs sm:text-base uppercase leading-tight font-sans truncate">
-                  {circuitMeta.name || targetCircuit}
-                </h2>
-                <p className="text-cyan-400 font-mono text-[9px] sm:text-[11px] font-medium truncate">
-                  {circuitMeta.country} • {circuitMeta.year} • {sourceSession ? `OFFICIAL ${sourceSession}` : 'RACE TELEMETRY'}{telemetryDriver ? ` (${telemetryDriver})` : ''}
-                </p>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h2 className="text-white font-black tracking-wide text-xs sm:text-sm md:text-base uppercase leading-tight font-display truncate">
+                    {circuitMeta.name || targetCircuit}
+                  </h2>
+                  <span className="text-cyan-400 font-mono text-[9px] sm:text-[11px] font-semibold px-2 py-0.5 rounded bg-cyan-950/40 border border-cyan-500/30 whitespace-nowrap">
+                    {circuitMeta.country || trackMeta?.country || 'Circuit'} • {circuitMeta.year || year}
+                  </span>
+                </div>
               </div>
             </div>
 
-            <div className="hidden sm:flex items-center gap-2 text-[11px] font-mono text-slate-400 bg-slate-900/80 border border-slate-800/80 px-3 py-1.5 rounded-lg backdrop-blur-md">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Centerline Points: <strong className="text-white">{layout.pointCount}</strong></span>
-              <span>•</span>
-              <span>Corners: <strong className="text-white">{transformedCorners.length}</strong></span>
-              <span>•</span>
-              <span>Rotation: <strong className="text-white">{rotation}°</strong></span>
+            {/* Right: Racing Specs & Canvas Controls */}
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0 ml-auto">
+              <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono text-slate-300 bg-slate-950/80 border border-slate-800/80 px-2.5 py-1 rounded-lg">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                {trackLengthKm ? <span>{trackLengthKm} km</span> : null}
+                {trackLengthKm ? <span className="text-slate-600">•</span> : null}
+                <span>{transformedCorners.length} turns</span>
+              </div>
+
+              {/* Controls */}
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => setZoom(prev => Math.min(prev + 0.25, 3.0))}
+                  className="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-mono font-bold flex items-center justify-center transition text-xs shadow-sm"
+                  title="Zoom In"
+                  aria-label="Zoom In"
+                >
+                  +
+                </button>
+                <button
+                  onClick={() => setZoom(prev => Math.max(prev - 0.25, 0.6))}
+                  className="w-7 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-mono font-bold flex items-center justify-center transition text-xs shadow-sm"
+                  title="Zoom Out"
+                  aria-label="Zoom Out"
+                >
+                  -
+                </button>
+                <button
+                  onClick={resetView}
+                  className="px-2 h-7 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-cyan-400 font-mono text-[10px] font-bold flex items-center justify-center transition shadow-sm whitespace-nowrap"
+                  title="Reset View"
+                  aria-label="Reset View"
+                >
+                  ↺ Reset
+                </button>
+              </div>
             </div>
           </div>
         )}
 
-        {/* Control Buttons */}
-        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-1 sm:gap-2">
-          <button
-            onClick={() => setZoom(prev => Math.min(prev + 0.25, 3.0))}
-            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white font-mono font-bold flex items-center justify-center transition backdrop-blur-md shadow-md text-xs sm:text-sm"
-            title="Zoom In"
-          >
-            +
-          </button>
-          <button
-            onClick={() => setZoom(prev => Math.max(prev - 0.25, 0.6))}
-            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white font-mono font-bold flex items-center justify-center transition backdrop-blur-md shadow-md text-xs sm:text-sm"
-            title="Zoom Out"
-          >
-            -
-          </button>
-          <button
-            onClick={resetView}
-            className="px-2 h-7 sm:px-2.5 sm:h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-cyan-400 font-mono text-[10px] sm:text-xs font-bold flex items-center justify-center transition backdrop-blur-md shadow-md"
-            title="Reset View"
-          >
-            ↺ Reset
-          </button>
-        </div>
+        {/* Fallback floating controls only if showStats is false */}
+        {!showStats && (
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-1 sm:gap-2">
+            <button
+              onClick={() => setZoom(prev => Math.min(prev + 0.25, 3.0))}
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white font-mono font-bold flex items-center justify-center transition backdrop-blur-md shadow-md text-xs sm:text-sm"
+              title="Zoom In"
+            >
+              +
+            </button>
+            <button
+              onClick={() => setZoom(prev => Math.max(prev - 0.25, 0.6))}
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-white font-mono font-bold flex items-center justify-center transition backdrop-blur-md shadow-md text-xs sm:text-sm"
+              title="Zoom Out"
+            >
+              -
+            </button>
+            <button
+              onClick={resetView}
+              className="px-2 h-7 sm:px-2.5 sm:h-8 rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-cyan-400 font-mono text-[10px] sm:text-xs font-bold flex items-center justify-center transition backdrop-blur-md shadow-md"
+              title="Reset View"
+            >
+              ↺ Reset
+            </button>
+          </div>
+        )}
 
-        {/* SVG Canvas Area */}
+        {/* SVG Canvas Area: 100% unobstructed */}
         <div
-          className="w-full h-[320px] sm:h-[420px] md:h-[520px] cursor-grab active:cursor-grabbing select-none overflow-hidden touch-none"
+          className="relative w-full h-[320px] sm:h-[420px] md:h-[520px] cursor-grab active:cursor-grabbing select-none overflow-hidden touch-none"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -590,12 +666,38 @@ export function CircuitMap({
 
                 const isSelected = selectedCorner?.number === corner.number && selectedCorner?.letter === corner.letter;
                 return (
-                  <g key={`anchor-${corner.number}${corner.letter}`}>
+                  <g 
+                    key={`anchor-${corner.number}${corner.letter}`}
+                    data-corner="true"
+                    className="cursor-pointer group/anchor"
+                    style={{ pointerEvents: 'all' }}
+                    onClick={(e) => onCornerTrigger(e, corner)}
+                    onPointerUp={(e) => {
+                      if ((e as React.PointerEvent).pointerType === 'touch') {
+                        onCornerTrigger(e, corner);
+                      }
+                    }}
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onTouchStart={(e) => e.stopPropagation()}
+                  >
+                    <title>{corner.name ? `${corner.name} (Apex ${corner.number}${corner.letter || ''})` : `Turn ${corner.number}${corner.letter || ''}`} • Click to inspect telemetry</title>
+                    {/* Generous painted hit target (44px diameter) */}
+                    <circle
+                      cx={cx}
+                      cy={cy}
+                      r="22"
+                      fill="#FFFFFF"
+                      fillOpacity="0.001"
+                      style={{ pointerEvents: 'all', cursor: 'pointer' }}
+                    />
                     <circle
                       cx={cx}
                       cy={cy}
                       r={isSelected ? '7' : '4.5'}
                       fill={corner.alignmentValid ? '#FF1E27' : '#EAB308'}
+                      stroke={isSelected ? '#FFFFFF' : 'transparent'}
+                      strokeWidth="2"
+                      className="transition-all duration-150 group-hover/anchor:stroke-white group-hover/anchor:r-6"
                     />
                     <circle
                       cx={cx}
@@ -620,11 +722,31 @@ export function CircuitMap({
                 return (
                   <g
                     key={`badge-${corner.number}${corner.letter}`}
+                    data-corner="true"
                     transform={`translate(${lx}, ${ly})`}
-                    className="cursor-pointer transition-transform duration-150 hover:scale-110"
-                    onClick={() => handleCornerClick(corner)}
+                    className="cursor-pointer group/badge select-none"
+                    style={{ transformBox: 'fill-box', transformOrigin: 'center', pointerEvents: 'all' }}
+                    onClick={(e) => onCornerTrigger(e, corner)}
+                    onPointerUp={(e) => {
+                      if ((e as React.PointerEvent).pointerType === 'touch') {
+                        onCornerTrigger(e, corner);
+                      }
+                    }}
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onTouchStart={(e) => e.stopPropagation()}
                   >
                     <title>{corner.name ? `${corner.name} (Turn ${labelText})` : `Turn ${labelText}`} • Click to view corner reconnaissance</title>
+                    {/* Generous painted hit target (52x44px) */}
+                    <rect
+                      x="-26"
+                      y="-22"
+                      width="52"
+                      height="44"
+                      rx="6"
+                      fill="#FFFFFF"
+                      fillOpacity="0.001"
+                      style={{ pointerEvents: 'all', cursor: 'pointer' }}
+                    />
                     <rect
                       x="-14"
                       y="-11"
@@ -635,6 +757,7 @@ export function CircuitMap({
                       stroke={isSelected ? '#FFFFFF' : corner.alignmentValid ? '#FF1E27' : '#EAB308'}
                       strokeWidth={isSelected ? '2' : '1.5'}
                       filter={isSelected ? 'url(#cornerGlow)' : undefined}
+                      className="transition-all duration-150 group-hover/badge:stroke-white group-hover/badge:stroke-2 group-hover/badge:fill-red-950/70"
                     />
 
                     <text
@@ -645,6 +768,7 @@ export function CircuitMap({
                       fontWeight="800"
                       fontFamily="monospace"
                       textAnchor="middle"
+                      className="pointer-events-none select-none transition-colors duration-150 group-hover/badge:fill-red-200"
                     >
                       {labelText}
                     </text>

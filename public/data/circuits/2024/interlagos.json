@@ -1285,7 +1285,7 @@
     {
       "number": 1,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 1",
+      "name": "S do Senna 1",
       "turn": "Turn 1",
       "x": -2393.44,
       "y": -8518.96,
@@ -1293,15 +1293,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 3,
+      "speed_kph": 125
     },
     {
       "number": 2,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 2",
+      "name": "S do Senna 2",
       "turn": "Turn 2",
       "x": -1548.53,
       "y": -8083.35,
@@ -1309,15 +1309,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Curve",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 155
     },
     {
       "number": 3,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 3",
+      "name": "Curva do Sol",
       "turn": "Turn 3",
       "x": 225.65,
       "y": -8132.43,
@@ -1325,15 +1325,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
       "gear": 5,
-      "speed_kph": 210
+      "speed_kph": 225
     },
     {
       "number": 4,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 4",
+      "name": "Descida do Lago 1",
       "turn": "Turn 4",
       "x": 2323.67,
       "y": -1064.51,
@@ -1341,15 +1341,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 3,
+      "speed_kph": 140
     },
     {
       "number": 5,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 5",
+      "name": "Descida do Lago 2",
       "turn": "Turn 5",
       "x": 821.3,
       "y": -714.73,
@@ -1357,15 +1357,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Curve",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 165
     },
     {
       "number": 6,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 6",
+      "name": "Ferradura 1",
       "turn": "Turn 6",
       "x": -2024.53,
       "y": -3964.45,
@@ -1373,15 +1373,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
       "gear": 5,
-      "speed_kph": 210
+      "speed_kph": 215
     },
     {
       "number": 7,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 7",
+      "name": "Ferradura 2",
       "turn": "Turn 7",
       "x": -3261.28,
       "y": -3714.67,
@@ -1389,15 +1389,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 5,
+      "speed_kph": 230
     },
     {
       "number": 8,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 8",
+      "name": "Curva do Laranjinha",
       "turn": "Turn 8",
       "x": -3523.72,
       "y": -2188.39,
@@ -1405,15 +1405,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 5,
+      "speed_kph": 195
     },
     {
       "number": 9,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 9",
+      "name": "Pinheirinho",
       "turn": "Turn 9",
       "x": -2383.05,
       "y": -2240.02,
@@ -1421,15 +1421,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 2,
+      "speed_kph": 100
     },
     {
       "number": 10,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 10",
+      "name": "Bico de Pato",
       "turn": "Turn 10",
       "x": -3075.82,
       "y": 258.47,
@@ -1437,15 +1437,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
       "gear": 2,
-      "speed_kph": 95
+      "speed_kph": 85
     },
     {
       "number": 11,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 11",
+      "name": "Mergulho",
       "turn": "Turn 11",
       "x": -1368.58,
       "y": -706.14,
@@ -1453,15 +1453,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 5,
+      "speed_kph": 205
     },
     {
       "number": 12,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 12",
+      "name": "Junção",
       "turn": "Turn 12",
       "x": 140.72,
       "y": 1485,
@@ -1469,15 +1469,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 3,
+      "speed_kph": 125
     },
     {
       "number": 13,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 13",
+      "name": "Subida dos Boxes",
       "turn": "Turn 13",
       "x": -871.74,
       "y": 1881.45,
@@ -1485,15 +1485,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Downforce Apex",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 6,
+      "speed_kph": 260
     },
     {
       "number": 14,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 14",
+      "name": "Curva do Café",
       "turn": "Turn 14",
       "x": -3189.64,
       "y": 938.17,
@@ -1501,15 +1501,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Flat-Out Kink",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 7,
+      "speed_kph": 285
     },
     {
       "number": 15,
       "letter": "",
-      "name": "Autódromo José Carlos Pace (Interlagos) Turn 15",
+      "name": "Arquibancadas",
       "turn": "Turn 15",
       "x": -4130.13,
       "y": -2877.1,
@@ -1517,10 +1517,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Flat-Out Kink",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 8,
+      "speed_kph": 305
     }
   ]
 }

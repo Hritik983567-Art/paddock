@@ -83,7 +83,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '252 km/h',
           apexSpeed: '108 km/h',
           exitSpeed: '224 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-1.1 m',
           drs: 'DRS Zone Active'
@@ -109,7 +109,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '271 km/h',
           apexSpeed: '168 km/h',
           exitSpeed: '258 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '1.6 m',
           drs: 'Standard Aero Zone'
@@ -135,7 +135,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '304 km/h',
           apexSpeed: '125 km/h',
           exitSpeed: '268 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-0.6 m',
           drs: 'Standard Aero Zone'
@@ -161,7 +161,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '312 km/h',
           apexSpeed: '165 km/h',
           exitSpeed: '195 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '1.7 m',
           drs: 'Standard Aero Zone'
@@ -187,7 +187,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '278 km/h',
           apexSpeed: '149 km/h',
           exitSpeed: '228 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '0.2 m',
           drs: 'DRS Zone Active'
@@ -239,7 +239,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '265 km/h',
           apexSpeed: '90 km/h',
           exitSpeed: '255 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-0.1 m',
           drs: 'Standard Aero Zone'
@@ -265,7 +265,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '288 km/h',
           apexSpeed: '97 km/h',
           exitSpeed: '254 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '0.9 m',
           drs: 'Standard Aero Zone'
@@ -291,7 +291,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '311 km/h',
           apexSpeed: '104 km/h',
           exitSpeed: '225 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '1.2 m',
           drs: 'DRS Zone Active'
@@ -343,7 +343,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '299 km/h',
           apexSpeed: '205 km/h',
           exitSpeed: '194 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '1.3 m',
           drs: 'Standard Aero Zone'
@@ -369,7 +369,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '307 km/h',
           apexSpeed: '145 km/h',
           exitSpeed: '236 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '0.9 m',
           drs: 'Standard Aero Zone'
@@ -395,7 +395,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '313 km/h',
           apexSpeed: '182 km/h',
           exitSpeed: '253 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '1.6 m',
           drs: 'DRS Zone Active'
@@ -421,7 +421,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '301 km/h',
           apexSpeed: '202 km/h',
           exitSpeed: '218 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '1.6 m',
           drs: 'Standard Aero Zone'
@@ -479,7 +479,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '312 km/h',
           apexSpeed: '168 km/h',
           exitSpeed: '190 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.8 G',
           elevationChange: '1.1 m',
           drs: 'DRS Zone Active'
@@ -505,7 +505,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '318 km/h',
           apexSpeed: '197 km/h',
           exitSpeed: '261 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '-0.9 m',
           drs: 'Standard Aero Zone'
@@ -531,7 +531,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '250 km/h',
           apexSpeed: '143 km/h',
           exitSpeed: '201 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-1.3 m',
           drs: 'Standard Aero Zone'
@@ -557,7 +557,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '290 km/h',
           apexSpeed: '149 km/h',
           exitSpeed: '244 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-1.5 m',
           drs: 'Standard Aero Zone'
@@ -583,7 +583,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '259 km/h',
           apexSpeed: '182 km/h',
           exitSpeed: '206 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-0.5 m',
           drs: 'DRS Zone Active'
@@ -609,7 +609,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '272 km/h',
           apexSpeed: '132 km/h',
           exitSpeed: '215 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '1.2 m',
           drs: 'Standard Aero Zone'
@@ -635,7 +635,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '289 km/h',
           apexSpeed: '98 km/h',
           exitSpeed: '191 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '-1.9 m',
           drs: 'Standard Aero Zone'
@@ -661,7 +661,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '288 km/h',
           apexSpeed: '100 km/h',
           exitSpeed: '227 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.2 G',
           elevationChange: '-0.4 m',
           drs: 'Standard Aero Zone'
@@ -687,7 +687,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '250 km/h',
           apexSpeed: '134 km/h',
           exitSpeed: '187 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '-1.1 m',
           drs: 'DRS Zone Active'
@@ -713,7 +713,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '264 km/h',
           apexSpeed: '202 km/h',
           exitSpeed: '204 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '1.9 m',
           drs: 'Standard Aero Zone'
@@ -739,7 +739,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '270 km/h',
           apexSpeed: '207 km/h',
           exitSpeed: '244 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-1.1 m',
           drs: 'Standard Aero Zone'
@@ -765,7 +765,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '315 km/h',
           apexSpeed: '134 km/h',
           exitSpeed: '191 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-1.9 m',
           drs: 'Standard Aero Zone'
@@ -791,7 +791,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '277 km/h',
           apexSpeed: '204 km/h',
           exitSpeed: '183 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '0.0 m',
           drs: 'DRS Zone Active'
@@ -817,7 +817,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '267 km/h',
           apexSpeed: '152 km/h',
           exitSpeed: '219 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '0.7 m',
           drs: 'Standard Aero Zone'
@@ -843,7 +843,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '285 km/h',
           apexSpeed: '152 km/h',
           exitSpeed: '252 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '0.5 m',
           drs: 'Standard Aero Zone'
@@ -869,7 +869,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '250 km/h',
           apexSpeed: '163 km/h',
           exitSpeed: '269 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '-1.4 m',
           drs: 'Standard Aero Zone'
@@ -895,7 +895,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '287 km/h',
           apexSpeed: '118 km/h',
           exitSpeed: '202 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '0.5 m',
           drs: 'DRS Zone Active'
@@ -921,7 +921,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '259 km/h',
           apexSpeed: '126 km/h',
           exitSpeed: '214 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '1.6 m',
           drs: 'Standard Aero Zone'
@@ -973,7 +973,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '292 km/h',
           apexSpeed: '200 km/h',
           exitSpeed: '258 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '1.3 m',
           drs: 'Standard Aero Zone'
@@ -999,7 +999,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '270 km/h',
           apexSpeed: '111 km/h',
           exitSpeed: '228 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-0.4 m',
           drs: 'DRS Zone Active'
@@ -1025,7 +1025,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '289 km/h',
           apexSpeed: '192 km/h',
           exitSpeed: '250 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '1.1 m',
           drs: 'Standard Aero Zone'
@@ -1051,7 +1051,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '286 km/h',
           apexSpeed: '149 km/h',
           exitSpeed: '194 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-0.1 m',
           drs: 'Standard Aero Zone'
@@ -1077,7 +1077,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '255 km/h',
           apexSpeed: '207 km/h',
           exitSpeed: '256 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '1.0 m',
           drs: 'Standard Aero Zone'
@@ -1103,7 +1103,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '283 km/h',
           apexSpeed: '206 km/h',
           exitSpeed: '220 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '-0.1 m',
           drs: 'DRS Zone Active'
@@ -1135,7 +1135,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '255 km/h',
           apexSpeed: '188 km/h',
           exitSpeed: '195 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '1.7 m',
           drs: 'DRS Zone Active'
@@ -1161,7 +1161,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '253 km/h',
           apexSpeed: '128 km/h',
           exitSpeed: '224 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '0.1 m',
           drs: 'Standard Aero Zone'
@@ -1187,7 +1187,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '293 km/h',
           apexSpeed: '154 km/h',
           exitSpeed: '218 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '0.6 m',
           drs: 'Standard Aero Zone'
@@ -1239,7 +1239,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '260 km/h',
           apexSpeed: '127 km/h',
           exitSpeed: '238 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '1.7 m',
           drs: 'DRS Zone Active'
@@ -1265,7 +1265,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '311 km/h',
           apexSpeed: '100 km/h',
           exitSpeed: '189 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '-1.4 m',
           drs: 'Standard Aero Zone'
@@ -1291,7 +1291,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '279 km/h',
           apexSpeed: '144 km/h',
           exitSpeed: '259 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-0.8 m',
           drs: 'Standard Aero Zone'
@@ -1343,7 +1343,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '257 km/h',
           apexSpeed: '138 km/h',
           exitSpeed: '214 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '1.1 m',
           drs: 'DRS Zone Active'
@@ -1369,7 +1369,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '277 km/h',
           apexSpeed: '145 km/h',
           exitSpeed: '224 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '0.5 m',
           drs: 'Standard Aero Zone'
@@ -1395,7 +1395,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '282 km/h',
           apexSpeed: '206 km/h',
           exitSpeed: '198 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -1421,7 +1421,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '314 km/h',
           apexSpeed: '167 km/h',
           exitSpeed: '252 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-1.5 m',
           drs: 'Standard Aero Zone'
@@ -1473,7 +1473,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '315 km/h',
           apexSpeed: '96 km/h',
           exitSpeed: '226 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -1505,7 +1505,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '264 km/h',
           apexSpeed: '106 km/h',
           exitSpeed: '186 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '-1.9 m',
           drs: 'DRS Zone Active'
@@ -1531,7 +1531,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '303 km/h',
           apexSpeed: '184 km/h',
           exitSpeed: '181 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '0.9 m',
           drs: 'Standard Aero Zone'
@@ -1557,7 +1557,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '271 km/h',
           apexSpeed: '180 km/h',
           exitSpeed: '220 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '-1.4 m',
           drs: 'Standard Aero Zone'
@@ -1583,7 +1583,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '265 km/h',
           apexSpeed: '177 km/h',
           exitSpeed: '268 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-1.4 m',
           drs: 'Standard Aero Zone'
@@ -1609,7 +1609,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '285 km/h',
           apexSpeed: '195 km/h',
           exitSpeed: '185 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '0.5 m',
           drs: 'DRS Zone Active'
@@ -1635,7 +1635,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '258 km/h',
           apexSpeed: '91 km/h',
           exitSpeed: '253 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '1.4 m',
           drs: 'Standard Aero Zone'
@@ -1661,7 +1661,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '298 km/h',
           apexSpeed: '154 km/h',
           exitSpeed: '231 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '1.4 m',
           drs: 'Standard Aero Zone'
@@ -1687,7 +1687,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '268 km/h',
           apexSpeed: '156 km/h',
           exitSpeed: '195 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-1.6 m',
           drs: 'Standard Aero Zone'
@@ -1713,7 +1713,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '251 km/h',
           apexSpeed: '121 km/h',
           exitSpeed: '220 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '0.7 m',
           drs: 'DRS Zone Active'
@@ -1739,7 +1739,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '264 km/h',
           apexSpeed: '99 km/h',
           exitSpeed: '190 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-1.4 m',
           drs: 'Standard Aero Zone'
@@ -1765,7 +1765,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '259 km/h',
           apexSpeed: '186 km/h',
           exitSpeed: '267 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-0.7 m',
           drs: 'Standard Aero Zone'
@@ -1817,7 +1817,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '312 km/h',
           apexSpeed: '106 km/h',
           exitSpeed: '255 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '0.2 m',
           drs: 'DRS Zone Active'
@@ -1843,7 +1843,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '295 km/h',
           apexSpeed: '173 km/h',
           exitSpeed: '232 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '0.6 m',
           drs: 'Standard Aero Zone'
@@ -1869,7 +1869,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '315 km/h',
           apexSpeed: '305 km/h',
           exitSpeed: '310 km/h',
-          typicalGear: '7th / 8th Gear',
+          typicalGear: '8th Gear',
           brakingIntensity: '-0.8 G',
           elevationChange: '+1.8 m',
           drs: 'Back Straight DRS'
@@ -1895,7 +1895,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '284 km/h',
           apexSpeed: '172 km/h',
           exitSpeed: '209 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '1.1 m',
           drs: 'Standard Aero Zone'
@@ -1921,7 +1921,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '297 km/h',
           apexSpeed: '143 km/h',
           exitSpeed: '207 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '0.9 m',
           drs: 'DRS Zone Active'
@@ -1947,7 +1947,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '301 km/h',
           apexSpeed: '204 km/h',
           exitSpeed: '241 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -1979,7 +1979,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '285 km/h',
           apexSpeed: '91 km/h',
           exitSpeed: '243 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-1.7 m',
           drs: 'DRS Zone Active'
@@ -2005,7 +2005,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '293 km/h',
           apexSpeed: '194 km/h',
           exitSpeed: '207 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-1.8 m',
           drs: 'Standard Aero Zone'
@@ -2031,7 +2031,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '258 km/h',
           apexSpeed: '207 km/h',
           exitSpeed: '254 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '0.9 m',
           drs: 'Standard Aero Zone'
@@ -2057,7 +2057,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '265 km/h',
           apexSpeed: '152 km/h',
           exitSpeed: '220 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-0.4 m',
           drs: 'Standard Aero Zone'
@@ -2083,7 +2083,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '272 km/h',
           apexSpeed: '112 km/h',
           exitSpeed: '216 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '0.8 m',
           drs: 'DRS Zone Active'
@@ -2109,7 +2109,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '289 km/h',
           apexSpeed: '132 km/h',
           exitSpeed: '261 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '1.4 m',
           drs: 'Standard Aero Zone'
@@ -2161,7 +2161,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '254 km/h',
           apexSpeed: '193 km/h',
           exitSpeed: '236 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.8 G',
           elevationChange: '-0.1 m',
           drs: 'Standard Aero Zone'
@@ -2187,7 +2187,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '316 km/h',
           apexSpeed: '99 km/h',
           exitSpeed: '192 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '1.5 m',
           drs: 'DRS Zone Active'
@@ -2239,7 +2239,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '298 km/h',
           apexSpeed: '119 km/h',
           exitSpeed: '210 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-0.6 m',
           drs: 'Standard Aero Zone'
@@ -2265,7 +2265,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '275 km/h',
           apexSpeed: '91 km/h',
           exitSpeed: '186 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '-0.1 m',
           drs: 'Standard Aero Zone'
@@ -2291,7 +2291,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '258 km/h',
           apexSpeed: '190 km/h',
           exitSpeed: '210 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '0.0 m',
           drs: 'DRS Zone Active'
@@ -2317,7 +2317,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '252 km/h',
           apexSpeed: '193 km/h',
           exitSpeed: '193 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-1.1 m',
           drs: 'Standard Aero Zone'
@@ -2343,7 +2343,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '316 km/h',
           apexSpeed: '115 km/h',
           exitSpeed: '269 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '1.6 m',
           drs: 'Standard Aero Zone'
@@ -2369,7 +2369,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '260 km/h',
           apexSpeed: '110 km/h',
           exitSpeed: '193 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '1.0 m',
           drs: 'Standard Aero Zone'
@@ -2401,7 +2401,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '302 km/h',
           apexSpeed: '185 km/h',
           exitSpeed: '225 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.8 G',
           elevationChange: '0.4 m',
           drs: 'DRS Zone Active'
@@ -2427,7 +2427,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '289 km/h',
           apexSpeed: '168 km/h',
           exitSpeed: '219 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.8 G',
           elevationChange: '-1.1 m',
           drs: 'Standard Aero Zone'
@@ -2453,7 +2453,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '297 km/h',
           apexSpeed: '189 km/h',
           exitSpeed: '253 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '-0.4 m',
           drs: 'Standard Aero Zone'
@@ -2479,7 +2479,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '265 km/h',
           apexSpeed: '180 km/h',
           exitSpeed: '212 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-0.1 m',
           drs: 'Standard Aero Zone'
@@ -2505,7 +2505,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '284 km/h',
           apexSpeed: '206 km/h',
           exitSpeed: '204 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '-1.1 m',
           drs: 'DRS Zone Active'
@@ -2531,7 +2531,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '263 km/h',
           apexSpeed: '138 km/h',
           exitSpeed: '260 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '0.9 m',
           drs: 'Standard Aero Zone'
@@ -2557,7 +2557,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '282 km/h',
           apexSpeed: '138 km/h',
           exitSpeed: '213 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -2583,7 +2583,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '263 km/h',
           apexSpeed: '113 km/h',
           exitSpeed: '189 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '0.3 m',
           drs: 'Standard Aero Zone'
@@ -2609,7 +2609,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '276 km/h',
           apexSpeed: '144 km/h',
           exitSpeed: '244 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '1.4 m',
           drs: 'DRS Zone Active'
@@ -2635,7 +2635,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '255 km/h',
           apexSpeed: '162 km/h',
           exitSpeed: '269 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '1.7 m',
           drs: 'Standard Aero Zone'
@@ -2661,7 +2661,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '284 km/h',
           apexSpeed: '101 km/h',
           exitSpeed: '196 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -2687,7 +2687,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '263 km/h',
           apexSpeed: '122 km/h',
           exitSpeed: '202 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '0.6 m',
           drs: 'Standard Aero Zone'
@@ -2713,7 +2713,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '284 km/h',
           apexSpeed: '116 km/h',
           exitSpeed: '216 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-0.7 m',
           drs: 'DRS Zone Active'
@@ -2739,7 +2739,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '268 km/h',
           apexSpeed: '208 km/h',
           exitSpeed: '183 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-0.9 m',
           drs: 'Standard Aero Zone'
@@ -2765,7 +2765,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '274 km/h',
           apexSpeed: '105 km/h',
           exitSpeed: '226 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.8 G',
           elevationChange: '1.5 m',
           drs: 'Standard Aero Zone'
@@ -2791,7 +2791,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '290 km/h',
           apexSpeed: '91 km/h',
           exitSpeed: '243 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '1.7 m',
           drs: 'Standard Aero Zone'
@@ -2817,7 +2817,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '251 km/h',
           apexSpeed: '171 km/h',
           exitSpeed: '248 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '-0.7 m',
           drs: 'DRS Zone Active'
@@ -2875,7 +2875,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '296 km/h',
           apexSpeed: '192 km/h',
           exitSpeed: '219 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-0.1 m',
           drs: 'Standard Aero Zone'
@@ -2901,7 +2901,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '289 km/h',
           apexSpeed: '154 km/h',
           exitSpeed: '208 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -2927,7 +2927,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '291 km/h',
           apexSpeed: '108 km/h',
           exitSpeed: '267 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -2953,7 +2953,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '250 km/h',
           apexSpeed: '180 km/h',
           exitSpeed: '249 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '1.3 m',
           drs: 'DRS Zone Active'
@@ -2979,7 +2979,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '318 km/h',
           apexSpeed: '126 km/h',
           exitSpeed: '261 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '-1.2 m',
           drs: 'Standard Aero Zone'
@@ -3005,7 +3005,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '281 km/h',
           apexSpeed: '133 km/h',
           exitSpeed: '232 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '1.8 m',
           drs: 'Standard Aero Zone'
@@ -3031,7 +3031,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '275 km/h',
           apexSpeed: '187 km/h',
           exitSpeed: '244 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-0.7 m',
           drs: 'Standard Aero Zone'
@@ -3057,7 +3057,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '266 km/h',
           apexSpeed: '160 km/h',
           exitSpeed: '205 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '2.0 m',
           drs: 'DRS Zone Active'
@@ -3083,7 +3083,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '319 km/h',
           apexSpeed: '132 km/h',
           exitSpeed: '199 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '1.1 m',
           drs: 'Standard Aero Zone'
@@ -3109,7 +3109,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '281 km/h',
           apexSpeed: '117 km/h',
           exitSpeed: '211 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '0.6 m',
           drs: 'Standard Aero Zone'
@@ -3135,7 +3135,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '263 km/h',
           apexSpeed: '181 km/h',
           exitSpeed: '242 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-1.8 m',
           drs: 'Standard Aero Zone'
@@ -3161,7 +3161,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '313 km/h',
           apexSpeed: '131 km/h',
           exitSpeed: '186 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.8 G',
           elevationChange: '1.1 m',
           drs: 'DRS Zone Active'
@@ -3187,7 +3187,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '271 km/h',
           apexSpeed: '177 km/h',
           exitSpeed: '213 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '1.4 m',
           drs: 'Standard Aero Zone'
@@ -3213,7 +3213,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '294 km/h',
           apexSpeed: '175 km/h',
           exitSpeed: '231 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '0.3 m',
           drs: 'Standard Aero Zone'
@@ -3239,7 +3239,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '308 km/h',
           apexSpeed: '184 km/h',
           exitSpeed: '204 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '1.5 m',
           drs: 'Standard Aero Zone'
@@ -3265,7 +3265,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '257 km/h',
           apexSpeed: '194 km/h',
           exitSpeed: '209 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-1.1 m',
           drs: 'DRS Zone Active'
@@ -3323,7 +3323,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '282 km/h',
           apexSpeed: '166 km/h',
           exitSpeed: '252 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '-1.5 m',
           drs: 'Standard Aero Zone'
@@ -3349,7 +3349,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '275 km/h',
           apexSpeed: '118 km/h',
           exitSpeed: '206 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '-0.0 m',
           drs: 'Standard Aero Zone'
@@ -3375,7 +3375,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '316 km/h',
           apexSpeed: '98 km/h',
           exitSpeed: '256 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '-1.8 m',
           drs: 'Standard Aero Zone'
@@ -3401,7 +3401,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '264 km/h',
           apexSpeed: '200 km/h',
           exitSpeed: '199 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.8 G',
           elevationChange: '0.7 m',
           drs: 'DRS Zone Active'
@@ -3427,7 +3427,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '95 km/h',
           apexSpeed: '45 km/h',
           exitSpeed: '70 km/h',
-          typicalGear: '1st Gear (Full Steering Lock)',
+          typicalGear: '1st Gear',
           brakingIntensity: '-2.0 G',
           elevationChange: '-6.5 m',
           drs: 'No DRS'
@@ -3479,7 +3479,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '264 km/h',
           apexSpeed: '124 km/h',
           exitSpeed: '188 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '0.8 m',
           drs: 'Standard Aero Zone'
@@ -3505,7 +3505,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '303 km/h',
           apexSpeed: '208 km/h',
           exitSpeed: '223 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-1.5 m',
           drs: 'DRS Zone Active'
@@ -3531,7 +3531,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '311 km/h',
           apexSpeed: '159 km/h',
           exitSpeed: '206 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '0.5 m',
           drs: 'Standard Aero Zone'
@@ -3557,7 +3557,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '280 km/h',
           apexSpeed: '128 km/h',
           exitSpeed: '189 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '1.4 m',
           drs: 'Standard Aero Zone'
@@ -3583,7 +3583,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '259 km/h',
           apexSpeed: '135 km/h',
           exitSpeed: '245 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -3609,7 +3609,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '304 km/h',
           apexSpeed: '90 km/h',
           exitSpeed: '263 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-1.1 m',
           drs: 'DRS Zone Active'
@@ -3635,7 +3635,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '289 km/h',
           apexSpeed: '112 km/h',
           exitSpeed: '191 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '1.7 m',
           drs: 'Standard Aero Zone'
@@ -3661,7 +3661,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '259 km/h',
           apexSpeed: '113 km/h',
           exitSpeed: '265 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-1.4 m',
           drs: 'Standard Aero Zone'
@@ -3687,7 +3687,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '297 km/h',
           apexSpeed: '92 km/h',
           exitSpeed: '188 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '0.1 m',
           drs: 'Standard Aero Zone'
@@ -3713,7 +3713,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '274 km/h',
           apexSpeed: '165 km/h',
           exitSpeed: '190 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-5.0 G',
           elevationChange: '-1.9 m',
           drs: 'DRS Zone Active'
@@ -3739,7 +3739,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '311 km/h',
           apexSpeed: '204 km/h',
           exitSpeed: '229 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-0.3 m',
           drs: 'Standard Aero Zone'
@@ -3765,7 +3765,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '315 km/h',
           apexSpeed: '205 km/h',
           exitSpeed: '195 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '-1.9 m',
           drs: 'Standard Aero Zone'
@@ -3797,7 +3797,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '305 km/h',
           apexSpeed: '162 km/h',
           exitSpeed: '258 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '1.8 m',
           drs: 'DRS Zone Active'
@@ -3823,7 +3823,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '305 km/h',
           apexSpeed: '102 km/h',
           exitSpeed: '180 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '0.1 m',
           drs: 'Standard Aero Zone'
@@ -3849,7 +3849,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '282 km/h',
           apexSpeed: '140 km/h',
           exitSpeed: '247 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '0.5 m',
           drs: 'Standard Aero Zone'
@@ -3875,7 +3875,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '269 km/h',
           apexSpeed: '208 km/h',
           exitSpeed: '241 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-1.3 m',
           drs: 'Standard Aero Zone'
@@ -3901,7 +3901,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '256 km/h',
           apexSpeed: '164 km/h',
           exitSpeed: '264 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '0.5 m',
           drs: 'DRS Zone Active'
@@ -3927,7 +3927,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '312 km/h',
           apexSpeed: '110 km/h',
           exitSpeed: '212 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-0.3 m',
           drs: 'Standard Aero Zone'
@@ -3953,7 +3953,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '270 km/h',
           apexSpeed: '143 km/h',
           exitSpeed: '192 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '0.9 m',
           drs: 'Standard Aero Zone'
@@ -3979,7 +3979,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '283 km/h',
           apexSpeed: '92 km/h',
           exitSpeed: '196 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '2.0 m',
           drs: 'Standard Aero Zone'
@@ -4005,7 +4005,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '304 km/h',
           apexSpeed: '141 km/h',
           exitSpeed: '235 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '0.7 m',
           drs: 'DRS Zone Active'
@@ -4031,7 +4031,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '314 km/h',
           apexSpeed: '183 km/h',
           exitSpeed: '201 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-1.0 m',
           drs: 'Standard Aero Zone'
@@ -4057,7 +4057,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '267 km/h',
           apexSpeed: '138 km/h',
           exitSpeed: '212 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '0.3 m',
           drs: 'Standard Aero Zone'
@@ -4109,7 +4109,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '304 km/h',
           apexSpeed: '91 km/h',
           exitSpeed: '241 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '-1.0 m',
           drs: 'DRS Zone Active'
@@ -4135,7 +4135,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '259 km/h',
           apexSpeed: '137 km/h',
           exitSpeed: '198 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '1.5 m',
           drs: 'Standard Aero Zone'
@@ -4167,7 +4167,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '265 km/h',
           apexSpeed: '126 km/h',
           exitSpeed: '202 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-1.0 m',
           drs: 'DRS Zone Active'
@@ -4193,7 +4193,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '313 km/h',
           apexSpeed: '155 km/h',
           exitSpeed: '247 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-1.3 m',
           drs: 'Standard Aero Zone'
@@ -4219,7 +4219,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '263 km/h',
           apexSpeed: '146 km/h',
           exitSpeed: '205 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '1.4 m',
           drs: 'Standard Aero Zone'
@@ -4245,7 +4245,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '315 km/h',
           apexSpeed: '99 km/h',
           exitSpeed: '238 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '1.6 m',
           drs: 'Standard Aero Zone'
@@ -4271,7 +4271,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '257 km/h',
           apexSpeed: '151 km/h',
           exitSpeed: '214 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '0.9 m',
           drs: 'DRS Zone Active'
@@ -4297,7 +4297,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '309 km/h',
           apexSpeed: '128 km/h',
           exitSpeed: '243 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '0.7 m',
           drs: 'Standard Aero Zone'
@@ -4323,7 +4323,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '261 km/h',
           apexSpeed: '93 km/h',
           exitSpeed: '256 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '0.7 m',
           drs: 'Standard Aero Zone'
@@ -4349,7 +4349,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '271 km/h',
           apexSpeed: '129 km/h',
           exitSpeed: '266 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -4375,7 +4375,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '260 km/h',
           apexSpeed: '122 km/h',
           exitSpeed: '184 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '0.0 m',
           drs: 'DRS Zone Active'
@@ -4401,7 +4401,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '282 km/h',
           apexSpeed: '117 km/h',
           exitSpeed: '263 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '2.0 m',
           drs: 'Standard Aero Zone'
@@ -4427,7 +4427,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '300 km/h',
           apexSpeed: '173 km/h',
           exitSpeed: '234 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '1.7 m',
           drs: 'Standard Aero Zone'
@@ -4453,7 +4453,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '287 km/h',
           apexSpeed: '129 km/h',
           exitSpeed: '256 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -4479,7 +4479,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '294 km/h',
           apexSpeed: '114 km/h',
           exitSpeed: '193 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '1.8 m',
           drs: 'DRS Zone Active'
@@ -4505,7 +4505,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '252 km/h',
           apexSpeed: '170 km/h',
           exitSpeed: '195 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-1.2 m',
           drs: 'Standard Aero Zone'
@@ -4537,7 +4537,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '253 km/h',
           apexSpeed: '130 km/h',
           exitSpeed: '243 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '1.6 m',
           drs: 'DRS Zone Active'
@@ -4615,7 +4615,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '308 km/h',
           apexSpeed: '125 km/h',
           exitSpeed: '192 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-1.2 m',
           drs: 'Standard Aero Zone'
@@ -4667,7 +4667,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '268 km/h',
           apexSpeed: '97 km/h',
           exitSpeed: '217 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -4693,7 +4693,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '279 km/h',
           apexSpeed: '167 km/h',
           exitSpeed: '212 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '1.6 m',
           drs: 'Standard Aero Zone'
@@ -4719,7 +4719,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '287 km/h',
           apexSpeed: '95 km/h',
           exitSpeed: '220 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '0.5 m',
           drs: 'Standard Aero Zone'
@@ -4745,7 +4745,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '266 km/h',
           apexSpeed: '106 km/h',
           exitSpeed: '214 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '1.5 m',
           drs: 'DRS Zone Active'
@@ -4771,7 +4771,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '299 km/h',
           apexSpeed: '91 km/h',
           exitSpeed: '227 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '1.6 m',
           drs: 'Standard Aero Zone'
@@ -4855,7 +4855,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '300 km/h',
           apexSpeed: '145 km/h',
           exitSpeed: '269 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '0.6 m',
           drs: 'Standard Aero Zone'
@@ -4881,7 +4881,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '275 km/h',
           apexSpeed: '157 km/h',
           exitSpeed: '187 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '-2.0 m',
           drs: 'Standard Aero Zone'
@@ -4907,7 +4907,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '258 km/h',
           apexSpeed: '132 km/h',
           exitSpeed: '184 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '1.9 m',
           drs: 'DRS Zone Active'
@@ -4933,7 +4933,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '263 km/h',
           apexSpeed: '209 km/h',
           exitSpeed: '243 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '-0.4 m',
           drs: 'Standard Aero Zone'
@@ -4959,7 +4959,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '316 km/h',
           apexSpeed: '116 km/h',
           exitSpeed: '236 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-1.8 m',
           drs: 'Standard Aero Zone'
@@ -4985,7 +4985,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '278 km/h',
           apexSpeed: '113 km/h',
           exitSpeed: '203 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '1.0 m',
           drs: 'Standard Aero Zone'
@@ -5011,7 +5011,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '303 km/h',
           apexSpeed: '138 km/h',
           exitSpeed: '248 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-1.4 m',
           drs: 'DRS Zone Active'
@@ -5037,7 +5037,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '315 km/h',
           apexSpeed: '290 km/h',
           exitSpeed: '305 km/h',
-          typicalGear: '8th Gear',
+          typicalGear: '7th Gear',
           brakingIntensity: '-1.5 G',
           elevationChange: '0.0 m',
           drs: 'No DRS'
@@ -5063,7 +5063,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '300 km/h',
           apexSpeed: '245 km/h',
           exitSpeed: '280 km/h',
-          typicalGear: '6th / 7th Gear',
+          typicalGear: '6th Gear',
           brakingIntensity: '-3.0 G',
           elevationChange: '+1.2 m',
           drs: 'Hangar Straight DRS Setup'
@@ -5089,7 +5089,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '317 km/h',
           apexSpeed: '204 km/h',
           exitSpeed: '198 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '0.5 m',
           drs: 'Standard Aero Zone'
@@ -5115,7 +5115,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '299 km/h',
           apexSpeed: '125 km/h',
           exitSpeed: '199 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '1.3 m',
           drs: 'DRS Zone Active'
@@ -5141,7 +5141,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '303 km/h',
           apexSpeed: '119 km/h',
           exitSpeed: '234 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-0.7 m',
           drs: 'Standard Aero Zone'
@@ -5193,7 +5193,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '250 km/h',
           apexSpeed: '132 km/h',
           exitSpeed: '244 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-0.0 m',
           drs: 'Standard Aero Zone'
@@ -5245,7 +5245,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '263 km/h',
           apexSpeed: '119 km/h',
           exitSpeed: '242 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '-1.9 m',
           drs: 'Standard Aero Zone'
@@ -5277,7 +5277,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '303 km/h',
           apexSpeed: '199 km/h',
           exitSpeed: '260 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '1.0 m',
           drs: 'DRS Zone Active'
@@ -5329,7 +5329,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '311 km/h',
           apexSpeed: '128 km/h',
           exitSpeed: '251 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -5381,7 +5381,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '276 km/h',
           apexSpeed: '140 km/h',
           exitSpeed: '252 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '0.4 m',
           drs: 'DRS Zone Active'
@@ -5407,7 +5407,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '292 km/h',
           apexSpeed: '139 km/h',
           exitSpeed: '259 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-0.0 m',
           drs: 'Standard Aero Zone'
@@ -5433,7 +5433,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '266 km/h',
           apexSpeed: '148 km/h',
           exitSpeed: '181 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '2.0 m',
           drs: 'Standard Aero Zone'
@@ -5459,7 +5459,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '292 km/h',
           apexSpeed: '144 km/h',
           exitSpeed: '256 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '2.0 m',
           drs: 'Standard Aero Zone'
@@ -5485,7 +5485,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '268 km/h',
           apexSpeed: '118 km/h',
           exitSpeed: '246 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '-2.0 m',
           drs: 'DRS Zone Active'
@@ -5511,7 +5511,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '276 km/h',
           apexSpeed: '137 km/h',
           exitSpeed: '197 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '1.0 m',
           drs: 'Standard Aero Zone'
@@ -5563,7 +5563,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '291 km/h',
           apexSpeed: '134 km/h',
           exitSpeed: '189 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '0.4 m',
           drs: 'Standard Aero Zone'
@@ -5589,7 +5589,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '254 km/h',
           apexSpeed: '96 km/h',
           exitSpeed: '234 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '1.2 m',
           drs: 'DRS Zone Active'
@@ -5647,7 +5647,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '285 km/h',
           apexSpeed: '75 km/h',
           exitSpeed: '130 km/h',
-          typicalGear: '1st / 2nd Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-4.0 m',
           drs: 'Start/Finish DRS Exit'
@@ -5673,7 +5673,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '305 km/h',
           apexSpeed: '300 km/h',
           exitSpeed: '315 km/h',
-          typicalGear: '7th / 8th Gear',
+          typicalGear: '8th Gear',
           brakingIntensity: '0.0 G (Flat Out)',
           elevationChange: '+24.0 m (Steep Climb)',
           drs: 'Kemmel Straight DRS Entry'
@@ -5725,7 +5725,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '304 km/h',
           apexSpeed: '117 km/h',
           exitSpeed: '267 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-1.1 m',
           drs: 'Standard Aero Zone'
@@ -5751,7 +5751,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '251 km/h',
           apexSpeed: '181 km/h',
           exitSpeed: '184 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '-1.6 m',
           drs: 'DRS Zone Active'
@@ -5803,7 +5803,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '314 km/h',
           apexSpeed: '129 km/h',
           exitSpeed: '206 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '0.7 m',
           drs: 'Standard Aero Zone'
@@ -5829,7 +5829,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '266 km/h',
           apexSpeed: '164 km/h',
           exitSpeed: '245 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '1.6 m',
           drs: 'Standard Aero Zone'
@@ -5881,7 +5881,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '290 km/h',
           apexSpeed: '260 km/h',
           exitSpeed: '275 km/h',
-          typicalGear: '6th / 7th Gear',
+          typicalGear: '6th Gear',
           brakingIntensity: '-2.1 G',
           elevationChange: '-12.0 m',
           drs: 'No DRS'
@@ -5907,7 +5907,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '279 km/h',
           apexSpeed: '206 km/h',
           exitSpeed: '264 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '1.3 m',
           drs: 'Standard Aero Zone'
@@ -5933,7 +5933,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '262 km/h',
           apexSpeed: '118 km/h',
           exitSpeed: '188 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-1.6 m',
           drs: 'Standard Aero Zone'
@@ -5959,7 +5959,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '268 km/h',
           apexSpeed: '155 km/h',
           exitSpeed: '202 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '-0.2 m',
           drs: 'DRS Zone Active'
@@ -6011,7 +6011,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '288 km/h',
           apexSpeed: '129 km/h',
           exitSpeed: '207 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '-0.2 m',
           drs: 'Standard Aero Zone'
@@ -6037,7 +6037,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '269 km/h',
           apexSpeed: '100 km/h',
           exitSpeed: '203 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-0.8 m',
           drs: 'Standard Aero Zone'
@@ -6063,7 +6063,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '298 km/h',
           apexSpeed: '198 km/h',
           exitSpeed: '253 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-0.4 m',
           drs: 'DRS Zone Active'
@@ -6089,7 +6089,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '301 km/h',
           apexSpeed: '132 km/h',
           exitSpeed: '196 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-1.6 m',
           drs: 'Standard Aero Zone'
@@ -6115,7 +6115,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '260 km/h',
           apexSpeed: '96 km/h',
           exitSpeed: '235 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '0.4 m',
           drs: 'Standard Aero Zone'
@@ -6147,7 +6147,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '319 km/h',
           apexSpeed: '102 km/h',
           exitSpeed: '182 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-0.3 m',
           drs: 'DRS Zone Active'
@@ -6173,7 +6173,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '252 km/h',
           apexSpeed: '179 km/h',
           exitSpeed: '190 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-0.7 m',
           drs: 'Standard Aero Zone'
@@ -6199,7 +6199,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '260 km/h',
           apexSpeed: '200 km/h',
           exitSpeed: '247 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '0.3 m',
           drs: 'Standard Aero Zone'
@@ -6251,7 +6251,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '255 km/h',
           apexSpeed: '161 km/h',
           exitSpeed: '253 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '1.8 m',
           drs: 'DRS Zone Active'
@@ -6277,7 +6277,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '255 km/h',
           apexSpeed: '97 km/h',
           exitSpeed: '245 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-0.2 m',
           drs: 'Standard Aero Zone'
@@ -6303,7 +6303,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '278 km/h',
           apexSpeed: '134 km/h',
           exitSpeed: '263 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-1.0 m',
           drs: 'Standard Aero Zone'
@@ -6329,7 +6329,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '292 km/h',
           apexSpeed: '109 km/h',
           exitSpeed: '224 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-0.9 m',
           drs: 'Standard Aero Zone'
@@ -6355,7 +6355,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '295 km/h',
           apexSpeed: '112 km/h',
           exitSpeed: '269 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '1.2 m',
           drs: 'DRS Zone Active'
@@ -6381,7 +6381,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '297 km/h',
           apexSpeed: '172 km/h',
           exitSpeed: '237 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-5.0 G',
           elevationChange: '1.0 m',
           drs: 'Standard Aero Zone'
@@ -6407,7 +6407,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '302 km/h',
           apexSpeed: '101 km/h',
           exitSpeed: '224 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '-1.1 m',
           drs: 'Standard Aero Zone'
@@ -6433,7 +6433,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '295 km/h',
           apexSpeed: '199 km/h',
           exitSpeed: '233 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-0.6 m',
           drs: 'Standard Aero Zone'
@@ -6459,7 +6459,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '277 km/h',
           apexSpeed: '173 km/h',
           exitSpeed: '181 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '-0.5 m',
           drs: 'DRS Zone Active'
@@ -6485,7 +6485,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '291 km/h',
           apexSpeed: '151 km/h',
           exitSpeed: '255 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '1.5 m',
           drs: 'Standard Aero Zone'
@@ -6517,7 +6517,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '352 km/h',
           apexSpeed: '74 km/h',
           exitSpeed: '125 km/h',
-          typicalGear: '1st / 2nd Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-5.2 G',
           elevationChange: '-1.2 m',
           drs: 'DRS Activation Zone 1 Exit'
@@ -6591,7 +6591,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '280 km/h',
           apexSpeed: '305 km/h',
           exitSpeed: '320 km/h',
-          typicalGear: '7th / 8th Gear',
+          typicalGear: '8th Gear',
           brakingIntensity: '0.0 G (Flat Out)',
           elevationChange: '+2.4 m',
           drs: 'No DRS'
@@ -6665,7 +6665,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '255 km/h',
           apexSpeed: '165 km/h',
           exitSpeed: '208 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '0.4 m',
           drs: 'DRS Zone Active'
@@ -6702,7 +6702,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '265 km/h',
           apexSpeed: '185 km/h',
           exitSpeed: '210 km/h',
-          typicalGear: '4th / 5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.2 G',
           elevationChange: '-3.1 m',
           drs: 'No DRS'
@@ -6813,7 +6813,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '273 km/h',
           apexSpeed: '204 km/h',
           exitSpeed: '188 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '1.6 m',
           drs: 'DRS Zone Active'
@@ -6850,7 +6850,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '291 km/h',
           apexSpeed: '175 km/h',
           exitSpeed: '226 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '0.7 m',
           drs: 'Standard Aero Zone'
@@ -6887,7 +6887,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '335 km/h',
           apexSpeed: '215 km/h',
           exitSpeed: '285 km/h',
-          typicalGear: '5th / 6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.8 G',
           elevationChange: '0.0 m',
           drs: 'DRS Activation Point Exit'
@@ -6930,7 +6930,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '272 km/h',
           apexSpeed: '101 km/h',
           exitSpeed: '188 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '1.2 m',
           drs: 'DRS Zone Active'
@@ -6956,7 +6956,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '257 km/h',
           apexSpeed: '160 km/h',
           exitSpeed: '235 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -6982,7 +6982,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '273 km/h',
           apexSpeed: '173 km/h',
           exitSpeed: '229 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '-0.6 m',
           drs: 'Standard Aero Zone'
@@ -7008,7 +7008,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '318 km/h',
           apexSpeed: '117 km/h',
           exitSpeed: '222 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-1.6 m',
           drs: 'Standard Aero Zone'
@@ -7034,7 +7034,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '263 km/h',
           apexSpeed: '120 km/h',
           exitSpeed: '230 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '-1.0 m',
           drs: 'DRS Zone Active'
@@ -7060,7 +7060,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '270 km/h',
           apexSpeed: '92 km/h',
           exitSpeed: '213 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-1.0 m',
           drs: 'Standard Aero Zone'
@@ -7086,7 +7086,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '278 km/h',
           apexSpeed: '166 km/h',
           exitSpeed: '181 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '-1.3 m',
           drs: 'Standard Aero Zone'
@@ -7138,7 +7138,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '278 km/h',
           apexSpeed: '179 km/h',
           exitSpeed: '218 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '0.9 m',
           drs: 'DRS Zone Active'
@@ -7164,7 +7164,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '315 km/h',
           apexSpeed: '109 km/h',
           exitSpeed: '245 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '1.2 m',
           drs: 'Standard Aero Zone'
@@ -7190,7 +7190,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '282 km/h',
           apexSpeed: '105 km/h',
           exitSpeed: '245 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-0.9 m',
           drs: 'Standard Aero Zone'
@@ -7216,7 +7216,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '286 km/h',
           apexSpeed: '191 km/h',
           exitSpeed: '200 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.2 G',
           elevationChange: '-0.2 m',
           drs: 'Standard Aero Zone'
@@ -7268,7 +7268,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '252 km/h',
           apexSpeed: '110 km/h',
           exitSpeed: '232 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-0.3 m',
           drs: 'Standard Aero Zone'
@@ -7294,7 +7294,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '317 km/h',
           apexSpeed: '137 km/h',
           exitSpeed: '223 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '0.9 m',
           drs: 'Standard Aero Zone'
@@ -7320,7 +7320,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '268 km/h',
           apexSpeed: '183 km/h',
           exitSpeed: '218 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-0.4 m',
           drs: 'Standard Aero Zone'
@@ -7346,7 +7346,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '275 km/h',
           apexSpeed: '179 km/h',
           exitSpeed: '239 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '1.5 m',
           drs: 'DRS Zone Active'
@@ -7372,7 +7372,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '299 km/h',
           apexSpeed: '101 km/h',
           exitSpeed: '252 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '1.8 m',
           drs: 'Standard Aero Zone'
@@ -7404,7 +7404,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '307 km/h',
           apexSpeed: '96 km/h',
           exitSpeed: '224 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '0.1 m',
           drs: 'DRS Zone Active'
@@ -7430,7 +7430,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '307 km/h',
           apexSpeed: '141 km/h',
           exitSpeed: '230 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '0.6 m',
           drs: 'Standard Aero Zone'
@@ -7456,7 +7456,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '259 km/h',
           apexSpeed: '151 km/h',
           exitSpeed: '185 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.2 G',
           elevationChange: '1.1 m',
           drs: 'Standard Aero Zone'
@@ -7482,7 +7482,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '252 km/h',
           apexSpeed: '94 km/h',
           exitSpeed: '200 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-1.0 m',
           drs: 'Standard Aero Zone'
@@ -7508,7 +7508,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '314 km/h',
           apexSpeed: '184 km/h',
           exitSpeed: '192 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '-1.5 m',
           drs: 'DRS Zone Active'
@@ -7534,7 +7534,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '281 km/h',
           apexSpeed: '147 km/h',
           exitSpeed: '209 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '0.8 m',
           drs: 'Standard Aero Zone'
@@ -7560,7 +7560,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '295 km/h',
           apexSpeed: '202 km/h',
           exitSpeed: '205 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '1.8 m',
           drs: 'Standard Aero Zone'
@@ -7586,7 +7586,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '259 km/h',
           apexSpeed: '162 km/h',
           exitSpeed: '204 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-1.0 m',
           drs: 'Standard Aero Zone'
@@ -7612,7 +7612,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '304 km/h',
           apexSpeed: '106 km/h',
           exitSpeed: '211 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '-1.7 m',
           drs: 'DRS Zone Active'
@@ -7638,7 +7638,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '298 km/h',
           apexSpeed: '151 km/h',
           exitSpeed: '253 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-0.7 m',
           drs: 'Standard Aero Zone'
@@ -7664,7 +7664,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '268 km/h',
           apexSpeed: '199 km/h',
           exitSpeed: '211 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '-1.1 m',
           drs: 'Standard Aero Zone'
@@ -7690,7 +7690,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '292 km/h',
           apexSpeed: '157 km/h',
           exitSpeed: '187 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-1.2 m',
           drs: 'Standard Aero Zone'
@@ -7716,7 +7716,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '281 km/h',
           apexSpeed: '162 km/h',
           exitSpeed: '257 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '-1.2 m',
           drs: 'DRS Zone Active'
@@ -7742,7 +7742,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '287 km/h',
           apexSpeed: '185 km/h',
           exitSpeed: '184 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-0.0 m',
           drs: 'Standard Aero Zone'
@@ -7768,7 +7768,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '267 km/h',
           apexSpeed: '159 km/h',
           exitSpeed: '209 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '-0.2 m',
           drs: 'Standard Aero Zone'
@@ -7794,7 +7794,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '319 km/h',
           apexSpeed: '117 km/h',
           exitSpeed: '228 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '0.3 m',
           drs: 'Standard Aero Zone'
@@ -7820,7 +7820,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '319 km/h',
           apexSpeed: '194 km/h',
           exitSpeed: '226 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-5.0 G',
           elevationChange: '-0.1 m',
           drs: 'DRS Zone Active'
@@ -7846,7 +7846,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '267 km/h',
           apexSpeed: '91 km/h',
           exitSpeed: '221 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '-0.1 m',
           drs: 'Standard Aero Zone'
@@ -7878,7 +7878,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '276 km/h',
           apexSpeed: '167 km/h',
           exitSpeed: '205 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.2 G',
           elevationChange: '0.6 m',
           drs: 'DRS Zone Active'
@@ -7904,7 +7904,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '270 km/h',
           apexSpeed: '146 km/h',
           exitSpeed: '218 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '1.4 m',
           drs: 'Standard Aero Zone'
@@ -7930,7 +7930,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '281 km/h',
           apexSpeed: '123 km/h',
           exitSpeed: '209 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '0.3 m',
           drs: 'Standard Aero Zone'
@@ -7956,7 +7956,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '257 km/h',
           apexSpeed: '190 km/h',
           exitSpeed: '222 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-1.7 m',
           drs: 'Standard Aero Zone'
@@ -7982,7 +7982,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '277 km/h',
           apexSpeed: '140 km/h',
           exitSpeed: '230 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '-1.9 m',
           drs: 'DRS Zone Active'
@@ -8008,7 +8008,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '290 km/h',
           apexSpeed: '132 km/h',
           exitSpeed: '195 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '-0.6 m',
           drs: 'Standard Aero Zone'
@@ -8034,7 +8034,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '262 km/h',
           apexSpeed: '188 km/h',
           exitSpeed: '267 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '1.9 m',
           drs: 'Standard Aero Zone'
@@ -8060,7 +8060,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '310 km/h',
           apexSpeed: '111 km/h',
           exitSpeed: '186 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '0.6 m',
           drs: 'Standard Aero Zone'
@@ -8112,7 +8112,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '252 km/h',
           apexSpeed: '107 km/h',
           exitSpeed: '212 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-1.0 m',
           drs: 'Standard Aero Zone'
@@ -8138,7 +8138,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '304 km/h',
           apexSpeed: '183 km/h',
           exitSpeed: '186 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -8164,7 +8164,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '310 km/h',
           apexSpeed: '117 km/h',
           exitSpeed: '233 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-1.3 m',
           drs: 'Standard Aero Zone'
@@ -8190,7 +8190,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '264 km/h',
           apexSpeed: '203 km/h',
           exitSpeed: '240 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '1.9 m',
           drs: 'DRS Zone Active'
@@ -8216,7 +8216,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '252 km/h',
           apexSpeed: '114 km/h',
           exitSpeed: '200 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '0.0 m',
           drs: 'Standard Aero Zone'
@@ -8242,7 +8242,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '270 km/h',
           apexSpeed: '194 km/h',
           exitSpeed: '203 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -8268,7 +8268,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '276 km/h',
           apexSpeed: '183 km/h',
           exitSpeed: '195 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '-0.3 m',
           drs: 'Standard Aero Zone'
@@ -8294,7 +8294,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '293 km/h',
           apexSpeed: '148 km/h',
           exitSpeed: '208 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.2 G',
           elevationChange: '1.0 m',
           drs: 'DRS Zone Active'
@@ -8320,7 +8320,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '290 km/h',
           apexSpeed: '161 km/h',
           exitSpeed: '230 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '-0.1 m',
           drs: 'Standard Aero Zone'
@@ -8352,7 +8352,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '288 km/h',
           apexSpeed: '180 km/h',
           exitSpeed: '267 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-1.9 m',
           drs: 'DRS Zone Active'
@@ -8404,7 +8404,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '258 km/h',
           apexSpeed: '178 km/h',
           exitSpeed: '229 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '0.6 m',
           drs: 'Standard Aero Zone'
@@ -8430,7 +8430,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '297 km/h',
           apexSpeed: '102 km/h',
           exitSpeed: '205 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '1.1 m',
           drs: 'Standard Aero Zone'
@@ -8456,7 +8456,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '251 km/h',
           apexSpeed: '189 km/h',
           exitSpeed: '185 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '1.7 m',
           drs: 'DRS Zone Active'
@@ -8482,7 +8482,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '306 km/h',
           apexSpeed: '123 km/h',
           exitSpeed: '214 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '0.0 m',
           drs: 'Standard Aero Zone'
@@ -8508,7 +8508,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '299 km/h',
           apexSpeed: '142 km/h',
           exitSpeed: '257 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '0.7 m',
           drs: 'Standard Aero Zone'
@@ -8534,7 +8534,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '256 km/h',
           apexSpeed: '209 km/h',
           exitSpeed: '227 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-0.3 m',
           drs: 'Standard Aero Zone'
@@ -8560,7 +8560,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '272 km/h',
           apexSpeed: '143 km/h',
           exitSpeed: '212 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-1.4 m',
           drs: 'DRS Zone Active'
@@ -8586,7 +8586,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '318 km/h',
           apexSpeed: '191 km/h',
           exitSpeed: '238 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '0.3 m',
           drs: 'Standard Aero Zone'
@@ -8612,7 +8612,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '277 km/h',
           apexSpeed: '191 km/h',
           exitSpeed: '211 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.8 G',
           elevationChange: '-0.6 m',
           drs: 'Standard Aero Zone'
@@ -8638,7 +8638,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '260 km/h',
           apexSpeed: '110 km/h',
           exitSpeed: '217 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '2.0 m',
           drs: 'Standard Aero Zone'
@@ -8664,7 +8664,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '258 km/h',
           apexSpeed: '176 km/h',
           exitSpeed: '233 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-1.3 m',
           drs: 'DRS Zone Active'
@@ -8690,7 +8690,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '266 km/h',
           apexSpeed: '167 km/h',
           exitSpeed: '216 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '0.9 m',
           drs: 'Standard Aero Zone'
@@ -8716,7 +8716,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '263 km/h',
           apexSpeed: '110 km/h',
           exitSpeed: '231 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '-0.0 m',
           drs: 'Standard Aero Zone'
@@ -8742,7 +8742,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '291 km/h',
           apexSpeed: '126 km/h',
           exitSpeed: '180 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.0 G',
           elevationChange: '-1.2 m',
           drs: 'Standard Aero Zone'
@@ -8774,7 +8774,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '298 km/h',
           apexSpeed: '145 km/h',
           exitSpeed: '264 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '0.0 m',
           drs: 'DRS Zone Active'
@@ -8800,7 +8800,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '270 km/h',
           apexSpeed: '92 km/h',
           exitSpeed: '192 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.8 G',
           elevationChange: '1.2 m',
           drs: 'Standard Aero Zone'
@@ -8826,7 +8826,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '303 km/h',
           apexSpeed: '117 km/h',
           exitSpeed: '203 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '-0.1 m',
           drs: 'Standard Aero Zone'
@@ -8852,7 +8852,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '294 km/h',
           apexSpeed: '125 km/h',
           exitSpeed: '223 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.2 G',
           elevationChange: '-1.7 m',
           drs: 'Standard Aero Zone'
@@ -8878,7 +8878,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '292 km/h',
           apexSpeed: '115 km/h',
           exitSpeed: '200 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '1.0 m',
           drs: 'DRS Zone Active'
@@ -8904,7 +8904,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '291 km/h',
           apexSpeed: '112 km/h',
           exitSpeed: '188 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '-1.7 m',
           drs: 'Standard Aero Zone'
@@ -8930,7 +8930,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '253 km/h',
           apexSpeed: '99 km/h',
           exitSpeed: '208 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '1.1 m',
           drs: 'Standard Aero Zone'
@@ -8982,7 +8982,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '314 km/h',
           apexSpeed: '104 km/h',
           exitSpeed: '190 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '1.8 m',
           drs: 'DRS Zone Active'
@@ -9008,7 +9008,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '315 km/h',
           apexSpeed: '151 km/h',
           exitSpeed: '183 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '-1.6 m',
           drs: 'Standard Aero Zone'
@@ -9034,7 +9034,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '274 km/h',
           apexSpeed: '166 km/h',
           exitSpeed: '196 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -9060,7 +9060,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '288 km/h',
           apexSpeed: '151 km/h',
           exitSpeed: '237 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -9086,7 +9086,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '317 km/h',
           apexSpeed: '147 km/h',
           exitSpeed: '186 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '0.2 m',
           drs: 'DRS Zone Active'
@@ -9112,7 +9112,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '252 km/h',
           apexSpeed: '114 km/h',
           exitSpeed: '217 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -9138,7 +9138,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '300 km/h',
           apexSpeed: '196 km/h',
           exitSpeed: '180 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '1.2 m',
           drs: 'Standard Aero Zone'
@@ -9170,7 +9170,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '261 km/h',
           apexSpeed: '135 km/h',
           exitSpeed: '216 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.3 G',
           elevationChange: '-0.9 m',
           drs: 'DRS Zone Active'
@@ -9196,7 +9196,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '262 km/h',
           apexSpeed: '205 km/h',
           exitSpeed: '269 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '-0.9 m',
           drs: 'Standard Aero Zone'
@@ -9300,7 +9300,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '289 km/h',
           apexSpeed: '206 km/h',
           exitSpeed: '264 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.1 G',
           elevationChange: '0.1 m',
           drs: 'Standard Aero Zone'
@@ -9326,7 +9326,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '260 km/h',
           apexSpeed: '149 km/h',
           exitSpeed: '205 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '-2.0 m',
           drs: 'Standard Aero Zone'
@@ -9352,7 +9352,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '290 km/h',
           apexSpeed: '126 km/h',
           exitSpeed: '249 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '-0.4 m',
           drs: 'Standard Aero Zone'
@@ -9378,7 +9378,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '264 km/h',
           apexSpeed: '92 km/h',
           exitSpeed: '196 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '1.1 m',
           drs: 'DRS Zone Active'
@@ -9404,7 +9404,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '317 km/h',
           apexSpeed: '133 km/h',
           exitSpeed: '226 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-1.3 m',
           drs: 'Standard Aero Zone'
@@ -9430,7 +9430,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '286 km/h',
           apexSpeed: '208 km/h',
           exitSpeed: '251 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '1.1 m',
           drs: 'Standard Aero Zone'
@@ -9456,7 +9456,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '303 km/h',
           apexSpeed: '170 km/h',
           exitSpeed: '220 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-1.2 m',
           drs: 'Standard Aero Zone'
@@ -9482,7 +9482,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '313 km/h',
           apexSpeed: '112 km/h',
           exitSpeed: '255 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '1.3 m',
           drs: 'DRS Zone Active'
@@ -9508,7 +9508,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '262 km/h',
           apexSpeed: '191 km/h',
           exitSpeed: '181 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '-0.8 m',
           drs: 'Standard Aero Zone'
@@ -9534,7 +9534,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '282 km/h',
           apexSpeed: '107 km/h',
           exitSpeed: '209 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -9560,7 +9560,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '250 km/h',
           apexSpeed: '106 km/h',
           exitSpeed: '249 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '1.1 m',
           drs: 'Standard Aero Zone'
@@ -9592,7 +9592,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '289 km/h',
           apexSpeed: '209 km/h',
           exitSpeed: '268 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '1.6 m',
           drs: 'DRS Zone Active'
@@ -9618,7 +9618,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '317 km/h',
           apexSpeed: '95 km/h',
           exitSpeed: '263 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '-1.9 m',
           drs: 'Standard Aero Zone'
@@ -9644,7 +9644,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '250 km/h',
           apexSpeed: '121 km/h',
           exitSpeed: '202 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '-0.2 m',
           drs: 'Standard Aero Zone'
@@ -9670,7 +9670,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '255 km/h',
           apexSpeed: '174 km/h',
           exitSpeed: '225 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.7 G',
           elevationChange: '0.3 m',
           drs: 'Standard Aero Zone'
@@ -9722,7 +9722,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '305 km/h',
           apexSpeed: '174 km/h',
           exitSpeed: '238 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '0.3 m',
           drs: 'Standard Aero Zone'
@@ -9748,7 +9748,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '283 km/h',
           apexSpeed: '130 km/h',
           exitSpeed: '227 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '-1.4 m',
           drs: 'Standard Aero Zone'
@@ -9774,7 +9774,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '297 km/h',
           apexSpeed: '108 km/h',
           exitSpeed: '246 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '-0.1 m',
           drs: 'Standard Aero Zone'
@@ -9800,7 +9800,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '260 km/h',
           apexSpeed: '97 km/h',
           exitSpeed: '268 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '-1.5 m',
           drs: 'DRS Zone Active'
@@ -9826,7 +9826,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '297 km/h',
           apexSpeed: '179 km/h',
           exitSpeed: '244 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '-1.3 m',
           drs: 'Standard Aero Zone'
@@ -9852,7 +9852,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '269 km/h',
           apexSpeed: '184 km/h',
           exitSpeed: '194 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '-0.6 m',
           drs: 'Standard Aero Zone'
@@ -9878,7 +9878,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '309 km/h',
           apexSpeed: '196 km/h',
           exitSpeed: '263 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.6 G',
           elevationChange: '1.5 m',
           drs: 'Standard Aero Zone'
@@ -9904,7 +9904,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '276 km/h',
           apexSpeed: '145 km/h',
           exitSpeed: '262 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.3 G',
           elevationChange: '0.8 m',
           drs: 'DRS Zone Active'
@@ -9930,7 +9930,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '284 km/h',
           apexSpeed: '128 km/h',
           exitSpeed: '182 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.7 G',
           elevationChange: '-1.8 m',
           drs: 'Standard Aero Zone'
@@ -9956,7 +9956,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '257 km/h',
           apexSpeed: '176 km/h',
           exitSpeed: '214 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '-1.2 m',
           drs: 'Standard Aero Zone'
@@ -9988,7 +9988,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '251 km/h',
           apexSpeed: '180 km/h',
           exitSpeed: '245 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '-0.1 m',
           drs: 'DRS Zone Active'
@@ -10014,7 +10014,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '301 km/h',
           apexSpeed: '96 km/h',
           exitSpeed: '234 km/h',
-          typicalGear: '5th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-3.6 G',
           elevationChange: '-1.0 m',
           drs: 'Standard Aero Zone'
@@ -10066,7 +10066,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '305 km/h',
           apexSpeed: '130 km/h',
           exitSpeed: '242 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.5 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -10092,7 +10092,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '306 km/h',
           apexSpeed: '128 km/h',
           exitSpeed: '190 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.5 G',
           elevationChange: '2.0 m',
           drs: 'DRS Zone Active'
@@ -10118,7 +10118,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '262 km/h',
           apexSpeed: '137 km/h',
           exitSpeed: '249 km/h',
-          typicalGear: '4th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-3.9 G',
           elevationChange: '-1.1 m',
           drs: 'Standard Aero Zone'
@@ -10144,7 +10144,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '252 km/h',
           apexSpeed: '209 km/h',
           exitSpeed: '183 km/h',
-          typicalGear: '2th Gear',
+          typicalGear: '5th Gear',
           brakingIntensity: '-4.9 G',
           elevationChange: '0.2 m',
           drs: 'Standard Aero Zone'
@@ -10170,7 +10170,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '266 km/h',
           apexSpeed: '159 km/h',
           exitSpeed: '186 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-0.3 m',
           drs: 'Standard Aero Zone'
@@ -10196,7 +10196,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '291 km/h',
           apexSpeed: '105 km/h',
           exitSpeed: '266 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.2 G',
           elevationChange: '0.8 m',
           drs: 'DRS Zone Active'
@@ -10222,7 +10222,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '273 km/h',
           apexSpeed: '172 km/h',
           exitSpeed: '226 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-0.5 m',
           drs: 'Standard Aero Zone'
@@ -10248,7 +10248,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '303 km/h',
           apexSpeed: '94 km/h',
           exitSpeed: '225 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '2nd Gear',
           brakingIntensity: '-4.8 G',
           elevationChange: '1.4 m',
           drs: 'Standard Aero Zone'
@@ -10274,7 +10274,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '278 km/h',
           apexSpeed: '185 km/h',
           exitSpeed: '243 km/h',
-          typicalGear: '6th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '0.1 m',
           drs: 'Standard Aero Zone'
@@ -10326,7 +10326,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '259 km/h',
           apexSpeed: '179 km/h',
           exitSpeed: '205 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '4th Gear',
           brakingIntensity: '-3.4 G',
           elevationChange: '-0.9 m',
           drs: 'Standard Aero Zone'
@@ -10352,7 +10352,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
           entrySpeed: '286 km/h',
           apexSpeed: '135 km/h',
           exitSpeed: '208 km/h',
-          typicalGear: '3th Gear',
+          typicalGear: '3rd Gear',
           brakingIntensity: '-4.4 G',
           elevationChange: '-1.4 m',
           drs: 'Standard Aero Zone'

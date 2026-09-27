@@ -140,8 +140,33 @@ export function computeTransformBounds(
     if (rot.y > maxY) maxY = rot.y;
   }
 
-  const rangeX = maxX - minX || 1;
-  const rangeY = maxY - minY || 1;
+  let rangeX = maxX - minX || 1;
+  let rangeY = maxY - minY || 1;
+
+  // Auto-settle: If circuit is upright (rangeY > rangeX * 1.15) on a landscape (1000x700) canvas,
+  // tilt it by 90 degrees so it lies horizontally and settles cleanly into the canvas!
+  if (rangeY > rangeX * 1.15) {
+    const testRot = (rotationDeg + 90) % 360;
+    let tMinX = Infinity, tMaxX = -Infinity, tMinY = Infinity, tMaxY = -Infinity;
+    for (const pt of validPoints) {
+      const rot = rotatePoint(pt.x, pt.y, centerX, centerY, testRot);
+      if (rot.x < tMinX) tMinX = rot.x;
+      if (rot.x > tMaxX) tMaxX = rot.x;
+      if (rot.y < tMinY) tMinY = rot.y;
+      if (rot.y > tMaxY) tMaxY = rot.y;
+    }
+    const tRangeX = tMaxX - tMinX || 1;
+    const tRangeY = tMaxY - tMinY || 1;
+    if (tRangeX >= tRangeY) {
+      rotationDeg = testRot;
+      minX = tMinX;
+      maxX = tMaxX;
+      minY = tMinY;
+      maxY = tMaxY;
+      rangeX = tRangeX;
+      rangeY = tRangeY;
+    }
+  }
 
   const availableWidth = canvasWidth - 2 * padding;
   const availableHeight = canvasHeight - 2 * padding;
@@ -173,13 +198,21 @@ export function transformFastF1Point(pt: FastF1Point, bounds: TransformBounds): 
   const maxY = typeof bounds.maxY === 'number' && !isNaN(bounds.maxY) ? bounds.maxY : 0;
   const padding = typeof bounds.padding === 'number' && !isNaN(bounds.padding) ? bounds.padding : 60;
 
+  // Calculate centered offsets so track geometry is balanced horizontally and vertically
+  const rangeX = (bounds.maxX - bounds.minX) || 1;
+  const rangeY = (bounds.maxY - bounds.minY) || 1;
+  const trackWidth = rangeX * scale;
+  const trackHeight = rangeY * scale;
+  const offsetX = (bounds.canvasWidth - trackWidth) / 2;
+  const offsetY = (bounds.canvasHeight - trackHeight) / 2;
+
   // 2. Scale & Translate to SVG canvas space:
   // For Cartesian FastF1 coords (Y-up), invertY=true maps to SVG canvas (Y-down).
   // For SVG / screen coords (Y-down), invertY=false maintains correct upright orientation.
-  const canvasX = padding + (rot.x - minX) * scale;
+  const canvasX = offsetX + (rot.x - minX) * scale;
   const canvasY = bounds.invertY !== false
-    ? padding + (maxY - rot.y) * scale
-    : padding + (rot.y - minY) * scale;
+    ? offsetY + (maxY - rot.y) * scale
+    : offsetY + (rot.y - minY) * scale;
 
   return {
     x: isNaN(canvasX) ? 0 : Number(canvasX.toFixed(2)),
@@ -341,35 +374,60 @@ export function enrichCornerDetails(c: TransformedCorner, targetCircuit: string,
 
   const direction = c.direction || (c.number % 2 === 1 ? 'Right' : 'Left');
 
-  // Technical Telemetry metrics derivation
+  // Technical Telemetry metrics derivation with authentic F1 physics
   let apexSpeedNum = c.speed_kph || 145;
-  let typicalGearNum = c.gear || 4;
+  let typicalGearNum = c.gear || (
+    apexSpeedNum < 70 ? 1 :
+    apexSpeedNum < 108 ? 2 :
+    apexSpeedNum < 155 ? 3 :
+    apexSpeedNum < 195 ? 4 :
+    apexSpeedNum < 235 ? 5 :
+    apexSpeedNum < 270 ? 6 :
+    apexSpeedNum < 295 ? 7 : 8
+  );
   let brakingG = '-4.0 G';
   let drsZone = 'Standard Aero Zone';
 
-  if (!c.speed_kph || !c.gear) {
+  if (!c.speed_kph && !c.gear) {
     if (angle > 110) {
       apexSpeedNum = Math.round(75 + (c.number % 5) * 4);
       typicalGearNum = 2;
       brakingG = '-4.8 G';
       drsZone = c.number === 1 ? 'Main Straight DRS Entry' : 'Heavy Braking Zone';
     } else if (angle > 70) {
-      apexSpeedNum = Math.round(125 + (c.number % 7) * 5);
-      typicalGearNum = 4;
+      apexSpeedNum = Math.round(125 + (c.number % 7) * 4);
+      typicalGearNum = 3;
       brakingG = '-3.8 G';
       drsZone = 'Aero Balance Zone';
     } else if (angle > 35) {
-      apexSpeedNum = Math.round(195 + (c.number % 6) * 6);
-      typicalGearNum = 6;
-      brakingG = '-2.5 G';
+      apexSpeedNum = Math.round(175 + (c.number % 6) * 5);
+      typicalGearNum = 4;
+      brakingG = '-2.8 G';
       drsZone = 'DRS Acceleration Sector';
+    } else if (angle > 15) {
+      apexSpeedNum = Math.round(225 + (c.number % 5) * 6);
+      typicalGearNum = 5;
+      brakingG = '-1.8 G';
+      drsZone = 'High Speed Aero Arc';
     } else {
-      apexSpeedNum = Math.round(260 + (c.number % 4) * 8);
-      typicalGearNum = 7;
-      brakingG = '-1.2 G';
+      apexSpeedNum = Math.round(275 + (c.number % 4) * 8);
+      typicalGearNum = apexSpeedNum >= 295 ? 8 : 7;
+      brakingG = '-1.0 G';
       drsZone = 'Full Throttle DRS';
     }
   }
+
+  const formatGear = (g: number): string => {
+    if (g === 1) return '1st Gear';
+    if (g === 2) return '2nd Gear';
+    if (g === 3) return '3rd Gear';
+    return `${g}th Gear`;
+  };
+
+  const rawGearStr = c.technical?.typicalGear;
+  const sanitizedGear = rawGearStr
+    ? rawGearStr.replace('1th', '1st').replace('2th', '2nd').replace('3th', '3rd')
+    : formatGear(typicalGearNum);
 
   const entrySpeedNum = Math.min(345, apexSpeedNum + Math.round(75 + (c.number % 3) * 15));
   const exitSpeedNum = Math.min(330, apexSpeedNum + Math.round(40 + (c.number % 4) * 12));
@@ -378,7 +436,7 @@ export function enrichCornerDetails(c: TransformedCorner, targetCircuit: string,
     entrySpeed: c.technical?.entrySpeed || `${entrySpeedNum} km/h`,
     apexSpeed: c.technical?.apexSpeed || `${apexSpeedNum} km/h`,
     exitSpeed: c.technical?.exitSpeed || `${exitSpeedNum} km/h`,
-    typicalGear: c.technical?.typicalGear || `${typicalGearNum}${typicalGearNum === 2 ? 'nd' : typicalGearNum === 3 ? 'rd' : 'th'} Gear`,
+    typicalGear: sanitizedGear,
     brakingIntensity: c.technical?.brakingIntensity || brakingG,
     elevationChange: c.technical?.elevationChange || `${((c.number % 5) * 0.4 - 0.8).toFixed(1)} m`,
     drs: c.technical?.drs || drsZone

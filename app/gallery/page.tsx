@@ -206,14 +206,25 @@ function GalleryContent() {
   const [selectedMedia, setSelectedMedia] = useState<GalleryMediaItem | null>(null);
   const [activeCornerDetails, setActiveCornerDetails] = useState<CircuitCorner | null>(null);
 
-  // Sync selected circuit with URL params if provided
+  const lastUrlCircuitRef = useRef<string | null>(targetCircuitFromUrl);
+
+  // Sync selected circuit with URL params ONLY when URL parameter actually changes (e.g. browser back/forward)
   useEffect(() => {
-    if (targetCircuitFromUrl && targetCircuitFromUrl !== selectedCircuitId) {
+    if (targetCircuitFromUrl && targetCircuitFromUrl !== lastUrlCircuitRef.current) {
+      lastUrlCircuitRef.current = targetCircuitFromUrl;
       setSelectedCircuitId(targetCircuitFromUrl);
       setSelectedMedia(null);
       setActiveCornerDetails(null);
     }
-  }, [targetCircuitFromUrl, selectedCircuitId]);
+  }, [targetCircuitFromUrl]);
+
+  const changeCircuit = useCallback((newCircuit: string) => {
+    lastUrlCircuitRef.current = newCircuit;
+    setSelectedCircuitId(newCircuit);
+    setSelectedMedia(null);
+    setActiveCornerDetails(null);
+    router.replace(`/gallery?circuit=${newCircuit}`, { scroll: false });
+  }, [router]);
 
   const selectedCircuitMeta = SUPPORTED_CIRCUITS.find(c => c.id === selectedCircuitId);
 
@@ -356,11 +367,26 @@ function GalleryContent() {
     });
   };
 
+  const modalOpenedAtRef = useRef<number>(0);
+
+  const handleOpenMediaModal = useCallback((item: GalleryMediaItem, specs: CircuitCorner | null) => {
+    modalOpenedAtRef.current = Date.now();
+    setSelectedMedia(item);
+    setActiveCornerDetails(specs);
+  }, []);
+
+  const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    // Prevent accidental closure from click bleed-through within 250ms of modal opening
+    if (Date.now() - modalOpenedAtRef.current < 250) return;
+    if (e.target === e.currentTarget) {
+      setSelectedMedia(null);
+    }
+  }, []);
+
   // HANDLE CLICKING A PHOTO CARD IN GALLERY -> OPENS FULL INFORMATION MODAL
   const handleMediaCardClick = (item: GalleryMediaItem) => {
-    setSelectedMedia(item);
     const specs = resolveCornerSpecs(item);
-    setActiveCornerDetails(specs);
+    handleOpenMediaModal(item, specs);
   };
 
   const onCardClick = (item: GalleryMediaItem) => {
@@ -378,34 +404,25 @@ function GalleryContent() {
     // Look for matching gallery photo with intelligent matching
     const matchingMedia = findMatchingMediaItem(mediaToDisplay, corner.number, corner.name, cornerKey, specs);
 
-    if (matchingMedia) {
-      setSelectedMedia(matchingMedia);
-    } else {
-      const fallbackSrc = specs?.images?.[0]?.src || getCircuitFallbackImage(selectedCircuitId);
-      setSelectedMedia({
-        id: `${selectedCircuitId}_${cornerKey}`,
-        circuitId: selectedCircuitId,
-        title: `${enriched.name} (${enriched.turns || `Turn ${corner.number}`})`,
-        subtitle: `${enriched.type || 'F1 Corner'} — ${selectedCircuitMeta?.name || selectedCircuitId.toUpperCase()}`,
-        category: 'photo',
-        src: fallbackSrc,
-        entrySpeed: enriched.technical?.entrySpeed || 'N/A',
-        typicalGear: enriched.technical?.typicalGear || 'N/A',
-        gForce: enriched.technical?.brakingIntensity || 'N/A',
-        license: 'VERIFIED REAL DATA',
-        description: enriched.description || enriched.history || 'F1 Telemetry Reconnaissance Sector'
-      });
-    }
+    const mediaToOpen = matchingMedia || {
+      id: `${selectedCircuitId}_${cornerKey}`,
+      circuitId: selectedCircuitId,
+      title: `${enriched.name} (${enriched.turns || `Turn ${corner.number}`})`,
+      subtitle: `${enriched.type || 'F1 Corner'} — ${selectedCircuitMeta?.name || selectedCircuitId.toUpperCase()}`,
+      category: 'photo' as const,
+      src: specs?.images?.[0]?.src || getCircuitFallbackImage(selectedCircuitId),
+      entrySpeed: enriched.technical?.entrySpeed || 'N/A',
+      typicalGear: enriched.technical?.typicalGear || 'N/A',
+      gForce: enriched.technical?.brakingIntensity || 'N/A',
+      license: 'VERIFIED REAL DATA',
+      description: enriched.description || enriched.history || 'F1 Telemetry Reconnaissance Sector'
+    };
 
-    setActiveCornerDetails(specs);
+    handleOpenMediaModal(mediaToOpen, specs);
 
-    // Update URL query parameters cleanly
-    router.replace(`/gallery?circuit=${selectedCircuitId}&corner=${cornerKey}`, { scroll: false });
-
-    // Smooth scroll up to gallery grid section
-    const galleryEl = document.getElementById('gallery-section');
-    if (galleryEl) {
-      galleryEl.scrollIntoView({ behavior: 'smooth' });
+    // Update URL query parameters cleanly without triggering router scroll
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `/gallery?circuit=${selectedCircuitId}&corner=${cornerKey}`);
     }
   };
 
@@ -429,23 +446,25 @@ function GalleryContent() {
     return idx >= 0 ? idx : 0;
   }, [selectedCircuitId]);
 
+  const selectableCircuits = useMemo(() => {
+    if (filteredCircuits.some(c => c.id === selectedCircuitId)) {
+      return filteredCircuits;
+    }
+    const currentObj = SUPPORTED_CIRCUITS.find(c => c.id === selectedCircuitId);
+    return currentObj ? [currentObj, ...filteredCircuits] : filteredCircuits;
+  }, [filteredCircuits, selectedCircuitId]);
+
   const handlePrevCircuit = useCallback(() => {
     const prevIdx = (currentCircuitIndex - 1 + SUPPORTED_CIRCUITS.length) % SUPPORTED_CIRCUITS.length;
     const nextCircuit = SUPPORTED_CIRCUITS[prevIdx].id;
-    setSelectedCircuitId(nextCircuit);
-    setSelectedMedia(null);
-    setActiveCornerDetails(null);
-    router.replace(`/gallery?circuit=${nextCircuit}`, { scroll: false });
-  }, [currentCircuitIndex, router]);
+    changeCircuit(nextCircuit);
+  }, [currentCircuitIndex, changeCircuit]);
 
   const handleNextCircuit = useCallback(() => {
     const nextIdx = (currentCircuitIndex + 1) % SUPPORTED_CIRCUITS.length;
     const nextCircuit = SUPPORTED_CIRCUITS[nextIdx].id;
-    setSelectedCircuitId(nextCircuit);
-    setSelectedMedia(null);
-    setActiveCornerDetails(null);
-    router.replace(`/gallery?circuit=${nextCircuit}`, { scroll: false });
-  }, [currentCircuitIndex, router]);
+    changeCircuit(nextCircuit);
+  }, [currentCircuitIndex, changeCircuit]);
 
   // Keyboard navigation for switching circuits with '[' and ']' when modal is closed
   useEffect(() => {
@@ -614,16 +633,10 @@ function GalleryContent() {
             <div className="relative min-w-[220px] sm:min-w-[280px]">
               <select
                 value={selectedCircuitId}
-                onChange={(e) => {
-                  const newCircuit = e.target.value;
-                  setSelectedCircuitId(newCircuit);
-                  setSelectedMedia(null);
-                  setActiveCornerDetails(null);
-                  router.replace(`/gallery?circuit=${newCircuit}`, { scroll: false });
-                }}
+                onChange={(e) => changeCircuit(e.target.value)}
                 className="w-full h-10 bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-[#E10600]/60 focus:border-[#E10600] rounded-xl pl-3.5 pr-8 text-xs font-display font-bold text-slate-100 focus:outline-none focus:ring-1 focus:ring-[#E10600]/40 transition-all appearance-none cursor-pointer truncate shadow-inner"
               >
-                {filteredCircuits.map((circuit) => {
+                {selectableCircuits.map((circuit) => {
                   const turnCount = TOTAL_TURNS_BY_CIRCUIT[circuit.id] || getCircuitTotalCorners(circuit.id);
                   return (
                     <option key={circuit.id} value={circuit.id} className="bg-slate-950 text-slate-100 py-1 font-sans">
@@ -661,7 +674,7 @@ function GalleryContent() {
               TELEMETRY RECONNAISSANCE MODE ACTIVE — {selectedCircuitMeta?.flag} {selectedCircuitMeta?.name.toUpperCase() || selectedCircuitId.toUpperCase()}
             </h3>
             <p className="text-slate-300 font-mono text-xs max-w-xl mx-auto leading-relaxed">
-              Track centerline points, turn vectors, braking zones, and technical telemetry profiles for <strong className="text-cyan-400">{selectedCircuitMeta?.name}</strong> are loaded on the Interactive 2D Vector Path Canvas below. Click any corner to view full information.
+              Official track layout, turn vectors, braking zones, and technical corner profiles for <strong className="text-cyan-400">{selectedCircuitMeta?.name}</strong> are loaded on the Interactive 2D Track Canvas below. Click any corner to view full information.
             </p>
           </div>
         ) : (
@@ -785,8 +798,14 @@ function GalleryContent() {
 
       {/* FULL CORNER RECONNAISSANCE INFORMATION MODAL */}
       {selectedMedia && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-xl animate-in fade-in duration-200 overflow-y-auto">
-          <div className="relative w-full max-w-4xl my-8 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl space-y-5 p-6 max-h-[90vh] overflow-y-auto">
+        <div 
+          onClick={handleBackdropClick}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-xl animate-in fade-in duration-150"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-4xl my-auto bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl space-y-5 p-6 max-h-[90vh] overflow-y-auto"
+          >
             {/* Close Button */}
             <button
               onClick={() => setSelectedMedia(null)}
@@ -1118,7 +1137,7 @@ function GalleryContent() {
                 <span className="text-[#FF3B30] font-bold">{selectedCircuitMeta?.name || selectedCircuitId.toUpperCase()}</span>
               </h2>
               <p className="text-xs font-sans text-slate-400 mt-0.5">
-                Centerline road vectors, calibrated braking markers &amp; interactive apex nodes.
+                Official circuit layout, calibrated braking markers &amp; interactive apex nodes.
               </p>
             </div>
           </div>
@@ -1128,6 +1147,7 @@ function GalleryContent() {
         </div>
         <main className="w-full">
           <CircuitMap 
+            key={selectedCircuitId}
             circuitId={selectedCircuitId}
             showStats={true}
             onCornerSelect={handleCornerSelectOnMap}

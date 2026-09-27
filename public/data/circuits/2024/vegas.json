@@ -1509,7 +1509,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
       "gear": 2,
       "speed_kph": 95
@@ -1525,7 +1525,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 140
@@ -1541,7 +1541,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
       "gear": 5,
       "speed_kph": 210
@@ -1557,7 +1557,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
       "gear": 2,
       "speed_kph": 95
@@ -1573,7 +1573,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 140
@@ -1589,7 +1589,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
       "gear": 5,
       "speed_kph": 210
@@ -1605,7 +1605,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
       "gear": 2,
       "speed_kph": 95
@@ -1621,7 +1621,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 140
@@ -1637,7 +1637,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
       "gear": 5,
       "speed_kph": 210
@@ -1653,7 +1653,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
       "gear": 2,
       "speed_kph": 95
@@ -1669,7 +1669,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 140
@@ -1685,7 +1685,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
       "gear": 5,
       "speed_kph": 210
@@ -1701,7 +1701,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
       "gear": 2,
       "speed_kph": 95
@@ -1717,7 +1717,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 140
@@ -1733,7 +1733,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
       "gear": 5,
       "speed_kph": 210
@@ -1749,7 +1749,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
       "gear": 2,
       "speed_kph": 95
@@ -1765,7 +1765,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 140

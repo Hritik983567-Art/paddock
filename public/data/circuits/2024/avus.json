@@ -1,7 +1,7 @@
 {
   "circuit": {
     "id": "avus",
-    "name": "Automobil-Verkehrs- und Übungsstraße (AVUS)",
+    "name": "AVUS (Automobil-Verkehrs- und Übungsstraße)",
     "country": "Germany",
     "location": "Germany",
     "year": 2024
@@ -1231,8 +1231,8 @@
       "alignmentValid": true,
       "type": "Heavy Braking Hairpin",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 117
+      "gear": 2,
+      "speed_kph": 88
     },
     {
       "number": 2,
@@ -1245,10 +1245,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 4,
-      "speed_kph": 124
+      "gear": 3,
+      "speed_kph": 146
     },
     {
       "number": 3,
@@ -1261,10 +1261,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
       "gear": 5,
-      "speed_kph": 131
+      "speed_kph": 224
     },
     {
       "number": 4,
@@ -1277,10 +1277,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 138
+      "gear": 3,
+      "speed_kph": 131
     }
   ]
 }

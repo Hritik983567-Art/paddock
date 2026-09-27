@@ -1297,7 +1297,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Chicane",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
       "gear": 2,
       "speed_kph": 75
@@ -1313,10 +1313,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Chicane",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
       "gear": 2,
-      "speed_kph": 85
+      "speed_kph": 90
     },
     {
       "number": 3,
@@ -1329,7 +1329,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Sweeper",
+      "type": "Flat-Out Kink",
       "direction": "Right",
       "gear": 8,
       "speed_kph": 305
@@ -1345,7 +1345,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Chicane",
+      "type": "Technical Chicane",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 120
@@ -1361,10 +1361,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Chicane",
+      "type": "Technical Chicane",
       "direction": "Right",
       "gear": 3,
-      "speed_kph": 130
+      "speed_kph": 135
     },
     {
       "number": 6,
@@ -1377,10 +1377,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed",
+      "type": "Medium-Speed Curve",
       "direction": "Left",
       "gear": 4,
-      "speed_kph": 170
+      "speed_kph": 185
     },
     {
       "number": 7,
@@ -1393,10 +1393,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed",
+      "type": "Medium-Speed Curve",
       "direction": "Right",
       "gear": 4,
-      "speed_kph": 160
+      "speed_kph": 165
     },
     {
       "number": 8,
@@ -1409,10 +1409,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Chicane",
+      "type": "Flat-Out Kink",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 215
+      "gear": 7,
+      "speed_kph": 285
     },
     {
       "number": 9,
@@ -1425,10 +1425,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Chicane",
+      "type": "Medium-Speed Curve",
       "direction": "Right",
-      "gear": 6,
-      "speed_kph": 240
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 10,
@@ -1441,10 +1441,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Chicane",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 6,
-      "speed_kph": 260
+      "gear": 5,
+      "speed_kph": 215
     },
     {
       "number": 11,
@@ -1457,10 +1457,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Increasing-Radius Sweeper",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
       "gear": 5,
-      "speed_kph": 210
+      "speed_kph": 220
     }
   ]
 }

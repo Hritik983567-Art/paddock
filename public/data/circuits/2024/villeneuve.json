@@ -1217,7 +1217,7 @@
     {
       "number": 1,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 1",
+      "name": "Virage Senna 1",
       "turn": "Turn 1",
       "x": 3314.21,
       "y": -1317.85,
@@ -1225,15 +1225,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 3,
+      "speed_kph": 135
     },
     {
       "number": 2,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 2",
+      "name": "Virage Senna 2",
       "turn": "Turn 2",
       "x": 3856.57,
       "y": -2073.49,
@@ -1241,15 +1241,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 2,
+      "speed_kph": 85
     },
     {
       "number": 3,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 3",
+      "name": "Turn 3 Complex",
       "turn": "Turn 3",
       "x": 740,
       "y": -608.99,
@@ -1257,15 +1257,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 3,
+      "speed_kph": 145
     },
     {
       "number": 4,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 4",
+      "name": "Turn 4 Chicane Exit",
       "turn": "Turn 4",
       "x": 746.36,
       "y": -42.99,
@@ -1273,15 +1273,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Curve",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 155
     },
     {
       "number": 5,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 5",
+      "name": "Turn 5 Left Sweeper",
       "turn": "Turn 5",
       "x": -724.04,
       "y": 1618.97,
@@ -1289,15 +1289,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Downforce Apex",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 6,
+      "speed_kph": 250
     },
     {
       "number": 6,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 6",
+      "name": "Pont de la Concorde 1",
       "turn": "Turn 6",
       "x": -993.92,
       "y": 3790.89,
@@ -1305,15 +1305,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 3,
+      "speed_kph": 120
     },
     {
       "number": 7,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 7",
+      "name": "Pont de la Concorde 2",
       "turn": "Turn 7",
       "x": -1783.87,
       "y": 4016.3,
@@ -1321,15 +1321,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 3,
+      "speed_kph": 140
     },
     {
       "number": 8,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 8",
+      "name": "Turn 8 Underpass Chicane",
       "turn": "Turn 8",
       "x": -1785.44,
       "y": 10539.71,
@@ -1337,15 +1337,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
       "gear": 3,
-      "speed_kph": 140
+      "speed_kph": 130
     },
     {
       "number": 9,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 9",
+      "name": "Turn 9 Chicane Exit",
       "turn": "Turn 9",
       "x": -1140.29,
       "y": 10976.31,
@@ -1353,15 +1353,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 3,
+      "speed_kph": 145
     },
     {
       "number": 10,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 10",
+      "name": "L'Épingle (Hairpin)",
       "turn": "Turn 10",
       "x": -711.51,
       "y": 16759.56,
@@ -1369,15 +1369,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 1,
+      "speed_kph": 68
     },
     {
       "number": 11,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 11",
+      "name": "Droit du Casino 1",
       "turn": "Turn 11",
       "x": -374.83,
       "y": 15840.4,
@@ -1385,15 +1385,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Flat-Out Kink",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 7,
+      "speed_kph": 285
     },
     {
       "number": 12,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 12",
+      "name": "Droit du Casino 2",
       "turn": "Turn 12",
       "x": 975.87,
       "y": 12421.17,
@@ -1401,15 +1401,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Flat-Out Kink",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 8,
+      "speed_kph": 320
     },
     {
       "number": 13,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 13",
+      "name": "Wall of Champions Entry",
       "turn": "Turn 13",
       "x": 2586.93,
       "y": 5440.83,
@@ -1417,15 +1417,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 3,
+      "speed_kph": 125
     },
     {
       "number": 14,
       "letter": "",
-      "name": "Circuit Gilles Villeneuve Turn 14",
+      "name": "Wall of Champions (Turn 14)",
       "turn": "Turn 14",
       "x": 2435.44,
       "y": 5153.83,
@@ -1433,10 +1433,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
       "gear": 3,
-      "speed_kph": 140
+      "speed_kph": 145
     }
   ]
 }

@@ -1073,7 +1073,7 @@
     {
       "number": 1,
       "letter": "",
-      "name": "Red Bull Ring Turn 1",
+      "name": "Niki Lauda Kurve",
       "turn": "Turn 1",
       "x": -3063.96,
       "y": -2208.51,
@@ -1081,15 +1081,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 3,
+      "speed_kph": 145
     },
     {
       "number": 2,
       "letter": "",
-      "name": "Red Bull Ring Turn 2",
+      "name": "Schönberg Straight Kink",
       "turn": "Turn 2",
       "x": -6314.69,
       "y": 3218.05,
@@ -1097,15 +1097,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Flat-Out Kink",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 8,
+      "speed_kph": 305
     },
     {
       "number": 3,
       "letter": "",
-      "name": "Red Bull Ring Turn 3",
+      "name": "Remus Hairpin",
       "turn": "Turn 3",
       "x": -8209.92,
       "y": 5460.18,
@@ -1113,15 +1113,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 2,
+      "speed_kph": 70
     },
     {
       "number": 4,
       "letter": "",
-      "name": "Red Bull Ring Turn 4",
+      "name": "Schlossgold",
       "turn": "Turn 4",
       "x": -266.37,
       "y": 4694.27,
@@ -1129,15 +1129,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 3,
+      "speed_kph": 115
     },
     {
       "number": 5,
       "letter": "",
-      "name": "Red Bull Ring Turn 5",
+      "name": "Turn 5 Left",
       "turn": "Turn 5",
       "x": -1473.04,
       "y": 3462.35,
@@ -1145,15 +1145,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Curve",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 185
     },
     {
       "number": 6,
       "letter": "",
-      "name": "Red Bull Ring Turn 6",
+      "name": "Rauch Kurve 1",
       "turn": "Turn 6",
       "x": -4632.14,
       "y": 3322.69,
@@ -1161,15 +1161,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
       "gear": 5,
-      "speed_kph": 210
+      "speed_kph": 205
     },
     {
       "number": 7,
       "letter": "",
-      "name": "Red Bull Ring Turn 7",
+      "name": "Rauch Kurve 2",
       "turn": "Turn 7",
       "x": -3272.01,
       "y": 853.07,
@@ -1177,15 +1177,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 5,
+      "speed_kph": 220
     },
     {
       "number": 8,
       "letter": "",
-      "name": "Red Bull Ring Turn 8",
+      "name": "Würth Kurve",
       "turn": "Turn 8",
       "x": -1618.79,
       "y": 1948.82,
@@ -1193,15 +1193,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 5,
+      "speed_kph": 195
     },
     {
       "number": 9,
       "letter": "",
-      "name": "Red Bull Ring Turn 9",
+      "name": "Jochen Rindt Kurve",
       "turn": "Turn 9",
       "x": 3669.86,
       "y": 1852.28,
@@ -1209,15 +1209,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
       "gear": 5,
-      "speed_kph": 210
+      "speed_kph": 225
     },
     {
       "number": 10,
       "letter": "",
-      "name": "Red Bull Ring Turn 10",
+      "name": "Red Bull Mobile Kurve",
       "turn": "Turn 10",
       "x": 4201.17,
       "y": 85.38,
@@ -1225,10 +1225,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Downforce Apex",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 6,
+      "speed_kph": 235
     }
   ]
 }
