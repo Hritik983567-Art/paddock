@@ -698,7 +698,7 @@ export function CircuitMap({
                       fill={corner.alignmentValid ? '#FF1E27' : '#EAB308'}
                       stroke={isSelected ? '#FFFFFF' : 'transparent'}
                       strokeWidth="2"
-                      className="transition-colors duration-150 group-hover/anchor:stroke-white"
+                      className="pointer-events-none transition-colors duration-150 group-hover/anchor:stroke-white"
                     />
                     <circle
                       cx={cx}
@@ -759,7 +759,7 @@ export function CircuitMap({
                       stroke={isSelected ? '#FFFFFF' : corner.alignmentValid ? '#FF1E27' : '#EAB308'}
                       strokeWidth={isSelected ? '2' : '1.5'}
                       filter={isSelected ? 'url(#cornerGlow)' : undefined}
-                      className="transition-colors duration-150 group-hover/badge:stroke-white group-hover/badge:fill-red-950/80"
+                      className="pointer-events-none transition-colors duration-150 group-hover/badge:stroke-white group-hover/badge:fill-red-950/80"
                     />
 
                     <text
