@@ -653,6 +653,7 @@ export function CircuitMap({
                     strokeWidth="1.5"
                     strokeDasharray="2 2"
                     opacity="0.7"
+                    className="pointer-events-none"
                   />
                 );
               })}
@@ -681,11 +682,11 @@ export function CircuitMap({
                     onTouchStart={(e) => e.stopPropagation()}
                   >
                     <title>{corner.name ? `${corner.name} (Apex ${corner.number}${corner.letter || ''})` : `Turn ${corner.number}${corner.letter || ''}`} • Click to inspect telemetry</title>
-                    {/* Generous painted hit target (44px diameter) */}
+                    {/* Non-overlapping clean hit target */}
                     <circle
                       cx={cx}
                       cy={cy}
-                      r="22"
+                      r="12"
                       fill="#FFFFFF"
                       fillOpacity="0.001"
                       style={{ pointerEvents: 'all', cursor: 'pointer' }}
@@ -697,13 +698,14 @@ export function CircuitMap({
                       fill={corner.alignmentValid ? '#FF1E27' : '#EAB308'}
                       stroke={isSelected ? '#FFFFFF' : 'transparent'}
                       strokeWidth="2"
-                      className="transition-all duration-150 group-hover/anchor:stroke-white group-hover/anchor:r-6"
+                      className="transition-colors duration-150 group-hover/anchor:stroke-white"
                     />
                     <circle
                       cx={cx}
                       cy={cy}
                       r="2"
                       fill="#FFFFFF"
+                      className="pointer-events-none"
                     />
                   </g>
                 );
@@ -725,7 +727,7 @@ export function CircuitMap({
                     data-corner="true"
                     transform={`translate(${lx}, ${ly})`}
                     className="cursor-pointer group/badge select-none"
-                    style={{ transformBox: 'fill-box', transformOrigin: 'center', pointerEvents: 'all' }}
+                    style={{ pointerEvents: 'all' }}
                     onClick={(e) => onCornerTrigger(e, corner)}
                     onPointerUp={(e) => {
                       if ((e as React.PointerEvent).pointerType === 'touch') {
@@ -736,12 +738,12 @@ export function CircuitMap({
                     onTouchStart={(e) => e.stopPropagation()}
                   >
                     <title>{corner.name ? `${corner.name} (Turn ${labelText})` : `Turn ${labelText}`} • Click to view corner reconnaissance</title>
-                    {/* Generous painted hit target (52x44px) */}
+                    {/* Right-sized painted hit target (32x26px, never overlaps neighbor badges) */}
                     <rect
-                      x="-26"
-                      y="-22"
-                      width="52"
-                      height="44"
+                      x="-16"
+                      y="-13"
+                      width="32"
+                      height="26"
                       rx="6"
                       fill="#FFFFFF"
                       fillOpacity="0.001"
@@ -757,7 +759,7 @@ export function CircuitMap({
                       stroke={isSelected ? '#FFFFFF' : corner.alignmentValid ? '#FF1E27' : '#EAB308'}
                       strokeWidth={isSelected ? '2' : '1.5'}
                       filter={isSelected ? 'url(#cornerGlow)' : undefined}
-                      className="transition-all duration-150 group-hover/badge:stroke-white group-hover/badge:stroke-2 group-hover/badge:fill-red-950/70"
+                      className="transition-colors duration-150 group-hover/badge:stroke-white group-hover/badge:fill-red-950/80"
                     />
 
                     <text

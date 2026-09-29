@@ -299,20 +299,30 @@ export function transformCorners(
     };
   });
 
-  // Collision resolution for close corner labels (e.g. chicanes)
-  for (let i = 0; i < initialCorners.length; i++) {
-    for (let j = i + 1; j < initialCorners.length; j++) {
-      const c1 = initialCorners[i];
-      const c2 = initialCorners[j];
-      const dx = c2.labelX - c1.labelX;
-      const dy = c2.labelY - c1.labelY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
+  // Multi-pass iterative collision resolution so close corners (chicanes like T1-T2, T4-T5, T8-T9-T10)
+  // never collide, overlap, or cause hover flickering
+  const MIN_LABEL_DISTANCE = 38;
+  for (let pass = 0; pass < 5; pass++) {
+    for (let i = 0; i < initialCorners.length; i++) {
+      for (let j = i + 1; j < initialCorners.length; j++) {
+        const c1 = initialCorners[i];
+        const c2 = initialCorners[j];
+        let dx = c2.labelX - c1.labelX;
+        let dy = c2.labelY - c1.labelY;
+        let dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist < 32 && dist > 0) {
-        // Push label 2 further outward
-        const pushX = (dx / dist) * 20;
-        const pushY = (dy / dist) * 20;
-        if (!isNaN(pushX) && !isNaN(pushY)) {
+        if (dist < MIN_LABEL_DISTANCE) {
+          if (dist === 0) {
+            dx = 1;
+            dy = 1;
+            dist = Math.SQRT2;
+          }
+          const overlap = (MIN_LABEL_DISTANCE - dist) / 2;
+          const pushX = (dx / dist) * overlap;
+          const pushY = (dy / dist) * overlap;
+
+          c1.labelX = Number((c1.labelX - pushX).toFixed(2));
+          c1.labelY = Number((c1.labelY - pushY).toFixed(2));
           c2.labelX = Number((c2.labelX + pushX).toFixed(2));
           c2.labelY = Number((c2.labelY + pushY).toFixed(2));
         }
