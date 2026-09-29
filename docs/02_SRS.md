@@ -58,10 +58,12 @@ graph TD
 
 ### 3.2 Circuit Reconnaissance & Apex Telemetry (FR-CIRCUIT)
 
-- **FR-CIRCUIT-01 (78 Circuit Vector Database)**: The system shall provide SVG and 2D vector coordinate datasets for 78 worldwide Formula 1 circuits.
+- **FR-CIRCUIT-01 (78 Circuit Vector Database)**: The system shall provide SVG and 2D vector coordinate datasets for 78 worldwide Formula 1 circuits covering 4,348 corners with calibrated physics telemetry.
 - **FR-CIRCUIT-02 (Apex Telemetry Inspection)**: Selecting any corner marker shall update the telemetry HUD with entry speed (km/h), apex speed, exit speed, minimum gear, and peak lateral/longitudinal G-forces.
 - **FR-CIRCUIT-03 (Interactive Zoom & Pan)**: The circuit map canvas shall support touch/mouse zoom, pan, and dynamic recentering with sector highlights (Sector 1, 2, 3).
 - **FR-CIRCUIT-04 (Apex Photography Matching)**: The system shall display verified apex photography with license accreditation and metadata, gracefully falling back to high-resolution team wallpapers if corner photography is pending.
+- **FR-CIRCUIT-05 (Layout Settle & Chicane Collision Relaxation)**: The circuit engine shall auto-orient upright track layouts 90° clockwise for widescreen viewport balance and enforce a 5-pass iterative collision relaxation algorithm (`>= 38px` badge separation) to guarantee zero badge overlap and eliminate hover jitter.
+- **FR-CIRCUIT-06 (Gesture Disambiguation & Click Reliability)**: The canvas shall isolate corner click/tap activations from canvas drag/pan gestures via a 12px movement threshold and `data-corner="true"` event isolation, ensuring corner clicks immediately open reconnaissance modals without dragging the map.
 
 ### 3.3 60fps Race Replay Engine (FR-REPLAY)
 

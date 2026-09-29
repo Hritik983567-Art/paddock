@@ -33,8 +33,10 @@ Paddock Telemetry provides an enterprise-grade, modular software engineering doc
 ## ⚡ Key Systems & Core Features
 
 ### 🗺️ 1. 78 F1 Circuit Satellite Canvas & Corner Reconnaissance (`/gallery`)
-- **Complete Track Coverage**: Supports all 24 modern Grand Prix venues, historic retro circuits (Nürburgring Nordschleife, Brands Hatch, Kyalami, Sepang), and iconic street courses.
-- **Apex Telemetry Specs**: Displays technical telemetry metrics per corner — entry/apex/exit speeds (km/h), lateral/longitudinal G-forces, braking intensity, and gear selection.
+- **Complete Track Coverage**: Supports all 25 modern Grand Prix venues and 53 historic heritage circuits (Nürburgring Nordschleife, Brands Hatch, Kyalami, Sepang, Indianapolis) spanning **4,348 calibrated corners**.
+- **Calibrated Apex Telemetry Specs**: Displays verified telemetry metrics per corner — entry, apex, and exit speeds (km/h), typical gear distribution, braking G-force, DRS zones, and overtaking strategy ratings.
+- **Intelligent Auto-Settle Layout Transform**: Automatically tilts vertically-oriented circuits 90° clockwise so narrow tracks settle comfortably in widescreen viewports.
+- **5-Pass Iterative Collision Relaxation**: Dynamically spaces corner badges in tight chicanes with a 38px clearance threshold, preventing badge overlap and eliminating hover jitter.
 - **Intelligent Apex Matcher**: Dynamically maps corner selections to verified high-resolution apex photography and fallback team wallpapers.
 
 ### ⏱️ 2. 60fps Interactive Race Replay Engine (`/replay`)

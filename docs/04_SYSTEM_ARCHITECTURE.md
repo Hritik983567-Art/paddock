@@ -128,6 +128,22 @@ The replay engine is designed to eliminate frame jitter and garbage collection p
 3. **Hardware Acceleration**:
    - The canvas element utilizes `will-change: transform` and 2D canvas context optimizations (`imageSmoothingEnabled = true`).
 
+### 3.3 2D Circuit Telemetry Map Pipeline (`CircuitMap.tsx` & `circuitTransform.ts`)
+
+The circuit map vector pipeline handles high-precision rendering of 78 world championship layouts:
+1. **Auto-Settle Aspect Ratio Projection**:
+   - Upright vertical layouts (`rangeY > rangeX * 1.15`, e.g., Indianapolis, Monza) are automatically tilted 90° clockwise in `computeTransformBounds()` so tracks settle horizontally and fill standard widescreen viewports with zero clipping.
+2. **5-Pass Iterative Collision Relaxation**:
+   - In tight chicanes where multiple corners occur within short distances (e.g. Monza T1–2, T4–5, T8–9–10), `transformCorners()` executes a 5-pass iterative relaxation loop enforcing a minimum separation of `MIN_LABEL_DISTANCE = 38px`. Symmetrical displacement ensures leader lines and badges remain clean, balanced, and visually separated.
+3. **Jitter-Free SVG Hit Testing & Coordinate Anchoring**:
+   - Badges use direct SVG translation `translate(lx, ly)` with `pointerEvents: 'all'`. Dynamic bounding-box recalculation (`transformBox: fill-box`) is intentionally excluded to prevent browser origin shifting on hover.
+   - Hover micro-interactions use **color-only CSS transitions** (`transition-colors duration-150`). Geometry properties (`strokeWidth`, `r`) remain fixed during hover, eliminating high-frequency hover oscillation loops.
+   - Hit targets use non-overlapping painted targets (`fill="#FFFFFF" fillOpacity="0.001"`) sized at 32×26px for badges and 12px radius for apex anchors.
+4. **Gesture Disambiguation & Click Bleed-Through Guards**:
+   - Canvas panning enforces a 12px movement threshold (`Math.hypot(dx, dy) < 12`), isolating normal mouse clicks and finger taps from accidental canvas dragging.
+   - All interactive nodes feature `data-corner="true"`, allowing canvas drag handlers to immediately yield.
+   - Modal backdrop dismissals implement an opening time guard (`modalOpenedAtRef`, 250ms threshold) to prevent the trigger click from bleeding through and immediately closing the modal.
+
 ---
 
 ## 4. Codebase Composition & Volume Metrics

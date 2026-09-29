@@ -60,7 +60,11 @@ The Paddock Telemetry interface is engineered to emulate an **FIA Formula 1 Pit-
 
 ## 3. Typography & Data Formatting
 
-- **Data Values & Sector Timing**: Rendered strictly in monospace fonts (`JetBrains Mono` or tabular numerals `font-variant-numeric: tabular-nums`) to prevent layout shifting as lap counters increment.
+The typography hierarchy is designed for instant scannability under high-stress race operations:
+- **Display & Section Headers**: `Titillium Web` (`font-display`, uppercase, black/bold font weight). Engineered for aerospace and Formula 1 branding aesthetics.
+- **Telemetry & Gauge Readings**: `Roboto Condensed` (`font-telemetry`, high-contrast condensed technical numerals). Maximizes data density and horizontal numeral readability.
+- **Body & Editorial Copy**: `Inter` (`font-sans`). Neutral, highly legible body text with optimal micro-spacing.
+- **Sector Timing & Code**: `JetBrains Mono` (`font-mono` with `font-variant-numeric: tabular-nums`). Prevents layout shifting as lap counters and millisecond timers update.
 - **Lap Deltas**:
   - Negative (Faster / Green): `text-emerald-400 font-mono -0.142s`
   - Positive (Slower / Red): `text-rose-400 font-mono +0.389s`
@@ -93,6 +97,15 @@ The Paddock Telemetry interface is engineered to emulate an **FIA Formula 1 Pit-
 
 - **Resolution Scaling**: Canvas dimensions dynamically adapt to `window.devicePixelRatio` to prevent blurriness on Retina/High-DPI displays.
 - **Car Node Markers**: 12px circular SVG/Canvas nodes displaying constructor colors and driver three-letter codes (e.g., `HAM`, `VER`, `LEC`).
+
+### 4.2 2D Vector Circuit Map Canvas & Corner Interaction (`CircuitMap.tsx`)
+- **Static Unified Header Bar**: Replaces floating semi-transparent cards with an anchored top bar displaying circuit name, country/year, official track length (km), turn count, and viewport controls (`+`, `-`, `↺ Reset`).
+- **Anti-Jitter SVG Hover Rules**:
+  - Elements positioned via SVG `translate(lx, ly)` must **never** declare CSS `transform-box: fill-box` or `transform-origin: center`. Dynamic recalculation of the bounding box during hover alters the transform matrix in Chromium/WebKit, causing rapid position oscillation (shaking).
+  - Hover states exclusively interpolate **color properties** (`transition-colors duration-150`, e.g., `stroke-white`, `fill-red-950/80`). Geometry properties (`strokeWidth`, `r`) remain strictly constant during hover.
+- **Chicane Collision Relaxation**: In dense sector complexes (e.g. Monza Turns 1–2, 4–5, 8–9–10), badges maintain an iterative 38px clearance envelope, providing clean leader line separation and zero visual overlap.
+- **Right-Sized Collision Hitboxes**: Invisible painted hit targets are constrained to 32×26px for badges and 12px radius for apex anchors (`fill="#FFFFFF" fillOpacity="0.001"`), preventing neighboring corner hitboxes from overlapping.
+- **Touch & Gesture Immunity**: Canvas drag listeners (`onMouseDown`, `onTouchStart`) check `target.closest('[data-corner="true"]')` and enforce a 12px drag delta, ensuring corner taps open reconnaissance specs without shifting the canvas.
 
 ---
 
