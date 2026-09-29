@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export const API_BASE = 'https://api.jolpi.ca/ergast/f1';
 
 export const ALL_F1_SEASONS: string[] = Array.from(
