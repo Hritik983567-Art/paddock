@@ -28,7 +28,7 @@ const KNOWN_TEAMS = [
   'Williams', 'RB', 'Sauber', 'Haas', 'Cadillac', 'Audi'
 ];
 
-export function resolveNewsFallbackImage(title: string, description: string = '', category: CategoryFilter = 'ALL'): string {
+function resolveNewsFallbackImage(title: string, description: string = '', category: CategoryFilter = 'ALL'): string {
   const text = `${title} ${description}`.toLowerCase();
 
   // 1. Feeder series / Juniors / F2
