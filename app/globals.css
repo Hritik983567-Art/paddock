@@ -49,30 +49,35 @@
 .f1-red-gradient {
   background: linear-gradient(135deg, #FF3B30 0%, #E10600 55%, #990000 100%) !important;
   -webkit-background-clip: text !important;
+  background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 .f1-gold-gradient {
   background: linear-gradient(135deg, #FFF4CC 0%, #FFB800 55%, #D97706 100%) !important;
   -webkit-background-clip: text !important;
+  background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 .f1-cyan-gradient {
   background: linear-gradient(135deg, #E0FFFA 0%, #00F5D4 55%, #00A896 100%) !important;
   -webkit-background-clip: text !important;
+  background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 .f1-purple-gradient {
   background: linear-gradient(135deg, #FDF4FF 0%, #D946EF 55%, #9333EA 100%) !important;
   -webkit-background-clip: text !important;
+  background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 .f1-silver-gradient {
   background: linear-gradient(180deg, #FFFFFF 30%, #CBD5E1 100%) !important;
   -webkit-background-clip: text !important;
+  background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
@@ -1831,6 +1836,7 @@ footer {
     font-variant-numeric: tabular-nums;
     background: linear-gradient(180deg, #FFFFFF 15%, #E10600 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 0 16px rgba(225, 6, 0, 0.5));
 }

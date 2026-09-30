@@ -1,0 +1,226 @@
+{
+  "season": "2023",
+  "totalRaces": 22,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Bahrain Grand Prix",
+      "circuitId": "bahrain",
+      "circuitName": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "locality": "Sakhir",
+      "date": "2023-03-05",
+      "time": "15:00:00Z"
+    },
+    {
+      "round": "2",
+      "raceName": "Saudi Arabian Grand Prix",
+      "circuitId": "jeddah",
+      "circuitName": "Jeddah Corniche Circuit",
+      "country": "Saudi Arabia",
+      "locality": "Jeddah",
+      "date": "2023-03-19",
+      "time": "17:00:00Z"
+    },
+    {
+      "round": "3",
+      "raceName": "Australian Grand Prix",
+      "circuitId": "albert_park",
+      "circuitName": "Albert Park Grand Prix Circuit",
+      "country": "Australia",
+      "locality": "Melbourne",
+      "date": "2023-04-02",
+      "time": "05:00:00Z"
+    },
+    {
+      "round": "4",
+      "raceName": "Azerbaijan Grand Prix",
+      "circuitId": "baku",
+      "circuitName": "Baku City Circuit",
+      "country": "Azerbaijan",
+      "locality": "Baku",
+      "date": "2023-04-30",
+      "time": "11:00:00Z"
+    },
+    {
+      "round": "5",
+      "raceName": "Miami Grand Prix",
+      "circuitId": "miami",
+      "circuitName": "Miami International Autodrome",
+      "country": "USA",
+      "locality": "Miami",
+      "date": "2023-05-07",
+      "time": "19:30:00Z"
+    },
+    {
+      "round": "6",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "2023-05-28",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "7",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "catalunya",
+      "circuitName": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "2023-06-04",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "8",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "2023-06-18",
+      "time": "18:00:00Z"
+    },
+    {
+      "round": "9",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "2023-07-02",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "10",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "2023-07-09",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "11",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "2023-07-23",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "12",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "2023-07-30",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "13",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "2023-08-27",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "14",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "2023-09-03",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "15",
+      "raceName": "Singapore Grand Prix",
+      "circuitId": "marina_bay",
+      "circuitName": "Marina Bay Street Circuit",
+      "country": "Singapore",
+      "locality": "Marina Bay",
+      "date": "2023-09-17",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "16",
+      "raceName": "Japanese Grand Prix",
+      "circuitId": "suzuka",
+      "circuitName": "Suzuka Circuit",
+      "country": "Japan",
+      "locality": "Suzuka",
+      "date": "2023-09-24",
+      "time": "05:00:00Z"
+    },
+    {
+      "round": "17",
+      "raceName": "Qatar Grand Prix",
+      "circuitId": "losail",
+      "circuitName": "Lusail International Circuit",
+      "country": "Qatar",
+      "locality": "Lusail",
+      "date": "2023-10-08",
+      "time": "17:00:00Z"
+    },
+    {
+      "round": "18",
+      "raceName": "United States Grand Prix",
+      "circuitId": "americas",
+      "circuitName": "Circuit of the Americas",
+      "country": "USA",
+      "locality": "Austin",
+      "date": "2023-10-22",
+      "time": "19:00:00Z"
+    },
+    {
+      "round": "19",
+      "raceName": "Mexico City Grand Prix",
+      "circuitId": "rodriguez",
+      "circuitName": "Autódromo Hermanos Rodríguez",
+      "country": "Mexico",
+      "locality": "Mexico City",
+      "date": "2023-10-29",
+      "time": "20:00:00Z"
+    },
+    {
+      "round": "20",
+      "raceName": "São Paulo Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "2023-11-05",
+      "time": "17:00:00Z"
+    },
+    {
+      "round": "21",
+      "raceName": "Las Vegas Grand Prix",
+      "circuitId": "vegas",
+      "circuitName": "Las Vegas Strip Street Circuit",
+      "country": "USA",
+      "locality": "Las Vegas",
+      "date": "2023-11-19",
+      "time": "06:00:00Z"
+    },
+    {
+      "round": "22",
+      "raceName": "Abu Dhabi Grand Prix",
+      "circuitId": "yas_marina",
+      "circuitName": "Yas Marina Circuit",
+      "country": "UAE",
+      "locality": "Abu Dhabi",
+      "date": "2023-11-26",
+      "time": "13:00:00Z"
+    }
+  ]
+}

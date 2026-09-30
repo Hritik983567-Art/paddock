@@ -1,0 +1,176 @@
+{
+  "season": "2020",
+  "totalRaces": 17,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "2020-07-05",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "2",
+      "raceName": "Styrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "2020-07-12",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "3",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "2020-07-19",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "4",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "2020-08-02",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "5",
+      "raceName": "70th Anniversary Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "2020-08-09",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "6",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "catalunya",
+      "circuitName": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "2020-08-16",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "7",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "2020-08-30",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "8",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "2020-09-06",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "9",
+      "raceName": "Tuscan Grand Prix",
+      "circuitId": "mugello",
+      "circuitName": "Autodromo Internazionale del Mugello",
+      "country": "Italy",
+      "locality": "Mugello",
+      "date": "2020-09-13",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "10",
+      "raceName": "Russian Grand Prix",
+      "circuitId": "sochi",
+      "circuitName": "Sochi Autodrom",
+      "country": "Russia",
+      "locality": "Sochi",
+      "date": "2020-09-27",
+      "time": "11:10:00Z"
+    },
+    {
+      "round": "11",
+      "raceName": "Eifel Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "2020-10-11",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "12",
+      "raceName": "Portuguese Grand Prix",
+      "circuitId": "portimao",
+      "circuitName": "Autódromo Internacional do Algarve",
+      "country": "Portugal",
+      "locality": "Portimão",
+      "date": "2020-10-25",
+      "time": "12:10:00Z"
+    },
+    {
+      "round": "13",
+      "raceName": "Emilia Romagna Grand Prix",
+      "circuitId": "imola",
+      "circuitName": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "locality": "Imola",
+      "date": "2020-11-01",
+      "time": "12:10:00Z"
+    },
+    {
+      "round": "14",
+      "raceName": "Turkish Grand Prix",
+      "circuitId": "istanbul",
+      "circuitName": "Istanbul Park",
+      "country": "Turkey",
+      "locality": "Istanbul",
+      "date": "2020-11-15",
+      "time": "10:10:00Z"
+    },
+    {
+      "round": "15",
+      "raceName": "Bahrain Grand Prix",
+      "circuitId": "bahrain",
+      "circuitName": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "locality": "Sakhir",
+      "date": "2020-11-29",
+      "time": "14:10:00Z"
+    },
+    {
+      "round": "16",
+      "raceName": "Sakhir Grand Prix",
+      "circuitId": "bahrain",
+      "circuitName": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "locality": "Sakhir",
+      "date": "2020-12-06",
+      "time": "17:10:00Z"
+    },
+    {
+      "round": "17",
+      "raceName": "Abu Dhabi Grand Prix",
+      "circuitId": "yas_marina",
+      "circuitName": "Yas Marina Circuit",
+      "country": "UAE",
+      "locality": "Abu Dhabi",
+      "date": "2020-12-13",
+      "time": "13:10:00Z"
+    }
+  ]
+}

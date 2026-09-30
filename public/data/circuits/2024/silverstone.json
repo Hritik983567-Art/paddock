@@ -1385,10 +1385,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Flat-Out Kink",
+      "type": "Corner",
       "direction": "Right",
-      "gear": 7,
-      "speed_kph": 290
+      "gear": 2,
+      "speed_kph": 95
     },
     {
       "number": 2,
@@ -1401,10 +1401,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Flat-Out Kink",
+      "type": "Corner",
       "direction": "Left",
-      "gear": 7,
-      "speed_kph": 280
+      "gear": 3,
+      "speed_kph": 140
     },
     {
       "number": 3,
@@ -1417,10 +1417,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Corner",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 110
+      "gear": 5,
+      "speed_kph": 210
     },
     {
       "number": 4,
@@ -1433,10 +1433,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Corner",
       "direction": "Left",
       "gear": 2,
-      "speed_kph": 85
+      "speed_kph": 95
     },
     {
       "number": 5,
@@ -1449,15 +1449,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed Curve",
+      "type": "Corner",
       "direction": "Right",
-      "gear": 4,
-      "speed_kph": 175
+      "gear": 3,
+      "speed_kph": 140
     },
     {
       "number": 6,
       "letter": "",
-      "name": "Wellington Straight Kink",
+      "name": "Wellington Straight",
       "turn": "Turn 6",
       "x": 631.39,
       "y": 10910.23,
@@ -1465,10 +1465,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Flat-Out Kink",
+      "type": "Corner",
       "direction": "Left",
-      "gear": 8,
-      "speed_kph": 300
+      "gear": 5,
+      "speed_kph": 210
     },
     {
       "number": 7,
@@ -1481,10 +1481,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed Curve",
+      "type": "Corner",
       "direction": "Right",
-      "gear": 4,
-      "speed_kph": 165
+      "gear": 2,
+      "speed_kph": 95
     },
     {
       "number": 8,
@@ -1497,10 +1497,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Corner",
       "direction": "Left",
       "gear": 3,
-      "speed_kph": 145
+      "speed_kph": 140
     },
     {
       "number": 9,
@@ -1513,10 +1513,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Downforce Apex",
+      "type": "Corner",
       "direction": "Right",
-      "gear": 6,
-      "speed_kph": 245
+      "gear": 5,
+      "speed_kph": 210
     },
     {
       "number": 10,
@@ -1529,10 +1529,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Flat-Out Kink",
+      "type": "Corner",
       "direction": "Left",
-      "gear": 7,
-      "speed_kph": 275
+      "gear": 2,
+      "speed_kph": 95
     },
     {
       "number": 11,
@@ -1545,10 +1545,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Flat-Out Kink",
+      "type": "Corner",
       "direction": "Right",
-      "gear": 7,
-      "speed_kph": 285
+      "gear": 3,
+      "speed_kph": 140
     },
     {
       "number": 12,
@@ -1561,10 +1561,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Downforce Apex",
+      "type": "Corner",
       "direction": "Left",
-      "gear": 6,
-      "speed_kph": 245
+      "gear": 5,
+      "speed_kph": 210
     },
     {
       "number": 13,
@@ -1577,10 +1577,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Corner",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 225
+      "gear": 2,
+      "speed_kph": 95
     },
     {
       "number": 14,
@@ -1593,15 +1593,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Downforce Apex",
+      "type": "Corner",
       "direction": "Left",
-      "gear": 6,
-      "speed_kph": 265
+      "gear": 3,
+      "speed_kph": 140
     },
     {
       "number": 15,
       "letter": "",
-      "name": "Hangar Straight Kink",
+      "name": "Hangar Straight",
       "turn": "Turn 15",
       "x": 2398.95,
       "y": -4099.24,
@@ -1609,10 +1609,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Flat-Out Kink",
+      "type": "Corner",
       "direction": "Right",
-      "gear": 8,
-      "speed_kph": 315
+      "gear": 5,
+      "speed_kph": 210
     },
     {
       "number": 16,
@@ -1625,10 +1625,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Corner",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 205
+      "gear": 2,
+      "speed_kph": 95
     },
     {
       "number": 17,
@@ -1641,10 +1641,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Corner",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 100
+      "gear": 3,
+      "speed_kph": 140
     },
     {
       "number": 18,
@@ -1657,10 +1657,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 5,
+      "speed_kph": 210
     }
   ]
 }

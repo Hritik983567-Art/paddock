@@ -1,0 +1,226 @@
+{
+  "season": "2021",
+  "totalRaces": 22,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Bahrain Grand Prix",
+      "circuitId": "bahrain",
+      "circuitName": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "locality": "Sakhir",
+      "date": "2021-03-28",
+      "time": "15:00:00Z"
+    },
+    {
+      "round": "2",
+      "raceName": "Emilia Romagna Grand Prix",
+      "circuitId": "imola",
+      "circuitName": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "locality": "Imola",
+      "date": "2021-04-18",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "3",
+      "raceName": "Portuguese Grand Prix",
+      "circuitId": "portimao",
+      "circuitName": "Autódromo Internacional do Algarve",
+      "country": "Portugal",
+      "locality": "Portimão",
+      "date": "2021-05-02",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "4",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "catalunya",
+      "circuitName": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "2021-05-09",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "5",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "2021-05-23",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "6",
+      "raceName": "Azerbaijan Grand Prix",
+      "circuitId": "baku",
+      "circuitName": "Baku City Circuit",
+      "country": "Azerbaijan",
+      "locality": "Baku",
+      "date": "2021-06-06",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "7",
+      "raceName": "French Grand Prix",
+      "circuitId": "ricard",
+      "circuitName": "Circuit Paul Ricard",
+      "country": "France",
+      "locality": "Le Castellet",
+      "date": "2021-06-20",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "8",
+      "raceName": "Styrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "2021-06-27",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "9",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "2021-07-04",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "10",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "2021-07-18",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "11",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "2021-08-01",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "12",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "2021-08-29",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "13",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "2021-09-05",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "14",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "2021-09-12",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "15",
+      "raceName": "Russian Grand Prix",
+      "circuitId": "sochi",
+      "circuitName": "Sochi Autodrom",
+      "country": "Russia",
+      "locality": "Sochi",
+      "date": "2021-09-26",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "16",
+      "raceName": "Turkish Grand Prix",
+      "circuitId": "istanbul",
+      "circuitName": "Istanbul Park",
+      "country": "Turkey",
+      "locality": "Istanbul",
+      "date": "2021-10-10",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "17",
+      "raceName": "United States Grand Prix",
+      "circuitId": "americas",
+      "circuitName": "Circuit of the Americas",
+      "country": "USA",
+      "locality": "Austin",
+      "date": "2021-10-24",
+      "time": "19:00:00Z"
+    },
+    {
+      "round": "18",
+      "raceName": "Mexico City Grand Prix",
+      "circuitId": "rodriguez",
+      "circuitName": "Autódromo Hermanos Rodríguez",
+      "country": "Mexico",
+      "locality": "Mexico City",
+      "date": "2021-11-07",
+      "time": "19:00:00Z"
+    },
+    {
+      "round": "19",
+      "raceName": "São Paulo Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "2021-11-14",
+      "time": "17:00:00Z"
+    },
+    {
+      "round": "20",
+      "raceName": "Qatar Grand Prix",
+      "circuitId": "losail",
+      "circuitName": "Lusail International Circuit",
+      "country": "Qatar",
+      "locality": "Lusail",
+      "date": "2021-11-21",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "21",
+      "raceName": "Saudi Arabian Grand Prix",
+      "circuitId": "jeddah",
+      "circuitName": "Jeddah Corniche Circuit",
+      "country": "Saudi Arabia",
+      "locality": "Jeddah",
+      "date": "2021-12-05",
+      "time": "17:30:00Z"
+    },
+    {
+      "round": "22",
+      "raceName": "Abu Dhabi Grand Prix",
+      "circuitId": "yas_marina",
+      "circuitName": "Yas Marina Circuit",
+      "country": "UAE",
+      "locality": "Abu Dhabi",
+      "date": "2021-12-12",
+      "time": "13:00:00Z"
+    }
+  ]
+}

@@ -58,7 +58,7 @@ export async function GET(
     // 2. Alternative Fallback: If FastF1 telemetry file is missing or marked UNAVAILABLE, use TRACKS_REGISTRY & Heritage Dataset
     if (!circuitData) {
       const trackDef = TRACKS_REGISTRY[circuitId] || TRACKS_REGISTRY[altId] || TRACKS_REGISTRY[normId];
-      const heritageFilePath = path.join(process.cwd(), 'paddock_f1_2026_circuit_corners.json');
+      const heritageFilePath = path.join(process.cwd(), 'public', 'data', 'paddock_f1_2026_circuit_corners.json');
       let heritageCorners: any[] = [];
       let circuitName = trackDef?.name || circuitId.replace(/_/g, ' ').toUpperCase();
       let country = trackDef?.country || '';
@@ -139,7 +139,7 @@ export async function GET(
     }
 
     // 3. Dynamically enrich corners with rich heritage details if missing
-    const heritageFilePath = path.join(process.cwd(), 'paddock_f1_2026_circuit_corners.json');
+    const heritageFilePath = path.join(process.cwd(), 'public', 'data', 'paddock_f1_2026_circuit_corners.json');
     if (fs.existsSync(heritageFilePath)) {
       try {
         const heritageContent = fs.readFileSync(heritageFilePath, 'utf8');

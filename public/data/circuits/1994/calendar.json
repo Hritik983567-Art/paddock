@@ -1,0 +1,150 @@
+{
+  "season": "1994",
+  "totalRaces": 16,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "1994-03-27"
+    },
+    {
+      "round": "2",
+      "raceName": "Pacific Grand Prix",
+      "circuitId": "okayama",
+      "circuitName": "Okayama International Circuit",
+      "country": "Japan",
+      "locality": "Okayama",
+      "date": "1994-04-17"
+    },
+    {
+      "round": "3",
+      "raceName": "San Marino Grand Prix",
+      "circuitId": "imola",
+      "circuitName": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "locality": "Imola",
+      "date": "1994-05-01"
+    },
+    {
+      "round": "4",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1994-05-15"
+    },
+    {
+      "round": "5",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "catalunya",
+      "circuitName": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "1994-05-29"
+    },
+    {
+      "round": "6",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "1994-06-12"
+    },
+    {
+      "round": "7",
+      "raceName": "French Grand Prix",
+      "circuitId": "magny_cours",
+      "circuitName": "Circuit de Nevers Magny-Cours",
+      "country": "France",
+      "locality": "Magny Cours",
+      "date": "1994-07-03"
+    },
+    {
+      "round": "8",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1994-07-10"
+    },
+    {
+      "round": "9",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "1994-07-31"
+    },
+    {
+      "round": "10",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "1994-08-14"
+    },
+    {
+      "round": "11",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1994-08-28"
+    },
+    {
+      "round": "12",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1994-09-11"
+    },
+    {
+      "round": "13",
+      "raceName": "Portuguese Grand Prix",
+      "circuitId": "estoril",
+      "circuitName": "Autódromo do Estoril",
+      "country": "Portugal",
+      "locality": "Estoril",
+      "date": "1994-09-25"
+    },
+    {
+      "round": "14",
+      "raceName": "European Grand Prix",
+      "circuitId": "jerez",
+      "circuitName": "Circuito de Jerez",
+      "country": "Spain",
+      "locality": "Jerez de la Frontera",
+      "date": "1994-10-16"
+    },
+    {
+      "round": "15",
+      "raceName": "Japanese Grand Prix",
+      "circuitId": "suzuka",
+      "circuitName": "Suzuka Circuit",
+      "country": "Japan",
+      "locality": "Suzuka",
+      "date": "1994-11-06"
+    },
+    {
+      "round": "16",
+      "raceName": "Australian Grand Prix",
+      "circuitId": "adelaide",
+      "circuitName": "Adelaide Street Circuit",
+      "country": "Australia",
+      "locality": "Adelaide",
+      "date": "1994-11-13"
+    }
+  ]
+}

@@ -80,11 +80,26 @@ export interface NewsItem {
     link: string;
     pubDate: string;
     thumbnail?: string;
+    image?: string;
+    gallery?: string[];
     enclosure?: { link: string };
     description: string;
 }
 
-export async function fetchF1News(): Promise<NewsItem[]> {
+export async function fetchF1News(forceRefresh = false): Promise<NewsItem[]> {
+    try {
+        const query = forceRefresh ? '?refresh=true' : '';
+        const localRes = await fetch(`/api/news${query}`);
+        if (localRes.ok) {
+            const data = await localRes.json();
+            if (Array.isArray(data) && data.length > 0) {
+                return data;
+            }
+        }
+    } catch {
+        // Fallback to direct external proxy if internal API is unreachable
+    }
+
     const feedUrl = encodeURIComponent('https://racingnews365.com/feed/news.xml');
     const url = `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}`;
     const data = await getJSON(url) as { status?: string; items?: NewsItem[] } | null;

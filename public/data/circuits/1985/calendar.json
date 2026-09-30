@@ -1,0 +1,150 @@
+{
+  "season": "1985",
+  "totalRaces": 16,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "jacarepagua",
+      "circuitName": "Autódromo Internacional Nelson Piquet",
+      "country": "Brazil",
+      "locality": "Rio de Janeiro",
+      "date": "1985-04-07"
+    },
+    {
+      "round": "2",
+      "raceName": "Portuguese Grand Prix",
+      "circuitId": "estoril",
+      "circuitName": "Autódromo do Estoril",
+      "country": "Portugal",
+      "locality": "Estoril",
+      "date": "1985-04-21"
+    },
+    {
+      "round": "3",
+      "raceName": "San Marino Grand Prix",
+      "circuitId": "imola",
+      "circuitName": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "locality": "Imola",
+      "date": "1985-05-05"
+    },
+    {
+      "round": "4",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1985-05-19"
+    },
+    {
+      "round": "5",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "1985-06-16"
+    },
+    {
+      "round": "6",
+      "raceName": "Detroit Grand Prix",
+      "circuitId": "detroit",
+      "circuitName": "Detroit Street Circuit",
+      "country": "USA",
+      "locality": "Detroit",
+      "date": "1985-06-23"
+    },
+    {
+      "round": "7",
+      "raceName": "French Grand Prix",
+      "circuitId": "ricard",
+      "circuitName": "Circuit Paul Ricard",
+      "country": "France",
+      "locality": "Le Castellet",
+      "date": "1985-07-07"
+    },
+    {
+      "round": "8",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1985-07-21"
+    },
+    {
+      "round": "9",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1985-08-04"
+    },
+    {
+      "round": "10",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1985-08-18"
+    },
+    {
+      "round": "11",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1985-08-25"
+    },
+    {
+      "round": "12",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1985-09-08"
+    },
+    {
+      "round": "13",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1985-09-15"
+    },
+    {
+      "round": "14",
+      "raceName": "European Grand Prix",
+      "circuitId": "brands_hatch",
+      "circuitName": "Brands Hatch",
+      "country": "UK",
+      "locality": "Kent",
+      "date": "1985-10-06"
+    },
+    {
+      "round": "15",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1985-10-19"
+    },
+    {
+      "round": "16",
+      "raceName": "Australian Grand Prix",
+      "circuitId": "adelaide",
+      "circuitName": "Adelaide Street Circuit",
+      "country": "Australia",
+      "locality": "Adelaide",
+      "date": "1985-11-03"
+    }
+  ]
+}

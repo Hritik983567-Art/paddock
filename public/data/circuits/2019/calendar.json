@@ -1,0 +1,216 @@
+{
+  "season": "2019",
+  "totalRaces": 21,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Australian Grand Prix",
+      "circuitId": "albert_park",
+      "circuitName": "Albert Park Grand Prix Circuit",
+      "country": "Australia",
+      "locality": "Melbourne",
+      "date": "2019-03-17",
+      "time": "05:10:00Z"
+    },
+    {
+      "round": "2",
+      "raceName": "Bahrain Grand Prix",
+      "circuitId": "bahrain",
+      "circuitName": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "locality": "Sakhir",
+      "date": "2019-03-31",
+      "time": "15:10:00Z"
+    },
+    {
+      "round": "3",
+      "raceName": "Chinese Grand Prix",
+      "circuitId": "shanghai",
+      "circuitName": "Shanghai International Circuit",
+      "country": "China",
+      "locality": "Shanghai",
+      "date": "2019-04-14",
+      "time": "06:10:00Z"
+    },
+    {
+      "round": "4",
+      "raceName": "Azerbaijan Grand Prix",
+      "circuitId": "baku",
+      "circuitName": "Baku City Circuit",
+      "country": "Azerbaijan",
+      "locality": "Baku",
+      "date": "2019-04-28",
+      "time": "12:10:00Z"
+    },
+    {
+      "round": "5",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "catalunya",
+      "circuitName": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "2019-05-12",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "6",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "2019-05-26",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "7",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "2019-06-09",
+      "time": "18:10:00Z"
+    },
+    {
+      "round": "8",
+      "raceName": "French Grand Prix",
+      "circuitId": "ricard",
+      "circuitName": "Circuit Paul Ricard",
+      "country": "France",
+      "locality": "Le Castellet",
+      "date": "2019-06-23",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "9",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "2019-06-30",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "10",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "2019-07-14",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "11",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "2019-07-28",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "12",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "2019-08-04",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "13",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "2019-09-01",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "14",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "2019-09-08",
+      "time": "13:10:00Z"
+    },
+    {
+      "round": "15",
+      "raceName": "Singapore Grand Prix",
+      "circuitId": "marina_bay",
+      "circuitName": "Marina Bay Street Circuit",
+      "country": "Singapore",
+      "locality": "Marina Bay",
+      "date": "2019-09-22",
+      "time": "12:10:00Z"
+    },
+    {
+      "round": "16",
+      "raceName": "Russian Grand Prix",
+      "circuitId": "sochi",
+      "circuitName": "Sochi Autodrom",
+      "country": "Russia",
+      "locality": "Sochi",
+      "date": "2019-09-29",
+      "time": "11:10:00Z"
+    },
+    {
+      "round": "17",
+      "raceName": "Japanese Grand Prix",
+      "circuitId": "suzuka",
+      "circuitName": "Suzuka Circuit",
+      "country": "Japan",
+      "locality": "Suzuka",
+      "date": "2019-10-13",
+      "time": "05:10:00Z"
+    },
+    {
+      "round": "18",
+      "raceName": "Mexican Grand Prix",
+      "circuitId": "rodriguez",
+      "circuitName": "Autódromo Hermanos Rodríguez",
+      "country": "Mexico",
+      "locality": "Mexico City",
+      "date": "2019-10-27",
+      "time": "19:10:00Z"
+    },
+    {
+      "round": "19",
+      "raceName": "United States Grand Prix",
+      "circuitId": "americas",
+      "circuitName": "Circuit of the Americas",
+      "country": "USA",
+      "locality": "Austin",
+      "date": "2019-11-03",
+      "time": "19:10:00Z"
+    },
+    {
+      "round": "20",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "2019-11-17",
+      "time": "17:10:00Z"
+    },
+    {
+      "round": "21",
+      "raceName": "Abu Dhabi Grand Prix",
+      "circuitId": "yas_marina",
+      "circuitName": "Yas Marina Circuit",
+      "country": "UAE",
+      "locality": "Abu Dhabi",
+      "date": "2019-12-01",
+      "time": "13:10:00Z"
+    }
+  ]
+}

@@ -214,7 +214,7 @@ const LiveDriverOverlay = React.memo(function LiveDriverOverlay({
 export function CircuitMap({
   circuit,
   circuitId,
-  year = 2024,
+  year = 2026,
   showStats = true,
   showCornerDirectory = false,
   showCornerDetails = false,
@@ -480,7 +480,7 @@ export function CircuitMap({
     cornersDict
   } = trackData;
 
-  const trackMeta = TRACKS_REGISTRY[targetCircuit];
+  const trackMeta = TRACKS_REGISTRY[targetCircuit] || TRACKS_REGISTRY[targetCircuit.replace(/-/g, '_')];
   const trackLengthKm = trackMeta?.length_km;
 
   const selectedKey = selectedCorner ? `t${selectedCorner.number}${selectedCorner.letter || ''}`.toLowerCase() : '';

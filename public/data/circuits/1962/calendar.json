@@ -1,0 +1,87 @@
+{
+  "season": "1962",
+  "totalRaces": 9,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1962-05-20"
+    },
+    {
+      "round": "2",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1962-06-03"
+    },
+    {
+      "round": "3",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1962-06-17"
+    },
+    {
+      "round": "4",
+      "raceName": "French Grand Prix",
+      "circuitId": "essarts",
+      "circuitName": "Rouen-Les-Essarts",
+      "country": "France",
+      "locality": "Rouen",
+      "date": "1962-07-08"
+    },
+    {
+      "round": "5",
+      "raceName": "British Grand Prix",
+      "circuitId": "aintree",
+      "circuitName": "Aintree",
+      "country": "UK",
+      "locality": "Liverpool",
+      "date": "1962-07-21"
+    },
+    {
+      "round": "6",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1962-08-05"
+    },
+    {
+      "round": "7",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1962-09-16"
+    },
+    {
+      "round": "8",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1962-10-07"
+    },
+    {
+      "round": "9",
+      "raceName": "South African Grand Prix",
+      "circuitId": "george",
+      "circuitName": "Prince George Circuit",
+      "country": "South Africa",
+      "locality": "Eastern Cape Province",
+      "date": "1962-12-29"
+    }
+  ]
+}

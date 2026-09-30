@@ -1,0 +1,78 @@
+{
+  "season": "1961",
+  "totalRaces": 8,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1961-05-14"
+    },
+    {
+      "round": "2",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1961-05-22"
+    },
+    {
+      "round": "3",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1961-06-18"
+    },
+    {
+      "round": "4",
+      "raceName": "French Grand Prix",
+      "circuitId": "reims",
+      "circuitName": "Reims-Gueux",
+      "country": "France",
+      "locality": "Reims",
+      "date": "1961-07-02"
+    },
+    {
+      "round": "5",
+      "raceName": "British Grand Prix",
+      "circuitId": "aintree",
+      "circuitName": "Aintree",
+      "country": "UK",
+      "locality": "Liverpool",
+      "date": "1961-07-15"
+    },
+    {
+      "round": "6",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1961-08-06"
+    },
+    {
+      "round": "7",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1961-09-10"
+    },
+    {
+      "round": "8",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1961-10-08"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "season": "1959",
+  "totalRaces": 9,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1959-05-10"
+    },
+    {
+      "round": "2",
+      "raceName": "Indianapolis 500",
+      "circuitId": "indianapolis",
+      "circuitName": "Indianapolis Motor Speedway",
+      "country": "USA",
+      "locality": "Indianapolis",
+      "date": "1959-05-30"
+    },
+    {
+      "round": "3",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1959-05-31"
+    },
+    {
+      "round": "4",
+      "raceName": "French Grand Prix",
+      "circuitId": "reims",
+      "circuitName": "Reims-Gueux",
+      "country": "France",
+      "locality": "Reims",
+      "date": "1959-07-05"
+    },
+    {
+      "round": "5",
+      "raceName": "British Grand Prix",
+      "circuitId": "aintree",
+      "circuitName": "Aintree",
+      "country": "UK",
+      "locality": "Liverpool",
+      "date": "1959-07-18"
+    },
+    {
+      "round": "6",
+      "raceName": "German Grand Prix",
+      "circuitId": "avus",
+      "circuitName": "AVUS",
+      "country": "Germany",
+      "locality": "Berlin",
+      "date": "1959-08-02"
+    },
+    {
+      "round": "7",
+      "raceName": "Portuguese Grand Prix",
+      "circuitId": "monsanto",
+      "circuitName": "Monsanto Park Circuit",
+      "country": "Portugal",
+      "locality": "Lisbon",
+      "date": "1959-08-23"
+    },
+    {
+      "round": "8",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1959-09-13"
+    },
+    {
+      "round": "9",
+      "raceName": "United States Grand Prix",
+      "circuitId": "sebring",
+      "circuitName": "Sebring International Raceway",
+      "country": "USA",
+      "locality": "Florida",
+      "date": "1959-12-12"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "season": "1960",
+  "totalRaces": 10,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1960-02-07"
+    },
+    {
+      "round": "2",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1960-05-29"
+    },
+    {
+      "round": "3",
+      "raceName": "Indianapolis 500",
+      "circuitId": "indianapolis",
+      "circuitName": "Indianapolis Motor Speedway",
+      "country": "USA",
+      "locality": "Indianapolis",
+      "date": "1960-05-30"
+    },
+    {
+      "round": "4",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1960-06-06"
+    },
+    {
+      "round": "5",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1960-06-19"
+    },
+    {
+      "round": "6",
+      "raceName": "French Grand Prix",
+      "circuitId": "reims",
+      "circuitName": "Reims-Gueux",
+      "country": "France",
+      "locality": "Reims",
+      "date": "1960-07-03"
+    },
+    {
+      "round": "7",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1960-07-16"
+    },
+    {
+      "round": "8",
+      "raceName": "Portuguese Grand Prix",
+      "circuitId": "boavista",
+      "circuitName": "Circuito da Boavista",
+      "country": "Portugal",
+      "locality": "Oporto",
+      "date": "1960-08-14"
+    },
+    {
+      "round": "9",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1960-09-04"
+    },
+    {
+      "round": "10",
+      "raceName": "United States Grand Prix",
+      "circuitId": "riverside",
+      "circuitName": "Riverside International Raceway",
+      "country": "USA",
+      "locality": "California",
+      "date": "1960-11-20"
+    }
+  ]
+}

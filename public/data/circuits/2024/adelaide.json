@@ -1229,7 +1229,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 117
@@ -1245,9 +1245,9 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 3,
+      "gear": 4,
       "speed_kph": 124
     },
     {
@@ -1261,10 +1261,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Technical Chicane",
       "direction": "Right",
       "gear": 5,
-      "speed_kph": 224
+      "speed_kph": 131
     },
     {
       "number": 4,
@@ -1277,10 +1277,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 131
+      "gear": 2,
+      "speed_kph": 138
     },
     {
       "number": 5,
@@ -1293,10 +1293,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Downforce Apex",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
-      "gear": 6,
-      "speed_kph": 259
+      "gear": 3,
+      "speed_kph": 145
     },
     {
       "number": 6,
@@ -1309,10 +1309,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 85
+      "gear": 4,
+      "speed_kph": 152
     },
     {
       "number": 7,
@@ -1325,10 +1325,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed Curve",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
-      "gear": 4,
-      "speed_kph": 191
+      "gear": 5,
+      "speed_kph": 159
     },
     {
       "number": 8,
@@ -1343,8 +1343,8 @@
       "alignmentValid": true,
       "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 199
+      "gear": 2,
+      "speed_kph": 166
     },
     {
       "number": 9,
@@ -1360,7 +1360,7 @@
       "type": "Technical Chicane",
       "direction": "Right",
       "gear": 3,
-      "speed_kph": 120
+      "speed_kph": 173
     },
     {
       "number": 10,
@@ -1373,10 +1373,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Flat-Out Kink",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
-      "gear": 7,
-      "speed_kph": 283
+      "gear": 4,
+      "speed_kph": 180
     },
     {
       "number": 11,
@@ -1389,10 +1389,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed Curve",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
-      "gear": 4,
-      "speed_kph": 165
+      "gear": 5,
+      "speed_kph": 187
     },
     {
       "number": 12,
@@ -1405,10 +1405,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Downforce Apex",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 6,
-      "speed_kph": 248
+      "gear": 2,
+      "speed_kph": 194
     },
     {
       "number": 13,
@@ -1421,10 +1421,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
       "gear": 3,
-      "speed_kph": 131
+      "speed_kph": 201
     },
     {
       "number": 14,
@@ -1437,10 +1437,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 87
+      "gear": 4,
+      "speed_kph": 208
     },
     {
       "number": 15,
@@ -1453,10 +1453,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Flat-Out Kink",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 8,
-      "speed_kph": 308
+      "gear": 5,
+      "speed_kph": 215
     },
     {
       "number": 16,
@@ -1469,10 +1469,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Flat-Out Kink",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
-      "gear": 8,
-      "speed_kph": 308
+      "gear": 2,
+      "speed_kph": 222
     }
   ]
 }

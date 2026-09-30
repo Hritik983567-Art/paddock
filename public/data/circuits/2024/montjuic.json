@@ -1,7 +1,7 @@
 {
   "circuit": {
     "id": "montjuic",
-    "name": "Montjuïc Circuit",
+    "name": "Montjuïc Circuit (Barcelona)",
     "country": "Spain",
     "location": "Spain",
     "year": 2024
@@ -1231,8 +1231,8 @@
       "alignmentValid": true,
       "type": "Heavy Braking Hairpin",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 88
+      "gear": 3,
+      "speed_kph": 117
     },
     {
       "number": 2,
@@ -1245,10 +1245,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 146
+      "gear": 4,
+      "speed_kph": 124
     },
     {
       "number": 3,
@@ -1261,10 +1261,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Technical Chicane",
       "direction": "Right",
       "gear": 5,
-      "speed_kph": 224
+      "speed_kph": 131
     },
     {
       "number": 4,
@@ -1277,10 +1277,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 131
+      "gear": 2,
+      "speed_kph": 138
     },
     {
       "number": 5,
@@ -1293,10 +1293,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Downforce Apex",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
-      "gear": 6,
-      "speed_kph": 259
+      "gear": 3,
+      "speed_kph": 145
     },
     {
       "number": 6,
@@ -1309,10 +1309,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 85
+      "gear": 4,
+      "speed_kph": 152
     },
     {
       "number": 7,
@@ -1325,10 +1325,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed Curve",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
-      "gear": 4,
-      "speed_kph": 185
+      "gear": 5,
+      "speed_kph": 159
     },
     {
       "number": 8,
@@ -1343,8 +1343,8 @@
       "alignmentValid": true,
       "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 222
+      "gear": 2,
+      "speed_kph": 166
     },
     {
       "number": 9,
@@ -1360,7 +1360,7 @@
       "type": "Technical Chicane",
       "direction": "Right",
       "gear": 3,
-      "speed_kph": 120
+      "speed_kph": 173
     },
     {
       "number": 10,
@@ -1373,10 +1373,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Flat-Out Kink",
+      "type": "Heavy Braking Hairpin",
       "direction": "Left",
-      "gear": 7,
-      "speed_kph": 283
+      "gear": 4,
+      "speed_kph": 180
     },
     {
       "number": 11,
@@ -1389,10 +1389,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed Curve",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
-      "gear": 4,
-      "speed_kph": 165
+      "gear": 5,
+      "speed_kph": 187
     },
     {
       "number": 12,
@@ -1405,10 +1405,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Downforce Apex",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 6,
-      "speed_kph": 248
+      "gear": 2,
+      "speed_kph": 194
     }
   ]
 }

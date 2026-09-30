@@ -65,7 +65,7 @@ export const CircuitReplay: React.FC<CircuitReplayProps> = ({
     let isMounted = true;
     const targetCircuit = (circuitId || 'monza').toLowerCase();
 
-    fetch(`/api/circuits/2024/${targetCircuit}`)
+    fetch(`/api/circuits/2026/${targetCircuit}`)
       .then(res => (res.ok ? res.json() : null))
       .then(data => {
         if (!isMounted) return;

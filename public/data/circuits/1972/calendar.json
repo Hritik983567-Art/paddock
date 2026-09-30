@@ -1,0 +1,114 @@
+{
+  "season": "1972",
+  "totalRaces": 12,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1972-01-23"
+    },
+    {
+      "round": "2",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1972-03-04"
+    },
+    {
+      "round": "3",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "jarama",
+      "circuitName": "Jarama",
+      "country": "Spain",
+      "locality": "Madrid",
+      "date": "1972-05-01"
+    },
+    {
+      "round": "4",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1972-05-14"
+    },
+    {
+      "round": "5",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "nivelles",
+      "circuitName": "Nivelles-Baulers",
+      "country": "Belgium",
+      "locality": "Brussels",
+      "date": "1972-06-04"
+    },
+    {
+      "round": "6",
+      "raceName": "French Grand Prix",
+      "circuitId": "charade",
+      "circuitName": "Charade Circuit",
+      "country": "France",
+      "locality": "Clermont-Ferrand",
+      "date": "1972-07-02"
+    },
+    {
+      "round": "7",
+      "raceName": "British Grand Prix",
+      "circuitId": "brands_hatch",
+      "circuitName": "Brands Hatch",
+      "country": "UK",
+      "locality": "Kent",
+      "date": "1972-07-15"
+    },
+    {
+      "round": "8",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1972-07-30"
+    },
+    {
+      "round": "9",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1972-08-13"
+    },
+    {
+      "round": "10",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1972-09-10"
+    },
+    {
+      "round": "11",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "mosport",
+      "circuitName": "Mosport International Raceway",
+      "country": "Canada",
+      "locality": "Ontario",
+      "date": "1972-09-24"
+    },
+    {
+      "round": "12",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1972-10-08"
+    }
+  ]
+}

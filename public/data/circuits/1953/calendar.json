@@ -1,0 +1,87 @@
+{
+  "season": "1953",
+  "totalRaces": 9,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1953-01-18"
+    },
+    {
+      "round": "2",
+      "raceName": "Indianapolis 500",
+      "circuitId": "indianapolis",
+      "circuitName": "Indianapolis Motor Speedway",
+      "country": "USA",
+      "locality": "Indianapolis",
+      "date": "1953-05-30"
+    },
+    {
+      "round": "3",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1953-06-07"
+    },
+    {
+      "round": "4",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1953-06-21"
+    },
+    {
+      "round": "5",
+      "raceName": "French Grand Prix",
+      "circuitId": "reims",
+      "circuitName": "Reims-Gueux",
+      "country": "France",
+      "locality": "Reims",
+      "date": "1953-07-05"
+    },
+    {
+      "round": "6",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1953-07-18"
+    },
+    {
+      "round": "7",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1953-08-02"
+    },
+    {
+      "round": "8",
+      "raceName": "Swiss Grand Prix",
+      "circuitId": "bremgarten",
+      "circuitName": "Circuit Bremgarten",
+      "country": "Switzerland",
+      "locality": "Bern",
+      "date": "1953-08-23"
+    },
+    {
+      "round": "9",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1953-09-13"
+    }
+  ]
+}

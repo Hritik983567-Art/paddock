@@ -20,7 +20,7 @@ const CATEGORIES: CategoryFilter[] = ['ALL', 'F1', 'DRIVERS', 'TEAMS', 'TECHNICA
 const KNOWN_DRIVERS = [
   'Verstappen', 'Leclerc', 'Hamilton', 'Norris', 'Piastri', 'Lawson', 'Perez', 'Sainz',
   'Alonso', 'Russell', 'Gasly', 'Ocon', 'Albon', 'Tsunoda', 'Hulkenberg', 'Bearman',
-  'Antonelli', 'Hadjar', 'Bortoleto', 'Colapinto', 'Doohan', 'Stroll'
+  'Antonelli', 'Hadjar', 'Bortoleto', 'Colapinto', 'Doohan', 'Stroll', 'Herta'
 ];
 
 const KNOWN_TEAMS = [
@@ -28,51 +28,146 @@ const KNOWN_TEAMS = [
   'Williams', 'RB', 'Sauber', 'Haas', 'Cadillac', 'Audi'
 ];
 
-const CATEGORY_FALLBACK_IMAGES: Record<string, string> = {
-  TECHNICAL: '/images/mercedes-bg.png',
-  TEAMS: '/images/redbull-bg.png',
-  DRIVERS: '/images/ferrari-bg.png',
-  FIA: '/images/aston-bg.png',
-  'RACE WEEKEND': '/images/mclaren-bg.png',
-  F1: '/images/default-bg.png',
-  ALL: '/images/default-bg.png',
-};
+export function resolveNewsFallbackImage(title: string, description: string = '', category: CategoryFilter = 'ALL'): string {
+  const text = `${title} ${description}`.toLowerCase();
+
+  // 1. Feeder series / Juniors / F2
+  if (/\b(colton|herta|f2|formula 2|junior|feeder|f3|indycar)\b/.test(text)) {
+    return '/images/f2-bg.png';
+  }
+
+  // 2. Specific Drivers
+  if (/\b(lawson|tsunoda|hadjar)\b/.test(text)) return '/images/racingbulls-bg.png';
+  if (/\b(alonso|stroll|newey)\b/.test(text)) return '/images/aston-bg.png';
+  if (/\b(albon|colapinto|vowles)\b/.test(text)) return '/images/williams-bg.png';
+  if (/\b(hulkenberg|bortoleto|binotto)\b/.test(text)) return '/images/sauber-bg.png';
+  if (/\b(gasly|doohan|briatore)\b/.test(text)) return '/images/alpine-bg.png';
+  if (/\b(bearman|komatsu|ocon)\b/.test(text)) return '/images/haas-bg.png';
+  if (/\b(norris|piastri|zak brown)\b/.test(text)) return '/images/mclaren-bg.png';
+  if (/\b(russell|antonelli|toto wolff)\b/.test(text)) return '/images/mercedes-bg.png';
+  if (/\b(hamilton|leclerc|vasseur|sainz)\b/.test(text)) return '/images/ferrari-bg.png';
+  if (/\b(verstappen|horner|marko|perez)\b/.test(text)) return '/images/redbull-bg.png';
+
+  // 3. Specific Teams
+  if (/\b(racing bulls|vcarb|rb|toro rosso|alphatauri)\b/.test(text)) return '/images/racingbulls-bg.png';
+  if (/\b(aston martin|aston)\b/.test(text)) return '/images/aston-bg.png';
+  if (/\b(williams|grove)\b/.test(text)) return '/images/williams-bg.png';
+  if (/\b(sauber|audi|stake|hinwil)\b/.test(text)) return '/images/sauber-bg.png';
+  if (/\b(alpine|enstone)\b/.test(text)) return '/images/alpine-bg.png';
+  if (/\b(haas|kannapolis)\b/.test(text)) return '/images/haas-bg.png';
+  if (/\b(mclaren|papaya|woking)\b/.test(text)) return '/images/mclaren-bg.png';
+  if (/\b(mercedes|silver arrows|brackley)\b/.test(text)) return '/images/mercedes-bg.png';
+  if (/\b(ferrari|scuderia|maranello)\b/.test(text)) return '/images/ferrari-bg.png';
+  if (/\b(red bull|redbull|milton keynes)\b/.test(text)) return '/images/redbull-bg.png';
+  if (/\b(cadillac|andretti)\b/.test(text)) return '/images/f1-login-car.png';
+
+  // 4. Specific Circuits
+  if (/\b(monaco|monte carlo)\b/.test(text)) return '/images/circuits/monaco/corners/fairmonthairpin/01_fairmonthairpin.jpg';
+  if (/\b(monza|italian gp)\b/.test(text)) return '/images/circuits/monza/corners/curva-grande/01_curva_grande_sweeper.jpg';
+  if (/\b(spa|francorchamps|belgian gp)\b/.test(text)) return '/images/circuits/spa/corners/eaurouge/01_eaurouge.jpg';
+  if (/\b(silverstone|british gp)\b/.test(text)) return '/images/circuits/silverstone/corners/copse/01_copse.jpg';
+  if (/\b(suzuka|japanese gp)\b/.test(text)) return '/images/circuits/suzuka/corners/c130r/01_c130r.jpg';
+  if (/\b(albert park|melbourne|australian gp)\b/.test(text)) return '/images/circuits/albert_park/corners/lakeside/01_lakeside.jpg';
+  if (/\b(bahrain|sakhir)\b/.test(text)) return '/images/circuits/bahrain/corners/t10_hairpin/01_t10.jpg';
+  if (/\b(jeddah|saudi)\b/.test(text)) return '/images/circuits/jeddah/corners/t13_banked/01_t13.jpg';
+  if (/\b(austin|cota|united states gp)\b/.test(text)) return '/images/circuits/americas/corners/turn1_uphill/01_t1.jpg';
+
+  // 5. Category-Specific Fallbacks
+  if (category === 'TECHNICAL' || /\b(upgrade|sidepod|wing|aerodynamic|floor|suspension|power unit|engine|telemetry|setup)\b/.test(text)) {
+    return '/images/checkered-bg.png';
+  }
+  if (category === 'FIA' || /\b(penalty|investigation|regulation|rule|stewards|budget cap|disqualified|scrutineering)\b/.test(text)) {
+    return '/images/checkered-bg.png';
+  }
+  if (category === 'RACE WEEKEND' || /\b(grand prix|pole|sprint|grid|race weekend|calendar|schedule)\b/.test(text)) {
+    return '/images/circuits/spa/corners/eaurouge/01_eaurouge.jpg';
+  }
+
+  return '/images/default-bg.png';
+}
+
+function decodeHtmlEntities(str: string): string {
+  if (!str) return '';
+  return str
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#8217;/g, '’')
+    .replace(/&#8216;/g, '‘')
+    .replace(/&#8220;/g, '“')
+    .replace(/&#8221;/g, '”')
+    .replace(/&#8211;/g, '–')
+    .replace(/&#8212;/g, '—');
+}
 
 export default function NewsPage() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isSyncing, setIsSyncing] = useState(false);
   const [error, setError] = useState('');
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
 
-  const loadNews = useCallback(async () => {
-    setLoading(true);
+  // Live Auto-Sync interval (default 45s)
+  const [autoSyncSecs, setAutoSyncSecs] = useState<number>(45);
+  const [isAutoSyncActive, setIsAutoSyncActive] = useState<boolean>(true);
+  const [countdown, setCountdown] = useState<number>(45);
+
+  const loadNews = useCallback(async (forceRefresh = false, isBackground = false) => {
+    if (!isBackground) {
+      setLoading(true);
+    } else {
+      setIsSyncing(true);
+    }
     setError('');
     try {
-      const items = await fetchF1News();
+      const items = await fetchF1News(forceRefresh);
       setNews(items || []);
       setLastRefreshed(new Date());
     } catch (e: unknown) {
-      const err = e as Error;
-      setError(err.message || "We couldn't retrieve the latest paddock updates.");
+      if (!isBackground) {
+        const err = e as Error;
+        setError(err.message || "We couldn't retrieve the latest paddock updates.");
+      }
     } finally {
       setLoading(false);
+      setIsSyncing(false);
     }
   }, []);
 
+  // Initial load
   useEffect(() => {
-    const timer = setTimeout(() => {
-      loadNews();
-    }, 0);
-    return () => clearTimeout(timer);
+    loadNews(false, false);
   }, [loadNews]);
+
+  // Live Auto-Sync: regularly updates news and pictures in the background
+  useEffect(() => {
+    if (!isAutoSyncActive || autoSyncSecs <= 0) return;
+
+    const interval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          loadNews(true, true);
+          return autoSyncSecs;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isAutoSyncActive, autoSyncSecs, loadNews]);
 
   const enrichedNews: EnrichedNewsItem[] = useMemo(() => {
     return news.map((item, idx) => {
-      const title = item.title || '';
+      const title = decodeHtmlEntities(item.title || '');
       const descRaw = item.description || '';
-      const cleanSnippet = descRaw.replace(/<[^>]+>/g, '').trim().slice(0, 160);
+      const cleanSnippet = decodeHtmlEntities(descRaw.replace(/<[^>]+>/g, '').trim().slice(0, 160));
       const textBlock = `${title} ${cleanSnippet}`.toLowerCase();
 
       let category: CategoryFilter = 'F1';
@@ -82,7 +177,7 @@ export default function NewsPage() {
         category = 'FIA';
       } else if (/grand prix|gp|qualifying|sprint|pole|practice|fp1|fp2|fp3|podium|race|grid|pit stop|undercut|safety car/.test(textBlock)) {
         category = 'RACE WEEKEND';
-      } else if (/driver|contract|seat|rookie|hamilton|verstappen|leclerc|norris|piastri|lawson|perez|sainz|alonso|russell/.test(textBlock)) {
+      } else if (/driver|contract|seat|rookie|hamilton|verstappen|leclerc|norris|piastri|lawson|perez|sainz|alonso|russell|herta/.test(textBlock)) {
         category = 'DRIVERS';
       } else if (/team|constructor|pit wall|red bull|ferrari|mclaren|mercedes|aston martin|alpine|williams|haas|sauber|cadillac/.test(textBlock)) {
         category = 'TEAMS';
@@ -122,7 +217,9 @@ export default function NewsPage() {
         }
       }
 
-      const heroImage = item.thumbnail || item.enclosure?.link || CATEGORY_FALLBACK_IMAGES[category] || '/images/default-bg.png';
+      // Always choose the most relatable high-res image
+      const fallbackImage = resolveNewsFallbackImage(title, descRaw, category);
+      const heroImage = item.image || item.thumbnail || item.enclosure?.link || fallbackImage;
 
       return {
         ...item,
@@ -132,7 +229,7 @@ export default function NewsPage() {
         clockTime,
         cleanSnippet: cleanSnippet ? `${cleanSnippet}${cleanSnippet.length >= 160 ? '…' : ''}` : 'Read full coverage on RacingNews365.',
         contextTag,
-        heroImage,
+        heroImage
       };
     });
   }, [news]);
@@ -201,25 +298,83 @@ export default function NewsPage() {
           </p>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          {lastRefreshed && (
-            <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1', fontWeight: '600' }}>
-              UPDATED {lastRefreshed.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        {/* Live Auto-Sync Status & Controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+          
+          {/* Live Auto-Sync Status Badge */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            background: 'rgba(52, 228, 200, 0.08)',
+            border: '1px solid rgba(52, 228, 200, 0.25)',
+            borderRadius: '6px',
+            padding: '7px 14px',
+            fontSize: '11px',
+            fontFamily: 'var(--font-mono)',
+            color: '#34E4C8'
+          }}>
+            <span style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              background: isSyncing ? '#E8302A' : (isAutoSyncActive ? '#10B981' : '#64748B'),
+              boxShadow: isSyncing ? '0 0 10px #E8302A' : (isAutoSyncActive ? '0 0 10px #10B981' : 'none'),
+              display: 'inline-block',
+              animation: (isSyncing || isAutoSyncActive) ? 'pulse 1.5s infinite' : 'none'
+            }} />
+            <span style={{ fontWeight: '800', letterSpacing: '0.6px' }}>
+              {isSyncing ? 'UPDATING NEWS & PICS…' : isAutoSyncActive ? `AUTO-UPDATE: ${countdown}s` : 'AUTO-UPDATE PAUSED'}
             </span>
-          )}
+          </div>
+
+          {/* Sync Frequency Dropdown */}
+          <select
+            value={autoSyncSecs}
+            onChange={(e) => {
+              const val = parseInt(e.target.value);
+              setAutoSyncSecs(val);
+              setCountdown(val);
+              setIsAutoSyncActive(val > 0);
+            }}
+            aria-label="Auto-update interval"
+            style={{
+              background: '#121620',
+              border: '1px solid #262C38',
+              color: '#CBD5E1',
+              fontSize: '11.5px',
+              fontFamily: 'var(--font-mono)',
+              fontWeight: '700',
+              borderRadius: '6px',
+              padding: '8px 12px',
+              outline: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <option value={30}>Every 30s</option>
+            <option value={45}>Every 45s (Fast)</option>
+            <option value={60}>Every 60s</option>
+            <option value={90}>Every 90s</option>
+            <option value={0}>Manual Only</option>
+          </select>
+
+          {/* Manual Immediate Refresh Button */}
           <button
-            onClick={loadNews}
-            disabled={loading}
+            onClick={() => {
+              loadNews(true, false);
+              setCountdown(autoSyncSecs);
+            }}
+            disabled={loading || isSyncing}
             style={{
               background: '#1A202C',
               border: '1px solid #333B4D',
               color: '#FFFFFF',
-              padding: '10px 18px',
+              padding: '9px 18px',
               borderRadius: '6px',
               fontSize: '12px',
               fontFamily: 'var(--font-mono)',
               fontWeight: '700',
-              cursor: loading ? 'not-allowed' : 'pointer',
+              cursor: (loading || isSyncing) ? 'not-allowed' : 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
@@ -227,7 +382,7 @@ export default function NewsPage() {
               boxShadow: '0 4px 12px rgba(0,0,0,0.4)'
             }}
           >
-            <span>{loading ? '↻ REFRESHING…' : '↻ REFRESH'}</span>
+            <span>{loading || isSyncing ? '↻ UPDATING…' : '↻ REFRESH NOW'}</span>
           </button>
         </div>
       </div>
@@ -250,7 +405,7 @@ export default function NewsPage() {
             We couldn&apos;t retrieve the latest paddock updates.
           </p>
           <button
-            onClick={loadNews}
+            onClick={() => loadNews(true)}
             style={{
               background: '#E8302A',
               color: '#FFFFFF',
@@ -268,7 +423,7 @@ export default function NewsPage() {
         </div>
       )}
 
-      {/* 3. Filter Categories & Search Bar */}
+      {/* Filter Categories & Search Bar */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '28px' }}>
         
         {/* Search Input Bar */}
@@ -378,7 +533,7 @@ export default function NewsPage() {
         </div>
       </div>
 
-      {/* 8. LOADING SKELETON STATE */}
+      {/* LOADING SKELETON STATE */}
       {loading && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
           <div style={{
@@ -404,7 +559,7 @@ export default function NewsPage() {
         </div>
       )}
 
-      {/* 10. EMPTY SEARCH / NO STORIES STATE */}
+      {/* EMPTY SEARCH / NO STORIES STATE */}
       {!loading && !error && filteredNews.length === 0 && (
         <div style={{
           background: '#0D1017',
@@ -448,7 +603,7 @@ export default function NewsPage() {
       {!loading && !error && filteredNews.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           
-          {/* 2. FEATURED TOP STORY HERO BANNER */}
+          {/* FEATURED TOP STORY HERO BANNER */}
           {featuredStory && (
             <div style={{
               background: '#0D1017',
@@ -461,8 +616,8 @@ export default function NewsPage() {
               gap: 0
             }} className="news-hero-card">
               
-              {/* Featured Cover Image */}
-              <div style={{ position: 'relative', minHeight: '320px', overflow: 'hidden', background: '#05070a' }}>
+              {/* Featured Relatable Cover Image (Clean, No Switching Buttons) */}
+              <div style={{ position: 'relative', minHeight: '340px', overflow: 'hidden', background: '#05070a' }}>
                 <img
                   src={featuredStory.heroImage}
                   alt={featuredStory.title}
@@ -474,9 +629,18 @@ export default function NewsPage() {
                     filter: 'brightness(0.95) contrast(1.1)'
                   }}
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/images/default-bg.png';
+                    const target = e.target as HTMLImageElement;
+                    const fallback = resolveNewsFallbackImage(featuredStory.title, featuredStory.cleanSnippet, featuredStory.category);
+                    if (!target.src.includes(fallback) && fallback !== '/images/default-bg.png') {
+                      target.src = fallback;
+                    } else {
+                      target.onerror = null;
+                      target.src = '/images/default-bg.png';
+                    }
                   }}
                 />
+
+                {/* Category Pill */}
                 <div style={{
                   position: 'absolute',
                   top: '14px',
@@ -495,7 +659,7 @@ export default function NewsPage() {
                 </div>
               </div>
 
-              {/* Featured Details Content Container (Opaque Dark Background) */}
+              {/* Featured Details Content */}
               <div style={{
                 background: '#0D1017',
                 padding: '32px',
@@ -593,7 +757,7 @@ export default function NewsPage() {
             gap: '28px'
           }} className="news-content-layout">
 
-            {/* 4. NEWS CARDS GRID */}
+            {/* NEWS CARDS GRID */}
             <div>
               <div style={{ marginBottom: '14px', fontSize: '12px', color: '#34E4C8', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1px' }}>
                 PADDOCK HEADLINES ({remainingNews.length})
@@ -621,17 +785,30 @@ export default function NewsPage() {
                     className="paddock-news-card"
                   >
                     <div>
-                      {/* Image Thumbnail */}
-                      <div style={{ height: '170px', overflow: 'hidden', position: 'relative', background: '#05070a' }}>
+                      {/* Relatable Story Image Thumbnail (Clean, No Switching Buttons) */}
+                      <div style={{ height: '175px', overflow: 'hidden', position: 'relative', background: '#05070a' }}>
                         <img
                           src={item.heroImage}
                           alt={item.title}
                           loading="lazy"
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                          }}
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = '/images/default-bg.png';
+                            const target = e.target as HTMLImageElement;
+                            const fallback = resolveNewsFallbackImage(item.title, item.cleanSnippet, item.category);
+                            if (!target.src.includes(fallback) && fallback !== '/images/default-bg.png') {
+                              target.src = fallback;
+                            } else {
+                              target.onerror = null;
+                              target.src = '/images/default-bg.png';
+                            }
                           }}
                         />
+
+                        {/* Category Badge */}
                         <span style={{
                           position: 'absolute',
                           bottom: '10px',
@@ -726,7 +903,7 @@ export default function NewsPage() {
               </div>
             </div>
 
-            {/* 5. LATEST UPDATES TICKER SIDEBAR */}
+            {/* LATEST UPDATES TICKER SIDEBAR */}
             {remainingNews.length > 0 && (
               <div>
                 <div style={{ marginBottom: '14px', fontSize: '12px', color: '#34E4C8', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1px' }}>
@@ -748,39 +925,40 @@ export default function NewsPage() {
                       key={`ticker-${item.id}`}
                       style={{
                         paddingBottom: '14px',
-                        borderBottom: '1px dashed #262C38',
+                        borderBottom: '1px solid #1C222E',
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '5px'
+                        gap: '6px'
                       }}
                     >
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '10.5px', fontFamily: 'var(--font-mono)' }}>
-                        <span style={{ color: '#FF4D47', fontWeight: '800' }}>{item.clockTime}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#64748B', fontWeight: '700' }}>
+                          {item.clockTime}
+                        </span>
                         <span style={{
-                          background: 'rgba(52, 228, 200, 0.15)',
+                          fontSize: '10px',
+                          fontFamily: 'var(--font-mono)',
                           color: '#34E4C8',
-                          padding: '2px 7px',
+                          background: 'rgba(52, 228, 200, 0.1)',
+                          padding: '1px 6px',
                           borderRadius: '3px',
-                          fontWeight: '800',
-                          border: '1px solid rgba(52, 228, 200, 0.3)'
+                          fontWeight: '800'
                         }}>
                           {item.category}
                         </span>
                       </div>
-
                       <a
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
-                          fontSize: '13.5px',
-                          fontWeight: '700',
                           color: '#FFFFFF',
+                          fontSize: '13px',
+                          fontWeight: '700',
+                          lineHeight: '1.4',
                           textDecoration: 'none',
-                          lineHeight: '1.35',
-                          transition: 'color 0.2s ease'
+                          fontFamily: 'var(--font-display)'
                         }}
-                        className="ticker-headline"
                       >
                         {item.title}
                       </a>
@@ -789,32 +967,9 @@ export default function NewsPage() {
                 </div>
               </div>
             )}
-
           </div>
         </div>
       )}
-
-      {/* Inline Responsive & Hover Styles */}
-      <style jsx global>{`
-        .paddock-news-card:hover {
-          border-color: #34E4C8 !important;
-          transform: translateY(-2px);
-          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(52, 228, 200, 0.25) !important;
-        }
-
-        .ticker-headline:hover {
-          color: #34E4C8 !important;
-        }
-
-        @media (max-width: 1023px) {
-          .news-hero-card {
-            grid-template-columns: 1fr !important;
-          }
-          .news-content-layout {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

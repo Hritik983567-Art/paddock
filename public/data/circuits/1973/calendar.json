@@ -1,0 +1,141 @@
+{
+  "season": "1973",
+  "totalRaces": 15,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1973-01-28"
+    },
+    {
+      "round": "2",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "1973-02-11"
+    },
+    {
+      "round": "3",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1973-03-03"
+    },
+    {
+      "round": "4",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "montjuic",
+      "circuitName": "Montjuïc",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "1973-04-29"
+    },
+    {
+      "round": "5",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "zolder",
+      "circuitName": "Zolder",
+      "country": "Belgium",
+      "locality": "Heusden-Zolder",
+      "date": "1973-05-20"
+    },
+    {
+      "round": "6",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1973-06-03"
+    },
+    {
+      "round": "7",
+      "raceName": "Swedish Grand Prix",
+      "circuitId": "anderstorp",
+      "circuitName": "Scandinavian Raceway",
+      "country": "Sweden",
+      "locality": "Anderstorp",
+      "date": "1973-06-17"
+    },
+    {
+      "round": "8",
+      "raceName": "French Grand Prix",
+      "circuitId": "ricard",
+      "circuitName": "Circuit Paul Ricard",
+      "country": "France",
+      "locality": "Le Castellet",
+      "date": "1973-07-01"
+    },
+    {
+      "round": "9",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1973-07-14"
+    },
+    {
+      "round": "10",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1973-07-29"
+    },
+    {
+      "round": "11",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1973-08-05"
+    },
+    {
+      "round": "12",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1973-08-19"
+    },
+    {
+      "round": "13",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1973-09-09"
+    },
+    {
+      "round": "14",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "mosport",
+      "circuitName": "Mosport International Raceway",
+      "country": "Canada",
+      "locality": "Ontario",
+      "date": "1973-09-23"
+    },
+    {
+      "round": "15",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1973-10-07"
+    }
+  ]
+}

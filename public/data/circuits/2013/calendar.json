@@ -1,0 +1,196 @@
+{
+  "season": "2013",
+  "totalRaces": 19,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Australian Grand Prix",
+      "circuitId": "albert_park",
+      "circuitName": "Albert Park Grand Prix Circuit",
+      "country": "Australia",
+      "locality": "Melbourne",
+      "date": "2013-03-17",
+      "time": "06:00:00Z"
+    },
+    {
+      "round": "2",
+      "raceName": "Malaysian Grand Prix",
+      "circuitId": "sepang",
+      "circuitName": "Sepang International Circuit",
+      "country": "Malaysia",
+      "locality": "Kuala Lumpur",
+      "date": "2013-03-24",
+      "time": "08:00:00Z"
+    },
+    {
+      "round": "3",
+      "raceName": "Chinese Grand Prix",
+      "circuitId": "shanghai",
+      "circuitName": "Shanghai International Circuit",
+      "country": "China",
+      "locality": "Shanghai",
+      "date": "2013-04-14",
+      "time": "07:00:00Z"
+    },
+    {
+      "round": "4",
+      "raceName": "Bahrain Grand Prix",
+      "circuitId": "bahrain",
+      "circuitName": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "locality": "Sakhir",
+      "date": "2013-04-21",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "5",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "catalunya",
+      "circuitName": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "2013-05-12",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "6",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "2013-05-26",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "7",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "2013-06-09",
+      "time": "18:00:00Z"
+    },
+    {
+      "round": "8",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "2013-06-30",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "9",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "2013-07-07",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "10",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "2013-07-28",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "11",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "2013-08-25",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "12",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "2013-09-08",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "13",
+      "raceName": "Singapore Grand Prix",
+      "circuitId": "marina_bay",
+      "circuitName": "Marina Bay Street Circuit",
+      "country": "Singapore",
+      "locality": "Marina Bay",
+      "date": "2013-09-22",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "14",
+      "raceName": "Korean Grand Prix",
+      "circuitId": "yeongam",
+      "circuitName": "Korean International Circuit",
+      "country": "Korea",
+      "locality": "Yeongam County",
+      "date": "2013-10-06",
+      "time": "06:00:00Z"
+    },
+    {
+      "round": "15",
+      "raceName": "Japanese Grand Prix",
+      "circuitId": "suzuka",
+      "circuitName": "Suzuka Circuit",
+      "country": "Japan",
+      "locality": "Suzuka",
+      "date": "2013-10-13",
+      "time": "06:00:00Z"
+    },
+    {
+      "round": "16",
+      "raceName": "Indian Grand Prix",
+      "circuitId": "buddh",
+      "circuitName": "Buddh International Circuit",
+      "country": "India",
+      "locality": "Uttar Pradesh",
+      "date": "2013-10-27",
+      "time": "09:30:00Z"
+    },
+    {
+      "round": "17",
+      "raceName": "Abu Dhabi Grand Prix",
+      "circuitId": "yas_marina",
+      "circuitName": "Yas Marina Circuit",
+      "country": "UAE",
+      "locality": "Abu Dhabi",
+      "date": "2013-11-03",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "18",
+      "raceName": "United States Grand Prix",
+      "circuitId": "americas",
+      "circuitName": "Circuit of the Americas",
+      "country": "USA",
+      "locality": "Austin",
+      "date": "2013-11-17",
+      "time": "19:00:00Z"
+    },
+    {
+      "round": "19",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "2013-11-24",
+      "time": "16:00:00Z"
+    }
+  ]
+}

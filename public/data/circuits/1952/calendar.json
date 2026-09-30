@@ -1,0 +1,78 @@
+{
+  "season": "1952",
+  "totalRaces": 8,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Swiss Grand Prix",
+      "circuitId": "bremgarten",
+      "circuitName": "Circuit Bremgarten",
+      "country": "Switzerland",
+      "locality": "Bern",
+      "date": "1952-05-18"
+    },
+    {
+      "round": "2",
+      "raceName": "Indianapolis 500",
+      "circuitId": "indianapolis",
+      "circuitName": "Indianapolis Motor Speedway",
+      "country": "USA",
+      "locality": "Indianapolis",
+      "date": "1952-05-30"
+    },
+    {
+      "round": "3",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1952-06-22"
+    },
+    {
+      "round": "4",
+      "raceName": "French Grand Prix",
+      "circuitId": "essarts",
+      "circuitName": "Rouen-Les-Essarts",
+      "country": "France",
+      "locality": "Rouen",
+      "date": "1952-07-06"
+    },
+    {
+      "round": "5",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1952-07-19"
+    },
+    {
+      "round": "6",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1952-08-03"
+    },
+    {
+      "round": "7",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1952-08-17"
+    },
+    {
+      "round": "8",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1952-09-07"
+    }
+  ]
+}

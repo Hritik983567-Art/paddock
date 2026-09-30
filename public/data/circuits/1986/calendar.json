@@ -1,0 +1,150 @@
+{
+  "season": "1986",
+  "totalRaces": 16,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "jacarepagua",
+      "circuitName": "Autódromo Internacional Nelson Piquet",
+      "country": "Brazil",
+      "locality": "Rio de Janeiro",
+      "date": "1986-03-23"
+    },
+    {
+      "round": "2",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "jerez",
+      "circuitName": "Circuito de Jerez",
+      "country": "Spain",
+      "locality": "Jerez de la Frontera",
+      "date": "1986-04-13"
+    },
+    {
+      "round": "3",
+      "raceName": "San Marino Grand Prix",
+      "circuitId": "imola",
+      "circuitName": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "locality": "Imola",
+      "date": "1986-04-27"
+    },
+    {
+      "round": "4",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1986-05-11"
+    },
+    {
+      "round": "5",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1986-05-25"
+    },
+    {
+      "round": "6",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "1986-06-15"
+    },
+    {
+      "round": "7",
+      "raceName": "Detroit Grand Prix",
+      "circuitId": "detroit",
+      "circuitName": "Detroit Street Circuit",
+      "country": "USA",
+      "locality": "Detroit",
+      "date": "1986-06-22"
+    },
+    {
+      "round": "8",
+      "raceName": "French Grand Prix",
+      "circuitId": "ricard",
+      "circuitName": "Circuit Paul Ricard",
+      "country": "France",
+      "locality": "Le Castellet",
+      "date": "1986-07-06"
+    },
+    {
+      "round": "9",
+      "raceName": "British Grand Prix",
+      "circuitId": "brands_hatch",
+      "circuitName": "Brands Hatch",
+      "country": "UK",
+      "locality": "Kent",
+      "date": "1986-07-13"
+    },
+    {
+      "round": "10",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "1986-07-27"
+    },
+    {
+      "round": "11",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "1986-08-10"
+    },
+    {
+      "round": "12",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1986-08-17"
+    },
+    {
+      "round": "13",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1986-09-07"
+    },
+    {
+      "round": "14",
+      "raceName": "Portuguese Grand Prix",
+      "circuitId": "estoril",
+      "circuitName": "Autódromo do Estoril",
+      "country": "Portugal",
+      "locality": "Estoril",
+      "date": "1986-09-21"
+    },
+    {
+      "round": "15",
+      "raceName": "Mexican Grand Prix",
+      "circuitId": "rodriguez",
+      "circuitName": "Autódromo Hermanos Rodríguez",
+      "country": "Mexico",
+      "locality": "Mexico City",
+      "date": "1986-10-12"
+    },
+    {
+      "round": "16",
+      "raceName": "Australian Grand Prix",
+      "circuitId": "adelaide",
+      "circuitName": "Adelaide Street Circuit",
+      "country": "Australia",
+      "locality": "Adelaide",
+      "date": "1986-10-26"
+    }
+  ]
+}

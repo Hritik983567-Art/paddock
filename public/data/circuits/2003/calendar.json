@@ -1,0 +1,150 @@
+{
+  "season": "2003",
+  "totalRaces": 16,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Australian Grand Prix",
+      "circuitId": "albert_park",
+      "circuitName": "Albert Park Grand Prix Circuit",
+      "country": "Australia",
+      "locality": "Melbourne",
+      "date": "2003-03-09"
+    },
+    {
+      "round": "2",
+      "raceName": "Malaysian Grand Prix",
+      "circuitId": "sepang",
+      "circuitName": "Sepang International Circuit",
+      "country": "Malaysia",
+      "locality": "Kuala Lumpur",
+      "date": "2003-03-23"
+    },
+    {
+      "round": "3",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "2003-04-06"
+    },
+    {
+      "round": "4",
+      "raceName": "San Marino Grand Prix",
+      "circuitId": "imola",
+      "circuitName": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "locality": "Imola",
+      "date": "2003-04-20"
+    },
+    {
+      "round": "5",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "catalunya",
+      "circuitName": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "2003-05-04"
+    },
+    {
+      "round": "6",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "2003-05-18"
+    },
+    {
+      "round": "7",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "2003-06-01"
+    },
+    {
+      "round": "8",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "2003-06-15"
+    },
+    {
+      "round": "9",
+      "raceName": "European Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "2003-06-29"
+    },
+    {
+      "round": "10",
+      "raceName": "French Grand Prix",
+      "circuitId": "magny_cours",
+      "circuitName": "Circuit de Nevers Magny-Cours",
+      "country": "France",
+      "locality": "Magny Cours",
+      "date": "2003-07-06"
+    },
+    {
+      "round": "11",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "2003-07-20"
+    },
+    {
+      "round": "12",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "2003-08-03"
+    },
+    {
+      "round": "13",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "2003-08-24"
+    },
+    {
+      "round": "14",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "2003-09-14"
+    },
+    {
+      "round": "15",
+      "raceName": "United States Grand Prix",
+      "circuitId": "indianapolis",
+      "circuitName": "Indianapolis Motor Speedway",
+      "country": "USA",
+      "locality": "Indianapolis",
+      "date": "2003-09-28"
+    },
+    {
+      "round": "16",
+      "raceName": "Japanese Grand Prix",
+      "circuitId": "suzuka",
+      "circuitName": "Suzuka Circuit",
+      "country": "Japan",
+      "locality": "Suzuka",
+      "date": "2003-10-12"
+    }
+  ]
+}

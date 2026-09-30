@@ -1,0 +1,96 @@
+{
+  "season": "1963",
+  "totalRaces": 10,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1963-05-26"
+    },
+    {
+      "round": "2",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1963-06-09"
+    },
+    {
+      "round": "3",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1963-06-23"
+    },
+    {
+      "round": "4",
+      "raceName": "French Grand Prix",
+      "circuitId": "reims",
+      "circuitName": "Reims-Gueux",
+      "country": "France",
+      "locality": "Reims",
+      "date": "1963-06-30"
+    },
+    {
+      "round": "5",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1963-07-20"
+    },
+    {
+      "round": "6",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1963-08-04"
+    },
+    {
+      "round": "7",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1963-09-08"
+    },
+    {
+      "round": "8",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1963-10-06"
+    },
+    {
+      "round": "9",
+      "raceName": "Mexican Grand Prix",
+      "circuitId": "rodriguez",
+      "circuitName": "Autódromo Hermanos Rodríguez",
+      "country": "Mexico",
+      "locality": "Mexico City",
+      "date": "1963-10-27"
+    },
+    {
+      "round": "10",
+      "raceName": "South African Grand Prix",
+      "circuitId": "george",
+      "circuitName": "Prince George Circuit",
+      "country": "South Africa",
+      "locality": "Eastern Cape Province",
+      "date": "1963-12-28"
+    }
+  ]
+}

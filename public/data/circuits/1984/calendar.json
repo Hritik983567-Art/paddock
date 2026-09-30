@@ -1,0 +1,150 @@
+{
+  "season": "1984",
+  "totalRaces": 16,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "jacarepagua",
+      "circuitName": "Autódromo Internacional Nelson Piquet",
+      "country": "Brazil",
+      "locality": "Rio de Janeiro",
+      "date": "1984-03-25"
+    },
+    {
+      "round": "2",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1984-04-07"
+    },
+    {
+      "round": "3",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "zolder",
+      "circuitName": "Zolder",
+      "country": "Belgium",
+      "locality": "Heusden-Zolder",
+      "date": "1984-04-29"
+    },
+    {
+      "round": "4",
+      "raceName": "San Marino Grand Prix",
+      "circuitId": "imola",
+      "circuitName": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "locality": "Imola",
+      "date": "1984-05-06"
+    },
+    {
+      "round": "5",
+      "raceName": "French Grand Prix",
+      "circuitId": "dijon",
+      "circuitName": "Dijon-Prenois",
+      "country": "France",
+      "locality": "Dijon",
+      "date": "1984-05-20"
+    },
+    {
+      "round": "6",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1984-06-03"
+    },
+    {
+      "round": "7",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "1984-06-17"
+    },
+    {
+      "round": "8",
+      "raceName": "Detroit Grand Prix",
+      "circuitId": "detroit",
+      "circuitName": "Detroit Street Circuit",
+      "country": "USA",
+      "locality": "Detroit",
+      "date": "1984-06-24"
+    },
+    {
+      "round": "9",
+      "raceName": "Dallas Grand Prix",
+      "circuitId": "dallas",
+      "circuitName": "Fair Park",
+      "country": "USA",
+      "locality": "Dallas",
+      "date": "1984-07-08"
+    },
+    {
+      "round": "10",
+      "raceName": "British Grand Prix",
+      "circuitId": "brands_hatch",
+      "circuitName": "Brands Hatch",
+      "country": "UK",
+      "locality": "Kent",
+      "date": "1984-07-22"
+    },
+    {
+      "round": "11",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "1984-08-05"
+    },
+    {
+      "round": "12",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1984-08-19"
+    },
+    {
+      "round": "13",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1984-08-26"
+    },
+    {
+      "round": "14",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1984-09-09"
+    },
+    {
+      "round": "15",
+      "raceName": "European Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1984-10-07"
+    },
+    {
+      "round": "16",
+      "raceName": "Portuguese Grand Prix",
+      "circuitId": "estoril",
+      "circuitName": "Autódromo do Estoril",
+      "country": "Portugal",
+      "locality": "Estoril",
+      "date": "1984-10-21"
+    }
+  ]
+}

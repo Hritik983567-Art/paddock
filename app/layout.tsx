@@ -1,35 +1,6 @@
 import type { Metadata } from "next";
-import { Titillium_Web, Inter, Roboto_Condensed, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "./components/LayoutWrapper";
-
-const titilliumWeb = Titillium_Web({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "900"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const robotoCondensed = Roboto_Condensed({
-  variable: "--font-telemetry",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Paddock — F1 Analytics & Race Tracker",
@@ -43,7 +14,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${titilliumWeb.variable} ${inter.variable} ${robotoCondensed.variable} ${jetbrainsMono.variable} min-h-full antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Roboto+Condensed:wght@400;600;700;800;900&family=Titillium+Web:wght@400;600;700;900&display=swap" 
+          rel="stylesheet" 
+        />
+      </head>
+      <body className="min-h-full antialiased font-sans">
         <LayoutWrapper>
           {children}
         </LayoutWrapper>
@@ -51,3 +30,4 @@ export default function RootLayout({
     </html>
   );
 }
+

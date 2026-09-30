@@ -1,0 +1,105 @@
+{
+  "season": "1969",
+  "totalRaces": 11,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1969-03-01"
+    },
+    {
+      "round": "2",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "montjuic",
+      "circuitName": "Montjuïc",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "1969-05-04"
+    },
+    {
+      "round": "3",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1969-05-18"
+    },
+    {
+      "round": "4",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1969-06-21"
+    },
+    {
+      "round": "5",
+      "raceName": "French Grand Prix",
+      "circuitId": "charade",
+      "circuitName": "Charade Circuit",
+      "country": "France",
+      "locality": "Clermont-Ferrand",
+      "date": "1969-07-06"
+    },
+    {
+      "round": "6",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1969-07-19"
+    },
+    {
+      "round": "7",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1969-08-03"
+    },
+    {
+      "round": "8",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1969-09-07"
+    },
+    {
+      "round": "9",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "mosport",
+      "circuitName": "Mosport International Raceway",
+      "country": "Canada",
+      "locality": "Ontario",
+      "date": "1969-09-20"
+    },
+    {
+      "round": "10",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1969-10-05"
+    },
+    {
+      "round": "11",
+      "raceName": "Mexican Grand Prix",
+      "circuitId": "rodriguez",
+      "circuitName": "Autódromo Hermanos Rodríguez",
+      "country": "Mexico",
+      "locality": "Mexico City",
+      "date": "1969-10-19"
+    }
+  ]
+}

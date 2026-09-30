@@ -1,0 +1,141 @@
+{
+  "season": "1974",
+  "totalRaces": 15,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1974-01-13"
+    },
+    {
+      "round": "2",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "1974-01-27"
+    },
+    {
+      "round": "3",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1974-03-30"
+    },
+    {
+      "round": "4",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "jarama",
+      "circuitName": "Jarama",
+      "country": "Spain",
+      "locality": "Madrid",
+      "date": "1974-04-28"
+    },
+    {
+      "round": "5",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "nivelles",
+      "circuitName": "Nivelles-Baulers",
+      "country": "Belgium",
+      "locality": "Brussels",
+      "date": "1974-05-12"
+    },
+    {
+      "round": "6",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1974-05-26"
+    },
+    {
+      "round": "7",
+      "raceName": "Swedish Grand Prix",
+      "circuitId": "anderstorp",
+      "circuitName": "Scandinavian Raceway",
+      "country": "Sweden",
+      "locality": "Anderstorp",
+      "date": "1974-06-09"
+    },
+    {
+      "round": "8",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1974-06-23"
+    },
+    {
+      "round": "9",
+      "raceName": "French Grand Prix",
+      "circuitId": "dijon",
+      "circuitName": "Dijon-Prenois",
+      "country": "France",
+      "locality": "Dijon",
+      "date": "1974-07-07"
+    },
+    {
+      "round": "10",
+      "raceName": "British Grand Prix",
+      "circuitId": "brands_hatch",
+      "circuitName": "Brands Hatch",
+      "country": "UK",
+      "locality": "Kent",
+      "date": "1974-07-20"
+    },
+    {
+      "round": "11",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1974-08-04"
+    },
+    {
+      "round": "12",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1974-08-18"
+    },
+    {
+      "round": "13",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1974-09-08"
+    },
+    {
+      "round": "14",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "mosport",
+      "circuitName": "Mosport International Raceway",
+      "country": "Canada",
+      "locality": "Ontario",
+      "date": "1974-09-22"
+    },
+    {
+      "round": "15",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1974-10-06"
+    }
+  ]
+}

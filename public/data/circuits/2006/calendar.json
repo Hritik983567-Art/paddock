@@ -1,0 +1,186 @@
+{
+  "season": "2006",
+  "totalRaces": 18,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Bahrain Grand Prix",
+      "circuitId": "bahrain",
+      "circuitName": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "locality": "Sakhir",
+      "date": "2006-03-12",
+      "time": "14:30:00Z"
+    },
+    {
+      "round": "2",
+      "raceName": "Malaysian Grand Prix",
+      "circuitId": "sepang",
+      "circuitName": "Sepang International Circuit",
+      "country": "Malaysia",
+      "locality": "Kuala Lumpur",
+      "date": "2006-03-19",
+      "time": "15:00:00Z"
+    },
+    {
+      "round": "3",
+      "raceName": "Australian Grand Prix",
+      "circuitId": "albert_park",
+      "circuitName": "Albert Park Grand Prix Circuit",
+      "country": "Australia",
+      "locality": "Melbourne",
+      "date": "2006-04-02",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "4",
+      "raceName": "San Marino Grand Prix",
+      "circuitId": "imola",
+      "circuitName": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "locality": "Imola",
+      "date": "2006-04-23",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "5",
+      "raceName": "European Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "2006-05-07",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "6",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "catalunya",
+      "circuitName": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "2006-05-14",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "7",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "2006-05-28",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "8",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "2006-06-11",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "9",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "2006-06-25",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "10",
+      "raceName": "United States Grand Prix",
+      "circuitId": "indianapolis",
+      "circuitName": "Indianapolis Motor Speedway",
+      "country": "USA",
+      "locality": "Indianapolis",
+      "date": "2006-07-02",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "11",
+      "raceName": "French Grand Prix",
+      "circuitId": "magny_cours",
+      "circuitName": "Circuit de Nevers Magny-Cours",
+      "country": "France",
+      "locality": "Magny Cours",
+      "date": "2006-07-16",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "12",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "2006-07-30",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "13",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "2006-08-06",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "14",
+      "raceName": "Turkish Grand Prix",
+      "circuitId": "istanbul",
+      "circuitName": "Istanbul Park",
+      "country": "Turkey",
+      "locality": "Istanbul",
+      "date": "2006-08-27",
+      "time": "15:00:00Z"
+    },
+    {
+      "round": "15",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "2006-09-10",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "16",
+      "raceName": "Chinese Grand Prix",
+      "circuitId": "shanghai",
+      "circuitName": "Shanghai International Circuit",
+      "country": "China",
+      "locality": "Shanghai",
+      "date": "2006-10-01",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "17",
+      "raceName": "Japanese Grand Prix",
+      "circuitId": "suzuka",
+      "circuitName": "Suzuka Circuit",
+      "country": "Japan",
+      "locality": "Suzuka",
+      "date": "2006-10-08",
+      "time": "14:00:00Z"
+    },
+    {
+      "round": "18",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "2006-10-22",
+      "time": "14:00:00Z"
+    }
+  ]
+}

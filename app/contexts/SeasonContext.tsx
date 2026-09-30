@@ -10,7 +10,7 @@ interface SeasonContextType {
 const SeasonContext = createContext<SeasonContextType | undefined>(undefined);
 
 export function SeasonProvider({ children }: { children: React.ReactNode }) {
-  const [selectedSeason, setSelectedSeason] = useState<string>('current');
+  const [selectedSeason, setSelectedSeason] = useState<string>('2026');
 
   return (
     <SeasonContext.Provider value={{ selectedSeason, setSelectedSeason }}>

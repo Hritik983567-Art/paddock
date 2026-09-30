@@ -1,0 +1,78 @@
+{
+  "season": "1957",
+  "totalRaces": 8,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1957-01-13"
+    },
+    {
+      "round": "2",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1957-05-19"
+    },
+    {
+      "round": "3",
+      "raceName": "Indianapolis 500",
+      "circuitId": "indianapolis",
+      "circuitName": "Indianapolis Motor Speedway",
+      "country": "USA",
+      "locality": "Indianapolis",
+      "date": "1957-05-30"
+    },
+    {
+      "round": "4",
+      "raceName": "French Grand Prix",
+      "circuitId": "essarts",
+      "circuitName": "Rouen-Les-Essarts",
+      "country": "France",
+      "locality": "Rouen",
+      "date": "1957-07-07"
+    },
+    {
+      "round": "5",
+      "raceName": "British Grand Prix",
+      "circuitId": "aintree",
+      "circuitName": "Aintree",
+      "country": "UK",
+      "locality": "Liverpool",
+      "date": "1957-07-20"
+    },
+    {
+      "round": "6",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1957-08-04"
+    },
+    {
+      "round": "7",
+      "raceName": "Pescara Grand Prix",
+      "circuitId": "pescara",
+      "circuitName": "Pescara Circuit",
+      "country": "Italy",
+      "locality": "Pescara",
+      "date": "1957-08-18"
+    },
+    {
+      "round": "8",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1957-09-08"
+    }
+  ]
+}

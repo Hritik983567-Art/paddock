@@ -1,0 +1,105 @@
+{
+  "season": "1958",
+  "totalRaces": 11,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1958-01-19"
+    },
+    {
+      "round": "2",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1958-05-18"
+    },
+    {
+      "round": "3",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1958-05-26"
+    },
+    {
+      "round": "4",
+      "raceName": "Indianapolis 500",
+      "circuitId": "indianapolis",
+      "circuitName": "Indianapolis Motor Speedway",
+      "country": "USA",
+      "locality": "Indianapolis",
+      "date": "1958-05-30"
+    },
+    {
+      "round": "5",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1958-06-15"
+    },
+    {
+      "round": "6",
+      "raceName": "French Grand Prix",
+      "circuitId": "reims",
+      "circuitName": "Reims-Gueux",
+      "country": "France",
+      "locality": "Reims",
+      "date": "1958-07-06"
+    },
+    {
+      "round": "7",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1958-07-19"
+    },
+    {
+      "round": "8",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1958-08-03"
+    },
+    {
+      "round": "9",
+      "raceName": "Portuguese Grand Prix",
+      "circuitId": "boavista",
+      "circuitName": "Circuito da Boavista",
+      "country": "Portugal",
+      "locality": "Oporto",
+      "date": "1958-08-24"
+    },
+    {
+      "round": "10",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1958-09-07"
+    },
+    {
+      "round": "11",
+      "raceName": "Moroccan Grand Prix",
+      "circuitId": "ain-diab",
+      "circuitName": "Ain Diab",
+      "country": "Morocco",
+      "locality": "Casablanca",
+      "date": "1958-10-19"
+    }
+  ]
+}

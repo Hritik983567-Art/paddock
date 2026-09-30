@@ -1,0 +1,206 @@
+{
+  "season": "2017",
+  "totalRaces": 20,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Australian Grand Prix",
+      "circuitId": "albert_park",
+      "circuitName": "Albert Park Grand Prix Circuit",
+      "country": "Australia",
+      "locality": "Melbourne",
+      "date": "2017-03-26",
+      "time": "05:00:00Z"
+    },
+    {
+      "round": "2",
+      "raceName": "Chinese Grand Prix",
+      "circuitId": "shanghai",
+      "circuitName": "Shanghai International Circuit",
+      "country": "China",
+      "locality": "Shanghai",
+      "date": "2017-04-09",
+      "time": "06:00:00Z"
+    },
+    {
+      "round": "3",
+      "raceName": "Bahrain Grand Prix",
+      "circuitId": "bahrain",
+      "circuitName": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "locality": "Sakhir",
+      "date": "2017-04-16",
+      "time": "15:00:00Z"
+    },
+    {
+      "round": "4",
+      "raceName": "Russian Grand Prix",
+      "circuitId": "sochi",
+      "circuitName": "Sochi Autodrom",
+      "country": "Russia",
+      "locality": "Sochi",
+      "date": "2017-04-30",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "5",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "catalunya",
+      "circuitName": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "2017-05-14",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "6",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "2017-05-28",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "7",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "2017-06-11",
+      "time": "18:00:00Z"
+    },
+    {
+      "round": "8",
+      "raceName": "Azerbaijan Grand Prix",
+      "circuitId": "baku",
+      "circuitName": "Baku City Circuit",
+      "country": "Azerbaijan",
+      "locality": "Baku",
+      "date": "2017-06-25",
+      "time": "13:00:00Z"
+    },
+    {
+      "round": "9",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "2017-07-09",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "10",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "2017-07-16",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "11",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "2017-07-30",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "12",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "2017-08-27",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "13",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "2017-09-03",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "14",
+      "raceName": "Singapore Grand Prix",
+      "circuitId": "marina_bay",
+      "circuitName": "Marina Bay Street Circuit",
+      "country": "Singapore",
+      "locality": "Marina Bay",
+      "date": "2017-09-17",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "15",
+      "raceName": "Malaysian Grand Prix",
+      "circuitId": "sepang",
+      "circuitName": "Sepang International Circuit",
+      "country": "Malaysia",
+      "locality": "Kuala Lumpur",
+      "date": "2017-10-01",
+      "time": "07:00:00Z"
+    },
+    {
+      "round": "16",
+      "raceName": "Japanese Grand Prix",
+      "circuitId": "suzuka",
+      "circuitName": "Suzuka Circuit",
+      "country": "Japan",
+      "locality": "Suzuka",
+      "date": "2017-10-08",
+      "time": "05:00:00Z"
+    },
+    {
+      "round": "17",
+      "raceName": "United States Grand Prix",
+      "circuitId": "americas",
+      "circuitName": "Circuit of the Americas",
+      "country": "USA",
+      "locality": "Austin",
+      "date": "2017-10-22",
+      "time": "19:00:00Z"
+    },
+    {
+      "round": "18",
+      "raceName": "Mexican Grand Prix",
+      "circuitId": "rodriguez",
+      "circuitName": "Autódromo Hermanos Rodríguez",
+      "country": "Mexico",
+      "locality": "Mexico City",
+      "date": "2017-10-29",
+      "time": "19:00:00Z"
+    },
+    {
+      "round": "19",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "2017-11-12",
+      "time": "16:00:00Z"
+    },
+    {
+      "round": "20",
+      "raceName": "Abu Dhabi Grand Prix",
+      "circuitId": "yas_marina",
+      "circuitName": "Yas Marina Circuit",
+      "country": "UAE",
+      "locality": "Abu Dhabi",
+      "date": "2017-11-26",
+      "time": "13:00:00Z"
+    }
+  ]
+}

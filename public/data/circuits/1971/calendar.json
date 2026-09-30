@@ -1,0 +1,105 @@
+{
+  "season": "1971",
+  "totalRaces": 11,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1971-03-06"
+    },
+    {
+      "round": "2",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "montjuic",
+      "circuitName": "Montjuïc",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "1971-04-18"
+    },
+    {
+      "round": "3",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1971-05-23"
+    },
+    {
+      "round": "4",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1971-06-20"
+    },
+    {
+      "round": "5",
+      "raceName": "French Grand Prix",
+      "circuitId": "ricard",
+      "circuitName": "Circuit Paul Ricard",
+      "country": "France",
+      "locality": "Le Castellet",
+      "date": "1971-07-04"
+    },
+    {
+      "round": "6",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1971-07-17"
+    },
+    {
+      "round": "7",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1971-08-01"
+    },
+    {
+      "round": "8",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1971-08-15"
+    },
+    {
+      "round": "9",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1971-09-05"
+    },
+    {
+      "round": "10",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "mosport",
+      "circuitName": "Mosport International Raceway",
+      "country": "Canada",
+      "locality": "Ontario",
+      "date": "1971-09-19"
+    },
+    {
+      "round": "11",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1971-10-03"
+    }
+  ]
+}

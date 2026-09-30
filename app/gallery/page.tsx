@@ -13,175 +13,15 @@ import {
   TOTAL_TURNS_BY_CIRCUIT
 } from '../lib/circuitGalleryRegistry';
 
-// List of all supported 78 F1 circuits in Paddock Gallery
-const SUPPORTED_CIRCUITS = [
-  { id: 'monza', name: 'Autodromo Nazionale Monza', flag: '🇮🇹', country: 'Italy' },
-  { id: 'silverstone', name: 'Silverstone Circuit', flag: '🇬🇧', country: 'Great Britain' },
-  { id: 'spa', name: 'Circuit de Spa-Francorchamps', flag: '🇧🇪', country: 'Belgium' },
-  { id: 'monaco', name: 'Circuit de Monaco', flag: '🇲🇨', country: 'Monaco' },
-  { id: 'suzuka', name: 'Suzuka International Racing Course', flag: '🇯🇵', country: 'Japan' },
-  { id: 'bahrain', name: 'Bahrain International Circuit', flag: '🇧🇭', country: 'Bahrain' },
-  { id: 'jeddah', name: 'Jeddah Corniche Circuit', flag: '🇸🇦', country: 'Saudi Arabia' },
-  { id: 'albert_park', name: 'Albert Park Circuit', flag: '🇦🇺', country: 'Australia' },
-  { id: 'shanghai', name: 'Shanghai International Circuit', flag: '🇨🇳', country: 'China' },
-  { id: 'miami', name: 'Miami International Autodrome', flag: '🇺🇸', country: 'United States' },
-  { id: 'imola', name: 'Autodromo Enzo e Dino Ferrari (Imola)', flag: '🇮🇹', country: 'Italy' },
-  { id: 'catalunya', name: 'Circuit de Barcelona-Catalunya', flag: '🇪🇸', country: 'Spain' },
-  { id: 'villeneuve', name: 'Circuit Gilles Villeneuve', flag: '🇨🇦', country: 'Canada' },
-  { id: 'red_bull_ring', name: 'Red Bull Ring', flag: '🇦🇹', country: 'Austria' },
-  { id: 'hungaroring', name: 'Hungaroring', flag: '🇭🇺', country: 'Hungary' },
-  { id: 'zandvoort', name: 'Circuit Zandvoort', flag: '🇳🇱', country: 'Netherlands' },
-  { id: 'baku', name: 'Baku City Circuit', flag: '🇦🇿', country: 'Azerbaijan' },
-  { id: 'marina_bay', name: 'Marina Bay Street Circuit', flag: '🇸🇬', country: 'Singapore' },
-  { id: 'americas', name: 'Circuit of the Americas (COTA)', flag: '🇺🇸', country: 'United States' },
-  { id: 'rodriguez', name: 'Autódromo Hermanos Rodríguez', flag: '🇲🇽', country: 'Mexico' },
-  { id: 'interlagos', name: 'Autódromo José Carlos Pace (Interlagos)', flag: '🇧🇷', country: 'Brazil' },
-  { id: 'vegas', name: 'Las Vegas Strip Circuit', flag: '🇺🇸', country: 'United States' },
-  { id: 'las_vegas', name: 'Las Vegas Street Circuit (Caesars Palace GP)', flag: '🇺🇸', country: 'United States' },
-  { id: 'madring', name: 'Madring Circuit (Madrid)', flag: '🇪🇸', country: 'Spain' },
-  { id: 'losail', name: 'Lusail International Circuit', flag: '🇶🇦', country: 'Qatar' },
-  { id: 'yas_marina', name: 'Yas Marina Circuit', flag: '🇦🇪', country: 'Abu Dhabi' },
-  // HISTORIC & RETRO F1 CIRCUITS
-  { id: 'nurburgring', name: 'Nürburgring Nordschleife & GP-Strecke', flag: '🇩🇪', country: 'Germany' },
-  { id: 'hockenheimring', name: 'Hockenheimring Baden-Württemberg', flag: '🇩🇪', country: 'Germany' },
-  { id: 'sepang', name: 'Sepang International Circuit', flag: '🇲🇾', country: 'Malaysia' },
-  { id: 'indianapolis', name: 'Indianapolis Motor Speedway (IMS)', flag: '🇺🇸', country: 'United States' },
-  { id: 'kyalami', name: 'Kyalami Grand Prix Circuit', flag: '🇿🇦', country: 'South Africa' },
-  { id: 'brands_hatch', name: 'Brands Hatch Circuit', flag: '🇬🇧', country: 'Great Britain' },
-  { id: 'fuji', name: 'Fuji Speedway', flag: '🇯🇵', country: 'Japan' },
-  { id: 'istanbul', name: 'Intercity Istanbul Park', flag: '🇹🇷', country: 'Turkey' },
-  { id: 'ricard', name: 'Circuit Paul Ricard (Le Castellet)', flag: '🇫🇷', country: 'France' },
-  { id: 'portimao', name: 'Autódromo Internacional do Algarve (Portimão)', flag: '🇵🇹', country: 'Portugal' },
-  { id: 'mugello', name: 'Autodromo Internazionale del Mugello', flag: '🇮🇹', country: 'Italy' },
-  { id: 'sochi', name: 'Sochi Autodrom', flag: '🇷🇺', country: 'Russia' },
-  { id: 'magny_cours', name: 'Circuit de Nevers Magny-Cours', flag: '🇫🇷', country: 'France' },
-  { id: 'estoril', name: 'Autódromo do Estoril', flag: '🇵🇹', country: 'Portugal' },
-  { id: 'adelaide', name: 'Adelaide Street Circuit', flag: '🇦🇺', country: 'Australia' },
-  { id: 'buddh', name: 'Buddh International Circuit (Greater Noida)', flag: '🇮🇳', country: 'India' },
-  { id: 'yeongam', name: 'Korean International Circuit (Yeongam)', flag: '🇰🇷', country: 'South Korea' },
-  { id: 'valencia', name: 'Valencia Street Circuit', flag: '🇪🇸', country: 'Spain' },
-  { id: 'watkins_glen', name: 'Watkins Glen International', flag: '🇺🇸', country: 'United States' },
-  { id: 'zolder', name: 'Circuit Zolder', flag: '🇧🇪', country: 'Belgium' },
-  { id: 'donington', name: 'Donington Park', flag: '🇬🇧', country: 'Great Britain' },
-  { id: 'jerez', name: 'Circuito de Jerez-Ángel Nieto', flag: '🇪🇸', country: 'Spain' },
-  { id: 'jarama', name: 'Circuito del Jarama', flag: '🇪🇸', country: 'Spain' },
-  { id: 'long_beach', name: 'Long Beach Street Circuit', flag: '🇺🇸', country: 'United States' },
-  { id: 'detroit', name: 'Detroit Street Circuit', flag: '🇺🇸', country: 'United States' },
-  { id: 'dallas', name: 'Fair Park Dallas Grand Prix Circuit', flag: '🇺🇸', country: 'United States' },
-  { id: 'phoenix', name: 'Phoenix Street Circuit', flag: '🇺🇸', country: 'United States' },
-  { id: 'riverside', name: 'Riverside International Raceway', flag: '🇺🇸', country: 'United States' },
-  { id: 'sebring', name: 'Sebring International Raceway', flag: '🇺🇸', country: 'United States' },
-  { id: 'mosport', name: 'Mosport International Raceway (Canadian Tire Motorsport Park)', flag: '🇨🇦', country: 'Canada' },
-  { id: 'tremblant', name: 'Circuit Mont-Tremblant', flag: '🇨🇦', country: 'Canada' },
-  { id: 'galvez', name: 'Autódromo Juan y Oscar Gálvez (Buenos Aires)', flag: '🇦🇷', country: 'Argentina' },
-  { id: 'jacarepagua', name: 'Autódromo Internacional Nelson Piquet (Jacarepaguá)', flag: '🇧🇷', country: 'Brazil' },
-  { id: 'george', name: 'Prince George Circuit (East London)', flag: '🇿🇦', country: 'South Africa' },
-  { id: 'ain-diab', name: 'Ain-Diab Circuit (Casablanca)', flag: '🇲🇦', country: 'Morocco' },
-  { id: 'aintree', name: 'Aintree Motor Racing Circuit', flag: '🇬🇧', country: 'Great Britain' },
-  { id: 'anderstorp', name: 'Scandinavian Raceway (Anderstorp)', flag: '🇸🇪', country: 'Sweden' },
-  { id: 'avus', name: 'Automobil-Verkehrs- und Übungsstraße (AVUS)', flag: '🇩🇪', country: 'Germany' },
-  { id: 'boavista', name: 'Circuito da Boavista (Porto)', flag: '🇵🇹', country: 'Portugal' },
-  { id: 'bremgarten', name: 'Circuit Bremgarten (Bern)', flag: '🇨🇭', country: 'Switzerland' },
-  { id: 'charade', name: 'Charade Circuit (Circuit Louis Rosier)', flag: '🇫🇷', country: 'France' },
-  { id: 'dijon', name: 'Circuit de Dijon-Prenois', flag: '🇫🇷', country: 'France' },
-  { id: 'essarts', name: 'Rouen-Les-Essarts', flag: '🇫🇷', country: 'France' },
-  { id: 'lemans', name: 'Circuit de la Sarthe / Bugatti (Le Mans)', flag: '🇫🇷', country: 'France' },
-  { id: 'reims', name: 'Reims-Gueux', flag: '🇫🇷', country: 'France' },
-  { id: 'monsanto', name: 'Monsanto Park Circuit (Lisbon)', flag: '🇵🇹', country: 'Portugal' },
-  { id: 'montjuic', name: 'Montjuïc Circuit (Barcelona)', flag: '🇪🇸', country: 'Spain' },
-  { id: 'pedralbes', name: 'Pedralbes Circuit (Barcelona)', flag: '🇪🇸', country: 'Spain' },
-  { id: 'pescara', name: 'Pescara Circuit (Coppa Acerbo)', flag: '🇮🇹', country: 'Italy' },
-  { id: 'nivelles', name: 'Nivelles-Baulers', flag: '🇧🇪', country: 'Belgium' },
-  { id: 'okayama', name: 'TI Circuit Okayama (Aida)', flag: '🇯🇵', country: 'Japan' },
-  { id: 'zeltweg', name: 'Zeltweg Airfield Circuit', flag: '🇦🇹', country: 'Austria' }
-];
+import {
+  SUPPORTED_CIRCUITS,
+  CALENDAR_CIRCUITS_IDS,
+  getCircuitFallbackImage,
+  findMatchingMediaItem,
+  CircuitInfo
+} from './constants';
+import { CircuitSelector } from './components/CircuitSelector';
 
-const CALENDAR_CIRCUITS_IDS = new Set([
-  'bahrain', 'jeddah', 'albert_park', 'suzuka', 'shanghai', 'miami', 'imola', 'monaco',
-  'villeneuve', 'catalunya', 'red_bull_ring', 'silverstone', 'hungaroring', 'spa',
-  'zandvoort', 'monza', 'baku', 'marina_bay', 'americas', 'rodriguez', 'interlagos',
-  'vegas', 'madring', 'losail', 'yas_marina'
-]);
-
-// Fallback circuit wallpaper backgrounds for tracks without dedicated photos
-function getCircuitFallbackImage(circuitId: string): string {
-  const c = circuitId.toLowerCase();
-  if (['monza', 'imola', 'mugello', 'pescara', 'galvez', 'jarama', 'jerez'].includes(c)) return '/images/ferrari-bg.png';
-  if (['silverstone', 'brands_hatch', 'donington', 'adelaide', 'aintree'].includes(c)) return '/images/mclaren-bg.png';
-  if (['nurburgring', 'hockenheimring', 'avus', 'singapore'].includes(c)) return '/images/mercedes-bg.png';
-  if (['red_bull_ring', 'zeltweg', 'hungaroring', 'zandvoort'].includes(c)) return '/images/redbull-bg.png';
-  if (['spa', 'americas', 'monaco', 'suzuka', 'miami', 'vegas'].includes(c)) return '/images/aston-bg.png';
-  return '/images/default-bg.png';
-}
-
-// Intelligent matching between 2D canvas corner clicks / URL params and gallery media items
-function findMatchingMediaItem(
-  mediaList: GalleryMediaItem[],
-  cornerNumber?: number,
-  cornerName?: string,
-  cornerKey?: string,
-  specs?: CircuitCorner | null
-): GalleryMediaItem | undefined {
-  if (!mediaList || mediaList.length === 0) return undefined;
-
-  const keyLower = (cornerKey || '').toLowerCase();
-  const nameLower = (cornerName || '').toLowerCase();
-  const specsNameLower = (specs?.name || '').toLowerCase();
-  const specsIdLower = (specs?.id || '').toLowerCase();
-
-  // 1. Direct ID / Key matching (e.g., "rettifilo", "ascari", "t1", "t10")
-  let match = mediaList.find(m => {
-    const idLower = m.id.toLowerCase();
-    if (keyLower && idLower.includes(keyLower)) return true;
-    if (specsIdLower && idLower.includes(specsIdLower)) return true;
-    return false;
-  });
-  if (match) return match;
-
-  // 2. Keyword matching on corner names (e.g. "rettifilo", "ascari", "parabolica", "lesmo", "source", "eaurouge", "fairmont", "tunnel")
-  const nameToSearch = specsNameLower || nameLower;
-  if (nameToSearch) {
-    const keywords = nameToSearch
-      .split(/[\s\-_\/()]+/)
-      .filter(w => w.length > 3 && !['turn', 'turns', 'curva', 'variante', 'del', 'della', 'the', 'corner', 'circuit'].includes(w.toLowerCase()));
-
-    for (const kw of keywords) {
-      match = mediaList.find(m => {
-        const titleLower = m.title.toLowerCase();
-        const idLower = m.id.toLowerCase();
-        return titleLower.includes(kw.toLowerCase()) || idLower.includes(kw.toLowerCase());
-      });
-      if (match) return match;
-    }
-  }
-
-  // 3. Turn number and range matching (e.g., Turn 1 -> "Turns 1-2", Turn 8 -> "Turns 8-9-10")
-  if (typeof cornerNumber === 'number' && !isNaN(cornerNumber)) {
-    const num = cornerNumber;
-    match = mediaList.find(m => {
-      const titleLower = m.title.toLowerCase();
-      const subLower = m.subtitle.toLowerCase();
-
-      const regexSingle = new RegExp(`\\bturns?\\s*${num}\\b`, 'i');
-      if (regexSingle.test(titleLower) || regexSingle.test(subLower)) return true;
-
-      const ranges = titleLower.matchAll(/\bturns?\s*(\d+)(?:[-–\s]+(\d+))?(?:[-–\s]+(\d+))?\b/gi);
-      for (const r of ranges) {
-        const nums = [r[1], r[2], r[3]].filter(Boolean).map(n => parseInt(n, 10));
-        if (nums.length === 1 && nums[0] === num) return true;
-        if (nums.length >= 2) {
-          const minNum = Math.min(...nums);
-          const maxNum = Math.max(...nums);
-          if (num >= minNum && num <= maxNum) return true;
-        }
-      }
-      return false;
-    });
-    if (match) return match;
-  }
-
-  return undefined;
-}
 
 function GalleryContent() {
   const searchParams = useSearchParams();
@@ -426,45 +266,51 @@ function GalleryContent() {
     }
   };
 
-  const [searchQuery, setSearchQuery] = useState('');
   const [eraFilter, setEraFilter] = useState<'all' | 'calendar' | 'historic'>('all');
 
   const filteredCircuits = useMemo(() => {
     return SUPPORTED_CIRCUITS.filter(c => {
       if (eraFilter === 'calendar' && !CALENDAR_CIRCUITS_IDS.has(c.id)) return false;
       if (eraFilter === 'historic' && CALENDAR_CIRCUITS_IDS.has(c.id)) return false;
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase().trim();
-        return c.name.toLowerCase().includes(q) || c.country.toLowerCase().includes(q) || c.id.toLowerCase().includes(q);
-      }
       return true;
     });
-  }, [eraFilter, searchQuery]);
+  }, [eraFilter]);
+
+  const calendarCount = useMemo(() => SUPPORTED_CIRCUITS.filter(c => CALENDAR_CIRCUITS_IDS.has(c.id)).length, []);
+  const historicCount = useMemo(() => SUPPORTED_CIRCUITS.filter(c => !CALENDAR_CIRCUITS_IDS.has(c.id)).length, []);
+
+  const handleEraChange = useCallback((newEra: 'all' | 'calendar' | 'historic') => {
+    setEraFilter(newEra);
+    const validInNewEra = SUPPORTED_CIRCUITS.filter(c => {
+      if (newEra === 'calendar' && !CALENDAR_CIRCUITS_IDS.has(c.id)) return false;
+      if (newEra === 'historic' && CALENDAR_CIRCUITS_IDS.has(c.id)) return false;
+      return true;
+    });
+    if (validInNewEra.length > 0 && !validInNewEra.some(c => c.id === selectedCircuitId)) {
+      changeCircuit(validInNewEra[0].id);
+    }
+  }, [selectedCircuitId, changeCircuit]);
 
   const currentCircuitIndex = useMemo(() => {
-    const idx = SUPPORTED_CIRCUITS.findIndex(c => c.id === selectedCircuitId);
+    const idx = filteredCircuits.findIndex(c => c.id === selectedCircuitId);
     return idx >= 0 ? idx : 0;
-  }, [selectedCircuitId]);
-
-  const selectableCircuits = useMemo(() => {
-    if (filteredCircuits.some(c => c.id === selectedCircuitId)) {
-      return filteredCircuits;
-    }
-    const currentObj = SUPPORTED_CIRCUITS.find(c => c.id === selectedCircuitId);
-    return currentObj ? [currentObj, ...filteredCircuits] : filteredCircuits;
   }, [filteredCircuits, selectedCircuitId]);
 
+  const selectableCircuits = filteredCircuits;
+
   const handlePrevCircuit = useCallback(() => {
-    const prevIdx = (currentCircuitIndex - 1 + SUPPORTED_CIRCUITS.length) % SUPPORTED_CIRCUITS.length;
-    const nextCircuit = SUPPORTED_CIRCUITS[prevIdx].id;
+    if (filteredCircuits.length === 0) return;
+    const prevIdx = (currentCircuitIndex - 1 + filteredCircuits.length) % filteredCircuits.length;
+    const nextCircuit = filteredCircuits[prevIdx].id;
     changeCircuit(nextCircuit);
-  }, [currentCircuitIndex, changeCircuit]);
+  }, [currentCircuitIndex, filteredCircuits, changeCircuit]);
 
   const handleNextCircuit = useCallback(() => {
-    const nextIdx = (currentCircuitIndex + 1) % SUPPORTED_CIRCUITS.length;
-    const nextCircuit = SUPPORTED_CIRCUITS[nextIdx].id;
+    if (filteredCircuits.length === 0) return;
+    const nextIdx = (currentCircuitIndex + 1) % filteredCircuits.length;
+    const nextCircuit = filteredCircuits[nextIdx].id;
     changeCircuit(nextCircuit);
-  }, [currentCircuitIndex, changeCircuit]);
+  }, [currentCircuitIndex, filteredCircuits, changeCircuit]);
 
   // Keyboard navigation for switching circuits with '[' and ']' when modal is closed
   useEffect(() => {
@@ -490,13 +336,13 @@ function GalleryContent() {
   const isCurrentCalendar = CALENDAR_CIRCUITS_IDS.has(selectedCircuitId);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-6 lg:p-8 space-y-6">
+    <div className="min-h-screen bg-slate-950 text-slate-100 p-3 sm:p-4.5 space-y-3.5">
       {/* Unified Clean Header & Circuit Navigator */}
-      <section className="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-5 sm:p-6 shadow-xl backdrop-blur-xl space-y-5">
-        {/* Top Bar: Title, Era Segmented Switcher & Search */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-800/70">
+      <section className="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4.5 shadow-xl backdrop-blur-xl space-y-3">
+        {/* Top Bar: Title, Era Segmented Switcher (Search Box Removed as Requested) */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-3.5 border-b border-slate-800/70">
           <div>
-            <div className="flex items-center gap-2 mb-1.5">
+            <div className="flex items-center gap-2 mb-1">
               <span className="flex items-center gap-1">
                 <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
                 <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
@@ -508,76 +354,49 @@ function GalleryContent() {
                 78 CIRCUITS DATABASE
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight f1-text-gradient">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-black font-display tracking-tight f1-text-gradient">
               CIRCUIT CORNER GALLERY
             </h1>
-            <p className="text-xs font-sans text-slate-400 mt-1 max-w-xl leading-relaxed">
+            <p className="text-xs font-sans text-slate-400 mt-0.5 max-w-xl leading-relaxed">
               Apex photography, telemetry deceleration profiles &amp; racing dynamics across all 78 F1 circuits.
             </p>
           </div>
 
-          {/* Era Filter Segmented Tabs & Search */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
-            {/* Sleek Segmented Control */}
-            <div className="inline-flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 text-xs font-display">
-              <button
-                type="button"
-                onClick={() => setEraFilter('all')}
-                className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer ${
-                  eraFilter === 'all'
-                    ? 'f1-badge-red text-white'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                ALL (<span className="font-telemetry">78</span>)
-              </button>
-              <button
-                type="button"
-                onClick={() => setEraFilter('calendar')}
-                className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer ${
-                  eraFilter === 'calendar'
-                    ? 'f1-badge-red text-white'
-                    : 'text-slate-400 hover:text-red-300'
-                }`}
-              >
-                CALENDAR (<span className="font-telemetry">25</span>)
-              </button>
-              <button
-                type="button"
-                onClick={() => setEraFilter('historic')}
-                className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer ${
-                  eraFilter === 'historic'
-                    ? 'f1-badge-gold text-amber-300'
-                    : 'text-slate-400 hover:text-amber-300'
-                }`}
-              >
-                HISTORIC (<span className="font-telemetry">53</span>)
-              </button>
-            </div>
-
-            {/* Clean Glass Search Input */}
-            <div className="relative">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search 78 circuits..."
-                className="bg-slate-950/80 border border-slate-800 focus:border-[#E10600] rounded-xl pl-8 pr-7 py-1.5 text-xs font-sans text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-[#E10600]/40 w-full sm:w-48 transition-all"
-              />
-              <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs pointer-events-none select-none">
-                🔍
-              </span>
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white text-xs font-sans p-1 cursor-pointer"
-                  title="Clear search"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
+          {/* Era Filter Segmented Tabs */}
+          <div className="inline-flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 text-xs font-display self-start lg:self-center shrink-0 shadow-inner">
+            <button
+              type="button"
+              onClick={() => handleEraChange('all')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer ${
+                eraFilter === 'all'
+                  ? 'f1-badge-red text-white'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              ALL (<span className="font-telemetry">{SUPPORTED_CIRCUITS.length}</span>)
+            </button>
+            <button
+              type="button"
+              onClick={() => handleEraChange('calendar')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer ${
+                eraFilter === 'calendar'
+                  ? 'f1-badge-red text-white'
+                  : 'text-slate-400 hover:text-red-300'
+              }`}
+            >
+              2026 CALENDAR (<span className="font-telemetry">{calendarCount}</span>)
+            </button>
+            <button
+              type="button"
+              onClick={() => handleEraChange('historic')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer ${
+                eraFilter === 'historic'
+                  ? 'f1-badge-gold text-amber-300'
+                  : 'text-slate-400 hover:text-amber-300'
+              }`}
+            >
+              HISTORIC &amp; RETRO (<span className="font-telemetry">{historicCount}</span>)
+            </button>
           </div>
         </div>
 
@@ -604,7 +423,7 @@ function GalleryContent() {
                   ? 'f1-badge-red text-white'
                   : 'f1-badge-gold text-amber-300'
               }`}>
-                {isCurrentCalendar ? '🔴 Calendar Grand Prix' : '🏛️ Historic Heritage'}
+                {isCurrentCalendar ? '🔴 2026 Calendar Grand Prix' : '🏛️ Historic Heritage'}
               </span>
 
               <span className="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-slate-800 text-slate-300 font-semibold">
@@ -612,7 +431,7 @@ function GalleryContent() {
               </span>
 
               <span className="px-2 py-1 text-slate-400 font-display text-xs">
-                Track <span className="font-telemetry font-black text-[#E10600]">{currentCircuitIndex + 1}</span> of <span className="font-telemetry text-slate-200">{SUPPORTED_CIRCUITS.length}</span>
+                Track <span className="font-telemetry font-black text-[#E10600]">{currentCircuitIndex + 1}</span> of <span className="font-telemetry text-slate-200">{filteredCircuits.length}</span>
               </span>
             </div>
           </div>
@@ -679,14 +498,50 @@ function GalleryContent() {
           </div>
         ) : (
           <div className="space-y-3">
-            {/* Corner Sectors Header */}
-            <div className="flex items-center justify-between gap-3 px-1">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-mono font-bold uppercase text-slate-300">
-                  {mediaToDisplay.length} CORNER SECTORS
+            {/* High-Visibility Illuminated Corner Sectors Banner */}
+            <div 
+              id="corner-sectors-banner"
+              style={{ 
+                background: 'linear-gradient(90deg, rgba(225, 6, 0, 0.22) 0%, rgba(26, 32, 44, 0.96) 22%, rgba(15, 23, 42, 0.98) 100%)',
+                borderLeft: '5px solid #E10600',
+                borderTop: '1px solid rgba(225, 6, 0, 0.4)',
+                borderRight: '1px solid rgba(255, 255, 255, 0.12)',
+                borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.65), 0 0 24px rgba(225, 6, 0, 0.3)',
+                backdropFilter: 'blur(12px)'
+              }}
+              className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 sm:px-5 py-3.5 rounded-xl transition-all"
+            >
+              <div className="flex items-center gap-3.5 flex-wrap lg:flex-nowrap">
+                <span 
+                  style={{
+                    backgroundColor: '#E10600',
+                    color: '#FFFFFF',
+                    boxShadow: '0 0 16px rgba(225, 6, 0, 0.8)'
+                  }}
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-display font-black text-xs uppercase tracking-wider select-none shrink-0"
+                >
+                  <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse shadow-[0_0_8px_#FFFFFF]"></span>
+                  <span style={{ color: '#FFFFFF', fontWeight: 900 }}>{mediaToDisplay.length} CORNER SECTORS</span>
                 </span>
-                <span className="text-[11px] font-mono text-slate-500 hidden sm:inline">
-                  • Click any corner photo to open reconnaissance telemetry
+                <span 
+                  style={{ color: '#F8FAFC' }}
+                  className="text-sm font-display font-bold tracking-wide"
+                >
+                  Click any corner card below to open <span style={{ color: '#00F5D4' }} className="font-extrabold underline decoration-cyan-400/50 underline-offset-4">full reconnaissance telemetry</span> &amp; racing dynamics
+                </span>
+              </div>
+              <div className="flex items-center gap-2 self-start sm:self-center shrink-0">
+                <span 
+                  style={{
+                    backgroundColor: 'rgba(0, 245, 212, 0.16)',
+                    color: '#00F5D4',
+                    border: '1px solid rgba(0, 245, 212, 0.65)',
+                    boxShadow: '0 0 14px rgba(0, 245, 212, 0.3)'
+                  }}
+                  className="px-3.5 py-1.5 rounded-lg text-xs font-telemetry font-black uppercase tracking-wider select-none"
+                >
+                  ⚡ VERIFIED APEX TELEMETRY
                 </span>
               </div>
             </div>

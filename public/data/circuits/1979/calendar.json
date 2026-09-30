@@ -1,0 +1,141 @@
+{
+  "season": "1979",
+  "totalRaces": 15,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1979-01-21"
+    },
+    {
+      "round": "2",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "1979-02-04"
+    },
+    {
+      "round": "3",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1979-03-03"
+    },
+    {
+      "round": "4",
+      "raceName": "United States Grand Prix West",
+      "circuitId": "long_beach",
+      "circuitName": "Long Beach",
+      "country": "USA",
+      "locality": "California",
+      "date": "1979-04-08"
+    },
+    {
+      "round": "5",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "jarama",
+      "circuitName": "Jarama",
+      "country": "Spain",
+      "locality": "Madrid",
+      "date": "1979-04-29"
+    },
+    {
+      "round": "6",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "zolder",
+      "circuitName": "Zolder",
+      "country": "Belgium",
+      "locality": "Heusden-Zolder",
+      "date": "1979-05-13"
+    },
+    {
+      "round": "7",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1979-05-27"
+    },
+    {
+      "round": "8",
+      "raceName": "French Grand Prix",
+      "circuitId": "dijon",
+      "circuitName": "Dijon-Prenois",
+      "country": "France",
+      "locality": "Dijon",
+      "date": "1979-07-01"
+    },
+    {
+      "round": "9",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1979-07-14"
+    },
+    {
+      "round": "10",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "1979-07-29"
+    },
+    {
+      "round": "11",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1979-08-12"
+    },
+    {
+      "round": "12",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1979-08-26"
+    },
+    {
+      "round": "13",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1979-09-09"
+    },
+    {
+      "round": "14",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "1979-09-30"
+    },
+    {
+      "round": "15",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1979-10-07"
+    }
+  ]
+}

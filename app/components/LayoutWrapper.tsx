@@ -116,8 +116,8 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             onChange={(e) => setSelectedSeason(e.target.value)}
             className="max-w-[110px] sm:max-w-none truncate"
           >
-            <option value="current">Current season</option>
-            {seasons.map(y => (
+            <option value="2026">2026 (Current Season)</option>
+            {seasons.filter(y => String(y) !== '2026').map(y => (
               <option key={y} value={y.toString()}>{y}</option>
             ))}
           </select>

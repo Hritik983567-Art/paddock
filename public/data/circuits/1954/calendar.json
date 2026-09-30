@@ -1,0 +1,87 @@
+{
+  "season": "1954",
+  "totalRaces": 9,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1954-01-17"
+    },
+    {
+      "round": "2",
+      "raceName": "Indianapolis 500",
+      "circuitId": "indianapolis",
+      "circuitName": "Indianapolis Motor Speedway",
+      "country": "USA",
+      "locality": "Indianapolis",
+      "date": "1954-05-31"
+    },
+    {
+      "round": "3",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1954-06-20"
+    },
+    {
+      "round": "4",
+      "raceName": "French Grand Prix",
+      "circuitId": "reims",
+      "circuitName": "Reims-Gueux",
+      "country": "France",
+      "locality": "Reims",
+      "date": "1954-07-04"
+    },
+    {
+      "round": "5",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1954-07-17"
+    },
+    {
+      "round": "6",
+      "raceName": "German Grand Prix",
+      "circuitId": "nurburgring",
+      "circuitName": "Nürburgring",
+      "country": "Germany",
+      "locality": "Nürburg",
+      "date": "1954-08-01"
+    },
+    {
+      "round": "7",
+      "raceName": "Swiss Grand Prix",
+      "circuitId": "bremgarten",
+      "circuitName": "Circuit Bremgarten",
+      "country": "Switzerland",
+      "locality": "Bern",
+      "date": "1954-08-22"
+    },
+    {
+      "round": "8",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1954-09-05"
+    },
+    {
+      "round": "9",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "pedralbes",
+      "circuitName": "Circuit de Pedralbes",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "1954-10-24"
+    }
+  ]
+}

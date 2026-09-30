@@ -62,9 +62,51 @@ export default function SchedulePage() {
       setError('');
       try {
         const res = await getJSON(`${API_BASE}/${selectedSeason}.json`) as { MRData?: { RaceTable?: { Races?: Race[] } } };
-        const raceList = res?.MRData?.RaceTable?.Races || [];
+        let raceList = res?.MRData?.RaceTable?.Races || [];
+        if (raceList.length === 0) {
+          const localRes = await fetch(`/data/circuits/${selectedSeason}/calendar.json`);
+          if (localRes.ok) {
+            const localData = await localRes.json();
+            raceList = (localData.races || []).map((r: any) => ({
+              round: r.round,
+              raceName: r.raceName,
+              date: r.date,
+              time: r.time,
+              Circuit: {
+                circuitId: r.circuitId,
+                circuitName: r.circuitName,
+                Location: {
+                  locality: r.locality || '',
+                  country: r.country || ''
+                }
+              }
+            }));
+          }
+        }
         setRaces(raceList);
       } catch (e: unknown) {
+        try {
+          const localRes = await fetch(`/data/circuits/${selectedSeason}/calendar.json`);
+          if (localRes.ok) {
+            const localData = await localRes.json();
+            const raceList = (localData.races || []).map((r: any) => ({
+              round: r.round,
+              raceName: r.raceName,
+              date: r.date,
+              time: r.time,
+              Circuit: {
+                circuitId: r.circuitId,
+                circuitName: r.circuitName,
+                Location: {
+                  locality: r.locality || '',
+                  country: r.country || ''
+                }
+              }
+            }));
+            setRaces(raceList);
+            return;
+          }
+        } catch {}
         const err = e as Error;
         setError(err.message || 'Could not fetch Grand Prix calendar.');
       } finally {

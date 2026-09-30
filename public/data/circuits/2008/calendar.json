@@ -1,0 +1,186 @@
+{
+  "season": "2008",
+  "totalRaces": 18,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Australian Grand Prix",
+      "circuitId": "albert_park",
+      "circuitName": "Albert Park Grand Prix Circuit",
+      "country": "Australia",
+      "locality": "Melbourne",
+      "date": "2008-03-16",
+      "time": "04:30:00Z"
+    },
+    {
+      "round": "2",
+      "raceName": "Malaysian Grand Prix",
+      "circuitId": "sepang",
+      "circuitName": "Sepang International Circuit",
+      "country": "Malaysia",
+      "locality": "Kuala Lumpur",
+      "date": "2008-03-23",
+      "time": "07:00:00Z"
+    },
+    {
+      "round": "3",
+      "raceName": "Bahrain Grand Prix",
+      "circuitId": "bahrain",
+      "circuitName": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "locality": "Sakhir",
+      "date": "2008-04-06",
+      "time": "11:30:00Z"
+    },
+    {
+      "round": "4",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "catalunya",
+      "circuitName": "Circuit de Barcelona-Catalunya",
+      "country": "Spain",
+      "locality": "Barcelona",
+      "date": "2008-04-27",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "5",
+      "raceName": "Turkish Grand Prix",
+      "circuitId": "istanbul",
+      "circuitName": "Istanbul Park",
+      "country": "Turkey",
+      "locality": "Istanbul",
+      "date": "2008-05-11",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "6",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "2008-05-25",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "7",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "2008-06-08",
+      "time": "17:00:00Z"
+    },
+    {
+      "round": "8",
+      "raceName": "French Grand Prix",
+      "circuitId": "magny_cours",
+      "circuitName": "Circuit de Nevers Magny-Cours",
+      "country": "France",
+      "locality": "Magny Cours",
+      "date": "2008-06-22",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "9",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "2008-07-06",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "10",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "2008-07-20",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "11",
+      "raceName": "Hungarian Grand Prix",
+      "circuitId": "hungaroring",
+      "circuitName": "Hungaroring",
+      "country": "Hungary",
+      "locality": "Budapest",
+      "date": "2008-08-03",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "12",
+      "raceName": "European Grand Prix",
+      "circuitId": "valencia",
+      "circuitName": "Valencia Street Circuit",
+      "country": "Spain",
+      "locality": "Valencia",
+      "date": "2008-08-24",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "13",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "2008-09-07",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "14",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "2008-09-14",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "15",
+      "raceName": "Singapore Grand Prix",
+      "circuitId": "marina_bay",
+      "circuitName": "Marina Bay Street Circuit",
+      "country": "Singapore",
+      "locality": "Marina Bay",
+      "date": "2008-09-28",
+      "time": "12:00:00Z"
+    },
+    {
+      "round": "16",
+      "raceName": "Japanese Grand Prix",
+      "circuitId": "fuji",
+      "circuitName": "Fuji Speedway",
+      "country": "Japan",
+      "locality": "Oyama",
+      "date": "2008-10-12",
+      "time": "04:30:00Z"
+    },
+    {
+      "round": "17",
+      "raceName": "Chinese Grand Prix",
+      "circuitId": "shanghai",
+      "circuitName": "Shanghai International Circuit",
+      "country": "China",
+      "locality": "Shanghai",
+      "date": "2008-10-19",
+      "time": "07:00:00Z"
+    },
+    {
+      "round": "18",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "interlagos",
+      "circuitName": "Autódromo José Carlos Pace",
+      "country": "Brazil",
+      "locality": "São Paulo",
+      "date": "2008-11-02",
+      "time": "17:00:00Z"
+    }
+  ]
+}

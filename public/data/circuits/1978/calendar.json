@@ -1,0 +1,150 @@
+{
+  "season": "1978",
+  "totalRaces": 16,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1978-01-15"
+    },
+    {
+      "round": "2",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "jacarepagua",
+      "circuitName": "Autódromo Internacional Nelson Piquet",
+      "country": "Brazil",
+      "locality": "Rio de Janeiro",
+      "date": "1978-01-29"
+    },
+    {
+      "round": "3",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1978-03-04"
+    },
+    {
+      "round": "4",
+      "raceName": "United States Grand Prix West",
+      "circuitId": "long_beach",
+      "circuitName": "Long Beach",
+      "country": "USA",
+      "locality": "California",
+      "date": "1978-04-02"
+    },
+    {
+      "round": "5",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1978-05-07"
+    },
+    {
+      "round": "6",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "zolder",
+      "circuitName": "Zolder",
+      "country": "Belgium",
+      "locality": "Heusden-Zolder",
+      "date": "1978-05-21"
+    },
+    {
+      "round": "7",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "jarama",
+      "circuitName": "Jarama",
+      "country": "Spain",
+      "locality": "Madrid",
+      "date": "1978-06-04"
+    },
+    {
+      "round": "8",
+      "raceName": "Swedish Grand Prix",
+      "circuitId": "anderstorp",
+      "circuitName": "Scandinavian Raceway",
+      "country": "Sweden",
+      "locality": "Anderstorp",
+      "date": "1978-06-17"
+    },
+    {
+      "round": "9",
+      "raceName": "French Grand Prix",
+      "circuitId": "ricard",
+      "circuitName": "Circuit Paul Ricard",
+      "country": "France",
+      "locality": "Le Castellet",
+      "date": "1978-07-02"
+    },
+    {
+      "round": "10",
+      "raceName": "British Grand Prix",
+      "circuitId": "brands_hatch",
+      "circuitName": "Brands Hatch",
+      "country": "UK",
+      "locality": "Kent",
+      "date": "1978-07-16"
+    },
+    {
+      "round": "11",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "1978-07-30"
+    },
+    {
+      "round": "12",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1978-08-13"
+    },
+    {
+      "round": "13",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1978-08-27"
+    },
+    {
+      "round": "14",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1978-09-10"
+    },
+    {
+      "round": "15",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1978-10-01"
+    },
+    {
+      "round": "16",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "1978-10-08"
+    }
+  ]
+}

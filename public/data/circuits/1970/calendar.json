@@ -1,0 +1,123 @@
+{
+  "season": "1970",
+  "totalRaces": 13,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1970-03-07"
+    },
+    {
+      "round": "2",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "jarama",
+      "circuitName": "Jarama",
+      "country": "Spain",
+      "locality": "Madrid",
+      "date": "1970-04-19"
+    },
+    {
+      "round": "3",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1970-05-10"
+    },
+    {
+      "round": "4",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "spa",
+      "circuitName": "Circuit de Spa-Francorchamps",
+      "country": "Belgium",
+      "locality": "Spa",
+      "date": "1970-06-07"
+    },
+    {
+      "round": "5",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1970-06-21"
+    },
+    {
+      "round": "6",
+      "raceName": "French Grand Prix",
+      "circuitId": "charade",
+      "circuitName": "Charade Circuit",
+      "country": "France",
+      "locality": "Clermont-Ferrand",
+      "date": "1970-07-05"
+    },
+    {
+      "round": "7",
+      "raceName": "British Grand Prix",
+      "circuitId": "brands_hatch",
+      "circuitName": "Brands Hatch",
+      "country": "UK",
+      "locality": "Kent",
+      "date": "1970-07-18"
+    },
+    {
+      "round": "8",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "1970-08-02"
+    },
+    {
+      "round": "9",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1970-08-16"
+    },
+    {
+      "round": "10",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1970-09-06"
+    },
+    {
+      "round": "11",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "tremblant",
+      "circuitName": "Circuit Mont-Tremblant",
+      "country": "Canada",
+      "locality": "Quebec",
+      "date": "1970-09-20"
+    },
+    {
+      "round": "12",
+      "raceName": "United States Grand Prix",
+      "circuitId": "watkins_glen",
+      "circuitName": "Watkins Glen",
+      "country": "USA",
+      "locality": "New York State",
+      "date": "1970-10-04"
+    },
+    {
+      "round": "13",
+      "raceName": "Mexican Grand Prix",
+      "circuitId": "rodriguez",
+      "circuitName": "Autódromo Hermanos Rodríguez",
+      "country": "Mexico",
+      "locality": "Mexico City",
+      "date": "1970-10-25"
+    }
+  ]
+}

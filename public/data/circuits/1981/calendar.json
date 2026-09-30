@@ -1,0 +1,141 @@
+{
+  "season": "1981",
+  "totalRaces": 15,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "United States Grand Prix West",
+      "circuitId": "long_beach",
+      "circuitName": "Long Beach",
+      "country": "USA",
+      "locality": "California",
+      "date": "1981-03-15"
+    },
+    {
+      "round": "2",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "jacarepagua",
+      "circuitName": "Autódromo Internacional Nelson Piquet",
+      "country": "Brazil",
+      "locality": "Rio de Janeiro",
+      "date": "1981-03-29"
+    },
+    {
+      "round": "3",
+      "raceName": "Argentine Grand Prix",
+      "circuitId": "galvez",
+      "circuitName": "Autódromo Juan y Oscar Gálvez",
+      "country": "Argentina",
+      "locality": "Buenos Aires",
+      "date": "1981-04-12"
+    },
+    {
+      "round": "4",
+      "raceName": "San Marino Grand Prix",
+      "circuitId": "imola",
+      "circuitName": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "locality": "Imola",
+      "date": "1981-05-03"
+    },
+    {
+      "round": "5",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "zolder",
+      "circuitName": "Zolder",
+      "country": "Belgium",
+      "locality": "Heusden-Zolder",
+      "date": "1981-05-17"
+    },
+    {
+      "round": "6",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1981-05-31"
+    },
+    {
+      "round": "7",
+      "raceName": "Spanish Grand Prix",
+      "circuitId": "jarama",
+      "circuitName": "Jarama",
+      "country": "Spain",
+      "locality": "Madrid",
+      "date": "1981-06-21"
+    },
+    {
+      "round": "8",
+      "raceName": "French Grand Prix",
+      "circuitId": "dijon",
+      "circuitName": "Dijon-Prenois",
+      "country": "France",
+      "locality": "Dijon",
+      "date": "1981-07-05"
+    },
+    {
+      "round": "9",
+      "raceName": "British Grand Prix",
+      "circuitId": "silverstone",
+      "circuitName": "Silverstone Circuit",
+      "country": "UK",
+      "locality": "Silverstone",
+      "date": "1981-07-18"
+    },
+    {
+      "round": "10",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "1981-08-02"
+    },
+    {
+      "round": "11",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1981-08-16"
+    },
+    {
+      "round": "12",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1981-08-30"
+    },
+    {
+      "round": "13",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1981-09-13"
+    },
+    {
+      "round": "14",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "1981-09-27"
+    },
+    {
+      "round": "15",
+      "raceName": "Caesars Palace Grand Prix",
+      "circuitId": "las_vegas",
+      "circuitName": "Las Vegas Street Circuit",
+      "country": "USA",
+      "locality": "Nevada",
+      "date": "1981-10-17"
+    }
+  ]
+}

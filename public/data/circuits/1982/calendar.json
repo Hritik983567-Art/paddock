@@ -1,0 +1,150 @@
+{
+  "season": "1982",
+  "totalRaces": 16,
+  "races": [
+    {
+      "round": "1",
+      "raceName": "South African Grand Prix",
+      "circuitId": "kyalami",
+      "circuitName": "Kyalami",
+      "country": "South Africa",
+      "locality": "Midrand",
+      "date": "1982-01-23"
+    },
+    {
+      "round": "2",
+      "raceName": "Brazilian Grand Prix",
+      "circuitId": "jacarepagua",
+      "circuitName": "Autódromo Internacional Nelson Piquet",
+      "country": "Brazil",
+      "locality": "Rio de Janeiro",
+      "date": "1982-03-21"
+    },
+    {
+      "round": "3",
+      "raceName": "United States Grand Prix West",
+      "circuitId": "long_beach",
+      "circuitName": "Long Beach",
+      "country": "USA",
+      "locality": "California",
+      "date": "1982-04-04"
+    },
+    {
+      "round": "4",
+      "raceName": "San Marino Grand Prix",
+      "circuitId": "imola",
+      "circuitName": "Autodromo Enzo e Dino Ferrari",
+      "country": "Italy",
+      "locality": "Imola",
+      "date": "1982-04-25"
+    },
+    {
+      "round": "5",
+      "raceName": "Belgian Grand Prix",
+      "circuitId": "zolder",
+      "circuitName": "Zolder",
+      "country": "Belgium",
+      "locality": "Heusden-Zolder",
+      "date": "1982-05-09"
+    },
+    {
+      "round": "6",
+      "raceName": "Monaco Grand Prix",
+      "circuitId": "monaco",
+      "circuitName": "Circuit de Monaco",
+      "country": "Monaco",
+      "locality": "Monte Carlo",
+      "date": "1982-05-23"
+    },
+    {
+      "round": "7",
+      "raceName": "Detroit Grand Prix",
+      "circuitId": "detroit",
+      "circuitName": "Detroit Street Circuit",
+      "country": "USA",
+      "locality": "Detroit",
+      "date": "1982-06-06"
+    },
+    {
+      "round": "8",
+      "raceName": "Canadian Grand Prix",
+      "circuitId": "villeneuve",
+      "circuitName": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "locality": "Montreal",
+      "date": "1982-06-13"
+    },
+    {
+      "round": "9",
+      "raceName": "Dutch Grand Prix",
+      "circuitId": "zandvoort",
+      "circuitName": "Circuit Park Zandvoort",
+      "country": "Netherlands",
+      "locality": "Zandvoort",
+      "date": "1982-07-03"
+    },
+    {
+      "round": "10",
+      "raceName": "British Grand Prix",
+      "circuitId": "brands_hatch",
+      "circuitName": "Brands Hatch",
+      "country": "UK",
+      "locality": "Kent",
+      "date": "1982-07-18"
+    },
+    {
+      "round": "11",
+      "raceName": "French Grand Prix",
+      "circuitId": "ricard",
+      "circuitName": "Circuit Paul Ricard",
+      "country": "France",
+      "locality": "Le Castellet",
+      "date": "1982-07-25"
+    },
+    {
+      "round": "12",
+      "raceName": "German Grand Prix",
+      "circuitId": "hockenheimring",
+      "circuitName": "Hockenheimring",
+      "country": "Germany",
+      "locality": "Hockenheim",
+      "date": "1982-08-08"
+    },
+    {
+      "round": "13",
+      "raceName": "Austrian Grand Prix",
+      "circuitId": "red_bull_ring",
+      "circuitName": "Red Bull Ring",
+      "country": "Austria",
+      "locality": "Spielberg",
+      "date": "1982-08-15"
+    },
+    {
+      "round": "14",
+      "raceName": "Swiss Grand Prix",
+      "circuitId": "dijon",
+      "circuitName": "Dijon-Prenois",
+      "country": "France",
+      "locality": "Dijon",
+      "date": "1982-08-29"
+    },
+    {
+      "round": "15",
+      "raceName": "Italian Grand Prix",
+      "circuitId": "monza",
+      "circuitName": "Autodromo Nazionale di Monza",
+      "country": "Italy",
+      "locality": "Monza",
+      "date": "1982-09-12"
+    },
+    {
+      "round": "16",
+      "raceName": "Caesars Palace Grand Prix",
+      "circuitId": "las_vegas",
+      "circuitName": "Las Vegas Street Circuit",
+      "country": "USA",
+      "locality": "Nevada",
+      "date": "1982-09-25"
+    }
+  ]
+}

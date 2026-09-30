@@ -6,7 +6,11 @@ import 'server-only';
  */
 
 function getSecret(): string {
-  return process.env.JWT_SECRET || 'paddock-f1-telemetry-server-secure-key-2026';
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('FATAL: JWT_SECRET environment variable is missing. Set JWT_SECRET in .env.local or server environment.');
+  }
+  return secret;
 }
 
 export async function signJWT(payload: Record<string, unknown>): Promise<string> {

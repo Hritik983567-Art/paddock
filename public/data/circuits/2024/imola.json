@@ -1253,7 +1253,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Corner",
       "direction": "Right",
       "gear": 2,
       "speed_kph": 95
@@ -1269,7 +1269,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Corner",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 140
@@ -1285,7 +1285,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Corner",
       "direction": "Right",
       "gear": 5,
       "speed_kph": 210
@@ -1301,7 +1301,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Corner",
       "direction": "Left",
       "gear": 2,
       "speed_kph": 95
@@ -1317,7 +1317,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 140
@@ -1333,7 +1333,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Corner",
       "direction": "Left",
       "gear": 5,
       "speed_kph": 210
@@ -1349,7 +1349,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Corner",
       "direction": "Right",
       "gear": 2,
       "speed_kph": 95
@@ -1365,7 +1365,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Corner",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 140
@@ -1381,7 +1381,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Corner",
       "direction": "Right",
       "gear": 5,
       "speed_kph": 210
@@ -1397,7 +1397,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Corner",
       "direction": "Left",
       "gear": 2,
       "speed_kph": 95
@@ -1413,7 +1413,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 140
@@ -1429,7 +1429,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Corner",
       "direction": "Left",
       "gear": 5,
       "speed_kph": 210
@@ -1445,7 +1445,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Corner",
       "direction": "Right",
       "gear": 2,
       "speed_kph": 95
@@ -1461,7 +1461,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Corner",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 140
@@ -1477,7 +1477,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Corner",
       "direction": "Right",
       "gear": 5,
       "speed_kph": 210
@@ -1493,7 +1493,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Corner",
       "direction": "Left",
       "gear": 2,
       "speed_kph": 95
@@ -1509,7 +1509,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Technical Chicane",
+      "type": "Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 140
@@ -1525,7 +1525,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Corner",
       "direction": "Left",
       "gear": 5,
       "speed_kph": 210
@@ -1541,7 +1541,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Heavy Braking Hairpin",
+      "type": "Corner",
       "direction": "Right",
       "gear": 2,
       "speed_kph": 95
