@@ -154,6 +154,7 @@ export default function TeammatesPage() {
               onSelectDriverB={setCustomDriverBId}
               teamColor={data.teamColor}
               mode={mode}
+              season={selectedSeason}
             />
 
             {/* 2. Immediate Teammate Battle Overview */}

@@ -4,24 +4,32 @@ import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import Link from 'next/link';
 
+import { AVATAR_PRESETS, getAvatarPreset } from '../lib/avatarPresets';
+
 export default function AccountSettingsPage() {
   const { user, logout } = useAuth();
   const [displayName, setDisplayName] = React.useState(user?.name || user?.username || '');
-  const [activeTheme, setActiveTheme] = React.useState(() => {
+  const [selectedAvatarId, setSelectedAvatarId] = React.useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('paddock_theme') || 'default';
+      return localStorage.getItem('paddock_avatar_preset') || 'paddock_engineer';
     }
-    return 'default';
+    return 'paddock_engineer';
   });
   const [savedSuccess, setSavedSuccess] = React.useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = React.useState(false);
   const [deleteReason, setDeleteReason] = React.useState('');
   const [deletionSubmitted, setDeletionSubmitted] = React.useState(false);
 
-  const handleThemeChange = (theme: string) => {
-    setActiveTheme(theme);
-    localStorage.setItem('paddock_theme', theme);
-    document.documentElement.setAttribute('data-theme', theme);
+  const [showAvatarPresets, setShowAvatarPresets] = React.useState(false);
+
+  const activePreset = getAvatarPreset(selectedAvatarId);
+
+  const handleSelectAvatar = (presetId: string) => {
+    setSelectedAvatarId(presetId);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('paddock_avatar_preset', presetId);
+      window.dispatchEvent(new Event('paddock_avatar_changed'));
+    }
     setSavedSuccess(true);
     setTimeout(() => setSavedSuccess(false), 3000);
   };
@@ -39,48 +47,137 @@ export default function AccountSettingsPage() {
 
   return (
     <div className="max-w-4xl mx-auto py-6 px-4 font-sans text-slate-200">
-      {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 rounded-3xl bg-slate-900/90 border border-slate-800 shadow-2xl backdrop-blur-xl mb-8">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-purple-600 text-white font-black text-xl flex items-center justify-center shadow-[0_0_25px_rgba(147,51,234,0.4)] border border-purple-400">
-            {displayName ? displayName.slice(0, 2).toUpperCase() : 'F1'}
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="flex items-center gap-1">
-                <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
-                <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
-                  PILOT PROFILE
-                </span>
-              </span>
-              <span className="text-slate-700 font-sans text-xs">•</span>
-              <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
-                PADDOCK USER SETTINGS
+      {/* Unified Pilot Profile & Avatar Banner Card */}
+      <div className="p-6 rounded-3xl bg-slate-900/90 border border-slate-800 shadow-2xl backdrop-blur-xl mb-8 transition-all">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className={`w-16 h-16 rounded-2xl ${activePreset.bgGradient} ${activePreset.borderColor} border-2 ${activePreset.glowShadow} overflow-hidden relative flex items-center justify-center shrink-0 transition-all`}>
+              {activePreset.photoUrl ? (
+                <img
+                  src={activePreset.photoUrl}
+                  alt={activePreset.name}
+                  className="w-full h-full object-cover object-top"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    const fallbackEl = e.currentTarget.parentElement?.querySelector('.avatar-fallback-text');
+                    if (fallbackEl) fallbackEl.classList.remove('hidden');
+                  }}
+                />
+              ) : null}
+              <span className={`avatar-fallback-text font-black text-white text-base tracking-wider drop-shadow-md ${activePreset.photoUrl ? 'hidden' : ''}`}>
+                {activePreset.badgeText || (displayName ? displayName.slice(0, 2).toUpperCase() : 'F1')}
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight f1-text-gradient uppercase">
-              {displayName || 'TELEMETRY ANALYST'}
-            </h1>
-            <p className="text-xs text-purple-400 font-mono flex items-center gap-2 mt-0.5">
-              <span>Role: {user?.role || 'Telemetry Analyst'}</span>
-              <span>•</span>
-              <span className="text-emerald-400 font-bold">● Active Session</span>
-            </p>
+
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="flex items-center gap-1">
+                  <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
+                  <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+                    PILOT PROFILE
+                  </span>
+                </span>
+                <span className="text-slate-700 font-sans text-xs">•</span>
+                <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+                  PADDOCK USER SETTINGS
+                </span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight f1-text-gradient uppercase">
+                {displayName || 'TELEMETRY ANALYST'}
+              </h1>
+              <p className="text-xs text-purple-400 font-mono flex items-center gap-2 mt-0.5">
+                <span>Role: {user?.role || 'Paddock Verified Engineer'}</span>
+                <span>•</span>
+                <span className="text-emerald-400 font-bold">● Active Session</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={() => setShowAvatarPresets(!showAvatarPresets)}
+              className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-400 hover:text-amber-300 font-mono text-xs font-bold rounded-xl transition-all shrink-0 flex items-center gap-1.5 shadow-md"
+              title="Toggle Avatar Presets Picker"
+            >
+              <span>⚙️ {showAvatarPresets ? 'HIDE AVATARS' : 'CHANGE AVATAR'}</span>
+              <span>{showAvatarPresets ? '▲' : '▼'}</span>
+            </button>
+
+            <button
+              onClick={logout}
+              className="px-4 py-2 bg-red-950/80 hover:bg-red-900 border border-red-700 text-red-300 font-mono font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center gap-2"
+            >
+              <span>LOGOUT SESSION</span>
+              <span>🚪</span>
+            </button>
           </div>
         </div>
 
-        <button
-          onClick={logout}
-          className="px-4 py-2 bg-red-950/80 hover:bg-red-900 border border-red-700 text-red-300 font-mono font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center gap-2"
-        >
-          <span>LOGOUT SESSION</span>
-          <span>🚪</span>
-        </button>
+        {/* Expandable Avatar Presets Grid */}
+        {showAvatarPresets && (
+          <div className="mt-6 pt-5 border-t border-slate-800/80">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-xs font-black font-mono text-amber-400 uppercase tracking-widest flex items-center gap-2">
+                <span>🏎️</span>
+                <span>SELECT PILOT AVATAR & HELMET PRESET</span>
+              </h2>
+              <span className="text-[10px] font-mono text-slate-400 uppercase">
+                Active: <span className="text-white font-bold">{activePreset.name}</span>
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+              {AVATAR_PRESETS.map((preset) => {
+                const isSelected = preset.id === selectedAvatarId;
+                return (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    onClick={() => handleSelectAvatar(preset.id)}
+                    className={`p-2.5 rounded-2xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 ${
+                      isSelected
+                        ? `border-amber-400 bg-amber-950/40 ${preset.glowShadow} scale-[1.03]`
+                        : 'border-slate-800 bg-slate-950/60 hover:border-slate-700 hover:bg-slate-900'
+                    }`}
+                  >
+                    <div className={`w-12 h-12 rounded-xl ${preset.bgGradient} ${preset.borderColor} border flex items-center justify-center overflow-hidden relative shadow-inner shrink-0`}>
+                      {preset.photoUrl ? (
+                        <img
+                          src={preset.photoUrl}
+                          alt={preset.name}
+                          className="w-full h-full object-cover object-top"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            const fallbackEl = e.currentTarget.parentElement?.querySelector('.preset-fallback-text');
+                            if (fallbackEl) fallbackEl.classList.remove('hidden');
+                          }}
+                        />
+                      ) : null}
+                      <span className={`preset-fallback-text font-mono font-black text-white text-xs drop-shadow ${preset.photoUrl ? 'hidden' : ''}`}>
+                        {preset.badgeText}
+                      </span>
+                    </div>
+
+                    <div className="w-full truncate text-center">
+                      <span className="block text-[10px] font-mono font-bold text-white truncate">
+                        {preset.name}
+                      </span>
+                      <span className="block text-[8px] font-mono text-slate-400 uppercase truncate">
+                        {preset.team.split(' ')[0]}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       {savedSuccess && (
         <div className="mb-6 p-4 rounded-2xl bg-emerald-950/80 border border-emerald-500/60 text-emerald-300 text-xs font-mono font-bold flex items-center justify-between shadow-lg">
-          <span>✓ Account settings & team theme preferences saved successfully.</span>
+          <span>✓ Pilot profile & F1 helmet avatar preference updated successfully.</span>
           <span>✨</span>
         </div>
       )}
@@ -88,6 +185,7 @@ export default function AccountSettingsPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Main Settings Form */}
         <div className="md:col-span-2 space-y-6">
+
           {/* Profile Section */}
           <div className="p-6 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl backdrop-blur-md">
             <h2 className="text-sm font-black font-mono text-cyan-400 uppercase tracking-widest mb-4 flex items-center gap-2">
@@ -110,14 +208,19 @@ export default function AccountSettingsPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1.5 uppercase">
-                  User Role / Clearance
-                </label>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="text-xs font-mono text-slate-400 uppercase block">
+                    User Role / Clearance
+                  </label>
+                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
+                    (Fixed Role)
+                  </span>
+                </div>
                 <input
                   type="text"
                   disabled
-                  value={user?.role || 'Telemetry Analyst'}
-                  className="w-full px-4 py-2.5 bg-slate-950/50 border border-slate-800 rounded-xl text-xs font-mono text-slate-500 cursor-not-allowed"
+                  value={user?.role || 'Paddock Verified Engineer'}
+                  className="w-full px-4 py-2.5 bg-slate-950/50 border border-slate-800 rounded-xl text-xs font-mono text-slate-400 cursor-not-allowed font-semibold"
                 />
               </div>
 
@@ -130,45 +233,6 @@ export default function AccountSettingsPage() {
                 </button>
               </div>
             </form>
-          </div>
-
-          {/* F1 Team Theme Preference */}
-          <div className="p-6 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl backdrop-blur-md">
-            <h2 className="text-sm font-black font-mono text-amber-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-              <span>🎨</span>
-              <span>Active F1 Team Livery Theme</span>
-            </h2>
-
-            <p className="text-xs text-slate-400 leading-relaxed mb-4">
-              Select your preferred Formula 1 team livery theme. Your preference is persisted in browser storage.
-            </p>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {[
-                { id: 'default', name: 'Checkered Flag', color: 'bg-slate-200' },
-                { id: 'ferrari', name: 'Scuderia Ferrari', color: 'bg-red-700' },
-                { id: 'redbull', name: 'Red Bull Racing', color: 'bg-blue-600' },
-                { id: 'mercedes', name: 'Mercedes-AMG', color: 'bg-emerald-500' },
-                { id: 'mclaren', name: 'McLaren Papaya', color: 'bg-orange-500' },
-                { id: 'aston', name: 'Aston Martin', color: 'bg-emerald-700' },
-              ].map((theme) => (
-                <button
-                  key={theme.id}
-                  onClick={() => handleThemeChange(theme.id)}
-                  className={`p-3 rounded-2xl border text-left transition-all flex items-center justify-between ${
-                    activeTheme === theme.id
-                      ? 'border-cyan-400 bg-cyan-950/40 shadow-[0_0_15px_rgba(0,240,255,0.2)]'
-                      : 'border-slate-800 bg-slate-950/60 hover:border-slate-700'
-                  }`}
-                >
-                  <div>
-                    <span className="block text-xs font-mono font-bold text-white">{theme.name}</span>
-                    <span className="text-[9px] font-mono text-slate-400 uppercase">{theme.id}</span>
-                  </div>
-                  <span className={`w-3.5 h-3.5 rounded-full ${theme.color} shadow-sm`} />
-                </button>
-              ))}
-            </div>
           </div>
 
           {/* Account Deletion / Data Request */}
@@ -227,37 +291,6 @@ export default function AccountSettingsPage() {
 
         {/* Sidebar Info Cards */}
         <div className="space-y-6">
-          {/* Security Summary */}
-          <div className="p-6 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl backdrop-blur-md">
-            <h2 className="text-xs font-black font-mono text-emerald-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-              <span>🛡️</span>
-              <span>Security & Token Status</span>
-            </h2>
-
-            <div className="space-y-3 text-xs font-mono">
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
-                <span className="text-slate-500 block text-[10px] uppercase">Authentication State:</span>
-                <span className="font-bold text-emerald-400">ACTIVE &amp; VERIFIED</span>
-              </div>
-
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
-                <span className="text-slate-500 block text-[10px] uppercase">Session Security:</span>
-                <span className="font-bold text-slate-300">Protected Pit-Wall Session</span>
-              </div>
-
-              <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
-                <span className="text-slate-500 block text-[10px] uppercase">Telemetry Access:</span>
-                <span className="font-bold text-cyan-400">Full Pit-Wall Grid</span>
-              </div>
-            </div>
-
-            <div className="mt-4 pt-3 border-t border-slate-800 text-center">
-              <Link href="/security" className="text-[11px] font-mono text-cyan-400 hover:underline">
-                View Security Disclosure →
-              </Link>
-            </div>
-          </div>
-
           {/* Quick Legal Links */}
           <div className="p-6 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl backdrop-blur-md">
             <h2 className="text-xs font-black font-mono text-slate-400 uppercase tracking-widest mb-3">

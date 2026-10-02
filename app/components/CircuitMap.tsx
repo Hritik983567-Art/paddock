@@ -422,6 +422,44 @@ export function CircuitMap({
       cornersDict[key] = enrichCornerDetails(c, targetCircuit, circuitDisplayName);
     });
 
+    // Sector sub-paths so each track segment is color-coded by sector (S1=Cyan, S2=Amber, S3=Magenta)
+    const trackMeta = TRACKS_REGISTRY[targetCircuit] || TRACKS_REGISTRY[targetCircuit.replace(/-/g, '_')] || TRACKS_REGISTRY[targetCircuit.replace(/_/g, '-')];
+    let pathS1 = pathD, pathS2 = '', pathS3 = '';
+    if (transformedPoints && transformedPoints.length >= 5) {
+      const totalPts = transformedPoints.length;
+      const refPts = trackMeta?.path?.length || totalPts;
+
+      const getPropIdx = (rawIdx: number | undefined, defRatio: number) => {
+        if (typeof rawIdx === 'number' && refPts > 0) {
+          const ratio = rawIdx / refPts;
+          return Math.floor(totalPts * Math.min(0.99, Math.max(0.01, ratio)));
+        }
+        return Math.floor(totalPts * defRatio);
+      };
+
+      const s1Idx = getPropIdx(trackMeta?.sectors?.[0]?.markerIndex, 0.33);
+      const s2Idx = getPropIdx(trackMeta?.sectors?.[1]?.markerIndex, 0.66);
+
+      // Sector 1: 0 -> s1Idx
+      pathS1 = `M ${transformedPoints[0].x},${transformedPoints[0].y}`;
+      for (let i = 1; i <= s1Idx && i < totalPts; i++) {
+        pathS1 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
+      }
+
+      // Sector 2: s1Idx -> s2Idx
+      pathS2 = `M ${transformedPoints[Math.min(s1Idx, totalPts - 1)].x},${transformedPoints[Math.min(s1Idx, totalPts - 1)].y}`;
+      for (let i = s1Idx + 1; i <= s2Idx && i < totalPts; i++) {
+        pathS2 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
+      }
+
+      // Sector 3: s2Idx -> end -> 0
+      pathS3 = `M ${transformedPoints[Math.min(s2Idx, totalPts - 1)].x},${transformedPoints[Math.min(s2Idx, totalPts - 1)].y}`;
+      for (let i = s2Idx + 1; i < totalPts; i++) {
+        pathS3 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
+      }
+      pathS3 += ` L ${transformedPoints[0].x},${transformedPoints[0].y}`;
+    }
+
     return {
       circuitMeta,
       layout,
@@ -430,6 +468,7 @@ export function CircuitMap({
       telemetryDriver,
       bounds,
       pathD,
+      sectorPaths: { pathS1, pathS2, pathS3 },
       transformedPoints,
       transformedCorners,
       startPoint,
@@ -473,6 +512,7 @@ export function CircuitMap({
     sourceSession,
     telemetryDriver,
     pathD,
+    sectorPaths,
     transformedPoints,
     transformedCorners,
     startPoint,
@@ -485,6 +525,8 @@ export function CircuitMap({
 
   const selectedKey = selectedCorner ? `t${selectedCorner.number}${selectedCorner.letter || ''}`.toLowerCase() : '';
   const detailedCornerObj = selectedCorner ? cornersDict[selectedKey] : null;
+
+  const safeSectorPaths = sectorPaths || { pathS1: pathD || '', pathS2: '', pathS3: '' };
 
   return (
     <div className={`flex flex-col gap-4 ${className}`}>
@@ -602,27 +644,71 @@ export function CircuitMap({
 
             {/* Transform Group for Pan and Zoom */}
             <g transform={`translate(${pan.x}, ${pan.y}) scale(${zoom})`} style={{ transformOrigin: '500px 350px' }}>
-              {/* LAYER 1: Background Glow Path */}
+              {/* LAYER 1: Background Glow Paths (Color coded per sector) */}
               <path
-                d={pathD}
+                d={safeSectorPaths.pathS1 || pathD}
                 fill="none"
-                stroke="#00D2BE"
+                stroke="#00F5D4"
                 strokeWidth="16"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                opacity="0.12"
+                opacity="0.16"
                 filter="url(#glow)"
               />
+              {safeSectorPaths.pathS2 && (
+                <path
+                  d={safeSectorPaths.pathS2}
+                  fill="none"
+                  stroke="#FFB800"
+                  strokeWidth="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  opacity="0.16"
+                  filter="url(#glow)"
+                />
+              )}
+              {safeSectorPaths.pathS3 && (
+                <path
+                  d={safeSectorPaths.pathS3}
+                  fill="none"
+                  stroke="#D946EF"
+                  strokeWidth="16"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  opacity="0.16"
+                  filter="url(#glow)"
+                />
+              )}
 
-              {/* LAYER 2: Primary Track Centerline */}
+              {/* LAYER 2: Primary Track Centerline (Color coded per sector) */}
               <path
-                d={pathD}
+                d={safeSectorPaths.pathS1 || pathD}
                 fill="none"
-                stroke="#00D2BE"
+                stroke="#00F5D4"
                 strokeWidth="4.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
+              {safeSectorPaths.pathS2 && (
+                <path
+                  d={safeSectorPaths.pathS2}
+                  fill="none"
+                  stroke="#FFB800"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              )}
+              {safeSectorPaths.pathS3 && (
+                <path
+                  d={safeSectorPaths.pathS3}
+                  fill="none"
+                  stroke="#D946EF"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              )}
 
               {/* LAYER 3: Start/Finish Line & Orientation Indicator */}
               {startPoint && !isNaN(Number(startPoint.x)) && !isNaN(Number(startPoint.y)) && (
@@ -632,6 +718,80 @@ export function CircuitMap({
                   <polygon points="12,0 4,-6 4,6" fill="#00FF66" />
                 </g>
               )}
+
+              {/* LAYER 3.5: Sectors (S1, S2, S3) & Speed Trap Overlay */}
+              {(() => {
+                if (!transformedPoints || transformedPoints.length < 5) return null;
+                const totalPts = transformedPoints.length;
+
+                // Proportional sector and speed trap marker indices matching real track specifications
+                const refPts = trackMeta?.path?.length || totalPts;
+                const getPropIdx = (rawIdx: number | undefined, defRatio: number) => {
+                  if (typeof rawIdx === 'number' && refPts > 0) {
+                    const ratio = rawIdx / refPts;
+                    return Math.floor(totalPts * Math.min(0.99, Math.max(0.01, ratio)));
+                  }
+                  return Math.floor(totalPts * defRatio);
+                };
+
+                const s1Idx = getPropIdx(trackMeta?.sectors?.[0]?.markerIndex, 0.33);
+                const s2Idx = getPropIdx(trackMeta?.sectors?.[1]?.markerIndex, 0.66);
+                const s3Idx = getPropIdx(trackMeta?.sectors?.[2]?.markerIndex, 0.95);
+                const stIdx = getPropIdx(trackMeta?.speedTrapIndex, 0.18);
+
+                const getPt = (idx: number) => {
+                  const safeIdx = Math.max(0, Math.min(totalPts - 1, idx));
+                  const p1 = transformedPoints[safeIdx];
+                  const p2 = transformedPoints[(safeIdx + 1) % totalPts];
+                  const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * (180 / Math.PI);
+                  return { x: p1.x, y: p1.y, angle: isNaN(angle) ? 0 : angle };
+                };
+
+                const s1 = getPt(s1Idx);
+                const s2 = getPt(s2Idx);
+                const s3 = getPt(s3Idx);
+                const st = getPt(stIdx);
+
+                return (
+                  <g className="pointer-events-none select-none">
+                    {/* Sector 1 Boundary Line & Badge */}
+                    <g transform={`translate(${s1.x}, ${s1.y}) rotate(${s1.angle})`}>
+                      <line x1="0" y1="-14" x2="0" y2="14" stroke="#00F5D4" strokeWidth="3" />
+                      <g transform={`translate(0, -20) rotate(${-s1.angle})`}>
+                        <rect x="-14" y="-9" width="28" height="18" rx="4" fill="#090D16" stroke="#00F5D4" strokeWidth="1.5" />
+                        <text x="0" y="3" fill="#00F5D4" fontSize="10" fontWeight="900" fontFamily="monospace" textAnchor="middle">S1</text>
+                      </g>
+                    </g>
+
+                    {/* Sector 2 Boundary Line & Badge */}
+                    <g transform={`translate(${s2.x}, ${s2.y}) rotate(${s2.angle})`}>
+                      <line x1="0" y1="-14" x2="0" y2="14" stroke="#FFB800" strokeWidth="3" />
+                      <g transform={`translate(0, -20) rotate(${-s2.angle})`}>
+                        <rect x="-14" y="-9" width="28" height="18" rx="4" fill="#090D16" stroke="#FFB800" strokeWidth="1.5" />
+                        <text x="0" y="3" fill="#FFB800" fontSize="10" fontWeight="900" fontFamily="monospace" textAnchor="middle">S2</text>
+                      </g>
+                    </g>
+
+                    {/* Sector 3 Boundary Line & Badge */}
+                    <g transform={`translate(${s3.x}, ${s3.y}) rotate(${s3.angle})`}>
+                      <line x1="0" y1="-14" x2="0" y2="14" stroke="#D946EF" strokeWidth="3" />
+                      <g transform={`translate(0, -20) rotate(${-s3.angle})`}>
+                        <rect x="-14" y="-9" width="28" height="18" rx="4" fill="#090D16" stroke="#D946EF" strokeWidth="1.5" />
+                        <text x="0" y="3" fill="#D946EF" fontSize="10" fontWeight="900" fontFamily="monospace" textAnchor="middle">S3</text>
+                      </g>
+                    </g>
+
+                    {/* Speed Trap Line & Badge */}
+                    <g transform={`translate(${st.x}, ${st.y}) rotate(${st.angle})`}>
+                      <line x1="0" y1="-16" x2="0" y2="16" stroke="#FF007A" strokeWidth="3.5" strokeDasharray="3 2" />
+                      <g transform={`translate(0, 24) rotate(${-st.angle})`}>
+                        <rect x="-36" y="-9" width="72" height="18" rx="4" fill="#090D16" stroke="#FF007A" strokeWidth="1.5" />
+                        <text x="0" y="3" fill="#FF007A" fontSize="8.5" fontWeight="900" fontFamily="monospace" textAnchor="middle">⚡ SPEED TRAP</text>
+                      </g>
+                    </g>
+                  </g>
+                );
+              })()}
 
               {/* LAYER 4: Corner Leader Lines */}
               {transformedCorners.map(corner => {
@@ -787,6 +947,40 @@ export function CircuitMap({
               />
             </g>
           </svg>
+
+          {/* Floating Visual Map Legend Overlay */}
+          <div className="absolute bottom-3 left-3 z-20 pointer-events-none bg-slate-950/85 backdrop-blur-md border border-slate-800/80 rounded-lg p-2 sm:p-2.5 shadow-xl text-[10px] sm:text-xs">
+            <div className="text-[9px] uppercase tracking-wider font-extrabold text-slate-400 mb-1.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+              Map Legend
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-3 gap-y-1.5 font-mono text-slate-300">
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-1 bg-emerald-400 rounded-full shadow-[0_0_6px_#10B981]"></span>
+                <span>Start / Finish</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-1 bg-[#00F5D4] rounded-full shadow-[0_0_6px_#00F5D4]"></span>
+                <span>Sector 1</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-1 bg-[#FFB800] rounded-full shadow-[0_0_6px_#FFB800]"></span>
+                <span>Sector 2</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-1 bg-[#D946EF] rounded-full shadow-[0_0_6px_#D946EF]"></span>
+                <span>Sector 3</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-0.5 border-b border-dashed border-[#FF007A]"></span>
+                <span className="text-[#FF007A]">Speed Trap</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[#FF1E27] ring-1 ring-white/50"></span>
+                <span>Turn Apex</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSeason } from '../contexts/SeasonContext';
 import { getJSON, API_BASE, getTeamColor, ALL_F1_SEASONS } from '../utils/api';
+import { getDriverMediaProfile } from '../lib/driverMediaService';
+
 
 interface DriverStanding {
   position: string;
@@ -197,7 +199,8 @@ export default function StandingsPage() {
             {drivers.map((d) => {
               const pts = parseFloat(d.points) || 0;
               const barWidth = (pts / maxDriverPts) * 100;
-              const teamColor = getTeamColor(d.Constructors[0]?.constructorId || '');
+              const media = getDriverMediaProfile(d.Driver.driverId, selectedSeason, d.Constructors[0]);
+              const teamColor = media.teamColor || getTeamColor(d.Constructors[0]?.constructorId || '');
 
               return (
                 <div
@@ -208,14 +211,43 @@ export default function StandingsPage() {
                     <span className="col-span-1 font-black text-cyan-300 text-center text-sm">
                       P{d.position}
                     </span>
-                    <div className="col-span-4 flex items-center gap-2">
-                      <span style={{ backgroundColor: teamColor }} className="w-1.5 h-4 rounded"></span>
-                      <span className="font-black text-white">{d.Driver.givenName} {d.Driver.familyName}</span>
-                      {d.Driver.permanentNumber && (
-                        <span className="text-[10px] text-slate-500 font-mono">#{d.Driver.permanentNumber}</span>
+                    <div className="col-span-4 flex items-center gap-2.5">
+                      <div className="relative w-8 h-8 rounded-full overflow-hidden border border-slate-700 bg-slate-900 shrink-0">
+                        <img
+                          src={media.headshotUrl}
+                          alt={d.Driver.familyName}
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            if (media.officialHeadshotUrl && target.src !== media.officialHeadshotUrl) {
+                              target.src = media.officialHeadshotUrl;
+                            } else if (target.src !== media.fallbackHeadshotUrl && !target.src.includes('default.jpg')) {
+                              target.src = media.fallbackHeadshotUrl || '/images/holograms/default.jpg';
+                            } else {
+                              target.src = '/images/holograms/default.jpg';
+                            }
+                          }}
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-black text-white">{d.Driver.givenName} {d.Driver.familyName}</span>
+                          <span className="text-xs">{media.flag}</span>
+                        </div>
+                        {d.Driver.permanentNumber && (
+                          <span className="text-[10px] text-slate-500 font-mono">#{d.Driver.permanentNumber}</span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="col-span-3 flex items-center gap-1.5">
+                      <span style={{ backgroundColor: teamColor }} className="w-2 h-2 rounded-full shrink-0"></span>
+                      <span style={{ color: teamColor }} className="font-semibold truncate">{media.teamName}</span>
+                      {media.isTransferred && (
+                        <span className="px-1.5 py-0.5 rounded bg-red-950 text-red-400 text-[9px] font-mono border border-red-800 shrink-0">
+                          NEW
+                        </span>
                       )}
                     </div>
-                    <span className="col-span-3 text-amber-400 font-semibold">{d.Constructors[0]?.name || 'F1 Team'}</span>
                     <span className="col-span-2 text-center text-slate-300 font-black">{d.wins || '0'}</span>
                     <span className="col-span-2 text-right font-black text-emerald-400 text-sm">{d.points} PTS</span>
                   </div>

@@ -41,7 +41,11 @@ export async function getJSON<T = any>(url: string, attempt: number = 1): Promis
             await pauseMs(500 * attempt);
             return getJSON<T>(url, attempt + 1);
         }
-        throw new Error(err.message || "Network request failed after 3 tries.");
+        const isNetworkError = err?.message === 'Failed to fetch' || err?.name === 'TypeError' || !err?.message;
+        const cleanMsg = isNetworkError
+            ? 'Unable to connect to F1 data server. Please check your internet connection or try again.'
+            : (err.message || 'Network request failed after 3 tries.');
+        throw new Error(cleanMsg);
     }
 }
 
@@ -109,11 +113,29 @@ export async function fetchF1News(forceRefresh = false): Promise<NewsItem[]> {
     return data.items;
 }
 
+export async function fetchWikipediaDriverImage(wikiUrl: string | undefined): Promise<string | null> {
+    if (!wikiUrl) return null;
+    try {
+        const parts = wikiUrl.split('/wiki/');
+        if (parts.length < 2) return null;
+        const slug = parts[1];
+        if (!slug) return null;
+        const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${slug}`);
+        if (!res.ok) return null;
+        const data = await res.json();
+        return data.thumbnail?.source || data.originalimage?.source || null;
+    } catch {
+        return null;
+    }
+}
+
 export const NATIONALITY_FLAGS: Record<string, string> = {
-    British: '🇬🇧', Dutch: '🇳🇱', Spanish: '🇪🇸', Monegasque: '🇲🇨', German: '🇩🇪', Finnish: '🇫🇮',
+    British: '🇬🇧', Dutch: '🇳🇱', Spanish: '🇪🇸', Monegasque: '🇲🇨', Monacan: '🇲🇨', Monaco: '🇲🇨', German: '🇩🇪', Finnish: '🇫🇮',
     Australian: '🇦🇺', French: '🇫🇷', Canadian: '🇨🇦', Mexican: '🇲🇽', Japanese: '🇯🇵', Italian: '🇮🇹',
     Brazilian: '🇧🇷', American: '🇺🇸', Danish: '🇩🇰', Thai: '🇹🇭', Chinese: '🇨🇳', 'New Zealander': '🇳🇿',
     Austrian: '🇦🇹', Belgian: '🇧🇪', Swedish: '🇸🇪', Swiss: '🇨🇭', Polish: '🇵🇱', Argentine: '🇦🇷',
+    Estonian: '🇪🇪', Israeli: '🇮🇱', Norwegian: '🇳🇴', Irish: '🇮🇪', Portuguese: '🇵🇹', Hungarian: '🇭🇺',
+    Czech: '🇨🇿', Venezuelan: '🇻🇪', Chilean: '🇨🇱', Uruguayan: '🇺🇾', Liechtensteiner: '🇱🇮', Malaysian: '🇲🇾',
     'South African': '🇿🇦', Indian: '🇮🇳', Russian: '🇷🇺', Indonesian: '🇮🇩', Colombian: '🇨🇴'
 };
 

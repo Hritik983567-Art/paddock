@@ -17,6 +17,8 @@ import {
   SUPPORTED_CIRCUITS,
   CALENDAR_CIRCUITS_IDS,
   getCircuitFallbackImage,
+  getCornerVisualSrc,
+  generateCornerTelemetryBlueprintSvg,
   findMatchingMediaItem,
   CircuitInfo
 } from './constants';
@@ -99,7 +101,7 @@ function GalleryContent() {
       } else {
         const fallbackTitle = specs?.name ? `${specs.name} (${specs.turns || urlCorner.toUpperCase()})` : `Corner ${urlCorner.toUpperCase()}`;
         const fallbackSub = `${specs?.type || 'F1 Sector'} — ${selectedCircuitMeta?.name || selectedCircuitId.toUpperCase()}`;
-        const fallbackSrc = specs?.images?.[0]?.src || getCircuitFallbackImage(selectedCircuitId);
+        const fallbackSrc = specs?.images?.[0]?.src || getCornerVisualSrc({ title: fallbackTitle }, selectedCircuitId, cornerNum, specs);
 
         setSelectedMedia({
           id: `${selectedCircuitId}_${urlCorner}`,
@@ -250,7 +252,7 @@ function GalleryContent() {
       title: `${enriched.name} (${enriched.turns || `Turn ${corner.number}`})`,
       subtitle: `${enriched.type || 'F1 Corner'} — ${selectedCircuitMeta?.name || selectedCircuitId.toUpperCase()}`,
       category: 'photo' as const,
-      src: specs?.images?.[0]?.src || getCircuitFallbackImage(selectedCircuitId),
+      src: specs?.images?.[0]?.src || getCornerVisualSrc({ title: enriched.name }, selectedCircuitId, corner.number, specs),
       entrySpeed: enriched.technical?.entrySpeed || 'N/A',
       typicalGear: enriched.technical?.typicalGear || 'N/A',
       gForce: enriched.technical?.brakingIntensity || 'N/A',
@@ -363,7 +365,7 @@ function GalleryContent() {
           </div>
 
           {/* Era Filter Segmented Tabs */}
-          <div className="inline-flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 text-xs font-display self-start lg:self-center shrink-0 shadow-inner">
+          <div className="inline-flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 text-xs font-display self-start lg:self-center shrink-0 shadow-inner select-none">
             <button
               type="button"
               onClick={() => handleEraChange('all')}
@@ -526,22 +528,12 @@ function GalleryContent() {
                 </span>
                 <span 
                   style={{ color: '#F8FAFC' }}
-                  className="text-sm font-display font-bold tracking-wide"
+                  className="text-xs sm:text-sm font-display font-bold tracking-wide"
                 >
-                  Click any corner card below to open <span style={{ color: '#00F5D4' }} className="font-extrabold underline decoration-cyan-400/50 underline-offset-4">full reconnaissance telemetry</span> &amp; racing dynamics
-                </span>
-              </div>
-              <div className="flex items-center gap-2 self-start sm:self-center shrink-0">
-                <span 
-                  style={{
-                    backgroundColor: 'rgba(0, 245, 212, 0.16)',
-                    color: '#00F5D4',
-                    border: '1px solid rgba(0, 245, 212, 0.65)',
-                    boxShadow: '0 0 14px rgba(0, 245, 212, 0.3)'
-                  }}
-                  className="px-3.5 py-1.5 rounded-lg text-xs font-telemetry font-black uppercase tracking-wider select-none"
-                >
-                  ⚡ VERIFIED APEX TELEMETRY
+                  Select any corner to view{' '}
+                  <span style={{ color: '#00F5D4' }} className="font-extrabold underline decoration-cyan-400/50 underline-offset-4">
+                    telemetry &amp; racing dynamics
+                  </span>
                 </span>
               </div>
             </div>
@@ -598,15 +590,15 @@ function GalleryContent() {
                       {/* Image Thumbnail */}
                       <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-950 pointer-events-none select-none">
                         <img
-                          src={item.src}
+                          src={getCornerVisualSrc(item, selectedCircuitId, idx + 1, resolveCornerSpecs(item))}
                           alt={item.title}
                           draggable={false}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none select-none"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
-                            const fallback = getCircuitFallbackImage(selectedCircuitId);
-                            if (target.src !== fallback) {
-                              target.src = fallback;
+                            const blueprint = generateCornerTelemetryBlueprintSvg(item, selectedCircuitId, idx + 1, resolveCornerSpecs(item));
+                            if (target.src !== blueprint) {
+                              target.src = blueprint;
                             }
                           }}
                         />
@@ -674,12 +666,12 @@ function GalleryContent() {
             <div className="relative h-72 sm:h-96 w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800 group/photo">
               <img
                 key={selectedMedia.id}
-                src={selectedMedia.src}
+                src={getCornerVisualSrc(selectedMedia, selectedCircuitId, undefined, activeCornerDetails)}
                 alt={selectedMedia.title}
                 className="w-full h-full object-cover transition-opacity duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  const fallback = getCircuitFallbackImage(selectedCircuitId);
+                  const fallback = getCornerVisualSrc(selectedMedia, selectedCircuitId, undefined, activeCornerDetails);
                   if (target.src !== fallback) {
                     target.src = fallback;
                   }

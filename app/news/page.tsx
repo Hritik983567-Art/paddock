@@ -62,15 +62,15 @@ function resolveNewsFallbackImage(title: string, description: string = '', categ
   if (/\b(cadillac|andretti)\b/.test(text)) return '/images/f1-login-car.png';
 
   // 4. Specific Circuits
-  if (/\b(monaco|monte carlo)\b/.test(text)) return '/images/circuits/monaco/corners/fairmonthairpin/01_fairmonthairpin.jpg';
+  if (/\b(monaco|monte carlo)\b/.test(text)) return '/images/mclaren-bg.png';
   if (/\b(monza|italian gp)\b/.test(text)) return '/images/circuits/monza/corners/curva-grande/01_curva_grande_sweeper.jpg';
-  if (/\b(spa|francorchamps|belgian gp)\b/.test(text)) return '/images/circuits/spa/corners/eaurouge/01_eaurouge.jpg';
-  if (/\b(silverstone|british gp)\b/.test(text)) return '/images/circuits/silverstone/corners/copse/01_copse.jpg';
-  if (/\b(suzuka|japanese gp)\b/.test(text)) return '/images/circuits/suzuka/corners/c130r/01_c130r.jpg';
-  if (/\b(albert park|melbourne|australian gp)\b/.test(text)) return '/images/circuits/albert_park/corners/lakeside/01_lakeside.jpg';
-  if (/\b(bahrain|sakhir)\b/.test(text)) return '/images/circuits/bahrain/corners/t10_hairpin/01_t10.jpg';
-  if (/\b(jeddah|saudi)\b/.test(text)) return '/images/circuits/jeddah/corners/t13_banked/01_t13.jpg';
-  if (/\b(austin|cota|united states gp)\b/.test(text)) return '/images/circuits/americas/corners/turn1_uphill/01_t1.jpg';
+  if (/\b(spa|francorchamps|belgian gp)\b/.test(text)) return '/images/mclaren-bg.png';
+  if (/\b(silverstone|british gp)\b/.test(text)) return '/images/mclaren-bg.png';
+  if (/\b(suzuka|japanese gp)\b/.test(text)) return '/images/mclaren-bg.png';
+  if (/\b(albert park|melbourne|australian gp)\b/.test(text)) return '/images/mclaren-bg.png';
+  if (/\b(bahrain|sakhir)\b/.test(text)) return '/images/mclaren-bg.png';
+  if (/\b(jeddah|saudi)\b/.test(text)) return '/images/mclaren-bg.png';
+  if (/\b(austin|cota|united states gp)\b/.test(text)) return '/images/mclaren-bg.png';
 
   // 5. Category-Specific Fallbacks
   if (category === 'TECHNICAL' || /\b(upgrade|sidepod|wing|aerodynamic|floor|suspension|power unit|engine|telemetry|setup)\b/.test(text)) {
@@ -80,7 +80,7 @@ function resolveNewsFallbackImage(title: string, description: string = '', categ
     return '/images/checkered-bg.png';
   }
   if (category === 'RACE WEEKEND' || /\b(grand prix|pole|sprint|grid|race weekend|calendar|schedule)\b/.test(text)) {
-    return '/images/circuits/spa/corners/eaurouge/01_eaurouge.jpg';
+    return '/images/mclaren-bg.png';
   }
 
   return '/images/default-bg.png';

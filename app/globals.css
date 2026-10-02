@@ -39,7 +39,7 @@
   display: inline-block !important;
   width: fit-content !important;
   max-width: 100% !important;
-  background: linear-gradient(95deg, #FFFFFF 0%, #FFFFFF 38%, #FF7A75 68%, #E10600 100%) !important;
+  background: linear-gradient(95deg, #FFFFFF 0%, #FFFFFF 38%, var(--f1-cyan) 68%, var(--f1-red) 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -47,7 +47,7 @@
 }
 
 .f1-red-gradient {
-  background: linear-gradient(135deg, #FF3B30 0%, #E10600 55%, #990000 100%) !important;
+  background: linear-gradient(135deg, var(--f1-red-bright) 0%, var(--f1-red) 55%, var(--f1-red-dark) 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -183,11 +183,32 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* F1 Team Themes - Official Constructor Branding */
+:root,
+:root[data-theme="default"] {
+    --asphalt: #0C0E12;
+    --carbon: #15181E;
+    --carbon-2: #1C2028;
+    --line: #2A2F3A;
+    --paper: #FFFFFF;
+    --dim: #CBD5E1;
+    --red: #E10600;
+    --cyan: #00F5D4;
+    --purple: #B138DD;
+    --amber: #FFB800;
+    --red-dim: #7A0800;
+    --theme-glow: rgba(225, 6, 0, 0.45);
+    --f1-red: #E10600;
+    --f1-red-bright: #FF1801;
+    --f1-red-dark: #B30000;
+    --f1-red-glow: rgba(225, 6, 0, 0.45);
+    --f1-cyan: #00F5D4;
+}
+
 :root[data-theme="ferrari"] {
     --asphalt: #120304;
     --carbon: #1D0507;
     --carbon-2: #2B0A0D;
-    --line: #4D0E12;
+    --line: #520F14;
     --paper: #FFFFFF;
     --dim: #E2E8F0;
     --red: #E8002D;
@@ -195,44 +216,59 @@ h1, h2, h3, h4, h5, h6 {
     --purple: #FF5252;
     --amber: #FFB020;
     --red-dim: #7A0018;
-    --theme-glow: rgba(232, 0, 45, 0.35);
+    --theme-glow: rgba(232, 0, 45, 0.45);
+    --f1-red: #E8002D;
+    --f1-red-bright: #FF2E54;
+    --f1-red-dark: #A3001E;
+    --f1-red-glow: rgba(232, 0, 45, 0.5);
+    --f1-cyan: #FFDE00;
 }
 
 :root[data-theme="redbull"] {
     --asphalt: #040A18;
     --carbon: #09132A;
     --carbon-2: #101F40;
-    --line: #1D3260;
+    --line: #1D366D;
     --paper: #FFFFFF;
     --dim: #E2E8F0;
-    --red: #EA0027;
-    --cyan: #3671C6;
+    --red: #3671C6;
+    --cyan: #FFCC00;
     --purple: #7C3AED;
     --amber: #FFCC00;
-    --red-dim: #7F0F03;
-    --theme-glow: rgba(54, 113, 198, 0.35);
+    --red-dim: #1D3260;
+    --theme-glow: rgba(54, 113, 198, 0.45);
+    --f1-red: #3671C6;
+    --f1-red-bright: #4D8BF5;
+    --f1-red-dark: #1E4E96;
+    --f1-red-glow: rgba(54, 113, 198, 0.5);
+    --f1-cyan: #FFCC00;
 }
 
 :root[data-theme="mercedes"] {
-    --asphalt: #060B0E;
-    --carbon: #0E181D;
-    --carbon-2: #16242B;
-    --line: #223742;
+    --asphalt: #040E12;
+    --carbon: #09181E;
+    --carbon-2: #10242B;
+    --line: #1A3C46;
     --paper: #FFFFFF;
     --dim: #E2E8F0;
-    --red: #27F4D2;
-    --cyan: #00E5FF;
+    --red: #00E5FF;
+    --cyan: #27F4D2;
     --purple: #38BDF8;
     --amber: #F59E0B;
     --red-dim: #075246;
-    --theme-glow: rgba(39, 244, 210, 0.35);
+    --theme-glow: rgba(0, 229, 255, 0.45);
+    --f1-red: #00E5FF;
+    --f1-red-bright: #33EBFF;
+    --f1-red-dark: #00A6B8;
+    --f1-red-glow: rgba(0, 229, 255, 0.5);
+    --f1-cyan: #27F4D2;
 }
 
 :root[data-theme="mclaren"] {
     --asphalt: #140B04;
     --carbon: #211207;
     --carbon-2: #301B0C;
-    --line: #4D2B14;
+    --line: #543017;
     --paper: #FFFFFF;
     --dim: #E2E8F0;
     --red: #FF8000;
@@ -240,14 +276,19 @@ h1, h2, h3, h4, h5, h6 {
     --purple: #FB923C;
     --amber: #FACC15;
     --red-dim: #854300;
-    --theme-glow: rgba(255, 128, 0, 0.35);
+    --theme-glow: rgba(255, 128, 0, 0.45);
+    --f1-red: #FF8000;
+    --f1-red-bright: #FF9933;
+    --f1-red-dark: #CC6600;
+    --f1-red-glow: rgba(255, 128, 0, 0.5);
+    --f1-cyan: #00A3E0;
 }
 
 :root[data-theme="aston"] {
     --asphalt: #03100B;
     --carbon: #081B15;
     --carbon-2: #0E2920;
-    --line: #184234;
+    --line: #174839;
     --paper: #FFFFFF;
     --dim: #BAC4D8;
     --red: #008767;
@@ -255,7 +296,112 @@ h1, h2, h3, h4, h5, h6 {
     --purple: #34D399;
     --amber: #F59E0B;
     --red-dim: #034534;
-    --theme-glow: rgba(0, 135, 103, 0.35);
+    --theme-glow: rgba(0, 135, 103, 0.45);
+    --f1-red: #008767;
+    --f1-red-bright: #00B388;
+    --f1-red-dark: #005E48;
+    --f1-red-glow: rgba(0, 135, 103, 0.5);
+    --f1-cyan: #CEDC00;
+}
+
+:root[data-theme="alpine"] {
+    --asphalt: #030C16;
+    --carbon: #081726;
+    --carbon-2: #0F2236;
+    --line: #193856;
+    --paper: #FFFFFF;
+    --dim: #BAC4D8;
+    --red: #0090FF;
+    --cyan: #FF87B4;
+    --purple: #38BDF8;
+    --amber: #F59E0B;
+    --red-dim: #054880;
+    --theme-glow: rgba(0, 144, 255, 0.45);
+    --f1-red: #0090FF;
+    --f1-red-bright: #33A6FF;
+    --f1-red-dark: #0066B3;
+    --f1-red-glow: rgba(0, 144, 255, 0.5);
+    --f1-cyan: #FF87B4;
+}
+
+:root[data-theme="haas"] {
+    --asphalt: #0C0C0E;
+    --carbon: #18181C;
+    --carbon-2: #24242A;
+    --line: #383842;
+    --paper: #FFFFFF;
+    --dim: #CBD5E1;
+    --red: #E6002B;
+    --cyan: #F0F0F0;
+    --purple: #F43F5E;
+    --amber: #F59E0B;
+    --red-dim: #7A0017;
+    --theme-glow: rgba(230, 0, 43, 0.45);
+    --f1-red: #E6002B;
+    --f1-red-bright: #FF2E52;
+    --f1-red-dark: #A3001E;
+    --f1-red-glow: rgba(230, 0, 43, 0.5);
+    --f1-cyan: #F0F0F0;
+}
+
+:root[data-theme="racingbulls"] {
+    --asphalt: #040B1E;
+    --carbon: #091636;
+    --carbon-2: #10224D;
+    --line: #1C3775;
+    --paper: #FFFFFF;
+    --dim: #BAC4D8;
+    --red: #6692FF;
+    --cyan: #FF1E40;
+    --purple: #818CF8;
+    --amber: #FFCC00;
+    --red-dim: #1D3260;
+    --theme-glow: rgba(102, 146, 255, 0.45);
+    --f1-red: #6692FF;
+    --f1-red-bright: #8CB0FF;
+    --f1-red-dark: #3366CC;
+    --f1-red-glow: rgba(102, 146, 255, 0.5);
+    --f1-cyan: #FF1E40;
+}
+
+:root[data-theme="sauber"] {
+    --asphalt: #041206;
+    --carbon: #0A200D;
+    --carbon-2: #113015;
+    --line: #1B4A22;
+    --paper: #FFFFFF;
+    --dim: #BAC4D8;
+    --red: #52E252;
+    --cyan: #00FF87;
+    --purple: #34D399;
+    --amber: #FACC15;
+    --red-dim: #15601E;
+    --theme-glow: rgba(82, 226, 82, 0.45);
+    --f1-red: #52E252;
+    --f1-red-bright: #75E875;
+    --f1-red-dark: #2BB82B;
+    --f1-red-glow: rgba(82, 226, 82, 0.5);
+    --f1-cyan: #00FF87;
+}
+
+:root[data-theme="williams"] {
+    --asphalt: #020B16;
+    --carbon: #06152A;
+    --carbon-2: #0C2242;
+    --line: #153664;
+    --paper: #FFFFFF;
+    --dim: #BAC4D8;
+    --red: #00A0DE;
+    --cyan: #64C8FF;
+    --purple: #38BDF8;
+    --amber: #F59E0B;
+    --red-dim: #004F70;
+    --theme-glow: rgba(0, 160, 222, 0.45);
+    --f1-red: #00A0DE;
+    --f1-red-bright: #33B8EB;
+    --f1-red-dark: #0077A3;
+    --f1-red-glow: rgba(0, 160, 222, 0.5);
+    --f1-cyan: #64C8FF;
 }
 
 * {
@@ -340,9 +486,54 @@ body {
         url('/images/mercedes-bg.png');
 }
 
+/* BWT Alpine F1 Team Wallpaper */
+:root[data-theme="alpine"] .f1-theme-wallpaper {
+    opacity: 0.75;
+    background-image: 
+        linear-gradient(to right, #030C16 0%, #030C16 25%, rgba(3, 12, 22, 0.35) 60%, transparent 100%),
+        url('/images/alpine-bg.png');
+}
+
+/* MoneyGram Haas F1 Team Wallpaper */
+:root[data-theme="haas"] .f1-theme-wallpaper {
+    opacity: 0.75;
+    background-image: 
+        linear-gradient(to right, #0C0C0E 0%, #0C0C0E 25%, rgba(12, 12, 14, 0.35) 60%, transparent 100%),
+        url('/images/haas-bg.png');
+}
+
+/* Visa Cash App RB / Racing Bulls Wallpaper */
+:root[data-theme="racingbulls"] .f1-theme-wallpaper {
+    opacity: 0.75;
+    background-image: 
+        linear-gradient(to right, #040B1E 0%, #040B1E 25%, rgba(4, 11, 30, 0.35) 60%, transparent 100%),
+        url('/images/racingbulls-bg.png');
+}
+
+/* Stake F1 Team Kick Sauber Wallpaper */
+:root[data-theme="sauber"] .f1-theme-wallpaper {
+    opacity: 0.75;
+    background-image: 
+        linear-gradient(to right, #041206 0%, #041206 25%, rgba(4, 18, 6, 0.35) 60%, transparent 100%),
+        url('/images/sauber-bg.png');
+}
+
+/* Williams Racing Wallpaper */
+:root[data-theme="williams"] .f1-theme-wallpaper {
+    opacity: 0.75;
+    background-image: 
+        linear-gradient(to right, #020B16 0%, #020B16 25%, rgba(2, 11, 22, 0.35) 60%, transparent 100%),
+        url('/images/williams-bg.png');
+}
+
 ::selection {
-    background: var(--red);
-    color: #fff;
+    background: rgba(225, 6, 0, 0.45);
+    color: #FFFFFF;
+}
+
+button, .f1-badge-red, .f1-badge-gold, .f1-badge-cyan, .f1-badge-purple, .tab-btn, .mobile-subnav-pill {
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 a {

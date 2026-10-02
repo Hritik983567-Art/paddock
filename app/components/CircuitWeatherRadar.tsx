@@ -120,7 +120,7 @@ export default function CircuitWeatherRadar({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const modalCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  // Radar Animation Loop
+  // Radar Animation Loop (Powered strictly by live circuit forecast)
   useEffect(() => {
     let animId: number;
     let angle = 0;
@@ -392,45 +392,47 @@ export default function CircuitWeatherRadar({
         </div>
       </div>
 
-      {/* Circuit Selector Row */}
-      <div className="flex items-center justify-between gap-2 text-xs">
-        <div className="flex items-center gap-2 min-w-0">
-          <span className="text-base select-none shrink-0">{activeLocation.flag}</span>
-          <div className="min-w-0">
-            <div className="font-display font-black text-white text-xs truncate">
-              {activeLocation.name}
-            </div>
-            <div className="text-[10.5px] font-sans text-slate-400 truncate">
-              {activeLocation.locality ? `${activeLocation.locality}, ` : ''}{activeLocation.country}
+      {/* Circuit Selector Row & Interactive Weather Simulation Pills */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="text-base select-none shrink-0">{activeLocation.flag}</span>
+            <div className="min-w-0">
+              <div className="font-display font-black text-white text-xs truncate">
+                {activeLocation.name}
+              </div>
+              <div className="text-[10.5px] font-sans text-slate-400 truncate">
+                {activeLocation.locality ? `${activeLocation.locality}, ` : ''}{activeLocation.country}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Circuit Select Dropdown */}
-        <div className="relative shrink-0">
-          <select
-            value={selectedCircuitId}
-            onChange={(e) => setSelectedCircuitId(e.target.value)}
-            className="bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-200 text-[11px] font-display font-bold py-1 pl-2 pr-6 rounded-lg appearance-none cursor-pointer focus:outline-none focus:border-red-500 max-w-[140px] truncate"
-          >
-            <option value="auto">📍 Next GP Track</option>
-            {DEFAULT_CALENDAR_CIRCUITS.map(c => (
-              <option key={c.id} value={c.id}>
-                {c.flag} {c.locality || c.name}
-              </option>
-            ))}
-          </select>
-          <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 text-[9px]">
-            ▼
-          </span>
+          {/* Circuit Select Dropdown */}
+          <div className="relative shrink-0">
+            <select
+              value={selectedCircuitId}
+              onChange={(e) => setSelectedCircuitId(e.target.value)}
+              className="bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-200 text-[11px] font-display font-bold py-1 pl-2 pr-6 rounded-lg appearance-none cursor-pointer focus:outline-none focus:border-red-500 max-w-[140px] truncate"
+            >
+              <option value="auto">📍 Next GP Track</option>
+              {DEFAULT_CALENDAR_CIRCUITS.map(c => (
+                <option key={c.id} value={c.id}>
+                  {c.flag} {c.locality || c.name}
+                </option>
+              ))}
+            </select>
+            <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 text-[9px]">
+              ▼
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Main Content: Doppler Radar Canvas + Live F1 Telemetry Grid */}
+      {/* Main Content: Live Doppler Radar Canvas + Live F1 Telemetry Grid */}
       {loading ? (
         <div className="py-8 text-center space-y-2">
           <span className="w-6 h-6 border-2 border-red-500 border-t-transparent rounded-full animate-spin inline-block"></span>
-          <p className="text-xs font-display text-slate-400">Calibrating circuit Doppler radar…</p>
+          <p className="text-xs font-display text-slate-400">Fetching live circuit weather forecast feed…</p>
         </div>
       ) : error ? (
         <div className="py-6 text-center text-xs font-display text-red-400 space-y-1">
@@ -484,6 +486,23 @@ export default function CircuitWeatherRadar({
                 UPDATED {weather.updatedAt}
               </span>
             </div>
+          </div>
+
+          {/* Pit-Wall Meteorological Strategy Briefing Banner */}
+          <div className="p-2.5 rounded-xl bg-slate-950/90 border border-slate-800 text-xs font-display space-y-1 shadow-inner">
+            <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+              <span>PIT-WALL METEOROLOGICAL BRIEFING</span>
+              <span className="text-cyan-400 font-mono">LIVE FORECAST</span>
+            </div>
+            <p className="text-[11.5px] text-slate-200 leading-relaxed font-sans">
+              {weather.rainProbability > 60
+                ? `🚨 WET SESSION ALERT: High aquaplaning risk across braking zones. Full wet / intermediate tyres mandatory with maximum aerodynamic downforce.`
+                : weather.humidity > 90
+                ? `☁️ OVERCAST & HIGH MOISTURE (${weather.humidity}% Humidity): Air temp is ${weather.airTemp}°C with track temp at ${weather.trackTemp}°C. Dew point spread is ${weather.dewPoint ? Math.round(Math.abs(weather.airTemp - weather.dewPoint) * 10) / 10 : 0.2}°C. Optimal slick tyre grip with minimal thermal degradation.`
+                : weather.trackTemp > 40
+                ? `🔥 HIGH THERMAL STRESS: Asphalt surface heating to ${weather.trackTemp}°C. Soft compound degradation accelerated; Hard compound stint recommended.`
+                : `🌤️ STABLE RACE TRACK: Track grip at 100%. Wind speed ${weather.windSpeed} km/h (${weather.windCompass}) with steady barometric pressure (${weather.pressure} hPa).`}
+            </p>
           </div>
 
           {/* Authentic F1 Pit-Wall Meteorological Telemetry Grid */}

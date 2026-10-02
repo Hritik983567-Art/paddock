@@ -3,18 +3,22 @@
 import React from 'react';
 import { AuthProvider, useAuth } from '../contexts/AuthContext';
 import { SeasonProvider, useSeason } from '../contexts/SeasonContext';
+import { ThemeProvider, useTheme, F1Theme } from '../contexts/ThemeContext';
 import AuthGate from './AuthGate';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import OfflineState from './states/OfflineState';
+import { getAvatarPreset } from '../lib/avatarPresets';
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <AuthProvider>
-      <SeasonProvider>
-        <DashboardLayout>{children}</DashboardLayout>
-      </SeasonProvider>
+      <ThemeProvider>
+        <SeasonProvider>
+          <DashboardLayout>{children}</DashboardLayout>
+        </SeasonProvider>
+      </ThemeProvider>
     </AuthProvider>
   );
 }
@@ -22,22 +26,26 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, user, isLoading, logout } = useAuth();
   const { selectedSeason, setSelectedSeason } = useSeason();
+  const { theme, setTheme } = useTheme();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [activeTheme, setActiveTheme] = React.useState(() => {
+
+  const [activeAvatarId, setActiveAvatarId] = React.useState(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('paddock_theme') || 'default';
-      document.documentElement.setAttribute('data-theme', saved);
-      return saved;
+      return localStorage.getItem('paddock_avatar_preset') || 'paddock_engineer';
     }
-    return 'default';
+    return 'paddock_engineer';
   });
 
-  const handleThemeChange = (theme: string) => {
-    setActiveTheme(theme);
-    localStorage.setItem('paddock_theme', theme);
-    document.documentElement.setAttribute('data-theme', theme);
-  };
+  React.useEffect(() => {
+    const handleAvatarChange = () => {
+      if (typeof window !== 'undefined') {
+        setActiveAvatarId(localStorage.getItem('paddock_avatar_preset') || 'paddock_engineer');
+      }
+    };
+    window.addEventListener('paddock_avatar_changed', handleAvatarChange);
+    return () => window.removeEventListener('paddock_avatar_changed', handleAvatarChange);
+  }, []);
 
   if (isLoading) {
     return (
@@ -127,8 +135,8 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             id="themeSelect" 
             title="F1 Team Theme"
             aria-label="Select F1 Team Theme"
-            value={activeTheme}
-            onChange={(e) => handleThemeChange(e.target.value)}
+            value={theme}
+            onChange={(e) => setTheme(e.target.value as F1Theme)}
             style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}
             className="max-w-[125px] sm:max-w-none truncate"
           >
@@ -138,6 +146,11 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             <option value="mercedes">🟢 Mercedes</option>
             <option value="mclaren">🟠 McLaren</option>
             <option value="aston">💚 Aston Martin</option>
+            <option value="alpine">🔹 Alpine</option>
+            <option value="haas">⚪ Haas</option>
+            <option value="racingbulls">⚡ Racing Bulls</option>
+            <option value="sauber">🟩 Sauber</option>
+            <option value="williams">🟦 Williams</option>
           </select>
 
           {user && (
@@ -146,12 +159,22 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
               className="flex items-center gap-2 px-2.5 py-1 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 hover:border-cyan-400 rounded-lg text-xs font-mono transition-all shadow-md group"
               title="View Account Settings & Profile"
             >
-              <span className="w-6 h-6 rounded-full bg-[#6542A5] group-hover:bg-cyan-500 text-white flex items-center justify-center font-black text-[10px] transition-colors">
-                {user.name ? user.name.slice(0, 2).toUpperCase() : user.username ? user.username.slice(0, 2).toUpperCase() : 'F1'}
-              </span>
+              <div className={`w-7 h-7 rounded-md ${getAvatarPreset(activeAvatarId).bgGradient} ${getAvatarPreset(activeAvatarId).borderColor} border flex items-center justify-center font-black text-[10px] transition-all overflow-hidden shrink-0 shadow relative`}>
+                {getAvatarPreset(activeAvatarId).photoUrl ? (
+                  <img
+                    src={getAvatarPreset(activeAvatarId).photoUrl}
+                    alt="Pilot Avatar"
+                    className="w-full h-full object-cover object-top"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  />
+                ) : null}
+                <span className={`font-black text-white text-[9px] drop-shadow ${getAvatarPreset(activeAvatarId).photoUrl ? 'hidden' : ''}`}>
+                  {getAvatarPreset(activeAvatarId).badgeText || (user.name ? user.name.slice(0, 2).toUpperCase() : 'F1')}
+                </span>
+              </div>
               <div className="hidden sm:block text-left">
                 <span className="font-black text-white group-hover:text-cyan-300 block text-[11px] leading-tight transition-colors">{user.name || user.username}</span>
-                <span className="text-[9px] text-purple-400 block">{user.role || 'Telemetry Analyst'}</span>
+                <span className="text-[9px] text-purple-400 block">{user.role || 'Paddock Verified Engineer'}</span>
               </div>
             </Link>
           )}

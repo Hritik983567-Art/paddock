@@ -6,13 +6,34 @@ import { TRACKS_REGISTRY } from '@/app/lib/tracksRegistry';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+const ALIAS_MAP: Record<string, string> = {
+  'barcelona': 'catalunya',
+  'spain': 'catalunya',
+  'catalonia': 'catalunya',
+  'melbourne': 'albert_park',
+  'australia': 'albert_park',
+  'spielberg': 'red_bull_ring',
+  'austria': 'red_bull_ring',
+  'mexico_city': 'rodriguez',
+  'mexico': 'rodriguez',
+  'brazil': 'interlagos',
+  'sao_paulo': 'interlagos',
+  'cota': 'americas',
+  'vegas': 'vegas',
+  'las_vegas': 'vegas',
+  'singapore': 'marina_bay',
+  'abu_dhabi': 'yas_marina',
+  'qatar': 'losail'
+};
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ year: string; circuit: string }> }
 ) {
   try {
     const { year, circuit } = await params;
-    const circuitId = circuit.toLowerCase();
+    const rawId = circuit.toLowerCase();
+    const circuitId = ALIAS_MAP[rawId] || rawId;
     const altId = circuitId.includes('-') ? circuitId.replace(/-/g, '_') : circuitId.replace(/_/g, '-');
     const normId = circuitId.replace(/-/g, '_');
     const circuitsDir = path.join(process.cwd(), 'public', 'data', 'circuits');
