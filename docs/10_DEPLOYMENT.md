@@ -4,7 +4,7 @@
 | :--- | :--- |
 | **Document ID** | `PADDOCK-OPS-010` |
 | **Version** | `1.0.0` (Production Baseline) |
-| **Target Runtime** | Node.js 20+ / Vercel Edge & Serverless / Supabase |
+| **Target Runtime** | Node.js 22+ / Vercel Edge & Serverless / Supabase |
 | **Status** | Approved / Active |
 
 ---
@@ -12,7 +12,7 @@
 ## 1. Hosting Architecture Overview
 
 Paddock Telemetry is architected for low-latency serverless edge deployment:
-- **Frontend & Route Handlers**: Deployed on **Vercel** or any standalone Node.js 20+ host using Next.js 16 Turbopack.
+- **Frontend & Route Handlers**: Deployed on **Vercel** or any standalone Node.js 22+ host using Next.js 16 Turbopack.
 - **Persistence & Auth Layer**: Managed **Supabase** instance running PostgreSQL with RLS and PKCE OAuth services.
 - **Telemetry Upstream**: Jolpica/Ergast API cached via Next.js in-memory proxy, complemented by an asynchronous FastF1 Python telemetry worker.
 
@@ -51,12 +51,13 @@ Create a `.env.local` file in the project root based on the following matrix:
 ### 3.1 Vercel Deployment (Recommended)
 1. **Connect Repository**: Link the GitHub repository in the Vercel Dashboard.
 2. **Framework Preset**: Select **Next.js**.
-3. **Build & Output Settings**:
+3. **Node.js Version**: In Project Settings -> General -> Node.js Version, select **Node.js 22.x** (Required for `@supabase/supabase-js`).
+4. **Build & Output Settings**:
    - Build Command: `next build`
    - Output Directory: `.next`
    - Install Command: `npm install`
-4. **Environment Variables**: Add all required keys from Section 2 into the Vercel Project Settings.
-5. **Trigger Deploy**: Click **Deploy**. Vercel will compile static assets and configure Edge/Serverless Route Handlers.
+5. **Environment Variables**: Add all required keys from Section 2 into the Vercel Project Settings.
+6. **Trigger Deploy**: Click **Deploy**. Vercel will compile static assets and configure Edge/Serverless Route Handlers.
 
 ### 3.2 Supabase Database Setup
 1. Open your Supabase SQL Editor.
@@ -73,8 +74,8 @@ Create a `.env.local` file in the project root based on the following matrix:
 For self-hosted Linux servers (AWS ECS, Google Cloud Run, DigitalOcean):
 
 ```dockerfile
-# Multi-stage Dockerfile for Next.js 16 Standalone
-FROM node:20-alpine AS base
+# Multi-stage Dockerfile for Next.js 16 Standalone (Node.js 22+)
+FROM node:22-alpine AS base
 
 FROM base AS deps
 WORKDIR /app

@@ -4,6 +4,9 @@
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
+> ⚠️ **Node.js Runtime Requirement**: Node.js 20 and below are deprecated for `@supabase/supabase-js`. Target **Node.js 22 or later** for all builds and serverless runtimes.
+
+
 # 🏎️ Paddock Telemetry — Developer & AI Assistant Guide
 
 This document serves as the primary technical cheat sheet for working on **Paddock Telemetry**, an enterprise-grade Formula 1 telemetry, pit-wall reconnaissance, and race replay command center.

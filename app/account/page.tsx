@@ -7,8 +7,15 @@ import Link from 'next/link';
 import { AVATAR_PRESETS, getAvatarPreset } from '../lib/avatarPresets';
 
 export default function AccountSettingsPage() {
-  const { user, logout } = useAuth();
+  const { user, logout, updateProfile } = useAuth();
   const [displayName, setDisplayName] = React.useState(user?.name || user?.username || '');
+
+  React.useEffect(() => {
+    if (user?.name || user?.username) {
+      setDisplayName(user.name || user.username || '');
+    }
+  }, [user?.name, user?.username]);
+
   const [selectedAvatarId, setSelectedAvatarId] = React.useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('paddock_avatar_preset') || 'paddock_engineer';
@@ -34,8 +41,11 @@ export default function AccountSettingsPage() {
     setTimeout(() => setSavedSuccess(false), 3000);
   };
 
-  const handleSaveProfile = (e: React.FormEvent) => {
+  const handleSaveProfile = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (updateProfile) {
+      await updateProfile({ name: displayName });
+    }
     setSavedSuccess(true);
     setTimeout(() => setSavedSuccess(false), 3000);
   };

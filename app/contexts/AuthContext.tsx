@@ -19,6 +19,7 @@ interface AuthContextType {
   register: (name: string, email: string, pass: string, team?: string) => Promise<{ success: boolean; message?: string }>;
   loginWithGoogle: (credential?: string) => Promise<boolean>;
   logout: () => void;
+  updateProfile: (updatedData: { name?: string; role?: string }) => Promise<void>;
   isLoading: boolean;
 }
 
@@ -33,6 +34,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function checkSession() {
       try {
+        const localCustomName = typeof window !== 'undefined' ? localStorage.getItem('paddock_user_display_name') : null;
+
         // First check Supabase session for email confirmation state
         const { data: sbData } = await supabase.auth.getSession();
         if (sbData?.session?.user && !sbData.session.user.email_confirmed_at && sbData.session.user.app_metadata?.provider === 'email') {
@@ -48,12 +51,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const res = await fetch('/api/auth/verify');
         const data = await res.json();
         if (res.ok && data.authenticated && data.user) {
-          setUser(data.user);
+          const userObj = {
+            ...data.user,
+            name: localCustomName || data.user.name || data.user.username
+          };
+          setUser(userObj);
           setIsAuthenticated(true);
         } else if (sbData?.session?.user && (sbData.session.user.email_confirmed_at || sbData.session.user.app_metadata?.provider !== 'email')) {
           const u = sbData.session.user;
           const email = u.email || '';
-          const name = u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
+          const name = localCustomName || u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
           setUser({
             username: email,
             name: name,
@@ -88,9 +95,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setIsAuthenticated(false);
           return;
         }
+        const localCustomName = typeof window !== 'undefined' ? localStorage.getItem('paddock_user_display_name') : null;
         const u = session.user;
         const email = u.email || '';
-        const name = u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
+        const name = localCustomName || u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
         setUser({
           username: email,
           name: name,
@@ -118,7 +126,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       const data = await res.json();
       if (res.ok && data.success && data.user) {
-        setUser(data.user);
+        const localCustomName = typeof window !== 'undefined' ? localStorage.getItem('paddock_user_display_name') : null;
+        setUser({
+          ...data.user,
+          name: localCustomName || data.user.name || data.user.username
+        });
         setIsAuthenticated(true);
         return true;
       }
@@ -138,7 +150,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       const data = await res.json();
       if (res.ok && data.success && data.user) {
-        setUser(data.user);
+        if (typeof window !== 'undefined' && name) {
+          localStorage.setItem('paddock_user_display_name', name);
+        }
+        setUser({
+          ...data.user,
+          name: name || data.user.name
+        });
         setIsAuthenticated(true);
         return { success: true, message: data.message };
       }
@@ -158,13 +176,45 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       const data = await res.json();
       if (res.ok && data.success && data.user) {
-        setUser(data.user);
+        const localCustomName = typeof window !== 'undefined' ? localStorage.getItem('paddock_user_display_name') : null;
+        setUser({
+          ...data.user,
+          name: localCustomName || data.user.name || data.user.username
+        });
         setIsAuthenticated(true);
         return true;
       }
       return false;
     } catch {
       return false;
+    }
+  };
+
+  const updateProfile = async (updatedData: { name?: string; role?: string }): Promise<void> => {
+    if (updatedData.name !== undefined && typeof window !== 'undefined') {
+      localStorage.setItem('paddock_user_display_name', updatedData.name);
+    }
+
+    try {
+      if (updatedData.name) {
+        await supabase.auth.updateUser({
+          data: { full_name: updatedData.name, name: updatedData.name }
+        });
+      }
+    } catch {
+      // ignore offline / local session fallback errors
+    }
+
+    setUser(prev => {
+      if (!prev) return null;
+      return {
+        ...prev,
+        ...updatedData
+      };
+    });
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('paddock_profile_updated'));
     }
   };
 
@@ -198,7 +248,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, register, loginWithGoogle, logout, isLoading }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, register, loginWithGoogle, logout, updateProfile, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
