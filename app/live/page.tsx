@@ -185,7 +185,7 @@ export default function LiveTelemetryPage() {
   const [activeDriverCode, setActiveDriverCode] = useState<string | null>(null);
   const [currentLap, setCurrentLap] = useState(14);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [speed, setSpeed] = useState(2500); // 2.5s telemetry ticks
+  const [speed, setSpeed] = useState(800); // High-frequency 800ms telemetry ticks
   const [flagStatus, setFlagStatus] = useState<'GREEN' | 'YELLOW' | 'SAFETY CAR'>('GREEN');
   const [connectionMode, setConnectionMode] = useState<'SIMULATOR' | 'LIVE_SERVER'>('SIMULATOR');
   const [proxyStatus, setProxyStatus] = useState<'OFFLINE' | 'CONNECTING' | 'CONNECTED'>('OFFLINE');

@@ -108,8 +108,8 @@ export default function CircuitWeatherRadar({
       }
     }
     loadData();
-    // Poll every 3 minutes for live weather radar updates
-    const timer = setInterval(loadData, 180000);
+    // Poll every 30 seconds for live weather radar updates
+    const timer = setInterval(loadData, 30000);
     return () => {
       isCancelled = true;
       clearInterval(timer);
@@ -335,7 +335,7 @@ export default function CircuitWeatherRadar({
     };
 
     const render = () => {
-      angle = (angle + 0.028) % (Math.PI * 2);
+      angle = (angle + 0.072) % (Math.PI * 2);
       drawRadar(canvasRef.current, false);
       if (showExpandedModal) {
         drawRadar(modalCanvasRef.current, true);

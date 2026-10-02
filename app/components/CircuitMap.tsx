@@ -38,7 +38,7 @@ interface LiveDriverOverlayProps {
   onHoverDriver?: (code: string | null) => void;
 }
 
-const LAP_DURATION_MS = 75000; // Continuous 75s lap cycle anchored to wall-clock time
+const LAP_DURATION_MS = 22000; // High-velocity 22s lap cycle anchored to 60FPS wall-clock time
 
 // Subcomponent: Live Driver Overlay with wall-clock continuous time progress
 const LiveDriverOverlay = React.memo(function LiveDriverOverlay({
