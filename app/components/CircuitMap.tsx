@@ -307,6 +307,13 @@ export function CircuitMap({
   const isTouchDownRef = useRef<boolean>(false);
   const startTouchPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
+  const [trackCursorPt, setTrackCursorPt] = useState<{
+    x: number;
+    y: number;
+    sector: string;
+    nearestCorner?: string;
+  } | null>(null);
+
   const handleMouseDown = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement | SVGElement | null;
     if (target && (target.closest?.('[data-corner="true"]') || target.closest?.('.group\\/anchor') || target.closest?.('.group\\/badge'))) {
@@ -319,22 +326,83 @@ export function CircuitMap({
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isMouseDownRef.current) return;
-    const dx = e.clientX - startMousePos.current.x;
-    const dy = e.clientY - startMousePos.current.y;
-    // 12px threshold ensures micro-movements during clicks never pan or drag the canvas
-    if (!hasMovedRef.current && Math.hypot(dx, dy) < 12) return;
-    hasMovedRef.current = true;
-    setIsDragging(true);
-    setPan({
-      x: e.clientX - dragStartRef.current.x,
-      y: e.clientY - dragStartRef.current.y
-    });
+    if (isMouseDownRef.current) {
+      const dx = e.clientX - startMousePos.current.x;
+      const dy = e.clientY - startMousePos.current.y;
+      // 12px threshold ensures micro-movements during clicks never pan or drag the canvas
+      if (!hasMovedRef.current && Math.hypot(dx, dy) < 12) return;
+      hasMovedRef.current = true;
+      setIsDragging(true);
+      setPan({
+        x: e.clientX - dragStartRef.current.x,
+        y: e.clientY - dragStartRef.current.y
+      });
+      return;
+    }
+
+    // Keep indicator strictly locked on the track centerline when moving cursor
+    if (svgRef.current && trackData && trackData.transformedPoints) {
+      const rect = svgRef.current.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        const rawX = ((e.clientX - rect.left) / rect.width) * 1000;
+        const rawY = ((e.clientY - rect.top) / rect.height) * 700;
+
+        const svgX = (rawX - 500 - pan.x) / zoom + 500;
+        const svgY = (rawY - 350 - pan.y) / zoom + 350;
+
+        const pts = trackData.transformedPoints;
+        let minDistSq = Infinity;
+        let closestPt = pts[0];
+        let closestIndex = 0;
+
+        for (let i = 0; i < pts.length; i++) {
+          const dx = pts[i].x - svgX;
+          const dy = pts[i].y - svgY;
+          const dSq = dx * dx + dy * dy;
+          if (dSq < minDistSq) {
+            minDistSq = dSq;
+            closestPt = pts[i];
+            closestIndex = i;
+          }
+        }
+
+        const dist = Math.sqrt(minDistSq);
+        if (dist <= 140 && closestPt) {
+          const ratio = closestIndex / (pts.length - 1);
+          const sector = ratio < 0.33 ? 'S1' : ratio < 0.66 ? 'S2' : 'S3';
+
+          let nearestCorner = '';
+          let minCornerDist = Infinity;
+          (trackData.transformedCorners || []).forEach(c => {
+            const d = Math.hypot(c.anchorX - closestPt.x, c.anchorY - closestPt.y);
+            if (d < minCornerDist) {
+              minCornerDist = d;
+              nearestCorner = `Turn ${c.number}${c.letter || ''}`;
+            }
+          });
+
+          setTrackCursorPt({
+            x: closestPt.x,
+            y: closestPt.y,
+            sector,
+            nearestCorner: minCornerDist < 50 ? nearestCorner : undefined
+          });
+        } else {
+          setTrackCursorPt(null);
+        }
+      }
+    }
   };
 
   const handleMouseUp = () => {
     isMouseDownRef.current = false;
     setIsDragging(false);
+  };
+
+  const handleMouseLeave = () => {
+    isMouseDownRef.current = false;
+    setIsDragging(false);
+    setTrackCursorPt(null);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -628,7 +696,7 @@ export function CircuitMap({
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -941,6 +1009,48 @@ export function CircuitMap({
                 activeDriverCode={activeDriverCode}
                 onHoverDriver={onHoverDriver}
               />
+
+              {/* LAYER 7.5: Track-Clamped Precision Telemetry Cursor */}
+              {trackCursorPt && !isNaN(trackCursorPt.x) && !isNaN(trackCursorPt.y) && (
+                <g
+                  transform={`translate(${trackCursorPt.x}, ${trackCursorPt.y})`}
+                  className="pointer-events-none select-none"
+                >
+                  {/* Precision Track Crosshair */}
+                  <line x1="-8" y1="0" x2="8" y2="0" stroke="#00F5D4" strokeWidth="1.5" opacity="0.85" />
+                  <line x1="0" y1="-8" x2="0" y2="8" stroke="#00F5D4" strokeWidth="1.5" opacity="0.85" />
+
+                  {/* Centerline Clamped Pulse Dot */}
+                  <circle r="4.5" fill="#00F5D4" stroke="#090D16" strokeWidth="2" filter="url(#glow)" />
+                  <circle r="9" fill="none" stroke="#00F5D4" strokeWidth="1.5" opacity="0.6" />
+
+                  {/* Track Telemetry Floating Readout */}
+                  <g transform="translate(0, -18)">
+                    <rect
+                      x="-42"
+                      y="-10"
+                      width="84"
+                      height="20"
+                      rx="5"
+                      fill="#090D16"
+                      stroke="#00F5D4"
+                      strokeWidth="1.5"
+                      filter="url(#glow)"
+                    />
+                    <text
+                      x="0"
+                      y="4"
+                      fill="#00F5D4"
+                      fontSize="9"
+                      fontWeight="900"
+                      fontFamily="monospace"
+                      textAnchor="middle"
+                    >
+                      {trackCursorPt.sector} {trackCursorPt.nearestCorner ? `• ${trackCursorPt.nearestCorner}` : '• TRACK'}
+                    </text>
+                  </g>
+                </g>
+              )}
             </g>
           </svg>
 
