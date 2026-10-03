@@ -211,13 +211,6 @@ export default function DriversPage() {
     loadDriverList();
   }, [selectedSeason, allHistoryMode]);
 
-  // Sync profile data and headshot photo automatically on driver selection or season change
-  useEffect(() => {
-    if (selectedDriverId) {
-      loadProfile();
-    }
-  }, [selectedDriverId, selectedSeason]);
-
   const loadProfile = async () => {
     if (!selectedDriverId) return;
 
@@ -433,6 +426,13 @@ export default function DriversPage() {
       setLoadingProfile(false);
     }
   };
+
+  // Sync profile data and headshot photo automatically on driver selection or season change
+  useEffect(() => {
+    if (selectedDriverId) {
+      loadProfile();
+    }
+  }, [selectedDriverId, selectedSeason]);
 
   const renderPVCFigure = () => {
     const isSeason = statViewMode === 'season';

@@ -50,8 +50,13 @@ export const DriverMarker: React.FC<DriverMarkerProps> = ({
   return (
     <g
       transform={`translate(${x}, ${y})`}
-      className="cursor-pointer transition-transform duration-300 ease-out"
-      onClick={() => onSelect(driverId)}
+      className="cursor-pointer"
+      onClick={(e) => {
+        e.stopPropagation();
+        onSelect(driverId);
+      }}
+      onMouseDown={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()}
       onMouseEnter={() => {
         setShowTooltip(true);
         onHover(driverId);
@@ -66,11 +71,11 @@ export const DriverMarker: React.FC<DriverMarkerProps> = ({
         <circle
           cx="0"
           cy="0"
-          r="16"
+          r="15"
           fill="none"
           stroke={markerBorder}
           strokeWidth="2.5"
-          className="animate-ping opacity-75"
+          opacity="0.8"
         />
       )}
 

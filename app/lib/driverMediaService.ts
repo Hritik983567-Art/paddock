@@ -987,11 +987,11 @@ export function getDriverMediaProfile(
     ? `/images/holograms/${LOCAL_HOLOGRAMS.has(canonicalKey) ? canonicalKey : normId}.jpg`
     : '/images/holograms/default.jpg';
 
-  let name = master?.name || driverId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-  let code = master?.code || driverId.substring(0, 3).toUpperCase();
-  let number = master?.number || '—';
-  let nationality = master?.nationality || 'International';
-  let flag = master?.flag || NATIONALITY_FLAGS[nationality] || '🏎️';
+  const name = master?.name || driverId.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const code = master?.code || driverId.substring(0, 3).toUpperCase();
+  const number = master?.number || '—';
+  const nationality = master?.nationality || 'International';
+  const flag = master?.flag || NATIONALITY_FLAGS[nationality] || '🏎️';
 
   let teamId = 'default';
   let teamName = 'F1 Racing Team';

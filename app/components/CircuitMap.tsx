@@ -123,19 +123,25 @@ const LiveDriverOverlay = React.memo(function LiveDriverOverlay({
           <g
             key={`driver-car-${d.driverId || d.code}`}
             transform={`translate(${d.x}, ${d.y})`}
-            className="cursor-pointer transition-transform duration-75"
+            className="cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              onHoverDriver?.(isActive ? null : d.code);
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
             onMouseEnter={() => onHoverDriver?.(d.code)}
             onMouseLeave={() => onHoverDriver?.(null)}
           >
-            {/* Outer Pulse Ring for Active / Hovered Driver */}
+            {/* Outer Halo Ring for Active / Hovered Driver */}
             {isActive && (
               <circle
-                r={radius + 8}
+                r={radius + 5}
                 fill="none"
                 stroke={teamColor}
                 strokeWidth="2.5"
                 opacity="0.9"
-                className="animate-ping"
+                filter="url(#glow)"
               />
             )}
 
@@ -833,11 +839,6 @@ export function CircuitMap({
                     className="cursor-pointer group/anchor"
                     style={{ pointerEvents: 'all' }}
                     onClick={(e) => onCornerTrigger(e, corner)}
-                    onPointerUp={(e) => {
-                      if ((e as React.PointerEvent).pointerType === 'touch') {
-                        onCornerTrigger(e, corner);
-                      }
-                    }}
                     onMouseDown={(e) => e.stopPropagation()}
                     onTouchStart={(e) => e.stopPropagation()}
                   >
@@ -889,11 +890,6 @@ export function CircuitMap({
                     className="cursor-pointer group/badge select-none"
                     style={{ pointerEvents: 'all' }}
                     onClick={(e) => onCornerTrigger(e, corner)}
-                    onPointerUp={(e) => {
-                      if ((e as React.PointerEvent).pointerType === 'touch') {
-                        onCornerTrigger(e, corner);
-                      }
-                    }}
                     onMouseDown={(e) => e.stopPropagation()}
                     onTouchStart={(e) => e.stopPropagation()}
                   >
