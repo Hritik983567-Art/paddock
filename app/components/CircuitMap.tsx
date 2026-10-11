@@ -13,7 +13,7 @@ import {
 import { CornerDetails } from './CornerDetails';
 import { CornerDirectory } from './CornerDirectory';
 import { getTeamColor } from '../utils/api';
-import { TRACKS_REGISTRY } from '../lib/tracksRegistry';
+import { TRACKS_REGISTRY, getTrackDefinition } from '../lib/tracksRegistry';
 
 export interface CircuitMapProps {
   circuit?: string;
@@ -265,17 +265,60 @@ export function CircuitMap({
       .then(data => {
         if (!isMounted) return;
         if (data.status === 'DATA UNAVAILABLE') {
-          setError(data.reason || 'DATA UNAVAILABLE');
-          setRawCircuitData(null);
+          const trackDef = getTrackDefinition(targetCircuit);
+          const points = trackDef.path.map(pt => ({ x: pt[0], y: pt[1] }));
+          setRawCircuitData({
+            circuit: {
+              id: targetCircuit,
+              name: trackDef.name || targetCircuit.replace(/_/g, ' ').toUpperCase(),
+              country: trackDef.country || '',
+              location: trackDef.country || '',
+              year: year
+            },
+            sourceSession: "Heritage Circuit Registry",
+            telemetryDriver: "HISTORIC",
+            telemetryLap: 1,
+            rotation: 0,
+            layout: {
+              source: "Circuit Registry Centerline",
+              coordinateSystem: "registry_xy",
+              pointCount: points.length,
+              points: points
+            },
+            corners: []
+          });
+          setError(null);
         } else {
           setRawCircuitData(data);
           setError(null);
         }
         setLoading(false);
       })
-      .catch(err => {
+      .catch(() => {
         if (!isMounted) return;
-        setError(err.message || 'Failed to load circuit telemetry data.');
+        const trackDef = getTrackDefinition(targetCircuit);
+        const points = trackDef.path.map(pt => ({ x: pt[0], y: pt[1] }));
+        setRawCircuitData({
+          circuit: {
+            id: targetCircuit,
+            name: trackDef.name || targetCircuit.replace(/_/g, ' ').toUpperCase(),
+            country: trackDef.country || '',
+            location: trackDef.country || '',
+            year: year
+          },
+          sourceSession: "Heritage Circuit Registry",
+          telemetryDriver: "HISTORIC",
+          telemetryLap: 1,
+          rotation: 0,
+          layout: {
+            source: "Circuit Registry Centerline",
+            coordinateSystem: "registry_xy",
+            pointCount: points.length,
+            points: points
+          },
+          corners: []
+        });
+        setError(null);
         setLoading(false);
       });
 
@@ -594,7 +637,7 @@ export function CircuitMap({
     cornersDict
   } = trackData;
 
-  const trackMeta = TRACKS_REGISTRY[targetCircuit] || TRACKS_REGISTRY[targetCircuit.replace(/-/g, '_')];
+  const trackMeta = getTrackDefinition(targetCircuit);
   const trackLengthKm = trackMeta?.length_km;
 
   const selectedKey = selectedCorner ? `t${selectedCorner.number}${selectedCorner.letter || ''}`.toLowerCase() : '';

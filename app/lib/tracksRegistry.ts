@@ -1517,11 +1517,10 @@ const ALIAS_MAP: Record<string, string> = {
   'brazil': 'interlagos',
   'sao_paulo': 'interlagos',
   'cota': 'americas',
-  'vegas': 'vegas',
-  'las_vegas': 'vegas',
   'singapore': 'marina_bay',
   'abu_dhabi': 'yas_marina',
-  'qatar': 'losail'
+  'qatar': 'losail',
+  'ain-diab': 'ain_diab'
 };
 
 export function getTrackDefinition(id: string): TrackDefinition {

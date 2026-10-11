@@ -2,12 +2,28 @@
 
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme, F1Theme } from '../contexts/ThemeContext';
 import Link from 'next/link';
 
 import { AVATAR_PRESETS, getAvatarPreset } from '../lib/avatarPresets';
 
+const THEME_OPTIONS: { id: F1Theme; name: string; sub: string; icon: string }[] = [
+  { id: 'checkered', name: 'Checkered Flag', sub: 'F1 Race Atmosphere', icon: '🏁' },
+  { id: 'ferrari', name: 'Scuderia Ferrari', sub: 'Rosso Corsa', icon: '🔴' },
+  { id: 'redbull', name: 'Red Bull Racing', sub: 'Midnight Blue', icon: '🔵' },
+  { id: 'mercedes', name: 'Mercedes-AMG', sub: 'Silver Arrows', icon: '🟢' },
+  { id: 'mclaren', name: 'McLaren F1', sub: 'Papaya Orange', icon: '🟠' },
+  { id: 'aston', name: 'Aston Martin', sub: 'Racing Green', icon: '💚' },
+  { id: 'alpine', name: 'BWT Alpine', sub: 'French Blue', icon: '🔹' },
+  { id: 'haas', name: 'Haas F1', sub: 'Monochrome', icon: '⚪' },
+  { id: 'racingbulls', name: 'Racing Bulls', sub: 'Electric Blue', icon: '⚡' },
+  { id: 'sauber', name: 'Stake Sauber', sub: 'Neon Green', icon: '🟩' },
+  { id: 'williams', name: 'Williams Racing', sub: 'Heritage Blue', icon: '🟦' },
+];
+
 export default function AccountSettingsPage() {
   const { user, logout, updateProfile } = useAuth();
+  const { theme, setTheme } = useTheme();
   const [displayName, setDisplayName] = React.useState(user?.name || user?.username || '');
 
   React.useEffect(() => {
@@ -243,6 +259,47 @@ export default function AccountSettingsPage() {
                 </button>
               </div>
             </form>
+          </div>
+
+          {/* F1 Constructor Theme & Livery Section */}
+          <div className="p-6 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-xl backdrop-blur-md">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-sm font-black font-mono text-cyan-400 uppercase tracking-widest flex items-center gap-2">
+                <span>🎨</span>
+                <span>F1 Constructor &amp; Checkered Flag Theme</span>
+              </h2>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 border border-cyan-800 text-cyan-300 font-bold uppercase">
+                {theme === 'default' ? 'CHECKERED' : theme.toUpperCase()}
+              </span>
+            </div>
+
+            <p className="text-xs text-slate-400 leading-relaxed mb-4">
+              Select your favorite Formula 1 constructor livery or the signature Checkered Flag race atmosphere.
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              {THEME_OPTIONS.map((t) => {
+                const isActive = theme === t.id || (theme === 'default' && t.id === 'checkered');
+                return (
+                  <button
+                    key={t.id}
+                    type="button"
+                    onClick={() => setTheme(t.id)}
+                    className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                      isActive
+                        ? 'border-cyan-400 bg-cyan-950/50 shadow-[0_0_14px_rgba(6,182,212,0.35)] ring-1 ring-cyan-400/40'
+                        : 'border-slate-800 bg-slate-950/60 hover:border-slate-700 hover:bg-slate-900/80'
+                    }`}
+                  >
+                    <span className="text-xl">{t.icon}</span>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-xs font-mono font-bold text-white truncate">{t.name}</div>
+                      <div className="text-[9px] font-mono text-slate-400 truncate">{t.sub}</div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Account Deletion / Data Request */}

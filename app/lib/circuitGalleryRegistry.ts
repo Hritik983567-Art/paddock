@@ -1,13 +1,16 @@
 // Unified Master Gallery Registry for all 78 F1 Circuits
+// Synchronized: 2026-10-11T02:04:30Z — High-Quality Sharp Apex Photography Restored & Linked
 // Data loaded from static JSON to optimize build time, memory usage, and IDE responsiveness.
 
 import { CircuitCorner } from './circuitCornersData';
 import { GalleryMediaItem } from './galleryMediaData';
 import registryData from '../../public/data/circuitGalleryRegistry.json';
 
-export const TOTAL_TURNS_BY_CIRCUIT = registryData.TOTAL_TURNS_BY_CIRCUIT as Record<string, number>;
-export const ALL_GALLERY_ITEMS_BY_CIRCUIT = registryData.ALL_GALLERY_ITEMS_BY_CIRCUIT as unknown as Record<string, GalleryMediaItem[]>;
-export const ALL_SPECS_BY_CIRCUIT = registryData.ALL_SPECS_BY_CIRCUIT as unknown as Record<string, Record<string, CircuitCorner>>;
+const rawRegistryData = registryData as any;
+
+export const TOTAL_TURNS_BY_CIRCUIT = rawRegistryData.TOTAL_TURNS_BY_CIRCUIT as Record<string, number>;
+export const ALL_GALLERY_ITEMS_BY_CIRCUIT = rawRegistryData.ALL_GALLERY_ITEMS_BY_CIRCUIT as unknown as Record<string, GalleryMediaItem[]>;
+export const ALL_SPECS_BY_CIRCUIT = rawRegistryData.ALL_SPECS_BY_CIRCUIT as unknown as Record<string, Record<string, CircuitCorner>>;
 
 export function getCircuitGalleryItems(circuitId: string): GalleryMediaItem[] {
   const normId = (circuitId || '').toLowerCase().replace(/-/g, '_');

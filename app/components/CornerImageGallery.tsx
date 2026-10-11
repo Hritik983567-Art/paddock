@@ -28,7 +28,9 @@ function getGuaranteedCornerImages(corner: CircuitCorner): CornerImage[] {
   const turnName = corner.name || 'Circuit Turn';
   const turnLabel = corner.turns || 'T1';
   const entrySpeed = corner.technical?.entrySpeed || '245 km/h';
-  const gear = corner.technical?.typicalGear || '4th Gear';
+  const turnNumMatch = (corner.turns || '').match(/\d+/);
+  const tNum = turnNumMatch ? parseInt(turnNumMatch[0], 10) : 1;
+  const gear = corner.technical?.typicalGear || (tNum <= 2 ? '2nd Gear' : tNum % 3 === 0 ? '5th Gear' : '3rd Gear');
 
   const svgMap1 = `data:image/svg+xml;utf8,${encodeURIComponent(`
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="900" height="500">

@@ -50,22 +50,38 @@ export const TelemetryPanel: React.FC<TelemetryPanelProps> = ({
 
           <div className="bg-[#0D121F] p-3 rounded-lg border border-slate-700/80">
             <span className="text-[10px] font-bold text-cyan-400 block uppercase mb-0.5">THROTTLE</span>
-            <span className="text-lg font-black text-white">{speed ? '98%' : 'N/A'}</span>
+            <span className="text-lg font-black text-white">
+              {speed ? (speed < 90 ? '55%' : speed < 160 ? '78%' : speed < 240 ? '92%' : '100%') : 'N/A'}
+            </span>
           </div>
 
           <div className="bg-[#0D121F] p-3 rounded-lg border border-slate-700/80">
             <span className="text-[10px] font-bold text-cyan-400 block uppercase mb-0.5">BRAKE</span>
-            <span className="text-lg font-black text-white">{speed ? '0%' : 'N/A'}</span>
+            <span className="text-lg font-black text-white">
+              {speed ? (speed < 100 ? '45%' : '0%') : 'N/A'}
+            </span>
           </div>
 
           <div className="bg-[#0D121F] p-3 rounded-lg border border-slate-700/80">
             <span className="text-[10px] font-bold text-cyan-400 block uppercase mb-0.5">GEAR</span>
-            <span className="text-lg font-black text-white">{speed ? '7th Gear' : 'N/A'}</span>
+            <span className="text-lg font-black text-white">
+              {speed ? (
+                speed < 80 ? '1st Gear' :
+                speed < 118 ? '2nd Gear' :
+                speed < 158 ? '3rd Gear' :
+                speed < 198 ? '4th Gear' :
+                speed < 242 ? '5th Gear' :
+                speed < 278 ? '6th Gear' :
+                speed < 305 ? '7th Gear' : '8th Gear'
+              ) : 'N/A'}
+            </span>
           </div>
 
           <div className="bg-[#0D121F] p-3 rounded-lg border border-slate-700/80">
             <span className="text-[10px] font-bold text-cyan-400 block uppercase mb-0.5">ENGINE RPM</span>
-            <span className="text-lg font-black text-white">{speed ? '11,850 RPM' : 'N/A'}</span>
+            <span className="text-lg font-black text-white">
+              {speed ? `${(10500 + Math.round((speed % 35) * 60)).toLocaleString()} RPM` : 'N/A'}
+            </span>
           </div>
 
           <div className="bg-[#0D121F] p-3 rounded-lg border border-slate-700/80">

@@ -435,9 +435,14 @@ export function enrichCornerDetails(c: TransformedCorner, targetCircuit: string,
   };
 
   const rawGearStr = c.technical?.typicalGear;
-  const sanitizedGear = rawGearStr
-    ? rawGearStr.replace('1th', '1st').replace('2th', '2nd').replace('3th', '3rd')
-    : formatGear(typicalGearNum);
+  let sanitizedGear: string;
+  if (rawGearStr && rawGearStr !== '4th Gear') {
+    sanitizedGear = rawGearStr.replace('1th', '1st').replace('2th', '2nd').replace('3th', '3rd');
+  } else if (rawGearStr === '4th Gear' && typicalGearNum === 4) {
+    sanitizedGear = '4th Gear';
+  } else {
+    sanitizedGear = formatGear(typicalGearNum);
+  }
 
   const entrySpeedNum = Math.min(345, apexSpeedNum + Math.round(75 + (c.number % 3) * 15));
   const exitSpeedNum = Math.min(330, apexSpeedNum + Math.round(40 + (c.number % 4) * 12));

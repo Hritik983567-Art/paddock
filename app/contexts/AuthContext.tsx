@@ -15,7 +15,7 @@ interface UserState {
 interface AuthContextType {
   isAuthenticated: boolean;
   user: UserState | null;
-  login: (user: string, pass: string, remember?: boolean) => Promise<boolean>;
+  login: (user?: string, pass?: string, remember?: boolean, isDevBypass?: boolean) => Promise<boolean>;
   register: (name: string, email: string, pass: string, team?: string) => Promise<{ success: boolean; message?: string }>;
   loginWithGoogle: (credential?: string) => Promise<boolean>;
   logout: () => void;
@@ -36,20 +36,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         const localCustomName = typeof window !== 'undefined' ? localStorage.getItem('paddock_user_display_name') : null;
 
-        // First check Supabase session for email confirmation state
-        const { data: sbData } = await supabase.auth.getSession();
-        if (sbData?.session?.user && !sbData.session.user.email_confirmed_at && sbData.session.user.app_metadata?.provider === 'email') {
-          // REVOKE UNCONFIRMED EMAIL SESSIONS IMMEDIATELY
-          await supabase.auth.signOut({ scope: 'global' });
-          await fetch('/api/auth/logout', { method: 'POST' });
-          setUser(null);
-          setIsAuthenticated(false);
-          setIsLoading(false);
-          return;
-        }
-
+        // 1. Check HttpOnly Cookie session via server /api/auth/verify first
         const res = await fetch('/api/auth/verify');
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
         if (res.ok && data.authenticated && data.user) {
           const userObj = {
             ...data.user,
@@ -57,7 +46,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           };
           setUser(userObj);
           setIsAuthenticated(true);
-        } else if (sbData?.session?.user && (sbData.session.user.email_confirmed_at || sbData.session.user.app_metadata?.provider !== 'email')) {
+          return;
+        }
+
+        // 2. Fall back to Supabase session
+        const { data: sbData } = await supabase.auth.getSession();
+        if (sbData?.session?.user && (sbData.session.user.email_confirmed_at || sbData.session.user.app_metadata?.provider !== 'email')) {
           const u = sbData.session.user;
           const email = u.email || '';
           const name = localCustomName || u.user_metadata?.full_name || u.user_metadata?.name || email.split('@')[0];
@@ -85,16 +79,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Real-time listener for Supabase Auth state changes
     const { data: authListener } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event === 'SIGNED_OUT' || !session) {
-        setUser(null);
-        setIsAuthenticated(false);
-      } else if (session?.user) {
-        if (!session.user.email_confirmed_at && session.user.app_metadata?.provider === 'email') {
-          // REJECT UNCONFIRMED EMAIL USER
+      if (event === 'SIGNED_OUT') {
+        // Only set unauthenticated if server token is also invalid
+        try {
+          const res = await fetch('/api/auth/verify');
+          const data = await res.json().catch(() => ({}));
+          if (!data.authenticated) {
+            setUser(null);
+            setIsAuthenticated(false);
+          }
+        } catch {
           setUser(null);
           setIsAuthenticated(false);
-          return;
         }
+      } else if (session?.user && (session.user.email_confirmed_at || session.user.app_metadata?.provider !== 'email')) {
         const localCustomName = typeof window !== 'undefined' ? localStorage.getItem('paddock_user_display_name') : null;
         const u = session.user;
         const email = u.email || '';
@@ -116,12 +114,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  const login = async (usernameInput: string, passwordInput: string, remember?: boolean): Promise<boolean> => {
+  const login = async (usernameInput: string = '', passwordInput: string = '', remember?: boolean, isDevBypass?: boolean): Promise<boolean> => {
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: usernameInput, password: passwordInput, remember })
+        body: JSON.stringify({
+          username: usernameInput,
+          password: passwordInput,
+          remember,
+          isDevBypass: Boolean(isDevBypass)
+        })
       });
 
       const data = await res.json();

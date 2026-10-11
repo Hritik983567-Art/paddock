@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export type F1Theme = 
   | 'default' 
+  | 'checkered'
   | 'ferrari' 
   | 'redbull' 
   | 'mercedes' 

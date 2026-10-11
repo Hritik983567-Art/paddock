@@ -48,7 +48,7 @@ function GalleryContent() {
   const [selectedMedia, setSelectedMedia] = useState<GalleryMediaItem | null>(null);
   const [activeCornerDetails, setActiveCornerDetails] = useState<CircuitCorner | null>(null);
 
-  const lastUrlCircuitRef = useRef<string | null>(targetCircuitFromUrl);
+  const lastUrlCircuitRef = useRef<string | null>(targetCircuitFromUrl || 'monza');
 
   // Sync selected circuit with URL params ONLY when URL parameter actually changes (e.g. browser back/forward)
   useEffect(() => {
@@ -134,7 +134,11 @@ function GalleryContent() {
     return idx >= 0 ? idx : 0;
   }, [selectedMedia, mediaToDisplay]);
 
-  // Navigate directly to a corner by index
+  // Ref containers for auto-scrolling sector navigation
+  const sectorsScrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const topStripScrollContainerRef = useRef<HTMLDivElement | null>(null);
+
+  // Navigate directly to a corner by index (0ms instant synchronous response)
   const handleSelectCornerIndex = useCallback((index: number) => {
     if (!mediaToDisplay || mediaToDisplay.length === 0) return;
     const clampedIndex = (index + mediaToDisplay.length) % mediaToDisplay.length;
@@ -145,8 +149,10 @@ function GalleryContent() {
     const specs = resolveCornerSpecs(targetItem);
     setActiveCornerDetails(specs);
 
-    router.replace(`/gallery?circuit=${selectedCircuitId}&corner=${targetItem.id}`, { scroll: false });
-  }, [mediaToDisplay, resolveCornerSpecs, router, selectedCircuitId]);
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `/gallery?circuit=${selectedCircuitId}&corner=${targetItem.id}`);
+    }
+  }, [mediaToDisplay, resolveCornerSpecs, selectedCircuitId]);
 
   const handlePrevCorner = useCallback(() => {
     handleSelectCornerIndex(currentCornerIndex - 1);
@@ -155,6 +161,31 @@ function GalleryContent() {
   const handleNextCorner = useCallback(() => {
     handleSelectCornerIndex(currentCornerIndex + 1);
   }, [currentCornerIndex, handleSelectCornerIndex]);
+
+  const handleCloseModal = useCallback(() => {
+    setSelectedMedia(null);
+    setActiveCornerDetails(null);
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `/gallery?circuit=${selectedCircuitId}`);
+    }
+  }, [selectedCircuitId]);
+
+  // Auto-scroll active corner into center of view in both bottom sector bar and top photo strip
+  useEffect(() => {
+    if (!selectedMedia) return;
+
+    // Smooth scroll the active bottom sector pill into center
+    const activeSectorPill = document.getElementById(`sector-pill-${currentCornerIndex}`);
+    if (activeSectorPill) {
+      activeSectorPill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    // Smooth scroll the active top photo pill into center
+    const activeTopPill = document.getElementById(`top-corner-pill-${currentCornerIndex}`);
+    if (activeTopPill) {
+      activeTopPill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [currentCornerIndex, selectedMedia]);
 
   // Keyboard navigation when reconnaissance modal is open
   useEffect(() => {
@@ -169,13 +200,13 @@ function GalleryContent() {
         handleNextCorner();
       } else if (e.key === 'Escape') {
         e.preventDefault();
-        setSelectedMedia(null);
+        handleCloseModal();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedMedia, handlePrevCorner, handleNextCorner]);
+  }, [selectedMedia, handlePrevCorner, handleNextCorner, handleCloseModal]);
 
   const handleSliderMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!sliderRef.current) return;
@@ -215,15 +246,18 @@ function GalleryContent() {
     modalOpenedAtRef.current = Date.now();
     setSelectedMedia(item);
     setActiveCornerDetails(specs);
-  }, []);
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `/gallery?circuit=${selectedCircuitId}&corner=${item.id}`);
+    }
+  }, [selectedCircuitId]);
 
   const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     // Prevent accidental closure from click bleed-through within 250ms of modal opening
     if (Date.now() - modalOpenedAtRef.current < 250) return;
     if (e.target === e.currentTarget) {
-      setSelectedMedia(null);
+      handleCloseModal();
     }
-  }, []);
+  }, [handleCloseModal]);
 
   // HANDLE CLICKING A PHOTO CARD IN GALLERY -> OPENS FULL INFORMATION MODAL
   const handleMediaCardClick = (item: GalleryMediaItem) => {
@@ -613,8 +647,12 @@ function GalleryContent() {
 
                         {/* License / Category Badge */}
                         <div className="absolute top-3 right-3">
-                          <span className="px-2.5 py-1 rounded-md bg-emerald-950/90 border border-emerald-500/80 text-[10px] font-display font-bold text-emerald-300 backdrop-blur-md">
-                            {item.license.includes('REAL') ? '📸 REAL APEX' : '✓ VERIFIED'}
+                          <span className={`px-2.5 py-1 rounded-md text-[10px] font-display font-bold backdrop-blur-md ${
+                            item.license.includes('DRONE') || item.category === 'drone_view'
+                              ? 'bg-cyan-950/90 border border-cyan-400/80 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.4)]'
+                              : 'bg-emerald-950/90 border border-emerald-500/80 text-emerald-300'
+                          }`}>
+                            {item.license.includes('DRONE') || item.category === 'drone_view' ? '🛸 DRONE VIEW' : (item.license.includes('REAL') ? '📸 REAL APEX' : '✓ VERIFIED')}
                           </span>
                         </div>
                       </div>
@@ -655,8 +693,8 @@ function GalleryContent() {
           >
             {/* Close Button */}
             <button
-              onClick={() => setSelectedMedia(null)}
-              className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-slate-950 border border-slate-700 text-slate-400 hover:text-white font-mono flex items-center justify-center transition"
+              onClick={handleCloseModal}
+              className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-slate-950 border border-slate-700 text-slate-400 hover:text-white font-mono flex items-center justify-center transition cursor-pointer select-none active:scale-95"
               title="Close Reconnaissance Information"
             >
               ✕
@@ -671,7 +709,7 @@ function GalleryContent() {
                 className="w-full h-full object-cover transition-opacity duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  const fallback = getCornerVisualSrc(selectedMedia, selectedCircuitId, undefined, activeCornerDetails);
+                  const fallback = generateCornerTelemetryBlueprintSvg(selectedMedia, selectedCircuitId, currentCornerIndex + 1, activeCornerDetails);
                   if (target.src !== fallback) {
                     target.src = fallback;
                   }
@@ -712,8 +750,16 @@ function GalleryContent() {
 
               {/* Floating Blended Semi-Transparent Corner Numbers Strip on Photo */}
               {mediaToDisplay.length > 1 && (
-                <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-1.5 p-1 sm:p-1.5 rounded-full bg-slate-950/40 backdrop-blur-md border border-white/10 max-w-[calc(100%-4.5rem)] overflow-x-auto scrollbar-none shadow-xl">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-300/70 pl-2 pr-1 select-none shrink-0">
+                <div 
+                  ref={topStripScrollContainerRef}
+                  onWheel={(e) => {
+                    if (e.deltaY !== 0) {
+                      e.currentTarget.scrollLeft += e.deltaY;
+                    }
+                  }}
+                  className="absolute top-3.5 left-3.5 z-20 flex items-center gap-1.5 p-1 sm:p-1.5 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/10 max-w-[calc(100%-4.5rem)] overflow-x-auto scrollbar-none shadow-xl scroll-smooth"
+                >
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-300/80 pl-2 pr-1 select-none shrink-0">
                     CORNERS:
                   </span>
                   <div className="flex items-center gap-1">
@@ -722,12 +768,16 @@ function GalleryContent() {
                       return (
                         <button
                           key={item.id}
+                          id={`top-corner-pill-${idx}`}
                           type="button"
-                          onClick={() => handleSelectCornerIndex(idx)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleSelectCornerIndex(idx);
+                          }}
                           title={`${idx + 1}. ${item.title}`}
-                          className={`min-w-[26px] sm:min-w-[30px] h-6 sm:h-7 px-1.5 sm:px-2 rounded-full font-telemetry text-xs font-black transition-all duration-200 flex items-center justify-center cursor-pointer select-none shrink-0 ${
+                          className={`min-w-[26px] sm:min-w-[30px] h-6 sm:h-7 px-1.5 sm:px-2 rounded-full font-telemetry text-xs font-black transition-all duration-200 flex items-center justify-center cursor-pointer select-none shrink-0 active:scale-95 ${
                             isActive
-                              ? 'f1-badge-red text-white scale-110'
+                              ? 'f1-badge-red text-white scale-110 shadow-[0_0_12px_rgba(225,6,0,0.6)]'
                               : 'bg-white/[0.08] hover:bg-white/[0.2] text-slate-200/80 hover:text-white border border-white/10'
                           }`}
                         >
@@ -743,10 +793,16 @@ function GalleryContent() {
               <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
                 <div>
                   <span className="px-2.5 py-1 rounded bg-slate-950/80 border border-slate-700 text-xs font-mono font-bold text-red-400 backdrop-blur-md">
-                    {selectedMedia.category === 'photo' ? '📸 REAL APEX PHOTOGRAPHY' : '📐 FIA VECTOR DYNAMICS'}
+                    {selectedMedia.category === 'drone_view' || selectedMedia.license.includes('DRONE')
+                      ? '🛸 4K DRONE RECONNAISSANCE'
+                      : (selectedMedia.category === 'photo' ? '📸 REAL APEX PHOTOGRAPHY' : '📐 FIA VECTOR DYNAMICS')}
                   </span>
                 </div>
-                <span className="px-3 py-1 rounded bg-emerald-950/90 border border-emerald-700 text-xs font-mono font-bold text-emerald-400 backdrop-blur-md">
+                <span className={`px-3 py-1 rounded border text-xs font-mono font-bold backdrop-blur-md ${
+                  selectedMedia.license.includes('DRONE')
+                    ? 'bg-cyan-950/90 border-cyan-500/80 text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.4)]'
+                    : 'bg-emerald-950/90 border-emerald-700 text-emerald-400'
+                }`}>
                   {selectedMedia.license}
                 </span>
               </div>
@@ -754,12 +810,38 @@ function GalleryContent() {
 
             {/* Blended Semi-Transparent Track Corner Selector Bar */}
             {mediaToDisplay.length > 1 && (
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 p-3 rounded-xl bg-slate-950/40 border border-white/[0.08] backdrop-blur-md">
-                <div className="flex items-center gap-2 overflow-x-auto scrollbar-none py-1">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400/80 font-bold px-1 select-none shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 p-3 rounded-xl bg-slate-950/60 border border-white/[0.1] backdrop-blur-md">
+                <div className="flex items-center gap-1.5 min-w-0 flex-1">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold px-1 select-none shrink-0">
                     TRACK SECTORS ({mediaToDisplay.length}):
                   </span>
-                  <div className="flex items-center gap-1.5">
+
+                  {/* Left scroll chevron */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (sectorsScrollContainerRef.current) {
+                        sectorsScrollContainerRef.current.scrollBy({ left: -140, behavior: 'smooth' });
+                      }
+                    }}
+                    className="w-6 h-6 rounded-md bg-white/[0.06] hover:bg-white/[0.16] text-slate-300 hover:text-white border border-white/[0.08] flex items-center justify-center text-xs shrink-0 cursor-pointer transition select-none active:scale-90"
+                    title="Scroll sectors left"
+                    aria-label="Scroll sectors left"
+                  >
+                    ‹
+                  </button>
+
+                  {/* Scrollable Sector Pills Container */}
+                  <div 
+                    ref={sectorsScrollContainerRef}
+                    onWheel={(e) => {
+                      if (e.deltaY !== 0) {
+                        e.currentTarget.scrollLeft += e.deltaY;
+                      }
+                    }}
+                    className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-1 scroll-smooth min-w-0 flex-1"
+                  >
                     {mediaToDisplay.map((item, idx) => {
                       const isActive = idx === currentCornerIndex;
                       const turnMatch = item.title.match(/turns?\s*([\d\-\–]+)/i);
@@ -767,12 +849,16 @@ function GalleryContent() {
                       return (
                         <button
                           key={item.id}
+                          id={`sector-pill-${idx}`}
                           type="button"
-                          onClick={() => handleSelectCornerIndex(idx)}
-                          className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-display text-xs transition-all duration-200 cursor-pointer select-none shrink-0 ${
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleSelectCornerIndex(idx);
+                          }}
+                          className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-display text-xs transition-all duration-200 cursor-pointer select-none shrink-0 active:scale-95 ${
                             isActive
-                              ? 'f1-badge-red text-white'
-                              : 'bg-white/[0.05] hover:bg-white/[0.12] text-slate-300/70 hover:text-white border border-white/[0.08]'
+                              ? 'f1-badge-red text-white shadow-[0_0_12px_rgba(225,6,0,0.5)] ring-1 ring-white/30'
+                              : 'bg-white/[0.05] hover:bg-white/[0.15] text-slate-300/80 hover:text-white border border-white/[0.08]'
                           }`}
                           title={item.title}
                         >
@@ -788,28 +874,51 @@ function GalleryContent() {
                       );
                     })}
                   </div>
+
+                  {/* Right scroll chevron */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (sectorsScrollContainerRef.current) {
+                        sectorsScrollContainerRef.current.scrollBy({ left: 140, behavior: 'smooth' });
+                      }
+                    }}
+                    className="w-6 h-6 rounded-md bg-white/[0.06] hover:bg-white/[0.16] text-slate-300 hover:text-white border border-white/[0.08] flex items-center justify-center text-xs shrink-0 cursor-pointer transition select-none active:scale-90"
+                    title="Scroll sectors right"
+                    aria-label="Scroll sectors right"
+                  >
+                    ›
+                  </button>
                 </div>
 
+                {/* Prev / Current / Next Controls */}
                 <div className="flex items-center justify-end gap-2 font-mono text-xs shrink-0 pt-1 sm:pt-0 border-t sm:border-t-0 border-white/[0.06]">
                   <button
                     type="button"
-                    onClick={handlePrevCorner}
-                    className="px-2.5 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.12] border border-white/[0.08] text-slate-300/80 hover:text-white flex items-center gap-1 transition cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePrevCorner();
+                    }}
+                    className="px-2.5 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.16] border border-white/[0.1] text-slate-200 hover:text-white flex items-center gap-1 transition cursor-pointer select-none active:scale-95 shadow-sm"
                     title="Previous Corner (←)"
                   >
                     <span>‹</span>
-                    <span className="text-[11px]">PREV</span>
+                    <span className="text-[11px] font-bold">PREV</span>
                   </button>
-                  <span className="text-slate-400 font-bold text-xs px-1">
+                  <span className="text-slate-300 font-bold text-xs px-1 select-none">
                     {currentCornerIndex + 1} / {mediaToDisplay.length}
                   </span>
                   <button
                     type="button"
-                    onClick={handleNextCorner}
-                    className="px-2.5 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.12] border border-white/[0.08] text-slate-300/80 hover:text-white flex items-center gap-1 transition cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleNextCorner();
+                    }}
+                    className="px-2.5 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.16] border border-white/[0.1] text-slate-200 hover:text-white flex items-center gap-1 transition cursor-pointer select-none active:scale-95 shadow-sm"
                     title="Next Corner (→)"
                   >
-                    <span className="text-[11px]">NEXT</span>
+                    <span className="text-[11px] font-bold">NEXT</span>
                     <span>›</span>
                   </button>
                 </div>
@@ -888,7 +997,7 @@ function GalleryContent() {
                 <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
                   <span className="block text-[10px] text-[#FFB800] font-display font-bold uppercase tracking-wider">TYPICAL GEAR</span>
                   <span className="text-base font-telemetry font-black text-[#FFB800]">
-                    {selectedMedia.typicalGear || tech.typicalGear || 'N/A'}
+                    {(tech.typicalGear && tech.typicalGear !== 'N/A') ? tech.typicalGear : (selectedMedia.typicalGear || 'N/A')}
                   </span>
                 </div>
                 <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">

@@ -184,7 +184,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* F1 Team Themes - Official Constructor Branding */
 :root,
-:root[data-theme="default"] {
+:root[data-theme="default"],
+:root[data-theme="checkered"] {
     --asphalt: #0C0E12;
     --carbon: #15181E;
     --carbon-2: #1C2028;
@@ -439,11 +440,12 @@ body {
 
 /* Default / Checkered Flag Theme Wallpaper */
 :root[data-theme="default"] .f1-theme-wallpaper,
+:root[data-theme="checkered"] .f1-theme-wallpaper,
 :root:not([data-theme]) .f1-theme-wallpaper {
     opacity: 0.82;
     background-image: 
         linear-gradient(to right, #0C0E12 0%, #0C0E12 25%, rgba(12, 14, 18, 0.45) 60%, transparent 100%),
-        url('/images/default-bg.png');
+        url('/images/checkered-bg.png');
 }
 
 /* Scuderia Ferrari Car Wallpaper */

@@ -121,7 +121,7 @@ export function generateCornerTelemetryBlueprintSvg(
   const rawTitle = item.title || specs?.name || `Turn ${turnNum}`;
   const turnName = rawTitle.replace(/turn\s*\d+\s*[-—:]*\s*/i, '').trim() || rawTitle;
   const speed = item.entrySpeed || specs?.technical?.entrySpeed || '285 km/h';
-  const gear = item.typicalGear || specs?.technical?.typicalGear || '4th Gear';
+  const gear = item.typicalGear || specs?.technical?.typicalGear || (turnNum <= 2 ? '2nd Gear' : turnNum % 3 === 0 ? '5th Gear' : '3rd Gear');
   const gForce = item.gForce || specs?.technical?.brakingIntensity || '-4.0 G';
   const circuitName = (circuitId || 'F1 CIRCUIT').replace(/_/g, ' ').toUpperCase();
 

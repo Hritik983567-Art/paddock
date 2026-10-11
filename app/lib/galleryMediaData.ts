@@ -3,7 +3,7 @@ export interface GalleryMediaItem {
   circuitId: string;
   title: string;
   subtitle: string;
-  category: 'photo' | 'blueprint' | 'wallpaper';
+  category: 'photo' | 'blueprint' | 'wallpaper' | 'drone_view';
   src: string;
   aspectRatio?: string;
   entrySpeed?: string;
@@ -19,12 +19,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monza",
     "title": "Variante del Rettifilo (Turns 1-2)",
     "subtitle": "Heavy Brake Deceleration Zone — Monza",
-    "category": "photo",
-    "src": "/images/circuits/monza/corners/rettifilo/01_rettifilo_aerial.jpg",
+    "category": "blueprint",
+    "src": "",
     "entrySpeed": "352 km/h ➔ 74 km/h",
     "typicalGear": "1st Gear",
     "gForce": "5.2 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "The heaviest braking point in Formula 1. Drivers decelerate from 352 km/h to 74 km/h in just 120 meters, pulling over 5.2 Gs of lateral and longitudinal force into the tight right-left chicane."
   },
   {
@@ -32,12 +32,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monza",
     "title": "Curva Grande / Curva del Serraglio (Turn 3)",
     "subtitle": "Flat-out Full Throttle Apex — Monza",
-    "category": "photo",
-    "src": "/images/circuits/monza/corners/curva-grande/01_curva_grande_sweeper.jpg",
+    "category": "blueprint",
+    "src": "",
     "entrySpeed": "310 km/h",
     "typicalGear": "8th Gear",
     "gForce": "3.4 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "A sweeping high-speed right-hand curve taken flat out in 8th gear. Maximum aerodynamic downforce compresses the suspension as cars hug the inside kerb into the trees."
   },
   {
@@ -45,12 +45,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monza",
     "title": "Variante della Roggia (Turns 4-5)",
     "subtitle": "Traction Exit Chicane — Monza",
-    "category": "photo",
-    "src": "/images/circuits/monza/corners/roggia/01_roggia_chicane.jpg",
+    "category": "blueprint",
+    "src": "",
     "entrySpeed": "325 km/h ➔ 118 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "4.1 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Challenging chicane requiring aggressive curb riding. Drivers balance rear traction on exit onto the run toward Lesmo 1."
   },
   {
@@ -58,12 +58,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monza",
     "title": "Prima Curva del Lesmo (Turn 6)",
     "subtitle": "Blind High-Speed Right Sweeper — Monza",
-    "category": "photo",
-    "src": "/images/circuits/monza/corners/lesmo-1/01_lesmo1_apex.jpg",
+    "category": "blueprint",
+    "src": "",
     "entrySpeed": "264 km/h ➔ 192 km/h",
     "typicalGear": "5th Gear",
     "gForce": "3.8 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Deceptive right-hand corner requiring precise turn-in point. Understeer here washes cars out onto the gravel trap."
   },
   {
@@ -71,12 +71,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monza",
     "title": "Seconda Curva del Lesmo (Turn 7)",
     "subtitle": "Downhill Camber Apex — Monza",
-    "category": "photo",
-    "src": "/images/circuits/monza/corners/lesmo-2/01_lesmo2_exit.jpg",
+    "category": "blueprint",
+    "src": "",
     "entrySpeed": "260 km/h ➔ 178 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.0 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Downhill cambered right-hander leading onto the Curva del Serraglio straight. Crucial acceleration zone leading into the Ascari complex."
   },
   {
@@ -84,12 +84,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monza",
     "title": "Variante Ascari (Turns 8-9-10)",
     "subtitle": "High-Speed Rhythm Chicane — Monza",
-    "category": "photo",
-    "src": "/images/circuits/monza/corners/ascari/01_ascari_complex.jpg",
+    "category": "blueprint",
+    "src": "",
     "entrySpeed": "330 km/h ➔ 224 km/h",
     "typicalGear": "6th Gear",
     "gForce": "4.5 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Formidable left-right-left sequence named after Alberto Ascari. Demands incredible precision and quick directional transitions at over 220 km/h."
   },
   {
@@ -97,12 +97,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monza",
     "title": "Curva Parabolica / Curva Alboreto (Turn 11)",
     "subtitle": "Iconic Final Radius Sweeper — Monza",
-    "category": "photo",
-    "src": "/images/circuits/monza/corners/parabolica/01_parabolica_arc.jpg",
+    "category": "blueprint",
+    "src": "",
     "entrySpeed": "335 km/h ➔ 215 km/h",
     "typicalGear": "6th Gear",
     "gForce": "3.9 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "The famous long 180-degree expanding radius curve. Drivers open the steering as the track widens onto the main straight towards the finish line."
   },
   {
@@ -110,12 +110,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "silverstone",
     "title": "Abbey & Farm Curve (Turns 1-2)",
     "subtitle": "High-Speed Right-Hand Turn-In — Silverstone",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "290 km/h ➔ 245 km/h",
     "typicalGear": "7th Gear",
     "gForce": "4.8 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Blistering high-speed right hand turn-in marking the start of a Silverstone lap. Demands immense front axle downforce confidence."
   },
   {
@@ -123,12 +123,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "silverstone",
     "title": "Village & The Loop (Turns 3-4)",
     "subtitle": "Heavy Braking Arena — Silverstone",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "240 km/h ➔ 95 km/h",
     "typicalGear": "2nd Gear",
     "gForce": "3.9 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Tight right-left sequence slowing into the hairpin at The Loop. Key overtaking zone on the Arena layout."
   },
   {
@@ -136,12 +136,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "silverstone",
     "title": "Copse Corner (Turn 9)",
     "subtitle": "Ultra High-Speed Blind Apex — Silverstone",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "315 km/h ➔ 285 km/h",
     "typicalGear": "8th Gear",
     "gForce": "5.1 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "One of the most terrifying corners in modern F1. A tiny touch of the brakes before flicking right at nearly 290 km/h with over 5Gs."
   },
   {
@@ -149,12 +149,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "silverstone",
     "title": "Maggotts & Becketts (Turns 10-14)",
     "subtitle": "Legendary Aerodynamic Complex — Silverstone",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "300 km/h ➔ 210 km/h",
     "typicalGear": "7th Gear",
     "gForce": "5.0 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "The ultimate test of F1 downforce and balance. A rapid sequence of direction changes where drivers flow laterally at high speed."
   },
   {
@@ -162,12 +162,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "silverstone",
     "title": "Stowe Corner (Turn 15)",
     "subtitle": "Hangar Straight Exit Apex — Silverstone",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "330 km/h ➔ 205 km/h",
     "typicalGear": "6th Gear",
     "gForce": "4.4 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Hard braking at the end of the Hangar Straight leading into an uphill right-hand apex."
   },
   {
@@ -175,12 +175,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "spa",
     "title": "La Source Hairpin (Turn 1)",
     "subtitle": "Opening Corner Hairpin — Spa-Francorchamps",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "285 km/h ➔ 70 km/h",
     "typicalGear": "1st Gear",
     "gForce": "4.2 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Tight right-hand hairpin setting up the long acceleration run down the hill toward Eau Rouge."
   },
   {
@@ -188,12 +188,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "spa",
     "title": "Eau Rouge & Raidillon (Turns 2-4)",
     "subtitle": "Iconic Uphill Compression — Spa-Francorchamps",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "305 km/h",
     "typicalGear": "7th Gear",
     "gForce": "4.6 G Vertical",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "The most famous elevation change in motorsport. Cars compress at the bottom of the valley before climbing 24 meters blind over the Raidillon crest."
   },
   {
@@ -201,12 +201,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "spa",
     "title": "Pouhon (Turns 10-11)",
     "subtitle": "Double Apex High-Downforce Sweeper — Spa",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "290 km/h ➔ 245 km/h",
     "typicalGear": "6th Gear",
     "gForce": "4.9 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Fast downhill double-left sweeper demanding maximum lateral grip and aerodynamic balance."
   },
   {
@@ -214,12 +214,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "spa",
     "title": "Blanchimont (Turns 17-18)",
     "subtitle": "Flat-Out High-Speed Left — Spa",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "315 km/h",
     "typicalGear": "8th Gear",
     "gForce": "4.1 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "High-speed left turn taken flat out before heavy braking for the Bus Stop chicane."
   },
   {
@@ -227,12 +227,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monaco",
     "title": "Sainte Dévote (Turn 1)",
     "subtitle": "Narrow Right-Hand Turn-In — Monaco",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "280 km/h ➔ 90 km/h",
     "typicalGear": "2nd Gear",
     "gForce": "3.8 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "F1 street racing at its tightest. Heavy braking into Sainte Dévote church corner, setting up the steep climb up Beau Rivage."
   },
   {
@@ -240,12 +240,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monaco",
     "title": "Fairmont Hairpin (Turn 6)",
     "subtitle": "Slowest Corner in Formula 1 — Monaco",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "120 km/h ➔ 48 km/h",
     "typicalGear": "1st Gear",
     "gForce": "1.8 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Taken at under 50 km/h on maximum steering lock. The tightest and most famous hairpin on the F1 calendar."
   },
   {
@@ -253,12 +253,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monaco",
     "title": "The Tunnel & Nouvelle Chicane (Turns 9-10)",
     "subtitle": "High-Speed Tunnel Exit — Monaco",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "290 km/h ➔ 80 km/h",
     "typicalGear": "1st Gear",
     "gForce": "4.7 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Blasting under the Fairmont tunnel before bursting out into daylight with heavy braking for the harbor chicane."
   },
   {
@@ -266,12 +266,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "suzuka",
     "title": "Turn 1 & 2 Complex",
     "subtitle": "High-Speed Downhill Entry — Suzuka",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "320 km/h ➔ 230 km/h",
     "typicalGear": "6th Gear",
     "gForce": "4.5 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Sweeping downhill right-hander leading straight into Turn 2. Precision line choice is critical for the S-curves."
   },
   {
@@ -279,12 +279,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "suzuka",
     "title": "S-Curves (Turns 3-6)",
     "subtitle": "Flowing Snake Sector — Suzuka",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "240 km/h ➔ 190 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Continuous left-right-left-right flowing curves. One small mistake in Turn 3 ruins the rhythm through the entire sector."
   },
   {
@@ -292,12 +292,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "suzuka",
     "title": "130R (Turn 15)",
     "subtitle": "Legendary 130-Meter Radius Sweeper — Suzuka",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "310 km/h",
     "typicalGear": "7th Gear",
     "gForce": "4.3 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Full throttle left-hand bend taken at over 300 km/h. Named for its original 130-meter radius curve."
   },
   {
@@ -305,12 +305,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "bahrain",
     "title": "Michael Schumacher Turn 1",
     "subtitle": "Heavy Overtaking Zone — Bahrain",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "325 km/h ➔ 78 km/h",
     "typicalGear": "1st Gear",
     "gForce": "4.9 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Renamed in honor of Michael Schumacher. Hard braking point at the end of the main straight with prime DRS overtaking."
   },
   {
@@ -318,12 +318,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "bahrain",
     "title": "Downhill Left Hairpin (Turn 10)",
     "subtitle": "Lock-Up Hazard Hairpin — Bahrain",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "240 km/h ➔ 70 km/h",
     "typicalGear": "1st Gear",
     "gForce": "3.7 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Tricky downhill braking into a sharp left turn while unloading the front-left wheel, causing frequent front-left lockups."
   },
   {
@@ -331,12 +331,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jeddah",
     "title": "Turn 1-2 Chicane",
     "subtitle": "Tight Street Circuit Entry — Jeddah",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "325 km/h ➔ 110 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "4.3 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "First braking zone on the world's fastest street circuit."
   },
   {
@@ -344,12 +344,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jeddah",
     "title": "Turn 13 Banked Hairpin",
     "subtitle": "12-Degree High-Banking Turn — Jeddah",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "250 km/h ➔ 140 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.7 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Spectacular 12-degree banked turn allowing multiple racing lines."
   },
   {
@@ -357,12 +357,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "albert_park",
     "title": "Jones & Brabham Stand (Turns 1-2)",
     "subtitle": "High-Speed Chicane Entry — Albert Park",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "310 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.4 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Fast right-left chicane into the Albert Park parkland layout."
   },
   {
@@ -370,12 +370,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "albert_park",
     "title": "Lakeside High-Speed Chute (Turns 9-10)",
     "subtitle": "Flat-Out Lake Sweeper — Albert Park",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "320 km/h ➔ 245 km/h",
     "typicalGear": "7th Gear",
     "gForce": "4.8 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "High-speed sweep alongside Albert Park lake."
   },
   {
@@ -383,12 +383,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "shanghai",
     "title": "Shanghai International Circuit Turn 1 (T1)",
     "subtitle": "Shanghai International Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -396,12 +396,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "shanghai",
     "title": "Shanghai International Circuit Turn 2 (T2)",
     "subtitle": "Shanghai International Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -409,12 +409,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "shanghai",
     "title": "Shanghai International Circuit Turn 3 (T3)",
     "subtitle": "Shanghai International Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Shanghai International Circuit (China) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -422,12 +422,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "miami",
     "title": "Miami International Autodrome Turn 1 (T1)",
     "subtitle": "Miami International Autodrome — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -435,12 +435,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "miami",
     "title": "Miami International Autodrome Turn 2 (T2)",
     "subtitle": "Miami International Autodrome — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -448,12 +448,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "miami",
     "title": "Miami International Autodrome Turn 3 (T3)",
     "subtitle": "Miami International Autodrome — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Miami International Autodrome (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -461,12 +461,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "imola",
     "title": "Autodromo Enzo e Dino Ferrari Turn 1 (T1)",
     "subtitle": "Autodromo Enzo e Dino Ferrari — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Tamburello chicane entry—reconfigured after the 1994 San Marino GP to honor Ayrton Senna's memory."
   },
   {
@@ -474,12 +474,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "imola",
     "title": "Autodromo Enzo e Dino Ferrari Turn 2 (T2)",
     "subtitle": "Autodromo Enzo e Dino Ferrari — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Right apex of Tamburello chicane."
   },
   {
@@ -487,12 +487,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "imola",
     "title": "Autodromo Enzo e Dino Ferrari Turn 3 (T3)",
     "subtitle": "Autodromo Enzo e Dino Ferrari — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Exit of Tamburello accelerating along the Santerno riverbank."
   },
   {
@@ -500,12 +500,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "catalunya",
     "title": "Circuit de Barcelona-Catalunya Turn 1 (T1)",
     "subtitle": "Circuit de Barcelona-Catalunya — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -513,12 +513,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "catalunya",
     "title": "Circuit de Barcelona-Catalunya Turn 2 (T2)",
     "subtitle": "Circuit de Barcelona-Catalunya — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -526,12 +526,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "catalunya",
     "title": "Circuit de Barcelona-Catalunya Turn 3 (T3)",
     "subtitle": "Circuit de Barcelona-Catalunya — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuit de Barcelona-Catalunya (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -539,12 +539,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "villeneuve",
     "title": "Circuit Gilles Villeneuve Turn 1 (T1)",
     "subtitle": "Circuit Gilles Villeneuve — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -552,12 +552,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "villeneuve",
     "title": "Circuit Gilles Villeneuve Turn 2 (T2)",
     "subtitle": "Circuit Gilles Villeneuve — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -565,12 +565,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "villeneuve",
     "title": "Circuit Gilles Villeneuve Turn 3 (T3)",
     "subtitle": "Circuit Gilles Villeneuve — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuit Gilles Villeneuve (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -578,12 +578,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "red_bull_ring",
     "title": "Red Bull Ring Turn 1 (T1)",
     "subtitle": "Red Bull Ring — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -591,12 +591,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "red_bull_ring",
     "title": "Red Bull Ring Turn 2 (T2)",
     "subtitle": "Red Bull Ring — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -604,12 +604,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "red_bull_ring",
     "title": "Red Bull Ring Turn 3 (T3)",
     "subtitle": "Red Bull Ring — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Red Bull Ring (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -617,12 +617,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "hungaroring",
     "title": "Hungaroring Turn 1 (T1)",
     "subtitle": "Hungaroring — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -630,12 +630,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "hungaroring",
     "title": "Hungaroring Turn 2 (T2)",
     "subtitle": "Hungaroring — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -643,12 +643,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "hungaroring",
     "title": "Hungaroring Turn 3 (T3)",
     "subtitle": "Hungaroring — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Hungaroring (Hungary) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -656,12 +656,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "zandvoort",
     "title": "Circuit Zandvoort Turn 1 (T1)",
     "subtitle": "Circuit Zandvoort — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Tarzanbocht—historic 180-degree right hairpin named after a local dunes legend, famous for round-the-outside overtakes."
   },
   {
@@ -669,12 +669,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "zandvoort",
     "title": "Circuit Zandvoort Turn 2 (T2)",
     "subtitle": "Circuit Zandvoort — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Gerlachbocht—fast right curve named after Dutch driver Dr. Thomas Gerlach."
   },
   {
@@ -682,12 +682,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "zandvoort",
     "title": "Circuit Zandvoort Turn 3 (T3)",
     "subtitle": "Circuit Zandvoort — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Hugenholtzbocht—18-degree steep banked corner named after circuit architect John Hugenholtz, allowing two parallel racing lines."
   },
   {
@@ -695,12 +695,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "baku",
     "title": "Baku City Circuit Turn 1 (T1)",
     "subtitle": "Baku City Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1—heavy 340 to 90 km/h braking zone at the end of the 2.2km main straight."
   },
   {
@@ -708,12 +708,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "baku",
     "title": "Baku City Circuit Turn 2 (T2)",
     "subtitle": "Baku City Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "90-degree left turn onto 1st Parallel Street."
   },
   {
@@ -721,12 +721,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "baku",
     "title": "Baku City Circuit Turn 3 (T3)",
     "subtitle": "Baku City Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "90-degree left turn leading towards the flame towers skyline."
   },
   {
@@ -734,12 +734,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "marina_bay",
     "title": "Marina Bay Street Circuit Turn 1 (T1)",
     "subtitle": "Marina Bay Street Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -747,12 +747,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "marina_bay",
     "title": "Marina Bay Street Circuit Turn 2 (T2)",
     "subtitle": "Marina Bay Street Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -760,12 +760,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "marina_bay",
     "title": "Marina Bay Street Circuit Turn 3 (T3)",
     "subtitle": "Marina Bay Street Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Marina Bay Street Circuit (Singapore) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -773,12 +773,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "americas",
     "title": "Turn 1 Steep Uphill Hairpin",
     "subtitle": "30-Meter Elevation Drop Hairpin — COTA",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "320 km/h ➔ 80 km/h",
     "typicalGear": "1st Gear",
     "gForce": "4.6 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Dramatic 30-meter climb up to a blind left-hand crest Hairpin at COTA."
   },
   {
@@ -786,12 +786,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "americas",
     "title": "Esses Aerodynamic Sector (Turns 3-6)",
     "subtitle": "High-G Lateral Sector — COTA",
-    "category": "photo",
+    "category": "blueprint",
     "src": "",
     "entrySpeed": "280 km/h ➔ 210 km/h",
     "typicalGear": "6th Gear",
     "gForce": "4.8 G",
-    "license": "VERIFIED REAL PHOTOGRAPHY",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Flowing S-curves inspired by Silverstone Maggotts & Becketts."
   },
   {
@@ -799,12 +799,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "rodriguez",
     "title": "Autódromo Hermanos Rodríguez Turn 1 (T1)",
     "subtitle": "Autódromo Hermanos Rodríguez — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -812,12 +812,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "rodriguez",
     "title": "Autódromo Hermanos Rodríguez Turn 2 (T2)",
     "subtitle": "Autódromo Hermanos Rodríguez — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -825,12 +825,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "rodriguez",
     "title": "Autódromo Hermanos Rodríguez Turn 3 (T3)",
     "subtitle": "Autódromo Hermanos Rodríguez — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Autódromo Hermanos Rodríguez (Mexico) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -838,12 +838,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "interlagos",
     "title": "Autódromo José Carlos Pace (Interlagos) Turn 1 (T1)",
     "subtitle": "Autódromo José Carlos Pace (Interlagos) — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Senna S entry—downhill left curve designed with input from Ayrton Senna himself."
   },
   {
@@ -851,12 +851,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "interlagos",
     "title": "Autódromo José Carlos Pace (Interlagos) Turn 2 (T2)",
     "subtitle": "Autódromo José Carlos Pace (Interlagos) — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Senna S exit—right-hand transition launching cars towards Curva do Sol."
   },
   {
@@ -864,12 +864,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "interlagos",
     "title": "Autódromo José Carlos Pace (Interlagos) Turn 3 (T3)",
     "subtitle": "Autódromo José Carlos Pace (Interlagos) — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Curva do Sol—sweeping left exit onto the Reta Oposta back straight where morning sun historically blinded drivers."
   },
   {
@@ -877,12 +877,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "vegas",
     "title": "Las Vegas Strip Circuit Turn 1 (T1)",
     "subtitle": "Las Vegas Strip Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 entry—heavy braking hairpin at the Harmon Avenue intersection."
   },
   {
@@ -890,12 +890,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "vegas",
     "title": "Las Vegas Strip Circuit Turn 2 (T2)",
     "subtitle": "Las Vegas Strip Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 left curve opening into the MSG Sphere complex."
   },
   {
@@ -903,12 +903,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "vegas",
     "title": "Las Vegas Strip Circuit Turn 3 (T3)",
     "subtitle": "Las Vegas Strip Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 left turn wrapping around The Sphere."
   },
   {
@@ -916,12 +916,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "las_vegas",
     "title": "Las Vegas Street Circuit (Caesars Palace GP) Turn 1 (T1)",
     "subtitle": "Las Vegas Street Circuit (Caesars Palace GP) — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Las Vegas Street Circuit (Caesars Palace GP) (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -929,12 +929,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "las_vegas",
     "title": "Las Vegas Street Circuit (Caesars Palace GP) Turn 2 (T2)",
     "subtitle": "Las Vegas Street Circuit (Caesars Palace GP) — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Las Vegas Street Circuit (Caesars Palace GP) (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -942,12 +942,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "las_vegas",
     "title": "Las Vegas Street Circuit (Caesars Palace GP) Turn 3 (T3)",
     "subtitle": "Las Vegas Street Circuit (Caesars Palace GP) — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Las Vegas Street Circuit (Caesars Palace GP) (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -955,12 +955,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "madring",
     "title": "Madring Circuit (Madrid) Turn 1 (T1)",
     "subtitle": "Madring Circuit (Madrid) — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Madring Circuit (Madrid) (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -968,12 +968,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "madring",
     "title": "Madring Circuit (Madrid) Turn 2 (T2)",
     "subtitle": "Madring Circuit (Madrid) — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Madring Circuit (Madrid) (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -981,12 +981,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "madring",
     "title": "Madring Circuit (Madrid) Turn 3 (T3)",
     "subtitle": "Madring Circuit (Madrid) — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Madring Circuit (Madrid) (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -994,12 +994,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "losail",
     "title": "Lusail International Circuit Turn 1 (T1)",
     "subtitle": "Lusail International Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1007,12 +1007,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "losail",
     "title": "Lusail International Circuit Turn 2 (T2)",
     "subtitle": "Lusail International Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1020,12 +1020,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "losail",
     "title": "Lusail International Circuit Turn 3 (T3)",
     "subtitle": "Lusail International Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Lusail International Circuit (Qatar) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1033,12 +1033,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "yas_marina",
     "title": "Yas Marina Circuit Turn 1 (T1)",
     "subtitle": "Yas Marina Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1046,12 +1046,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "yas_marina",
     "title": "Yas Marina Circuit Turn 2 (T2)",
     "subtitle": "Yas Marina Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1059,12 +1059,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "yas_marina",
     "title": "Yas Marina Circuit Turn 3 (T3)",
     "subtitle": "Yas Marina Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Yas Marina Circuit (Abu Dhabi) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1072,12 +1072,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "nurburgring",
     "title": "Nürburgring Nordschleife & GP-Strecke Turn 1 (T1)",
     "subtitle": "Nürburgring Nordschleife & GP-Strecke — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Yokohama S chicane entry at the end of the start/finish straight."
   },
   {
@@ -1085,12 +1085,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "nurburgring",
     "title": "Nürburgring Nordschleife & GP-Strecke Turn 2 (T2)",
     "subtitle": "Nürburgring Nordschleife & GP-Strecke — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Nürburgring Nordschleife & GP-Strecke (Germany) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1098,12 +1098,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "nurburgring",
     "title": "Nürburgring Nordschleife & GP-Strecke Turn 3 (T3)",
     "subtitle": "Nürburgring Nordschleife & GP-Strecke — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Nürburgring Nordschleife & GP-Strecke (Germany) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1111,12 +1111,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "hockenheimring",
     "title": "Hockenheimring Baden-Württemberg Turn 1 (T1)",
     "subtitle": "Hockenheimring Baden-Württemberg — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Nordkurve—fast right turn opening the lap into the historic forest section."
   },
   {
@@ -1124,12 +1124,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "hockenheimring",
     "title": "Hockenheimring Baden-Württemberg Turn 2 (T2)",
     "subtitle": "Hockenheimring Baden-Württemberg — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Hockenheimring Baden-Württemberg (Germany) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1137,12 +1137,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "hockenheimring",
     "title": "Hockenheimring Baden-Württemberg Turn 3 (T3)",
     "subtitle": "Hockenheimring Baden-Württemberg — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Hockenheimring Baden-Württemberg (Germany) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1150,12 +1150,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "sepang",
     "title": "Sepang International Circuit Turn 1 (T1)",
     "subtitle": "Sepang International Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Tight right-left chicane at the end of the 900m main straight."
   },
   {
@@ -1163,12 +1163,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "sepang",
     "title": "Sepang International Circuit Turn 2 (T2)",
     "subtitle": "Sepang International Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Sepang International Circuit (Malaysia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1176,12 +1176,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "sepang",
     "title": "Sepang International Circuit Turn 3 (T3)",
     "subtitle": "Sepang International Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Sepang International Circuit (Malaysia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1189,12 +1189,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "indianapolis",
     "title": "Indianapolis Motor Speedway Turn 1 (T1)",
     "subtitle": "Indianapolis Motor Speedway — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Indianapolis Motor Speedway (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1202,12 +1202,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "indianapolis",
     "title": "Indianapolis Motor Speedway Turn 2 (T2)",
     "subtitle": "Indianapolis Motor Speedway — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Indianapolis Motor Speedway (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1215,12 +1215,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "indianapolis",
     "title": "Indianapolis Motor Speedway Turn 3 (T3)",
     "subtitle": "Indianapolis Motor Speedway — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Indianapolis Motor Speedway (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1228,12 +1228,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "kyalami",
     "title": "Kyalami Grand Prix Circuit Turn 1 (T1)",
     "subtitle": "Kyalami Grand Prix Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Kyalami Grand Prix Circuit (South Africa) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1241,12 +1241,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "kyalami",
     "title": "Kyalami Grand Prix Circuit Turn 2 (T2)",
     "subtitle": "Kyalami Grand Prix Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Kyalami Grand Prix Circuit (South Africa) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1254,12 +1254,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "kyalami",
     "title": "Kyalami Grand Prix Circuit Turn 3 (T3)",
     "subtitle": "Kyalami Grand Prix Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Kyalami Grand Prix Circuit (South Africa) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1267,12 +1267,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "brands_hatch",
     "title": "Brands Hatch Circuit Turn 1 (T1)",
     "subtitle": "Brands Hatch Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Brands Hatch Circuit (Great Britain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1280,12 +1280,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "brands_hatch",
     "title": "Brands Hatch Circuit Turn 2 (T2)",
     "subtitle": "Brands Hatch Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Brands Hatch Circuit (Great Britain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1293,12 +1293,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "brands_hatch",
     "title": "Brands Hatch Circuit Turn 3 (T3)",
     "subtitle": "Brands Hatch Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Brands Hatch Circuit (Great Britain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1306,12 +1306,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "fuji",
     "title": "Fuji Speedway Turn 1 (T1)",
     "subtitle": "Fuji Speedway — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Fuji Speedway (Japan) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1319,12 +1319,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "fuji",
     "title": "Fuji Speedway Turn 2 (T2)",
     "subtitle": "Fuji Speedway — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Fuji Speedway (Japan) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1332,12 +1332,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "fuji",
     "title": "Fuji Speedway Turn 3 (T3)",
     "subtitle": "Fuji Speedway — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Fuji Speedway (Japan) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1345,12 +1345,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "istanbul",
     "title": "Intercity Istanbul Park Turn 1 (T1)",
     "subtitle": "Intercity Istanbul Park — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Blind downhill left-hand Turn 1 ('Turkish Corkscrew')."
   },
   {
@@ -1358,12 +1358,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "istanbul",
     "title": "Intercity Istanbul Park Turn 2 (T2)",
     "subtitle": "Intercity Istanbul Park — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Intercity Istanbul Park (Turkey) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1371,12 +1371,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "istanbul",
     "title": "Intercity Istanbul Park Turn 3 (T3)",
     "subtitle": "Intercity Istanbul Park — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Intercity Istanbul Park (Turkey) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1384,12 +1384,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "ricard",
     "title": "Circuit Paul Ricard (Le Castellet) Turn 1 (T1)",
     "subtitle": "Circuit Paul Ricard (Le Castellet) — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Verrerie chicane at the end of the main straight."
   },
   {
@@ -1397,12 +1397,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "ricard",
     "title": "Circuit Paul Ricard (Le Castellet) Turn 2 (T2)",
     "subtitle": "Circuit Paul Ricard (Le Castellet) — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuit Paul Ricard (Le Castellet) (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1410,12 +1410,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "ricard",
     "title": "Circuit Paul Ricard (Le Castellet) Turn 3 (T3)",
     "subtitle": "Circuit Paul Ricard (Le Castellet) — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuit Paul Ricard (Le Castellet) (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1423,12 +1423,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "portimao",
     "title": "Autódromo Internacional do Algarve Turn 1 (T1)",
     "subtitle": "Autódromo Internacional do Algarve — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Autódromo Internacional do Algarve (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1436,12 +1436,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "portimao",
     "title": "Autódromo Internacional do Algarve Turn 2 (T2)",
     "subtitle": "Autódromo Internacional do Algarve — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Autódromo Internacional do Algarve (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1449,12 +1449,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "portimao",
     "title": "Autódromo Internacional do Algarve Turn 3 (T3)",
     "subtitle": "Autódromo Internacional do Algarve — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Autódromo Internacional do Algarve (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1462,12 +1462,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "mugello",
     "title": "Autodromo Internazionale del Mugello Turn 1 (T1)",
     "subtitle": "Autodromo Internazionale del Mugello — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Autodromo Internazionale del Mugello (Italy) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1475,12 +1475,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "mugello",
     "title": "Autodromo Internazionale del Mugello Turn 2 (T2)",
     "subtitle": "Autodromo Internazionale del Mugello — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Autodromo Internazionale del Mugello (Italy) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1488,12 +1488,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "mugello",
     "title": "Autodromo Internazionale del Mugello Turn 3 (T3)",
     "subtitle": "Autodromo Internazionale del Mugello — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Autodromo Internazionale del Mugello (Italy) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1501,12 +1501,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "sochi",
     "title": "Sochi Autodrom Turn 1 (T1)",
     "subtitle": "Sochi Autodrom — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Sochi Autodrom (Russia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1514,12 +1514,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "sochi",
     "title": "Sochi Autodrom Turn 2 (T2)",
     "subtitle": "Sochi Autodrom — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Sochi Autodrom (Russia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1527,12 +1527,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "sochi",
     "title": "Sochi Autodrom Turn 3 (T3)",
     "subtitle": "Sochi Autodrom — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Sochi Autodrom (Russia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1540,12 +1540,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "magny_cours",
     "title": "Circuit de Nevers Magny-Cours Turn 1 (T1)",
     "subtitle": "Circuit de Nevers Magny-Cours — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuit de Nevers Magny-Cours (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1553,12 +1553,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "magny_cours",
     "title": "Circuit de Nevers Magny-Cours Turn 2 (T2)",
     "subtitle": "Circuit de Nevers Magny-Cours — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuit de Nevers Magny-Cours (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1566,12 +1566,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "magny_cours",
     "title": "Circuit de Nevers Magny-Cours Turn 3 (T3)",
     "subtitle": "Circuit de Nevers Magny-Cours — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuit de Nevers Magny-Cours (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1579,12 +1579,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "estoril",
     "title": "Autódromo do Estoril Turn 1 (T1)",
     "subtitle": "Autódromo do Estoril — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Autódromo do Estoril (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1592,12 +1592,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "estoril",
     "title": "Autódromo do Estoril Turn 2 (T2)",
     "subtitle": "Autódromo do Estoril — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Autódromo do Estoril (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1605,12 +1605,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "estoril",
     "title": "Autódromo do Estoril Turn 3 (T3)",
     "subtitle": "Autódromo do Estoril — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Autódromo do Estoril (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1618,12 +1618,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "adelaide",
     "title": "Adelaide Street Circuit Turn 1 (T1)",
     "subtitle": "Adelaide Street Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Adelaide Street Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1631,12 +1631,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "adelaide",
     "title": "Adelaide Street Circuit Turn 2 (T2)",
     "subtitle": "Adelaide Street Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Adelaide Street Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1644,12 +1644,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "adelaide",
     "title": "Adelaide Street Circuit Turn 3 (T3)",
     "subtitle": "Adelaide Street Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Adelaide Street Circuit (Australia) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1657,12 +1657,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "buddh",
     "title": "Buddh International Circuit Turn 1 (T1)",
     "subtitle": "Buddh International Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Buddh International Circuit (India) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1670,12 +1670,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "buddh",
     "title": "Buddh International Circuit Turn 2 (T2)",
     "subtitle": "Buddh International Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Buddh International Circuit (India) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1683,12 +1683,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "buddh",
     "title": "Buddh International Circuit Turn 3 (T3)",
     "subtitle": "Buddh International Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Buddh International Circuit (India) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1696,12 +1696,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "yeongam",
     "title": "Korean International Circuit Turn 1 (T1)",
     "subtitle": "Korean International Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Korean International Circuit (South Korea) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1709,12 +1709,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "yeongam",
     "title": "Korean International Circuit Turn 2 (T2)",
     "subtitle": "Korean International Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Korean International Circuit (South Korea) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1722,12 +1722,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "yeongam",
     "title": "Korean International Circuit Turn 3 (T3)",
     "subtitle": "Korean International Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Korean International Circuit (South Korea) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1735,12 +1735,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "valencia",
     "title": "Valencia Street Circuit Turn 1 (T1)",
     "subtitle": "Valencia Street Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Valencia Street Circuit (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1748,12 +1748,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "valencia",
     "title": "Valencia Street Circuit Turn 2 (T2)",
     "subtitle": "Valencia Street Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Valencia Street Circuit (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1761,12 +1761,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "valencia",
     "title": "Valencia Street Circuit Turn 3 (T3)",
     "subtitle": "Valencia Street Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Valencia Street Circuit (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1774,12 +1774,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "watkins_glen",
     "title": "Watkins Glen International Turn 1 (T1)",
     "subtitle": "Watkins Glen International — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Watkins Glen International (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1787,12 +1787,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "watkins_glen",
     "title": "Watkins Glen International Turn 2 (T2)",
     "subtitle": "Watkins Glen International — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Watkins Glen International (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1800,12 +1800,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "watkins_glen",
     "title": "Watkins Glen International Turn 3 (T3)",
     "subtitle": "Watkins Glen International — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Watkins Glen International (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1813,12 +1813,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "zolder",
     "title": "Circuit Zolder Turn 1 (T1)",
     "subtitle": "Circuit Zolder — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuit Zolder (Belgium) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1826,12 +1826,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "zolder",
     "title": "Circuit Zolder Turn 2 (T2)",
     "subtitle": "Circuit Zolder — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuit Zolder (Belgium) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1839,12 +1839,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "zolder",
     "title": "Circuit Zolder Turn 3 (T3)",
     "subtitle": "Circuit Zolder — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuit Zolder (Belgium) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1852,12 +1852,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "donington",
     "title": "Donington Park Turn 1 (T1)",
     "subtitle": "Donington Park — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Donington Park (Great Britain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1865,12 +1865,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "donington",
     "title": "Donington Park Turn 2 (T2)",
     "subtitle": "Donington Park — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Donington Park (Great Britain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1878,12 +1878,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "donington",
     "title": "Donington Park Turn 3 (T3)",
     "subtitle": "Donington Park — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Donington Park (Great Britain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1891,12 +1891,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jerez",
     "title": "Circuito de Jerez-Ángel Nieto Turn 1 (T1)",
     "subtitle": "Circuito de Jerez-Ángel Nieto — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuito de Jerez-Ángel Nieto (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1904,12 +1904,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jerez",
     "title": "Circuito de Jerez-Ángel Nieto Turn 2 (T2)",
     "subtitle": "Circuito de Jerez-Ángel Nieto — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuito de Jerez-Ángel Nieto (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1917,12 +1917,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jerez",
     "title": "Circuito de Jerez-Ángel Nieto Turn 3 (T3)",
     "subtitle": "Circuito de Jerez-Ángel Nieto — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuito de Jerez-Ángel Nieto (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1930,12 +1930,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jarama",
     "title": "Circuito del Jarama Turn 1 (T1)",
     "subtitle": "Circuito del Jarama — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuito del Jarama (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1943,12 +1943,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jarama",
     "title": "Circuito del Jarama Turn 2 (T2)",
     "subtitle": "Circuito del Jarama — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuito del Jarama (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1956,12 +1956,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jarama",
     "title": "Circuito del Jarama Turn 3 (T3)",
     "subtitle": "Circuito del Jarama — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuito del Jarama (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1969,12 +1969,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "long_beach",
     "title": "Long Beach Street Circuit Turn 1 (T1)",
     "subtitle": "Long Beach Street Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Long Beach Street Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1982,12 +1982,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "long_beach",
     "title": "Long Beach Street Circuit Turn 2 (T2)",
     "subtitle": "Long Beach Street Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Long Beach Street Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -1995,12 +1995,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "long_beach",
     "title": "Long Beach Street Circuit Turn 3 (T3)",
     "subtitle": "Long Beach Street Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Long Beach Street Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2008,12 +2008,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "detroit",
     "title": "Detroit Street Circuit Turn 1 (T1)",
     "subtitle": "Detroit Street Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Detroit Street Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2021,12 +2021,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "detroit",
     "title": "Detroit Street Circuit Turn 2 (T2)",
     "subtitle": "Detroit Street Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Detroit Street Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2034,12 +2034,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "detroit",
     "title": "Detroit Street Circuit Turn 3 (T3)",
     "subtitle": "Detroit Street Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Detroit Street Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2047,12 +2047,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "dallas",
     "title": "Fair Park Dallas Grand Prix Circuit Turn 1 (T1)",
     "subtitle": "Fair Park Dallas Grand Prix Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Fair Park Dallas Grand Prix Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2060,12 +2060,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "dallas",
     "title": "Fair Park Dallas Grand Prix Circuit Turn 2 (T2)",
     "subtitle": "Fair Park Dallas Grand Prix Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Fair Park Dallas Grand Prix Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2073,12 +2073,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "dallas",
     "title": "Fair Park Dallas Grand Prix Circuit Turn 3 (T3)",
     "subtitle": "Fair Park Dallas Grand Prix Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Fair Park Dallas Grand Prix Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2086,12 +2086,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "phoenix",
     "title": "Phoenix Street Circuit Turn 1 (T1)",
     "subtitle": "Phoenix Street Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Phoenix Street Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2099,12 +2099,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "phoenix",
     "title": "Phoenix Street Circuit Turn 2 (T2)",
     "subtitle": "Phoenix Street Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Phoenix Street Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2112,12 +2112,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "phoenix",
     "title": "Phoenix Street Circuit Turn 3 (T3)",
     "subtitle": "Phoenix Street Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Phoenix Street Circuit (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2125,12 +2125,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "riverside",
     "title": "Riverside International Raceway Turn 1 (T1)",
     "subtitle": "Riverside International Raceway — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Riverside International Raceway (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2138,12 +2138,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "riverside",
     "title": "Riverside International Raceway Turn 2 (T2)",
     "subtitle": "Riverside International Raceway — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Riverside International Raceway (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2151,12 +2151,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "riverside",
     "title": "Riverside International Raceway Turn 3 (T3)",
     "subtitle": "Riverside International Raceway — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Riverside International Raceway (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2164,12 +2164,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "sebring",
     "title": "Sebring International Raceway Turn 1 (T1)",
     "subtitle": "Sebring International Raceway — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Sebring International Raceway (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2177,12 +2177,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "sebring",
     "title": "Sebring International Raceway Turn 2 (T2)",
     "subtitle": "Sebring International Raceway — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Sebring International Raceway (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2190,12 +2190,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "sebring",
     "title": "Sebring International Raceway Turn 3 (T3)",
     "subtitle": "Sebring International Raceway — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Sebring International Raceway (United States) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2203,12 +2203,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "mosport",
     "title": "Mosport International Raceway Turn 1 (T1)",
     "subtitle": "Mosport International Raceway — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Mosport International Raceway (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2216,12 +2216,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "mosport",
     "title": "Mosport International Raceway Turn 2 (T2)",
     "subtitle": "Mosport International Raceway — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Mosport International Raceway (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2229,12 +2229,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "mosport",
     "title": "Mosport International Raceway Turn 3 (T3)",
     "subtitle": "Mosport International Raceway — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Mosport International Raceway (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2242,12 +2242,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "tremblant",
     "title": "Circuit Mont-Tremblant Turn 1 (T1)",
     "subtitle": "Circuit Mont-Tremblant — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuit Mont-Tremblant (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2255,12 +2255,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "tremblant",
     "title": "Circuit Mont-Tremblant Turn 2 (T2)",
     "subtitle": "Circuit Mont-Tremblant — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuit Mont-Tremblant (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2268,12 +2268,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "tremblant",
     "title": "Circuit Mont-Tremblant Turn 3 (T3)",
     "subtitle": "Circuit Mont-Tremblant — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuit Mont-Tremblant (Canada) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2281,12 +2281,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "galvez",
     "title": "Autódromo Juan y Oscar Gálvez Turn 1 (T1)",
     "subtitle": "Autódromo Juan y Oscar Gálvez — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Autódromo Juan y Oscar Gálvez (Argentina) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2294,12 +2294,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "galvez",
     "title": "Autódromo Juan y Oscar Gálvez Turn 2 (T2)",
     "subtitle": "Autódromo Juan y Oscar Gálvez — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Autódromo Juan y Oscar Gálvez (Argentina) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2307,12 +2307,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "galvez",
     "title": "Autódromo Juan y Oscar Gálvez Turn 3 (T3)",
     "subtitle": "Autódromo Juan y Oscar Gálvez — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Autódromo Juan y Oscar Gálvez (Argentina) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2320,12 +2320,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jacarepagua",
     "title": "Autódromo Internacional Jacarepaguá Turn 1 (T1)",
     "subtitle": "Autódromo Internacional Jacarepaguá — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Autódromo Internacional Jacarepaguá (Brazil) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2333,12 +2333,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jacarepagua",
     "title": "Autódromo Internacional Jacarepaguá Turn 2 (T2)",
     "subtitle": "Autódromo Internacional Jacarepaguá — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Autódromo Internacional Jacarepaguá (Brazil) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2346,12 +2346,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "jacarepagua",
     "title": "Autódromo Internacional Jacarepaguá Turn 3 (T3)",
     "subtitle": "Autódromo Internacional Jacarepaguá — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Autódromo Internacional Jacarepaguá (Brazil) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2359,12 +2359,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "george",
     "title": "Prince George Circuit Turn 1 (T1)",
     "subtitle": "Prince George Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Prince George Circuit (South Africa) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2372,12 +2372,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "george",
     "title": "Prince George Circuit Turn 2 (T2)",
     "subtitle": "Prince George Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Prince George Circuit (South Africa) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2385,12 +2385,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "george",
     "title": "Prince George Circuit Turn 3 (T3)",
     "subtitle": "Prince George Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Prince George Circuit (South Africa) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2398,12 +2398,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "ain_diab",
     "title": "Ain-Diab Circuit Casablanca Turn 1 (T1)",
     "subtitle": "Ain-Diab Circuit Casablanca — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Ain-Diab Circuit Casablanca (Morocco) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2411,12 +2411,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "ain_diab",
     "title": "Ain-Diab Circuit Casablanca Turn 2 (T2)",
     "subtitle": "Ain-Diab Circuit Casablanca — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Ain-Diab Circuit Casablanca (Morocco) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2424,12 +2424,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "ain_diab",
     "title": "Ain-Diab Circuit Casablanca Turn 3 (T3)",
     "subtitle": "Ain-Diab Circuit Casablanca — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Ain-Diab Circuit Casablanca (Morocco) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2437,12 +2437,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "aintree",
     "title": "Aintree Motor Racing Circuit Turn 1 (T1)",
     "subtitle": "Aintree Motor Racing Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Aintree Motor Racing Circuit (Great Britain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2450,12 +2450,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "aintree",
     "title": "Aintree Motor Racing Circuit Turn 2 (T2)",
     "subtitle": "Aintree Motor Racing Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Aintree Motor Racing Circuit (Great Britain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2463,12 +2463,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "aintree",
     "title": "Aintree Motor Racing Circuit Turn 3 (T3)",
     "subtitle": "Aintree Motor Racing Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Aintree Motor Racing Circuit (Great Britain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2476,12 +2476,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "anderstorp",
     "title": "Scandinavian Raceway Turn 1 (T1)",
     "subtitle": "Scandinavian Raceway — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Scandinavian Raceway (Sweden) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2489,12 +2489,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "anderstorp",
     "title": "Scandinavian Raceway Turn 2 (T2)",
     "subtitle": "Scandinavian Raceway — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Scandinavian Raceway (Sweden) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2502,12 +2502,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "anderstorp",
     "title": "Scandinavian Raceway Turn 3 (T3)",
     "subtitle": "Scandinavian Raceway — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Scandinavian Raceway (Sweden) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2515,12 +2515,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "avus",
     "title": "AVUS Berlin Turn 1 (T1)",
     "subtitle": "AVUS Berlin — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at AVUS Berlin (Germany) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2528,12 +2528,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "avus",
     "title": "AVUS Berlin Turn 2 (T2)",
     "subtitle": "AVUS Berlin — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at AVUS Berlin (Germany) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2541,12 +2541,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "avus",
     "title": "AVUS Berlin Turn 3 (T3)",
     "subtitle": "AVUS Berlin — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at AVUS Berlin (Germany) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2554,12 +2554,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "boavista",
     "title": "Circuito da Boavista Porto Turn 1 (T1)",
     "subtitle": "Circuito da Boavista Porto — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuito da Boavista Porto (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2567,12 +2567,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "boavista",
     "title": "Circuito da Boavista Porto Turn 2 (T2)",
     "subtitle": "Circuito da Boavista Porto — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuito da Boavista Porto (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2580,12 +2580,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "boavista",
     "title": "Circuito da Boavista Porto Turn 3 (T3)",
     "subtitle": "Circuito da Boavista Porto — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuito da Boavista Porto (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2593,12 +2593,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "bremgarten",
     "title": "Circuit Bremgarten Bern Turn 1 (T1)",
     "subtitle": "Circuit Bremgarten Bern — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuit Bremgarten Bern (Switzerland) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2606,12 +2606,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "bremgarten",
     "title": "Circuit Bremgarten Bern Turn 2 (T2)",
     "subtitle": "Circuit Bremgarten Bern — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuit Bremgarten Bern (Switzerland) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2619,12 +2619,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "bremgarten",
     "title": "Circuit Bremgarten Bern Turn 3 (T3)",
     "subtitle": "Circuit Bremgarten Bern — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuit Bremgarten Bern (Switzerland) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2632,12 +2632,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "charade",
     "title": "Charade Circuit Louis Rosier Turn 1 (T1)",
     "subtitle": "Charade Circuit Louis Rosier — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Charade Circuit Louis Rosier (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2645,12 +2645,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "charade",
     "title": "Charade Circuit Louis Rosier Turn 2 (T2)",
     "subtitle": "Charade Circuit Louis Rosier — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Charade Circuit Louis Rosier (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2658,12 +2658,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "charade",
     "title": "Charade Circuit Louis Rosier Turn 3 (T3)",
     "subtitle": "Charade Circuit Louis Rosier — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Charade Circuit Louis Rosier (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2671,12 +2671,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "dijon",
     "title": "Circuit de Dijon-Prenois Turn 1 (T1)",
     "subtitle": "Circuit de Dijon-Prenois — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuit de Dijon-Prenois (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2684,12 +2684,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "dijon",
     "title": "Circuit de Dijon-Prenois Turn 2 (T2)",
     "subtitle": "Circuit de Dijon-Prenois — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuit de Dijon-Prenois (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2697,12 +2697,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "dijon",
     "title": "Circuit de Dijon-Prenois Turn 3 (T3)",
     "subtitle": "Circuit de Dijon-Prenois — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuit de Dijon-Prenois (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2710,12 +2710,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "essarts",
     "title": "Rouen-Les-Essarts Turn 1 (T1)",
     "subtitle": "Rouen-Les-Essarts — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Rouen-Les-Essarts (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2723,12 +2723,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "essarts",
     "title": "Rouen-Les-Essarts Turn 2 (T2)",
     "subtitle": "Rouen-Les-Essarts — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Rouen-Les-Essarts (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2736,12 +2736,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "essarts",
     "title": "Rouen-Les-Essarts Turn 3 (T3)",
     "subtitle": "Rouen-Les-Essarts — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Rouen-Les-Essarts (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2749,12 +2749,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "lemans",
     "title": "Circuit Bugatti (Le Mans) Turn 1 (T1)",
     "subtitle": "Circuit Bugatti (Le Mans) — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Circuit Bugatti (Le Mans) (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2762,12 +2762,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "lemans",
     "title": "Circuit Bugatti (Le Mans) Turn 2 (T2)",
     "subtitle": "Circuit Bugatti (Le Mans) — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Circuit Bugatti (Le Mans) (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2775,12 +2775,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "lemans",
     "title": "Circuit Bugatti (Le Mans) Turn 3 (T3)",
     "subtitle": "Circuit Bugatti (Le Mans) — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Circuit Bugatti (Le Mans) (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2788,12 +2788,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "reims",
     "title": "Reims-Gueux Turn 1 (T1)",
     "subtitle": "Reims-Gueux — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Reims-Gueux (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2801,12 +2801,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "reims",
     "title": "Reims-Gueux Turn 2 (T2)",
     "subtitle": "Reims-Gueux — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Reims-Gueux (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2814,12 +2814,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "reims",
     "title": "Reims-Gueux Turn 3 (T3)",
     "subtitle": "Reims-Gueux — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Reims-Gueux (France) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2827,12 +2827,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monsanto",
     "title": "Monsanto Park Circuit Turn 1 (T1)",
     "subtitle": "Monsanto Park Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Monsanto Park Circuit (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2840,12 +2840,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monsanto",
     "title": "Monsanto Park Circuit Turn 2 (T2)",
     "subtitle": "Monsanto Park Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Monsanto Park Circuit (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2853,12 +2853,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "monsanto",
     "title": "Monsanto Park Circuit Turn 3 (T3)",
     "subtitle": "Monsanto Park Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Monsanto Park Circuit (Portugal) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2866,12 +2866,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "montjuic",
     "title": "Montjuïc Circuit Barcelona Turn 1 (T1)",
     "subtitle": "Montjuïc Circuit Barcelona — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Montjuïc Circuit Barcelona (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2879,12 +2879,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "montjuic",
     "title": "Montjuïc Circuit Barcelona Turn 2 (T2)",
     "subtitle": "Montjuïc Circuit Barcelona — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Montjuïc Circuit Barcelona (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2892,12 +2892,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "montjuic",
     "title": "Montjuïc Circuit Barcelona Turn 3 (T3)",
     "subtitle": "Montjuïc Circuit Barcelona — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Montjuïc Circuit Barcelona (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2905,12 +2905,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "pedralbes",
     "title": "Pedralbes Circuit Barcelona Turn 1 (T1)",
     "subtitle": "Pedralbes Circuit Barcelona — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Pedralbes Circuit Barcelona (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2918,12 +2918,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "pedralbes",
     "title": "Pedralbes Circuit Barcelona Turn 2 (T2)",
     "subtitle": "Pedralbes Circuit Barcelona — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Pedralbes Circuit Barcelona (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2931,12 +2931,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "pedralbes",
     "title": "Pedralbes Circuit Barcelona Turn 3 (T3)",
     "subtitle": "Pedralbes Circuit Barcelona — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Pedralbes Circuit Barcelona (Spain) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2944,12 +2944,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "pescara",
     "title": "Villa Raspa Hill Climb (T1)",
     "subtitle": "Pescara Circuit (Coppa Acerbo) — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Pescara Circuit (Coppa Acerbo) (Italy) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2957,12 +2957,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "pescara",
     "title": "Cappelle sul Tavo Crest (T2)",
     "subtitle": "Pescara Circuit (Coppa Acerbo) — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Pescara Circuit (Coppa Acerbo) (Italy) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2970,12 +2970,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "pescara",
     "title": "Montesilvano Coast Junction (T3)",
     "subtitle": "Pescara Circuit (Coppa Acerbo) — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Pescara Circuit (Coppa Acerbo) (Italy) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2983,12 +2983,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "nivelles",
     "title": "Grande Courbe (Big Sweeper) (T1)",
     "subtitle": "Nivelles-Baulers — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Nivelles-Baulers (Belgium) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -2996,12 +2996,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "nivelles",
     "title": "Virage de la Ferme (T2)",
     "subtitle": "Nivelles-Baulers — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Nivelles-Baulers (Belgium) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -3009,12 +3009,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "nivelles",
     "title": "Le Épingle Hairpin (T3)",
     "subtitle": "Nivelles-Baulers — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Nivelles-Baulers (Belgium) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -3022,12 +3022,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "okayama",
     "title": "TI Circuit Aida (Okayama) Turn 1 (T1)",
     "subtitle": "TI Circuit Aida (Okayama) — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at TI Circuit Aida (Okayama) (Japan) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -3035,12 +3035,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "okayama",
     "title": "TI Circuit Aida (Okayama) Turn 2 (T2)",
     "subtitle": "TI Circuit Aida (Okayama) — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at TI Circuit Aida (Okayama) (Japan) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -3048,12 +3048,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "okayama",
     "title": "TI Circuit Aida (Okayama) Turn 3 (T3)",
     "subtitle": "TI Circuit Aida (Okayama) — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at TI Circuit Aida (Okayama) (Japan) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -3061,12 +3061,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "zeltweg",
     "title": "Flightline Runway Bend (T1)",
     "subtitle": "Zeltweg Airfield Circuit — Turn 1 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "220 km/h ➔ 130 km/h",
     "typicalGear": "3rd Gear",
     "gForce": "3.9 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 1 (T1) at Zeltweg Airfield Circuit (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -3074,12 +3074,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "zeltweg",
     "title": "South Runway Hairpin (T2)",
     "subtitle": "Zeltweg Airfield Circuit — Turn 2 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "240 km/h ➔ 150 km/h",
     "typicalGear": "4th Gear",
     "gForce": "4.3 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 2 (T2) at Zeltweg Airfield Circuit (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   },
   {
@@ -3087,12 +3087,12 @@ export const ALL_GALLERY_MEDIA: GalleryMediaItem[] = [
     "circuitId": "zeltweg",
     "title": "Control Tower Chicane (T3)",
     "subtitle": "Zeltweg Airfield Circuit — Turn 3 Reconnaissance",
-    "category": "photo",
+    "category": "blueprint",
     "src": "/images/default-bg.png",
     "entrySpeed": "260 km/h ➔ 170 km/h",
     "typicalGear": "5th Gear",
     "gForce": "4.7 G",
-    "license": "PADDOCK TELEMETRY ASSET",
+    "license": "FIA TELEMETRY BLUEPRINT",
     "description": "Turn 3 (T3) at Zeltweg Airfield Circuit (Austria) is an iconic corner taken at approximately high-speed. Renowned in Grand Prix racing heritage for intense wheel-to-wheel duels, trail-braking mastery, and defining critical lap time momentum."
   }
 ];

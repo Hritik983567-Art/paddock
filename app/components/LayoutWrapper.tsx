@@ -140,7 +140,8 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}
             className="max-w-[125px] sm:max-w-none truncate"
           >
-            <option value="default">🏁 Checkered Flag</option>
+            <option value="checkered">🏁 Checkered Flag</option>
+            <option value="default">🏁 Default (Checkered)</option>
             <option value="ferrari">🔴 Ferrari</option>
             <option value="redbull">🔵 Red Bull</option>
             <option value="mercedes">🟢 Mercedes</option>
