@@ -217,6 +217,114 @@ const LiveDriverOverlay = React.memo(function LiveDriverOverlay({
   );
 });
 
+function computeTrackData(rawCircuitData: any, targetCircuit: string) {
+  if (!rawCircuitData || !rawCircuitData.layout || !rawCircuitData.layout.points) {
+    return null;
+  }
+
+  const { circuit: circuitMeta, layout, corners: rawCorners, rotation = 0, sourceSession, telemetryDriver } = rawCircuitData;
+  const isFastF1 = layout.coordinateSystem === 'fastf1_xy';
+  const bounds: TransformBounds = computeTransformBounds(layout.points, rotation, 1000, 700, 75, isFastF1);
+  const { pathD, transformedPoints } = transformTrackPath(layout.points, bounds);
+  const transformedCorners: TransformedCorner[] = transformCorners(rawCorners || [], bounds, transformedPoints).filter(
+    c =>
+      c &&
+      typeof c.anchorX === 'number' &&
+      !isNaN(c.anchorX) &&
+      typeof c.anchorY === 'number' &&
+      !isNaN(c.anchorY) &&
+      typeof c.labelX === 'number' &&
+      !isNaN(c.labelX) &&
+      typeof c.labelY === 'number' &&
+      !isNaN(c.labelY)
+  );
+
+  const startPoint: TransformedPoint | null =
+    transformedPoints.length > 0 &&
+    typeof transformedPoints[0]?.x === 'number' &&
+    !isNaN(transformedPoints[0].x) &&
+    typeof transformedPoints[0]?.y === 'number' &&
+    !isNaN(transformedPoints[0].y)
+      ? transformedPoints[0]
+      : null;
+
+  const nextPoint: TransformedPoint | null =
+    transformedPoints.length > 1 &&
+    typeof transformedPoints[1]?.x === 'number' &&
+    !isNaN(transformedPoints[1].x) &&
+    typeof transformedPoints[1]?.y === 'number' &&
+    !isNaN(transformedPoints[1].y)
+      ? transformedPoints[1]
+      : null;
+
+  let startAngle = 0;
+  if (startPoint && nextPoint) {
+    const calcAngle = Math.atan2(nextPoint.y - startPoint.y, nextPoint.x - startPoint.x) * (180 / Math.PI);
+    startAngle = isNaN(calcAngle) ? 0 : calcAngle;
+  }
+
+  const cornersDict: Record<string, any> = {};
+  const circuitDisplayName = circuitMeta?.name || targetCircuit.replace(/_/g, ' ').toUpperCase();
+  transformedCorners.forEach(c => {
+    const key = `t${c.number}${c.letter || ''}`.toLowerCase();
+    cornersDict[key] = enrichCornerDetails(c, targetCircuit, circuitDisplayName);
+  });
+
+  // Sector sub-paths so each track segment is color-coded by sector (S1=Cyan, S2=Amber, S3=Magenta)
+  const trackMeta = TRACKS_REGISTRY[targetCircuit] || TRACKS_REGISTRY[targetCircuit.replace(/-/g, '_')] || TRACKS_REGISTRY[targetCircuit.replace(/_/g, '-')];
+  let pathS1 = pathD, pathS2 = '', pathS3 = '';
+  if (transformedPoints && transformedPoints.length >= 5) {
+    const totalPts = transformedPoints.length;
+    const refPts = trackMeta?.path?.length || totalPts;
+
+    const getPropIdx = (rawIdx: number | undefined, defRatio: number) => {
+      if (typeof rawIdx === 'number' && refPts > 0) {
+        const ratio = rawIdx / refPts;
+        return Math.floor(totalPts * Math.min(0.99, Math.max(0.01, ratio)));
+      }
+      return Math.floor(totalPts * defRatio);
+    };
+
+    const s1Idx = getPropIdx(trackMeta?.sectors?.[0]?.markerIndex, 0.33);
+    const s2Idx = getPropIdx(trackMeta?.sectors?.[1]?.markerIndex, 0.66);
+
+    // Sector 1: 0 -> s1Idx
+    pathS1 = `M ${transformedPoints[0].x},${transformedPoints[0].y}`;
+    for (let i = 1; i <= s1Idx && i < totalPts; i++) {
+      pathS1 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
+    }
+
+    // Sector 2: s1Idx -> s2Idx
+    pathS2 = `M ${transformedPoints[Math.min(s1Idx, totalPts - 1)].x},${transformedPoints[Math.min(s1Idx, totalPts - 1)].y}`;
+    for (let i = s1Idx + 1; i <= s2Idx && i < totalPts; i++) {
+      pathS2 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
+    }
+
+    // Sector 3: s2Idx -> end -> 0
+    pathS3 = `M ${transformedPoints[Math.min(s2Idx, totalPts - 1)].x},${transformedPoints[Math.min(s2Idx, totalPts - 1)].y}`;
+    for (let i = s2Idx + 1; i < totalPts; i++) {
+      pathS3 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
+    }
+    pathS3 += ` L ${transformedPoints[0].x},${transformedPoints[0].y}`;
+  }
+
+  return {
+    circuitMeta,
+    layout,
+    rotation,
+    sourceSession,
+    telemetryDriver,
+    bounds,
+    pathD,
+    sectorPaths: { pathS1, pathS2, pathS3 },
+    transformedPoints,
+    transformedCorners,
+    startPoint,
+    startAngle,
+    cornersDict
+  };
+}
+
 export function CircuitMap({
   circuit,
   circuitId,
@@ -326,6 +434,11 @@ export function CircuitMap({
       isMounted = false;
     };
   }, [targetCircuit, year]);
+
+  // Memoize all expensive track geometry calculations to run ONLY when circuit data changes!
+  const trackData = useMemo(() => {
+    return computeTrackData(rawCircuitData, targetCircuit);
+  }, [rawCircuitData, targetCircuit]);
 
   const lastCornerClickTimeRef = useRef<number>(0);
   const handleCornerClick = (corner: TransformedCorner) => {
@@ -484,115 +597,6 @@ export function CircuitMap({
     setPan({ x: 0, y: 0 });
     setSelectedCorner(null);
   };
-
-  // Memoize all expensive track geometry calculations to run ONLY when circuit data changes!
-  const trackData = useMemo(() => {
-    if (!rawCircuitData || !rawCircuitData.layout || !rawCircuitData.layout.points) {
-      return null;
-    }
-
-    const { circuit: circuitMeta, layout, corners: rawCorners, rotation = 0, sourceSession, telemetryDriver } = rawCircuitData;
-    const isFastF1 = layout.coordinateSystem === 'fastf1_xy';
-    const bounds: TransformBounds = computeTransformBounds(layout.points, rotation, 1000, 700, 75, isFastF1);
-    const { pathD, transformedPoints } = transformTrackPath(layout.points, bounds);
-    const transformedCorners: TransformedCorner[] = transformCorners(rawCorners || [], bounds, transformedPoints).filter(
-      c =>
-        c &&
-        typeof c.anchorX === 'number' &&
-        !isNaN(c.anchorX) &&
-        typeof c.anchorY === 'number' &&
-        !isNaN(c.anchorY) &&
-        typeof c.labelX === 'number' &&
-        !isNaN(c.labelX) &&
-        typeof c.labelY === 'number' &&
-        !isNaN(c.labelY)
-    );
-
-    const startPoint: TransformedPoint | null =
-      transformedPoints.length > 0 &&
-      typeof transformedPoints[0]?.x === 'number' &&
-      !isNaN(transformedPoints[0].x) &&
-      typeof transformedPoints[0]?.y === 'number' &&
-      !isNaN(transformedPoints[0].y)
-        ? transformedPoints[0]
-        : null;
-
-    const nextPoint: TransformedPoint | null =
-      transformedPoints.length > 1 &&
-      typeof transformedPoints[1]?.x === 'number' &&
-      !isNaN(transformedPoints[1].x) &&
-      typeof transformedPoints[1]?.y === 'number' &&
-      !isNaN(transformedPoints[1].y)
-        ? transformedPoints[1]
-        : null;
-
-    let startAngle = 0;
-    if (startPoint && nextPoint) {
-      const calcAngle = Math.atan2(nextPoint.y - startPoint.y, nextPoint.x - startPoint.x) * (180 / Math.PI);
-      startAngle = isNaN(calcAngle) ? 0 : calcAngle;
-    }
-
-    const cornersDict: Record<string, any> = {};
-    const circuitDisplayName = circuitMeta?.name || targetCircuit.replace(/_/g, ' ').toUpperCase();
-    transformedCorners.forEach(c => {
-      const key = `t${c.number}${c.letter || ''}`.toLowerCase();
-      cornersDict[key] = enrichCornerDetails(c, targetCircuit, circuitDisplayName);
-    });
-
-    // Sector sub-paths so each track segment is color-coded by sector (S1=Cyan, S2=Amber, S3=Magenta)
-    const trackMeta = TRACKS_REGISTRY[targetCircuit] || TRACKS_REGISTRY[targetCircuit.replace(/-/g, '_')] || TRACKS_REGISTRY[targetCircuit.replace(/_/g, '-')];
-    let pathS1 = pathD, pathS2 = '', pathS3 = '';
-    if (transformedPoints && transformedPoints.length >= 5) {
-      const totalPts = transformedPoints.length;
-      const refPts = trackMeta?.path?.length || totalPts;
-
-      const getPropIdx = (rawIdx: number | undefined, defRatio: number) => {
-        if (typeof rawIdx === 'number' && refPts > 0) {
-          const ratio = rawIdx / refPts;
-          return Math.floor(totalPts * Math.min(0.99, Math.max(0.01, ratio)));
-        }
-        return Math.floor(totalPts * defRatio);
-      };
-
-      const s1Idx = getPropIdx(trackMeta?.sectors?.[0]?.markerIndex, 0.33);
-      const s2Idx = getPropIdx(trackMeta?.sectors?.[1]?.markerIndex, 0.66);
-
-      // Sector 1: 0 -> s1Idx
-      pathS1 = `M ${transformedPoints[0].x},${transformedPoints[0].y}`;
-      for (let i = 1; i <= s1Idx && i < totalPts; i++) {
-        pathS1 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
-      }
-
-      // Sector 2: s1Idx -> s2Idx
-      pathS2 = `M ${transformedPoints[Math.min(s1Idx, totalPts - 1)].x},${transformedPoints[Math.min(s1Idx, totalPts - 1)].y}`;
-      for (let i = s1Idx + 1; i <= s2Idx && i < totalPts; i++) {
-        pathS2 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
-      }
-
-      // Sector 3: s2Idx -> end -> 0
-      pathS3 = `M ${transformedPoints[Math.min(s2Idx, totalPts - 1)].x},${transformedPoints[Math.min(s2Idx, totalPts - 1)].y}`;
-      for (let i = s2Idx + 1; i < totalPts; i++) {
-        pathS3 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
-      }
-      pathS3 += ` L ${transformedPoints[0].x},${transformedPoints[0].y}`;
-    }
-
-    return {
-      circuitMeta,
-      layout,
-      rotation,
-      sourceSession,
-      telemetryDriver,
-      bounds,
-      pathD,
-      sectorPaths: { pathS1, pathS2, pathS3 },
-      transformedPoints,
-      transformedCorners,
-      startPoint,
-      startAngle,
-      cornersDict
-    };
-  }, [rawCircuitData, targetCircuit]);
 
   if (loading) {
     return (

@@ -1,37 +1,55 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'ID Grotesk';
+  src: url('/fonts/IDGrotesk-Regular.woff') format('woff');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ID Grotesk';
+  src: url('/fonts/IDGrotesk-Bold.woff') format('woff');
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans: var(--font-body), 'Inter', sans-serif;
-  --font-display: var(--font-display), 'Titillium Web', sans-serif;
+  --font-sans: 'Times New Roman', 'Times', Georgia, serif;
+  --font-body: 'Times New Roman', 'Times', Georgia, serif;
+  --font-display: 'ID Grotesk', system-ui, -apple-system, sans-serif;
   --font-telemetry: var(--font-telemetry), 'Roboto Condensed', sans-serif;
   --font-mono: var(--font-telemetry), 'Roboto Condensed', monospace;
 }
 
 :root {
-    --asphalt: #0C0E12;
-    --carbon: #15181E;
-    --carbon-2: #1C2028;
-    --line: #2A2F3A;
+    --asphalt: #05070A;
+    --carbon: #0C1017;
+    --carbon-2: #141923;
+    --line: #2E3746;
     --paper: #FFFFFF;
-    --dim: #CBD5E1;
-    --red: #E10600;
-    --red-dim: #7A0800;
-    --cyan: #00F5D4;
-    --purple: #B138DD;
-    --amber: #FFB800;
-    --green: #00D2BE;
-    --theme-glow: rgba(225, 6, 0, 0.4);
-    --font-display: var(--font-display), 'Titillium Web', sans-serif;
-    --font-body: var(--font-body), 'Inter', sans-serif;
+    --dim: #E2E8F0;
+    --red: #FF1801;
+    --red-dim: #8A0B00;
+    --cyan: #00FFE0;
+    --purple: #C840FF;
+    --amber: #FFC000;
+    --green: #00F090;
+    --theme-glow: rgba(255, 24, 1, 0.45);
+    --font-display: 'ID Grotesk', system-ui, -apple-system, sans-serif;
+    --font-body: 'Times New Roman', 'Times', Georgia, serif;
+    --font-sans: 'Times New Roman', 'Times', Georgia, serif;
     --font-mono: var(--font-telemetry), 'Roboto Condensed', monospace;
     --font-telemetry: var(--font-telemetry), 'Roboto Condensed', monospace;
-    --f1-red: #E10600;
-    --f1-red-bright: #FF1801;
-    --f1-red-dark: #B30000;
-    --f1-red-glow: rgba(225, 6, 0, 0.45);
-    --f1-gold: #FFB800;
-    --f1-purple: #B138DD;
-    --f1-cyan: #00F5D4;
+    --f1-red: #FF1801;
+    --f1-red-bright: #FF351F;
+    --f1-red-dark: #C40500;
+    --f1-red-glow: rgba(255, 24, 1, 0.5);
+    --f1-gold: #FFC000;
+    --f1-purple: #C840FF;
+    --f1-cyan: #00FFE0;
 }
 
 /* Official F1 Racing Typography Gradients & Badges */
@@ -149,13 +167,13 @@
   text-shadow: 0 0 10px rgba(225, 6, 0, 0.45);
 }
 
-/* Explicit Typography System: Titillium Web (Headings/Display) + Inter (Body/UI) + Roboto Condensed (Numbers/Telemetry) */
+/* Explicit Typography System: ID Grotesk (Headings/Display) + Times (Body/UI/Rest) + Roboto Condensed (Numbers/Telemetry) */
 .font-display {
-  font-family: var(--font-display), 'Titillium Web', sans-serif !important;
+  font-family: var(--font-display), 'ID Grotesk', system-ui, sans-serif !important;
 }
 
 .font-body, .font-sans {
-  font-family: var(--font-body), 'Inter', sans-serif !important;
+  font-family: var(--font-body), 'Times New Roman', 'Times', Georgia, serif !important;
 }
 
 .font-telemetry {
@@ -169,7 +187,12 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display), 'Titillium Web', sans-serif;
+  font-family: var(--font-display), 'ID Grotesk', system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+body {
+  font-family: var(--font-body), 'Times New Roman', 'Times', Georgia, serif;
 }
 
 /* Ultra-Sharp High-Definition Photo Rendering */
@@ -186,23 +209,23 @@ h1, h2, h3, h4, h5, h6 {
 :root,
 :root[data-theme="default"],
 :root[data-theme="checkered"] {
-    --asphalt: #0C0E12;
-    --carbon: #15181E;
-    --carbon-2: #1C2028;
-    --line: #2A2F3A;
+    --asphalt: #05070A;
+    --carbon: #0C1017;
+    --carbon-2: #141923;
+    --line: #2E3746;
     --paper: #FFFFFF;
-    --dim: #CBD5E1;
-    --red: #E10600;
-    --cyan: #00F5D4;
-    --purple: #B138DD;
-    --amber: #FFB800;
-    --red-dim: #7A0800;
-    --theme-glow: rgba(225, 6, 0, 0.45);
-    --f1-red: #E10600;
-    --f1-red-bright: #FF1801;
-    --f1-red-dark: #B30000;
-    --f1-red-glow: rgba(225, 6, 0, 0.45);
-    --f1-cyan: #00F5D4;
+    --dim: #E2E8F0;
+    --red: #FF1801;
+    --cyan: #00FFE0;
+    --purple: #C840FF;
+    --amber: #FFC000;
+    --red-dim: #8A0B00;
+    --theme-glow: rgba(255, 24, 1, 0.45);
+    --f1-red: #FF1801;
+    --f1-red-bright: #FF351F;
+    --f1-red-dark: #C40500;
+    --f1-red-glow: rgba(255, 24, 1, 0.5);
+    --f1-cyan: #00FFE0;
 }
 
 :root[data-theme="ferrari"] {
@@ -591,7 +614,7 @@ a {
 }
 
 .brand {
-    font-family: var(--font-display), 'Titillium Web', sans-serif;
+    font-family: var(--font-display), 'ID Grotesk', system-ui, sans-serif;
     font-weight: 900;
     font-size: 22px;
     letter-spacing: 1px;
@@ -753,7 +776,7 @@ a {
 }
 
 .side-nav-title {
-    font-family: var(--font-display), 'Titillium Web', sans-serif;
+    font-family: var(--font-display), 'ID Grotesk', system-ui, sans-serif;
     font-weight: 900;
     font-size: 15px;
     letter-spacing: 1.2px;
@@ -789,7 +812,7 @@ a {
 }
 
 .tab-btn {
-    font-family: var(--font-display), 'Titillium Web', sans-serif;
+    font-family: var(--font-display), 'ID Grotesk', system-ui, sans-serif;
     font-weight: 700;
     font-size: 13.5px;
     letter-spacing: 0.6px;
@@ -1088,7 +1111,7 @@ a {
 }
 
 .panel h2 {
-    font-family: var(--font-display), 'Titillium Web', sans-serif;
+    font-family: var(--font-display), 'ID Grotesk', system-ui, sans-serif;
     font-weight: 800;
     font-size: 20px;
     letter-spacing: 0.8px;
@@ -1110,7 +1133,7 @@ a {
 }
 
 .panel .sub {
-    font-family: var(--font-body), 'Inter', sans-serif;
+    font-family: var(--font-body), 'Times New Roman', 'Times', serif;
     font-size: 13px;
     color: #94A3B8;
     margin: 0 0 16px;
@@ -1158,7 +1181,7 @@ a {
 }
 
 .standing-row .name {
-    font-family: var(--font-display), 'Titillium Web', sans-serif;
+    font-family: var(--font-display), 'ID Grotesk', system-ui, sans-serif;
     font-weight: 700;
     font-size: 14.5px;
     letter-spacing: 0.3px;
@@ -1166,7 +1189,7 @@ a {
 }
 
 .standing-row .team {
-    font-family: var(--font-body), 'Inter', sans-serif;
+    font-family: var(--font-body), 'Times New Roman', 'Times', serif;
     font-size: 12px;
     color: #94A3B8;
 }
@@ -1482,7 +1505,7 @@ input[type=range] {
 }
 
 .stat-box .k {
-    font-family: var(--font-display), 'Titillium Web', sans-serif;
+    font-family: var(--font-display), 'ID Grotesk', system-ui, sans-serif;
     font-size: 11px;
     font-weight: 700;
     color: #94A3B8;
@@ -2035,7 +2058,7 @@ footer {
 }
 
 .profile-head h3 {
-    font-family: var(--font-display), 'Titillium Web', sans-serif;
+    font-family: var(--font-display), 'ID Grotesk', system-ui, sans-serif;
     font-weight: 800;
     font-size: 28px;
     letter-spacing: 0.5px;
@@ -2045,7 +2068,7 @@ footer {
 }
 
 .profile-head .team-line {
-    font-family: var(--font-body), 'Inter', sans-serif;
+    font-family: var(--font-body), 'Times New Roman', 'Times', serif;
     font-size: 13px;
     color: #94A3B8;
     line-height: 1.5;
@@ -2502,13 +2525,21 @@ footer {
 /* Laptop & Desktop High Resolution (> 1024px) */
 @media (min-width: 1024px) {
     .wrap {
-        max-width: 1380px;
+        max-width: 1680px;
         margin-left: 214px;
-        padding: 32px 36px 80px;
+        padding: 24px 28px 80px;
+        box-sizing: border-box;
     }
 
     .hero {
         grid-template-columns: 1.4fr 1fr;
+    }
+}
+
+@media (min-width: 1600px) {
+    .wrap {
+        max-width: 1880px;
+        padding: 28px 36px 80px;
     }
 }
 

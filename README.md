@@ -48,8 +48,24 @@ Paddock Telemetry provides an enterprise-grade, modular software engineering doc
 - **Constructor Rivalries**: H2H comparisons across all 10 F1 constructor teams.
 - **Telemetry Delta Graphs**: Cumulative championship points progression curves, qualifying pace deltas, and finishing statistics.
 
-### 🔬 4. High-Contrast Telemetry Lab & Pace Analyzer (`/lab`)
-- **Lap Overlay Comparison**: Compare telemetry lap traces, speed deltas, and throttle application across drivers.
+### 🔬 4. High-Contrast Telemetry & Strategy Lab (`/lab`)
+The Strategy Lab provides an advanced four-tool telemetry reconnaissance and race engineer strategy suite:
+- **Circuit DNA & Sector Domination Matrix (`CircuitDNASectorMatrix.tsx`)**:
+  - **100% Empirical Telemetry**: Decomposes authentic FIA session timing into **Sector 1 (high-speed aero downforce)**, **Sector 2 (mechanical traction & direction changes)**, and **Sector 3 (power unit efficiency & DRS speed traps)** without synthetic AI guesses.
+  - **Theoretical Ultimate Lap**: Synthesizes purple micro-sector benchmarks across all drivers to compute the mathematical ceiling of the circuit.
+  - **Constructor Aero Dominance**: Computes team mechanical vs aerodynamic chassis balance with sector-by-sector head-to-head duels.
+- **Head-to-Head Tactical Strategy Duel (`TacticalStrategyDuel.tsx`)**:
+  - **Race Pace & Pit Battle Engine**: Merges authentic long-run race pace deltas with dynamic 1-stop vs. 2-stop undercut and overcut simulations.
+  - **Live Gap Evolution**: Visualizes projected track intervals across all race laps with pit loss offsets.
+  - **Safety Car / VSC Injections**: Simulates tactical pit window compression under Safety Car ($14\text{s}$ loss) and Virtual Safety Car ($11\text{s}$ loss) conditions.
+- **Tyre Degradation & Stint Whisperer Lab (`TyreDegradationLab.tsx`)**:
+  - **Track-Specific Pirelli Allocations**: Ingests official **C1 through C5** compound nominations (Hard, Medium, Soft) for every Grand Prix circuit.
+  - **3-Phase Thermal Cliff Physics Engine**: Models non-linear compound behavior across Phase 1 (Scrub-in Peak, Laps 1–3), Phase 2 (Management Plateau), and Phase 3 (Exponential Thermal Cliff: $\Delta\text{s} \propto (\text{lapsOverCliff})^{1.55}$).
+  - **Dynamic Crossover Lap Detection**: Automatically calculates the exact lap where a degrading softer compound crosses pace parity with a fresh harder tyre.
+  - **Fuel-Burnoff Compensation**: Adjusts stint degradation by $+0.055\text{s/lap}$ to isolate genuine rubber wear from vehicle mass reduction.
+  - **Tyre Whisperer Index**: Evaluates driver management efficiency on a 0–100 scale with driving style presets (*Whisperer*, *Balanced*, *Attack*).
+- **Telemetry & Lap Trace Overlay Analyzer**:
+  - High-contrast multi-channel overlays comparing speed traces (km/h), throttle percentage, braking pressure, and gear shifts across hot laps.
 
 ### 🔐 5. Enterprise Supabase PKCE Auth & Security
 - **Hard Credential Verification**: Multi-layer password authentication with Supabase PKCE.
@@ -62,7 +78,8 @@ Paddock Telemetry provides an enterprise-grade, modular software engineering doc
 
 ```mermaid
 graph LR
-    Client["🖥️ Client (Next.js 16 App Router)"] --> API["⚡ API Gateway (/api/circuits)"]
+    Client["🖥️ Client (Next.js 16 App Router)"] --> API["⚡ API Gateway (/api/circuits, /api/auth)"]
+    Client --> Lab["🔬 Strategy Lab (/lab: Circuit DNA + Tyre Physics + Pit Duels)"]
     API --> Engine["🏎️ Coordinate Engine (circuitTransform.ts)"]
     API --> Proxy["🐍 FastF1 Python Telemetry Proxy"]
     Proxy --> FastF1["🌐 Official F1 Timing & Telemetry Data"]

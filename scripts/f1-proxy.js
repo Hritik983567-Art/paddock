@@ -44,22 +44,34 @@ function negotiateF1() {
   });
 }
 
-// Decompress F1 Gzipped Base64 stream
-function decompressPayload(base64Str) {
-  try {
-    const buffer = Buffer.from(base64Str, 'base64');
-    const decompressed = zlib.inflateRawSync(buffer);
-    return JSON.parse(decompressed.toString('utf8'));
-  } catch (err) {
+// Asynchronously decompress F1 Gzipped Base64 stream without blocking event loop
+function decompressPayloadAsync(base64Str) {
+  return new Promise((resolve) => {
     try {
       const buffer = Buffer.from(base64Str, 'base64');
-      const decompressed = zlib.gunzipSync(buffer);
-      return JSON.parse(decompressed.toString('utf8'));
-    } catch (e2) {
-      console.error('[PROXY DECOMPRESS ERROR]:', err.message);
-      return null;
+      zlib.inflateRaw(buffer, (err, decompressed) => {
+        if (!err && decompressed) {
+          try {
+            return resolve(JSON.parse(decompressed.toString('utf8')));
+          } catch {
+            return resolve(null);
+          }
+        }
+        zlib.gunzip(buffer, (err2, decompressed2) => {
+          if (!err2 && decompressed2) {
+            try {
+              return resolve(JSON.parse(decompressed2.toString('utf8')));
+            } catch {
+              return resolve(null);
+            }
+          }
+          resolve(null);
+        });
+      });
+    } catch {
+      resolve(null);
     }
-  }
+  });
 }
 
 // Connect to official F1 Streaming Hub
@@ -87,8 +99,6 @@ async function connectToF1Live() {
     });
 
     let handshaked = false;
-    let uniqueDriversWithPositions = new Set();
-    let lastPositionReset = Date.now();
 
     f1Socket.on('open', () => {
       console.log('[PROXY F1]: WebSocket tunnel opened. Sending handshake protocol...');
@@ -101,7 +111,7 @@ async function connectToF1Live() {
       lastF1DataFrameTime = 0; // Initialize to 0 so we check for active drivers first
     });
 
-    f1Socket.on('message', (rawData) => {
+    f1Socket.on('message', async (rawData) => {
       try {
         const frames = rawData.toString().split(String.fromCharCode(0x1e));
         for (const frame of frames) {
@@ -113,9 +123,9 @@ async function connectToF1Live() {
               console.log('[PROXY F1]: Handshake accepted. Subscribing to live timing feeds...');
               handshaked = true;
 
-              // Subscribe to channels
+              // Subscribe to essential dashboard channels (prune CarData to prevent UI lag/latency)
               const subscribe = JSON.stringify({
-                arguments: [["Heartbeat", "CarData", "TimingData", "TimingStats", "TimingAppData", "WeatherData", "TrackStatus", "SessionInfo"]],
+                arguments: [["Heartbeat", "TimingData", "TimingStats", "TimingAppData", "WeatherData", "TrackStatus", "SessionInfo", "RaceControlMessages", "DriverList"]],
                 target: "Subscribe",
                 type: 1
               }) + String.fromCharCode(0x1e);
@@ -127,9 +137,12 @@ async function connectToF1Live() {
               const channel = msg.arguments[0];
               const payload = msg.arguments[1];
 
+              // Filter out high-frequency raw telemetry if not subscribed
+              if (channel === 'CarData') continue;
+
               let decompressed = null;
               if (typeof payload === 'string') {
-                decompressed = decompressPayload(payload);
+                decompressed = await decompressPayloadAsync(payload);
               } else {
                 decompressed = payload;
               }

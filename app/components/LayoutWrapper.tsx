@@ -135,13 +135,12 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             id="themeSelect" 
             title="F1 Team Theme"
             aria-label="Select F1 Team Theme"
-            value={theme}
+            value={theme === 'default' ? 'checkered' : theme}
             onChange={(e) => setTheme(e.target.value as F1Theme)}
             style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}
             className="max-w-[125px] sm:max-w-none truncate"
           >
             <option value="checkered">🏁 Checkered Flag</option>
-            <option value="default">🏁 Default (Checkered)</option>
             <option value="ferrari">🔴 Ferrari</option>
             <option value="redbull">🔵 Red Bull</option>
             <option value="mercedes">🟢 Mercedes</option>

@@ -107,6 +107,26 @@ The typography hierarchy is designed for instant scannability under high-stress 
 - **Right-Sized Collision Hitboxes**: Invisible painted hit targets are constrained to 32×26px for badges and 12px radius for apex anchors (`fill="#FFFFFF" fillOpacity="0.001"`), preventing neighboring corner hitboxes from overlapping.
 - **Touch & Gesture Immunity**: Canvas drag listeners (`onMouseDown`, `onTouchStart`) check `target.closest('[data-corner="true"]')` and enforce a 12px drag delta, ensuring corner taps open reconnaissance specs without shifting the canvas.
 
+### 4.3 Strategy Lab & Empirical Telemetry Matrix HUD (`/lab`)
+- **Sub-Tool Mode Switcher**: High-contrast pill tabs with active indicator glow (`bg-red-600/20 text-red-400 border-red-500/40`), allowing instant switching between:
+  1. *Circuit DNA & Sector Domination Matrix*
+  2. *Head-to-Head Tactical Strategy Duel*
+  3. *Tyre Degradation & Stint Whisperer Lab*
+  4. *Telemetry & Lap Trace Overlay*
+- **Empirical Sector Timing Color Palette**:
+  - **Fastest Overall (Purple Benchmark)**: `text-purple-400 bg-purple-950/40 border-purple-500/40` (`#C084FC`). Indicates the session benchmark and contributes to the Theoretical Ultimate Lap.
+  - **Personal Best (Green Sector)**: `text-emerald-400 bg-emerald-950/40 border-emerald-500/40` (`#34D399`).
+  - **Standard Pace (Yellow Sector)**: `text-amber-300 bg-amber-950/30 border-amber-500/30` (`#FCD34D`).
+  - **Speed Traps (Cyan Accent)**: `text-cyan-400 font-mono` (`#22D3EE`).
+- **Pirelli C1–C5 Compound Badge System**:
+  - Official compound tags (`C1`, `C2`, `C3`, `C4`, `C5`) rendered in uppercase monospace badges.
+  - Hard Compound (`C1`–`C2`): `border-zinc-300 text-white bg-zinc-800/80`.
+  - Medium Compound (`C2`–`C4`): `border-amber-400 text-amber-300 bg-amber-950/40`.
+  - Soft Compound (`C3`–`C5`): `border-rose-500 text-rose-400 bg-rose-950/40`.
+- **Dynamic Crossover & Thermal Cliff Alerts**:
+  - Crossover Callout: Emerald pill badge indicating mathematical crossover lap (`LAP X ➔ Crossover Threshold`).
+  - Cliff Warning: Rose pulsing badge when compound enters Phase 3 non-linear cliff degradation ($L > L_{\text{cliff}}$).
+
 ---
 
 ## 5. Responsive Grid & Breakpoint Strategy

@@ -6,6 +6,22 @@ import { getTeamColor, getJSON, API_BASE } from '../utils/api';
 import CircuitMap from '../components/CircuitMap';
 import { TRACKS_REGISTRY, getTrackDefinition } from '../lib/tracksRegistry';
 
+export interface SectorData {
+  value: string;
+  isPersonalFastest?: boolean;
+  isOverallFastest?: boolean;
+}
+
+export interface LiveWeatherData {
+  airTemp?: string;
+  trackTemp?: string;
+  humidity?: string;
+  pressure?: string;
+  windSpeed?: string;
+  windDirection?: string;
+  rainfall?: string;
+}
+
 interface LiveDriver {
   driverId: string;
   code: string;
@@ -17,7 +33,12 @@ interface LiveDriver {
   gapToLeader: number; // seconds
   intervalToAhead?: number; // seconds to car directly ahead
   lastLapTime: string;
+  bestLapTime?: string;
   isFastestSector: boolean;
+  isFastestLap?: boolean;
+  sector1?: SectorData;
+  sector2?: SectorData;
+  sector3?: SectorData;
   speedTrap: number; // km/h
   tyre: 'S' | 'M' | 'H' | 'I' | 'W';
   tyreAge: number;
@@ -32,52 +53,6 @@ function formatLapTime(seconds: number): string {
   return `${m}:${s.toString().padStart(2, '0')}.${ms.toString().padStart(3, '0')}`;
 }
 
-function getVenueBaseLapTime(circuitId: string): number {
-  const trackDef = getTrackDefinition(circuitId);
-  if (trackDef?.record) {
-    const match = trackDef.record.match(/(\d+):(\d+(?:\.\d+)?)/);
-    if (match) {
-      const recSeconds = parseInt(match[1]) * 60 + parseFloat(match[2]);
-      // Race lap pace in Grand Prix conditions is ~2.8s slower than all-time qualifying lap record
-      return Math.round((recSeconds + 2.8) * 10) / 10;
-    }
-  }
-  const lengthKm = trackDef?.length_km || 5.2;
-  const isStreetOrTight = ['monaco', 'marina_bay', 'singapore', 'hungaroring', 'zandvoort'].includes(circuitId);
-  const avgSpeed = isStreetOrTight ? 185 : 225;
-  return Math.round(((lengthKm / avgSpeed) * 3600) * 10) / 10;
-}
-
-function generateAnchorLapTimes(circuitId: string, roster: LiveDriver[]): LiveDriver[] {
-  const baseLapSeconds = getVenueBaseLapTime(circuitId);
-  let fastestTime = Infinity;
-  let fastestIdx = 3; // Default candidate (e.g. Leclerc)
-
-  const list = roster.map((d, idx) => {
-    const tyreDelta = d.tyre === 'S' ? -0.4 : d.tyre === 'H' ? 0.35 : 0.0;
-    const posDelta = idx * 0.08;
-    const tyreDeg = (d.tyreAge || 0) * 0.035;
-    const variance = (Math.sin(idx * 1.5) * 0.12);
-
-    const totalSeconds = baseLapSeconds + tyreDelta + posDelta + tyreDeg + variance;
-    if (totalSeconds < fastestTime) {
-      fastestTime = totalSeconds;
-      fastestIdx = idx;
-    }
-
-    return {
-      ...d,
-      lastLapTime: formatLapTime(totalSeconds),
-      isFastestSector: false
-    };
-  });
-
-  if (list[fastestIdx]) {
-    list[fastestIdx].isFastestSector = true;
-  }
-
-  return list;
-}
 
 function getTyreBadgeStyle(compound: string) {
   switch (compound) {
@@ -126,30 +101,7 @@ function getTyreBadgeStyle(compound: string) {
   }
 }
 
-const INITIAL_DRIVERS: LiveDriver[] = [
-  { driverId: 'antonelli', code: 'ANT', name: 'Andrea Kimi Antonelli', number: '12', teamId: 'mercedes', teamName: 'Mercedes', position: 1, gapToLeader: 0.0, intervalToAhead: 0.0, lastLapTime: '1:35.420', isFastestSector: false, speedTrap: 331, tyre: 'M', tyreAge: 4, status: 'RACING', pitStops: 0 },
-  { driverId: 'russell', code: 'RUS', name: 'George Russell', number: '63', teamId: 'mercedes', teamName: 'Mercedes', position: 2, gapToLeader: 1.250, intervalToAhead: 1.250, lastLapTime: '1:35.510', isFastestSector: false, speedTrap: 328, tyre: 'M', tyreAge: 4, status: 'RACING', pitStops: 0 },
-  { driverId: 'hamilton', code: 'HAM', name: 'Lewis Hamilton', number: '44', teamId: 'ferrari', teamName: 'Ferrari', position: 3, gapToLeader: 2.840, intervalToAhead: 1.590, lastLapTime: '1:35.630', isFastestSector: false, speedTrap: 329, tyre: 'S', tyreAge: 6, status: 'RACING', pitStops: 0 },
-  { driverId: 'leclerc', code: 'LEC', name: 'Charles Leclerc', number: '16', teamId: 'ferrari', teamName: 'Ferrari', position: 4, gapToLeader: 4.120, intervalToAhead: 1.280, lastLapTime: '1:35.120', isFastestSector: true, speedTrap: 334, tyre: 'S', tyreAge: 5, status: 'RACING', pitStops: 0 },
-  { driverId: 'norris', code: 'NOR', name: 'Lando Norris', number: '1', teamId: 'mclaren', teamName: 'McLaren', position: 5, gapToLeader: 5.580, intervalToAhead: 1.460, lastLapTime: '1:35.820', isFastestSector: false, speedTrap: 327, tyre: 'M', tyreAge: 4, status: 'RACING', pitStops: 0 },
-  { driverId: 'piastri', code: 'PIA', name: 'Oscar Piastri', number: '81', teamId: 'mclaren', teamName: 'McLaren', position: 6, gapToLeader: 7.920, intervalToAhead: 2.340, lastLapTime: '1:35.990', isFastestSector: false, speedTrap: 330, tyre: 'H', tyreAge: 3, status: 'RACING', pitStops: 0 },
-  { driverId: 'max_verstappen', code: 'VER', name: 'Max Verstappen', number: '3', teamId: 'red_bull', teamName: 'Red Bull', position: 7, gapToLeader: 9.850, intervalToAhead: 1.930, lastLapTime: '1:35.720', isFastestSector: false, speedTrap: 325, tyre: 'M', tyreAge: 7, status: 'RACING', pitStops: 0 },
-  { driverId: 'hadjar', code: 'HAD', name: 'Isack Hadjar', number: '6', teamId: 'red_bull', teamName: 'Red Bull', position: 8, gapToLeader: 12.300, intervalToAhead: 2.450, lastLapTime: '1:36.140', isFastestSector: false, speedTrap: 326, tyre: 'H', tyreAge: 8, status: 'RACING', pitStops: 0 },
-  { driverId: 'gasly', code: 'GAS', name: 'Pierre Gasly', number: '10', teamId: 'alpine', teamName: 'Alpine F1 Team', position: 9, gapToLeader: 14.280, intervalToAhead: 1.980, lastLapTime: '1:36.350', isFastestSector: false, speedTrap: 329, tyre: 'M', tyreAge: 9, status: 'RACING', pitStops: 0 },
-  { driverId: 'lawson', code: 'LAW', name: 'Liam Lawson', number: '30', teamId: 'rb', teamName: 'RB F1 Team', position: 10, gapToLeader: 18.520, intervalToAhead: 4.240, lastLapTime: '1:36.480', isFastestSector: false, speedTrap: 324, tyre: 'S', tyreAge: 10, status: 'RACING', pitStops: 0 },
-  { driverId: 'arvid_lindblad', code: 'LIN', name: 'Arvid Lindblad', number: '41', teamId: 'rb', teamName: 'RB F1 Team', position: 11, gapToLeader: 21.050, intervalToAhead: 2.530, lastLapTime: '1:36.620', isFastestSector: false, speedTrap: 328, tyre: 'S', tyreAge: 8, status: 'RACING', pitStops: 0 },
-  { driverId: 'bearman', code: 'BEA', name: 'Oliver Bearman', number: '87', teamId: 'haas', teamName: 'Haas F1 Team', position: 12, gapToLeader: 24.510, intervalToAhead: 3.460, lastLapTime: '1:36.790', isFastestSector: false, speedTrap: 326, tyre: 'M', tyreAge: 12, status: 'RACING', pitStops: 0 },
-  { driverId: 'colapinto', code: 'COL', name: 'Franco Colapinto', number: '43', teamId: 'alpine', teamName: 'Alpine F1 Team', position: 13, gapToLeader: 28.020, intervalToAhead: 3.510, lastLapTime: '1:36.910', isFastestSector: false, speedTrap: 322, tyre: 'H', tyreAge: 11, status: 'RACING', pitStops: 0 },
-  { driverId: 'bortoleto', code: 'BOR', name: 'Gabriel Bortoleto', number: '5', teamId: 'audi', teamName: 'Audi', position: 14, gapToLeader: 30.550, intervalToAhead: 2.530, lastLapTime: '1:37.040', isFastestSector: false, speedTrap: 325, tyre: 'M', tyreAge: 13, status: 'RACING', pitStops: 0 },
-  { driverId: 'sainz', code: 'SAI', name: 'Carlos Sainz', number: '55', teamId: 'williams', teamName: 'Williams', position: 15, gapToLeader: 32.840, intervalToAhead: 2.290, lastLapTime: '1:37.150', isFastestSector: false, speedTrap: 323, tyre: 'H', tyreAge: 9, status: 'RACING', pitStops: 0 },
-  { driverId: 'albon', code: 'ALB', name: 'Alex Albon', number: '23', teamId: 'williams', teamName: 'Williams', position: 16, gapToLeader: 35.120, intervalToAhead: 2.280, lastLapTime: '1:37.290', isFastestSector: false, speedTrap: 327, tyre: 'H', tyreAge: 14, status: 'RACING', pitStops: 0 },
-  { driverId: 'ocon', code: 'OCO', name: 'Esteban Ocon', number: '31', teamId: 'haas', teamName: 'Haas F1 Team', position: 17, gapToLeader: 38.450, intervalToAhead: 3.330, lastLapTime: '1:37.410', isFastestSector: false, speedTrap: 321, tyre: 'S', tyreAge: 11, status: 'RACING', pitStops: 0 },
-  { driverId: 'alonso', code: 'ALO', name: 'Fernando Alonso', number: '14', teamId: 'aston_martin', teamName: 'Aston Martin', position: 18, gapToLeader: 41.200, intervalToAhead: 2.750, lastLapTime: '1:37.530', isFastestSector: false, speedTrap: 323, tyre: 'M', tyreAge: 15, status: 'RACING', pitStops: 0 },
-  { driverId: 'hulkenberg', code: 'HUL', name: 'Nico Hulkenberg', number: '27', teamId: 'audi', teamName: 'Audi', position: 19, gapToLeader: 44.920, intervalToAhead: 3.720, lastLapTime: '1:37.690', isFastestSector: false, speedTrap: 324, tyre: 'H', tyreAge: 16, status: 'RACING', pitStops: 0 },
-  { driverId: 'bottas', code: 'BOT', name: 'Valtteri Bottas', number: '77', teamId: 'cadillac', teamName: 'Cadillac F1 Team', position: 20, gapToLeader: 48.050, intervalToAhead: 3.130, lastLapTime: '1:37.890', isFastestSector: false, speedTrap: 322, tyre: 'S', tyreAge: 13, status: 'RACING', pitStops: 0 },
-  { driverId: 'perez', code: 'PER', name: 'Sergio Perez', number: '11', teamId: 'cadillac', teamName: 'Cadillac F1 Team', position: 21, gapToLeader: 51.520, intervalToAhead: 3.470, lastLapTime: '1:38.050', isFastestSector: false, speedTrap: 325, tyre: 'H', tyreAge: 10, status: 'RACING', pitStops: 0 },
-  { driverId: 'stroll', code: 'STR', name: 'Lance Stroll', number: '18', teamId: 'aston_martin', teamName: 'Aston Martin', position: 22, gapToLeader: 55.020, intervalToAhead: 3.500, lastLapTime: '1:38.290', isFastestSector: false, speedTrap: 326, tyre: 'H', tyreAge: 14, status: 'RACING', pitStops: 0 }
-];
+
 
 export interface CompetitiveSession {
   id: 'sprint_qualifying' | 'sprint_race' | 'qualifying' | 'race';
@@ -157,6 +109,7 @@ export interface CompetitiveSession {
   shortName: string;
   badge: string;
   icon: string;
+  rawDate: string | null;
   dateStr: string;
   timeStr: string;
   startTimeUtc: string | null;
@@ -225,6 +178,7 @@ function parseCompetitiveSessions(race: any, nowDate = new Date()): CompetitiveS
         shortName: c.shortName,
         badge: c.badge,
         icon: c.icon,
+        rawDate: null,
         status: 'NOT_SCHEDULED',
         dateStr: 'Not Scheduled',
         timeStr: '—',
@@ -268,6 +222,7 @@ function parseCompetitiveSessions(race: any, nowDate = new Date()): CompetitiveS
       shortName: c.shortName,
       badge: c.badge,
       icon: c.icon,
+      rawDate: c.raw.date,
       status,
       dateStr: dateFormatted,
       timeStr: timeFormatted,
@@ -277,6 +232,21 @@ function parseCompetitiveSessions(race: any, nowDate = new Date()): CompetitiveS
       startMs,
       endMs
     };
+  });
+}
+
+function isTodayCompetitiveDay(sessions: CompetitiveSession[], nowDate = new Date()): boolean {
+  const localYear = nowDate.getFullYear();
+  const localMonth = String(nowDate.getMonth() + 1).padStart(2, '0');
+  const localDay = String(nowDate.getDate()).padStart(2, '0');
+  const localDateStr = `${localYear}-${localMonth}-${localDay}`;
+  const utcDateStr = nowDate.toISOString().split('T')[0];
+
+  return sessions.some(s => {
+    if (!s.rawDate) return false;
+    if (s.rawDate === localDateStr || s.rawDate === utcDateStr) return true;
+    if (s.status === 'LIVE') return true;
+    return false;
   });
 }
 
@@ -384,7 +354,26 @@ const ALL_CIRCUITS_ROSTER = [
 
 export default function LiveTelemetryPage() {
   const router = useRouter();
-  const [drivers, setDrivers] = useState<LiveDriver[]>(INITIAL_DRIVERS);
+  const [drivers, setDrivers] = useState<LiveDriver[]>([]);
+  const driversRef = useRef<LiveDriver[]>([]);
+  const flushRafRef = useRef<number | null>(null);
+
+  const scheduleDriverFlush = () => {
+    if (flushRafRef.current !== null) return;
+    flushRafRef.current = requestAnimationFrame(() => {
+      flushRafRef.current = null;
+      setDrivers([...driversRef.current]);
+    });
+  };
+
+  useEffect(() => {
+    return () => {
+      if (flushRafRef.current !== null) {
+        cancelAnimationFrame(flushRafRef.current);
+      }
+    };
+  }, []);
+
   const [selectedCircuit, setSelectedCircuit] = useState('marina_bay');
   const userChangedCircuitRef = useRef(false);
   const selectedCircuitRef = useRef('marina_bay');
@@ -405,6 +394,8 @@ export default function LiveTelemetryPage() {
   const [proxyStatus, setProxyStatus] = useState<'OFFLINE' | 'CONNECTING' | 'CONNECTED' | 'STANDBY'>('OFFLINE');
   const [isLiveTransmitting, setIsLiveTransmitting] = useState(false);
   const [showNoticeAlert, setShowNoticeAlert] = useState(true);
+  const [gapDisplayMode, setGapDisplayMode] = useState<'dual' | 'gap' | 'interval'>('dual');
+  const [weatherData, setWeatherData] = useState<LiveWeatherData | null>(null);
 
   const [logs, setLogs] = useState<string[]>([
     `[${new Date().toTimeString().split(' ')[0]}] MISSION CONTROL: Pit-wall telemetry uplink initialized.`,
@@ -413,6 +404,7 @@ export default function LiveTelemetryPage() {
 
   const logConsoleRef = useRef<HTMLDivElement | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
+  const reconnectTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-scroll logs to bottom
   useEffect(() => {
@@ -448,7 +440,6 @@ export default function LiveTelemetryPage() {
             
             setSelectedCircuit(resolvedId);
             selectedCircuitRef.current = resolvedId;
-            setDrivers(generateAnchorLapTimes(resolvedId, INITIAL_DRIVERS));
 
             const parsed = parseCompetitiveSessions(activeRace);
             setSessions(parsed);
@@ -478,9 +469,6 @@ export default function LiveTelemetryPage() {
     const venueName = circuitInfo?.name || trackDef?.name || circuitId.toUpperCase();
     const countryName = circuitInfo?.country || trackDef?.country || '';
 
-    // Re-anchor drivers' lap times for realistic venue telemetry
-    setDrivers(generateAnchorLapTimes(circuitId, INITIAL_DRIVERS));
-
     // Try finding matching race in calendar for this circuit
     const matchedRace = calendarRaces.find((r: any) => {
       const cid = r.Circuit?.circuitId?.toLowerCase() || '';
@@ -493,17 +481,17 @@ export default function LiveTelemetryPage() {
     } else {
       activeRaceDataRef.current = null;
       setSessions([
-        { id: 'sprint_qualifying', name: 'Sprint Qualifying', shortName: 'SPRINT QUALI', badge: 'SQ', icon: '⏱️', status: 'NOT_SCHEDULED', dateStr: 'Not Scheduled', timeStr: '—', startTimeUtc: null, endTimeUtc: null, durationMinutes: 45, startMs: null, endMs: null },
-        { id: 'sprint_race', name: 'Sprint Race', shortName: 'SPRINT RACE', badge: 'SPRINT', icon: '⚡', status: 'NOT_SCHEDULED', dateStr: 'Not Scheduled', timeStr: '—', startTimeUtc: null, endTimeUtc: null, durationMinutes: 60, startMs: null, endMs: null },
-        { id: 'qualifying', name: 'Qualifying', shortName: 'QUALIFYING', badge: 'QUALI', icon: '🏁', status: 'NOT_SCHEDULED', dateStr: 'Track Benchmark', timeStr: '14:00', startTimeUtc: null, endTimeUtc: null, durationMinutes: 60, startMs: null, endMs: null },
-        { id: 'race', name: 'Grand Prix (Race)', shortName: 'GRAND PRIX', badge: 'RACE', icon: '🏆', status: 'NOT_SCHEDULED', dateStr: 'Track Benchmark', timeStr: '15:00', startTimeUtc: null, endTimeUtc: null, durationMinutes: 120, startMs: null, endMs: null }
+        { id: 'sprint_qualifying', name: 'Sprint Qualifying', shortName: 'SPRINT QUALI', badge: 'SQ', icon: '⏱️', rawDate: null, status: 'NOT_SCHEDULED', dateStr: 'Not Scheduled', timeStr: '—', startTimeUtc: null, endTimeUtc: null, durationMinutes: 45, startMs: null, endMs: null },
+        { id: 'sprint_race', name: 'Sprint Race', shortName: 'SPRINT RACE', badge: 'SPRINT', icon: '⚡', rawDate: null, status: 'NOT_SCHEDULED', dateStr: 'Not Scheduled', timeStr: '—', startTimeUtc: null, endTimeUtc: null, durationMinutes: 60, startMs: null, endMs: null },
+        { id: 'qualifying', name: 'Qualifying', shortName: 'QUALIFYING', badge: 'QUALI', icon: '🏁', rawDate: null, status: 'NOT_SCHEDULED', dateStr: 'Track Benchmark', timeStr: '14:00', startTimeUtc: null, endTimeUtc: null, durationMinutes: 60, startMs: null, endMs: null },
+        { id: 'race', name: 'Grand Prix (Race)', shortName: 'GRAND PRIX', badge: 'RACE', icon: '🏆', rawDate: null, status: 'NOT_SCHEDULED', dateStr: 'Track Benchmark', timeStr: '15:00', startTimeUtc: null, endTimeUtc: null, durationMinutes: 120, startMs: null, endMs: null }
       ]);
     }
 
     const timeStamp = new Date().toTimeString().split(' ')[0];
     setLogs(l => [
       ...l,
-      `[${timeStamp}] 🏁 VENUE RADAR SYNCHRONIZED: Switched to ${venueName}${countryName ? ` (${countryName})` : ''}. Pre-session benchmark grid loaded.`
+      `[${timeStamp}] 🏁 VENUE RADAR SYNCHRONIZED: Switched to ${venueName}${countryName ? ` (${countryName})` : ''}. Standing by for session telemetry uplink.`
     ]);
 
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
@@ -563,49 +551,236 @@ export default function LiveTelemetryPage() {
               setProxyStatus('STANDBY');
               setIsLiveTransmitting(false);
             }
-            setLogs(l => [...l, `[${timeStr}] SYSTEM: ${msg.message}`]);
+            setLogs(l => [...l.slice(-79), `[${timeStr}] SYSTEM: ${msg.message}`]);
           }
 
           else if (msg.source === 'F1_LIVE_SERVER') {
             setIsLiveTransmitting(true);
 
             if (msg.channel === 'TimingData' && msg.data && msg.data.Lines) {
-              setDrivers(prev => {
-                const list = prev.map(d => ({ ...d }));
-                const lines = msg.data.Lines;
+              const lines = msg.data.Lines;
+              const list = driversRef.current;
 
-                Object.entries(lines).forEach(([driverNum, dataLine]) => {
-                  const lineObj = dataLine as {
-                    Position?: string;
-                    LastLapTime?: { Value?: string };
-                    Speeds?: { ST?: string };
-                    InPit?: boolean;
-                    Retired?: boolean;
-                    GapToLeader?: string;
-                    IntervalToPositionAhead?: { Value?: string };
-                    NumberOfPitStops?: number;
+              Object.entries(lines).forEach(([driverNum, dataLine]) => {
+                const lineObj = dataLine as Record<string, any>;
+                let matched = list.find(d => d.number === driverNum);
+                if (!matched) {
+                  matched = {
+                    driverId: `car_${driverNum}`,
+                    code: `CAR ${driverNum}`,
+                    name: `Car #${driverNum}`,
+                    number: driverNum,
+                    teamId: 'unknown',
+                    teamName: 'F1 Team',
+                    position: parseInt(lineObj.Position) || (list.length + 1),
+                    gapToLeader: 0,
+                    intervalToAhead: 0,
+                    lastLapTime: '—',
+                    bestLapTime: '—',
+                    isFastestSector: false,
+                    speedTrap: 0,
+                    tyre: 'M',
+                    tyreAge: 0,
+                    status: 'RACING',
+                    pitStops: 0
                   };
-                  const matched = list.find(d => d.number === driverNum);
-                  if (matched) {
-                    if (lineObj.Position) matched.position = parseInt(lineObj.Position) || matched.position;
-                    if (lineObj.LastLapTime?.Value) matched.lastLapTime = lineObj.LastLapTime.Value;
-                    if (lineObj.Speeds?.ST) matched.speedTrap = parseInt(lineObj.Speeds.ST) || matched.speedTrap;
-                    if (lineObj.InPit !== undefined) matched.status = lineObj.InPit ? 'IN PIT' : 'RACING';
-                    if (lineObj.Retired !== undefined) matched.status = lineObj.Retired ? 'RETIRED' : matched.status;
-                    if (lineObj.GapToLeader !== undefined) {
-                      matched.gapToLeader = parseFloat(lineObj.GapToLeader) || 0;
+                  list.push(matched);
+                }
+
+                if (matched) {
+                  if (lineObj.Position) matched.position = parseInt(lineObj.Position) || matched.position;
+                  if (lineObj.LastLapTime?.Value) matched.lastLapTime = lineObj.LastLapTime.Value;
+                  if (lineObj.BestLapTime?.Value) matched.bestLapTime = lineObj.BestLapTime.Value;
+                  if (lineObj.Speeds?.ST) matched.speedTrap = parseInt(lineObj.Speeds.ST) || matched.speedTrap;
+                  if (lineObj.InPit !== undefined) matched.status = lineObj.InPit ? 'IN PIT' : 'RACING';
+                  if (lineObj.Retired !== undefined) matched.status = lineObj.Retired ? 'RETIRED' : matched.status;
+                  
+                  const rawGap = typeof lineObj.GapToLeader === 'object' && lineObj.GapToLeader !== null
+                    ? lineObj.GapToLeader.Value 
+                    : lineObj.GapToLeader;
+                  if (rawGap !== undefined && rawGap !== null) {
+                    const p = parseFloat(String(rawGap).replace('+', ''));
+                    if (!isNaN(p)) matched.gapToLeader = p;
+                  }
+
+                  const rawInt = typeof lineObj.IntervalToPositionAhead === 'object' && lineObj.IntervalToPositionAhead !== null
+                    ? lineObj.IntervalToPositionAhead.Value
+                    : lineObj.IntervalToPositionAhead;
+                  if (rawInt !== undefined && rawInt !== null) {
+                    const p = parseFloat(String(rawInt).replace('+', ''));
+                    if (!isNaN(p)) matched.intervalToAhead = p;
+                  }
+
+                  if (lineObj.NumberOfPitStops !== undefined) {
+                    matched.pitStops = Number(lineObj.NumberOfPitStops) || 0;
+                  }
+
+                  // Parse Sectors (S1, S2, S3)
+                  if (lineObj.Sectors && typeof lineObj.Sectors === 'object') {
+                    const s0 = lineObj.Sectors['0'];
+                    const s1 = lineObj.Sectors['1'];
+                    const s2 = lineObj.Sectors['2'];
+
+                    if (s0) {
+                      const val = s0.Value || s0.PreviousValue;
+                      if (val) {
+                        matched.sector1 = {
+                          value: String(val),
+                          isPersonalFastest: Boolean(s0.Fastest || s0.PersonalFastest),
+                          isOverallFastest: Boolean(s0.OverallFastest)
+                        };
+                      }
                     }
-                    if (lineObj.IntervalToPositionAhead?.Value !== undefined) {
-                      matched.intervalToAhead = parseFloat(lineObj.IntervalToPositionAhead.Value) || 0;
+                    if (s1) {
+                      const val = s1.Value || s1.PreviousValue;
+                      if (val) {
+                        matched.sector2 = {
+                          value: String(val),
+                          isPersonalFastest: Boolean(s1.Fastest || s1.PersonalFastest),
+                          isOverallFastest: Boolean(s1.OverallFastest)
+                        };
+                      }
                     }
-                    if (lineObj.NumberOfPitStops !== undefined) {
-                      matched.pitStops = lineObj.NumberOfPitStops;
+                    if (s2) {
+                      const val = s2.Value || s2.PreviousValue;
+                      if (val) {
+                        matched.sector3 = {
+                          value: String(val),
+                          isPersonalFastest: Boolean(s2.Fastest || s2.PersonalFastest),
+                          isOverallFastest: Boolean(s2.OverallFastest)
+                        };
+                      }
                     }
                   }
-                });
 
-                list.sort((a, b) => a.position - b.position);
-                return list;
+                  if (lineObj.BestLapTime?.OverallFastest) {
+                    matched.isFastestLap = true;
+                  }
+                }
+              });
+
+              list.sort((a, b) => a.position - b.position);
+              scheduleDriverFlush();
+            }
+
+            // Ingest DriverList (Official Session Entry Roster)
+            if (msg.channel === 'DriverList' && msg.data && typeof msg.data === 'object') {
+              const list = driversRef.current;
+              Object.entries(msg.data).forEach(([driverNum, rawInfo]) => {
+                const info = rawInfo as Record<string, any>;
+                const matched = list.find(d => d.number === driverNum);
+                const code = info.Tla || info.BroadcastName?.substring(0, 3) || `C${driverNum}`;
+                const name = info.FullName || info.BroadcastName || `Driver ${driverNum}`;
+                const teamName = info.TeamName || 'Formula 1 Team';
+                const teamId = (info.TeamName || '').toLowerCase().replace(/[^a-z0-9]/g, '_');
+                const driverId = (info.LastName || info.FullName || `driver_${driverNum}`).toLowerCase().replace(/[^a-z0-9]/g, '_');
+                const pos = parseInt(info.Line) || (list.length + 1);
+
+                if (matched) {
+                  matched.code = code;
+                  matched.name = name;
+                  matched.teamName = teamName;
+                  matched.teamId = teamId;
+                  matched.driverId = driverId;
+                } else {
+                  list.push({
+                    driverId,
+                    code,
+                    name,
+                    number: driverNum,
+                    teamId,
+                    teamName,
+                    position: pos,
+                    gapToLeader: 0,
+                    intervalToAhead: 0,
+                    lastLapTime: '—',
+                    bestLapTime: '—',
+                    isFastestSector: false,
+                    speedTrap: 0,
+                    tyre: 'M',
+                    tyreAge: 0,
+                    status: 'RACING',
+                    pitStops: 0
+                  });
+                }
+              });
+              list.sort((a, b) => a.position - b.position);
+              scheduleDriverFlush();
+            }
+
+            // Ingest TimingAppData (Tyre Stints & Tyre Age)
+            if (msg.channel === 'TimingAppData' && msg.data && msg.data.Lines) {
+              const appLines = msg.data.Lines;
+              const list = driversRef.current;
+
+              Object.entries(appLines).forEach(([driverNum, appLine]) => {
+                let matched = list.find(d => d.number === driverNum);
+                if (!matched) {
+                  matched = {
+                    driverId: `car_${driverNum}`,
+                    code: `CAR ${driverNum}`,
+                    name: `Car #${driverNum}`,
+                    number: driverNum,
+                    teamId: 'unknown',
+                    teamName: 'F1 Team',
+                    position: list.length + 1,
+                    gapToLeader: 0,
+                    intervalToAhead: 0,
+                    lastLapTime: '—',
+                    bestLapTime: '—',
+                    isFastestSector: false,
+                    speedTrap: 0,
+                    tyre: 'M',
+                    tyreAge: 0,
+                    status: 'RACING',
+                    pitStops: 0
+                  };
+                  list.push(matched);
+                }
+
+                if (matched && appLine && typeof appLine === 'object') {
+                  const lineObj = appLine as Record<string, any>;
+                  const stints = lineObj.Stints;
+                  let latestStint: any = null;
+
+                  if (Array.isArray(stints) && stints.length > 0) {
+                    latestStint = stints[stints.length - 1];
+                  } else if (typeof stints === 'object' && stints !== null) {
+                    const keys = Object.keys(stints);
+                    if (keys.length > 0) {
+                      latestStint = stints[keys[keys.length - 1]];
+                    }
+                  }
+
+                  if (latestStint) {
+                    const rawCompound = String(latestStint.Compound || '').toUpperCase();
+                    if (rawCompound.includes('SOFT')) matched.tyre = 'S';
+                    else if (rawCompound.includes('MEDIUM')) matched.tyre = 'M';
+                    else if (rawCompound.includes('HARD')) matched.tyre = 'H';
+                    else if (rawCompound.includes('INTER')) matched.tyre = 'I';
+                    else if (rawCompound.includes('WET')) matched.tyre = 'W';
+
+                    const totalLaps = parseInt(String(latestStint.TotalLaps || '0'), 10);
+                    if (!isNaN(totalLaps) && totalLaps > 0) {
+                      matched.tyreAge = totalLaps;
+                    }
+                  }
+                }
+              });
+
+              scheduleDriverFlush();
+            }
+
+            // Ingest WeatherData (Air Temp, Track Temp, Humidity, Rain)
+            if (msg.channel === 'WeatherData' && msg.data) {
+              setWeatherData({
+                airTemp: msg.data.AirTemp,
+                trackTemp: msg.data.TrackTemp,
+                humidity: msg.data.Humidity,
+                pressure: msg.data.Pressure,
+                windSpeed: msg.data.WindSpeed,
+                windDirection: msg.data.WindDirection,
+                rainfall: msg.data.Rainfall
               });
             }
 
@@ -615,7 +790,7 @@ export default function LiveTelemetryPage() {
               else if (statusVal === '2') setFlagStatus('YELLOW');
               else if (statusVal === '4') setFlagStatus('SAFETY CAR');
               else if (statusVal === '5') setFlagStatus('RED FLAG');
-              setLogs(l => [...l, `[${timeStr}] 🏁 FIA TRACK STATUS: Flag condition ${statusVal === '1' ? 'GREEN' : statusVal === '2' ? 'YELLOW' : statusVal === '4' ? 'SAFETY CAR' : 'RED FLAG'}`]);
+              setLogs(l => [...l.slice(-79), `[${timeStr}] 🏁 FIA TRACK STATUS: Flag condition ${statusVal === '1' ? 'GREEN' : statusVal === '2' ? 'YELLOW' : statusVal === '4' ? 'SAFETY CAR' : 'RED FLAG'}`]);
             }
 
             if (msg.channel === 'RaceControlMessages' && msg.data && msg.data.Messages) {
@@ -623,7 +798,7 @@ export default function LiveTelemetryPage() {
               messages.forEach(m => {
                 if (m.Message) {
                   const msgTime = m.Utc ? new Date(m.Utc).toTimeString().split(' ')[0] : timeStr;
-                  setLogs(l => [...l, `[${msgTime}] 🏁 FIA RACE CONTROL: ${m.Message}`]);
+                  setLogs(l => [...l.slice(-79), `[${msgTime}] 🏁 FIA RACE CONTROL: ${m.Message}`]);
                 }
               });
             }
@@ -636,6 +811,13 @@ export default function LiveTelemetryPage() {
       socket.onclose = () => {
         setProxyStatus('STANDBY');
         setIsLiveTransmitting(false);
+        // Automatic resilient reconnect with 3s debounce
+        if (!reconnectTimerRef.current) {
+          reconnectTimerRef.current = setTimeout(() => {
+            reconnectTimerRef.current = null;
+            connectWebSocket();
+          }, 3000);
+        }
       };
 
       socket.onerror = () => {
@@ -651,6 +833,10 @@ export default function LiveTelemetryPage() {
   useEffect(() => {
     connectWebSocket();
     return () => {
+      if (reconnectTimerRef.current) {
+        clearTimeout(reconnectTimerRef.current);
+        reconnectTimerRef.current = null;
+      }
       if (wsRef.current) {
         wsRef.current.onclose = null;
         wsRef.current.onerror = null;
@@ -662,11 +848,26 @@ export default function LiveTelemetryPage() {
 
   const activeLiveSession = sessions.find(s => s.status === 'LIVE');
   const nextUpcomingSession = sessions.find(s => s.status === 'UPCOMING');
+  const isCompetitiveDay = isTodayCompetitiveDay(sessions);
   const isCompetitiveSessionLive = Boolean(activeLiveSession) || isLiveTransmitting;
+
+  const todaySession = sessions.find(s => {
+    const nowDate = new Date();
+    const localYear = nowDate.getFullYear();
+    const localMonth = String(nowDate.getMonth() + 1).padStart(2, '0');
+    const localDay = String(nowDate.getDate()).padStart(2, '0');
+    const localDateStr = `${localYear}-${localMonth}-${localDay}`;
+    const utcDateStr = nowDate.toISOString().split('T')[0];
+    return s.rawDate === localDateStr || s.rawDate === utcDateStr || s.status === 'LIVE';
+  });
 
   const countdownToNext = nextUpcomingSession && nextUpcomingSession.startMs 
     ? formatCountdown(nextUpcomingSession.startMs) 
     : null;
+
+  // Live timing and driver telemetry only show on the actual day of race, quali, sprint race, or sprint quali
+  // (or when official live telemetry is transmitting on track)
+  const isLiveTimingActive = isCompetitiveDay || isCompetitiveSessionLive;
 
   return (
     <section className="view w-full max-w-[1440px] mx-auto overflow-hidden box-border px-2 sm:px-4" id="view-live">
@@ -697,23 +898,23 @@ export default function LiveTelemetryPage() {
             <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-mono font-semibold ${
               isCompetitiveSessionLive
                 ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.3)]'
-                : proxyStatus === 'CONNECTED' || proxyStatus === 'STANDBY'
-                  ? 'bg-slate-900 border-slate-700 text-slate-300'
-                  : 'bg-red-950/30 border-red-500/40 text-red-400'
+                : isCompetitiveDay
+                  ? 'bg-amber-950/40 border-amber-500/50 text-amber-300 shadow-[0_0_12px_rgba(245,158,11,0.25)]'
+                  : 'bg-slate-900 border-slate-700 text-slate-300'
             }`}>
               <span className={`w-2 h-2 rounded-full ${
                 isCompetitiveSessionLive 
                   ? 'bg-emerald-400 animate-pulse' 
-                  : proxyStatus === 'CONNECTED' || proxyStatus === 'STANDBY'
-                    ? 'bg-cyan-400' 
-                    : 'bg-red-500'
+                  : isCompetitiveDay
+                    ? 'bg-amber-400 animate-pulse'
+                    : 'bg-cyan-400'
               }`}></span>
               <span>
                 {isCompetitiveSessionLive 
                   ? '🔴 LIVE TRANSMITTING' 
-                  : proxyStatus === 'CONNECTED' || proxyStatus === 'STANDBY' 
-                    ? 'UPLINK STANDBY' 
-                    : 'UPLINK OFFLINE'}
+                  : isCompetitiveDay
+                    ? `🟡 SESSION DAY: ${(todaySession?.shortName || 'ACTIVE').toUpperCase()}`
+                    : 'STANDBY (OFF-DAY)'}
               </span>
             </div>
 
@@ -731,12 +932,16 @@ export default function LiveTelemetryPage() {
         {showNoticeAlert && (
           <div 
             style={{ 
-              background: 'rgba(52, 228, 200, 0.08)', 
-              border: '1px solid var(--cyan)', 
+              background: isCompetitiveSessionLive 
+                ? 'rgba(16, 185, 129, 0.08)' 
+                : isCompetitiveDay 
+                  ? 'rgba(245, 158, 11, 0.08)' 
+                  : 'rgba(52, 228, 200, 0.08)', 
+              border: `1px solid ${isCompetitiveSessionLive ? 'var(--green)' : isCompetitiveDay ? 'var(--amber)' : 'var(--cyan)'}`, 
               borderRadius: '6px', 
               padding: '10px 14px', 
               marginTop: '16px', 
-              color: 'var(--cyan)', 
+              color: isCompetitiveSessionLive ? 'var(--green)' : isCompetitiveDay ? 'var(--amber)' : 'var(--cyan)', 
               fontSize: '12.5px',
               lineHeight: '1.4',
               fontFamily: 'var(--font-mono)',
@@ -747,9 +952,15 @@ export default function LiveTelemetryPage() {
             }}
           >
             <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: isCompetitiveSessionLive ? 'var(--green)' : 'var(--cyan)', display: 'inline-block', boxShadow: `0 0 8px ${isCompetitiveSessionLive ? 'var(--green)' : 'var(--cyan)'}` }}></span>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: isCompetitiveSessionLive ? 'var(--green)' : isCompetitiveDay ? 'var(--amber)' : 'var(--cyan)', display: 'inline-block', boxShadow: `0 0 8px ${isCompetitiveSessionLive ? 'var(--green)' : isCompetitiveDay ? 'var(--amber)' : 'var(--cyan)'}` }}></span>
               <span>
-                <strong>OFFICIAL COMPETITIVE SESSION RADAR:</strong> Telemetry streams exclusively during Sprint Qualifying, Sprint Race, Qualifying, and Grand Prix sessions. Simulation engine removed.
+                {isCompetitiveSessionLive ? (
+                  <><strong>OFFICIAL SESSION LIVE:</strong> Pit-wall telemetry and live timing active for {activeLiveSession?.name || 'Track Action'}.</>
+                ) : isCompetitiveDay ? (
+                  <><strong>SESSION DAY DETECTED:</strong> Today is the official day of {todaySession?.name || 'Competitive Action'}. Telemetry will stream when pit-wall cars fire up.</>
+                ) : (
+                  <><strong>OFF-DAY STANDBY:</strong> Live timing unlocks strictly on the day of Sprint Qualifying, Sprint Race, Qualifying, and Grand Prix. View upcoming timetable below.</>
+                )}
               </span>
             </span>
             <button
@@ -784,7 +995,7 @@ export default function LiveTelemetryPage() {
                   NEXT: {nextUpcomingSession?.shortName} in {countdownToNext}
                 </span>
               ) : (
-                <span className="text-slate-400">BENCHMARK GRID LOADED</span>
+                <span className="text-slate-400">TELEMETRY STANDBY</span>
               )}
             </div>
           </div>
@@ -863,9 +1074,73 @@ export default function LiveTelemetryPage() {
           </div>
         </div>
 
-        {/* Live Race Status Bar */}
-        <div 
-          className="stat-grid" 
+        {!isLiveTimingActive ? (
+          <div className="w-full bg-slate-950/90 border border-slate-800 rounded-xl p-6 sm:p-10 text-center my-4 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-cyan-500/10 blur-3xl pointer-events-none rounded-full"></div>
+
+            <div className="relative z-10 max-w-2xl mx-auto space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono text-cyan-400">
+                <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+                <span>OFFICIAL TIMETABLE // TELEMETRY STANDBY</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-display tracking-tight text-white uppercase">
+                {nextUpcomingSession ? `NEXT: ${nextUpcomingSession.name}` : `UPCOMING: ${currentVenueName}`}
+              </h2>
+
+              <div className="flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-slate-400">
+                <span>📍 {currentVenueName}{currentCountryName ? ` (${currentCountryName})` : ''}</span>
+                <span>•</span>
+                <span>🏁 {totalLaps} LAPS</span>
+                {weatherData?.trackTemp && (
+                  <>
+                    <span>•</span>
+                    <span>🌡️ TRACK {weatherData.trackTemp}°C / AIR {weatherData.airTemp || '—'}°C</span>
+                  </>
+                )}
+              </div>
+
+              {countdownToNext && (
+                <div className="py-4 my-2 border-y border-slate-800/80">
+                  <div className="text-[11px] font-mono uppercase text-slate-400 tracking-widest mb-1.5 font-bold">
+                    SESSION STARTS IN
+                  </div>
+                  <div className="text-3xl sm:text-5xl md:text-6xl font-black font-mono text-cyan-300 tracking-tight drop-shadow-[0_0_16px_rgba(52,228,200,0.4)]">
+                    {countdownToNext}
+                  </div>
+                  {nextUpcomingSession && (
+                    <div className="text-xs font-mono text-slate-400 mt-2">
+                      Official Schedule: <span className="text-white font-semibold">{nextUpcomingSession.dateStr}</span> at <span className="text-white font-semibold">{nextUpcomingSession.timeStr}</span> Local Time
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className="p-4 rounded-lg bg-slate-900/60 border border-slate-800/80 text-xs text-slate-300 font-sans leading-relaxed text-left sm:text-center">
+                <p>
+                  🔒 <strong>Live Telemetry Policy:</strong> Official F1 Timing Tower, S1/S2/S3 micro-sector splits, tyre compound stints, and dynamic circuit radar unlock exclusively on the calendar day of <strong>Sprint Qualifying, Sprint Race, Qualifying, and Grand Prix</strong> sessions.
+                </p>
+              </div>
+
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={connectWebSocket}
+                  className="btn flex items-center gap-2 px-4 py-2.5 text-xs font-mono text-slate-300 hover:text-white rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 cursor-pointer transition"
+                  title="Test WebSocket uplink"
+                >
+                  <span>🔄</span>
+                  <span>CHECK UPLINK STATUS</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+
+            {/* Live Race Status Bar */}
+            <div 
+              className="stat-grid" 
           style={{ 
             marginTop: '8px', 
             marginBottom: '20px', 
@@ -924,6 +1199,20 @@ export default function LiveTelemetryPage() {
             </div>
             <div className="footnote">Signal: Official F1 SignalR pass-through</div>
           </div>
+
+          <div className="stat-box">
+            <div className="k">Track Environment</div>
+            <div className="v" style={{ fontSize: '16px', color: 'var(--paper)' }}>
+              {weatherData?.trackTemp 
+                ? `${weatherData.trackTemp}°C / ${weatherData.airTemp || '—'}°C` 
+                : '— / —'}
+            </div>
+            <div className="footnote">
+              {weatherData 
+                ? `Rain: ${weatherData.rainfall === '1' ? 'WET' : 'DRY'} · Wind: ${weatherData.windSpeed || '0'}km/h` 
+                : 'Awaiting session weather telemetry'}
+            </div>
+          </div>
         </div>
 
         {/* Live Responsive Desktop Grid Layout — Clean Full-Width Display */}
@@ -977,31 +1266,172 @@ export default function LiveTelemetryPage() {
                 <h3 className="font-display font-black text-sm text-white uppercase tracking-wider">
                   {isCompetitiveSessionLive 
                     ? `OFFICIAL LIVE TIMING // ${(activeLiveSession?.name || 'COMPETITIVE SESSION').toUpperCase()}`
-                    : `OFFICIAL PRE-SESSION CLASSIFICATION & BENCHMARK GRID // ${currentVenueName.toUpperCase()}`}
+                    : `OFFICIAL LIVE TIMING STANDBY // ${currentVenueName.toUpperCase()}`}
                 </h3>
                 <span className="hidden sm:inline-block text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800/80 text-cyan-400 border border-cyan-500/30">
-                  {isCompetitiveSessionLive ? 'TRANSMITTING LIVE' : 'PRE-SESSION BENCHMARK'}
+                  {isCompetitiveSessionLive ? 'TRANSMITTING LIVE' : 'STANDBY'}
                 </span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2.5">
+                {/* Sector Micro-split Legend */}
+                <div className="hidden lg:flex items-center gap-2 text-[10px] font-mono px-2 py-1 rounded bg-slate-900/90 border border-slate-800 text-slate-400">
+                  <span className="flex items-center gap-1 text-[#F0ABFC]">
+                    <span className="w-2 h-2 rounded-full bg-[#D946EF]"></span> S-BEST
+                  </span>
+                  <span className="flex items-center gap-1 text-[#34D399]">
+                    <span className="w-2 h-2 rounded-full bg-[#10B981]"></span> P-BEST
+                  </span>
+                  <span className="flex items-center gap-1 text-slate-300">
+                    <span className="w-2 h-2 rounded-full bg-slate-500"></span> SECTOR
+                  </span>
+                </div>
+
+                {/* Timing View Toggle Buttons */}
+                <div className="flex items-center gap-1 p-1 bg-slate-900 border border-slate-800 rounded-lg text-xs font-mono">
+                  <span className="text-[10px] text-slate-400 uppercase font-semibold px-1 hidden sm:inline">VIEW:</span>
+                  <button
+                    type="button"
+                    onClick={() => setGapDisplayMode('dual')}
+                    className={`px-2.5 py-1 rounded text-[11px] font-bold transition cursor-pointer ${
+                      gapDisplayMode === 'dual'
+                        ? 'bg-[#E10600] text-white shadow-[0_0_8px_rgba(225,6,0,0.5)]'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                    }`}
+                    title="Show both Gap to Leader and Interval to ahead"
+                  >
+                    DUAL
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setGapDisplayMode('gap')}
+                    className={`px-2.5 py-1 rounded text-[11px] font-bold transition cursor-pointer ${
+                      gapDisplayMode === 'gap'
+                        ? 'bg-[#E10600] text-white shadow-[0_0_8px_rgba(225,6,0,0.5)]'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                    }`}
+                    title="Show Gap to Leader"
+                  >
+                    GAP
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setGapDisplayMode('interval')}
+                    className={`px-2.5 py-1 rounded text-[11px] font-bold transition cursor-pointer ${
+                      gapDisplayMode === 'interval'
+                        ? 'bg-[#E10600] text-white shadow-[0_0_8px_rgba(225,6,0,0.5)]'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                    }`}
+                    title="Show Interval to car ahead"
+                  >
+                    INTERVAL
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div style={{ maxHeight: '360px', overflowY: 'auto', overflowX: 'auto' }}>
-              <table style={{ width: '100%', minWidth: '680px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12.5px' }}>
+            <div style={{ maxHeight: '420px', overflowY: 'auto', overflowX: 'auto' }}>
+              <table style={{ width: '100%', minWidth: gapDisplayMode === 'dual' ? '920px' : '860px', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12.5px' }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid var(--line)', fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--dim)' }}>
-                    <th style={{ padding: '8px 6px' }}>POS</th>
-                    <th style={{ padding: '8px 6px' }}>NUM</th>
-                    <th style={{ padding: '8px 6px' }}>DRIVER</th>
-                    <th style={{ padding: '8px 6px' }}>GAP</th>
-                    <th style={{ padding: '8px 6px' }}>INT</th>
-                    <th style={{ padding: '8px 6px' }}>LAST LAP</th>
-                    <th style={{ padding: '8px 6px' }}>SPEED</th>
-                    <th style={{ padding: '8px 6px' }}>TYRE &amp; STINT</th>
-                    <th style={{ padding: '8px 6px' }}>STATUS</th>
+                    <th style={{ padding: '8px 6px', width: '42px' }}>POS</th>
+                    <th style={{ padding: '8px 6px', width: '40px' }}>NUM</th>
+                    <th style={{ padding: '8px 6px', minWidth: '130px' }}>DRIVER</th>
+                    {gapDisplayMode === 'dual' && (
+                      <>
+                        <th style={{ padding: '8px 6px', minWidth: '76px' }}>GAP</th>
+                        <th style={{ padding: '8px 6px', minWidth: '70px' }}>INT</th>
+                      </>
+                    )}
+                    {gapDisplayMode === 'gap' && (
+                      <th style={{ padding: '8px 6px', minWidth: '85px' }}>GAP (LEADER)</th>
+                    )}
+                    {gapDisplayMode === 'interval' && (
+                      <th style={{ padding: '8px 6px', minWidth: '85px' }}>INTERVAL (AHEAD)</th>
+                    )}
+                    <th style={{ padding: '8px 5px', textAlign: 'center', minWidth: '56px' }}>S1</th>
+                    <th style={{ padding: '8px 5px', textAlign: 'center', minWidth: '56px' }}>S2</th>
+                    <th style={{ padding: '8px 5px', textAlign: 'center', minWidth: '56px' }}>S3</th>
+                    <th style={{ padding: '8px 6px', minWidth: '76px' }}>LAST LAP</th>
+                    <th style={{ padding: '8px 6px', minWidth: '82px' }}>BEST LAP</th>
+                    <th style={{ padding: '8px 6px', minWidth: '58px' }}>SPEED</th>
+                    <th style={{ padding: '8px 6px', minWidth: '95px' }}>TYRE &amp; STINT</th>
+                    <th style={{ padding: '8px 6px', minWidth: '76px' }}>STATUS</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {drivers.map(row => {
+                  {drivers.length === 0 ? (
+                    <tr>
+                      <td 
+                        colSpan={gapDisplayMode === 'dual' ? 13 : 12}
+                        style={{
+                          padding: '44px 20px',
+                          textAlign: 'center',
+                          background: 'rgba(15, 23, 42, 0.45)'
+                        }}
+                      >
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px', maxWidth: '580px', margin: '0 auto' }}>
+                          <div style={{
+                            width: '46px',
+                            height: '46px',
+                            borderRadius: '12px',
+                            background: 'rgba(225, 6, 0, 0.1)',
+                            border: '1px solid rgba(225, 6, 0, 0.3)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '22px'
+                          }}>
+                            📡
+                          </div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <span style={{
+                              display: 'inline-block',
+                              width: '8px',
+                              height: '8px',
+                              borderRadius: '50%',
+                              background: '#E8B42A',
+                              boxShadow: '0 0 8px rgba(232, 180, 42, 0.8)'
+                            }}></span>
+                            <span style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#E8B42A', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
+                              FIA Pit-Wall Telemetry Standby
+                            </span>
+                          </div>
+                          <h4 style={{ fontSize: '15px', fontWeight: 700, color: 'var(--paper)', margin: 0 }}>
+                            Awaiting Live Session Green Flag
+                          </h4>
+                          <p style={{ fontSize: '12px', color: 'var(--dim)', lineHeight: 1.6, margin: 0 }}>
+                            Live timing uplink connects directly to the official FIA F1 SignalR tunnel (<code style={{ color: 'var(--cyan)', fontSize: '11px' }}>ws://127.0.0.1:8080</code>). Drivers and real-time lap telemetry stream strictly during official Sprint Qualifying, Sprint Race, Qualifying, and Grand Prix sessions.
+                          </p>
+                          {nextUpcomingSession && (
+                            <div style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '10px',
+                              padding: '6px 14px',
+                              borderRadius: '20px',
+                              background: 'rgba(255, 255, 255, 0.04)',
+                              border: '1px solid rgba(255, 255, 255, 0.08)',
+                              fontSize: '11.5px',
+                              fontFamily: 'var(--font-mono)',
+                              color: 'var(--paper)',
+                              marginTop: '4px'
+                            }}>
+                              <span style={{ color: 'var(--dim)' }}>NEXT SESSION:</span>
+                              <span style={{ color: '#E10600', fontWeight: 700 }}>{nextUpcomingSession.name.toUpperCase()}</span>
+                              {countdownToNext && (
+                                <>
+                                  <span style={{ color: 'var(--dim)' }}>•</span>
+                                  <span style={{ color: 'var(--cyan)' }}>Starts in {countdownToNext}</span>
+                                </>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ) : (
+                    drivers.map(row => {
                     const color = getTeamColor(row.teamId);
                     const isFastest = row.isFastestSector;
                     const inPit = row.status === 'IN PIT';
@@ -1009,6 +1439,53 @@ export default function LiveTelemetryPage() {
                     const isHovered = activeDriverCode === row.code;
                     const tyreStyle = getTyreBadgeStyle(row.tyre);
                     const isOldTyre = (row.tyre === 'S' && row.tyreAge >= 18) || (row.tyre === 'M' && row.tyreAge >= 26) || (row.tyre === 'H' && row.tyreAge >= 36);
+
+                    const renderSector = (sec?: SectorData) => {
+                      if (!sec || !sec.value) {
+                        return <span style={{ color: 'var(--dim)', opacity: 0.5 }}>—</span>;
+                      }
+                      const isOverall = sec.isOverallFastest;
+                      const isPersonal = sec.isPersonalFastest;
+
+                      let bg = 'rgba(255, 255, 255, 0.04)';
+                      let textColor = 'var(--paper)';
+                      let border = '1px solid rgba(255, 255, 255, 0.08)';
+                      let shadow = 'none';
+
+                      if (isOverall) {
+                        bg = 'rgba(217, 70, 239, 0.18)';
+                        textColor = '#F0ABFC';
+                        border = '1px solid rgba(217, 70, 239, 0.5)';
+                        shadow = '0 0 6px rgba(217, 70, 239, 0.35)';
+                      } else if (isPersonal) {
+                        bg = 'rgba(16, 185, 129, 0.18)';
+                        textColor = '#34D399';
+                        border = '1px solid rgba(16, 185, 129, 0.5)';
+                        shadow = '0 0 6px rgba(16, 185, 129, 0.3)';
+                      }
+
+                      return (
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '2px 5px',
+                            borderRadius: '3px',
+                            fontSize: '11px',
+                            fontFamily: 'var(--font-mono)',
+                            fontWeight: isOverall || isPersonal ? 700 : 500,
+                            background: bg,
+                            color: textColor,
+                            border: border,
+                            boxShadow: shadow,
+                            minWidth: '48px',
+                            textAlign: 'center'
+                          }}
+                          title={isOverall ? 'Session Fastest Sector (Purple)' : isPersonal ? 'Personal Best Sector (Green)' : 'Sector Time'}
+                        >
+                          {sec.value}
+                        </span>
+                      );
+                    };
 
                     return (
                       <tr 
@@ -1038,30 +1515,77 @@ export default function LiveTelemetryPage() {
                             <span style={{ color: 'var(--paper)', letterSpacing: '0.01em' }}>{row.name}</span>
                           </div>
                         </td>
-                        <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)' }}>
-                          {row.position === 1 ? (
-                            <span style={{ color: 'var(--green)', fontWeight: 700 }}>LEADER</span>
-                          ) : (
-                            <span style={{ color: 'var(--paper)' }}>+{row.gapToLeader.toFixed(3)}s</span>
-                          )}
+
+                        {gapDisplayMode === 'dual' && (
+                          <>
+                            <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)' }}>
+                              {row.position === 1 ? (
+                                <span style={{ color: 'var(--green)', fontWeight: 700 }}>LEADER</span>
+                              ) : (
+                                <span style={{ color: 'var(--paper)' }}>+{row.gapToLeader.toFixed(3)}s</span>
+                              )}
+                            </td>
+                            <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>
+                              {row.position === 1 ? (
+                                <span>—</span>
+                              ) : (
+                                <span>+{(row.intervalToAhead ?? 0).toFixed(3)}s</span>
+                              )}
+                            </td>
+                          </>
+                        )}
+                        {gapDisplayMode === 'gap' && (
+                          <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)' }}>
+                            {row.position === 1 ? (
+                              <span style={{ color: 'var(--green)', fontWeight: 700 }}>LEADER</span>
+                            ) : (
+                              <span style={{ color: 'var(--paper)' }}>+{row.gapToLeader.toFixed(3)}s</span>
+                            )}
+                          </td>
+                        )}
+                        {gapDisplayMode === 'interval' && (
+                          <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)' }}>
+                            {row.position === 1 ? (
+                              <span style={{ color: 'var(--green)', fontWeight: 700 }}>LEADER</span>
+                            ) : (
+                              <span style={{ color: 'var(--paper)' }}>+{(row.intervalToAhead ?? 0).toFixed(3)}s</span>
+                            )}
+                          </td>
+                        )}
+
+                        {/* Micro-Sectors S1, S2, S3 */}
+                        <td style={{ padding: '6px 4px', textAlign: 'center' }}>
+                          {renderSector(row.sector1)}
                         </td>
-                        <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>
-                          {row.position === 1 ? (
-                            <span>-</span>
-                          ) : (
-                            <span>+{(row.intervalToAhead ?? 0).toFixed(3)}s</span>
-                          )}
+                        <td style={{ padding: '6px 4px', textAlign: 'center' }}>
+                          {renderSector(row.sector2)}
                         </td>
+                        <td style={{ padding: '6px 4px', textAlign: 'center' }}>
+                          {renderSector(row.sector3)}
+                        </td>
+
+                        {/* Last Lap Time */}
                         <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)' }}>
-                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                          <span style={{ 
+                            color: isFastest ? '#D946EF' : 'var(--paper)', 
+                            fontWeight: isFastest ? 700 : 500,
+                            textShadow: isFastest ? '0 0 8px rgba(217, 70, 239, 0.5)' : 'none'
+                          }}>
+                            {row.lastLapTime}
+                          </span>
+                        </td>
+
+                        {/* Best Lap Time with Purple FL Badge */}
+                        <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)' }}>
+                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
                             <span style={{ 
-                              color: isFastest ? '#D946EF' : 'var(--paper)', 
-                              fontWeight: isFastest ? 700 : 500,
-                              textShadow: isFastest ? '0 0 8px rgba(217, 70, 239, 0.5)' : 'none'
+                              color: row.isFastestLap ? '#D946EF' : 'var(--paper)', 
+                              fontWeight: row.isFastestLap ? 700 : 500,
+                              textShadow: row.isFastestLap ? '0 0 8px rgba(217, 70, 239, 0.5)' : 'none'
                             }}>
-                              {row.lastLapTime}
+                              {row.bestLapTime || row.lastLapTime}
                             </span>
-                            {isFastest && (
+                            {row.isFastestLap && (
                               <span 
                                 style={{
                                   background: 'rgba(217, 70, 239, 0.2)',
@@ -1073,16 +1597,18 @@ export default function LiveTelemetryPage() {
                                   fontWeight: 800,
                                   boxShadow: '0 0 6px rgba(217, 70, 239, 0.35)'
                                 }}
-                                title="Fastest Lap of Session"
+                                title="Fastest Lap of Session (Purple FL)"
                               >
                                 FL
                               </span>
                             )}
                           </div>
                         </td>
+
                         <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)', color: 'var(--dim)' }}>
                           {row.speedTrap} <small style={{ fontSize: '10px' }}>km/h</small>
                         </td>
+
                         <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)' }}>
                           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                             <span 
@@ -1127,6 +1653,7 @@ export default function LiveTelemetryPage() {
                             ) : null}
                           </div>
                         </td>
+
                         <td style={{ padding: '6px 6px', fontFamily: 'var(--font-mono)', fontSize: '11px' }}>
                           {inPit ? (
                             <span style={{ 
@@ -1175,14 +1702,15 @@ export default function LiveTelemetryPage() {
                               gap: '4px'
                             }}>
                               <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--cyan)' }}></span>
-                              BENCHMARK
+                              {row.status || 'STANDBY'}
                             </span>
                           )}
                         </td>
                       </tr>
                     );
-                  })}
-                </tbody>
+                  })
+                )}
+              </tbody>
               </table>
             </div>
           </div>
@@ -1239,7 +1767,9 @@ export default function LiveTelemetryPage() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </>
+    )}
+  </div>
+</section>
   );
 }

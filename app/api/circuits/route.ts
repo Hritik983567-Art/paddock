@@ -2,14 +2,32 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+interface CacheEntry {
+  data: unknown;
+  timestamp: number;
+}
+
+let cachedCircuits: CacheEntry | null = null;
+const CACHE_TTL_MS = 60 * 60 * 1000; // 1-hour cache TTL
+
 export async function GET() {
   try {
+    if (cachedCircuits && (Date.now() - cachedCircuits.timestamp < CACHE_TTL_MS)) {
+      return NextResponse.json(cachedCircuits.data, {
+        headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400' }
+      });
+    }
+
     const circuitsDir = path.join(process.cwd(), 'public', 'data', 'circuits');
     const indexPath = path.join(circuitsDir, 'index.json');
 
     if (fs.existsSync(indexPath)) {
       const content = fs.readFileSync(indexPath, 'utf8');
-      return NextResponse.json(JSON.parse(content));
+      const parsed = JSON.parse(content);
+      cachedCircuits = { data: parsed, timestamp: Date.now() };
+      return NextResponse.json(parsed, {
+        headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400' }
+      });
     }
 
     // Fallback: list year directories and files

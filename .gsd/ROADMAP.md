@@ -1,12 +1,12 @@
 ---
 milestone: v1.0
-version: 0.1.0
-updated: 2026-10-11T21:05:00Z
+version: 0.2.0
+updated: 2026-10-13T01:50:00Z
 ---
 
 # ROADMAP.md
 
-> **Current Phase:** Phase 4: Telemetry Analytics, Driver Compare & Replay Engine
+> **Current Phase:** Phase 4: Strategy Lab, Telemetry Analytics & Replay Suite
 > **Status:** 🔄 Executing
 > **Milestone Target:** v1.0 (Paddock Telemetry Command Center)
 
@@ -19,6 +19,7 @@ updated: 2026-10-11T21:05:00Z
 - [x] 78-Circuit Interactive Vector Radar with 4,348 Calibrated Corners
 - [x] 10 Constructor Themes with High-Res Wallpapers & Checkered Flag Mode
 - [x] Secure Supabase PKCE Auth with Server-Side HS256 JWT HttpOnly Cookies
+- [x] Comprehensive F1 Strategy Lab Suite (`/lab`): Circuit DNA Empirical Matrix, Tactical Strategy Duel & Pirelli C1–C5 Tyre Lab
 - [ ] Comprehensive Telemetry Delta Comparison Matrix (`/compare`)
 - [ ] 60fps GPU-Accelerated Canvas Race Replay for Historic & Modern Laps (`/replay`)
 
@@ -53,17 +54,21 @@ updated: 2026-10-11T21:05:00Z
 - [x] Plan 3.1: Clean SignalR proxy daemon (`scripts/f1-proxy.js`) streaming decompressed F1 timing data on port 8080.
 - [x] Plan 3.2: 4-session timetable cards with live status, date formatting, and real-time start countdowns.
 - [x] Plan 3.3: Removal of simulation tick loops, fake overtakes, and synthetic radio messages in `app/live/page.tsx`.
-- [x] Plan 3.4: Authentic venue-anchored pre-session benchmark grid and genuine FIA Race Control event logging.
+- [x] Plan 3.4: Authentic FIA Pit-Wall Telemetry Standby state, complete removal of `INITIAL_DRIVERS` and synthetic anchor lap noise, and genuine FIA Race Control event logging.
 
 ---
 
-### Phase 4: Telemetry Analytics, Driver Compare & Replay Engine
+### Phase 4: Strategy Lab, Telemetry Analytics & Replay Suite
 **Status:** 🔄 In Progress  
-**Objective:** Deliver head-to-head telemetry analysis (`/compare`), teammate delta benchmarking (`/teammates`), and GPU-accelerated 60fps canvas replay (`/replay`) across all 2026 and legacy rounds.  
+**Objective:** Deliver the F1 Strategy Lab suite (`/lab`), head-to-head telemetry analysis (`/compare`), teammate delta benchmarking (`/teammates`), and GPU-accelerated 60fps canvas replay (`/replay`) across all 2026 and legacy rounds.  
 **Deliverables:**
 - [x] Plan 4.1: Teammate head-to-head qualifying and race pace delta service (`app/lib/teammateDataService.ts`).
-- [ ] Plan 4.2: Driver telemetry trace comparison (speed, throttle, brake, gear) with Chart.js overlays (`/compare`).
-- [ ] Plan 4.3: 60fps canvas race replay with multi-car positioning and speed slider controls (`/replay`).
+- [x] Plan 4.2: F1 Strategy Lab Suite (`app/lab/`):
+  - **Circuit DNA & Sector Domination Matrix (`CircuitDNASectorMatrix.tsx`)**: 100% empirical session timing & speed trap telemetry (S1 high-speed aero, S2 technical mechanical grip, S3 power unit / DRS top speed), Theoretical Ultimate Lap benchmark, constructor aero dominance mapping, and sector-by-sector head-to-head duels.
+  - **Head-to-Head Tactical Strategy Duel (`TacticalStrategyDuel.tsx`)**: Real race pace delta battle engine merged with 1-stop vs 2-stop undercut simulation, live gap evolution trajectory chart, and SC / VSC scenario injection.
+  - **Tyre Degradation & Stint Whisperer Lab (`TyreDegradationLab.tsx`)**: Official track-specific Pirelli C1–C5 compound allocations, 3-phase non-linear thermal cliff model (Scrub-in Peak, Plateau, Exponential Cliff), dynamic crossover lap detection, fuel-burnoff compensation ($+0.055\text{s/lap}$), and driver Tyre Whisperer Index.
+- [ ] Plan 4.3: Driver telemetry trace comparison (speed, throttle, brake, gear) with Chart.js overlays (`/compare`).
+- [ ] Plan 4.4: 60fps canvas race replay with multi-car positioning and speed slider controls (`/replay`).
 
 ---
 
@@ -84,10 +89,10 @@ updated: 2026-10-11T21:05:00Z
 | **1** | Core Architecture, Auth & Data Pipeline | ✅ Complete | 3 / 3 | 100% |
 | **2** | 78-Circuit Vector Geometry & Corner Telemetry | ✅ Complete | 3 / 3 | 100% |
 | **3** | Live Pit-Wall Telemetry & Competitive Radar | ✅ Complete | 4 / 4 | 100% |
-| **4** | Telemetry Analytics, Compare & Replay | 🔄 In Progress | 1 / 3 | 33% |
+| **4** | Strategy Lab, Telemetry Analytics & Replay | 🔄 In Progress | 2 / 4 | 50% |
 | **5** | Production Hardening, CI/CD & Deployment | ⬜ Not Started | 0 / 3 | 0% |
-| **Total** | **Milestone v1.0 Baseline** | 🔄 | **11 / 16** | **68.8%** |
+| **Total** | **Milestone v1.0 Baseline** | 🔄 | **12 / 17** | **70.6%** |
 
 ---
 
-*Last updated: 2026-10-11*
+*Last updated: 2026-10-13*

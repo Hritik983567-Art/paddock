@@ -35,12 +35,19 @@
 │  │ - 4 Session Schedule │ │ - 78 Circuit Vectors │ │ - 60fps GPU Canvas   │ │
 │  │ - Official Timing    │ │ - 4,348 Corners      │ │ - Car Coordinate Loop│ │
 │  │ - FIA Race Control   │ │ - 5-Pass Relaxation  │ │ - Tyre Degradation   │ │
+│  ┌──────────────────────┐ ┌──────────────────────┐ ┌──────────────────────┐ │
+│  │     STRATEGY LAB     │ │   CIRCUIT RADAR MAP  │ │  CANVAS RACE REPLAY  │ │
+│  │    (`app/lab/`)      │ │ (`components/Map`)   │ │   (`app/replay/`)    │ │
+│  │ - Circuit DNA Matrix │ │ - 78 Circuit Vectors │ │ - 60fps GPU Canvas   │ │
+│  │ - Tactical H2H Duel  │ │ - 4,348 Corners      │ │ - Car Coordinate Loop│ │
+│  │ - Pirelli C1-C5 Tyre │ │ - 5-Pass Relaxation  │ │ - Tyre Degradation   │ │
 │  └──────────────────────┘ └──────────────────────┘ └──────────────────────┘ │
 │  ┌──────────────────────┐ ┌──────────────────────┐ ┌──────────────────────┐ │
-│  │  TELEMETRY COMPARE   │ │   TEAMMATE DELTAS    │ │ AUTH & CONSTRUCTOR   │ │
-│  │  (`app/compare/`)    │ │  (`app/teammates/`)  │ │  (`app/account/`)    │ │
-│  │ - Trace Overlays     │ │ - Sector Deltas      │ │ - Supabase PKCE Auth │ │
-│  │ - Speed Trap Deltas  │ │ - Head-to-Head Pace  │ │ - 10 Team HD Themes  │ │
+│  │    PIT-WALL LIVE     │ │   TEAMMATE DELTAS    │ │ AUTH & CONSTRUCTOR   │ │
+│  │    (`app/live/`)     │ │  (`app/teammates/`)  │ │  (`app/account/`)    │ │
+│  │ - 4 Session Schedule │ │ - Sector Deltas      │ │ - Supabase PKCE Auth │ │
+│  │ - Official Timing    │ │ - Head-to-Head Pace  │ │ - 10 Team HD Themes  │ │
+│  │ - FIA Race Control   │ │ - Points Progression │ │ - Server JWT Cookies │ │
 │  └──────────────────────┘ └──────────────────────┘ └──────────────────────┘ │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -65,12 +72,36 @@
 ### 2.3. Telemetry Proxy Daemon (`scripts/f1-proxy.js`)
 - **Port:** Local WebSocket server on `ws://localhost:8080`.
 - **Protocol:** HTTP POST negotiation with `livetiming.formula1.com/signalrcore/negotiate`, WebSocket tunnel connection, and raw Base64/Gzip decompression.
-- **Data Channels:** Relays `TimingData`, `TrackStatus`, `RaceControlMessages`, `SessionInfo`, and `WeatherData`.
+- **Data Channels:** Relays `TimingData`, `DriverList`, `TimingAppData`, `TrackStatus`, `RaceControlMessages`, `SessionInfo`, and `WeatherData`.
 
 ### 2.4. Authentication & Personalization (`app/lib/jwt.ts` & `app/components/AuthGate.tsx`)
 - **Auth Provider:** Supabase Auth with PKCE flow and Google OAuth 2.0.
 - **Session Security:** Web Crypto HS256 JWT tokens persisted in `HttpOnly; Secure; SameSite=Lax` cookies (`paddock_auth_token`), preventing client-side script inspection.
 - **Constructor Themes:** Dynamic CSS variable injection supporting all 10 constructor palettes and high-resolution pit-wall wallpapers.
+
+### 2.5. Strategy & Pit-Wall Telemetry Lab (`app/lab/page.tsx` & `app/lab/components/`)
+- **Purpose:** Engineering command deck for deep sector telemetry dissection, head-to-head tactical strategy simulation, and non-linear Pirelli tire degradation physics.
+- **Circuit DNA & Sector Domination Matrix (`CircuitDNASectorMatrix.tsx`):**
+  - Ingests 100% empirical official session timing and speed trap telemetry from the FIA Jolpica archive.
+  - Decomposes laps into Sector 1 (high-speed aerodynamic downforce), Sector 2 (mechanical traction and slow hairpins), and Sector 3 (power unit deployment and DRS straight-line efficiency).
+  - Calculates the **Theoretical Ultimate Lap** (Purple S1 + Purple S2 + Purple S3) against the actual pole position benchmark.
+  - Aggregates team constructor aero dominance to identify chassis strengths and weaknesses across the grid.
+  - Provides head-to-head micro-sector delta comparisons between any two drivers.
+- **Head-to-Head Tactical Strategy Duel (`TacticalStrategyDuel.tsx`):**
+  - Unifies real race pace deltas with pit-stop undercut simulation.
+  - Supports 1-stop vs. 2-stop tire compound selections (Soft 🔴 / Medium 🟡 / Hard ⚪).
+  - Visualizes race gap evolution across all laps, detecting crossover laps and undercut opportunities.
+  - Injects Safety Car (SC) and Virtual Safety Car (VSC) scenarios with dynamic pit-stop time discounts.
+- **Tyre Degradation & Stint Whisperer Lab (`TyreDegradationLab.tsx`):**
+  - Ingests official race stint data (`/pitstops.json` and `/laps.json`) to segment clean laps into Stint 1, 2, and 3.
+  - Applies fuel-burnoff compensation ($+0.055\text{s/lap}$) to extract true thermal wear slopes ($\beta_{\text{fuel}}$).
+  - Scores drivers on the **Tyre Whisperer Index (0–100)**: Elite (90+), Balanced (75–89), and Tyre Cooker (<75).
+  - Incorporates track-specific official **Pirelli C1–C5 Compound Allocations** (Hard, Medium, Soft) matched to circuit asphalt severity.
+  - Implements Pirelli's **3-Phase Non-Linear Thermal Degradation Model**:
+    1. *Phase 1 (Laps 1–3):* Scrub-in peak grip.
+    2. *Phase 2 (Plateau):* Controlled linear degradation.
+    3. *Phase 3 (Thermal Cliff):* Exponential drop-off when rubber depth depletes below threshold.
+  - Computes exact **Compound Crossover Laps** and optimal pit call windows.
 
 ---
 
@@ -78,16 +109,18 @@
 
 1. **Calendar & Track Initialization:**
    - On mount, `loadCalendar()` fetches `${API_BASE}/current.json`.
-   - Resolves active Grand Prix, populates 4 competitive sessions, and anchors initial roster lap times based on the venue's lap record (`getVenueBaseLapTime`).
+   - Resolves active Grand Prix, synchronizes 4 competitive session timetables and countdowns. Driver grid cleanly initializes to empty (`[]`) with zero mock or synthetic data.
 2. **Pit-Wall Live Stream Connection:**
    - `connectWebSocket()` binds to `ws://localhost:8080`.
    - The proxy negotiates with F1 SignalR servers and broadcasts `F1_LIVE_SERVER` frames to connected browser clients.
 3. **Telemetry Packet Ingestion:**
-   - `TimingData.Lines` updates position, lap times, speed traps, pit status, and gaps in `setDrivers`.
+   - `DriverList` registers drivers with racing numbers, broadcast names, and constructor details.
+   - `TimingData.Lines` dynamically populates and updates driver positions, lap times, speed traps, pit status, micro-sectors, and gaps.
+   - `TimingAppData` streams tyre stint history and compound age.
    - `TrackStatus` updates track flag conditions (`GREEN`, `YELLOW`, `SAFETY CAR`, `RED FLAG`).
    - `RaceControlMessages` appends official FIA messages to Mission Control.
 4. **Standby Mode:**
-   - If no competitive session is underway, the classification board displays a stable venue benchmark grid, and the countdown clock ticks toward the next scheduled session.
+   - When no competitive session is transmitting on track, the classification table renders an authentic **FIA Pit-Wall Telemetry Standby** card with real session start countdowns. Telemetry and driver lines populate dynamically strictly when official session packets stream in.
 
 ---
 
@@ -105,4 +138,4 @@
 
 ---
 
-*Last updated: 2026-10-11*
+*Last updated: 2026-10-13*

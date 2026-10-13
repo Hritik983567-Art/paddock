@@ -144,6 +144,44 @@ The circuit map vector pipeline handles high-precision rendering of 78 world cha
    - All interactive nodes feature `data-corner="true"`, allowing canvas drag handlers to immediately yield.
    - Modal backdrop dismissals implement an opening time guard (`modalOpenedAtRef`, 250ms threshold) to prevent the trigger click from bleeding through and immediately closing the modal.
 
+### 3.4 F1 Strategy Lab & Empirical Telemetry Subsystem (`/lab` & `app/lab/components/`)
+
+The Strategy Lab provides an advanced engineering reconnaissance suite built strictly upon 100% empirical timing telemetry and authentic tire degradation physics:
+1. **Circuit DNA & Sector Domination Matrix (`CircuitDNASectorMatrix.tsx`)**:
+   - **Empirical Sector Decomposition**: Deconstructs authentic FIA timing sessions into **Sector 1** (high-speed aero downforce & corner load), **Sector 2** (mechanical traction, low-speed braking & chicane direction change), and **Sector 3** (power unit / DRS efficiency and speed traps).
+   - **Theoretical Ultimate Lap**: Dynamically synthesizes the fastest individual micro-sectors (purple sectors) achieved by any driver during the weekend to calculate the theoretical ceiling of the venue:
+     $$\text{Lap}_{\text{Ultimate}} = \min(S_1) + \min(S_2) + \min(S_3)$$
+   - **Constructor Aero Dominance**: Maps team chassis efficiency profiles comparing high-speed aerodynamic efficiency against low-speed mechanical compliance.
+2. **Head-to-Head Tactical Strategy Duel Engine (`TacticalStrategyDuel.tsx`)**:
+   - **Race Pace Delta & Undercut Simulator**: Merges authentic long-run race pace deltas with an interactive 1-stop vs. 2-stop pit strategy engine.
+   - **Live Gap Evolution**: Computes cumulative track gap progressions over all race laps including in-lap and out-lap time losses.
+   - **Safety Car / VSC Scenario Injections**: Injects tactical pit window compression: Safety Car ($14\text{s}$ stationary/transit loss) and Virtual Safety Car ($11\text{s}$ loss) vs standard green flag pit loss ($22\text{s}$ loss).
+3. **Pirelli C1–C5 Tyre Degradation & Stint Whisperer Lab (`TyreDegradationLab.tsx`)**:
+   - **Official Circuit Allocations**: Ingests track-specific Pirelli compound nominations (`CIRCUIT_PIRELLI_ALLOCATIONS`) mapping C1 (hardest) to C5 (softest) across the 24 Championship venues.
+   - **3-Phase Non-Linear Thermal Cliff Model**:
+     - *Phase 1 (Scrub-in Peak, Laps 1–3)*: Surface adhesion and peak mechanical grip.
+     - *Phase 2 (Management Plateau)*: Linear compound degradation ($\Delta\text{s/lap}$) adjusted by driving style.
+     - *Phase 3 (Exponential Thermal Cliff)*: Severe thermal degradation once lap count exceeds compound cliff threshold ($L > L_{\text{cliff}}$):
+       $$\text{Time Penalty} = (\text{Base Wear} \times L) + 0.085 \times (L - L_{\text{cliff}})^{1.55}$$
+   - **Dynamic Crossover Lap Detection**: Evaluates the mathematical intersection where a degrading softer compound is overtaken in instantaneous lap pace by a harder compound.
+   - **Fuel-Burnoff Compensation**: Applies a $+0.055\text{s/lap}$ correction to decouple genuine tire degradation from vehicle weight reduction.
+   - **Tyre Whisperer Index**: Evaluates driver stint management on a normalized 0–100 efficiency scale.
+
+### 3.5 Official Live Telemetry & SignalR Ingestion Subsystem (`/live` & `scripts/f1-proxy.js`)
+
+The Live Telemetry console adheres strictly to an authentic, zero-mock-data pit-wall pipeline:
+1. **Zero Mock Data Architecture**:
+   - Strictly prohibits hardcoded initial driver rosters (`INITIAL_DRIVERS`) or artificial noise generators (`generateAnchorLapTimes`).
+   - The driver grid initializes cleanly as an empty array (`[]`).
+2. **Official FIA Pit-Wall Standby State**:
+   - When no session is active on track, the classification table renders an authentic FIA Standby card displaying verified session timetables and T-minus countdowns from `API_BASE/current.json`.
+   - Weather displays `— / —` until real environmental sensors transmit.
+3. **Dynamic Multi-Channel SignalR Ingestion**:
+   - Subscribes to official F1 timing channels: `Heartbeat`, `TimingData`, `TimingStats`, `TimingAppData`, `DriverList`, `WeatherData`, `TrackStatus`, `SessionInfo`, and `RaceControlMessages`.
+   - `DriverList` dynamically registers drivers with car numbers, broadcast codes, and constructor IDs.
+   - `TimingData` dynamically creates and updates positions, lap times, trap speeds, and micro-sector splits (S1/S2/S3).
+   - `TimingAppData` updates tyre stints and compound age.
+
 ---
 
 ## 4. Codebase Composition & Volume Metrics
@@ -152,16 +190,16 @@ The Paddock platform comprises modular TypeScript, React, and server-side compon
 
 | Component Category | File Count | Line Count | Codebase Share |
 | :--- | :--- | :--- | :--- |
-| 🎨 **Frontend UI & Visual Telemetry** | 38 Files | ~12,450 Lines | **64.2%** |
-| ⚙️ **Backend API Routes & Cryptography** | 12 Files | ~4,820 Lines | **24.9%** |
-| 🗄️ **Database Schemas & Data Configs** | 5 Files | ~2,110 Lines | **10.9%** |
-| 🏁 **Total Active Volume** | **55 Files** | **~19,380 Lines** | **100.0%** |
+| 🎨 **Frontend UI & Visual Telemetry** | 41 Files | ~14,100 Lines | **65.6%** |
+| ⚙️ **Backend API Routes & Cryptography** | 12 Files | ~4,820 Lines | **22.4%** |
+| 🗄️ **Database Schemas & Data Configs** | 6 Files | ~2,580 Lines | **12.0%** |
+| 🏁 **Total Active Volume** | **59 Files** | **~21,500 Lines** | **100.0%** |
 
 ```text
 Component Distribution:
-[████████████████████████████████████████████████████████████] 64.2% Frontend UI
-[█████████████████████████] 24.9% Backend APIs & Security
-[███████████] 10.9% Database & Config
+[████████████████████████████████████████████████████████████] 65.6% Frontend UI
+[██████████████████████] 22.4% Backend APIs & Security
+[████████████] 12.0% Database & Config
 ```
 
 ---

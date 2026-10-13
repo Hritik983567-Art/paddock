@@ -29,17 +29,19 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = (localStorage.getItem('paddock_theme') as F1Theme) || 'default';
+    const raw = (localStorage.getItem('paddock_theme') as F1Theme) || 'checkered';
+    const savedTheme = raw === 'default' ? 'checkered' : raw;
     setThemeState(savedTheme);
     document.documentElement.setAttribute('data-theme', savedTheme);
   }, []);
 
   const setTheme = (newTheme: F1Theme) => {
-    setThemeState(newTheme);
+    const canonicalTheme = newTheme === 'default' ? 'checkered' : newTheme;
+    setThemeState(canonicalTheme);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('paddock_theme', newTheme);
-      document.documentElement.setAttribute('data-theme', newTheme);
-      window.dispatchEvent(new CustomEvent('paddock_theme_changed', { detail: newTheme }));
+      localStorage.setItem('paddock_theme', canonicalTheme);
+      document.documentElement.setAttribute('data-theme', canonicalTheme);
+      window.dispatchEvent(new CustomEvent('paddock_theme_changed', { detail: canonicalTheme }));
     }
   };
 

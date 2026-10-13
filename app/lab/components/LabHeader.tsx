@@ -84,7 +84,7 @@ export const LabHeader: React.FC<LabHeaderProps> = ({
         </div>
 
         {/* Driver Selectors for Comparison Tools */}
-        {(activeTool === 'pace' || activeTool === 'telemetry') && (
+        {(activeTool === 'strategy_duel' || activeTool === 'telemetry') && (
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono text-zinc-400">Driver 1:</span>
@@ -101,7 +101,7 @@ export const LabHeader: React.FC<LabHeaderProps> = ({
               </select>
             </div>
 
-            {activeTool === 'pace' && (
+            {activeTool === 'strategy_duel' && (
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono text-zinc-400">vs Driver 2:</span>
                 <select

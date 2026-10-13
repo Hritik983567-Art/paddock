@@ -16,10 +16,13 @@ import {
   TooltipItem
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import CircuitDNASectorMatrix from './components/CircuitDNASectorMatrix';
+import TacticalStrategyDuel from './components/TacticalStrategyDuel';
+import TyreDegradationLab from './components/TyreDegradationLab';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
-type ToolId = 'telemetry' | 'pace' | 'strategy' | 'tyres';
+type ToolId = 'venue_form' | 'telemetry' | 'strategy_duel' | 'tyres';
 
 interface RoundItem {
   round: string;
@@ -53,6 +56,14 @@ interface ToolCard {
 
 const LAB_TOOLS: ToolCard[] = [
   {
+    id: 'venue_form',
+    icon: '🧬',
+    name: 'CIRCUIT DNA & SECTOR DOMINATION',
+    shortDesc: 'Empirical sector telemetry breakdown (S1 high-speed aero, S2 mechanical grip, S3 top speed traps) proving which car dominates each circuit section.',
+    status: 'AVAILABLE',
+    badge: '100% REAL TELEMETRY'
+  },
+  {
     id: 'telemetry',
     icon: '⚡',
     name: 'TELEMETRY & LAP ANALYZER',
@@ -61,28 +72,20 @@ const LAB_TOOLS: ToolCard[] = [
     badge: 'REAL DATA'
   },
   {
-    id: 'pace',
+    id: 'strategy_duel',
     icon: '⚔️',
-    name: 'DRIVER RACE PACE DELTA',
-    shortDesc: 'Compare head-to-head lap times, position changes, and cumulative time gaps between two drivers.',
+    name: 'HEAD-TO-HEAD TACTICAL STRATEGY DUEL',
+    shortDesc: 'Simulate a head-to-head pit wall battle between two rival drivers, combining real race pace deltas with 1-stop vs 2-stop undercut tactics.',
     status: 'AVAILABLE',
-    badge: 'DERIVED METRIC'
-  },
-  {
-    id: 'strategy',
-    icon: '📊',
-    name: 'PIT STRATEGY SIMULATOR',
-    shortDesc: 'Simulate 1-stop vs 2-stop vs 3-stop stint degradation calibrated with real GP pace.',
-    status: 'AVAILABLE',
-    badge: 'CALIBRATED MODEL'
+    badge: 'CALIBRATED TACTICAL ENGINE'
   },
   {
     id: 'tyres',
     icon: '🔴',
-    name: 'TYRE DEGRADATION LAB',
-    shortDesc: 'Analyze compound thermal wear rates (Soft / Medium / Hard) derived from real race stints.',
+    name: 'TYRE DEGRADATION & STINT WHISPERER LAB',
+    shortDesc: 'Extract real race stints, calculate fuel-corrected tire wear slopes (s/lap), and rank drivers on the Tyre Whisperer Conservation Index.',
     status: 'AVAILABLE',
-    badge: 'EXPERIMENTAL'
+    badge: 'REAL STINT TELEMETRY'
   }
 ];
 
@@ -90,7 +93,7 @@ export default function LabPage() {
   const { selectedSeason } = useSeason();
 
   // Active Tool Selection
-  const [activeTool, setActiveTool] = useState<ToolId>('telemetry');
+  const [activeTool, setActiveTool] = useState<ToolId>('venue_form');
 
   // Rounds & Drivers State
   const [rounds, setRounds] = useState<RoundItem[]>([]);
@@ -963,7 +966,7 @@ export default function LabPage() {
   };
 
   return (
-    <section className="view" id="view-lab" style={{ maxWidth: '1240px', margin: '0 auto', position: 'relative', zIndex: 10 }}>
+    <section className="view w-full relative z-10 box-border" id="view-lab">
       
       {/* 1. Header Section */}
       <div style={{
@@ -1163,9 +1166,16 @@ export default function LabPage() {
         background: '#0D1017',
         border: '1px solid #262C38',
         borderRadius: '12px',
-        padding: '28px',
-        boxShadow: '0 16px 40px rgba(0,0,0,0.8)'
+        padding: '20px',
+        boxShadow: '0 16px 40px rgba(0,0,0,0.8)',
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
+
+        {/* WORKSPACE TOOL 0: CIRCUIT DNA & SECTOR DOMINATION MATRIX */}
+        {activeTool === 'venue_form' && (
+          <CircuitDNASectorMatrix />
+        )}
 
         {/* WORKSPACE TOOL 1: TELEMETRY & LAP ANALYZER (POWERED BY REAL API LAP DATA) */}
         {activeTool === 'telemetry' && (
@@ -1388,291 +1398,31 @@ export default function LabPage() {
           </div>
         )}
 
-        {/* WORKSPACE TOOL 2: DRIVER RACE PACE DELTA */}
-        {activeTool === 'pace' && (
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', borderBottom: '1px solid #262C38', paddingBottom: '12px', flexWrap: 'wrap', gap: '12px' }}>
-              <div>
-                <div style={{ fontSize: '10.5px', fontFamily: 'var(--font-mono)', color: '#FFB020', fontWeight: '800', marginBottom: '4px' }}>
-                  [ DERIVED PACE DELTA ]
-                </div>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: '800', color: '#FFFFFF', margin: 0 }}>
-                  DRIVER RACE PACE DELTA
-                </h2>
-                <p style={{ margin: '4px 0 0 0', color: '#CBD5E1', fontSize: '13.5px' }}>
-                  Cumulative lap time difference (Δt) calculated between Driver A ({driverAObj?.code || 'A'}) and Driver B ({driverBObj?.code || 'B'}).
-                </p>
-              </div>
-            </div>
-
-            <div style={{ height: '420px', position: 'relative' }}>
-              <Line data={realDeltaChartData} options={realDeltaChartOptions} />
-            </div>
-          </div>
+        {/* WORKSPACE TOOL 2: HEAD-TO-HEAD TACTICAL STRATEGY DUEL (MERGED TOOL) */}
+        {activeTool === 'strategy_duel' && (
+          <TacticalStrategyDuel
+            driversList={driversList}
+            selectedDriverA={selectedDriverA}
+            selectedDriverB={selectedDriverB}
+            onSelectDriverA={setSelectedDriverA}
+            onSelectDriverB={setSelectedDriverB}
+            driverALapTimes={driverALapTimes}
+            driverBLapTimes={driverBLapTimes}
+            totalRaceLaps={laps}
+            benchmarkBaseLapTime={baseTime}
+            observedDegradation={degradation}
+          />
         )}
 
-        {/* WORKSPACE TOOL 3: PIT STRATEGY SIMULATOR */}
-        {activeTool === 'strategy' && (
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', borderBottom: '1px solid #262C38', paddingBottom: '12px', flexWrap: 'wrap', gap: '12px' }}>
-              <div>
-                <div style={{ fontSize: '10.5px', fontFamily: 'var(--font-mono)', color: '#34E4C8', fontWeight: '800', marginBottom: '4px' }}>
-                  [ CALIBRATED STRATEGY MODEL ]
-                </div>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: '800', color: '#FFFFFF', margin: 0 }}>
-                  PIT STRATEGY SIMULATOR WORKSPACE
-                </h2>
-                <p style={{ margin: '4px 0 0 0', color: '#CBD5E1', fontSize: '13.5px' }}>
-                  Calibrated with real GP race lap count and pace parameters. Tune degradation to evaluate stint strategies.
-                </p>
-              </div>
-              <button
-                onClick={handleSimulate}
-                style={{
-                  background: '#E8302A',
-                  color: '#FFFFFF',
-                  border: 'none',
-                  borderRadius: '6px',
-                  padding: '10px 20px',
-                  fontSize: '12px',
-                  fontFamily: 'var(--font-mono)',
-                  fontWeight: '800',
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 14px rgba(232, 48, 42, 0.4)'
-                }}
-              >
-                RUN SIMULATION ▶
-              </button>
-            </div>
-
-            {/* Input Controls Grid */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-              gap: '16px',
-              marginBottom: '24px',
-              background: '#121620',
-              padding: '20px',
-              borderRadius: '8px',
-              border: '1px solid #262C38'
-            }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1', marginBottom: '6px', fontWeight: '700' }}>
-                  RACE LAPS
-                </label>
-                <input
-                  type="number"
-                  value={laps}
-                  onChange={(e) => setLaps(Math.max(10, parseInt(e.target.value) || 50))}
-                  style={{ width: '100%', background: '#0D1017', border: '1px solid #262C38', color: '#FFFFFF', padding: '8px 12px', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontWeight: '700' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1', marginBottom: '6px', fontWeight: '700' }}>
-                  BASE LAP TIME (s)
-                </label>
-                <input
-                  type="number"
-                  step="0.1"
-                  value={baseTime}
-                  onChange={(e) => setBaseTime(parseFloat(e.target.value) || 90.0)}
-                  style={{ width: '100%', background: '#0D1017', border: '1px solid #262C38', color: '#FFFFFF', padding: '8px 12px', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontWeight: '700' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1', marginBottom: '6px', fontWeight: '700' }}>
-                  TYRE DEG (s/lap)
-                </label>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={degradation}
-                  onChange={(e) => setDegradation(parseFloat(e.target.value) || 0.08)}
-                  style={{ width: '100%', background: '#0D1017', border: '1px solid #262C38', color: '#FFFFFF', padding: '8px 12px', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontWeight: '700' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1', marginBottom: '6px', fontWeight: '700' }}>
-                  PIT LOSS TIME (s)
-                </label>
-                <input
-                  type="number"
-                  step="0.5"
-                  value={pitLoss}
-                  onChange={(e) => setPitLoss(parseFloat(e.target.value) || 20.0)}
-                  style={{ width: '100%', background: '#0D1017', border: '1px solid #262C38', color: '#FFFFFF', padding: '8px 12px', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontWeight: '700' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1', marginBottom: '6px', fontWeight: '700' }}>
-                  STRATEGY A STOPS
-                </label>
-                <select
-                  value={stopsA}
-                  onChange={(e) => setStopsA(parseInt(e.target.value))}
-                  style={{ width: '100%', background: '#0D1017', border: '1px solid #262C38', color: '#34E4C8', padding: '8px 12px', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontWeight: '700' }}
-                >
-                  <option value={1}>1-Stop</option>
-                  <option value={2}>2-Stop</option>
-                  <option value={3}>3-Stop</option>
-                </select>
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1', marginBottom: '6px', fontWeight: '700' }}>
-                  STRATEGY B STOPS
-                </label>
-                <select
-                  value={stopsB}
-                  onChange={(e) => setStopsB(parseInt(e.target.value))}
-                  style={{ width: '100%', background: '#0D1017', border: '1px solid #262C38', color: '#E8302A', padding: '8px 12px', borderRadius: '4px', fontFamily: 'var(--font-mono)', fontWeight: '700' }}
-                >
-                  <option value={1}>1-Stop</option>
-                  <option value={2}>2-Stop</option>
-                  <option value={3}>3-Stop</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Simulation Chart */}
-            <div style={{ height: '320px', position: 'relative', marginBottom: '20px' }}>
-              <Line data={simChartData} options={strategyChartOptions} />
-            </div>
-
-            {/* Results Summary Strip */}
-            {simResults && (
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '16px',
-                background: '#121620',
-                padding: '20px',
-                borderRadius: '8px',
-                border: '1px solid #262C38'
-              }}>
-                <div>
-                  <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1' }}>STRATEGY A ({stopsA}-STOP) TOTAL</div>
-                  <div style={{ fontSize: '22px', fontFamily: 'var(--font-display)', fontWeight: '800', color: '#34E4C8' }}>
-                    {formatSeconds(simResults.totalA)}
-                  </div>
-                </div>
-
-                <div>
-                  <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1' }}>STRATEGY B ({stopsB}-STOP) TOTAL</div>
-                  <div style={{ fontSize: '22px', fontFamily: 'var(--font-display)', fontWeight: '800', color: '#E8302A' }}>
-                    {formatSeconds(simResults.totalB)}
-                  </div>
-                </div>
-
-                <div>
-                  <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#CBD5E1' }}>NET GAP AT FLAG</div>
-                  <div style={{ fontSize: '22px', fontFamily: 'var(--font-display)', fontWeight: '800', color: '#FFB020' }}>
-                    {Math.abs(simResults.delta).toFixed(1)}s {simResults.delta < 0 ? '(A Ahead)' : '(B Ahead)'}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* WORKSPACE TOOL 4: TYRE DEGRADATION LAB */}
+        {/* WORKSPACE TOOL 3: TYRE DEGRADATION & STINT WHISPERER LAB */}
         {activeTool === 'tyres' && (
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', borderBottom: '1px solid #262C38', paddingBottom: '12px', flexWrap: 'wrap', gap: '12px' }}>
-              <div>
-                <div style={{ fontSize: '10.5px', fontFamily: 'var(--font-mono)', color: '#E8302A', fontWeight: '800', marginBottom: '4px' }}>
-                  [ THERMAL WEAR MODEL ]
-                </div>
-                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: '800', color: '#FFFFFF', margin: 0 }}>
-                  TYRE DEGRADATION &amp; CROSSOVER LAB
-                </h2>
-                <p style={{ margin: '4px 0 0 0', color: '#CBD5E1', fontSize: '13.5px' }}>
-                  Evaluate thermal degradation rates across Soft, Medium, and Hard compounds over extended stint lengths.
-                </p>
-              </div>
-            </div>
-
-            {/* Tyre Tuning Sliders */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '20px',
-              marginBottom: '24px',
-              background: '#121620',
-              padding: '20px',
-              borderRadius: '8px',
-              border: '1px solid #262C38'
-            }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#E8302A', marginBottom: '6px', fontWeight: '800' }}>
-                  SOFT 🔴 DEG ({softDeg.toFixed(2)}s/lap)
-                </label>
-                <input
-                  type="range"
-                  min="0.05"
-                  max="0.30"
-                  step="0.01"
-                  value={softDeg}
-                  onChange={(e) => setSoftDeg(parseFloat(e.target.value))}
-                  style={{ width: '100%' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#FFB020', marginBottom: '6px', fontWeight: '800' }}>
-                  MEDIUM 🟡 DEG ({mediumDeg.toFixed(2)}s/lap)
-                </label>
-                <input
-                  type="range"
-                  min="0.03"
-                  max="0.20"
-                  step="0.01"
-                  value={mediumDeg}
-                  onChange={(e) => setMediumDeg(parseFloat(e.target.value))}
-                  style={{ width: '100%' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#FFFFFF', marginBottom: '6px', fontWeight: '800' }}>
-                  HARD ⚪ DEG ({hardDeg.toFixed(2)}s/lap)
-                </label>
-                <input
-                  type="range"
-                  min="0.01"
-                  max="0.12"
-                  step="0.01"
-                  value={hardDeg}
-                  onChange={(e) => setHardDeg(parseFloat(e.target.value))}
-                  style={{ width: '100%' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#34E4C8', marginBottom: '6px', fontWeight: '800' }}>
-                  STINT LENGTH ({tyreStintLaps} Laps)
-                </label>
-                <input
-                  type="range"
-                  min="15"
-                  max="50"
-                  step="1"
-                  value={tyreStintLaps}
-                  onChange={(e) => setTyreStintLaps(parseInt(e.target.value))}
-                  style={{ width: '100%' }}
-                />
-              </div>
-            </div>
-
-            {/* Tyre Chart */}
-            <div style={{ height: '320px', position: 'relative' }}>
-              <Line data={tyreChartData} options={tyreChartOptions} />
-            </div>
-          </div>
+          <TyreDegradationLab
+            selectedSeason={selectedSeason}
+            selectedRound={selectedRound}
+            roundName={rounds.find(r => r.round === selectedRound)?.raceName}
+            circuitId={rounds.find(r => r.round === selectedRound)?.circuitId}
+            driversList={driversList}
+          />
         )}
 
       </div>

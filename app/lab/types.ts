@@ -1,4 +1,4 @@
-export type ToolId = 'telemetry' | 'pace' | 'strategy' | 'tyres';
+export type ToolId = 'venue_form' | 'telemetry' | 'strategy_duel' | 'tyres';
 
 export interface RoundItem {
   round: string;
@@ -32,6 +32,14 @@ export interface ToolCard {
 
 export const LAB_TOOLS: ToolCard[] = [
   {
+    id: 'venue_form',
+    icon: '🧬',
+    name: 'CIRCUIT DNA & SECTOR DOMINATION',
+    shortDesc: 'Empirical sector telemetry breakdown (S1 high-speed aero, S2 mechanical grip, S3 top speed traps) proving which car dominates each circuit section.',
+    status: 'AVAILABLE',
+    badge: '100% REAL TELEMETRY'
+  },
+  {
     id: 'telemetry',
     icon: '⚡',
     name: 'TELEMETRY & LAP ANALYZER',
@@ -40,27 +48,19 @@ export const LAB_TOOLS: ToolCard[] = [
     badge: 'REAL DATA'
   },
   {
-    id: 'pace',
+    id: 'strategy_duel',
     icon: '⚔️',
-    name: 'DRIVER RACE PACE DELTA',
-    shortDesc: 'Compare head-to-head lap times, position changes, and cumulative time gaps between two drivers.',
+    name: 'HEAD-TO-HEAD TACTICAL STRATEGY DUEL',
+    shortDesc: 'Simulate a head-to-head pit wall battle between two rival drivers, combining real race pace deltas with 1-stop vs 2-stop undercut tactics.',
     status: 'AVAILABLE',
-    badge: 'DERIVED METRIC'
-  },
-  {
-    id: 'strategy',
-    icon: '📊',
-    name: 'PIT STRATEGY SIMULATOR',
-    shortDesc: 'Simulate 1-stop vs 2-stop vs 3-stop stint degradation calibrated with real GP pace.',
-    status: 'AVAILABLE',
-    badge: 'CALIBRATED MODEL'
+    badge: 'CALIBRATED TACTICAL ENGINE'
   },
   {
     id: 'tyres',
     icon: '🔴',
-    name: 'TYRE DEGRADATION LAB',
-    shortDesc: 'Analyze compound thermal wear rates (Soft / Medium / Hard) derived from real race stints.',
+    name: 'TYRE DEGRADATION & STINT WHISPERER LAB',
+    shortDesc: 'Extract real race stints, calculate fuel-corrected tire wear slopes (s/lap), and rank drivers on the Tyre Whisperer Conservation Index.',
     status: 'AVAILABLE',
-    badge: 'EXPERIMENTAL'
+    badge: 'REAL STINT TELEMETRY'
   }
 ];

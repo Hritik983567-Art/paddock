@@ -65,6 +65,18 @@ npm run lint
 - Interactive nodes must have `data-corner="true"`. `handleMouseDown` and `handleTouchStart` check `target.closest('[data-corner="true"]')` to completely isolate corner clicks from canvas dragging.
 - Modal backdrops must use an opening time guard (`modalOpenedAtRef`, 250ms threshold) to prevent click bleed-through from immediately closing the modal.
 
+### 4. Strategy Lab & Empirical Telemetry Principles (`/lab`)
+- **100% Empirical Telemetry**: Strictly avoid speculative or black-box machine learning models. Sector timing, speed traps, and benchmark classifications must derive from verifiable official FIA telemetry data.
+- **Circuit DNA Decomposition**: Decompose sessions into Sector 1 (high-speed aero downforce), Sector 2 (mechanical grip & traction), and Sector 3 (power unit efficiency & DRS top speeds). Calculate Theoretical Ultimate Lap from purple benchmarks.
+- **Pirelli C1–C5 Allocations**: Circuit compound selections must adhere to track-specific nominations (`CIRCUIT_PIRELLI_ALLOCATIONS`), mapping C1 (hardest) to C5 (softest).
+- **3-Phase Thermal Cliff Model**: Do not use naive linear tire wear. Stint simulation must enforce: Phase 1 (Scrub-in Peak, L1–3), Phase 2 (Management Plateau), and Phase 3 (Exponential Thermal Cliff: $\Delta\text{s} \propto (\text{lapsOverCliff})^{1.55}$).
+- **Fuel-Burnoff Compensation**: Decouple car weight loss from tyre wear using $+0.055\text{s/lap}$ delta adjustment.
+
+### 5. Zero Mock Data Policy & Live Ingestion (`/live`)
+- **Strictly No Mock Data**: Never seed artificial driver grids (`INITIAL_DRIVERS`), synthetic anchor lap times (`generateAnchorLapTimes`), or hardcoded weather temperatures.
+- **Standby Mode**: When off-session, render the official FIA Pit-Wall Telemetry Standby card with real session start countdowns derived from `API_BASE/current.json`.
+- **Dynamic Ingestion**: When competitive sessions stream, driver rows, micro-sectors (S1, S2, S3), trap speeds, and tyre stints populate dynamically strictly from incoming SignalR WebSocket frames (`DriverList`, `TimingData`, `TimingAppData`).
+
 ---
 
 ## 🎨 Design System & Pit-Wall Aesthetics

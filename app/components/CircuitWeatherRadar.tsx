@@ -215,7 +215,7 @@ export default function CircuitWeatherRadar({
       ctx.stroke();
 
       // Compass Cardinal Points
-      ctx.font = `bold ${isModal ? '12px' : '9.5px'} 'Titillium Web', sans-serif`;
+      ctx.font = `bold ${isModal ? '12px' : '9.5px'} 'ID Grotesk', sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       
@@ -266,7 +266,7 @@ export default function CircuitWeatherRadar({
 
       if (blobs.length === 0) {
         ctx.fillStyle = 'rgba(0, 245, 212, 0.4)';
-        ctx.font = `600 ${isModal ? '11px' : '8px'} 'Titillium Web', sans-serif`;
+        ctx.font = `600 ${isModal ? '11px' : '8px'} 'ID Grotesk', sans-serif`;
         ctx.textAlign = 'center';
         ctx.fillText('0 PRECIPITATION ECHOES · CLEAR SCAN', cx, cy + maxR * 0.42);
       }
