@@ -78,6 +78,15 @@ graph TD
 - **FR-TEAMMATE-02 (Delta Pace Calculations)**: The system shall compute median qualifying pace deltas in milliseconds between teammates.
 - **FR-TEAMMATE-03 (Points & Position Graphs)**: The portal shall render round-by-round cumulative championship points progression and finishing position line charts.
 
+### 3.5 Strategy Lab & Empirical Telemetry Analytics (FR-STRAT)
+
+- **FR-STRAT-01 (Unshifted Discrete Lap Alignment)**: The telemetry processing pipeline shall preserve authentic 1-based FIA transponder lap numbers ($1 \dots N$). Incomplete, pitted, or outlier laps shall render as breaks (`spanGaps: false`) without shifting or compressing subsequent lap indices on the X-axis.
+- **FR-STRAT-02 (Centralized Comparative State)**: The Strategy Lab shall provide an anchored Grand Prix command bar with Round selection, venue metadata, and Driver 1 vs Driver 2 comparator pills that drive comparison metrics across all child analytical workspaces.
+- **FR-STRAT-03 (Field Pit Stop Chronology & In/Out-Lap Loss)**: The pit stop workspace shall render an interactive timeline of all driver pit stops across laps 1 through $N$, calculate in-lap and out-lap time loss against each driver's clean median pace, and rank stationary pit box durations across constructors.
+- **FR-STRAT-04 (Lap-by-Lap Pace Progression & Delta Traces)**: The pace workspace shall compute clean representative pace averages, consistency scores, and lap-by-lap delta progressions ($\Delta t_i = t_{A, i} - t_{B, i}$) with configurable outlier cutoff filters.
+- **FR-STRAT-05 (Tyre Stint Wear & Pirelli Compound Allocation)**: The tyre stint workspace shall ingest official track-specific Pirelli compound allocations (Hard, Medium, Soft) and model fuel-compensated degradation wear slopes ($\Delta\text{s/lap}$) across race stints.
+- **FR-STRAT-06 (Circuit Demands & Track DNA)**: The circuit analysis workspace shall decompose performance traits across high-speed downforce, low-speed mechanical compliance, and straight-line efficiency, with direct deep-links to 2D vector circuit reconnaissance.
+
 ---
 
 ## 4. Non-Functional Requirements (NFR)

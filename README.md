@@ -3,6 +3,7 @@
 [![Next.js 16](https://img.shields.io/badge/Next.js-16%20(Turbopack)-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tests](https://img.shields.io/badge/Vitest-25%20Passing%20(6%20Suites)-3ECF8E?style=for-the-badge&logo=vitest)](./docs/09_TESTING_STRATEGY.md)
 [![Supabase PKCE](https://img.shields.io/badge/Supabase-Auth%20PKCE-3ECF8E?style=for-the-badge&logo=supabase)](https://supabase.com/)
 [![FastF1 Telemetry](https://img.shields.io/badge/FastF1-Python%20Engine-FF1801?style=for-the-badge&logo=formula1)](https://github.com/theOdev/FastF1)
 [![Circuits Supported](https://img.shields.io/badge/F1%20Circuits-78%20Tracks-E10600?style=for-the-badge&logo=formula1)](https://www.formula1.com/)
@@ -25,16 +26,18 @@ Paddock Telemetry provides an enterprise-grade, modular software engineering doc
 | **[06_API_SPECIFICATION.md](./docs/06_API_SPECIFICATION.md)** | API Specification | Complete endpoints reference, caching proxies, and status codes |
 | **[07_UI_UX_SPECIFICATION.md](./docs/07_UI_UX_SPECIFICATION.md)** | UI/UX Specification | Dark pit-wall design tokens, tire palettes, 60fps canvas rules |
 | **[08_SECURITY.md](./docs/08_SECURITY.md)** | Security Architecture | PKCE auth, hardened CSP without unsafe-eval, rate limiting |
-| **[09_TESTING_STRATEGY.md](./docs/09_TESTING_STRATEGY.md)** | QA & Benchmarks | 1,000-user load test results, canvas benchmarks, build audits |
+| **[09_TESTING_STRATEGY.md](./docs/09_TESTING_STRATEGY.md)** | QA & Benchmarks | Tracked 1,000-op benchmark suite, concurrency stress tests, build audits |
 | **[10_DEPLOYMENT.md](./docs/10_DEPLOYMENT.md)** | Deployment & Ops | Environment matrix, Vercel/Docker deployment, and smoke tests |
+| **[STRATEGY_LAB_REDESIGN_PLAN.md](./docs/STRATEGY_LAB_REDESIGN_PLAN.md)** | Strategy Lab Plan | Architecture, correctness audits, and Clean Tabbed Cockpit specs |
 
 ---
 
 ## ⚡ Key Systems & Core Features
 
 ### 🗺️ 1. 78 F1 Circuit Satellite Canvas & Corner Reconnaissance (`/gallery`)
-- **Complete Track Coverage**: Supports all 24 official modern Championship Grand Prix venues and 54 historic heritage & future circuits (Nürburgring Nordschleife, Brands Hatch, Kyalami, Sepang, Indianapolis, Madrid 2026) spanning **4,348 calibrated corners**.
-- **Calibrated Apex Telemetry Specs**: Displays verified telemetry metrics per corner — entry, apex, and exit speeds (km/h), typical gear distribution, braking G-force, DRS zones, and overtaking strategy ratings.
+- **Two-Tier Track Registry**:
+  - **24 Modern Championship Venues**: Fully verified centerline path vectors (`path`), authentic sector split gates (S1/S2/S3), speed trap coordinates, and calibrated apex telemetry specs (entry/apex/exit speeds in km/h, braking G-forces, typical gear selection, DRS zones).
+  - **54 Heritage & Historic Venues**: Track layout outlines, official circuit lengths, corner names, and archival records (e.g. Nordschleife, Brands Hatch, Kyalami, Sepang, Indianapolis).
 - **Intelligent Auto-Settle Layout Transform**: Automatically tilts vertically-oriented circuits 90° clockwise so narrow tracks settle comfortably in widescreen viewports.
 - **5-Pass Iterative Collision Relaxation**: Dynamically spaces corner badges in tight chicanes with a 38px clearance threshold, preventing badge overlap and eliminating hover jitter.
 - **Intelligent Apex Matcher**: Dynamically maps corner selections to verified high-resolution apex photography and fallback team wallpapers.
@@ -48,24 +51,16 @@ Paddock Telemetry provides an enterprise-grade, modular software engineering doc
 - **Constructor Rivalries**: H2H comparisons across all 10 F1 constructor teams.
 - **Telemetry Delta Graphs**: Cumulative championship points progression curves, qualifying pace deltas, and finishing statistics.
 
-### 🔬 4. High-Contrast Telemetry & Strategy Lab (`/lab`)
-The Strategy Lab provides an advanced four-tool telemetry reconnaissance and race engineer strategy suite:
-- **Circuit DNA & Sector Domination Matrix (`CircuitDNASectorMatrix.tsx`)**:
-  - **100% Empirical Telemetry**: Decomposes authentic FIA session timing into **Sector 1 (high-speed aero downforce)**, **Sector 2 (mechanical traction & direction changes)**, and **Sector 3 (power unit efficiency & DRS speed traps)** without synthetic AI guesses.
-  - **Theoretical Ultimate Lap**: Synthesizes purple micro-sector benchmarks across all drivers to compute the mathematical ceiling of the circuit.
-  - **Constructor Aero Dominance**: Computes team mechanical vs aerodynamic chassis balance with sector-by-sector head-to-head duels.
-- **Head-to-Head Tactical Strategy Duel (`TacticalStrategyDuel.tsx`)**:
-  - **Race Pace & Pit Battle Engine**: Merges authentic long-run race pace deltas with dynamic 1-stop vs. 2-stop undercut and overcut simulations.
-  - **Live Gap Evolution**: Visualizes projected track intervals across all race laps with pit loss offsets.
-  - **Safety Car / VSC Injections**: Simulates tactical pit window compression under Safety Car ($14\text{s}$ loss) and Virtual Safety Car ($11\text{s}$ loss) conditions.
-- **Tyre Degradation & Stint Whisperer Lab (`TyreDegradationLab.tsx`)**:
-  - **Track-Specific Pirelli Allocations**: Ingests official **C1 through C5** compound nominations (Hard, Medium, Soft) for every Grand Prix circuit.
-  - **3-Phase Thermal Cliff Physics Engine**: Models non-linear compound behavior across Phase 1 (Scrub-in Peak, Laps 1–3), Phase 2 (Management Plateau), and Phase 3 (Exponential Thermal Cliff: $\Delta\text{s} \propto (\text{lapsOverCliff})^{1.55}$).
-  - **Dynamic Crossover Lap Detection**: Automatically calculates the exact lap where a degrading softer compound crosses pace parity with a fresh harder tyre.
-  - **Fuel-Burnoff Compensation**: Adjusts stint degradation by $+0.055\text{s/lap}$ to isolate genuine rubber wear from vehicle mass reduction.
-  - **Tyre Whisperer Index**: Evaluates driver management efficiency on a 0–100 scale with driving style presets (*Whisperer*, *Balanced*, *Attack*).
-- **Telemetry & Lap Trace Overlay Analyzer**:
-  - High-contrast multi-channel overlays comparing speed traces (km/h), throttle percentage, braking pressure, and gear shifts across hot laps.
+### 🔬 4. Clean Tabbed Strategy Lab & Tactical Cockpit (`/lab`)
+The Strategy Lab delivers an uncluttered, high-signal Formula 1 tactical command center:
+- **Cockpit Tab Switcher (`LabHeader.tsx`)**: High-contrast horizontal tab bar allowing instant switching across four focused tactical workspaces.
+- **Unified Session Command Ribbon (`GrandPrixSummaryBar.tsx`)**: Compact 2-row command bar providing Round selection, circuit venue metadata, a liveried Driver 1 vs Driver 2 comparator, and a 4-cell telemetry strip (**Winner • Race Distance • Pole Position • Fastest Lap**).
+- **Four Dedicated Tactical Workspaces**:
+  1. **Field Pit Stop Strategy (`PitStopReview.tsx`)**: Field pit stop timeline across laps 1 through $N$ with a normalized lap ruler, stationary durations, in/out-lap loss breakdown, and a toggleable alternate undercut simulator.
+  2. **Race Pace & Lap Deltas (`WhereWasTimeLost.tsx`)**: Continuous unshifted lap pace progression (`spanGaps: false`), clean pace averages, consistency scores, and head-to-head delta progression with integrated outlier cutoff controls.
+  3. **Tyre Stints & Wear Slopes (`TyreStintStory.tsx`)**: Technical Pirelli compound allocation strip (`⚪ Hard`, `🟡 Medium`, `🔴 Soft`), fuel burnoff compensation ($+0.055\text{s/lap}$), and full-grid stint longevity matrix.
+  4. **Circuit Demands & Track DNA (`CircuitStrengths.tsx`)**: Chassis trait decomposition (S1 aero, S2 mechanical, S3 traction) with deep links directly into 2D circuit reconnaissance.
+- **Explicit Provenance Hierarchy**: Every metric transparently distinguishes **Recorded Timing** (authentic FIA transponders), **Derived Metric** (statistical calculations), and **Simulation / Model** (physics estimates).
 
 ### 🔐 5. Enterprise Supabase PKCE Auth & Security
 - **Hard Credential Verification**: Multi-layer password authentication with Supabase PKCE.

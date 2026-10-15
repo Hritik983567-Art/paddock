@@ -107,25 +107,86 @@ The typography hierarchy is designed for instant scannability under high-stress 
 - **Right-Sized Collision Hitboxes**: Invisible painted hit targets are constrained to 32×26px for badges and 12px radius for apex anchors (`fill="#FFFFFF" fillOpacity="0.001"`), preventing neighboring corner hitboxes from overlapping.
 - **Touch & Gesture Immunity**: Canvas drag listeners (`onMouseDown`, `onTouchStart`) check `target.closest('[data-corner="true"]')` and enforce a 12px drag delta, ensuring corner taps open reconnaissance specs without shifting the canvas.
 
-### 4.3 Strategy Lab & Empirical Telemetry Matrix HUD (`/lab`)
-- **Sub-Tool Mode Switcher**: High-contrast pill tabs with active indicator glow (`bg-red-600/20 text-red-400 border-red-500/40`), allowing instant switching between:
-  1. *Circuit DNA & Sector Domination Matrix*
-  2. *Head-to-Head Tactical Strategy Duel*
-  3. *Tyre Degradation & Stint Whisperer Lab*
-  4. *Telemetry & Lap Trace Overlay*
+### 4.3 Strategy Lab & Clean Tabbed Cockpit HUD (`/lab`)
+- **Top-Down Cockpit Hierarchy**:
+
+```mermaid
+flowchart TD
+    PAGE["/lab — Strategy Lab Container"] --> TAB_NAV["LabHeader.tsx — Cockpit Tab Bar"]
+    PAGE --> CMD_BAR["GrandPrixSummaryBar.tsx — Unified Command Ribbon"]
+
+    subgraph RibbonDetails["Unified Session Command Bar"]
+        R1["Row 1: Season / Round Select • Circuit Venue • Shared Driver 1 vs Driver 2"]
+        R2["Row 2: Winner • Race Distance • Pole Position • Fastest Lap"]
+        R1 --- R2
+    end
+    CMD_BAR --> RibbonDetails
+
+    TAB_NAV -->|Active Tab 1| TAB1["PitStopReview.tsx"]
+    TAB_NAV -->|Active Tab 2| TAB2["WhereWasTimeLost.tsx"]
+    TAB_NAV -->|Active Tab 3| TAB3["TyreStintStory.tsx"]
+    TAB_NAV -->|Active Tab 4| TAB4["CircuitStrengths.tsx"]
+
+    subgraph Tab1Features["🛑 Pit Stop Review"]
+        T1_A["Hero: Field Pit Stop Timeline (L1..End Lap Ruler)"]
+        T1_B["In-Lap / Out-Lap Pace Delta Analysis"]
+        T1_C["Stationary Duration Leaderboard"]
+        T1_D["Tucked Simulator: '⚔️ SIMULATE ALTERNATE UNDERCUT'"]
+        T1_A --> T1_B --> T1_C --> T1_D
+    end
+    TAB1 --> Tab1Features
+
+    subgraph Tab2Features["⏱️ Race Pace & Gaps"]
+        T2_A["Integrated Telemetry Toolbar (Clean Pace / Smooth / Benchmark)"]
+        T2_B["Driver 1 vs Driver 2 Telemetry Tiles (Mean, σ, Consistency %)"]
+        T2_C["Unshifted Lap-by-Lap Progression & Delta Chart (spanGaps: false)"]
+        T2_A --> T2_B --> T2_C
+    end
+    TAB2 --> Tab2Features
+
+    subgraph Tab3Features["🔴 Tyre Stints"]
+        T3_A["Compact 3-Pill Pirelli Strip (Hard / Medium / Soft)"]
+        T3_B["Fuel-Compensated Wear Regression (Δs/lap - 0.055s/lap)"]
+        T3_C["Grid Stint Longevity Matrix"]
+        T3_A --> T3_B --> T3_C
+    end
+    TAB3 --> Tab3Features
+
+    subgraph Tab4Features["🧬 Circuit Demands"]
+        T4_A["Aero vs Mechanical vs Straight-Line DNA Breakdown"]
+        T4_B["Deep Link to 2D Circuit Reconnaissance (/gallery?circuit=...)"]
+        T4_A --> T4_B
+    end
+    TAB4 --> Tab4Features
+
+    classDef bar fill:#0e1e2d,stroke:#00f2fe,stroke-width:2px,color:#fff;
+    classDef tab fill:#18181b,stroke:#3b82f6,stroke-width:1px,color:#e4e4e7;
+    class TAB_NAV,CMD_BAR bar;
+    class TAB1,TAB2,TAB3,TAB4 tab;
+```
+
+
+  1. **Cockpit Tab Switcher (`LabHeader.tsx`)**: Anchored at the top with glowing active indicator pills (`bg-gradient-to-r from-cyan-950/80 to-zinc-900 border border-cyan-500/70 text-white`), allowing instant switching between:
+     - 🛑 **Pit Stop Review**: Stint chronology, pit loss, and undercut windows.
+     - ⏱️ **Race Pace & Gaps**: Discrete unshifted lap-by-lap delta traces.
+     - 🔴 **Tyre Stints**: Stint longevity and fuel-compensated wear slopes.
+     - 🧬 **Circuit Demands**: Track aero vs mechanical DNA and speed traps.
+  2. **Unified Session Command Ribbon (`GrandPrixSummaryBar.tsx`)**:
+     - **Session Context**: Compact Round select dropdown, circuit venue badge, and race name.
+     - **Comparative Driver Selector**: Team-livery bordered pills (`Driver 1` vs `Driver 2`) acting as single source of truth for all child workspaces.
+     - **High-Signal Telemetry Strip**: Ultra-compact 4-cell horizontal bar (`WINNER` P1, `RACE DISTANCE` Laps, `POLE POSITION` Time, `FASTEST LAP` Code/Speed) using 50% less vertical space than legacy cards.
+  3. **Decluttered Modular Workspaces**:
+     - **`PitStopReview.tsx`**: Field pit stop timeline elevated as the hero visual with a normalized lap ruler (`L1` → `End`). Tactical Undercut Simulator tucked behind a clean `⚔️ SIMULATE ALTERNATE UNDERCUT` button.
+     - **`WhereWasTimeLost.tsx`**: Consolidated telemetry control bar (`⚡ CLEAN PACE FOCUS`, `📈 SMOOTH`, `🏁 BENCHMARK`, `CUTOFF`) with compact driver performance tiles and maximum canvas space for continuous pace progression.
+     - **`TyreStintStory.tsx`**: 3-pill technical Pirelli allocation strip (`⚪ Hard`, `🟡 Medium`, `🔴 Soft`) replacing text-heavy cards, paired with fuel burnoff sliders and wear degradation models.
+     - **`CircuitStrengths.tsx`**: Compact track engineering action bar linking directly to 2D track reconnaissance.
 - **Empirical Sector Timing Color Palette**:
-  - **Fastest Overall (Purple Benchmark)**: `text-purple-400 bg-purple-950/40 border-purple-500/40` (`#C084FC`). Indicates the session benchmark and contributes to the Theoretical Ultimate Lap.
+  - **Fastest Overall (Purple Benchmark)**: `text-purple-400 bg-purple-950/40 border-purple-500/40` (`#C084FC`).
   - **Personal Best (Green Sector)**: `text-emerald-400 bg-emerald-950/40 border-emerald-500/40` (`#34D399`).
   - **Standard Pace (Yellow Sector)**: `text-amber-300 bg-amber-950/30 border-amber-500/30` (`#FCD34D`).
   - **Speed Traps (Cyan Accent)**: `text-cyan-400 font-mono` (`#22D3EE`).
-- **Pirelli C1–C5 Compound Badge System**:
-  - Official compound tags (`C1`, `C2`, `C3`, `C4`, `C5`) rendered in uppercase monospace badges.
-  - Hard Compound (`C1`–`C2`): `border-zinc-300 text-white bg-zinc-800/80`.
-  - Medium Compound (`C2`–`C4`): `border-amber-400 text-amber-300 bg-amber-950/40`.
-  - Soft Compound (`C3`–`C5`): `border-rose-500 text-rose-400 bg-rose-950/40`.
-- **Dynamic Crossover & Thermal Cliff Alerts**:
-  - Crossover Callout: Emerald pill badge indicating mathematical crossover lap (`LAP X ➔ Crossover Threshold`).
-  - Cliff Warning: Rose pulsing badge when compound enters Phase 3 non-linear cliff degradation ($L > L_{\text{cliff}}$).
+- **Data Provenance System**:
+  - Explicit badge indicators differentiating **Recorded Timing** (authentic FIA transponder data), **Derived Metric** (computed mathematical averages and deltas), and **Simulation / Model** (hypothetical physics-based estimates).
 
 ---
 

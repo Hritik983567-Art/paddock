@@ -38,7 +38,9 @@ export default function AuthGate() {
     };
 
     if (typeof window !== 'undefined') {
-      setIsLocalhost(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+      const isDev = process.env.NODE_ENV === 'development';
+      const isLoopback = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      setIsLocalhost(isDev && isLoopback);
       window.addEventListener('unhandledrejection', handleRejection);
 
       // Clean query parameters from URL (auth_error, error, error_description)

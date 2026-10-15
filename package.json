@@ -9,7 +9,9 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:benchmark": "vitest run tests/benchmarks",
+    "audit:deps": "npm audit --audit-level=high"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.4",

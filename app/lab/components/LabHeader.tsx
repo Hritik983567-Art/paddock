@@ -1,125 +1,83 @@
 'use client';
 
 import React from 'react';
-import { ToolId, LAB_TOOLS, RoundItem, DriverResultItem } from '../types';
-import { Card } from '../../components/ui/Card';
-import { Badge } from '../../components/ui/Badge';
+import { QuestionId, QUESTION_WORKSPACES } from '../types';
 
 interface LabHeaderProps {
-  activeTool: ToolId;
-  onSelectTool: (id: ToolId) => void;
-  rounds: RoundItem[];
-  selectedRound: string;
-  onSelectRound: (round: string) => void;
-  drivers: DriverResultItem[];
-  driverA: string;
-  onSelectDriverA: (id: string) => void;
-  driverB: string;
-  onSelectDriverB: (id: string) => void;
-  isLoadingRounds: boolean;
+  activeQuestion: QuestionId;
+  onSelectQuestion: (id: QuestionId) => void;
 }
 
 export const LabHeader: React.FC<LabHeaderProps> = ({
-  activeTool,
-  onSelectTool,
-  rounds,
-  selectedRound,
-  onSelectRound,
-  drivers,
-  driverA,
-  onSelectDriverA,
-  driverB,
-  onSelectDriverB,
-  isLoadingRounds,
+  activeQuestion,
+  onSelectQuestion
 }) => {
   return (
-    <div className="space-y-6 mb-8">
-      {/* Tool Navigation Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {LAB_TOOLS.map((tool) => {
-          const isActive = activeTool === tool.id;
+    <div className="mb-5 space-y-4">
+      {/* Title & Cockpit Badge */}
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <div className="mb-1 flex items-center gap-2">
+            <span className="font-mono text-xs font-black tracking-tight text-red-500">
+              ///
+            </span>
+            <span className="font-display text-[11px] font-black uppercase tracking-widest text-red-500">
+              PADDOCK TELEMETRY
+            </span>
+            <span className="text-zinc-600">•</span>
+            <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-zinc-400">
+              TACTICAL STRATEGY COCKPIT
+            </span>
+          </div>
+          <h1 className="font-display text-2xl font-black uppercase tracking-tight text-white sm:text-3xl">
+            RACE INSIGHTS &amp; STRATEGY LAB
+          </h1>
+          <p className="mt-0.5 text-xs text-zinc-400 font-sans">
+            Empirical telemetry analysis: pit stop execution, lap pace loss, tyre stint degradation, and track characteristics.
+          </p>
+        </div>
+      </div>
+
+      {/* Sleek Cockpit Tabs */}
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 bg-zinc-950/80 p-1.5 rounded-xl border border-zinc-800/80 backdrop-blur-md shadow-lg">
+        {QUESTION_WORKSPACES.map((q) => {
+          const isActive = activeQuestion === q.id;
           return (
-            <div
-              key={tool.id}
-              onClick={() => onSelectTool(tool.id)}
-              className={`p-4 rounded-xl cursor-pointer transition-all duration-200 border ${
+            <button
+              key={q.id}
+              onClick={() => onSelectQuestion(q.id)}
+              type="button"
+              className={`group flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-left transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-red-950/60 border-red-500 shadow-lg shadow-red-950/30'
-                  : 'bg-zinc-900/80 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-850'
+                  ? 'bg-gradient-to-r from-cyan-950/80 to-zinc-900 border border-cyan-500/70 text-white shadow-md shadow-cyan-950/30'
+                  : 'border border-transparent text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/60'
               }`}
             >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-2xl">{tool.icon}</span>
-                <Badge variant={isActive ? 'red' : 'zinc'} size="sm">
-                  {tool.badge}
-                </Badge>
+              <span className="text-xl shrink-0 transition-transform group-hover:scale-110">
+                {q.icon}
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1.5">
+                  <span className={`font-mono text-[11px] font-black uppercase tracking-wider truncate ${
+                    isActive ? 'text-cyan-400' : 'text-zinc-300'
+                  }`}>
+                    {q.title}
+                  </span>
+                  {isActive && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shrink-0"></span>
+                  )}
+                </div>
+                <div className="text-[10px] text-zinc-400 truncate">
+                  {q.id === 'pit_stop_review' && 'Stops & Undercut Windows'}
+                  {q.id === 'time_lost' && 'Lap-by-Lap Delta Traces'}
+                  {q.id === 'tyre_stints' && 'Compound Degradation Fits'}
+                  {q.id === 'circuit_strengths' && 'Aero vs Speed Demands'}
+                </div>
               </div>
-              <h3 className="text-sm font-bold font-mono text-zinc-100 mb-1">{tool.name}</h3>
-              <p className="text-xs text-zinc-400 line-clamp-2">{tool.shortDesc}</p>
-            </div>
+            </button>
           );
         })}
       </div>
-
-      {/* Control Bar for Session / Round / Drivers */}
-      <Card variant="glass" padding="md" className="flex flex-wrap items-center justify-between gap-4">
-        {/* Round Selector */}
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-mono uppercase text-zinc-400 font-semibold">Grand Prix Round:</span>
-          {isLoadingRounds ? (
-            <span className="text-xs text-zinc-500 font-mono animate-pulse">Loading season rounds...</span>
-          ) : (
-            <select
-              value={selectedRound}
-              onChange={(e) => onSelectRound(e.target.value)}
-              className="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-1.5 text-xs text-zinc-100 font-mono focus:outline-none focus:border-red-500"
-            >
-              {rounds.map((r) => (
-                <option key={r.round} value={r.round}>
-                  R{r.round} — {r.raceName}
-                </option>
-              ))}
-            </select>
-          )}
-        </div>
-
-        {/* Driver Selectors for Comparison Tools */}
-        {(activeTool === 'strategy_duel' || activeTool === 'telemetry') && (
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono text-zinc-400">Driver 1:</span>
-              <select
-                value={driverA}
-                onChange={(e) => onSelectDriverA(e.target.value)}
-                className="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-1.5 text-xs text-red-400 font-mono font-bold focus:outline-none focus:border-red-500"
-              >
-                {drivers.map((d) => (
-                  <option key={d.driverId} value={d.driverId}>
-                    {d.code || d.familyName} ({d.constructorName})
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {activeTool === 'strategy_duel' && (
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-mono text-zinc-400">vs Driver 2:</span>
-                <select
-                  value={driverB}
-                  onChange={(e) => onSelectDriverB(e.target.value)}
-                  className="bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-1.5 text-xs text-blue-400 font-mono font-bold focus:outline-none focus:border-blue-500"
-                >
-                  {drivers.map((d) => (
-                    <option key={d.driverId} value={d.driverId}>
-                      {d.code || d.familyName} ({d.constructorName})
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-          </div>
-        )}
-      </Card>
     </div>
   );
 };

@@ -26,12 +26,18 @@ jobs:
       - name: Run TypeScript Type Check
         run: npx tsc --noEmit
 
+      - name: Run ESLint Code Quality Check
+        run: npm run lint
+
       - name: Run Vitest Unit & Integration Tests
         run: npm test
+
+      - name: Run Tracked Performance Benchmarks
+        run: npm run test:benchmark
 
       - name: Validate Next.js Production Build
         run: npm run build
         env:
-          JWT_SECRET: "paddock-f1-telemetry-server-secure-key-2026"
+          JWT_SECRET: ${{ secrets.JWT_SECRET || 'ci-build-synthetic-dummy-key-not-for-production' }}
           NEXT_PUBLIC_SUPABASE_URL: "https://qqowghzkyqsqxkneconx.supabase.co"
           NEXT_PUBLIC_SUPABASE_ANON_KEY: "sb_publishable_yobiwP8hSkvTN8CmosqDEg__tXRmo7y"

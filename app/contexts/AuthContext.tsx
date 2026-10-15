@@ -49,8 +49,45 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           return;
         }
 
-        // 2. Fall back to Supabase session
-        const { data: sbData } = await supabase.auth.getSession();
+        // 2. Seamless local pit-wall login for local developer experience
+        const isLocalHost = typeof window !== 'undefined' && 
+          (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
+        if (isLocalHost && process.env.NODE_ENV === 'development') {
+          try {
+            const devRes = await fetch('/api/auth/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                username: 'engineer@paddock.racing',
+                password: 'paddock2026',
+                remember: true,
+                isDevBypass: true
+              })
+            });
+            const devData = await devRes.json().catch(() => ({}));
+            if (devRes.ok && devData.success && devData.user) {
+              setUser({
+                ...devData.user,
+                name: localCustomName || devData.user.name || 'Telemetry Engineer'
+              });
+              setIsAuthenticated(true);
+              return;
+            }
+          } catch {
+            // fall through to Supabase check
+          }
+        }
+
+        // 3. Fall back to Supabase session with 1200ms timeout to prevent hanging on offline/unreachable network
+        const sbTimeout = new Promise<{ data: { session: null } }>((resolve) =>
+          setTimeout(() => resolve({ data: { session: null } }), 1200)
+        );
+        const { data: sbData } = await Promise.race([
+          supabase.auth.getSession().catch(() => ({ data: { session: null } })),
+          sbTimeout
+        ]);
+
         if (sbData?.session?.user && (sbData.session.user.email_confirmed_at || sbData.session.user.app_metadata?.provider !== 'email')) {
           const u = sbData.session.user;
           const email = u.email || '';

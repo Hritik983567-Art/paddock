@@ -63,7 +63,7 @@ pie title Target User Demographics
 | **`/gallery`** | **Circuit Reconnaissance** | Vector maps for 78 circuits with interactive turn selection, entry/apex/exit speeds (km/h), lateral G-forces, and verified apex photography. |
 | **`/replay`** | **60fps Race Replay Engine** | Hardware-accelerated HTML5 Canvas replay with timeline scrubbing (1x–10x), driver telemetry gauges (speed, RPM, DRS, ERS), and event feeds. |
 | **`/teammates`** | **H2H Rivalry Portal** | Constructor matchup comparison cards, qualifying delta curves, points progression, race-by-race tables, and reliability logs. |
-| **`/lab`** | **F1 Strategy Lab & Circuit DNA** | 4-tool telemetry suite: Circuit DNA Empirical Matrix (S1 aero, S2 mechanical, S3 speed traps), Tactical Strategy Duel (undercut/overcut pace battle), Pirelli C1–C5 Tyre Degradation Lab (3-phase cliff physics & crossover detection), and telemetry lap overlays. |
+| **`/lab`** | **F1 Strategy Lab & Tactical Cockpit** | Clean Tabbed Cockpit suite: Field Pit Stop Review & undercut simulation, discrete Race Pace & Delta traces (unshifted lap alignment), Tyre Stint longevity & degradation slopes, and Circuit Demands DNA. |
 | **`/live`** | **Live Telemetry Console** | Real-time F1 timing tower, micro-sector splits (S1/S2/S3), trap speeds, tyre stints, and FIA Race Control messages strictly during official competitive sessions via SignalR proxy with authentic standby states and zero mock data. |
 | **`/tracker`** | **Live GPS Telemetry Tracker** | Real-time driver positioning along track vectors with sector splits and gap-to-leader timers. |
 | **`/auth`** | **Enterprise Auth Gate** | Mandatory email verification gate, Supabase PKCE login/signup, Google OAuth 2.0 with account picker, and password recovery. |
@@ -92,20 +92,21 @@ pie title Target User Demographics
 
 ```mermaid
 flowchart LR
-    subgraph P1["Phase 1 - Completed"]
+    subgraph P1["Phase 1 - Foundation"]
         A1["Next.js 16 App Router"]
         A2["60fps Canvas Replay"]
         A3["PKCE Auth & Security"]
         A1 --> A2 --> A3
     end
-    subgraph P2["Phase 2 - Current"]
-        B1["Modular System Specs"]
-        B2["Cloud Presets & RLS"]
-        B1 --> B2
+    subgraph P2["Phase 2 - Telemetry & Strategy"]
+        B1["78 Circuit Reconnaissance"]
+        B2["Clean Tabbed Strategy Lab Cockpit"]
+        B3["25-Suite Benchmark & Verification Tests"]
+        B1 --> B2 --> B3
     end
     subgraph P3["Phase 3 - Horizon"]
         C1["Sub-Second SignalR WebSockets"]
-        C2["Empirical Strategy Lab & Real-Time Physics"]
+        C2["Multi-Car Real-Time Physics Simulator"]
         C1 --> C2
     end
 

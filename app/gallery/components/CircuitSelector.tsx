@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { CircuitInfo, SUPPORTED_CIRCUITS, CALENDAR_CIRCUITS_IDS } from '../constants';
+import { SUPPORTED_CIRCUITS, CALENDAR_CIRCUITS_IDS } from '../constants';
 import { Badge } from '../../components/ui/Badge';
 
 interface CircuitSelectorProps {

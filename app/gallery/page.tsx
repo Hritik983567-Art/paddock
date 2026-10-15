@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import CircuitMap from '../components/CircuitMap';
-import { ALL_GALLERY_MEDIA, GalleryMediaItem } from '../lib/galleryMediaData';
-import { ALL_CIRCUIT_CORNERS, CircuitCorner } from '../lib/circuitCornersData';
+import { GalleryMediaItem } from '../lib/galleryMediaData';
+import { CircuitCorner } from '../lib/circuitCornersData';
 import { enrichCornerDetails, TransformedCorner } from '../lib/circuitTransform';
 import {
   getCircuitGalleryItems,
@@ -16,13 +16,10 @@ import {
 import {
   SUPPORTED_CIRCUITS,
   CALENDAR_CIRCUITS_IDS,
-  getCircuitFallbackImage,
   getCornerVisualSrc,
   generateCornerTelemetryBlueprintSvg,
-  findMatchingMediaItem,
-  CircuitInfo
+  findMatchingMediaItem
 } from './constants';
-import { CircuitSelector } from './components/CircuitSelector';
 
 
 function GalleryContent() {

@@ -74,9 +74,16 @@ export async function fetchAllPaged<T = unknown>(url: string, tableKey: string, 
 
 export function parseLapTime(t: string | undefined | null): number | null {
     if (!t) return null;
-    const m = String(t).match(/^(\d+):(\d+(?:\.\d+)?)$/);
-    if (!m) return null;
-    return parseInt(m[1]) * 60 + parseFloat(m[2]);
+    const trimmed = String(t).trim();
+    const m = trimmed.match(/^(\d+):(\d+(?:\.\d+)?)$/);
+    if (m) {
+        return parseInt(m[1]) * 60 + parseFloat(m[2]);
+    }
+    const secOnly = parseFloat(trimmed);
+    if (!isNaN(secOnly) && secOnly > 0) {
+        return secOnly;
+    }
+    return null;
 }
 
 export interface NewsItem {

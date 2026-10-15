@@ -16,6 +16,44 @@ All Paddock Telemetry API routes are hosted under the `/api` namespace as Next.j
 - **Authentication**: Stateful cryptographic sessions via `HttpOnly`, `SameSite=Lax`, `Secure` cookies (`paddock_auth_token`).
 - **Rate Limiting**: In-memory sliding window limiter (`app/lib/rateLimit.ts`).
 
+```mermaid
+flowchart LR
+    CLIENT["Client Browser / Pit-Wall HUD"]
+    
+    subgraph Edge["Next.js 16 API Boundary (/api)"]
+        RATELIMIT["rateLimit.ts<br/>(Sliding Window Store)"]
+        ROUTER{"Route Resolver"}
+        AUTH_ROUTES["/api/auth/*<br/>(Login, Register, Logout)"]
+        F1_ROUTES["/api/f1/*<br/>(Calendar, Results, Laps, Pitstops)"]
+        PROXY_ROUTES["/api/f1/live/*<br/>(SignalR Proxy Ingestion)"]
+    end
+
+    subgraph Upstream["Upstream Services and Data Stores"]
+        SUPABASE["Supabase Auth and Database"]
+        JOLPICA["Jolpica / Ergast API (5-Min Cache)"]
+        F1_LIVETIMING["Official F1 Live SignalR"]
+    end
+
+    CLIENT --> RATELIMIT
+    RATELIMIT --> ROUTER
+    RATELIMIT -.-> 429["HTTP 429 Too Many Requests"]
+
+    ROUTER --> AUTH_ROUTES
+    AUTH_ROUTES --> SUPABASE
+    ROUTER --> F1_ROUTES
+    F1_ROUTES --> JOLPICA
+    ROUTER --> PROXY_ROUTES
+    PROXY_ROUTES --> F1_LIVETIMING
+
+    classDef edge fill:#0e1e2d,stroke:#00f2fe,stroke-width:2px,color:#fff;
+    classDef route fill:#18181b,stroke:#3b82f6,stroke-width:1px,color:#e4e4e7;
+    classDef ext fill:#1e1e38,stroke:#a855f7,stroke-width:1px,color:#f3e8ff;
+    class RATELIMIT,ROUTER edge;
+    class AUTH_ROUTES,F1_ROUTES,PROXY_ROUTES route;
+    class SUPABASE,JOLPICA,F1_LIVETIMING ext;
+```
+
+
 ---
 
 ## 2. Authentication & Session Endpoints

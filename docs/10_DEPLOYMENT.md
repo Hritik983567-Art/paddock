@@ -61,7 +61,7 @@ Create a `.env.local` file in the project root based on the following matrix:
 
 ### 3.2 Supabase Database Setup
 1. Open your Supabase SQL Editor.
-2. Paste and execute the contents of [`supabase/schema.sql`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/supabase/schema.sql).
+2. Paste and execute the contents of [`supabase/schema.sql`](../supabase/schema.sql).
 3. In **Authentication -> URL Configuration**:
    - Set **Site URL**: `https://your-domain.vercel.app`
    - Add **Redirect URL**: `https://your-domain.vercel.app/auth/callback`

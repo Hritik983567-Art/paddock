@@ -6,7 +6,7 @@
 | **Database Engine** | PostgreSQL 15+ (via Supabase) |
 | **Version** | `1.0.0` (Production Baseline) |
 | **Status** | Approved / Active |
-| **Source Schema** | [`supabase/schema.sql`](file:///c:/Users/Lenovo/OneDrive/Desktop/Projects/paddock/supabase/schema.sql) |
+| **Source Schema** | [`supabase/schema.sql`](../supabase/schema.sql) |
 
 ---
 
@@ -122,13 +122,16 @@ CREATE TRIGGER on_auth_user_created
 ## 5. Row-Level Security (RLS) Policy Specifications
 
 ### `public.profiles` RLS Rules
-- **SELECT**: `CREATE POLICY "Public profiles are viewable by everyone." ON public.profiles FOR SELECT USING (true);`
+- **SELECT (Own Profile)**: `CREATE POLICY "Users can view their own profile." ON public.profiles FOR SELECT USING (auth.uid() = id);`
+- **SELECT (Public Directory)**: `CREATE POLICY "Authenticated users can view engineer directory." ON public.profiles FOR SELECT TO authenticated USING (true);`
 - **INSERT**: `CREATE POLICY "Users can insert their own profile." ON public.profiles FOR INSERT WITH CHECK (auth.uid() = id);`
-- **UPDATE**: `CREATE POLICY "Users can update own profile." ON public.profiles FOR UPDATE USING (auth.uid() = id);`
+- **UPDATE**: `CREATE POLICY "Users can update own profile." ON public.profiles FOR UPDATE USING (auth.uid() = id) WITH CHECK (auth.uid() = id AND (role IS NOT DISTINCT FROM (SELECT p.role FROM public.profiles p WHERE p.id = auth.uid())));`
+- **ROLE GUARD TRIGGER**: `protect_profile_role()` strictly blocks self-elevation of authorization roles.
 
 ### `public.telemetry_presets` RLS Rules
 - **SELECT**: `CREATE POLICY "Users can view their own telemetry presets." ON public.telemetry_presets FOR SELECT USING (auth.uid() = user_id);`
 - **INSERT**: `CREATE POLICY "Users can insert their own telemetry presets." ON public.telemetry_presets FOR INSERT WITH CHECK (auth.uid() = user_id);`
+- **UPDATE**: `CREATE POLICY "Users can update their own telemetry presets." ON public.telemetry_presets FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);`
 - **DELETE**: `CREATE POLICY "Users can delete their own telemetry presets." ON public.telemetry_presets FOR DELETE USING (auth.uid() = user_id);`
 
 ---
