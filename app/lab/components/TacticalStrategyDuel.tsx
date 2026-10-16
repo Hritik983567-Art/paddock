@@ -1158,11 +1158,25 @@ export default function TacticalStrategyDuel({
                     className="w-full accent-amber-400 cursor-pointer"
                   />
 
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
+                    <span>SC PIT DISCOUNT:</span>
+                    <span className="text-amber-400 font-bold">-{scPitDiscountSec.toFixed(1)}s</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="6"
+                    max="15"
+                    step="0.5"
+                    value={scPitDiscountSec}
+                    onChange={(e) => setScPitDiscountSec(parseFloat(e.target.value))}
+                    className="w-full accent-amber-400 cursor-pointer"
+                  />
+
                   <div className="p-3 rounded-lg bg-slate-950 border border-amber-500/30 text-[11px] space-y-1">
                     <span className="text-amber-300 font-bold block">TACTICAL SC RECOMMENDATION:</span>
                     <span className="text-slate-300 font-sans block">
                       {Math.abs(pitLapsA[0] - scLap) <= 3
-                        ? `📻 Box ${driverA?.code || 'Driver A'} immediately! Pitting now saves +${scPitDiscountSec}s over normal racing pit loss.`
+                        ? `📻 Box ${driverA?.code || 'Driver A'} immediately! Pitting now saves +${scPitDiscountSec.toFixed(1)}s over normal racing pit loss.`
                         : `📻 Hold track position. Normal pit window remains open.`}
                     </span>
                   </div>
@@ -1211,6 +1225,58 @@ export default function TacticalStrategyDuel({
                     ) : (
                       '🚨 MONSOON CONDITIONS: Full Wet required. Extreme aquaplaning risk.'
                     )}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Calibration 3: Track Transit Delta & Fuel Burnoff */}
+            <div className="p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-4 md:col-span-2">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-white uppercase flex items-center gap-2">
+                  <span>⚙️ PIT LOSS &amp; FUEL BURNOFF CALIBRATION</span>
+                </span>
+                <span className="px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px]">
+                  TRANSPARENT MODEL PARAMETERS
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                <div className="space-y-2 p-3 rounded-lg bg-slate-950 border border-slate-800">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400">PIT LANE TIME LOSS:</span>
+                    <span className="text-rose-400 font-bold">+{pitLoss.toFixed(1)}s</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="16.0"
+                    max="28.0"
+                    step="0.5"
+                    value={pitLoss}
+                    onChange={(e) => setPitLoss(parseFloat(e.target.value))}
+                    className="w-full accent-rose-400 cursor-pointer"
+                  />
+                  <span className="text-[10px] text-slate-500 block">
+                    Speed limiter transit loss + stationary box duration.
+                  </span>
+                </div>
+
+                <div className="space-y-2 p-3 rounded-lg bg-slate-950 border border-slate-800">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400">FUEL BURNOFF RATE:</span>
+                    <span className="text-emerald-400 font-bold">-{fuelBurnEffect.toFixed(3)}s/lap</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0.020"
+                    max="0.065"
+                    step="0.005"
+                    value={fuelBurnEffect}
+                    onChange={(e) => setFuelBurnEffect(parseFloat(e.target.value))}
+                    className="w-full accent-emerald-400 cursor-pointer"
+                  />
+                  <span className="text-[10px] text-slate-500 block">
+                    Pace gain per lap as fuel mass burns off (~100kg starting fuel).
                   </span>
                 </div>
               </div>

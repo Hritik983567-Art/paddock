@@ -248,3 +248,123 @@ export function parsePitStops(
     })
     .sort((a, b) => a.lap - b.lap);
 }
+
+/**
+ * Calculates exact statistical median pit duration for odd and even sample sizes.
+ * Strictly ignores null, missing, or zero durations; never injects synthetic numbers.
+ */
+export function calculateMedianPitDuration(pitStops: PitStopItem[]): number | null {
+  const validDurations = pitStops
+    .map((p) => p.durationSec)
+    .filter((d): d is number => d !== null && typeof d === 'number' && d > 0)
+    .sort((a, b) => a - b);
+
+  if (validDurations.length === 0) return null;
+
+  const mid = Math.floor(validDurations.length / 2);
+  if (validDurations.length % 2 !== 0) {
+    return parseFloat(validDurations[mid].toFixed(2));
+  } else {
+    const median = (validDurations[mid - 1] + validDurations[mid]) / 2;
+    return parseFloat(median.toFixed(2));
+  }
+}
+
+/**
+ * Calculates stint tyre wear slope using actual race lap numbers as coordinates.
+ * Prevents x-axis distortion caused by missing laps or outlier filtering.
+ */
+export function calculateStintWearSlope(
+  cleanLaps: Array<{ lapNumber: number; time: number }>,
+  fuelBurnCorrection: number = 0.055
+): { rawSlope: number | null; fuelCorrectedSlope: number | null } {
+  if (cleanLaps.length < 2) {
+    return { rawSlope: null, fuelCorrectedSlope: null };
+  }
+
+  const n = cleanLaps.length;
+  let sumX = 0;
+  let sumY = 0;
+  let sumXY = 0;
+  let sumXX = 0;
+
+  cleanLaps.forEach((l) => {
+    const x = l.lapNumber;
+    const y = l.time;
+    sumX += x;
+    sumY += y;
+    sumXY += x * y;
+    sumXX += x * x;
+  });
+
+  const denominator = n * sumXX - sumX * sumX;
+  if (denominator === 0) {
+    return { rawSlope: null, fuelCorrectedSlope: null };
+  }
+
+  const rawSlope = (n * sumXY - sumX * sumY) / denominator;
+  const fuelCorrectedSlope = rawSlope + fuelBurnCorrection;
+
+  return {
+    rawSlope: parseFloat(rawSlope.toFixed(4)),
+    fuelCorrectedSlope: parseFloat(fuelCorrectedSlope.toFixed(4))
+  };
+}
+
+/**
+ * Computes an adaptive outlier pace threshold using median clean pace
+ * and the standard F1 107% cutoff rule, with a minimum 7.0s safety margin.
+ */
+export function calculateAdaptiveOutlierThreshold(
+  cleanLaps: LapRecord[],
+  multiplier: number = 1.07
+): number | null {
+  const times = cleanLaps
+    .map((l) => l.time)
+    .filter((t): t is number => t !== null && t > 30)
+    .sort((a, b) => a - b);
+
+  if (times.length === 0) return null;
+
+  const mid = Math.floor(times.length / 2);
+  const median = times.length % 2 !== 0 ? times[mid] : (times[mid - 1] + times[mid]) / 2;
+
+  const threshold = Math.max(median * multiplier, median + 7.0);
+  return parseFloat(threshold.toFixed(2));
+}
+
+/**
+ * Qualifies whether a stint tyre compound is from official session telemetry
+ * or is an estimated heuristic, providing clear provenance.
+ */
+export function qualifyStintCompound(
+  stintLength: number,
+  officialCompound?: string
+): {
+  compound: 'SOFT' | 'MEDIUM' | 'HARD' | 'INTER' | 'WET' | 'UNKNOWN';
+  isEstimated: boolean;
+  provenance: string;
+} {
+  if (officialCompound) {
+    const upper = officialCompound.toUpperCase();
+    if (['SOFT', 'MEDIUM', 'HARD', 'INTER', 'WET'].includes(upper)) {
+      return {
+        compound: upper as 'SOFT' | 'MEDIUM' | 'HARD' | 'INTER' | 'WET',
+        isEstimated: false,
+        provenance: 'Official Session Timing Allocation'
+      };
+    }
+  }
+
+  // Length-based heuristic fallback clearly labeled as ESTIMATED
+  let inferred: 'SOFT' | 'MEDIUM' | 'HARD' = 'MEDIUM';
+  if (stintLength <= 16) inferred = 'SOFT';
+  else if (stintLength <= 32) inferred = 'MEDIUM';
+  else inferred = 'HARD';
+
+  return {
+    compound: inferred,
+    isEstimated: true,
+    provenance: `Estimated via stint length heuristic (${stintLength} laps) — unverified by transponder compound data`
+  };
+}

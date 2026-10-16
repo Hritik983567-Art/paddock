@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { PitStopItem, DriverResultItem, LapRecord } from '../types';
+import { calculateMedianPitDuration } from '../utils/lapProcessing';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { getTeamColor } from '../../utils/api';
@@ -81,6 +82,11 @@ export const PitStopReview: React.FC<PitStopReviewProps> = ({
       .slice(0, 8);
   }, [pitStops]);
 
+  const medianPitDuration = useMemo(
+    () => calculateMedianPitDuration(pitStops),
+    [pitStops]
+  );
+
   // Compute In-Lap and Out-Lap pace impact for Driver A & Driver B
   const computePitLapImpact = (
     laps: LapRecord[],
@@ -91,7 +97,7 @@ export const PitStopReview: React.FC<PitStopReviewProps> = ({
     const cleanLaps = laps.filter((l) => l.time !== null && !l.isOutlier && !l.isPitStop);
     const avgClean = cleanLaps.length > 0
       ? cleanLaps.reduce((sum, l) => sum + l.time!, 0) / cleanLaps.length
-      : 90.0;
+      : null;
 
     return driverStops.map((stop) => {
       const pitInLap = laps.find((l) => l.lapNumber === stop.lap);
@@ -100,8 +106,8 @@ export const PitStopReview: React.FC<PitStopReviewProps> = ({
       const inLapTime = pitInLap?.time || null;
       const outLapTime = outLap?.time || null;
 
-      const inLapLoss = inLapTime ? inLapTime - avgClean : null;
-      const outLapLoss = outLapTime ? outLapTime - avgClean : null;
+      const inLapLoss = inLapTime !== null && avgClean !== null ? inLapTime - avgClean : null;
+      const outLapLoss = outLapTime !== null && avgClean !== null ? outLapTime - avgClean : null;
 
       return {
         stopNumber: stop.stopNumber,
@@ -224,18 +230,10 @@ export const PitStopReview: React.FC<PitStopReviewProps> = ({
             MEDIAN STOP DURATION
           </span>
           <div className="mt-1 font-mono text-xl sm:text-2xl font-black text-zinc-100">
-            {pitStops.length > 0
-              ? `${(
-                  [...pitStops]
-                    .map((p) => p.durationSec || 2.8)
-                    .sort((a, b) => a - b)[
-                    Math.floor(pitStops.length / 2)
-                  ]
-                ).toFixed(2)}s`
-              : 'N/A'}
+            {medianPitDuration !== null ? `${medianPitDuration.toFixed(2)}s` : 'Unavailable'}
           </div>
           <span className="font-mono text-[11px] text-zinc-400">
-            Stationary wheel change
+            {medianPitDuration !== null ? 'Stationary wheel change' : 'Transponder data missing'}
           </span>
         </Card>
 

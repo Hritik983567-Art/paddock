@@ -1,7 +1,15 @@
-export type QuestionId = 'pit_stop_review' | 'time_lost' | 'tyre_stints' | 'circuit_strengths';
+export type QuestionId =
+  | 'replay'
+  | 'tyre_stints'
+  | 'pit_stop_review'
+  | 'strategy_duel'
+  | 'turning_points'
+  | 'debrief'
+  | 'circuit_strengths'
+  | 'time_lost';
 
 // Backward compatibility alias for any existing consumers
-export type ToolId = QuestionId | 'venue_form' | 'telemetry' | 'strategy_duel' | 'tyres';
+export type ToolId = QuestionId | 'venue_form' | 'telemetry' | 'tyres';
 
 export interface RoundItem {
   round: string;
@@ -122,42 +130,72 @@ export interface QuestionCard {
 
 export const QUESTION_WORKSPACES: QuestionCard[] = [
   {
+    id: 'replay',
+    title: 'Strategy Replay',
+    question: 'What actually happened during this race and when did key gaps open?',
+    icon: '⏱️',
+    shortDesc: 'Interactive continuous lap time chart, head-to-head pace delta, outlier explanations, and synchronized pit events.',
+    badge: 'FEATURE A • REPLAY',
+    badgeVariant: 'blue',
+    evidenceType: 'Continuous Discrete Lap Records'
+  },
+  {
+    id: 'tyre_stints',
+    title: 'Tyre Life & Pace',
+    question: 'How did tyre degradation and fuel burnoff shape stint longevity?',
+    icon: '🔴',
+    shortDesc: 'Stint pace curves, fuel-corrected wear slopes (&Delta;s/lap), regression on true lap numbers, and qualified compound badges.',
+    badge: 'FEATURE B • TYRE PACE',
+    badgeVariant: 'amber',
+    evidenceType: 'Stint Pace & Linear Wear Models'
+  },
+  {
     id: 'pit_stop_review',
-    title: 'Pit Stop Review',
-    question: 'When did drivers pit and what was the observed track impact?',
+    title: 'Undercut Analyzer',
+    question: 'Did pit stop timing and box execution yield a track position advantage?',
     icon: '🛑',
-    shortDesc: 'Investigate recorded pit stop timing, crew stationary durations, undercut/overcut windows, and in-lap vs out-lap pace delta.',
-    badge: 'OFFICIAL PIT TELEMETRY',
+    shortDesc: 'Official FIA stationary box durations, in-lap vs out-lap pace delta, net pit cycle time loss, and pit lane timeline.',
+    badge: 'FEATURE C • UNDERCUT RADAR',
     badgeVariant: 'emerald',
     evidenceType: 'Recorded FIA Pit Transponder Records'
   },
   {
-    id: 'time_lost',
-    title: 'Where Was Time Lost?',
-    question: 'Where and when did pace drop or gaps open up?',
-    icon: '⏱️',
-    shortDesc: 'Inspect discrete lap-by-lap pace traces, head-to-head delta progression, stint averages, and consistency without shifting lap indices.',
-    badge: 'RECORDED TIMING TRACE',
-    badgeVariant: 'blue',
-    evidenceType: 'Continuous Discrete Lap Time Records'
+    id: 'strategy_duel',
+    title: 'What-If Simulator',
+    question: 'How would an alternate stop lap or tyre choice have changed the outcome?',
+    icon: '⚔️',
+    shortDesc: 'Plan A vs Plan B tactical simulator with configurable parameters: pit loss delta, fuel burnoff rate, and safety car discount.',
+    badge: 'FEATURE D • WHAT-IF ENGINE',
+    badgeVariant: 'purple',
+    evidenceType: 'Deterministic Tactical Model'
   },
   {
-    id: 'tyre_stints',
-    title: 'Tyre Stint Story',
-    question: 'How did tyres hold up across each stint?',
-    icon: '🔴',
-    shortDesc: 'Explore recorded stint longevity, fuel-corrected wear slopes (s/lap), and qualified thermal degradation models.',
-    badge: 'STINT PACE & DEGRADATION',
-    badgeVariant: 'amber',
-    evidenceType: 'Recorded Stint Lengths & Wear Rate Fits'
+    id: 'turning_points',
+    title: 'Turning Points',
+    question: 'Which specific laps and events altered the race trajectory?',
+    icon: '🚩',
+    shortDesc: 'Verified event timeline linking pit cycles, safety car periods, and pace dropoffs directly to corresponding race laps.',
+    badge: 'FEATURE E • TURNING POINTS',
+    badgeVariant: 'red',
+    evidenceType: 'Verified Race Interruption & Classification Logs'
+  },
+  {
+    id: 'debrief',
+    title: 'Strategy Debrief',
+    question: 'What is the executive takeaway and evidence-backed race summary?',
+    icon: '📋',
+    shortDesc: 'Concise, shareable strategy debrief synthesizing observed pace facts, pit cycle execution, and model limitations.',
+    badge: 'FEATURE F • STRATEGY DEBRIEF',
+    badgeVariant: 'zinc',
+    evidenceType: 'Executive Analytical Synthesis'
   },
   {
     id: 'circuit_strengths',
-    title: 'Circuit Strengths',
-    question: 'Which car characteristics and sector demands define this venue?',
+    title: 'Circuit DNA',
+    question: 'Which aerodynamic, mechanical, and power unit demands define this venue?',
     icon: '🧬',
-    shortDesc: 'Examine track layout geometry, aerodynamic vs mechanical demands, speed traps, and explore interactive corner physics in the gallery.',
-    badge: 'CIRCUIT DEMANDS & GEOMETRY',
+    shortDesc: 'Track geometry calibration, full-throttle percentages, downforce wing setups, and deep links to the 78-circuit gallery.',
+    badge: 'VENUE DEMANDS & DNA',
     badgeVariant: 'purple',
     evidenceType: 'Track Physics Calibration & Speed Traps'
   }

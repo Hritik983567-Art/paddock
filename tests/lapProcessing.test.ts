@@ -4,7 +4,11 @@ import {
   computePaceDeltaArray,
   calculatePaceStatistics,
   computeFuelCorrectedPace,
-  parsePitStops
+  parsePitStops,
+  calculateMedianPitDuration,
+  calculateStintWearSlope,
+  calculateAdaptiveOutlierThreshold,
+  qualifyStintCompound
 } from '../app/lab/utils/lapProcessing';
 
 describe('lapProcessing — P0 Lap Index Integrity & Correctness', () => {
@@ -128,5 +132,80 @@ describe('lapProcessing — P0 Lap Index Integrity & Correctness', () => {
 
     expect(parsed[2].lap).toBe(32);
     expect(parsed[2].stopNumber).toBe(2);
+  });
+
+  it('calculates true mathematical median for odd and even sample sizes without synthetic defaults', () => {
+    // Odd sample: [2.10, 2.40, 2.90] -> 2.40
+    const oddStops: any[] = [
+      { durationSec: 2.90 },
+      { durationSec: 2.10 },
+      { durationSec: 2.40 },
+    ];
+    expect(calculateMedianPitDuration(oddStops)).toBe(2.40);
+
+    // Even sample: [2.10, 2.30, 2.50, 3.10] -> (2.30 + 2.50)/2 = 2.40
+    const evenStops: any[] = [
+      { durationSec: 3.10 },
+      { durationSec: 2.10 },
+      { durationSec: 2.50 },
+      { durationSec: 2.30 },
+    ];
+    expect(calculateMedianPitDuration(evenStops)).toBe(2.40);
+
+    // Null and missing durations must be excluded, never replaced with 2.8s
+    const mixedStops: any[] = [
+      { durationSec: null },
+      { durationSec: 2.20 },
+      { durationSec: null },
+      { durationSec: 2.60 },
+    ];
+    expect(calculateMedianPitDuration(mixedStops)).toBe(2.40);
+
+    // All null returns null, NOT 2.80
+    const emptyStops: any[] = [{ durationSec: null }, { durationSec: undefined }];
+    expect(calculateMedianPitDuration(emptyStops)).toBeNull();
+  });
+
+  it('calculates stint wear slope using true race lap coordinates without gap distortion', () => {
+    // 3 clean laps: Lap 10 @ 90.0, Lap 15 @ 90.5, Lap 20 @ 91.0 (gap of 5 laps each)
+    // Rate of degradation: (91.0 - 90.0) / (20 - 10) = 0.10 s/lap
+    const cleanLaps = [
+      { lapNumber: 10, time: 90.0 },
+      { lapNumber: 15, time: 90.5 },
+      { lapNumber: 20, time: 91.0 },
+    ];
+
+    const result = calculateStintWearSlope(cleanLaps, 0.055);
+    expect(result.rawSlope).toBeCloseTo(0.10, 3);
+    // Fuel corrected: 0.10 + 0.055 = 0.155 s/lap
+    expect(result.fuelCorrectedSlope).toBeCloseTo(0.155, 3);
+  });
+
+  it('calculates adaptive outlier threshold without hardcoded floor distortion', () => {
+    // Short track scenario (e.g. Red Bull Ring ~65s): median pace 65s
+    const shortTrackLaps: any[] = [
+      { time: 64.8 },
+      { time: 65.0 },
+      { time: 65.2 },
+    ];
+    const threshold = calculateAdaptiveOutlierThreshold(shortTrackLaps, 1.07);
+    // Threshold should be max(65 * 1.07 = 69.55, 65 + 7 = 72.0) = 72.0s
+    expect(threshold).toBe(72.0);
+    // Must NOT enforce an arbitrary 92.0s floor that would allow 27s slow laps!
+    expect(threshold).toBeLessThan(80);
+  });
+
+  it('qualifies stint compound provenance accurately', () => {
+    // Official allocation provided
+    const official = qualifyStintCompound(20, 'SOFT');
+    expect(official.compound).toBe('SOFT');
+    expect(official.isEstimated).toBe(false);
+    expect(official.provenance).toContain('Official');
+
+    // Unverified length heuristic
+    const heuristic = qualifyStintCompound(12, undefined);
+    expect(heuristic.compound).toBe('SOFT');
+    expect(heuristic.isEstimated).toBe(true);
+    expect(heuristic.provenance).toContain('Estimated');
   });
 });

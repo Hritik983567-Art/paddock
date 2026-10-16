@@ -22,12 +22,15 @@ import { PitStopReview } from './components/PitStopReview';
 import { WhereWasTimeLost } from './components/WhereWasTimeLost';
 import { TyreStintStory } from './components/TyreStintStory';
 import { CircuitStrengths } from './components/CircuitStrengths';
+import TacticalStrategyDuel from './components/TacticalStrategyDuel';
+import { TurningPointsTimeline } from './components/TurningPointsTimeline';
+import { StrategyDebrief } from './components/StrategyDebrief';
 
 export default function LabPage() {
   const { selectedSeason } = useSeason();
 
-  // Active Question Entry Point
-  const [activeQuestion, setActiveQuestion] = useState<QuestionId>('pit_stop_review');
+  // Active Question Entry Point — Defaults to Feature A: Strategy Replay
+  const [activeQuestion, setActiveQuestion] = useState<QuestionId>('replay');
 
   // Shared Season / Round / Driver Selection
   const [rounds, setRounds] = useState<RoundItem[]>([]);
@@ -236,8 +239,11 @@ export default function LabPage() {
           setSelectedDriverA(parsedDrivers[0].driverId);
         }
 
-        // Total Race Laps & Base Lap Time Calibration
-        const maxLaps = Math.max(...parsedDrivers.map((d) => d.lapsCompleted), 50);
+        // Total Race Laps & Base Lap Time Calibration (Preserve shortened races)
+        const recordedLaps = parsedDrivers
+          .map((d) => d.lapsCompleted)
+          .filter((n): n is number => typeof n === 'number' && n > 0);
+        const maxLaps = recordedLaps.length > 0 ? Math.max(...recordedLaps) : 1;
         setTotalRaceLaps(maxLaps);
 
         const validFastLaps = parsedDrivers
@@ -420,6 +426,8 @@ export default function LabPage() {
         driverB={selectedDriverB}
         onSelectDriverB={setSelectedDriverB}
         showDriverSelectors={activeQuestion !== 'circuit_strengths'}
+        pitStopsCount={pitStops.length}
+        hasLapData={driverALaps.length > 0}
       />
 
       {/* Error Banner */}
@@ -431,7 +439,35 @@ export default function LabPage() {
 
       {/* 3. Question Workspaces */}
       <div className="mt-6">
-        {/* QUESTION 1: PIT STOP REVIEW */}
+        {/* FEATURE A: STRATEGY REPLAY */}
+        {(activeQuestion === 'replay' || activeQuestion === 'time_lost') && (
+          <WhereWasTimeLost
+            driverALaps={driverALaps}
+            driverBLaps={driverBLaps}
+            selectedDriverA={selectedDriverA}
+            selectedDriverB={selectedDriverB}
+            driversList={driversList}
+            totalRaceLaps={totalRaceLaps}
+            isLoading={loadingSession || loadingLaps}
+          />
+        )}
+
+        {/* FEATURE B: TYRE LIFE & PACE EXPLORER */}
+        {activeQuestion === 'tyre_stints' && (
+          <TyreStintStory
+            pitStops={pitStops}
+            driversList={driversList}
+            totalRaceLaps={totalRaceLaps}
+            driverALaps={driverALaps}
+            driverBLaps={driverBLaps}
+            selectedDriverA={selectedDriverA}
+            selectedDriverB={selectedDriverB}
+            circuitId={currentCircuitId}
+            isLoading={loadingSession || loadingLaps}
+          />
+        )}
+
+        {/* FEATURE C: UNDERCUT & OVERCUT ANALYZER */}
         {activeQuestion === 'pit_stop_review' && (
           <PitStopReview
             pitStops={pitStops}
@@ -448,35 +484,52 @@ export default function LabPage() {
           />
         )}
 
-        {/* QUESTION 2: WHERE WAS TIME LOST? */}
-        {activeQuestion === 'time_lost' && (
-          <WhereWasTimeLost
-            driverALaps={driverALaps}
-            driverBLaps={driverBLaps}
+        {/* FEATURE D: WHAT-IF STRATEGY SIMULATOR */}
+        {activeQuestion === 'strategy_duel' && (
+          <TacticalStrategyDuel
+            driversList={driversList}
             selectedDriverA={selectedDriverA}
             selectedDriverB={selectedDriverB}
-            driversList={driversList}
+            onSelectDriverA={setSelectedDriverA}
+            onSelectDriverB={setSelectedDriverB}
+            driverALapTimes={driverALaps.map((l) => l.time || 0)}
+            driverBLapTimes={driverBLaps.map((l) => l.time || 0)}
             totalRaceLaps={totalRaceLaps}
-            isLoading={loadingSession || loadingLaps}
+            benchmarkBaseLapTime={benchmarkBaseLapTime}
+            observedDegradation={0.08}
           />
         )}
 
-        {/* QUESTION 3: TYRE STINT STORY */}
-        {activeQuestion === 'tyre_stints' && (
-          <TyreStintStory
+        {/* FEATURE E: RACE TURNING POINTS */}
+        {activeQuestion === 'turning_points' && (
+          <TurningPointsTimeline
+            grandPrixSummary={grandPrixSummary}
             pitStops={pitStops}
             driversList={driversList}
-            totalRaceLaps={totalRaceLaps}
             driverALaps={driverALaps}
             driverBLaps={driverBLaps}
             selectedDriverA={selectedDriverA}
             selectedDriverB={selectedDriverB}
-            circuitId={currentCircuitId}
-            isLoading={loadingSession || loadingLaps}
+            totalRaceLaps={totalRaceLaps}
+            onSelectLap={(_lap) => setActiveQuestion('replay')}
           />
         )}
 
-        {/* QUESTION 4: CIRCUIT STRENGTHS */}
+        {/* FEATURE F: STRATEGY DEBRIEF */}
+        {activeQuestion === 'debrief' && (
+          <StrategyDebrief
+            grandPrixSummary={grandPrixSummary}
+            driversList={driversList}
+            selectedDriverA={selectedDriverA}
+            selectedDriverB={selectedDriverB}
+            pitStops={pitStops}
+            driverALaps={driverALaps}
+            driverBLaps={driverBLaps}
+            totalRaceLaps={totalRaceLaps}
+          />
+        )}
+
+        {/* SUPPORTING: CIRCUIT DEMANDS & DNA */}
         {activeQuestion === 'circuit_strengths' && (
           <CircuitStrengths
             circuitId={currentCircuitId}

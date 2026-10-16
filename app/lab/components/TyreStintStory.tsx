@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { PitStopItem, DriverResultItem, LapRecord } from '../types';
+import { calculateStintWearSlope, qualifyStintCompound } from '../utils/lapProcessing';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { getTeamColor } from '../../utils/api';
@@ -31,7 +32,9 @@ interface StintData {
   avgPaceSec: number | null;
   wearSlopeSecPerLap: number | null;
   fuelCorrectedSlope: number | null;
-  inferredCompound: 'SOFT' | 'MEDIUM' | 'HARD' | 'UNKNOWN';
+  inferredCompound: 'SOFT' | 'MEDIUM' | 'HARD' | 'INTER' | 'WET' | 'UNKNOWN';
+  isEstimatedCompound: boolean;
+  compoundProvenance: string;
 }
 
 export const TyreStintStory: React.FC<TyreStintStoryProps> = ({
@@ -114,35 +117,18 @@ export const TyreStintStory: React.FC<TyreStintStoryProps> = ({
         avgPaceSec =
           cleanLaps.reduce((sum, l) => sum + l.time!, 0) / cleanLaps.length;
 
-        // Simple linear regression slope across clean laps
-        const n = cleanLaps.length;
-        let sumX = 0;
-        let sumY = 0;
-        let sumXY = 0;
-        let sumXX = 0;
-
-        cleanLaps.forEach((l, i) => {
-          sumX += i;
-          sumY += l.time!;
-          sumXY += i * l.time!;
-          sumXX += i * i;
-        });
-
-        const denominator = n * sumXX - sumX * sumX;
-        if (denominator !== 0) {
-          rawSlope = (n * sumXY - sumX * sumY) / denominator;
-          // Fuel burnoff correction: car gets faster by fuelBurnCorrection each lap,
-          // so true tyre wear slope is rawSlope + fuelBurnCorrection
-          fuelCorrectedSlope = rawSlope + fuelBurnCorrection;
-        }
+        // Linear regression slope using actual race lap coordinates
+        const slopeResult = calculateStintWearSlope(
+          cleanLaps.map((l) => ({ lapNumber: l.lapNumber, time: l.time! })),
+          fuelBurnCorrection
+        );
+        rawSlope = slopeResult.rawSlope;
+        fuelCorrectedSlope = slopeResult.fuelCorrectedSlope;
       }
 
-      // Heuristic compound inference
+      // Qualified compound determination with explicit provenance
       const length = endLap - currentStart + 1;
-      let inferred: 'SOFT' | 'MEDIUM' | 'HARD' | 'UNKNOWN' = 'UNKNOWN';
-      if (length <= 16) inferred = 'SOFT';
-      else if (length <= 32) inferred = 'MEDIUM';
-      else inferred = 'HARD';
+      const qualified = qualifyStintCompound(length, undefined);
 
       stints.push({
         stintNumber: idx + 1,
@@ -153,7 +139,9 @@ export const TyreStintStory: React.FC<TyreStintStoryProps> = ({
         avgPaceSec,
         wearSlopeSecPerLap: rawSlope,
         fuelCorrectedSlope,
-        inferredCompound: inferred
+        inferredCompound: qualified.compound,
+        isEstimatedCompound: qualified.isEstimated,
+        compoundProvenance: qualified.provenance
       });
 
       currentStart = endLap + 1;

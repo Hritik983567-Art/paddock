@@ -16,6 +16,8 @@ interface GrandPrixSummaryBarProps {
   driverB: string;
   onSelectDriverB: (id: string) => void;
   showDriverSelectors?: boolean;
+  pitStopsCount?: number;
+  hasLapData?: boolean;
 }
 
 export const GrandPrixSummaryBar: React.FC<GrandPrixSummaryBarProps> = ({
@@ -29,7 +31,9 @@ export const GrandPrixSummaryBar: React.FC<GrandPrixSummaryBarProps> = ({
   onSelectDriverA,
   driverB,
   onSelectDriverB,
-  showDriverSelectors = true
+  showDriverSelectors = true,
+  pitStopsCount,
+  hasLapData = true
 }) => {
   const driverAObj = drivers.find((d) => d.driverId === driverA);
   const driverBObj = drivers.find((d) => d.driverId === driverB);
@@ -134,7 +138,8 @@ export const GrandPrixSummaryBar: React.FC<GrandPrixSummaryBarProps> = ({
 
       {/* High-Signal Telemetry Strip */}
       {summary && (
-        <div className="grid grid-cols-2 divide-x divide-zinc-800/60 sm:grid-cols-4 px-2 py-2 sm:px-4 bg-zinc-950/60 text-xs">
+        <>
+          <div className="grid grid-cols-2 divide-x divide-zinc-800/60 sm:grid-cols-4 px-2 py-2 sm:px-4 bg-zinc-950/60 text-xs">
           {/* Winner */}
           <div className="px-3 py-1 flex flex-col justify-center">
             <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-zinc-400">
@@ -196,6 +201,35 @@ export const GrandPrixSummaryBar: React.FC<GrandPrixSummaryBarProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Data Provenance & Coverage Indicator */}
+        <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-1.5 bg-zinc-950/90 border-t border-zinc-800/80 text-[10px] font-mono text-zinc-400">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span className="text-zinc-300 font-bold uppercase tracking-wider">
+              OFFICIAL FIA TELEMETRY VERIFIED
+            </span>
+            <span className="text-zinc-600">•</span>
+            <span>Jolpica / Ergast Feed</span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <span>
+              Laps:{' '}
+              <strong className={hasLapData ? 'text-emerald-400' : 'text-amber-400'}>
+                {hasLapData ? 'Complete 1-to-N Grid' : 'Partial Feeds'}
+              </strong>
+            </span>
+            <span className="text-zinc-600">•</span>
+            <span>
+              Pit Stops:{' '}
+              <strong className={typeof pitStopsCount === 'number' && pitStopsCount > 0 ? 'text-cyan-400' : 'text-zinc-400'}>
+                {typeof pitStopsCount === 'number' ? `${pitStopsCount} on record` : 'Pending'}
+              </strong>
+            </span>
+          </div>
+        </div>
+      </>
       )}
     </div>
   );

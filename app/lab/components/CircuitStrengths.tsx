@@ -57,10 +57,12 @@ export const CircuitStrengths: React.FC<CircuitStrengthsProps> = ({
   circuitId = 'monza',
   raceName
 }) => {
+  const hasTrackDef = Boolean(TRACKS_REGISTRY[circuitId]);
   const trackDef: TrackDefinition | undefined = useMemo(() => {
-    return TRACKS_REGISTRY[circuitId] || TRACKS_REGISTRY['monza'];
+    return TRACKS_REGISTRY[circuitId] || undefined;
   }, [circuitId]);
 
+  const hasVerifiedDna = Boolean(CIRCUIT_DNA_REGISTRY[circuitId]);
   const dna: CircuitDNAProfile = useMemo(() => {
     return CIRCUIT_DNA_REGISTRY[circuitId] || DEFAULT_CIRCUIT_DNA;
   }, [circuitId]);
@@ -94,6 +96,15 @@ export const CircuitStrengths: React.FC<CircuitStrengthsProps> = ({
           <span>↗</span>
         </Link>
       </div>
+
+      {(!hasVerifiedDna || !hasTrackDef) && (
+        <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-amber-950/20 px-3 py-2 text-xs font-mono text-amber-300">
+          <span>⚠️</span>
+          <span>
+            <strong>Uncalibrated Venue Profile:</strong> Showing baseline FIA reference parameters. Telemetry calibration for {raceName || circuitId} is pending official sensor profile sync.
+          </span>
+        </div>
+      )}
 
       {/* 2. Track Engineering DNA Cards */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">

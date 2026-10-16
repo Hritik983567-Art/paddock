@@ -112,7 +112,9 @@ export default function NewsPage() {
   const [error, setError] = useState('');
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
-  const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
+  const [_lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
+  const [viewMode, setViewMode] = useState<'cards' | 'compact'>('cards');
+  const [mobileTab, setMobileTab] = useState<'feed' | 'ticker'>('feed');
 
   // Live Auto-Sync interval (default 45s)
   const [autoSyncSecs, setAutoSyncSecs] = useState<number>(45);
@@ -261,70 +263,45 @@ export default function NewsPage() {
   }, [enrichedNews]);
 
   return (
-    <section className="view" id="view-news" style={{ maxWidth: '1240px', margin: '0 auto', position: 'relative', zIndex: 10 }}>
-      
+    <section className="view w-full max-w-[1240px] mx-auto relative z-10 px-2 sm:px-4 lg:px-0" id="view-news">
       {/* 1. Header Section */}
-      <div style={{
-        background: '#0D1017',
-        border: '1px solid #232936',
-        borderRadius: '12px',
-        padding: '24px 28px',
-        marginBottom: '24px',
-        boxShadow: '0 12px 36px rgba(0, 0, 0, 0.75)',
-        display: 'flex',
-        flexWrap: 'wrap',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '16px'
-      }}>
+      <div className="bg-[#0D1017] border border-[#232936] rounded-xl p-3.5 sm:p-5 lg:p-6 mb-4 sm:mb-6 shadow-xl flex flex-col md:flex-row md:items-center md:justify-between gap-3 sm:gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-1.5">
+          <div className="flex items-center gap-2 mb-1">
             <span className="flex items-center gap-1">
               <span className="text-[#E10600] font-black tracking-tighter text-xs select-none">///</span>
-              <span className="text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
+              <span className="text-[10px] sm:text-[11px] font-display tracking-widest text-[#E10600] font-black uppercase">
                 PADDOCK NEWS DESK
               </span>
             </span>
             <span className="text-slate-700 font-sans text-xs">•</span>
-            <span className="text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
+            <span className="text-[10px] sm:text-[11px] font-display text-slate-400 font-semibold uppercase tracking-wider">
               24/7 F1 INTELLIGENCE
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display tracking-tight f1-text-gradient uppercase mb-1">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-black font-display tracking-tight f1-text-gradient uppercase mb-0.5 sm:mb-1">
             PADDOCK NEWS
           </h1>
-          <p className="text-xs font-sans text-slate-400 mt-1 max-w-xl leading-relaxed">
+          <p className="text-xs sm:text-sm font-sans text-slate-400 max-w-xl leading-relaxed">
             Latest F1 stories, driver updates, technical developments &amp; race-weekend intelligence.
           </p>
         </div>
 
         {/* Live Auto-Sync Status & Controls */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-          
+        <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
           {/* Live Auto-Sync Status Badge */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            background: 'rgba(52, 228, 200, 0.08)',
-            border: '1px solid rgba(52, 228, 200, 0.25)',
-            borderRadius: '6px',
-            padding: '7px 14px',
-            fontSize: '11px',
-            fontFamily: 'var(--font-mono)',
-            color: '#34E4C8'
-          }}>
-            <span style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              background: isSyncing ? '#E8302A' : (isAutoSyncActive ? '#10B981' : '#64748B'),
-              boxShadow: isSyncing ? '0 0 10px #E8302A' : (isAutoSyncActive ? '0 0 10px #10B981' : 'none'),
-              display: 'inline-block',
-              animation: (isSyncing || isAutoSyncActive) ? 'pulse 1.5s infinite' : 'none'
-            }} />
-            <span style={{ fontWeight: '800', letterSpacing: '0.6px' }}>
-              {isSyncing ? 'UPDATING NEWS & PICS…' : isAutoSyncActive ? `AUTO-UPDATE: ${countdown}s` : 'AUTO-UPDATE PAUSED'}
+          <div className="flex items-center gap-1.5 sm:gap-2 bg-[#34E4C8]/10 border border-[#34E4C8]/25 rounded-md px-2.5 py-1.5 sm:px-3 sm:py-2 text-[10px] sm:text-[11px] font-mono text-[#34E4C8]">
+            <span
+              className={`w-2 h-2 rounded-full inline-block ${
+                isSyncing
+                  ? 'bg-[#E8302A] shadow-[0_0_8px_#E8302A] animate-pulse'
+                  : isAutoSyncActive
+                  ? 'bg-[#10B981] shadow-[0_0_8px_#10B981] animate-pulse'
+                  : 'bg-slate-500'
+              }`}
+            />
+            <span className="font-bold tracking-wider">
+              {isSyncing ? 'SYNCING…' : isAutoSyncActive ? `LIVE: ${countdown}s` : 'PAUSED'}
             </span>
           </div>
 
@@ -338,157 +315,108 @@ export default function NewsPage() {
               setIsAutoSyncActive(val > 0);
             }}
             aria-label="Auto-update interval"
-            style={{
-              background: '#121620',
-              border: '1px solid #262C38',
-              color: '#CBD5E1',
-              fontSize: '11.5px',
-              fontFamily: 'var(--font-mono)',
-              fontWeight: '700',
-              borderRadius: '6px',
-              padding: '8px 12px',
-              outline: 'none',
-              cursor: 'pointer'
-            }}
+            className="bg-[#121620] border border-[#262C38] text-slate-300 text-[11px] sm:text-xs font-mono font-bold rounded-md px-2 py-1.5 sm:px-3 sm:py-2 outline-none cursor-pointer hover:border-slate-600 transition-colors"
           >
-            <option value={30}>Every 30s</option>
-            <option value={45}>Every 45s (Fast)</option>
-            <option value={60}>Every 60s</option>
-            <option value={90}>Every 90s</option>
-            <option value={0}>Manual Only</option>
+            <option value={30}>30s</option>
+            <option value={45}>45s (Fast)</option>
+            <option value={60}>60s</option>
+            <option value={90}>90s</option>
+            <option value={0}>Manual</option>
           </select>
 
-          {/* Manual Immediate Refresh Button */}
+          {/* Manual Refresh Button */}
           <button
             onClick={() => {
               loadNews(true, false);
               setCountdown(autoSyncSecs);
             }}
             disabled={loading || isSyncing}
-            style={{
-              background: '#1A202C',
-              border: '1px solid #333B4D',
-              color: '#FFFFFF',
-              padding: '9px 18px',
-              borderRadius: '6px',
-              fontSize: '12px',
-              fontFamily: 'var(--font-mono)',
-              fontWeight: '700',
-              cursor: (loading || isSyncing) ? 'not-allowed' : 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.2s ease',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.4)'
-            }}
+            aria-label="Refresh news feed"
+            className="bg-[#1A202C] hover:bg-[#252D3D] border border-[#333B4D] text-white px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-md text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1.5 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <span>{loading || isSyncing ? '↻ UPDATING…' : '↻ REFRESH NOW'}</span>
+            <span className={loading || isSyncing ? 'animate-spin' : ''}>↻</span>
+            <span className="hidden sm:inline">{loading || isSyncing ? 'SYNCING' : 'REFRESH'}</span>
           </button>
         </div>
       </div>
 
       {/* ERROR STATE */}
       {error && !loading && (
-        <div style={{
-          background: '#1A080A',
-          border: '1px solid #E8302A',
-          borderRadius: '12px',
-          padding: '32px 24px',
-          textAlign: 'center',
-          marginBottom: '28px'
-        }}>
-          <div style={{ fontSize: '32px', marginBottom: '12px' }}>⚠️</div>
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: '#FFFFFF', margin: '0 0 8px 0', fontWeight: '800' }}>
+        <div className="bg-[#1A080A] border border-[#E8302A] rounded-xl p-6 sm:p-8 text-center mb-6">
+          <div className="text-3xl mb-2">⚠️</div>
+          <h3 className="font-display text-lg sm:text-xl text-white font-extrabold mb-1">
             NEWS FEED UNAVAILABLE
           </h3>
-          <p style={{ color: '#F1F5F9', fontSize: '14.5px', margin: '0 0 20px 0' }}>
+          <p className="text-slate-300 text-xs sm:text-sm mb-4">
             We couldn&apos;t retrieve the latest paddock updates.
           </p>
           <button
             onClick={() => loadNews(true)}
-            style={{
-              background: '#E8302A',
-              color: '#FFFFFF',
-              border: 'none',
-              borderRadius: '6px',
-              padding: '10px 24px',
-              fontWeight: '800',
-              fontSize: '13px',
-              fontFamily: 'var(--font-mono)',
-              cursor: 'pointer'
-            }}
+            className="bg-[#E8302A] hover:bg-[#ff3b35] text-white px-5 py-2 rounded-md text-xs font-mono font-bold tracking-wider transition-all"
           >
             RETRY
           </button>
         </div>
       )}
 
-      {/* Filter Categories & Search Bar */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '28px' }}>
-        
-        {/* Search Input Bar */}
-        <div style={{ position: 'relative', width: '100%' }}>
-          <span style={{
-            position: 'absolute',
-            left: '16px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            color: '#34E4C8',
-            fontSize: '16px',
-            pointerEvents: 'none'
-          }}>
-            🔍
-          </span>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search drivers, teams, races..."
-            style={{
-              width: '100%',
-              height: '48px',
-              background: '#0D1017',
-              border: '1px solid #262C38',
-              borderRadius: '8px',
-              padding: '0 42px 0 46px',
-              color: '#FFFFFF',
-              fontSize: '14.5px',
-              fontWeight: '500',
-              outline: 'none',
-              fontFamily: 'var(--font-body)',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.5)'
-            }}
-          />
-          {searchQuery && (
+      {/* Filter Categories, Search Bar & Mobile Controls */}
+      <div className="flex flex-col gap-3 mb-5 sm:mb-6">
+        {/* Search Input Bar + View Switcher */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="relative flex-1">
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#34E4C8] text-sm pointer-events-none">
+              🔍
+            </span>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search drivers, teams, upgrades, technical..."
+              className="w-full h-10 sm:h-11 bg-[#0D1017] border border-[#262C38] focus:border-[#34E4C8]/50 rounded-lg pl-9 pr-9 text-xs sm:text-sm text-white placeholder-slate-500 outline-none transition-colors"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1 text-xs"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
+          {/* View Mode Switcher (Cards vs Compact) */}
+          <div className="flex items-center bg-[#0D1017] border border-[#262C38] rounded-lg p-1 gap-1 flex-shrink-0">
             <button
-              onClick={() => setSearchQuery('')}
-              style={{
-                position: 'absolute',
-                right: '14px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                background: 'none',
-                border: 'none',
-                color: '#CBD5E1',
-                fontSize: '16px',
-                cursor: 'pointer',
-                padding: '4px'
-              }}
+              type="button"
+              onClick={() => setViewMode('cards')}
+              title="Magazine Cards"
+              aria-label="Magazine Cards View"
+              className={`px-2.5 py-1 rounded text-xs font-mono font-bold transition-all ${
+                viewMode === 'cards'
+                  ? 'bg-[#E8302A] text-white shadow-sm'
+                  : 'text-slate-400 hover:text-white'
+              }`}
             >
-              ✕
+              ⊞ <span className="hidden sm:inline ml-1">Cards</span>
             </button>
-          )}
+            <button
+              type="button"
+              onClick={() => setViewMode('compact')}
+              title="Compact Headlines"
+              aria-label="Compact Headlines View"
+              className={`px-2.5 py-1 rounded text-xs font-mono font-bold transition-all ${
+                viewMode === 'compact'
+                  ? 'bg-[#E8302A] text-white shadow-sm'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              ☰ <span className="hidden sm:inline ml-1">Compact</span>
+            </button>
+          </div>
         </div>
 
-        {/* Categories Horizontal Filter Tabs */}
-        <div style={{
-          display: 'flex',
-          gap: '10px',
-          overflowX: 'auto',
-          paddingBottom: '6px',
-          WebkitOverflowScrolling: 'touch',
-          scrollbarWidth: 'none'
-        }}>
+        {/* Category Filter Pills (Horizontal Scroll) */}
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1">
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat;
             const count = categoryCounts[cat] || 0;
@@ -496,64 +424,62 @@ export default function NewsPage() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                style={{
-                  background: isActive ? '#E8302A' : '#0D1017',
-                  color: '#FFFFFF',
-                  border: isActive ? '1px solid #FF4D47' : '1px solid #262C38',
-                  borderRadius: '6px',
-                  padding: '9px 18px',
-                  fontSize: '12px',
-                  fontFamily: 'var(--font-mono)',
-                  fontWeight: '800',
-                  letterSpacing: '0.8px',
-                  whiteSpace: 'nowrap',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  boxShadow: isActive ? '0 0 16px rgba(232, 48, 42, 0.6)' : '0 2px 8px rgba(0,0,0,0.4)'
-                }}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-mono font-bold tracking-wider whitespace-nowrap transition-all cursor-pointer flex-shrink-0 ${
+                  isActive
+                    ? 'bg-[#E8302A] text-white border border-[#FF4D47] shadow-[0_0_12px_rgba(232,48,42,0.4)]'
+                    : 'bg-[#0D1017] text-slate-300 border border-[#262C38] hover:border-slate-600'
+                }`}
               >
                 <span>{cat}</span>
-                <span style={{
-                  fontSize: '11px',
-                  fontWeight: '800',
-                  color: isActive ? '#FFFFFF' : '#34E4C8',
-                  background: isActive ? 'rgba(0,0,0,0.35)' : 'rgba(52, 228, 200, 0.15)',
-                  padding: '2px 8px',
-                  borderRadius: '10px',
-                  border: isActive ? 'none' : '1px solid rgba(52, 228, 200, 0.3)'
-                }}>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                    isActive ? 'bg-black/40 text-white' : 'bg-[#34E4C8]/10 text-[#34E4C8]'
+                  }`}
+                >
                   {count}
                 </span>
               </button>
             );
           })}
         </div>
+
+        {/* Mobile Tab Segment Selector (Only on mobile/tablet < lg to eliminate duplicate feed clutter) */}
+        <div className="flex lg:hidden items-center bg-[#0D1017] border border-[#262C38] rounded-lg p-1 text-xs font-mono font-bold">
+          <button
+            type="button"
+            onClick={() => setMobileTab('feed')}
+            className={`flex-1 py-1.5 text-center rounded-md transition-all ${
+              mobileTab === 'feed'
+                ? 'bg-[#1A202C] text-white border border-[#333B4D]'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            📰 HEADLINES ({filteredNews.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileTab('ticker')}
+            className={`flex-1 py-1.5 text-center rounded-md transition-all ${
+              mobileTab === 'ticker'
+                ? 'bg-[#1A202C] text-white border border-[#333B4D]'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            ⚡ LIVE TICKER ({Math.min(10, enrichedNews.length)})
+          </button>
+        </div>
       </div>
 
       {/* LOADING SKELETON STATE */}
       {loading && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-          <div style={{
-            height: '320px',
-            background: '#0D1017',
-            borderRadius: '12px',
-            border: '1px solid #262C38',
-            opacity: 0.6,
-            animation: 'pulse 1.5s infinite ease-in-out'
-          }}></div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+        <div className="flex flex-col gap-6">
+          <div className="h-48 sm:h-72 bg-[#0D1017] rounded-xl border border-[#262C38] opacity-60 animate-pulse" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1, 2, 3, 4, 5, 6].map((n) => (
-              <div key={n} style={{
-                height: '240px',
-                background: '#0D1017',
-                borderRadius: '10px',
-                border: '1px solid #262C38',
-                opacity: 0.5,
-                animation: 'pulse 1.5s infinite ease-in-out'
-              }}></div>
+              <div
+                key={n}
+                className="h-48 bg-[#0D1017] rounded-xl border border-[#262C38] opacity-50 animate-pulse"
+              />
             ))}
           </div>
         </div>
@@ -561,19 +487,12 @@ export default function NewsPage() {
 
       {/* EMPTY SEARCH / NO STORIES STATE */}
       {!loading && !error && filteredNews.length === 0 && (
-        <div style={{
-          background: '#0D1017',
-          border: '1px solid #262C38',
-          borderRadius: '12px',
-          padding: '48px 24px',
-          textAlign: 'center',
-          marginBottom: '28px'
-        }}>
-          <div style={{ fontSize: '36px', marginBottom: '12px' }}>🏎️</div>
-          <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: '#FFFFFF', margin: '0 0 8px 0', fontWeight: '800' }}>
+        <div className="bg-[#0D1017] border border-[#262C38] rounded-xl p-8 sm:p-12 text-center mb-6">
+          <div className="text-3xl sm:text-4xl mb-3">🏎️</div>
+          <h3 className="font-display text-lg sm:text-xl text-white font-extrabold mb-1">
             {searchQuery ? 'NO STORIES FOUND' : 'NO PADDOCK UPDATES'}
           </h3>
-          <p style={{ color: '#E2E8F0', fontSize: '15px', margin: '0 0 20px 0' }}>
+          <p className="text-slate-300 text-xs sm:text-sm mb-4">
             {searchQuery
               ? 'Try another driver, team, race or keyword.'
               : 'There are currently no stories available in this category.'}
@@ -581,17 +500,7 @@ export default function NewsPage() {
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              style={{
-                background: '#1A202C',
-                border: '1px solid #333B4D',
-                color: '#FFFFFF',
-                borderRadius: '6px',
-                padding: '10px 22px',
-                fontSize: '12px',
-                fontFamily: 'var(--font-mono)',
-                fontWeight: '800',
-                cursor: 'pointer'
-              }}
+              className="bg-[#1A202C] hover:bg-[#252D3D] border border-[#333B4D] text-white px-4 py-2 rounded-md text-xs font-mono font-bold tracking-wider"
             >
               CLEAR SEARCH
             </button>
@@ -601,36 +510,23 @@ export default function NewsPage() {
 
       {/* MAIN CONTENT AREA */}
       {!loading && !error && filteredNews.length > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-          
-          {/* FEATURED TOP STORY HERO BANNER */}
-          {featuredStory && (
-            <div style={{
-              background: '#0D1017',
-              border: '1px solid #262C38',
-              borderRadius: '12px',
-              overflow: 'hidden',
-              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.85), 0 0 25px rgba(232, 48, 42, 0.25)',
-              display: 'grid',
-              gridTemplateColumns: 'minmax(0, 1.25fr) minmax(0, 1fr)',
-              gap: 0
-            }} className="news-hero-card">
-              
-              {/* Featured Relatable Cover Image (Clean, No Switching Buttons) */}
-              <div style={{ position: 'relative', minHeight: '340px', overflow: 'hidden', background: '#05070a' }}>
+        <div className="flex flex-col gap-5 sm:gap-7">
+          {/* FEATURED TOP STORY HERO BANNER (Shown in Feed mode) */}
+          {featuredStory && mobileTab === 'feed' && (
+            <div className="bg-[#0D1017] border border-[#262C38] rounded-xl overflow-hidden shadow-2xl grid grid-cols-1 lg:grid-cols-12 mb-2 sm:mb-3">
+              {/* Featured Cover Image */}
+              <div className="lg:col-span-7 relative h-48 sm:h-64 lg:h-auto min-h-[200px] lg:min-h-[340px] overflow-hidden bg-[#05070a]">
                 <img
                   src={featuredStory.heroImage}
                   alt={featuredStory.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                    filter: 'brightness(0.95) contrast(1.1)'
-                  }}
+                  className="w-full h-full object-cover object-center filter brightness-95 contrast-105"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    const fallback = resolveNewsFallbackImage(featuredStory.title, featuredStory.cleanSnippet, featuredStory.category);
+                    const fallback = resolveNewsFallbackImage(
+                      featuredStory.title,
+                      featuredStory.cleanSnippet,
+                      featuredStory.category
+                    );
                     if (!target.src.includes(fallback) && fallback !== '/images/default-bg.png') {
                       target.src = fallback;
                     } else {
@@ -641,84 +537,38 @@ export default function NewsPage() {
                 />
 
                 {/* Category Pill */}
-                <div style={{
-                  position: 'absolute',
-                  top: '14px',
-                  left: '14px',
-                  background: '#E8302A',
-                  color: '#FFFFFF',
-                  padding: '5px 12px',
-                  borderRadius: '4px',
-                  fontSize: '11px',
-                  fontFamily: 'var(--font-mono)',
-                  fontWeight: '800',
-                  letterSpacing: '1px',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.6)'
-                }}>
+                <div className="absolute top-3 left-3 bg-[#E8302A] text-white px-2.5 py-1 rounded text-[10px] sm:text-xs font-mono font-black tracking-wider shadow-lg">
                   ⚡ FEATURED // {featuredStory.category}
                 </div>
               </div>
 
               {/* Featured Details Content */}
-              <div style={{
-                background: '#0D1017',
-                padding: '32px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                borderLeft: '1px solid #262C38'
-              }}>
+              <div className="lg:col-span-5 p-4 sm:p-6 lg:p-7 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-[#262C38] bg-[#0D1017]">
                 <div>
                   {featuredStory.contextTag && (
-                    <div style={{
-                      fontSize: '12px',
-                      fontFamily: 'var(--font-mono)',
-                      color: '#34E4C8',
-                      letterSpacing: '1.5px',
-                      marginBottom: '10px',
-                      fontWeight: '800'
-                    }}>
+                    <div className="text-[10px] sm:text-[11px] font-mono text-[#34E4C8] font-bold tracking-wider mb-1.5">
                       {featuredStory.contextTag}
                     </div>
                   )}
 
-                  <h2 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '28px',
-                    fontWeight: '800',
-                    lineHeight: '1.25',
-                    color: '#FFFFFF',
-                    margin: '0 0 14px 0'
-                  }}>
+                  <h2 className="font-display text-base sm:text-xl lg:text-2xl font-extrabold leading-snug text-white mb-2 line-clamp-3">
                     <a
                       href={featuredStory.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: '#FFFFFF', textDecoration: 'none' }}
+                      className="hover:text-[#34E4C8] transition-colors"
                     >
                       {featuredStory.title}
                     </a>
                   </h2>
 
-                  <p style={{
-                    color: '#E2E8F0',
-                    fontSize: '15px',
-                    lineHeight: '1.6',
-                    margin: '0 0 24px 0',
-                    fontWeight: '500'
-                  }}>
+                  <p className="text-xs sm:text-sm text-slate-300 line-clamp-3 leading-relaxed mb-4 font-normal">
                     {featuredStory.cleanSnippet}
                   </p>
                 </div>
 
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  paddingTop: '18px',
-                  borderTop: '1px dashed #262C38'
-                }}>
-                  <span style={{ fontSize: '12px', fontFamily: 'var(--font-mono)', color: '#CBD5E1', fontWeight: '600' }}>
+                <div className="flex items-center justify-between pt-3 border-t border-slate-800/80 text-xs">
+                  <span className="font-mono text-slate-400 text-[11px] sm:text-xs">
                     RacingNews365 · {featuredStory.formattedTime}
                   </span>
 
@@ -726,21 +576,7 @@ export default function NewsPage() {
                     href={featuredStory.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      background: '#E8302A',
-                      color: '#FFFFFF',
-                      padding: '10px 20px',
-                      borderRadius: '6px',
-                      fontSize: '12.5px',
-                      fontFamily: 'var(--font-mono)',
-                      fontWeight: '800',
-                      textDecoration: 'none',
-                      transition: 'all 0.2s ease',
-                      boxShadow: '0 4px 14px rgba(232, 48, 42, 0.4)'
-                    }}
+                    className="inline-flex items-center gap-1.5 bg-[#E8302A] hover:bg-[#ff3b35] text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded text-xs font-mono font-bold tracking-wider transition-all shadow-md"
                   >
                     <span>READ STORY</span>
                     <span>→</span>
@@ -751,55 +587,124 @@ export default function NewsPage() {
           )}
 
           {/* MAIN GRID & LATEST UPDATES SIDEBAR ROW */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: remainingNews.length > 0 ? 'minmax(0, 1fr) 340px' : '1fr',
-            gap: '28px'
-          }} className="news-content-layout">
-
-            {/* NEWS CARDS GRID */}
-            <div>
-              <div style={{ marginBottom: '14px', fontSize: '12px', color: '#34E4C8', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1px' }}>
-                PADDOCK HEADLINES ({remainingNews.length})
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-5 sm:gap-7 items-start">
+            {/* NEWS CARDS OR COMPACT LIST FEED */}
+            <div className={mobileTab === 'ticker' ? 'hidden lg:block' : 'block'}>
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <div className="text-xs sm:text-[13px] text-[#34E4C8] font-bold font-mono tracking-wider flex items-center gap-2">
+                  <span>PADDOCK HEADLINES</span>
+                  <span className="text-slate-500 font-normal">({remainingNews.length})</span>
+                </div>
+                <div className="text-[11px] font-mono text-slate-400">
+                  Mode: <span className="text-white font-bold capitalize">{viewMode}</span>
+                </div>
               </div>
 
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                gap: '20px'
-              }}>
-                {remainingNews.map((item) => (
-                  <article
-                    key={item.id}
-                    style={{
-                      background: '#0D1017',
-                      border: '1px solid #262C38',
-                      borderRadius: '10px',
-                      overflow: 'hidden',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
-                      transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease'
-                    }}
-                    className="paddock-news-card"
-                  >
-                    <div>
-                      {/* Relatable Story Image Thumbnail (Clean, No Switching Buttons) */}
-                      <div style={{ height: '175px', overflow: 'hidden', position: 'relative', background: '#05070a' }}>
+              {viewMode === 'cards' ? (
+                /* MAGAZINE CARDS VIEW */
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                  {remainingNews.map((item) => (
+                    <article
+                      key={item.id}
+                      className="bg-[#0D1017] border border-[#262C38] hover:border-slate-600 rounded-xl overflow-hidden flex flex-col justify-between shadow-lg transition-all hover:-translate-y-0.5 group"
+                    >
+                      <div>
+                        {/* Cover Image Thumbnail */}
+                        <div className="h-36 sm:h-44 overflow-hidden relative bg-[#05070a]">
+                          <img
+                            src={item.heroImage}
+                            alt={item.title}
+                            loading="lazy"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              const fallback = resolveNewsFallbackImage(
+                                item.title,
+                                item.cleanSnippet,
+                                item.category
+                              );
+                              if (
+                                !target.src.includes(fallback) &&
+                                fallback !== '/images/default-bg.png'
+                              ) {
+                                target.src = fallback;
+                              } else {
+                                target.onerror = null;
+                                target.src = '/images/default-bg.png';
+                              }
+                            }}
+                          />
+
+                          {/* Category Badge */}
+                          <span className="absolute bottom-2 left-2 bg-[#080A0F]/90 border border-[#262C38] text-[#34E4C8] px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider backdrop-blur-sm">
+                            {item.category}
+                          </span>
+                        </div>
+
+                        {/* Content Details */}
+                        <div className="p-3 sm:p-4 bg-[#0D1017]">
+                          {item.contextTag && (
+                            <div className="text-[10px] sm:text-[11px] font-mono text-[#34E4C8] font-bold tracking-wider mb-1 truncate">
+                              {item.contextTag}
+                            </div>
+                          )}
+
+                          <h3 className="font-display text-xs sm:text-base font-bold text-white line-clamp-2 leading-snug mb-1.5 group-hover:text-[#34E4C8] transition-colors">
+                            <a href={item.link} target="_blank" rel="noopener noreferrer">
+                              {item.title}
+                            </a>
+                          </h3>
+
+                          <p className="text-slate-300 text-xs sm:text-[13px] line-clamp-2 leading-relaxed font-normal">
+                            {item.cleanSnippet}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Footer Source & Read Action */}
+                      <div className="px-3 py-2 sm:px-4 sm:py-2.5 border-t border-[#262C38] flex items-center justify-between bg-[#121620] text-[11px] sm:text-xs">
+                        <span className="font-mono text-slate-400">
+                          RacingNews365 · {item.formattedTime}
+                        </span>
+
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono font-bold text-[#34E4C8] hover:underline flex items-center gap-1"
+                        >
+                          <span>OPEN</span>
+                          <span>→</span>
+                        </a>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                /* COMPACT LIST VIEW - ULTRA CRISP & FAST ON MOBILE */
+                <div className="flex flex-col gap-2.5 sm:gap-3">
+                  {remainingNews.map((item) => (
+                    <article
+                      key={item.id}
+                      className="bg-[#0D1017] border border-[#262C38] hover:border-slate-600 rounded-xl p-2.5 sm:p-3.5 flex items-start gap-3 transition-all hover:bg-[#121620] shadow-md group"
+                    >
+                      <div className="w-18 h-18 sm:w-24 sm:h-24 rounded-lg overflow-hidden flex-shrink-0 bg-[#05070a] relative">
                         <img
                           src={item.heroImage}
                           alt={item.title}
                           loading="lazy"
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover'
-                          }}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
-                            const fallback = resolveNewsFallbackImage(item.title, item.cleanSnippet, item.category);
-                            if (!target.src.includes(fallback) && fallback !== '/images/default-bg.png') {
+                            const fallback = resolveNewsFallbackImage(
+                              item.title,
+                              item.cleanSnippet,
+                              item.category
+                            );
+                            if (
+                              !target.src.includes(fallback) &&
+                              fallback !== '/images/default-bg.png'
+                            ) {
                               target.src = fallback;
                             } else {
                               target.onerror = null;
@@ -807,143 +712,75 @@ export default function NewsPage() {
                             }
                           }}
                         />
-
-                        {/* Category Badge */}
-                        <span style={{
-                          position: 'absolute',
-                          bottom: '10px',
-                          left: '10px',
-                          background: '#080A0F',
-                          border: '1px solid #262C38',
-                          color: '#34E4C8',
-                          padding: '3px 9px',
-                          borderRadius: '4px',
-                          fontSize: '10.5px',
-                          fontFamily: 'var(--font-mono)',
-                          fontWeight: '800'
-                        }}>
+                        <span className="absolute bottom-1 left-1 bg-black/85 text-[#34E4C8] text-[9px] font-mono px-1.5 py-0.2 rounded font-bold">
                           {item.category}
                         </span>
                       </div>
 
-                      {/* Content Details */}
-                      <div style={{ padding: '18px 20px 14px', background: '#0D1017' }}>
-                        {item.contextTag && (
-                          <div style={{
-                            fontSize: '11px',
-                            fontFamily: 'var(--font-mono)',
-                            color: '#34E4C8',
-                            marginBottom: '6px',
-                            fontWeight: '800'
-                          }}>
-                            {item.contextTag}
-                          </div>
-                        )}
+                      <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">
+                        <div>
+                          {item.contextTag && (
+                            <div className="text-[10px] font-mono text-[#34E4C8] font-bold tracking-wider mb-0.5 truncate">
+                              {item.contextTag}
+                            </div>
+                          )}
 
-                        <h3 style={{
-                          fontFamily: 'var(--font-display)',
-                          fontSize: '18px',
-                          fontWeight: '800',
-                          lineHeight: '1.3',
-                          color: '#FFFFFF',
-                          margin: '0 0 10px 0'
-                        }}>
+                          <h3 className="font-display text-xs sm:text-sm font-bold text-white line-clamp-2 leading-snug group-hover:text-[#34E4C8] transition-colors">
+                            <a href={item.link} target="_blank" rel="noopener noreferrer">
+                              {item.title}
+                            </a>
+                          </h3>
+                        </div>
+
+                        <div className="flex items-center justify-between pt-1.5 text-[10px] sm:text-[11px] font-mono text-slate-400">
+                          <span>RacingNews365 · {item.formattedTime}</span>
                           <a
                             href={item.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            style={{ color: '#FFFFFF', textDecoration: 'none' }}
+                            className="text-[#34E4C8] font-bold hover:underline flex items-center gap-0.5"
                           >
-                            {item.title}
+                            <span>READ</span>
+                            <span>→</span>
                           </a>
-                        </h3>
-
-                        <p style={{
-                          color: '#CBD5E1',
-                          fontSize: '13.5px',
-                          lineHeight: '1.55',
-                          margin: 0,
-                          fontWeight: '500'
-                        }}>
-                          {item.cleanSnippet}
-                        </p>
+                        </div>
                       </div>
-                    </div>
-
-                    {/* Footer Source & Read Action */}
-                    <div style={{
-                      padding: '14px 20px',
-                      borderTop: '1px solid #262C38',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      background: '#121620'
-                    }}>
-                      <span style={{ fontSize: '11.5px', fontFamily: 'var(--font-mono)', color: '#CBD5E1', fontWeight: '600' }}>
-                        RacingNews365 · {item.formattedTime}
-                      </span>
-
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          fontSize: '12px',
-                          fontFamily: 'var(--font-mono)',
-                          fontWeight: '800',
-                          color: '#34E4C8',
-                          textDecoration: 'none'
-                        }}
-                      >
-                        OPEN →
-                      </a>
-                    </div>
-                  </article>
-                ))}
-              </div>
+                    </article>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* LATEST UPDATES TICKER SIDEBAR */}
             {remainingNews.length > 0 && (
-              <div>
-                <div style={{ marginBottom: '14px', fontSize: '12px', color: '#34E4C8', fontWeight: '800', fontFamily: 'var(--font-mono)', letterSpacing: '1px' }}>
-                  ⚡ LATEST UPDATES
+              <div className={`lg:sticky lg:top-4 ${mobileTab === 'feed' ? 'hidden lg:block' : 'block'}`}>
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <div className="text-xs sm:text-[13px] text-[#34E4C8] font-bold font-mono tracking-wider flex items-center gap-1.5">
+                    <span>⚡ LATEST UPDATES</span>
+                    <span className="text-slate-500 font-normal">
+                      ({Math.min(10, enrichedNews.length)})
+                    </span>
+                  </div>
+
+                  {/* On mobile, allow quick jump back to headlines */}
+                  <button
+                    type="button"
+                    onClick={() => setMobileTab('feed')}
+                    className="lg:hidden text-xs font-mono text-[#34E4C8] hover:underline"
+                  >
+                    ← Back to Headlines
+                  </button>
                 </div>
 
-                <div style={{
-                  background: '#0D1017',
-                  border: '1px solid #262C38',
-                  borderRadius: '10px',
-                  padding: '18px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '14px',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.5)'
-                }}>
+                <div className="bg-[#0D1017] border border-[#262C38] rounded-xl p-3 sm:p-4 flex flex-col gap-2.5 sm:gap-3 shadow-xl">
                   {enrichedNews.slice(0, 10).map((item) => (
                     <div
                       key={`ticker-${item.id}`}
-                      style={{
-                        paddingBottom: '14px',
-                        borderBottom: '1px solid #1C222E',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '6px'
-                      }}
+                      className="pb-2.5 border-b border-[#1C222E] last:border-b-0 last:pb-0 flex flex-col gap-1 group"
                     >
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: '#64748B', fontWeight: '700' }}>
-                          {item.clockTime}
-                        </span>
-                        <span style={{
-                          fontSize: '10px',
-                          fontFamily: 'var(--font-mono)',
-                          color: '#34E4C8',
-                          background: 'rgba(52, 228, 200, 0.1)',
-                          padding: '1px 6px',
-                          borderRadius: '3px',
-                          fontWeight: '800'
-                        }}>
+                      <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono">
+                        <span className="text-slate-500 font-semibold">{item.clockTime}</span>
+                        <span className="text-[#34E4C8] bg-[#34E4C8]/10 px-1.5 py-0.2 rounded font-bold">
                           {item.category}
                         </span>
                       </div>
@@ -951,14 +788,7 @@ export default function NewsPage() {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{
-                          color: '#FFFFFF',
-                          fontSize: '13px',
-                          fontWeight: '700',
-                          lineHeight: '1.4',
-                          textDecoration: 'none',
-                          fontFamily: 'var(--font-display)'
-                        }}
+                        className="text-white group-hover:text-[#34E4C8] transition-colors text-xs sm:text-[13px] font-bold leading-snug font-display line-clamp-2"
                       >
                         {item.title}
                       </a>

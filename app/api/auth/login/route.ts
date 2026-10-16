@@ -19,7 +19,9 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { username, email, password, remember, isDevBypass } = body;
     const host = request.headers.get('host') || '';
-    const isLocalhost = host.includes('localhost') || host.includes('127.0.0.1') || process.env.NODE_ENV !== 'production';
+    const isLocalhost =
+      process.env.NODE_ENV === 'development' &&
+      (host.includes('localhost') || host.includes('127.0.0.1'));
 
     const targetEmail = (email || username || (isDevBypass ? 'engineer@paddock.racing' : '')).trim();
 
