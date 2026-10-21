@@ -465,6 +465,23 @@ export async function getRacePrediction(
           parsedResult = JSON.parse(trimmed);
         }
       } catch {
+        try {
+          const snapshotDir = path.join(PROJECT_ROOT, 'data', 'predictor', 'snapshots');
+          let diskSnapshotPath = path.join(snapshotDir, `${canonicalRaceId}_${MODEL_VERSION}.json`);
+          if (!fs.existsSync(diskSnapshotPath) && fs.existsSync(snapshotDir)) {
+            const files = fs.readdirSync(snapshotDir);
+            const match = files.find(f => f.startsWith(`${canonicalRaceId}_`) && f.endsWith('.json'));
+            if (match) diskSnapshotPath = path.join(snapshotDir, match);
+          }
+          if (fs.existsSync(diskSnapshotPath)) {
+            const raw = fs.readFileSync(diskSnapshotPath, 'utf-8');
+            const restored = JSON.parse(raw) as RacePredictionResponse;
+            memorySnapshotCache.set(`${canonicalRaceId}:${MODEL_VERSION}:${restored.inputHash}`, restored);
+            return { ...restored, cached: false };
+          }
+        } catch {
+          // Fall through
+        }
         const isUnknownRace = season < 1950 || season > 2030 || round < 1 || round > 25 || (season === 1950 && round > 7);
         return {
           status: 'unavailable' as const,
@@ -496,6 +513,23 @@ export async function getRacePrediction(
       }
 
       if (parsedResult.status === 'error' || parsedResult.error_type === 'RACE_NOT_FOUND') {
+        try {
+          const snapshotDir = path.join(PROJECT_ROOT, 'data', 'predictor', 'snapshots');
+          let diskSnapshotPath = path.join(snapshotDir, `${canonicalRaceId}_${MODEL_VERSION}.json`);
+          if (!fs.existsSync(diskSnapshotPath) && fs.existsSync(snapshotDir)) {
+            const files = fs.readdirSync(snapshotDir);
+            const match = files.find(f => f.startsWith(`${canonicalRaceId}_`) && f.endsWith('.json'));
+            if (match) diskSnapshotPath = path.join(snapshotDir, match);
+          }
+          if (fs.existsSync(diskSnapshotPath)) {
+            const raw = fs.readFileSync(diskSnapshotPath, 'utf-8');
+            const restored = JSON.parse(raw) as RacePredictionResponse;
+            memorySnapshotCache.set(`${canonicalRaceId}:${MODEL_VERSION}:${restored.inputHash}`, restored);
+            return { ...restored, cached: false };
+          }
+        } catch {
+          // Fall through
+        }
         return {
           status: 'unavailable' as const,
           raceId: canonicalRaceId,
