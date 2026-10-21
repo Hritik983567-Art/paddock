@@ -23,6 +23,8 @@ graph TD
     PADDOCK --> EPIC4["Epic 4: Teammate Rivalry & Constructor Head-to-Head"]
     PADDOCK --> EPIC5["Epic 5: High-Contrast Telemetry Overlays & Lab"]
     PADDOCK --> EPIC6["Epic 6: Pit-Wall Strategy Presets & Cloud Sync"]
+    PADDOCK --> EPIC7["Epic 7: Post-Qualifying ML Predictor & Accuracy Ledger"]
+    PADDOCK --> EPIC8["Epic 8: Circuit Replay Geometry & Grid Staging Fidelity"]
 ```
 
 ---
@@ -195,4 +197,82 @@ Scenario: Persisting a strategy preset
   When the user clicks "Save Strategy Preset" with name "Monza Wet Setup"
   Then an entry is created in "public.telemetry_presets" protected by RLS
   And the preset appears in the user's saved drawer across all sessions
+```
+
+---
+
+## 8. Epic 7: Post-Qualifying ML Predictor & Accuracy Ledger
+
+### US-7.1: Calibrated Post-Qualifying Race Winner Forecasts
+> **As a** motorsport analyst  
+> **I want to** evaluate win and podium probabilities for all 20 drivers strictly after Saturday Qualifying concludes  
+> **So that** I have an empirical probabilistic forecast grounded in official grid positions and constructor development indices.
+
+```gherkin
+Scenario: Viewing post-qualifying predictions for a verified Grand Prix
+  Given Saturday Qualifying is officially finalized for Round 19
+  When the user loads "/predictor" for Round 19
+  Then the system displays the Projected Winner banner with win probability percentage
+  And lists all 20 drivers with normalized probabilities summing to strictly 100.0%
+  And decomposes key performance factors: qualifying delta, rolling form, and aero index
+```
+
+### US-7.2: Pre-Qualifying Lockout & Countdown Gate
+> **As a** race fan  
+> **I want to** see an authentic countdown state before Saturday Qualifying finishes  
+> **So that** I am never shown hallucinated or ungrounded speculative predictions.
+
+```gherkin
+Scenario: Navigating to predictor before qualifying has concluded
+  Given Saturday Qualifying for the upcoming Grand Prix is not yet finalized
+  When the user navigates to "/predictor"
+  Then the system renders the "Qualifying Grid In Progress" screen
+  And displays a real-time countdown to scheduled Saturday Qualifying verification
+  And prevents any speculative or synthetic driver win calculations
+```
+
+### US-7.3: Immutable Accuracy Audit Ledger
+> **As a** telemetry auditor  
+> **I want to** inspect past predictions verified against official race results  
+> **So that** I can track model calibration, Brier accuracy scores, and cryptographic integrity.
+
+```gherkin
+Scenario: Inspecting prediction audit ledger for past races
+  Given previous Grands Prix have concluded with official FIA results
+  When the user views the Historical Accuracy Ledger in "/predictor"
+  Then the system displays the SHA-256 hash of the original post-qualifying snapshot
+  And reconciles the predicted winner against the actual checkered flag winner
+  And flags exact accuracy delta, podium coverage, and model version
+```
+
+---
+
+## 9. Epic 8: Circuit Replay Geometry & Grid Staging Fidelity
+
+### US-8.1: Canonical Track Orientation & High-Density Centerline Fallback
+> **As a** race viewer  
+> **I want to** see circuits rendered in their authentic broadcast orientation with smooth centerline geometry  
+> **So that** tracks do not deform, invert upside down, or tilt arbitrarily sideways.
+
+```gherkin
+Scenario: Loading circuit replay for any championship venue
+  Given the user selects any circuit (e.g. COTA, Spa, Interlagos) in "/replay"
+  When the canvas initializes with or without live telemetry packets
+  Then the track renders high-density centerline vectors from TRACKS_REGISTRY
+  And maintains canonical broadcast orientation with opt-in auto-settle defaulting to false
+  And keeps finish line and sector split badges permanently upright
+```
+
+### US-8.2: 2x2 Starting Grid Staging along Main Straight
+> **As a** sim racing observer  
+> **I want to** see cars staged in clean 2x2 grid boxes along the start/finish straight before launch  
+> **So that** the race start looks realistic rather than wrapping cars backward through final-sector chicanes.
+
+```gherkin
+Scenario: Race start staging at lap zero
+  Given the replay is at timestamp 00:00 before the lights go out
+  When observing the starting grid
+  Then all 20 driver markers are staged along the start/finish straight tangent vector in 2x2 boxes
+  And drivers on the odd side have inside-line pole progression
+  And smoothly transition from grid boxes into racing motion upon launch
 ```

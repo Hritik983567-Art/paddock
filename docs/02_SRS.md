@@ -40,7 +40,7 @@ graph TD
 ```
 
 ### 2.2 System Constraints
-1. **Runtime Environment**: Node.js `>= 20.x` with Turbopack support.
+1. **Runtime Environment**: Node.js `>= 22.0.0` with Turbopack support (mandated by `@supabase/supabase-js` v2 and Next.js 16).
 2. **Browser Requirements**: Modern evergreen browsers supporting HTML5 Canvas, Web Crypto API (`crypto.subtle`), and ES2022.
 3. **Data Availability**: Upstream telemetry depends on official session availability and Jolpica/Ergast rate-limiting constraints.
 
@@ -62,7 +62,7 @@ graph TD
 - **FR-CIRCUIT-02 (Apex Telemetry Inspection)**: Selecting any corner marker shall update the telemetry HUD with entry speed (km/h), apex speed, exit speed, minimum gear, and peak lateral/longitudinal G-forces.
 - **FR-CIRCUIT-03 (Interactive Zoom & Pan)**: The circuit map canvas shall support touch/mouse zoom, pan, and dynamic recentering with sector highlights (Sector 1, 2, 3).
 - **FR-CIRCUIT-04 (Apex Photography Matching)**: The system shall display verified apex photography with license accreditation and metadata, gracefully falling back to high-resolution team wallpapers if corner photography is pending.
-- **FR-CIRCUIT-05 (Layout Settle & Chicane Collision Relaxation)**: The circuit engine shall auto-orient upright track layouts 90° clockwise for widescreen viewport balance and enforce a 5-pass iterative collision relaxation algorithm (`>= 38px` badge separation) to guarantee zero badge overlap and eliminate hover jitter.
+- **FR-CIRCUIT-05 (Layout Settle & Chicane Collision Relaxation)**: The circuit engine shall provide opt-in auto-orientation for upright track layouts (preserving canonical geographic broadcast orientation by default with `autoSettle: false`), high-density centerline track fallbacks from `TRACKS_REGISTRY`, and enforce a 5-pass iterative collision relaxation algorithm (`>= 38px` badge separation) to guarantee zero badge overlap and eliminate hover jitter.
 - **FR-CIRCUIT-06 (Gesture Disambiguation & Click Reliability)**: The canvas shall isolate corner click/tap activations from canvas drag/pan gestures via a 12px movement threshold and `data-corner="true"` event isolation, ensuring corner clicks immediately open reconnaissance modals without dragging the map.
 
 ### 3.3 60fps Race Replay Engine (FR-REPLAY)
@@ -71,6 +71,7 @@ graph TD
 - **FR-REPLAY-02 (Timeline Scrubbing & Rate Multipliers)**: The timeline shall allow scrubbing across any lap (1 through total race laps) and playback speed adjustments (1x, 2x, 5x, 10x).
 - **FR-REPLAY-03 (Telemetry Gauges)**: The replay interface shall render live tachometers, speedometers, throttle/brake progression bars, DRS deployment status, and ERS battery charge percentage.
 - **FR-REPLAY-04 (Event Logging)**: The event feed shall log overtakes, yellow flags, safety car deployments, pit entry/exit events, and retirements with timestamps.
+- **FR-REPLAY-05 (High-Fidelity Track Geometry & Grid Staging)**: The replay canvas shall render smooth high-density centerline vectors from `TRACKS_REGISTRY` via `getTrackDefinition`, preserve coordinate space orientation (`invertY = isFastF1`), keep finish and sector split badges permanently upright, calibrate asphalt stroke definitions (20px asphalt / 15px inner / 5px sector), and stage starting grid cars along the main straight tangent in clean 2x2 boxes with smooth launch transition.
 
 ### 3.4 Teammate Head-to-Head Analytics (FR-TEAMMATE)
 
@@ -86,6 +87,12 @@ graph TD
 - **FR-STRAT-04 (Lap-by-Lap Pace Progression & Delta Traces)**: The pace workspace shall compute clean representative pace averages, consistency scores, and lap-by-lap delta progressions ($\Delta t_i = t_{A, i} - t_{B, i}$) with configurable outlier cutoff filters.
 - **FR-STRAT-05 (Tyre Stint Wear & Pirelli Compound Allocation)**: The tyre stint workspace shall ingest official track-specific Pirelli compound allocations (Hard, Medium, Soft) and model fuel-compensated degradation wear slopes ($\Delta\text{s/lap}$) across race stints.
 - **FR-STRAT-06 (Circuit Demands & Track DNA)**: The circuit analysis workspace shall decompose performance traits across high-speed downforce, low-speed mechanical compliance, and straight-line efficiency, with direct deep-links to 2D vector circuit reconnaissance.
+
+### 3.6 AI Post-Qualifying Race Predictor (FR-PREDICT)
+
+- **FR-PREDICT-01 (Post-Qualifying Gating)**: The prediction engine shall remain strictly locked until Saturday Qualifying is concluded and official grid coordinates are verified. Pre-qualifying states render a live countdown screen rather than speculative hallucinations.
+- **FR-PREDICT-02 (16-Feature Consensus Model)**: The forecasting engine shall ingest qualifying delta to pole, rolling form, 2026 constructor aero development index, and circuit layout traits, strictly normalizing all 20 driver win probabilities to sum to 100.0%.
+- **FR-PREDICT-03 (Immutable Accuracy Audit Ledger)**: Every calculated forecast shall generate an immutable SHA-256 data hash persisted to Supabase (`race_prediction_snapshots`) and disk, automatically reconciling against official Jolpica race results upon Grand Prix completion.
 
 ---
 

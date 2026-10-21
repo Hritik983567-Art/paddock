@@ -17,9 +17,9 @@
 }
 
 @theme {
-  --font-sans: 'Times New Roman', 'Times', Georgia, serif;
-  --font-body: 'Times New Roman', 'Times', Georgia, serif;
-  --font-display: 'ID Grotesk', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Titillium Web', 'Inter', -apple-system, system-ui, sans-serif;
+  --font-body: 'Titillium Web', 'Inter', -apple-system, system-ui, sans-serif;
+  --font-display: 'Titillium Web', 'Roboto Condensed', 'Inter', system-ui, sans-serif;
   --font-telemetry: var(--font-telemetry), 'Roboto Condensed', sans-serif;
   --font-mono: var(--font-telemetry), 'Roboto Condensed', monospace;
 }
@@ -38,9 +38,9 @@
     --amber: #FFC000;
     --green: #00F090;
     --theme-glow: rgba(255, 24, 1, 0.45);
-    --font-display: 'ID Grotesk', system-ui, -apple-system, sans-serif;
-    --font-body: 'Times New Roman', 'Times', Georgia, serif;
-    --font-sans: 'Times New Roman', 'Times', Georgia, serif;
+    --font-display: 'Titillium Web', 'Roboto Condensed', 'Inter', system-ui, sans-serif;
+    --font-body: 'Titillium Web', 'Inter', -apple-system, system-ui, sans-serif;
+    --font-sans: 'Titillium Web', 'Inter', -apple-system, system-ui, sans-serif;
     --font-mono: var(--font-telemetry), 'Roboto Condensed', monospace;
     --font-telemetry: var(--font-telemetry), 'Roboto Condensed', monospace;
     --f1-red: #FF1801;
@@ -167,13 +167,13 @@
   text-shadow: 0 0 10px rgba(225, 6, 0, 0.45);
 }
 
-/* Explicit Typography System: ID Grotesk (Headings/Display) + Times (Body/UI/Rest) + Roboto Condensed (Numbers/Telemetry) */
+/* Explicit Typography System: Titillium Web / Roboto Condensed (F1 Standard) + Inter */
 .font-display {
-  font-family: var(--font-display), 'ID Grotesk', system-ui, sans-serif !important;
+  font-family: var(--font-display), 'Titillium Web', 'Roboto Condensed', sans-serif !important;
 }
 
 .font-body, .font-sans {
-  font-family: var(--font-body), 'Times New Roman', 'Times', Georgia, serif !important;
+  font-family: var(--font-body), 'Titillium Web', 'Inter', sans-serif !important;
 }
 
 .font-telemetry {
@@ -192,7 +192,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  font-family: var(--font-body), 'Times New Roman', 'Times', Georgia, serif;
+  font-family: var(--font-body), 'Titillium Web', 'Inter', sans-serif;
 }
 
 /* Ultra-Sharp High-Definition Photo Rendering */
@@ -432,128 +432,194 @@ body {
     box-sizing: border-box;
 }
 
-html,
+html {
+    background: #05070A;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background: var(--asphalt);
+    background: transparent;
     color: var(--paper);
     font-family: var(--font-body);
     transition: background-color 0.4s ease, color 0.4s ease;
+    min-height: 100vh;
 }
 
-body {
-    background-image:
-        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.008) 0px, rgba(255, 255, 255, 0.008) 1px, transparent 1px, transparent 3px);
-}
-
-/* Clean Ambient Team Wallpaper Overlay (High Contrast & High Visibility) */
+/* Ambient Team Wallpaper Overlay (Refined Translucency — Crisp Atmosphere Without Obscuring UI) */
 .f1-theme-wallpaper {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.75;
-    transition: opacity 0.6s ease-in-out, background-image 0.6s ease-in-out;
+    opacity: 0.42;
+    transition: opacity 0.5s ease-in-out, background-image 0.5s ease-in-out;
     background-size: cover;
-    background-position: center right;
+    background-position: center center;
     background-repeat: no-repeat;
-    filter: brightness(0.95) contrast(1.1);
+    filter: brightness(0.92) contrast(1.08);
 }
 
-/* Default / Checkered Flag Theme Wallpaper */
+/* Default / Checkered Flag Theme Wallpaper — Redesigned High-Resolution Telemetry Artwork */
 :root[data-theme="default"] .f1-theme-wallpaper,
 :root[data-theme="checkered"] .f1-theme-wallpaper,
 :root:not([data-theme]) .f1-theme-wallpaper {
-    opacity: 0.82;
+    opacity: 0.45;
     background-image: 
-        linear-gradient(to right, #0C0E12 0%, #0C0E12 25%, rgba(12, 14, 18, 0.45) 60%, transparent 100%),
-        url('/images/checkered-bg.png');
+        radial-gradient(ellipse at 80% 25%, rgba(0, 240, 255, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(225, 6, 0, 0.08) 0%, transparent 50%),
+        linear-gradient(to right, rgba(5, 7, 10, 0.88) 0%, rgba(5, 7, 10, 0.68) 28%, rgba(5, 7, 10, 0.38) 70%, rgba(5, 7, 10, 0.22) 100%),
+        url('/images/paddock-clean-bg.jpg');
 }
 
-/* Scuderia Ferrari Car Wallpaper */
+/* Scuderia Ferrari Car Wallpaper (Translucent Livery) */
 :root[data-theme="ferrari"] .f1-theme-wallpaper {
-    opacity: 0.75;
+    opacity: 0.48;
     background-image: 
-        linear-gradient(to right, #120304 0%, #120304 25%, rgba(18, 3, 4, 0.35) 60%, transparent 100%),
+        linear-gradient(to right, rgba(18, 3, 4, 0.90) 0%, rgba(18, 3, 4, 0.65) 28%, rgba(18, 3, 4, 0.32) 65%, rgba(18, 3, 4, 0.15) 100%),
         url('/images/ferrari-bg.png');
 }
 
-/* Red Bull Racing Car Wallpaper */
+/* Red Bull Racing Car Wallpaper (Translucent Livery) */
 :root[data-theme="redbull"] .f1-theme-wallpaper {
-    opacity: 0.75;
+    opacity: 0.48;
     background-image: 
-        linear-gradient(to right, #040A18 0%, #040A18 25%, rgba(4, 10, 24, 0.35) 60%, transparent 100%),
+        linear-gradient(to right, rgba(4, 10, 24, 0.90) 0%, rgba(4, 10, 24, 0.65) 28%, rgba(4, 10, 24, 0.32) 65%, rgba(4, 10, 24, 0.15) 100%),
         url('/images/redbull-bg.png');
 }
 
-/* McLaren F1 Car Wallpaper */
+/* McLaren F1 Car Wallpaper (Translucent Livery) */
 :root[data-theme="mclaren"] .f1-theme-wallpaper {
-    opacity: 0.75;
+    opacity: 0.48;
     background-image: 
-        linear-gradient(to right, #140B04 0%, #140B04 25%, rgba(20, 11, 4, 0.35) 60%, transparent 100%),
+        linear-gradient(to right, rgba(20, 11, 4, 0.90) 0%, rgba(20, 11, 4, 0.65) 28%, rgba(20, 11, 4, 0.32) 65%, rgba(20, 11, 4, 0.15) 100%),
         url('/images/mclaren-bg.png');
 }
 
-/* Aston Martin Aramco Car Wallpaper */
+/* Aston Martin Aramco Car Wallpaper (Translucent Livery) */
 :root[data-theme="aston"] .f1-theme-wallpaper {
-    opacity: 0.75;
+    opacity: 0.48;
     background-image: 
-        linear-gradient(to right, #03100B 0%, #03100B 25%, rgba(3, 16, 11, 0.35) 60%, transparent 100%),
+        linear-gradient(to right, rgba(3, 16, 11, 0.90) 0%, rgba(3, 16, 11, 0.65) 28%, rgba(3, 16, 11, 0.32) 65%, rgba(3, 16, 11, 0.15) 100%),
         url('/images/aston-bg.png');
 }
 
-/* Mercedes-AMG Petronas Wallpaper */
+/* Mercedes-AMG Petronas Wallpaper (Translucent Livery) */
 :root[data-theme="mercedes"] .f1-theme-wallpaper {
-    opacity: 0.75;
+    opacity: 0.48;
     background-image: 
-        linear-gradient(to right, #060B0E 0%, #060B0E 25%, rgba(6, 11, 14, 0.35) 60%, transparent 100%),
+        linear-gradient(to right, rgba(6, 11, 14, 0.90) 0%, rgba(6, 11, 14, 0.65) 28%, rgba(6, 11, 14, 0.32) 65%, rgba(6, 11, 14, 0.15) 100%),
         url('/images/mercedes-bg.png');
 }
 
-/* BWT Alpine F1 Team Wallpaper */
+/* BWT Alpine F1 Team Wallpaper (Translucent Livery) */
 :root[data-theme="alpine"] .f1-theme-wallpaper {
-    opacity: 0.75;
+    opacity: 0.48;
     background-image: 
-        linear-gradient(to right, #030C16 0%, #030C16 25%, rgba(3, 12, 22, 0.35) 60%, transparent 100%),
+        linear-gradient(to right, rgba(3, 12, 22, 0.90) 0%, rgba(3, 12, 22, 0.65) 28%, rgba(3, 12, 22, 0.32) 65%, rgba(3, 12, 22, 0.15) 100%),
         url('/images/alpine-bg.png');
 }
 
-/* MoneyGram Haas F1 Team Wallpaper */
+/* MoneyGram Haas F1 Team Wallpaper (Translucent Livery) */
 :root[data-theme="haas"] .f1-theme-wallpaper {
-    opacity: 0.75;
+    opacity: 0.48;
     background-image: 
-        linear-gradient(to right, #0C0C0E 0%, #0C0C0E 25%, rgba(12, 12, 14, 0.35) 60%, transparent 100%),
+        linear-gradient(to right, rgba(12, 12, 14, 0.90) 0%, rgba(12, 12, 14, 0.65) 28%, rgba(12, 12, 14, 0.32) 65%, rgba(12, 12, 14, 0.15) 100%),
         url('/images/haas-bg.png');
 }
 
-/* Visa Cash App RB / Racing Bulls Wallpaper */
+/* Visa Cash App RB / Racing Bulls Wallpaper (Translucent Livery) */
 :root[data-theme="racingbulls"] .f1-theme-wallpaper {
-    opacity: 0.75;
+    opacity: 0.48;
     background-image: 
-        linear-gradient(to right, #040B1E 0%, #040B1E 25%, rgba(4, 11, 30, 0.35) 60%, transparent 100%),
+        linear-gradient(to right, rgba(4, 11, 30, 0.90) 0%, rgba(4, 11, 30, 0.65) 28%, rgba(4, 11, 30, 0.32) 65%, rgba(4, 11, 30, 0.15) 100%),
         url('/images/racingbulls-bg.png');
 }
 
-/* Stake F1 Team Kick Sauber Wallpaper */
+/* Stake F1 Team Kick Sauber Wallpaper (Translucent Livery) */
 :root[data-theme="sauber"] .f1-theme-wallpaper {
-    opacity: 0.75;
+    opacity: 0.48;
     background-image: 
-        linear-gradient(to right, #041206 0%, #041206 25%, rgba(4, 18, 6, 0.35) 60%, transparent 100%),
+        linear-gradient(to right, rgba(4, 18, 6, 0.90) 0%, rgba(4, 18, 6, 0.65) 28%, rgba(4, 18, 6, 0.32) 65%, rgba(4, 18, 6, 0.15) 100%),
         url('/images/sauber-bg.png');
 }
 
-/* Williams Racing Wallpaper */
+/* Williams Racing Wallpaper (Translucent Livery) */
 :root[data-theme="williams"] .f1-theme-wallpaper {
-    opacity: 0.75;
+    opacity: 0.48;
     background-image: 
-        linear-gradient(to right, #020B16 0%, #020B16 25%, rgba(2, 11, 22, 0.35) 60%, transparent 100%),
+        linear-gradient(to right, rgba(2, 11, 22, 0.90) 0%, rgba(2, 11, 22, 0.65) 28%, rgba(2, 11, 22, 0.32) 65%, rgba(2, 11, 22, 0.15) 100%),
         url('/images/williams-bg.png');
 }
 
 ::selection {
     background: rgba(225, 6, 0, 0.45);
     color: #FFFFFF;
+}
+
+/* ===== STITCH DESIGN SYSTEM (VELOCITY DARK & TELEMETRY TACTICAL) ===== */
+.stitch-glass-panel, .glass-panel {
+    background: rgba(18, 24, 35, 0.72) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.stitch-data-chip, .data-chip {
+    background: rgba(14, 20, 30, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 9999px;
+    font-family: var(--font-telemetry), 'Roboto Condensed', monospace;
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.stitch-glow-primary, .glow-primary {
+    box-shadow: 0 0 18px rgba(0, 240, 255, 0.38) !important;
+}
+
+.stitch-glow-green, .glow-green {
+    box-shadow: 0 0 18px rgba(0, 255, 156, 0.38) !important;
+}
+
+.stitch-glow-crimson, .glow-crimson {
+    box-shadow: 0 0 18px rgba(255, 51, 102, 0.38) !important;
+}
+
+.stitch-glow-amber, .glow-amber {
+    box-shadow: 0 0 18px rgba(255, 184, 0, 0.38) !important;
+}
+
+.stitch-glow-purple, .glow-purple {
+    box-shadow: 0 0 18px rgba(217, 70, 239, 0.38) !important;
+}
+
+.stitch-card-machined {
+    background: rgba(15, 21, 32, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.stitch-badge-header {
+    font-family: var(--font-telemetry), 'Roboto Condensed', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.stitch-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: #00FF9C;
+    box-shadow: 0 0 8px #00FF9C;
+    animation: pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 button, .f1-badge-red, .f1-badge-gold, .f1-badge-cyan, .f1-badge-purple, .tab-btn, .mobile-subnav-pill {
@@ -590,8 +656,7 @@ a {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--line);
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 50;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
@@ -644,11 +709,10 @@ a {
     margin-top: 2px;
 }
 
-/* ===== Mobile Telemetry Sub-Nav Horizontal Pill Bar ===== */
+/* ===== Mobile Telemetry Sub-Nav Horizontal Pill Bar (Phone ONLY) ===== */
 .mobile-subnav-strip {
     display: none;
-    position: sticky;
-    top: 54px;
+    position: relative;
     z-index: 45;
     background: rgba(12, 16, 20, 0.95);
     backdrop-filter: blur(16px);
@@ -713,9 +777,28 @@ a {
     animation: fadeInOverlay 0.2s ease forwards;
 }
 
-@media(max-width: 1023px) {
+/* Device Navigation Separation:
+   - Phone (< 768px): Show top pill subnav bar; remove sidebar completely.
+   - Laptop & Tablet (>= 768px): Remove top pill subnav bar; keep sidebar.
+*/
+@media (max-width: 767px) {
     .mobile-subnav-strip {
-        display: flex;
+        display: flex !important;
+    }
+    .side-nav {
+        display: none !important;
+    }
+    .mobile-menu-btn {
+        display: none !important;
+    }
+    .mobile-backdrop-overlay {
+        display: none !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-subnav-strip {
+        display: none !important;
     }
 }
 
@@ -763,10 +846,29 @@ a {
     -webkit-backdrop-filter: blur(10px);
     border-right: 1px solid var(--line);
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
     z-index: 40;
     padding-bottom: 16px;
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.side-nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+.side-nav::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.side-nav::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+.side-nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .side-nav-head {
@@ -852,56 +954,33 @@ a {
 }
 
 .wrap {
+    position: relative;
+    z-index: 10;
     max-width: 1180px;
     margin-left: 214px;
     padding: 28px 24px 80px;
 }
 
-@media(max-width: 1023px) {
-    .mobile-menu-btn {
-        display: block;
-    }
-
+/* On Laptop & Tablet (>= 768px): Side navigation is always docked & fixed; no mobile toggle needed */
+@media (min-width: 768px) {
     .side-nav {
-        position: fixed;
-        top: 57px;
-        left: 0;
-        bottom: 0;
-        width: 240px;
-        transform: translateX(-100%);
-        border-right: 1px solid var(--line);
-        box-shadow: 8px 0 25px rgba(0, 0, 0, 0.6);
+        display: block !important;
+        position: fixed !important;
+        top: 57px !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        width: 214px !important;
+        transform: none !important;
+        z-index: 40 !important;
     }
 
-    .side-nav.mobile-open {
-        transform: translateX(0);
-    }
-
-    .side-nav-head {
-        display: block;
-    }
-
-    .tabs {
-        flex-direction: column;
-        overflow-x: visible;
-        gap: 4px;
-        padding: 10px;
-    }
-
-    .tab-btn {
-        border-left: 3px solid transparent;
-        border-bottom: none;
-        white-space: normal;
-    }
-
-    .tab-btn.active {
-        border-left-color: var(--red);
-        border-bottom-color: transparent;
+    .mobile-menu-btn {
+        display: none !important;
     }
 
     .wrap {
-        margin-left: 0;
-        max-width: 100%;
+        margin-left: 214px !important;
+        width: calc(100% - 214px) !important;
     }
 }
 
@@ -1133,7 +1212,7 @@ a {
 }
 
 .panel .sub {
-    font-family: var(--font-body), 'Times New Roman', 'Times', serif;
+    font-family: var(--font-body), 'Titillium Web', 'Inter', sans-serif;
     font-size: 13px;
     color: #94A3B8;
     margin: 0 0 16px;
@@ -1189,7 +1268,7 @@ a {
 }
 
 .standing-row .team {
-    font-family: var(--font-body), 'Times New Roman', 'Times', serif;
+    font-family: var(--font-body), 'Titillium Web', 'Inter', sans-serif;
     font-size: 12px;
     color: #94A3B8;
 }
@@ -1572,14 +1651,6 @@ footer {
     z-index: 0;
     overflow: hidden;
     background: #080C0A;
-}
-
-.login-wallpaper-wrapper {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    background: #080C0A;
     contain: strict;
 }
 
@@ -1589,7 +1660,7 @@ footer {
     z-index: 1;
     pointer-events: none;
     background: radial-gradient(ellipse at 75% 50%, rgba(0, 255, 156, 0.15) 0%, rgba(232, 0, 45, 0.12) 45%, transparent 75%);
-    opacity: 0.8;
+    opacity: 0.75;
 }
 
 .f1-entry-speed-streaks {
@@ -1622,7 +1693,8 @@ footer {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    opacity: 0.95;
+    opacity: 0.52;
+    filter: brightness(0.88) contrast(1.1);
     will-change: transform, opacity;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
@@ -1632,7 +1704,9 @@ footer {
 .login-wallpaper-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(8, 12, 10, 0.25) 0%, rgba(8, 12, 10, 0.85) 100%);
+    background: radial-gradient(circle at 50% 50%, rgba(6, 9, 14, 0.45) 0%, rgba(6, 9, 14, 0.78) 70%, #05070A 100%);
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
     pointer-events: none;
     z-index: 3;
 }
@@ -1640,17 +1714,19 @@ footer {
 .centered-login-card {
     position: relative;
     z-index: 10;
-    max-width: 480px;
+    max-width: 460px;
     width: 100%;
-    padding: 44px 38px;
-    background: rgba(12, 21, 15, 0.96);
-    border: 1.5px solid rgba(0, 255, 156, 0.3);
-    border-radius: 20px;
-    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(0, 255, 156, 0.25);
+    padding: 34px 32px;
+    background: rgba(9, 14, 22, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 35px rgba(0, 240, 255, 0.12);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
     will-change: transform, opacity;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
-    animation: f1CardHardwareEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.8s backwards;
+    animation: f1CardHardwareEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards;
 }
 
 @keyframes f1SpeedStreakFlow {
@@ -1733,22 +1809,22 @@ footer {
 }
 
 .f1-spec-welcome h1 {
-    font-family: var(--font-body);
-    font-size: clamp(28px, 6vw, 44px);
-    font-weight: 800;
-    color: #dae5da;
-    margin: 0 0 8px;
-    letter-spacing: -0.02em;
+    font-family: var(--font-display), 'Titillium Web', sans-serif;
+    font-size: clamp(22px, 5vw, 28px);
+    font-weight: 900;
+    color: #FFFFFF;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
     text-transform: uppercase;
-    line-height: 1.1;
+    line-height: 1.15;
 }
 
 .f1-spec-welcome p {
-    font-family: var(--font-mono);
+    font-family: var(--font-body), 'Titillium Web', sans-serif;
     font-size: 13px;
-    color: #b9cbbc;
-    margin: 0 0 32px;
-    letter-spacing: 0.05em;
+    color: #94A3B8;
+    margin: 0 0 18px;
+    letter-spacing: 0.02em;
 }
 
 .f1-spec-error {
@@ -1785,12 +1861,12 @@ footer {
 
 .f1-spec-field input {
     width: 100%;
-    height: 48px;
-    background: #141e17;
-    border: 1px solid #3b4b3f;
-    border-radius: 4px;
-    color: #dae5da;
-    padding: 0 16px;
+    height: 44px;
+    background: rgba(10, 16, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    color: #FFFFFF;
+    padding: 0 14px;
     font-family: var(--font-mono);
     font-size: 13px;
     transition: all 0.2s ease;
@@ -1798,8 +1874,9 @@ footer {
 
 .f1-spec-field input:focus {
     outline: none;
-    border-color: #00ff9c;
-    box-shadow: 0 0 0 1px #00ff9c;
+    border-color: #00F0FF;
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.25);
+    background: rgba(14, 22, 36, 0.85);
 }
 
 .spec-password-wrapper {
@@ -1865,46 +1942,48 @@ footer {
 
 .spec-sign-in-btn {
     width: 100%;
-    height: 48px;
-    background: #009b70;
+    height: 46px;
+    background: linear-gradient(135deg, #00F0FF 0%, #0088FF 100%);
     border: none;
-    border-radius: 4px;
-    color: #FFFFFF;
-    font-family: var(--font-body);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    border-radius: 12px;
+    color: #05070A;
+    font-family: var(--font-display), 'Titillium Web', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 0 15px rgba(0, 227, 138, 0.2);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
 }
 
 .spec-sign-in-btn:hover:not(:disabled) {
-    background: #00ff9c;
-    color: #00391f;
-    box-shadow: 0 0 25px rgba(0, 255, 156, 0.4);
+    background: linear-gradient(135deg, #33F5FF 0%, #1A94FF 100%);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.55);
+    transform: translateY(-1px);
 }
 
 .spec-google-btn {
     width: 100%;
-    height: 48px;
-    background: #FFFFFF;
-    border: none;
-    border-radius: 4px;
-    color: #000000;
-    font-family: var(--font-body);
-    font-size: 16px;
+    height: 46px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-family: var(--font-body), 'Titillium Web', sans-serif;
+    font-size: 13.5px;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .spec-google-btn:hover:not(:disabled) {
-    background: #F3F4F6;
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .spec-google-icon {
@@ -1916,9 +1995,9 @@ footer {
 }
 
 .f1-spec-footer {
-    margin-top: 40px;
-    font-size: 14px;
-    color: #b9cbbc;
+    margin-top: 18px;
+    font-size: 12.5px;
+    color: #94A3B8;
     text-align: center;
 }
 
@@ -2068,7 +2147,7 @@ footer {
 }
 
 .profile-head .team-line {
-    font-family: var(--font-body), 'Times New Roman', 'Times', serif;
+    font-family: var(--font-body), 'Titillium Web', 'Inter', sans-serif;
     font-size: 13px;
     color: #94A3B8;
     line-height: 1.5;
@@ -2545,10 +2624,28 @@ footer {
 
 /* Tablet & iPad Viewports (768px - 1023px) */
 @media (max-width: 1023px) and (min-width: 768px) {
+    .mobile-subnav-strip {
+        display: none !important;
+    }
+
+    .side-nav {
+        display: block !important;
+        position: fixed !important;
+        top: 57px !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        width: 214px !important;
+        transform: none !important;
+    }
+
+    .mobile-menu-btn {
+        display: none !important;
+    }
+
     .wrap {
-        margin-left: 0;
+        margin-left: 214px !important;
+        width: calc(100% - 214px) !important;
         padding: 24px 20px 60px;
-        max-width: 100%;
         box-sizing: border-box;
     }
 
@@ -2572,10 +2669,29 @@ footer {
         overflow-x: clip;
     }
 
+    /* Top list stays exclusively on phone */
+    .mobile-subnav-strip {
+        display: flex !important;
+    }
+
+    /* Side list completely removed on phone */
+    .side-nav {
+        display: none !important;
+    }
+
+    .mobile-menu-btn {
+        display: none !important;
+    }
+
+    .mobile-backdrop-overlay {
+        display: none !important;
+    }
+
     .wrap {
         margin-left: 0 !important;
         padding: 16px 12px 60px !important;
         max-width: 100% !important;
+        width: 100% !important;
         box-sizing: border-box;
     }
 

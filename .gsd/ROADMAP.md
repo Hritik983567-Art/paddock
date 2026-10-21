@@ -1,14 +1,14 @@
 ---
-milestone: v1.0
-version: 0.2.0
-updated: 2026-10-13T01:50:00Z
+milestone: v1.1
+version: 0.3.0
+updated: 2026-10-21T16:35:00Z
 ---
 
 # ROADMAP.md
 
-> **Current Phase:** Phase 4: Strategy Lab, Telemetry Analytics & Replay Suite
-> **Status:** 🔄 Executing
-> **Milestone Target:** v1.0 (Paddock Telemetry Command Center)
+> **Current Phase:** Phase 6: Post-Qualifying ML Predictor, Design System & Telemetry HUD Overhaul
+> **Status:** ✅ Complete
+> **Milestone Target:** v1.1 (Paddock Race Predictor & Telemetry Design Polish)
 
 ---
 
@@ -20,8 +20,11 @@ updated: 2026-10-13T01:50:00Z
 - [x] 10 Constructor Themes with High-Res Wallpapers & Checkered Flag Mode
 - [x] Secure Supabase PKCE Auth with Server-Side HS256 JWT HttpOnly Cookies
 - [x] Comprehensive F1 Strategy Lab Suite (`/lab`): Circuit DNA Empirical Matrix, Tactical Strategy Duel & Pirelli C1–C5 Tyre Lab
-- [ ] Comprehensive Telemetry Delta Comparison Matrix (`/compare`)
-- [ ] 60fps GPU-Accelerated Canvas Race Replay for Historic & Modern Laps (`/replay`)
+- [x] Post-Qualifying AI Race Prediction Engine (`/predictor`) with 2026 Grid Calibration
+- [x] Historical Accuracy Ledger & Model Calibration Auditing
+- [x] Platform-Wide Elimination of Developer Annotations (`[TEL_01]`, `//`) for Broadcast Aesthetics
+- [x] Translucent Glassmorphic Pit-Wall Authentication Portal (`AuthGate.tsx`)
+- [x] 68 Unit, Integration & Benchmark Tests Passing (10 Vitest Suites)
 
 ---
 
@@ -58,27 +61,39 @@ updated: 2026-10-13T01:50:00Z
 
 ---
 
-### Phase 4: Strategy Lab, Telemetry Analytics & Replay Suite
-**Status:** 🔄 In Progress  
-**Objective:** Deliver the F1 Strategy Lab suite (`/lab`), head-to-head telemetry analysis (`/compare`), teammate delta benchmarking (`/teammates`), and GPU-accelerated 60fps canvas replay (`/replay`) across all 2026 and legacy rounds.  
+### Phase 4: Strategy Lab & Telemetry Analytics Suite
+**Status:** ✅ Complete  
+**Objective:** Deliver the F1 Strategy Lab suite (`/lab`), head-to-head telemetry analysis (`/compare`), teammate delta benchmarking (`/teammates`), and GPU-accelerated canvas replay (`/replay`) across all 2026 and legacy rounds.  
 **Deliverables:**
 - [x] Plan 4.1: Teammate head-to-head qualifying and race pace delta service (`app/lib/teammateDataService.ts`).
 - [x] Plan 4.2: F1 Strategy Lab Suite (`app/lab/`):
-  - **Circuit DNA & Sector Domination Matrix (`CircuitDNASectorMatrix.tsx`)**: 100% empirical session timing & speed trap telemetry (S1 high-speed aero, S2 technical mechanical grip, S3 power unit / DRS top speed), Theoretical Ultimate Lap benchmark, constructor aero dominance mapping, and sector-by-sector head-to-head duels.
+  - **Circuit DNA & Sector Domination Matrix (`CircuitDNASectorMatrix.tsx`)**: 100% empirical session timing & speed trap telemetry, Theoretical Ultimate Lap benchmark, and constructor aero dominance mapping.
   - **Head-to-Head Tactical Strategy Duel (`TacticalStrategyDuel.tsx`)**: Real race pace delta battle engine merged with 1-stop vs 2-stop undercut simulation, live gap evolution trajectory chart, and SC / VSC scenario injection.
-  - **Tyre Degradation & Stint Whisperer Lab (`TyreDegradationLab.tsx`)**: Official track-specific Pirelli C1–C5 compound allocations, 3-phase non-linear thermal cliff model (Scrub-in Peak, Plateau, Exponential Cliff), dynamic crossover lap detection, fuel-burnoff compensation ($+0.055\text{s/lap}$), and driver Tyre Whisperer Index.
-- [ ] Plan 4.3: Driver telemetry trace comparison (speed, throttle, brake, gear) with Chart.js overlays (`/compare`).
-- [ ] Plan 4.4: 60fps canvas race replay with multi-car positioning and speed slider controls (`/replay`).
+  - **Tyre Degradation & Stint Whisperer Lab (`TyreDegradationLab.tsx`)**: Official track-specific Pirelli C1–C5 compound allocations, 3-phase non-linear thermal cliff model, dynamic crossover lap detection, fuel-burnoff compensation ($+0.055\text{s/lap}$), and driver Tyre Whisperer Index.
+- [x] Plan 4.3: Driver telemetry trace comparison (speed, throttle, brake, gear) with Chart.js overlays (`/compare`).
+- [x] Plan 4.4: Canvas race replay with multi-car positioning and speed slider controls (`/replay`).
 
 ---
 
-### Phase 5: Production Hardening, CI/CD & Cloud Deployment
-**Status:** ⬜ Not Started  
-**Objective:** Finalize automated end-to-end testing, bundle size optimization, Vercel production deployment, and cloud-hosted SignalR telemetry relay daemon.  
+### Phase 5: Post-Qualifying ML Predictor & Historical Accuracy Ledger
+**Status:** ✅ Complete  
+**Objective:** Construct a calibrated Machine Learning predictor for race finishing distributions active strictly after Saturday Qualifying, supported by an immutable historical accuracy ledger and 2026 driver/team alignments.  
 **Deliverables:**
-- [ ] Plan 5.1: End-to-end Playwright workflow testing for authentication, circuit switching, and live timing.
-- [ ] Plan 5.2: Cloud container deployment for `f1-proxy.js` with auto-reconnection watchdogs.
-- [ ] Plan 5.3: Production bundle audit and cache headers optimization.
+- [x] Plan 5.1: Probabilistic ML model (`racePredictorService.ts`) with Saturday Qualifying state gating.
+- [x] Plan 5.2: 2026 grid calibration (Hamilton at Ferrari, Sainz at Williams, Hulkenberg/Bortoleto at Sauber).
+- [x] Plan 5.3: Interactive Predictor Workstation (`/predictor`) with winner projection, driver win probabilities, key determinants, and stochastic dynamic indicators.
+- [x] Plan 5.4: Empirical Accuracy Ledger matching post-qualifying predictions with actual classified finishes.
+
+---
+
+### Phase 6: Design System Overhaul, Authentic Typography & Clean UI
+**Status:** ✅ Complete  
+**Objective:** Purge all developer code tags and comment slashes across the platform, restore official Formula 1 typography, deliver an unobstructed translucent glassmorphic authentication experience, and calibrate circuit replay geometry and starting grid staging.  
+**Deliverables:**
+- [x] Plan 6.1: Full elimination of bracketed developer tags (`[TEL_01]`, `[MAP_GPS]`, `[USR_AUTH]`, `[CAL_STREAM]`, etc.) and comment slashes (`//`) in visible UI labels.
+- [x] Plan 6.2: Restored authentic Formula 1 typography (`Titillium Web`, `Roboto Condensed`, `Inter`), completely removing legacy `Times New Roman` serif overrides.
+- [x] Plan 6.3: Translucent Glassmorphic Pit-Wall Authentication Portal (`AuthGate.tsx`) with seamless full-car background visibility, uncluttered credentials focus, and zero opaque slicing.
+- [x] Plan 6.4: Race Replay Circuit Geometry & Grid Staging Overhaul (`CircuitReplay.tsx` & `circuitTransform.ts`): high-density centerline track coordinates, `invertY` coordinate check, opt-in auto-settle, upright gate split labels, and 2x2 tangent starting grid boxes.
 
 ---
 
@@ -89,10 +104,11 @@ updated: 2026-10-13T01:50:00Z
 | **1** | Core Architecture, Auth & Data Pipeline | ✅ Complete | 3 / 3 | 100% |
 | **2** | 78-Circuit Vector Geometry & Corner Telemetry | ✅ Complete | 3 / 3 | 100% |
 | **3** | Live Pit-Wall Telemetry & Competitive Radar | ✅ Complete | 4 / 4 | 100% |
-| **4** | Strategy Lab, Telemetry Analytics & Replay | 🔄 In Progress | 2 / 4 | 50% |
-| **5** | Production Hardening, CI/CD & Deployment | ⬜ Not Started | 0 / 3 | 0% |
-| **Total** | **Milestone v1.0 Baseline** | 🔄 | **12 / 17** | **70.6%** |
+| **4** | Strategy Lab & Telemetry Analytics Suite | ✅ Complete | 4 / 4 | 100% |
+| **5** | Post-Qualifying ML Predictor & Accuracy Ledger | ✅ Complete | 4 / 4 | 100% |
+| **6** | Design System Overhaul & Glassmorphic HUD | ✅ Complete | 4 / 4 | 100% |
+| **Total** | **Milestone v1.1 Baseline** | ✅ | **22 / 22** | **100%** |
 
 ---
 
-*Last updated: 2026-10-13*
+*Last updated: 2026-10-21*

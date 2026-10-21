@@ -25,6 +25,9 @@ npx tsc --noEmit
 # Production build check
 npm run build
 
+# Run Vitest automated test suites (68 tests across 10 suites)
+npm test
+
 # Linting
 npm run lint
 ```
@@ -53,7 +56,12 @@ npm run lint
 - Track metadata is registered in `TRACKS_REGISTRY` (`app/lib/circuitTransform.ts`) and `public/data/circuits/2024/*.json`.
 
 ### 2. Coordinate Transformation & Orientation Rules
-- **Auto-Settle 90° Tilt**: In `computeTransformBounds` (`circuitTransform.ts`), circuits with predominantly upright vertical aspect ratios (`rangeY > rangeX * 1.15`, e.g., Indianapolis, Monza) are automatically tilted 90° clockwise so they settle horizontally within widescreen viewports.
+- **Canonical Geographic Orientation Fidelity & Opt-In Auto-Settle**: In `computeTransformBounds` (`circuitTransform.ts`), circuits preserve their authentic broadcast track orientation. Auto-settle is strictly opt-in (`autoSettle: false` default) to prevent tracks from being tilted 90° sideways.
+- **Coordinate Space Inversion Mapping**: Pass `isFastF1 = activeTelemetry.coordinateSystem === 'fastf1_xy'` to `computeTransformBounds` so SVG screen-space registry tracks operate with `invertY: false` and are never rendered upside down.
+- **Replay High-Density Centerline Fallback**: When telemetry is loading or partial, fall back strictly to high-density centerlines from `TRACKS_REGISTRY` via `getTrackDefinition(circuitId).path` (200+ smooth points) rather than connecting isolated corner apex points.
+- **Upright Gate Badges**: Split and finish gates rotate cross-track orientation lines while isolating label pills (`FINISH`, `S1 SPLIT`, `S2 SPLIT`) so text never renders upside down on leftward straights.
+- **Calibrated Asphalt Stroke Widths**: 20px asphalt base, 15px inner tarmac, and 5px core sector centerline, preserving sharp definition through tight hairpins without blobbing.
+- **2x2 Starting Grid Staging**: Grid cars stage along the start/finish straight tangent vector in clean 2x2 boxes with smooth cubic launch transition.
 - **5-Pass Iterative Collision Relaxation**: To prevent corner badges from overlapping in tight chicanes (e.g. Monza T1–2, T4–5, T8–9–10), `transformCorners` applies a 5-pass iterative relaxation algorithm with `MIN_LABEL_DISTANCE = 38px`.
 - **Stable SVG Coordinate Anchoring**: 
   - Never apply `transformBox: 'fill-box'` or `transformOrigin: 'center'` to `<g>` elements that also use SVG `translate(lx, ly)`. In Chrome, dynamic child stroke changes cause bounding box recalculation that leads to high-frequency hover shaking/jitter.
@@ -77,23 +85,35 @@ npm run lint
 - **Standby Mode**: When off-session, render the official FIA Pit-Wall Telemetry Standby card with real session start countdowns derived from `API_BASE/current.json`.
 - **Dynamic Ingestion**: When competitive sessions stream, driver rows, micro-sectors (S1, S2, S3), trap speeds, and tyre stints populate dynamically strictly from incoming SignalR WebSocket frames (`DriverList`, `TimingData`, `TimingAppData`).
 
+### 6. Race Predictor & Post-Qualifying ML Engine (`/predictor`)
+- **Strict Gating**: Forecasts are strictly calculated after Saturday Qualifying has concluded. Before qualifying completes, render the countdown lockout state (`QualifyingGridInProgress` / `PreSessionGating`).
+- **Feature Pipeline & Calibration**: 16 engineered features combining qualifying delta, rolling form, 2026 constructor aero index, and circuit-specific track DNA. Consensus probabilities are strictly normalized to sum to 100.0%.
+- **Immutable Accuracy Audit Ledger**: Persists SHA-256 hashed predictions to Supabase (`race_predictions_audit`) and verifies against official Jolpica race results upon session conclusion.
+- **2026 Calibrated Driver Roster**: Accounts for active seat changes (Hamilton at Ferrari, Sainz at Williams, Antonelli at Mercedes, Bortoleto/Hülkenberg at Sauber/Audi).
+
 ---
 
 ## 🎨 Design System & Pit-Wall Aesthetics
 
-- **Theme**: Dark pit-wall telemetry HUD (`#090D16`, `#0D1117`, `#050814`) with glassmorphism overlays.
-- **Typography Tokens**:
-  - Display & Headings: `Titillium Web` (`font-display`, uppercase, black/bold)
-  - Telemetry & Speed Gauges: `Roboto Condensed` (`font-telemetry`, high-contrast technical data)
-  - Body & UI: `Inter` (`font-sans`)
-  - Tabular & Code: `JetBrains Mono` (`font-mono`, tabular numbers)
+- **Theme**: Dark pit-wall telemetry HUD (`#090D16`, `#0D1117`, `#050814`) with translucent glassmorphic surfaces (`rgba(9, 14, 22, 0.65)` with `backdrop-filter: blur(24px)`).
+- **Wallpaper Integrity & Portal Immersion**: Background images remain fully visible in a translucent, non-intrusive manner without being sliced in half by opaque rectangular containers. The authentication card is centered and frosted, completely free of floating HUD pods or clutter, preserving continuous background immersion.
+- **Typography Tokens (Strictly No Serif Overrides)**:
+  - Display & Headings: `Titillium Web` (`font-display`, uppercase, black/bold font weight).
+  - Telemetry & Speed Gauges: `Roboto Condensed` (`font-telemetry`, condensed high-contrast technical numerals).
+  - Body & UI: `Inter` (`font-sans`).
+  - Tabular & Code: `JetBrains Mono` (`font-mono`, tabular numbers).
+  - **Forbidden**: `Times New Roman` or any serif font family must never override UI or typography tokens.
+- **Clean Formula 1 Broadcast Copy**:
+  - Raw developer comment markers (e.g. `//`) and bracketed debug labels (e.g. `[TEL_01]`, `[MAP_GPS]`, `[WINNER_PROJECTION]`) are strictly forbidden in user-facing UI.
+  - Always use polished, authentic FIA broadcast terminology (e.g., `AI Race Prediction Engine`, `Track Map • Topology & Corner Analysis`, `Projected Race Winner`).
 - **Tire Compound Palette**: Soft (🔴 `#FF1801`), Medium (🟡 `#FFD800`), Hard (⚪ `#FFFFFF`), Inter (🟢 `#3ECF8E`), Wet (🔵 `#0070F3`).
 
 ---
 
 ## 📚 Documentation Reference
 
-For in-depth architectural and engineering specifications, refer to the documentation suite in `docs/`:
+For in-depth architectural and engineering specifications, refer to:
+- `DESIGN.md`: Platform Design System, F1 Typography, Glassmorphism & Color Tokens
 - `docs/01_PRD.md`: Product Requirements & Persona Specifications
 - `docs/02_SRS.md`: System Requirements & Non-Functional SLAs
 - `docs/03_USER_STORIES.md`: User Stories & Gherkin Acceptance Criteria
@@ -102,5 +122,5 @@ For in-depth architectural and engineering specifications, refer to the document
 - `docs/06_API_SPECIFICATION.md`: Endpoints Reference & Status Codes
 - `docs/07_UI_UX_SPECIFICATION.md`: UI/UX Design System & Canvas Rules
 - `docs/08_SECURITY.md`: Auth Architecture, PKCE, CSP & Threat Mitigation
-- `docs/09_TESTING_STRATEGY.md`: Test Suites, Benchmarks & Validation
+- `docs/09_TESTING_STRATEGY.md`: Test Suites, Benchmarks & Validation (68 tests across 10 suites)
 - `docs/10_DEPLOYMENT.md`: Environment Matrix, Vercel & CI/CD Ops

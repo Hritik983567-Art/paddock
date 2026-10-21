@@ -97,9 +97,14 @@ The typography hierarchy is designed for instant scannability under high-stress 
 
 - **Resolution Scaling**: Canvas dimensions dynamically adapt to `window.devicePixelRatio` to prevent blurriness on Retina/High-DPI displays.
 - **Car Node Markers**: 12px circular SVG/Canvas nodes displaying constructor colors and driver three-letter codes (e.g., `HAM`, `VER`, `LEC`).
+- **High-Density Centerline Vectors**: When telemetry is pending or loading, the track renders from `TRACKS_REGISTRY` via `getTrackDefinition(circuitId).path` (200+ smooth spline points) rather than jagged polygons connecting corner apexes.
+- **Upright Sector & Finish Gates**: Gate lines rotate cross-track with heading while label badges (`FINISH`, `S1 SPLIT`, `S2 SPLIT`) remain upright (`rotate(0)`), ensuring badges never invert on leftward or upward straights.
+- **Calibrated Asphalt Stroke Proportions**: Outer asphalt bed is calibrated to `20px`, inner tarmac bed to `15px`, and core sector centerline to `4–5px`, eliminating blobbing at tight chicanes and hairpins.
+- **2x2 Starting Grid Staging**: Grid cars are staged along the start/finish straight tangent vector in clean 2x2 grid boxes with smooth cubic launch interpolation into racing motion.
 
 ### 4.2 2D Vector Circuit Map Canvas & Corner Interaction (`CircuitMap.tsx`)
 - **Static Unified Header Bar**: Replaces floating semi-transparent cards with an anchored top bar displaying circuit name, country/year, official track length (km), turn count, and viewport controls (`+`, `-`, `↺ Reset`).
+- **Canonical Geographic Orientation Fidelity**: Track paths preserve authentic broadcast orientation. Auto-settle is strictly opt-in (`autoSettle: false` default) so tracks are never arbitrarily tilted 90° sideways.
 - **Anti-Jitter SVG Hover Rules**:
   - Elements positioned via SVG `translate(lx, ly)` must **never** declare CSS `transform-box: fill-box` or `transform-origin: center`. Dynamic recalculation of the bounding box during hover alters the transform matrix in Chromium/WebKit, causing rapid position oscillation (shaking).
   - Hover states exclusively interpolate **color properties** (`transition-colors duration-150`, e.g., `stroke-white`, `fill-red-950/80`). Geometry properties (`strokeWidth`, `r`) remain strictly constant during hover.
@@ -188,15 +193,45 @@ flowchart TD
 - **Data Provenance System**:
   - Explicit badge indicators differentiating **Recorded Timing** (authentic FIA transponder data), **Derived Metric** (computed mathematical averages and deltas), and **Simulation / Model** (hypothetical physics-based estimates).
 
+### 4.4 Race Predictor Workstation HUD (`/predictor`)
+- **Winner Projection Hero (`PredictedWinnerBanner.tsx`)**:
+  - Displays the consensus projected race winner with constructor livery badge, official driver portrait, team color accents, and prominent win probability percentage.
+  - Includes confidence interval badge, delta gap to P2 contender, and verified post-qualifying timestamp.
+- **Driver Win Probabilities Matrix (`ProbabilityTable.tsx`)**:
+  - Full 20-driver grid breakdown sorted by consensus win probability.
+  - Interactive probability progress bars for **Win**, **Podium (Top 3)**, **Top 6**, and **Points (Top 10)**.
+  - Responsive collapse: switches to streamlined vertical cards on mobile viewports (<1024px) to eliminate horizontal table truncation.
+- **Performance Determinants & Race Dynamics (`ExplanationsPanel.tsx`)**:
+  - Key performance factor weight bars (qualifying delta, long-run race pace, tyre thermal management, constructor aerodynamic index).
+  - Race Day Dynamics & Stochastic Variables: safety car likelihood, turn-1 collision index, and pit strategy undercut leverage.
+- **Accuracy Calibration Ledger (`PredictionHistoryLedger.tsx`)**:
+  - Historical prediction archive verifying model forecasts against actual official Jolpica race results.
+  - Displays SHA-256 data integrity hashes, predicted winner vs. actual winner badges, and model version identifiers (`v1.0.0`).
+- **Session Countdown & Gating States (`PredictorStatusStates.tsx`)**:
+  - `QualifyingGridInProgress`: Pre-qualifying lockout screen with live countdown timer to official qualifying verification. Zero speculative hallucination before Saturday qualifying concludes.
+  - `TelemetryStreamOffline`: Graceful error recovery with manual refresh controls.
+
+### 4.5 Translucent Glassmorphic Authentication Portal (`AuthGate.tsx`)
+- **Translucent Frosted Glass Architecture**:
+  - Card background: `rgba(9, 14, 22, 0.65)` with `backdrop-filter: blur(24px) saturate(140%)` and `border: 1px solid rgba(255, 255, 255, 0.12)`.
+  - Floating card envelope: `#authGate` container enforces `padding: 28px 16px` and max-height containment, ensuring high-resolution F1 car wallpapers remain fully visible without being sliced or cropped by opaque vertical blocks.
+  - Excised distracting floating HUD pods and debug chips to maintain clean, unobstructed focus on credentials, official FIA branding, and continuous pit-wall wallpaper immersion.
+- **Header Ribbon & Official Broadcast Brand Identity**:
+  - Official FIA Formula 1 World Championship™ identifier, live pit-wall telemetry status badge, and authentic broadcast typography.
+- **Interactive Form Ergonomics**:
+  - High-contrast inputs with translucent glass backgrounds (`rgba(255, 255, 255, 0.04)`), rounded corners (`10px`), and cyan focus glow.
+  - Gradient call-to-action button (`linear-gradient(135deg, #00F0FF 0%, #0088FF 100%)`) with responsive active press transitions.
+  - Local workstation bypass pill (`⚡ 1-Click Access`) cleanly integrated for development environments.
+
 ---
 
 ## 5. Responsive Grid & Breakpoint Strategy
 
 | Breakpoint | Width Range | Layout Behavior |
 | :--- | :--- | :--- |
-| **Mobile (`sm`)** | `< 640px` | Single-column stacked cards. Canvas switches to compact pan mode. Bottom sticky playback controller. |
-| **Tablet (`md`)** | `640px – 1024px`| 2-column layout. Split view between circuit map and corner telemetry specs. |
-| **Desktop (`lg`)**| `1024px – 1536px`| 3-column pit-wall console. Live leaderboards, track canvas, and driver telemetry gauges. |
+| **Mobile (`sm`)** | `< 640px` | Single-column stacked cards. Canvas switches to compact pan mode. Bottom sticky playback controller. Predictor table collapses to driver cards. |
+| **Tablet (`md`)** | `640px – 1024px`| 2-column layout. Split view between circuit map and corner telemetry specs. Strategy Lab ribbon stacks gracefully. |
+| **Desktop (`lg`)**| `1024px – 1536px`| 3-column pit-wall console. Live leaderboards, track canvas, driver telemetry gauges, and side-by-side Predictor matrix. |
 | **Command Center (`2xl`)**| `> 1536px` | Dual-monitor widescreen optimization with multi-driver telemetry overlay panes. |
 
 ---
@@ -210,3 +245,28 @@ flowchart TD
   - `Key M`: Toggle audio/sound telemetry effects.
   - `Key F`: Toggle full-screen command center mode.
 - **Screen Reader Support**: All interactive charts and HUD nodes contain descriptive `aria-label` tags (e.g. `aria-label="Turn 4 Variante del Rettifilo apex speed 75 kilometers per hour"`).
+
+---
+
+## 7. Formula 1 Broadcast Copywriting & Jargon Elimination
+
+To maintain an authentic broadcast command center experience, developer syntax and raw code conventions are strictly prohibited in visible user-facing UI:
+
+| Legacy Developer Syntax (Forbidden) | Official Formula 1 Broadcast Terminology (Required) | Location |
+| :--- | :--- | :--- |
+| `[TEL_01] // APEX PREDICTION ENGINE` | `AI Race Prediction Engine` | `/predictor` Header |
+| `[WINNER_PROJECTION] // P1 MODEL CONSENSUS` | `Projected Race Winner` | `/predictor` Banner |
+| `[TEL_03] // GRID WIN DISTRIBUTION TABLE` | `Driver Win Probabilities` | `/predictor` Table |
+| `[TEL_04] // KEY PERFORMANCE DETERMINANTS` | `Key Performance Factors` | `/predictor` Explanations |
+| `[DYNAMICS_ALERT] // IN-RACE STOCHASTIC VARIABLES` | `Race Day Dynamics & Live Variables` | `/predictor` Explanations |
+| `[HIST_AUDIT] // EMPIRICAL CALIBRATION LEDGER` | `Prediction Accuracy History` | `/predictor` Ledger |
+| `[PRE_SESSION] // GRID FORMATION PENDING` | `Qualifying Grid In Progress` | `/predictor` Countdown State |
+| `[SYS_ALERT] // TELEMETRY FEED OFFLINE` | `Telemetry Stream Offline` | `/predictor` Status State |
+| `[MAP_GPS] // TRACK TOPOLOGY & APEX RECONNAISSANCE` | `Track Map • Topology & Corner Analysis` | `/gallery` & `CircuitMap` |
+| `[ELEV_01]` | `Circuit Elevation & Topography Contour` | `CircuitMap` Elevation |
+| `[CAL_STREAM] // FIA WORLD CHAMPIONSHIP CALENDAR` | `FIA Formula 1 • World Championship Calendar` | `/schedule` Header |
+| `[USR_AUTH] // PIT-WALL ANALYST CREDENTIALS` | `Pilot Profile • Account & Security Credentials` | `/account` Header |
+| `[CONFIG_01] // PILOT IDENTITY` | `Identity • Pilot Profile Settings` | `/account` Profile |
+| `[LIVERY_MATRIX] // CONSTRUCTOR EMBLEM` | `Team Livery • Constructor Themes & Emblem` | `/account` Livery |
+| `[DATA_PRIVACY] // CREDENTIAL PURGE REQUEST` | `Data Privacy • Account Deletion & Data Erasure` | `/account` Deletion |
+| `PADDOCK // TELEMETRY` | `PADDOCK • TELEMETRY` | `AuthGate` & Branding |

@@ -46,7 +46,7 @@ export default function NotFound() {
         </div>
 
         <div className="pt-4 border-t border-slate-800 flex justify-between items-center text-[11px] font-mono text-slate-500">
-          <span>PADDOCK ROUTER // v0.1.0</span>
+          <span>Paddock Navigation System • v0.1.0</span>
           <Link href="/support" className="text-cyan-400 hover:underline">
             Help Center →
           </Link>

@@ -27,6 +27,7 @@ The architecture strictly enforces **Row-Level Security (RLS)** across all publi
 erDiagram
     AUTH_USERS ||--|| PROFILES : "1:1 on auth.users(id)"
     PROFILES ||--o{ TELEMETRY_PRESETS : "1:N has many presets"
+    PROFILES ||--o{ RACE_PREDICTION_SNAPSHOTS : "Audited Snapshots"
 
     AUTH_USERS {
         uuid id PK
@@ -54,6 +55,20 @@ erDiagram
         text driver_2 "Comparison driver code"
         text notes "Pit-wall tactical notes"
         timestamptz created_at "Created timestamp UTC"
+    }
+
+    RACE_PREDICTION_SNAPSHOTS {
+        uuid id PK "Primary Key"
+        text race_id "Season and round identifier"
+        integer season "Championship year"
+        integer round "Championship round"
+        text circuit_id "Circuit slug"
+        text model_version "Predictor version"
+        text input_hash "SHA-256 data hash"
+        text predicted_winner_code "Driver 3-letter code"
+        numeric predicted_winner_prob "Win probability (0..1)"
+        jsonb predictions_payload "Full 20-driver matrix"
+        timestamptz generated_at "Generation UTC"
     }
 ```
 
@@ -88,6 +103,31 @@ Stores saved head-to-head telemetry setups, circuit configurations, and race str
 | `notes` | `TEXT` | `NULLABLE` | — | Engineer notes and observations. |
 | `created_at` | `TIMESTAMPTZ` | `NOT NULL` | `timezone('utc'::text, now())` | Timestamp saved. |
 
+### 3.3 Table: `public.race_prediction_snapshots`
+Stores immutable post-qualifying Grand Prix winner forecasts with strict version audits and SHA-256 data integrity hashes.
+
+| Column | Data Type | Constraints | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| `id` | `UUID` | `PRIMARY KEY` | `gen_random_uuid()` | Unique snapshot identifier. |
+| `race_id` | `TEXT` | `NOT NULL` | — | Season and round identifier (e.g. `2024_19`). |
+| `season` | `INTEGER` | `NOT NULL` | — | Championship season year. |
+| `round` | `INTEGER` | `NOT NULL` | — | Championship round index. |
+| `circuit_id` | `TEXT` | `NOT NULL` | — | Target circuit venue slug. |
+| `circuit_name` | `TEXT` | `NOT NULL` | — | Official circuit name. |
+| `prediction_stage` | `TEXT` | `NOT NULL` | `'after_qualifying'` | Session lifecycle phase. |
+| `model_version` | `TEXT` | `NOT NULL` | — | Predictor ML model version. |
+| `feature_schema_version` | `TEXT` | `NOT NULL` | — | Schema version of feature vector. |
+| `input_hash` | `TEXT` | `NOT NULL` | — | SHA-256 hash of input features. |
+| `qualifying_status` | `TEXT` | `NOT NULL` | `'completed'` | Verification status of qualifying. |
+| `status` | `TEXT` | `NOT NULL` | `'success'` | Forecast calculation status. |
+| `predicted_winner_id` | `TEXT` | `NULLABLE` | — | Jolpica driver identifier. |
+| `predicted_winner_code` | `TEXT` | `NULLABLE` | — | Official driver 3-letter broadcast code. |
+| `predicted_winner_prob` | `NUMERIC(7,4)` | `NULLABLE` | — | Calibrated win probability (0.0000..1.0000). |
+| `predictions_payload` | `JSONB` | `NOT NULL` | — | Full 20-driver probability array. |
+| `explanatory_factors` | `JSONB` | `NULLABLE` | — | Decomposed performance factor weights. |
+| `generated_at` | `TIMESTAMPTZ` | `NOT NULL` | `timezone('utc'::text, now())` | Calculation timestamp. |
+| `created_at` | `TIMESTAMPTZ` | `NOT NULL` | `timezone('utc'::text, now())` | Record insertion timestamp. |
+
 ---
 
 ## 4. Triggers & Stored Procedures
@@ -108,7 +148,7 @@ BEGIN
   );
   RETURN new;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public, auth, pg_temp;
 
 -- Trigger execution
 DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
@@ -134,11 +174,17 @@ CREATE TRIGGER on_auth_user_created
 - **UPDATE**: `CREATE POLICY "Users can update their own telemetry presets." ON public.telemetry_presets FOR UPDATE USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);`
 - **DELETE**: `CREATE POLICY "Users can delete their own telemetry presets." ON public.telemetry_presets FOR DELETE USING (auth.uid() = user_id);`
 
+### `public.race_prediction_snapshots` RLS Rules
+- **SELECT**: `CREATE POLICY "Public read access for race prediction snapshots." ON public.race_prediction_snapshots FOR SELECT USING (true);`
+- **INSERT**: `CREATE POLICY "Service role insert for race prediction snapshots." ON public.race_prediction_snapshots FOR INSERT WITH CHECK (auth.role() = 'service_role' OR auth.role() = 'postgres');`
+- **UPDATE (Disallowed)**: `CREATE POLICY "Prevent updates to immutable race prediction snapshots." ON public.race_prediction_snapshots FOR UPDATE USING (false);`
+- **DELETE (Disallowed)**: `CREATE POLICY "Prevent deletions of historical race prediction snapshots." ON public.race_prediction_snapshots FOR DELETE USING (false);`
+
 ---
 
 ## 6. Indexing & Performance Guidelines
 
-To maintain sub-10ms query execution times as user presets scale:
+To maintain sub-10ms query execution times as user presets and prediction archives scale:
 ```sql
 -- Fast lookup of presets per engineer
 CREATE INDEX IF NOT EXISTS idx_telemetry_presets_user_id 
@@ -147,4 +193,33 @@ CREATE INDEX IF NOT EXISTS idx_telemetry_presets_user_id
 -- Fast circuit-based preset filtering
 CREATE INDEX IF NOT EXISTS idx_telemetry_presets_circuit 
   ON public.telemetry_presets(circuit_id);
+
+-- Fast lookup of prediction snapshots by race and season
+CREATE INDEX IF NOT EXISTS idx_race_pred_snapshots_race_id 
+  ON public.race_prediction_snapshots(race_id);
+
+CREATE INDEX IF NOT EXISTS idx_race_pred_snapshots_season_round 
+  ON public.race_prediction_snapshots(season, round);
+
+CREATE INDEX IF NOT EXISTS idx_race_pred_snapshots_lookup 
+  ON public.race_prediction_snapshots(race_id, model_version, input_hash);
+```
+
+---
+
+## 7. PostgREST 2026 Explicit Table Grants
+
+In compliance with the Supabase PostgREST October 30+ mandate requiring explicit Data API grants on all public tables:
+```sql
+GRANT SELECT ON public.public_profiles TO authenticated, anon;
+GRANT SELECT ON public.profiles TO anon;
+GRANT SELECT, INSERT, UPDATE ON public.profiles TO authenticated;
+GRANT ALL ON public.profiles TO service_role;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.telemetry_presets TO authenticated;
+GRANT ALL ON public.telemetry_presets TO service_role;
+
+GRANT SELECT ON TABLE public.race_prediction_snapshots TO anon;
+GRANT SELECT ON TABLE public.race_prediction_snapshots TO authenticated;
+GRANT ALL ON TABLE public.race_prediction_snapshots TO service_role;
 ```

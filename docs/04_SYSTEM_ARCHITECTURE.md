@@ -88,17 +88,21 @@ graph TD
 
         PROXY["/api/f1/[...path] (5-Min In-Memory Caching Proxy)"]
 
+        PREDICT_API["/api/predictions/race/[raceId] (ML Forecasting Engine)"]
+
     end
 
 
 
-    subgraph SecurityLib ["Server-Only Security Modules ('server-only')"]
+    subgraph SecurityLib ["Server-Only Security & Prediction Modules ('server-only')"]
 
         JWT_ENGINE["Web Crypto HS256 Engine (app/lib/jwt.ts)"]
 
         RATE_LIMIT["Sliding Window In-Memory Rate Limiter (app/lib/rateLimit.ts)"]
 
         GOOGLE_VERIFIER["Google OAuth Claims Verifier (app/lib/googleOAuth.ts)"]
+
+        PREDICT_ENGINE["Race Predictor Engine (racePredictorService.ts & raceResultsService.ts)"]
 
     end
 
@@ -107,6 +111,8 @@ graph TD
     subgraph DataPersistence ["Persistence & Upstream Telemetry Sources"]
 
         SUPABASE_DB["Supabase PostgreSQL (Profiles, Presets, RLS)"]
+
+        PREDICT_AUDIT["Supabase race_predictions_audit (SHA-256 Verified Snapshots)"]
 
         FASTF1_ENGINE["FastF1 Python Engine / Official Telemetry"]
 
@@ -123,6 +129,8 @@ graph TD
     UI -->|Credentials Submission| AUTH_ROUTES
 
     UI -->|Google SSO Redirect| CALLBACK
+
+    UI -->|Race Prediction Queries| PREDICT_API
 
     CANVAS -->|Fetch Circuit Geometry| CIRCUIT_API
 
@@ -157,6 +165,14 @@ graph TD
     VERIFY --> JWT_ENGINE
 
     PROXY -->|5-Min Cache Store| JOLPICA_API
+
+    PREDICT_API --> RATE_LIMIT
+
+    PREDICT_API --> PREDICT_ENGINE
+
+    PREDICT_ENGINE --> PREDICT_AUDIT
+
+    PREDICT_ENGINE --> JOLPICA_API
 
     CIRCUIT_API --> FASTF1_ENGINE
 
@@ -232,41 +248,34 @@ sequenceDiagram
 
 ### 3.2 60fps Vector Replay Engine (`CircuitReplay.tsx`)
 
+The replay engine is designed to eliminate frame jitter, provide high-fidelity track geometry, and prevent garbage collection pauses:
 
+1. **High-Fidelity Track Geometry & Centerline Pipeline**:
+   - When telemetry is pending or initializing, the engine falls back strictly to high-density vector centerline coordinates from `TRACKS_REGISTRY` via `getTrackDefinition(circuitId).path` (200+ smooth spline coordinates), avoiding jagged polygons from isolated turn apexes.
+   - FastF1 Cartesian telemetry coordinates ($X, Y$ where $Y$ points up) invert the vertical axis (`invertY = true`), whereas SVG screen-space registry paths operate natively with `invertY = false`, preventing inverted vertical mirroring.
+   - Auto-settle is strictly opt-in (`autoSettle: false` default), guaranteeing circuits preserve their canonical Formula 1 broadcast orientation.
+   - Cross-track gate lines rotate with track heading while label badges (`FINISH`, `S1 SPLIT`, `S2 SPLIT`) remain upright (`rotate(0)`), ensuring labels never invert on leftward straights.
+   - Asphalt stroke widths are calibrated to 20px asphalt base, 15px inner tarmac, and 5px core sector centerline, preserving sharp definition through tight hairpins without geometric blobbing.
+   - Starting grid cars are staged along the start/finish straight tangent vector in clean 2x2 grid boxes with smooth cubic launch interpolation into racing motion.
 
-The replay engine is designed to eliminate frame jitter and garbage collection pauses:
-
-1. **Mathematical Coordinate Transform (`circuitTransform.ts`)**:
-
-   - Circuits are stored as normalized GPS coordinates $(X, Y)$.
-
-   - The engine computes bounding boxes, applies an aspect-ratio-preserving projection, and scales coordinates to fit the canvas viewport dimensions:
-
+2. **Mathematical Coordinate Transform (`circuitTransform.ts`)**:
+   - The engine computes bounding boxes, applies an aspect-ratio-preserving projection, and scales coordinates to fit canvas viewport dimensions:
    $$\text{ScreenX} = (X - X_{\min}) \times \text{Scale} + \text{OffsetX}$$
-
    $$\text{ScreenY} = (Y - Y_{\min}) \times \text{Scale} + \text{OffsetY}$$
 
-2. **Double-Buffering & Frame Stepping**:
-
+3. **Double-Buffering & Frame Stepping**:
    - `requestAnimationFrame` maintains a timestamp accumulator.
-
    - For any playback multiplier ($1\times, 2\times, 5\times, 10\times$), the engine performs linear interpolation between telemetry keyframes to position car marker dots smoothly without stutter.
 
-3. **Hardware Acceleration**:
-
+4. **Hardware Acceleration**:
    - The canvas element utilizes `will-change: transform` and 2D canvas context optimizations (`imageSmoothingEnabled = true`).
-
-
 
 ### 3.3 2D Circuit Telemetry Map Pipeline (`CircuitMap.tsx` & `circuitTransform.ts`)
 
-
-
 The circuit map vector pipeline handles high-precision rendering of 78 world championship layouts:
 
-1. **Auto-Settle Aspect Ratio Projection**:
-
-   - Upright vertical layouts (`rangeY > rangeX * 1.15`, e.g., Indianapolis, Monza) are automatically tilted 90° clockwise in `computeTransformBounds()` so tracks settle horizontally and fill standard widescreen viewports with zero clipping.
+1. **Canonical Geographic Orientation Fidelity & Opt-In Auto-Settle**:
+   - In `computeTransformBounds()`, circuits preserve their authentic geographic and broadcast orientation by default (`autoSettle: false`). Auto-settle is strictly opt-in, allowing vertically elongated tracks (`rangeY > rangeX * 1.15`, e.g., Indianapolis, Monza) to settle horizontally only when explicitly requested without overriding calibrated broadcast rotations.
 
 2. **5-Pass Iterative Collision Relaxation**:
 
@@ -447,6 +456,37 @@ The Live Telemetry console adheres strictly to an authentic, zero-mock-data pit-
    - `TimingAppData` updates tyre stints and compound age.
 
 
+
+### 3.6 Paddock Race Predictor Subsystem (`/predictor`, `racePredictorService.ts`, `raceResultsService.ts`)
+
+The Race Predictor is an enterprise machine learning forecasting subsystem anchored to verified post-qualifying telemetry:
+
+1. **Strict Post-Qualifying Gate**:
+   - Zero speculative pre-session guessing. If Saturday Qualifying has not concluded (or session results are unverified), `getRacePrediction()` halts and returns `{ status: 'unavailable', error: 'QUALIFYING_NOT_COMPLETED' }`. The frontend renders the authentic countdown lockout component (`QualifyingGridInProgress`).
+
+2. **16-Feature Pipeline**:
+   - Ingests empirical qualifying delta to pole ($\Delta t_{\text{pole}}$), historical rolling form across the prior 5 rounds, 2026 constructor aerodynamic development indices, and circuit-specific layout characteristics (high-downforce vs power-sensitive).
+
+3. **Consensus Probability Normalization**:
+   - Evaluates machine learning classification logits through calibrated softmax layers to compute win, podium (Top 3), top-6, and points (Top 10) probabilities.
+   - Strictly enforces that the sum of all 20 driver win probabilities satisfies $\sum_{i=1}^{20} P(\text{Win}_i) = 1.000$ (100.0%).
+
+4. **Immutable Accuracy Audit Ledger**:
+   - Evaluated forecasts generate a SHA-256 hash of all input features and predictions, persisting immutable snapshot records to Supabase (`race_predictions_audit`) and local disk cache (`data/predictions/`).
+   - `raceResultsService.ts` automatically reconciles audited forecasts against official Jolpica race classifications post-checkered flag to compute empirical model accuracy.
+
+
+
+### 3.7 Translucent Glassmorphic Authentication Portal (`AuthGate.tsx`)
+
+1. **Translucent Frosted Glass Architecture**:
+   - Authentication containers use translucent frosted surfaces (`rgba(9, 14, 22, 0.65)` with `backdrop-filter: blur(24px) saturate(140%)` and `border: 1px solid rgba(255, 255, 255, 0.12)`).
+   - Container padding (`28px 16px`) prevents vertical card stretching, ensuring the high-resolution Ferrari F1 background car remains fully visible without being sliced or bifurcated by opaque card bodies.
+   - Excised distracting floating HUD pods and debug chips to maintain clean, unobstructed focus on credentials, official FIA branding, and continuous pit-wall wallpaper immersion.
+
+2. **Typography & Broadcast Invariants**:
+   - Enforces `Titillium Web` (display headings), `Roboto Condensed` (gauges & telemetry), and `Inter` (body text).
+   - Strictly eliminates legacy serif overrides (`Times New Roman`) and purges raw developer tags (`[TEL_01]`, `//`) across all user-facing screens in favor of authentic Formula 1 broadcast terminology.
 
 ---
 

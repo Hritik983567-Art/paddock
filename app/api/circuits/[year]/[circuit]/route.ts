@@ -66,13 +66,17 @@ export async function GET(
     let circuitData: any = null;
 
     if (fs.existsSync(filePath)) {
-      const fileContent = fs.readFileSync(filePath, 'utf8');
-      const parsed = JSON.parse(fileContent);
-      if (parsed.status !== "DATA UNAVAILABLE") {
-        const innerId = (parsed.circuit?.id || '').toLowerCase();
-        if (!innerId || innerId === circuitId || innerId === altId || innerId.replace(/-/g, '_') === normId) {
-          circuitData = parsed;
+      try {
+        const fileContent = fs.readFileSync(filePath, 'utf8');
+        const parsed = JSON.parse(fileContent);
+        if (parsed.status !== "DATA UNAVAILABLE") {
+          const innerId = (parsed.circuit?.id || '').toLowerCase();
+          if (!innerId || innerId === circuitId || innerId === altId || innerId.replace(/-/g, '_') === normId) {
+            circuitData = parsed;
+          }
         }
+      } catch {
+        // Corrupt or empty file -> fall back to heritage dataset
       }
     }
 

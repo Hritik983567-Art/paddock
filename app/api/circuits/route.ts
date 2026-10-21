@@ -39,18 +39,22 @@ export async function GET() {
         const files = fs.readdirSync(yearDir).filter(f => f.endsWith('.json'));
         for (const file of files) {
           const circuitId = file.replace('.json', '');
-          const filePath = path.join(yearDir, file);
-          const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-          if (data.circuit) {
-            result.push({
-              id: circuitId,
-              name: data.circuit.name,
-              country: data.circuit.country,
-              year: Number(year),
-              cornerCount: data.corners ? data.corners.length : 0,
-              pointCount: data.layout && data.layout.points ? data.layout.points.length : 0,
-              sourceSession: data.sourceSession
-            });
+          try {
+            const filePath = path.join(yearDir, file);
+            const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+            if (data.circuit) {
+              result.push({
+                id: circuitId,
+                name: data.circuit.name,
+                country: data.circuit.country,
+                year: Number(year),
+                cornerCount: data.corners ? data.corners.length : 0,
+                pointCount: data.layout && data.layout.points ? data.layout.points.length : 0,
+                sourceSession: data.sourceSession
+              });
+            }
+          } catch {
+            // Skip invalid or unreadable circuit file
           }
         }
       }

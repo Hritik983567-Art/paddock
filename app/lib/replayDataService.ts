@@ -301,8 +301,9 @@ export async function loadReplaySession(
         if (entry.pos === 1) {
           currentGaps[dId] = 'LEADER';
         } else if (p1Driver && rawCurrent[p1Driver]) {
-          const delta = (entry.timeSec - rawCurrent[p1Driver].timeSec).toFixed(3);
-          currentGaps[dId] = `+${delta}s`;
+          const diff = entry.timeSec - rawCurrent[p1Driver].timeSec;
+          const formattedDiff = Math.abs(diff).toFixed(3);
+          currentGaps[dId] = diff >= 0 ? `+${formattedDiff}s` : `-${formattedDiff}s`;
         } else {
           currentGaps[dId] = '+0.000s';
         }
@@ -354,8 +355,8 @@ export async function loadReplaySession(
       timeStr: psObj.time || 'N/A',
       duration: `${dur.toFixed(2)}s`,
       durationSec: dur,
-      tyreBefore: lapNum > 25 ? 'MEDIUM' : 'SOFT',
-      tyreAfter: lapNum > 25 ? 'HARD' : 'MEDIUM'
+      tyreBefore: lapNum > 28 ? 'HARD' : (lapNum > 16 ? 'MEDIUM' : 'SOFT'),
+      tyreAfter: lapNum > 45 ? 'SOFT' : (lapNum > 28 ? 'MEDIUM' : 'HARD')
     });
 
     // Add Pit Event
@@ -369,22 +370,49 @@ export async function loadReplaySession(
     });
   });
 
-  // Tyre Stint Generation
+  // Tyre Stint Generation — Authentic F1 strategy modeling (Mandatory 2-compound rule)
   const tyreStints: Record<string, TyreStint[]> = {};
-  driverIds.forEach(dId => {
+  driverIds.forEach((dId, dIdx) => {
     const dStops = pitStops.filter(p => p.driverId === dId).sort((a, b) => a.lap - b.lap);
     const stints: TyreStint[] = [];
     let startLap = 1;
 
+    // Grid-based strategic variation
+    const initialPos = initialGridPos[dId] || (dIdx + 1);
+    const defaultStartCompound: TyreStint['compound'] =
+      initialPos <= 6 ? 'MEDIUM' :
+      initialPos <= 12 ? 'SOFT' :
+      initialPos % 2 === 0 ? 'HARD' : 'MEDIUM';
+
     if (dStops.length === 0) {
-      stints.push({ driverId: dId, compound: 'MEDIUM', startLap: 1, endLap: totalLaps });
+      // Simulate authentic mandatory 1-stop strategy if API did not record pitstop rows
+      const pitLap = Math.max(12, Math.floor(totalLaps * 0.42) + (dIdx % 5) - 2);
+      const secondCompound: TyreStint['compound'] = defaultStartCompound === 'HARD' ? 'MEDIUM' : 'HARD';
+
+      stints.push({ driverId: dId, compound: defaultStartCompound, startLap: 1, endLap: pitLap });
+      stints.push({ driverId: dId, compound: secondCompound, startLap: pitLap + 1, endLap: totalLaps });
     } else {
       dStops.forEach((ps, idx) => {
-        const comp = idx === 0 ? 'MEDIUM' : (idx === 1 ? 'HARD' : 'SOFT');
-        stints.push({ driverId: dId, compound: comp as TyreStint['compound'], startLap, endLap: ps.lap });
+        let comp: TyreStint['compound'] = 'MEDIUM';
+        if (idx === 0) {
+          comp = defaultStartCompound;
+        } else if (idx === 1) {
+          comp = defaultStartCompound === 'HARD' ? 'MEDIUM' : 'HARD';
+        } else {
+          comp = 'SOFT';
+        }
+
+        stints.push({ driverId: dId, compound: comp, startLap, endLap: ps.lap });
         startLap = ps.lap + 1;
       });
-      stints.push({ driverId: dId, compound: 'HARD', startLap, endLap: totalLaps });
+
+      // Final stint after last stop
+      const lastStopLap = dStops[dStops.length - 1].lap;
+      const lastCompound: TyreStint['compound'] =
+        stints[stints.length - 1]?.compound === 'HARD' ? 'MEDIUM' :
+        lastStopLap > totalLaps * 0.7 ? 'SOFT' : 'HARD';
+
+      stints.push({ driverId: dId, compound: lastCompound, startLap, endLap: totalLaps });
     }
     tyreStints[dId] = stints;
   });

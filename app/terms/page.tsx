@@ -9,7 +9,7 @@ export default function TermsOfServicePage() {
       <div className="p-8 sm:p-10 rounded-3xl bg-slate-900/80 border border-slate-800 shadow-2xl backdrop-blur-xl space-y-6">
         <div className="border-b border-slate-800 pb-6">
           <span className="px-3 py-1 bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 rounded-full font-mono text-[10px] font-black uppercase tracking-widest inline-block mb-3">
-            LEGAL DISCLOSURE // TERMS OF SERVICE
+            Legal Disclosure • Terms of Service
           </span>
           <h1 className="text-2xl sm:text-3xl font-black font-mono tracking-tight text-white uppercase">
             Terms of Service

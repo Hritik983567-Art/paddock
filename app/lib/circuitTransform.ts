@@ -106,7 +106,8 @@ export function computeTransformBounds(
   canvasWidth: number = 1000,
   canvasHeight: number = 700,
   padding: number = 60,
-  invertY: boolean = true
+  invertY: boolean = true,
+  autoSettle: boolean = false
 ): TransformBounds {
   const validPoints = (rawPoints || []).filter(pt => typeof pt?.x === 'number' && !isNaN(pt.x) && typeof pt?.y === 'number' && !isNaN(pt.y));
 
@@ -143,10 +144,9 @@ export function computeTransformBounds(
   let rangeX = maxX - minX || 1;
   let rangeY = maxY - minY || 1;
 
-  // Auto-settle: If circuit is upright (rangeY > rangeX * 1.15) on a landscape (1000x700) canvas,
-  // tilt it by 90 degrees so it lies horizontally and settles cleanly into the canvas!
-  if (rangeY > rangeX * 1.15) {
-    const testRot = (rotationDeg + 90) % 360;
+  // Auto-settle: Only when explicitly requested and without calibrated broadcast rotation
+  if (autoSettle && (!rotationDeg || rotationDeg === 0) && rangeY > rangeX * 1.25) {
+    const testRot = 90;
     let tMinX = Infinity, tMaxX = -Infinity, tMinY = Infinity, tMaxY = -Infinity;
     for (const pt of validPoints) {
       const rot = rotatePoint(pt.x, pt.y, centerX, centerY, testRot);
@@ -513,5 +513,111 @@ export function enrichCornerDetails(c: TransformedCorner, targetCircuit: string,
     images: c.images || [],
     technical,
     racing
+  };
+}
+
+export interface SimTelemetryResult {
+  speed: number;
+  throttle: number;
+  brake: number;
+  gear: string;
+  gForce: string;
+  lapTimeStr: string;
+}
+
+export function calculateSimTelemetry(
+  simProgress: number,
+  transformedPoints: TransformedPoint[] | null | undefined,
+  transformedCorners: TransformedCorner[] | null | undefined,
+  speedSegments: Array<{ speed: number }> | null | undefined
+): SimTelemetryResult | null {
+  if (!transformedPoints || transformedPoints.length < 2) return null;
+  const pts = transformedPoints;
+  const totalPts = pts.length;
+  const safeProgress = Math.max(0, Math.min(0.9999, isNaN(simProgress) ? 0 : simProgress));
+  const curIdx = Math.floor(safeProgress * (totalPts - 1));
+  const segCount = speedSegments?.length || 1;
+  const segIdx = Math.floor((curIdx / Math.max(1, totalPts)) * segCount);
+  const speed = speedSegments?.[segIdx]?.speed || 240;
+
+  const sAhead1 = speedSegments?.[(segIdx + 1) % segCount]?.speed ?? speed;
+  const sAhead2 = speedSegments?.[(segIdx + 2) % segCount]?.speed ?? speed;
+  const sAhead3 = speedSegments?.[(segIdx + 3) % segCount]?.speed ?? speed;
+  const minAhead = Math.min(sAhead1, sAhead2, sAhead3);
+  const decelerationRequired = speed - minAhead;
+
+  let distToNextCorner = Infinity;
+  let nextCorner: TransformedCorner | null = null;
+  let distFromLastCorner = Infinity;
+  let lastCorner: TransformedCorner | null = null;
+
+  if (transformedCorners && transformedCorners.length > 0) {
+    for (const c of transformedCorners) {
+      const cIdx = (c as any).trackPointIndex ?? 0;
+      const ahead = (cIdx - curIdx + totalPts) % totalPts;
+      const behind = (curIdx - cIdx + totalPts) % totalPts;
+      if (ahead < distToNextCorner) {
+        distToNextCorner = ahead;
+        nextCorner = c;
+      }
+      if (behind < distFromLastCorner) {
+        distFromLastCorner = behind;
+        lastCorner = c;
+      }
+    }
+  }
+
+  const brakingWindow = Math.max(6, Math.round(totalPts * 0.06));
+  const exitWindow = Math.max(5, Math.round(totalPts * 0.04));
+  const nextApexSpeed = nextCorner?.speed_kph || 135;
+  const approachingCornerNeedsBrake = Boolean(nextCorner && distToNextCorner <= brakingWindow && (speed - nextApexSpeed) > 18);
+  const isDecelerating = decelerationRequired > 12;
+
+  let brake = 0;
+  let throttle = 100;
+
+  if ((approachingCornerNeedsBrake || isDecelerating) && distToNextCorner > 2) {
+    const progressInBraking = Math.min(1, Math.max(0, 1 - (distToNextCorner / brakingWindow)));
+    if (progressInBraking < 0.6) {
+      brake = Math.min(100, Math.max(70, Math.round(75 + (decelerationRequired / 100) * 25)));
+    } else {
+      const trailFactor = (1 - progressInBraking) / 0.4;
+      brake = Math.round(Math.max(10, trailFactor * 80));
+    }
+    throttle = 0;
+  } else if (distFromLastCorner <= exitWindow && speed < 265) {
+    const exitProgress = Math.min(1, Math.max(0, distFromLastCorner / exitWindow));
+    brake = 0;
+    throttle = Math.round(30 + exitProgress * 70);
+  } else if (speed < 180 && distToNextCorner <= 3) {
+    brake = 0;
+    throttle = 25;
+  } else {
+    brake = 0;
+    throttle = speed > 270 ? 100 : Math.round(Math.max(50, (speed / 300) * 100));
+  }
+
+  const gear = speed < 90 ? '2nd' : speed < 140 ? '3rd' : speed < 190 ? '4th' : speed < 240 ? '5th' : speed < 280 ? '6th' : speed < 315 ? '7th' : '8th';
+  const gForce = brake > 30
+    ? `-${(3.2 + (brake / 100) * 2.2).toFixed(1)} G`
+    : (distToNextCorner <= 4 || distFromLastCorner <= 4)
+      ? `-${(2.8 + Math.min(2.0, speed / 140)).toFixed(1)} G`
+      : speed > 270
+        ? '1.2 G'
+        : '2.1 G';
+
+  const totalLapSec = 82;
+  const curSec = safeProgress * totalLapSec;
+  const mins = Math.floor(curSec / 60);
+  const secs = (curSec % 60).toFixed(2).padStart(5, '0');
+  const lapTimeStr = `${mins}:${secs}`;
+
+  return {
+    speed,
+    throttle,
+    brake,
+    gear,
+    gForce,
+    lapTimeStr
   };
 }

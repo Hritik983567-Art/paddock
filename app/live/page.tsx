@@ -1081,7 +1081,7 @@ export default function LiveTelemetryPage() {
             <div className="relative z-10 max-w-2xl mx-auto space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono text-cyan-400">
                 <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-                <span>OFFICIAL TIMETABLE // TELEMETRY STANDBY</span>
+                <span>OFFICIAL TIMETABLE • TELEMETRY STANDBY</span>
               </div>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-display tracking-tight text-white uppercase">

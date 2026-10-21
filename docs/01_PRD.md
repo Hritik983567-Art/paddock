@@ -54,6 +54,11 @@ pie title Target User Demographics
 - **Pain Point**: Switching between multiple disparate websites to calculate lap-by-lap delta gaps and pit stop timings.
 - **Paddock Feature**: `/teammates` and `/replay` with stint breakdowns, tire compound life, and position history charts.
 
+### Persona C: "The Predictive Race Analyst" (Marcus, 28)
+- **Goal**: Assess post-qualifying race winner probabilities, podium distributions, and tire thermal risks before lights-out on Sunday.
+- **Pain Point**: Speculative fan forums and uncalibrated betting odds that lack empirical telemetry backing or mathematical grounding.
+- **Paddock Feature**: `/predictor` with 16-feature post-qualifying ML model, driver probability distributions, and immutable SHA-256 accuracy calibration ledger.
+
 ---
 
 ## 4. Product Scope & Core Modules
@@ -61,19 +66,20 @@ pie title Target User Demographics
 | Module Route | Feature Name | Core Functionality |
 | :--- | :--- | :--- |
 | **`/gallery`** | **Circuit Reconnaissance** | Vector maps for 78 circuits with interactive turn selection, entry/apex/exit speeds (km/h), lateral G-forces, and verified apex photography. |
-| **`/replay`** | **60fps Race Replay Engine** | Hardware-accelerated HTML5 Canvas replay with timeline scrubbing (1x–10x), driver telemetry gauges (speed, RPM, DRS, ERS), and event feeds. |
+| **`/predictor`** | **AI Race Prediction Engine** | Calibrated post-qualifying machine-learning forecasting engine predicting race winners, podium probability distributions, and race dynamics with an immutable SHA-256 accuracy ledger and pre-session lockout gate. |
+| **`/replay`** | **60fps Race Replay Engine** | Hardware-accelerated HTML5 Canvas replay with high-density centerline track vectors, 2x2 starting grid staging, timeline scrubbing (1x–10x), driver telemetry gauges (speed, RPM, DRS, ERS), and event feeds. |
 | **`/teammates`** | **H2H Rivalry Portal** | Constructor matchup comparison cards, qualifying delta curves, points progression, race-by-race tables, and reliability logs. |
 | **`/lab`** | **F1 Strategy Lab & Tactical Cockpit** | Clean Tabbed Cockpit suite: Field Pit Stop Review & undercut simulation, discrete Race Pace & Delta traces (unshifted lap alignment), Tyre Stint longevity & degradation slopes, and Circuit Demands DNA. |
 | **`/live`** | **Live Telemetry Console** | Real-time F1 timing tower, micro-sector splits (S1/S2/S3), trap speeds, tyre stints, and FIA Race Control messages strictly during official competitive sessions via SignalR proxy with authentic standby states and zero mock data. |
 | **`/tracker`** | **Live GPS Telemetry Tracker** | Real-time driver positioning along track vectors with sector splits and gap-to-leader timers. |
-| **`/auth`** | **Enterprise Auth Gate** | Mandatory email verification gate, Supabase PKCE login/signup, Google OAuth 2.0 with account picker, and password recovery. |
+| **`/auth`** | **Translucent Pit-Wall Auth Gate** | Centered frosted-glass authentication card floating over full-screen F1 car wallpapers without visual slicing or clutter, Supabase PKCE login/signup, Google OAuth 2.0, and official F1 typography. |
 
 ---
 
 ## 5. Non-Functional Requirements Summary
 
 - **Performance**: 60fps continuous render loop on HTML5 Canvas; static pages compiled in under 1 second; API responses cached for 5 minutes.
-- **Design & Ergonomics**: Dark-mode high-contrast pit-wall telemetry HUD styling with team liveries and official tire compound color coding.
+- **Design & Ergonomics**: Dark-mode high-contrast pit-wall telemetry HUD styling with translucent frosted glass (`backdrop-filter: blur(24px)`), team liveries, and official tire compound color coding.
 - **Security**: Strict Content Security Policy (no `unsafe-eval`), server-only JWT crypto, HttpOnly cookies, zero token leakage in client `localStorage`.
 - **Compliance**: Fully responsive layout from 360px mobile screens to 4K ultra-wide command center monitors; WCAG AA contrast standards.
 
@@ -85,6 +91,7 @@ pie title Target User Demographics
 2. **API Latency**: Median response time `<250ms` for cached circuit geometries and `<1200ms` for cold upstream telemetry proxy calls.
 3. **Session Retention**: Average user pit-wall session duration exceeding 8 minutes.
 4. **Security Integrity**: 0 unauthenticated data leaks, 100% pass rate on CSRF, XSS, and credential stuffing defense audits.
+5. **Prediction Quality**: 100.0% consensus probability normalization constraint across all 20 drivers with verified post-qualifying gating.
 
 ---
 
@@ -101,14 +108,20 @@ flowchart LR
     subgraph P2["Phase 2 - Telemetry & Strategy"]
         B1["78 Circuit Reconnaissance"]
         B2["Clean Tabbed Strategy Lab Cockpit"]
-        B3["25-Suite Benchmark & Verification Tests"]
+        B3["Zero Mock Data Invariant"]
         B1 --> B2 --> B3
     end
-    subgraph P3["Phase 3 - Horizon"]
-        C1["Sub-Second SignalR WebSockets"]
-        C2["Multi-Car Real-Time Physics Simulator"]
-        C1 --> C2
+    subgraph P3["Phase 3 - Predictor & Design System (v1.1)"]
+        C1["Post-Qualifying Race Predictor"]
+        C2["Translucent Glassmorphic Portal"]
+        C3["68 Automated Test Baseline"]
+        C1 --> C2 --> C3
+    end
+    subgraph P4["Phase 4 - Horizon (v1.2)"]
+        D1["Sub-Second SignalR Cloud Proxy"]
+        D2["Multi-Car Real-Time Physics Simulator"]
+        D1 --> D2
     end
 
-    P1 --> P2 --> P3
+    P1 --> P2 --> P3 --> P4
 ```

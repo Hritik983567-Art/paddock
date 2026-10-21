@@ -148,20 +148,20 @@ export const ReplayTimeline: React.FC<ReplayTimelineProps> = ({
 
         {/* Speed Toggles */}
         <div className="flex flex-wrap items-center justify-center gap-1 bg-[#0D121F] p-1 border border-slate-700/80 rounded-lg">
-          <span className="text-[10px] font-mono font-bold text-slate-400 px-1.5 uppercase">SPEED:</span>
+          <span className="text-[10px] font-mono font-bold text-slate-400 px-1.5 uppercase">PACE:</span>
           {[
-            { label: '0.25x', speedMs: 3200 },
-            { label: '0.5x', speedMs: 1600 },
-            { label: '1x', speedMs: 800 },
-            { label: '2x', speedMs: 400 },
-            { label: '4x', speedMs: 200 }
+            { label: '0.5x Slow', speedMs: 8000 },
+            { label: '1x Normal', speedMs: 4000 },
+            { label: '2x Fast', speedMs: 2000 },
+            { label: '4x Turbo', speedMs: 1000 },
+            { label: '8x Scan', speedMs: 500 }
           ].map(s => (
             <button
               key={s.label}
               onClick={() => onSelectSpeed(s.speedMs)}
               className={`px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] font-mono font-bold rounded transition-all ${
                 speed === s.speedMs
-                  ? 'bg-cyan-500 text-slate-950 font-black'
+                  ? 'bg-cyan-500 text-slate-950 font-black shadow-[0_0_8px_rgba(6,182,212,0.5)]'
                   : 'text-slate-400 hover:text-white'
               }`}
             >

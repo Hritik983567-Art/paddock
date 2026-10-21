@@ -10,6 +10,7 @@ import { usePathname } from 'next/navigation';
 
 import OfflineState from './states/OfflineState';
 import { getAvatarPreset } from '../lib/avatarPresets';
+import ConstructorLogo from './ConstructorLogo';
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
@@ -76,6 +77,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     { name: 'Replay', path: '/replay' },
     { name: 'News', path: '/news' },
     { name: 'Strategy Lab', path: '/lab' },
+    { name: 'Race Predictor', path: '/predictor' },
     { name: 'Race Tracker', path: '/tracker' },
     { name: 'Live Telemetry', path: '/live' },
     { name: 'Account Settings', path: '/account' },
@@ -99,118 +101,140 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
         />
       )}
 
-      <header className="top-header">
-        <div className="top-header-brand-row">
-          <button 
-            className="mobile-menu-btn"
-            aria-label="Toggle Navigation Menu"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? '✕' : '☰'}
-          </button>
-          
-          <div className="brand">
-            <span className="dot"></span>PADDOCK<small>ANALYTICS &amp; RACE TRACKER</small>
+      {/* Sticky Navigation Header & Phone Top Strip Bar */}
+      <div className="sticky top-0 z-50 w-full">
+        <header className="top-header">
+          <div className="top-header-brand-row">
+            <button 
+              className="mobile-menu-btn"
+              aria-label="Toggle Navigation Menu"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? '✕' : '☰'}
+            </button>
+            
+            <div className="brand">
+              <span className="dot"></span>PADDOCK<small>ANALYTICS &amp; RACE TRACKER</small>
+            </div>
+
+            {/* Stitch Live Telemetry Stream Badges */}
+            <div className="hidden lg:flex items-center gap-2 ml-4 pl-4 border-l border-white/10">
+              <span className="data-chip px-2.5 py-1 text-[10px] text-emerald-300 font-bold border-emerald-500/30 flex items-center gap-1.5 shadow-sm">
+                <span className="stitch-live-dot"></span>
+                <span>240 FPS (4ms)</span>
+              </span>
+              <span className="data-chip px-2.5 py-1 text-[10px] text-cyan-300 font-bold border-cyan-500/30 hidden xl:inline-flex shadow-sm">
+                PIT-WALL TELEMETRY
+              </span>
+              <span className="data-chip px-2.5 py-1 text-[10px] text-amber-300 font-bold border-amber-500/30 hidden 2xl:inline-flex shadow-sm">
+                FIA GREEN FLAG
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div className="header-controls">
-          <label htmlFor="seasonSelect" className="sr-only" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>Select F1 Season</label>
-          <select 
-            id="seasonSelect" 
-            title="Season"
-            aria-label="Select F1 Season"
-            value={selectedSeason}
-            onChange={(e) => setSelectedSeason(e.target.value)}
-            className="max-w-[110px] sm:max-w-none truncate"
-          >
-            <option value="2026">2026 (Current Season)</option>
-            {seasons.filter(y => String(y) !== '2026').map(y => (
-              <option key={y} value={y.toString()}>{y}</option>
-            ))}
-          </select>
-
-          <label htmlFor="themeSelect" className="sr-only" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>Select F1 Team Theme</label>
-          <select 
-            id="themeSelect" 
-            title="F1 Team Theme"
-            aria-label="Select F1 Team Theme"
-            value={theme === 'default' ? 'checkered' : theme}
-            onChange={(e) => setTheme(e.target.value as F1Theme)}
-            style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}
-            className="max-w-[125px] sm:max-w-none truncate"
-          >
-            <option value="checkered">🏁 Checkered Flag</option>
-            <option value="ferrari">🔴 Ferrari</option>
-            <option value="redbull">🔵 Red Bull</option>
-            <option value="mercedes">🟢 Mercedes</option>
-            <option value="mclaren">🟠 McLaren</option>
-            <option value="aston">💚 Aston Martin</option>
-            <option value="alpine">🔹 Alpine</option>
-            <option value="haas">⚪ Haas</option>
-            <option value="racingbulls">⚡ Racing Bulls</option>
-            <option value="sauber">🟩 Sauber</option>
-            <option value="williams">🟦 Williams</option>
-          </select>
-
-          {user && (
-            <Link 
-              href="/account"
-              className="flex items-center gap-2 px-2.5 py-1 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 hover:border-cyan-400 rounded-lg text-xs font-mono transition-all shadow-md group"
-              title="View Account Settings & Profile"
+          <div className="header-controls">
+            <label htmlFor="seasonSelect" className="sr-only" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>Select F1 Season</label>
+            <select 
+              id="seasonSelect" 
+              title="Season"
+              aria-label="Select F1 Season"
+              value={selectedSeason}
+              onChange={(e) => setSelectedSeason(e.target.value)}
+              className="max-w-[110px] sm:max-w-none truncate"
             >
-              <div className={`w-7 h-7 rounded-md ${getAvatarPreset(activeAvatarId).bgGradient} ${getAvatarPreset(activeAvatarId).borderColor} border flex items-center justify-center font-black text-[10px] transition-all overflow-hidden shrink-0 shadow relative`}>
-                {getAvatarPreset(activeAvatarId).photoUrl ? (
-                  <img
-                    src={getAvatarPreset(activeAvatarId).photoUrl}
-                    alt="Pilot Avatar"
-                    className="w-full h-full object-cover object-top"
-                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                  />
-                ) : null}
-                <span className={`font-black text-white text-[9px] drop-shadow ${getAvatarPreset(activeAvatarId).photoUrl ? 'hidden' : ''}`}>
-                  {getAvatarPreset(activeAvatarId).badgeText || (user.name ? user.name.slice(0, 2).toUpperCase() : 'F1')}
-                </span>
-              </div>
-              <div className="hidden sm:block text-left">
-                <span className="font-black text-white group-hover:text-cyan-300 block text-[11px] leading-tight transition-colors">{user.name || user.username}</span>
-                <span className="text-[9px] text-purple-400 block">{user.role || 'Paddock Verified Engineer'}</span>
-              </div>
-            </Link>
-          )}
+              <option value="2026">2026 (Current Season)</option>
+              {seasons.filter(y => String(y) !== '2026').map(y => (
+                <option key={y} value={y.toString()}>{y}</option>
+              ))}
+            </select>
 
-          <button 
-            id="logoutLink" 
-            onClick={logout} 
-            aria-label="Log out of Paddock"
-            className="px-3 py-1.5 bg-red-950/80 hover:bg-red-900 border border-red-700 text-red-300 font-mono font-black text-xs rounded-lg transition-all shadow-md flex items-center gap-1"
-          >
-            <span>LOGOUT</span>
-            <span>🚪</span>
-          </button>
-        </div>
-      </header>
+            <div className="flex items-center gap-1.5 px-2 bg-[#0D121F] border border-slate-700/80 rounded-lg shadow-inner h-[32px] sm:h-[34px]">
+              <div className="w-5 h-5 flex items-center justify-center shrink-0" title={`${(theme === 'default' ? 'checkered' : theme).toUpperCase()} Company Symbol`}>
+                <ConstructorLogo themeId={theme} size={18} />
+              </div>
+              <label htmlFor="themeSelect" className="sr-only">Select F1 Team Theme</label>
+              <select 
+                id="themeSelect" 
+                title="F1 Team Theme"
+                aria-label="Select F1 Team Theme"
+                value={theme === 'default' ? 'checkered' : theme}
+                onChange={(e) => setTheme(e.target.value as F1Theme)}
+                style={{ fontFamily: 'var(--font-mono)', fontSize: '12px' }}
+                className="bg-transparent border-0 text-slate-200 focus:outline-none max-w-[120px] sm:max-w-none truncate cursor-pointer py-1"
+              >
+                <option value="checkered" className="bg-[#0B0E14] text-white">🏁 Checkered Flag</option>
+                <option value="ferrari" className="bg-[#0B0E14] text-white">Scuderia Ferrari</option>
+                <option value="redbull" className="bg-[#0B0E14] text-white">Red Bull Racing</option>
+                <option value="mercedes" className="bg-[#0B0E14] text-white">Mercedes-AMG</option>
+                <option value="mclaren" className="bg-[#0B0E14] text-white">McLaren F1</option>
+                <option value="aston" className="bg-[#0B0E14] text-white">Aston Martin</option>
+                <option value="alpine" className="bg-[#0B0E14] text-white">BWT Alpine</option>
+                <option value="haas" className="bg-[#0B0E14] text-white">Haas F1</option>
+                <option value="racingbulls" className="bg-[#0B0E14] text-white">Racing Bulls</option>
+                <option value="sauber" className="bg-[#0B0E14] text-white">Stake Sauber</option>
+                <option value="williams" className="bg-[#0B0E14] text-white">Williams Racing</option>
+              </select>
+            </div>
 
-      {/* Mobile Quick Navigation Strip (visible on mobile web & tablets) */}
-      <div className="mobile-subnav-strip">
-        {navLinks.map(link => {
-          const isActive = pathname === link.path;
-          return (
-            <Link 
-              key={link.path} 
-              href={link.path} 
-              className={`mobile-subnav-pill ${isActive ? 'active' : ''}`}
+            {user && (
+              <Link 
+                href="/account"
+                className="flex items-center gap-2 px-2.5 py-1 bg-[#0D121F] hover:bg-slate-800 border border-slate-700 hover:border-cyan-400 rounded-lg text-xs font-mono transition-all shadow-md group"
+                title="View Account Settings & Profile"
+              >
+                <div className={`w-7 h-7 rounded-md ${getAvatarPreset(activeAvatarId).bgGradient} ${getAvatarPreset(activeAvatarId).borderColor} border flex items-center justify-center font-black text-[10px] transition-all overflow-hidden shrink-0 shadow relative`}>
+                  {getAvatarPreset(activeAvatarId).photoUrl ? (
+                    <img
+                      src={getAvatarPreset(activeAvatarId).photoUrl}
+                      alt="Pilot Avatar"
+                      className="w-full h-full object-cover object-top"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                  ) : null}
+                  <span className={`font-black text-white text-[9px] drop-shadow ${getAvatarPreset(activeAvatarId).photoUrl ? 'hidden' : ''}`}>
+                    {getAvatarPreset(activeAvatarId).badgeText || (user.name ? user.name.slice(0, 2).toUpperCase() : 'F1')}
+                  </span>
+                </div>
+                <div className="hidden sm:block text-left">
+                  <span className="font-black text-white group-hover:text-cyan-300 block text-[11px] leading-tight transition-colors">{user.name || user.username}</span>
+                  <span className="text-[9px] text-purple-400 block">{user.role || 'Paddock Verified Engineer'}</span>
+                </div>
+              </Link>
+            )}
+
+            <button 
+              id="logoutLink" 
+              onClick={logout} 
+              aria-label="Log out of Paddock"
+              className="px-3 py-1.5 bg-red-950/80 hover:bg-red-900 border border-red-700 text-red-300 font-mono font-black text-xs rounded-lg transition-all shadow-md flex items-center gap-1"
             >
-              <span className={isActive ? 'f1-text-gradient font-black' : ''}>{link.name}</span>
-            </Link>
-          );
-        })}
+              <span>LOGOUT</span>
+              <span>🚪</span>
+            </button>
+          </div>
+        </header>
+
+        {/* Mobile Quick Navigation Strip (visible ONLY on phone, hidden on laptop & tablet) */}
+        <div className="mobile-subnav-strip">
+          {navLinks.map(link => {
+            const isActive = pathname === link.path;
+            return (
+              <Link 
+                key={link.path} 
+                href={link.path} 
+                className={`mobile-subnav-pill ${isActive ? 'active' : ''}`}
+              >
+                <span className={isActive ? 'f1-text-gradient font-black' : ''}>{link.name}</span>
+              </Link>
+            );
+          })}
+        </div>
       </div>
 
       <aside className={`side-nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         <div className="side-nav-head">
           <div className="side-nav-title">TIMING TOWER</div>
-          <div className="side-nav-sub">LIVE TELEMETRY // SEASON</div>
+          <div className="side-nav-sub">Live Telemetry &amp; Timing</div>
         </div>
         <nav className="tabs">
           {navLinks.map(link => {
@@ -229,7 +253,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
         </nav>
       </aside>
 
-      <main className="wrap">
+      <main className="wrap relative z-10">
         {children}
 
         {/* Data Source & Legal Attribution Footer */}

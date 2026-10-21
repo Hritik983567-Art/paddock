@@ -54,7 +54,7 @@ export default function ReplayPage() {
   // Playback & Interactive Selection States
   const [currentLap, setCurrentLap] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [speed, setSpeed] = useState(800); // Default to Normal 800ms per lap
+  const [speed, setSpeed] = useState(4000); // Default to comfortable 4.0s per lap
 
   const [selectedDriverId, setSelectedDriverId] = useState<string | null>(null);
   const [driverAId, setDriverAId] = useState<string | null>(null);
@@ -222,11 +222,11 @@ export default function ReplayPage() {
       } else if (e.key === 'r' || e.key === 'R') {
         stopPlayback();
         setCurrentLap(1);
-      } else if (e.key === '1') setSpeed(3200);
-      else if (e.key === '2') setSpeed(1600);
-      else if (e.key === '3') setSpeed(800);
-      else if (e.key === '4') setSpeed(400);
-      else if (e.key === '5') setSpeed(200);
+      } else if (e.key === '1') setSpeed(8000); // 0.5x Slow
+      else if (e.key === '2') setSpeed(4000); // 1x Normal
+      else if (e.key === '3') setSpeed(2000); // 2x Fast
+      else if (e.key === '4') setSpeed(1000); // 4x Turbo
+      else if (e.key === '5') setSpeed(500);  // 8x Scan
       else if (e.code === 'Escape') {
         setShowShortcutsModal(false);
         setIsFullscreen(false);
@@ -248,6 +248,7 @@ export default function ReplayPage() {
   const isRaceMode = sessionData && sessionData.mode === 'race';
   const raceData = isRaceMode ? (sessionData as RaceReplaySessionData) : null;
   const currentLapData = raceData ? raceData.laps.find(l => l.lapNumber === currentLap) || raceData.laps[0] : null;
+  const prevLapData = raceData && currentLap > 1 ? raceData.laps.find(l => l.lapNumber === currentLap - 1) || null : null;
 
   return (
     <section className="min-h-screen bg-[#050810] text-slate-100 p-4 md:p-6 font-sans">
@@ -316,6 +317,7 @@ export default function ReplayPage() {
                   currentLap={currentLap}
                   totalLaps={raceData ? raceData.totalLaps : 1}
                   positions={currentLapData ? currentLapData.positions : {}}
+                  prevPositions={prevLapData ? prevLapData.positions : {}}
                   lapTimes={currentLapData ? currentLapData.lapTimes : {}}
                   gaps={currentLapData ? currentLapData.gaps : {}}
                   driverMeta={sessionData.driverMeta}
@@ -334,6 +336,8 @@ export default function ReplayPage() {
                   onToggleMiniMap={() => setIsMiniMap(!isMiniMap)}
                   isFullscreen={isFullscreen}
                   onToggleFullscreen={() => setIsFullscreen(!isFullscreen)}
+                  isPlaying={isPlaying}
+                  speed={speed}
                 />
               </div>
 
@@ -391,11 +395,19 @@ export default function ReplayPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <TelemetryPanel
                   driverId={selectedDriverId}
+                  driverIds={raceData.driverIds}
                   driverMeta={raceData.driverMeta}
+                  onSelectDriver={(id) => {
+                    setSelectedDriverId(id);
+                    if (!driverAId) setDriverAId(id);
+                    else if (!driverBId && id !== driverAId) setDriverBId(id);
+                  }}
                   currentLap={currentLap}
+                  totalLaps={raceData.totalLaps}
                   position={selectedDriverId && currentLapData ? currentLapData.positions[selectedDriverId] : null}
                   lapTime={selectedDriverId && currentLapData ? currentLapData.lapTimes[selectedDriverId] : null}
                   gap={selectedDriverId && currentLapData ? currentLapData.gaps[selectedDriverId] || 'N/A' : 'N/A'}
+                  isPlaying={isPlaying}
                 />
 
                 <DriverComparison
@@ -442,6 +454,13 @@ export default function ReplayPage() {
                 driverMeta={raceData.driverMeta}
                 tyreStints={raceData.tyreStints}
                 totalLaps={raceData.totalLaps}
+                currentLap={currentLap}
+                selectedDriverId={selectedDriverId}
+                onSelectDriver={(id) => {
+                  setSelectedDriverId(id);
+                  if (!driverAId) setDriverAId(id);
+                  else if (!driverBId && id !== driverAId) setDriverBId(id);
+                }}
               />
             )}
 

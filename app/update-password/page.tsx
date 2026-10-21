@@ -71,19 +71,33 @@ export default function UpdatePasswordPage() {
     }}>
       <div className="login-wallpaper-wrapper">
         <div className="f1-ambient-flow-glow"></div>
+        <img 
+          src="/images/f1-login-car.png" 
+          alt="Formula 1 Car Wallpaper" 
+          className="login-wallpaper-img" 
+        />
         <div className="login-wallpaper-overlay"></div>
       </div>
 
       <div className="centered-login-card">
         <div className="f1-spec-form-inner">
-          <div className="f1-spec-brand">
-            <div className="f1-spec-grid-icon">
-              <span className="cell cell-dark"></span>
-              <span className="cell cell-dark"></span>
-              <span className="cell cell-green"></span>
-              <span className="cell cell-dark"></span>
+          <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#E10600] to-[#8A0B00] flex items-center justify-center text-white font-black text-xs shadow-[0_0_12px_rgba(225,6,0,0.5)] border border-red-500/30">
+                F1
+              </div>
+              <div>
+                <div className="text-xs font-mono font-black text-white tracking-widest uppercase">
+                  PADDOCK TELEMETRY
+                </div>
+                <div className="text-[9.5px] font-mono text-cyan-400 tracking-wider">
+                  SECURITY KEY UPDATE
+                </div>
+              </div>
             </div>
-            <span className="f1-spec-brand-text">PADDOCK<span className="accent-slash">{'//'}</span>TELEMETRY</span>
+            <span className="px-2.5 py-1 rounded-full text-[9px] font-mono font-bold text-cyan-400 bg-cyan-950/60 border border-cyan-500/30">
+              SECURITY
+            </span>
           </div>
 
           <div className="f1-spec-welcome">

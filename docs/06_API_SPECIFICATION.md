@@ -199,6 +199,78 @@ flowchart LR
 - **Responses**:
   - `200 OK`: Array of circuits scheduled in the specified FIA championship season.
 
+### 3.3 Race Winner Prediction Engine
+- **Endpoint**: `GET /api/predictions/race/[raceId]`
+- **Parameters**: `raceId` in route path (`YYYY_roundNumber`, e.g. `2024_19`, `2026_01`)
+- **Query Parameters**:
+  - `refresh=true` *(optional)*: Force model re-evaluation and recalculation, bypassing memory and disk caches.
+- **Access**: Public / Rate-limited (60 req / 15 min / IP). Supports optional `paddock_auth_token` cookie or `Authorization: Bearer <token>` header.
+- **Headers Returned**:
+  - `X-Prediction-Stage`: `after_qualifying`
+  - `X-Prediction-Status`: `calculated` | `unavailable`
+  - `Cache-Control`: `public, s-maxage=300, stale-while-revalidate=86400` (on success) or `no-store` (when unavailable)
+- **Responses**:
+  - `200 OK` (Calculated Prediction):
+    ```json
+    {
+      "raceId": "2024_19",
+      "year": 2024,
+      "round": 19,
+      "circuitId": "americas",
+      "status": "calculated",
+      "stage": "after_qualifying",
+      "predictedWinner": {
+        "driverId": "norris",
+        "code": "NOR",
+        "driverName": "Lando Norris",
+        "teamName": "McLaren",
+        "winProbability": 0.4682
+      },
+      "driverProbabilities": [
+        {
+          "driverId": "norris",
+          "code": "NOR",
+          "driverName": "Lando Norris",
+          "teamName": "McLaren",
+          "gridPosition": 1,
+          "winProbability": 0.4682,
+          "podiumProbability": 0.8841,
+          "top6Probability": 0.9652,
+          "pointsProbability": 0.9912,
+          "features": {
+            "qualifyingPosition": 1,
+            "qualifyingDeltaMs": 0,
+            "rollingForm": 8.75,
+            "constructorAeroIndex": 0.98
+          }
+        }
+      ],
+      "explanations": {
+        "topFactors": [
+          { "factor": "Pole Position Advantage", "weight": 0.38, "description": "Clean-air launch and inside line into Turn 1" }
+        ],
+        "driverSummaries": {}
+      },
+      "metadata": {
+        "model": "paddock-predictor-catboost-v1.0.0",
+        "generatedAt": "2026-10-21T10:14:00.000Z",
+        "inputDataHash": "a9f82d1c764e5...",
+        "officialResultsVerified": true
+      }
+    }
+    ```
+  - `200 OK` (Pre-Qualifying Lockout):
+    ```json
+    {
+      "status": "unavailable",
+      "error": "QUALIFYING_NOT_COMPLETED",
+      "message": "Saturday Qualifying has not yet completed. Predictions unlock immediately following official grid verification."
+    }
+    ```
+  - `400 Bad Request`: Missing or malformed `raceId` (e.g., `invalid_id`).
+  - `429 Too Many Requests`: IP rate limit exceeded (`Retry-After: 60`).
+  - `503 Service Unavailable`: Model artifact offline or corrupted.
+
 ---
 
 ## 4. Telemetry Caching Proxy (`/api/f1/[...path]`)

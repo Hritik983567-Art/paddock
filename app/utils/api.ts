@@ -34,15 +34,24 @@ export async function getJSON<T = any>(url: string, attempt: number = 1): Promis
         if (!res.ok) {
             throw new Error(`Request failed: ${res.status}`);
         }
-        return res.json() as Promise<T>;
+        const text = await res.text();
+        if (!text || text.trim() === '') {
+            throw new Error(`Empty response received from ${url}`);
+        }
+        return JSON.parse(text) as T;
     } catch (e: unknown) {
         const err = e as Error;
         if (attempt < 3) {
             await pauseMs(500 * attempt);
             return getJSON<T>(url, attempt + 1);
         }
-        const isNetworkError = err?.message === 'Failed to fetch' || err?.name === 'TypeError' || !err?.message;
-        const cleanMsg = isNetworkError
+        const isNetworkOrParse =
+            err?.message === 'Failed to fetch' ||
+            err?.name === 'TypeError' ||
+            err?.name === 'SyntaxError' ||
+            err?.message?.includes('JSON') ||
+            !err?.message;
+        const cleanMsg = isNetworkOrParse
             ? 'Unable to connect to F1 data server. Please check your internet connection or try again.'
             : (err.message || 'Network request failed after 3 tries.');
         throw new Error(cleanMsg);
