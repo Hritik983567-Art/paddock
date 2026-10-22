@@ -369,9 +369,9 @@ function GalleryContent() {
   const isCurrentCalendar = CALENDAR_CIRCUITS_IDS.has(selectedCircuitId);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-3 sm:p-4.5 space-y-3.5">
+    <div className="min-h-screen bg-slate-950 text-slate-100 p-2 sm:p-4.5 space-y-3 sm:space-y-3.5">
       {/* Unified Clean Header & Circuit Navigator */}
-      <section className="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-3.5 sm:p-4.5 shadow-xl backdrop-blur-xl space-y-3">
+      <section className="bg-slate-900/70 border border-slate-800/80 rounded-2xl p-3 sm:p-4.5 shadow-xl backdrop-blur-xl space-y-3">
         {/* Top Bar: Title, Era Segmented Switcher (Search Box Removed as Requested) */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-3.5 border-b border-slate-800/70">
           <div>
@@ -396,11 +396,11 @@ function GalleryContent() {
           </div>
 
           {/* Era Filter Segmented Tabs */}
-          <div className="inline-flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 text-xs font-display self-start lg:self-center shrink-0 shadow-inner select-none">
+          <div className="flex items-center bg-slate-950/90 p-1 rounded-xl border border-slate-800 text-xs font-display self-start lg:self-center max-w-full overflow-x-auto scrollbar-none shadow-inner select-none">
             <button
               type="button"
               onClick={() => handleEraChange('all')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer whitespace-nowrap ${
                 eraFilter === 'all'
                   ? 'f1-badge-red text-white'
                   : 'text-slate-400 hover:text-slate-200'
@@ -411,7 +411,7 @@ function GalleryContent() {
             <button
               type="button"
               onClick={() => handleEraChange('calendar')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer whitespace-nowrap ${
                 eraFilter === 'calendar'
                   ? 'f1-badge-red text-white'
                   : 'text-slate-400 hover:text-red-300'
@@ -422,7 +422,7 @@ function GalleryContent() {
             <button
               type="button"
               onClick={() => handleEraChange('historic')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all duration-150 cursor-pointer whitespace-nowrap ${
                 eraFilter === 'historic'
                   ? 'f1-badge-gold text-amber-300'
                   : 'text-slate-400 hover:text-amber-300'
@@ -470,11 +470,11 @@ function GalleryContent() {
           </div>
 
           {/* Quick-Switch Circuit Navigator Bar */}
-          <div className="flex items-center gap-1.5 self-start lg:self-center shrink-0 font-display">
+          <div className="flex items-center gap-1.5 w-full sm:w-auto self-start lg:self-center font-display">
             <button
               type="button"
               onClick={handlePrevCircuit}
-              className="h-10 px-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-800 border border-slate-800 hover:border-red-500/50 text-slate-300 hover:text-white font-display text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer shadow-sm hover:shadow-[0_0_12px_rgba(225,6,0,0.2)]"
+              className="h-10 px-2.5 sm:px-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-800 border border-slate-800 hover:border-red-500/50 text-slate-300 hover:text-white font-display text-xs font-bold transition-all flex items-center gap-1 active:scale-95 cursor-pointer shadow-sm hover:shadow-[0_0_12px_rgba(225,6,0,0.2)] shrink-0"
               title="Previous Circuit (Keyboard: [)"
             >
               <span className="text-sm font-bold text-red-400">‹</span>
@@ -482,11 +482,11 @@ function GalleryContent() {
             </button>
 
             {/* Direct Circuit Selector Select */}
-            <div className="relative min-w-[220px] sm:min-w-[280px]">
+            <div className="relative flex-1 sm:flex-initial sm:min-w-[280px]">
               <select
                 value={selectedCircuitId}
                 onChange={(e) => changeCircuit(e.target.value)}
-                className="w-full h-10 bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-[#E10600]/60 focus:border-[#E10600] rounded-xl pl-3.5 pr-8 text-xs font-display font-bold text-slate-100 focus:outline-none focus:ring-1 focus:ring-[#E10600]/40 transition-all appearance-none cursor-pointer truncate shadow-inner"
+                className="w-full h-10 bg-slate-950/80 hover:bg-slate-900 border border-slate-800 hover:border-[#E10600]/60 focus:border-[#E10600] rounded-xl pl-3 pr-8 text-xs font-display font-bold text-slate-100 focus:outline-none focus:ring-1 focus:ring-[#E10600]/40 transition-all appearance-none cursor-pointer truncate shadow-inner"
               >
                 {selectableCircuits.map((circuit) => {
                   const turnCount = TOTAL_TURNS_BY_CIRCUIT[circuit.id] || getCircuitTotalCorners(circuit.id);
@@ -505,7 +505,7 @@ function GalleryContent() {
             <button
               type="button"
               onClick={handleNextCircuit}
-              className="h-10 px-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-800 border border-slate-800 hover:border-red-500/50 text-slate-300 hover:text-white font-display text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer shadow-sm hover:shadow-[0_0_12px_rgba(225,6,0,0.2)]"
+              className="h-10 px-2.5 sm:px-3.5 rounded-xl bg-slate-950/80 hover:bg-slate-800 border border-slate-800 hover:border-red-500/50 text-slate-300 hover:text-white font-display text-xs font-bold transition-all flex items-center gap-1 active:scale-95 cursor-pointer shadow-sm hover:shadow-[0_0_12px_rgba(225,6,0,0.2)] shrink-0"
               title="Next Circuit (Keyboard: ])"
             >
               <span className="hidden sm:inline">NEXT</span>
@@ -682,23 +682,23 @@ function GalleryContent() {
       {selectedMedia && (
         <div 
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-xl animate-in fade-in duration-150"
+          className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-slate-950/90 backdrop-blur-xl animate-in fade-in duration-150"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-4xl my-auto bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl space-y-5 p-6 max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-4xl my-auto bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl space-y-3.5 sm:space-y-5 p-3.5 sm:p-6 max-h-[94vh] sm:max-h-[90vh] overflow-y-auto"
           >
             {/* Close Button */}
             <button
               onClick={handleCloseModal}
-              className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-slate-950 border border-slate-700 text-slate-400 hover:text-white font-mono flex items-center justify-center transition cursor-pointer select-none active:scale-95"
+              className="absolute top-3.5 right-3.5 z-20 w-8 h-8 rounded-full bg-slate-950 border border-slate-700 text-slate-400 hover:text-white font-mono flex items-center justify-center transition cursor-pointer select-none active:scale-95 shadow-md"
               title="Close Reconnaissance Information"
             >
               ✕
             </button>
 
             {/* Corner Photo Preview */}
-            <div className="relative h-72 sm:h-96 w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800 group/photo">
+            <div className="relative h-56 sm:h-96 w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-800 group/photo">
               <img
                 key={selectedMedia.id}
                 src={getCornerVisualSrc(selectedMedia, selectedCircuitId, undefined, activeCornerDetails)}
@@ -1079,22 +1079,22 @@ function GalleryContent() {
       )}
 
       {/* Interactive Circuit Map Canvas Below */}
-      <section className="space-y-4 pt-4 border-t border-slate-800/80">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-slate-900/70 border border-slate-800/80 rounded-2xl shadow-xl backdrop-blur-xl">
+      <section className="space-y-3 sm:space-y-4 pt-3 sm:pt-4 border-t border-slate-800/80">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 p-3 sm:p-4 bg-slate-900/70 border border-slate-800/80 rounded-2xl shadow-xl backdrop-blur-xl">
           <div className="flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-[#E10600] animate-pulse"></span>
             <div>
-              <h2 className="text-base sm:text-lg font-black font-display text-white flex items-center gap-2">
+              <h2 className="text-sm sm:text-lg font-black font-display text-white flex items-center gap-1.5 sm:gap-2 flex-wrap">
                 <span>TRACK TELEMETRY CANVAS</span>
-                <span className="text-slate-600">•</span>
+                <span className="text-slate-600 hidden sm:inline">•</span>
                 <span className="text-[#FF3B30] font-bold">{selectedCircuitMeta?.name || selectedCircuitId.toUpperCase()}</span>
               </h2>
-              <p className="text-xs font-sans text-slate-400 mt-0.5">
+              <p className="text-[11px] sm:text-xs font-sans text-slate-400 mt-0.5">
                 Official circuit layout, calibrated braking markers &amp; interactive apex nodes.
               </p>
             </div>
           </div>
-          <span className="text-xs font-display text-[#00F5D4] font-bold bg-slate-950/90 px-3.5 py-1.5 rounded-xl border border-[#00F5D4]/30 w-fit shadow-sm">
+          <span className="text-[10.5px] sm:text-xs font-display text-[#00F5D4] font-bold bg-slate-950/90 px-3 py-1.5 rounded-xl border border-[#00F5D4]/30 w-fit shadow-sm">
             Click any apex node to inspect telemetry
           </span>
         </div>

@@ -1126,6 +1126,11 @@ export function CircuitMap({
     if (!isTouchDownRef.current || e.touches.length !== 1) return;
     const dx = e.touches[0].clientX - startTouchPos.current.x;
     const dy = e.touches[0].clientY - startTouchPos.current.y;
+    if (zoom <= 1.05 && Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 8) {
+      isTouchDownRef.current = false;
+      setIsDragging(false);
+      return;
+    }
     if (!hasMovedRef.current && Math.hypot(dx, dy) < 12) return;
     hasMovedRef.current = true;
     setIsDragging(true);
@@ -1220,33 +1225,33 @@ export function CircuitMap({
 
         {/* Static Header & Telemetry Layer Controls Bar */}
         {showStats && (
-          <div className="px-3.5 py-3 sm:px-4 sm:py-3.5 bg-[#0D131F]/90 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 z-10">
+          <div className="px-3 py-2.5 sm:px-4 sm:py-3.5 bg-[#0D131F]/90 border-b border-white/10 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 z-10">
             {/* Left: Circuit Identification & Clean Location Tag */}
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="w-10 h-10 rounded-xl bg-[#05070A] border border-white/10 flex items-center justify-center text-lg shrink-0 shadow-inner">
+            <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#05070A] border border-white/10 flex items-center justify-center text-base sm:text-lg shrink-0 shadow-inner">
                 🏁
               </div>
               <div className="min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h2 className="text-white font-black tracking-wide text-sm sm:text-base md:text-lg uppercase leading-tight font-display truncate">
+                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                  <h2 className="text-white font-black tracking-wide text-xs sm:text-base md:text-lg uppercase leading-tight font-display truncate max-w-[160px] sm:max-w-none">
                     {circuitMeta.name || targetCircuit}
                   </h2>
-                  <span className="stitch-data-chip text-[9px] sm:text-[10px] text-cyan-400 border-cyan-500/30 font-bold whitespace-nowrap">
+                  <span className="stitch-data-chip text-[8.5px] sm:text-[10px] text-cyan-400 border-cyan-500/30 font-bold whitespace-nowrap">
                     {circuitMeta.country || trackMeta?.country || 'Circuit'} • {circuitMeta.year || year}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-[10px] font-mono text-slate-400 mt-0.5">
-                  {trackLengthKm && <span>{trackLengthKm} KM TRACK LENGTH</span>}
+                <div className="flex items-center gap-1.5 sm:gap-2 text-[9px] sm:text-[10px] font-mono text-slate-400 mt-0.5">
+                  {trackLengthKm && <span>{trackLengthKm} KM</span>}
                   {trackLengthKm && <span>•</span>}
-                  <span>{transformedCorners.length} APEX TURNS</span>
+                  <span>{transformedCorners.length} TURNS</span>
                   <span>•</span>
-                  <span className="text-[#00FF9C] font-semibold">2 DRS ZONES</span>
+                  <span className="text-[#00FF9C] font-semibold">2 DRS</span>
                 </div>
               </div>
             </div>
 
             {/* Right: Layer Toggles, Telemetry Modes & Canvas Zoom Controls */}
-            <div className="flex items-center gap-2 shrink-0 ml-auto flex-wrap">
+            <div className="flex items-center gap-1.5 sm:gap-2 w-full sm:w-auto overflow-x-auto scrollbar-none pb-1 sm:pb-0 flex-nowrap sm:flex-wrap">
               {/* Telemetry View Mode: Sectors vs Speed Heatmap */}
               <div className="flex items-center gap-1 bg-[#090D14] p-1 border border-white/10 rounded-xl shadow-inner">
                 <button
@@ -1415,7 +1420,8 @@ export function CircuitMap({
 
         {/* SVG Canvas Area: 100% unobstructed */}
         <div
-          className="relative w-full h-[340px] sm:h-[440px] md:h-[540px] cursor-grab active:cursor-grabbing select-none overflow-hidden touch-none bg-[#05070A]"
+          className="relative w-full h-[360px] sm:h-[440px] md:h-[540px] cursor-grab active:cursor-grabbing select-none overflow-hidden bg-[#05070A]"
+          style={{ touchAction: zoom > 1.05 ? 'none' : 'pan-y' }}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -2110,8 +2116,8 @@ export function CircuitMap({
             </div>
           )}
 
-          {/* Floating Visual Map Legend Overlay */}
-          <div className={`absolute bottom-3 left-3 z-20 pointer-events-none glass-panel p-2 sm:p-2.5 shadow-xl text-[10px] sm:text-xs max-w-sm ${isSimulating ? 'hidden sm:block' : 'block'}`}>
+          {/* Floating Visual Map Legend Overlay — Desktop / Tablet ONLY */}
+          <div className={`hidden sm:block absolute bottom-3 left-3 z-20 pointer-events-none glass-panel p-2 sm:p-2.5 shadow-xl text-[10px] sm:text-xs max-w-sm ${isSimulating ? 'hidden sm:block' : 'block'}`}>
             <div className="text-[9px] uppercase tracking-wider font-extrabold text-slate-400 mb-1.5 flex items-center justify-between font-mono">
               <div className="flex items-center gap-1.5">
                 <span className="stitch-live-dot"></span>
@@ -2160,6 +2166,41 @@ export function CircuitMap({
               </div>
             )}
           </div>
+        </div>
+
+        {/* Dedicated Mobile Track Legend Bar (< sm) — Keeps Canvas 100% Unobstructed */}
+        <div className="sm:hidden px-3.5 py-2 bg-[#090D14] border-t border-white/10 flex items-center justify-between text-[9px] font-mono">
+          <div className="flex items-center gap-1.5 text-slate-400">
+            <span className="stitch-live-dot" />
+            <span className="font-bold uppercase tracking-wider text-slate-300">
+              {viewMode === 'HEATMAP' ? 'VELOCITY SPECTRUM' : 'TRACK SPEC'}
+            </span>
+          </div>
+
+          {viewMode === 'HEATMAP' ? (
+            <div className="flex items-center gap-2 font-mono text-[8.5px]">
+              <div className="h-1.5 w-20 rounded-full bg-gradient-to-r from-[#0088FF] via-[#FFD600] to-[#FF0055]" />
+              <span className="text-cyan-400 font-bold">75-345 KM/H</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2.5 font-mono text-[9px] text-slate-300">
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-1 bg-[#00FF9C] rounded-sm"></span>S/F
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-1 bg-[#00F5D4] rounded-sm"></span>S1
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-1 bg-[#FFB800] rounded-sm"></span>S2
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-1 bg-[#D946EF] rounded-sm"></span>S3
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-2 h-0.5 border-b border-dashed border-[#00FF9C]"></span>DRS
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Interactive Circuit Elevation & Topography Profile Panel */}
