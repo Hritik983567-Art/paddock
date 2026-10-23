@@ -1525,10 +1525,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 2,
@@ -1541,10 +1541,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 3,
@@ -1557,10 +1557,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 4,
@@ -1573,10 +1573,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 5,
@@ -1589,10 +1589,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 6,
@@ -1605,10 +1605,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 7,
@@ -1621,10 +1621,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 8,
@@ -1637,10 +1637,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 9,
@@ -1653,10 +1653,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 10,
@@ -1669,10 +1669,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 11,
@@ -1685,10 +1685,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 12,
@@ -1701,10 +1701,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 13,
@@ -1717,10 +1717,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 14,
@@ -1733,10 +1733,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 15,
@@ -1749,10 +1749,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 175
     }
   ]
 }

@@ -1613,15 +1613,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Hairpin",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
-      "gear": 1,
-      "speed_kph": 70
+      "gear": 2,
+      "speed_kph": 75
     },
     {
       "number": 2,
       "letter": "",
-      "name": "Eau Rouge (Downhill)",
+      "name": "Eau Rouge",
       "turn": "Turn 2",
       "x": 3000,
       "y": 504.41,
@@ -1629,15 +1629,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Compression Kink",
+      "type": "High-Speed Compression",
       "direction": "Left",
-      "gear": 8,
-      "speed_kph": 305
+      "gear": 7,
+      "speed_kph": 300
     },
     {
       "number": 3,
       "letter": "",
-      "name": "Raidillon (Steep Climb)",
+      "name": "Raidillon (Mid)",
       "turn": "Turn 3",
       "x": 3817.09,
       "y": -223.76,
@@ -1645,10 +1645,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Crest Complex",
+      "type": "Uphill Crest",
       "direction": "Right",
-      "gear": 8,
-      "speed_kph": 300
+      "gear": 7,
+      "speed_kph": 305
     },
     {
       "number": 4,
@@ -1661,15 +1661,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Crest Complex",
+      "type": "Uphill Exit",
       "direction": "Left",
       "gear": 8,
-      "speed_kph": 305
+      "speed_kph": 315
     },
     {
       "number": 5,
       "letter": "",
-      "name": "Kemmel Straight Apex",
+      "name": "Les Combes (T5)",
       "turn": "Turn 5",
       "x": 8288.38,
       "y": -11558.16,
@@ -1677,10 +1677,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed Chicane",
+      "type": "Chicane Entry",
       "direction": "Right",
-      "gear": 4,
-      "speed_kph": 140
+      "gear": 3,
+      "speed_kph": 135
     },
     {
       "number": 6,
@@ -1696,7 +1696,7 @@
       "type": "Medium-Speed Chicane",
       "direction": "Left",
       "gear": 4,
-      "speed_kph": 150
+      "speed_kph": 183
     },
     {
       "number": 7,
@@ -1712,7 +1712,7 @@
       "type": "Medium-Speed",
       "direction": "Right",
       "gear": 5,
-      "speed_kph": 180
+      "speed_kph": 129
     },
     {
       "number": 8,
@@ -1728,7 +1728,7 @@
       "type": "Hairpin",
       "direction": "Left",
       "gear": 3,
-      "speed_kph": 110
+      "speed_kph": 164
     },
     {
       "number": 9,
@@ -1744,12 +1744,12 @@
       "type": "Medium-Speed",
       "direction": "Right",
       "gear": 4,
-      "speed_kph": 145
+      "speed_kph": 175
     },
     {
       "number": 10,
       "letter": "",
-      "name": "Speaker's Corner",
+      "name": "Pouhon (Double Gauche T10)",
       "turn": "Turn 10",
       "x": 4679.71,
       "y": -8919.28,
@@ -1757,7 +1757,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Sweeper",
+      "type": "Legendary High-Speed Sweeper",
       "direction": "Left",
       "gear": 6,
       "speed_kph": 280
@@ -1776,7 +1776,7 @@
       "type": "High-Speed Sweeper",
       "direction": "Right",
       "gear": 6,
-      "speed_kph": 285
+      "speed_kph": 206
     },
     {
       "number": 12,
@@ -1792,7 +1792,7 @@
       "type": "Chicane",
       "direction": "Left",
       "gear": 4,
-      "speed_kph": 165
+      "speed_kph": 118
     },
     {
       "number": 13,
@@ -1808,7 +1808,7 @@
       "type": "Chicane",
       "direction": "Right",
       "gear": 4,
-      "speed_kph": 175
+      "speed_kph": 155
     },
     {
       "number": 14,
@@ -1824,7 +1824,7 @@
       "type": "Medium-Speed",
       "direction": "Left",
       "gear": 5,
-      "speed_kph": 195
+      "speed_kph": 180
     },
     {
       "number": 15,
@@ -1840,7 +1840,7 @@
       "type": "High-Speed",
       "direction": "Right",
       "gear": 6,
-      "speed_kph": 235
+      "speed_kph": 129
     },
     {
       "number": 16,
@@ -1856,7 +1856,7 @@
       "type": "Flat Kink",
       "direction": "Left",
       "gear": 8,
-      "speed_kph": 315
+      "speed_kph": 100
     },
     {
       "number": 17,
@@ -1872,12 +1872,12 @@
       "type": "Flat Kink",
       "direction": "Right",
       "gear": 8,
-      "speed_kph": 320
+      "speed_kph": 198
     },
     {
       "number": 18,
       "letter": "",
-      "name": "Blanchimont 2",
+      "name": "Bus Stop Chicane T18",
       "turn": "Turn 18",
       "x": 24.78,
       "y": -701.63,
@@ -1885,10 +1885,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Slow Chicane",
+      "type": "Heavy Braking Chicane",
       "direction": "Left",
-      "gear": 1,
-      "speed_kph": 75
+      "gear": 2,
+      "speed_kph": 80
     },
     {
       "number": 19,
@@ -1904,7 +1904,7 @@
       "type": "Slow Chicane",
       "direction": "Right",
       "gear": 2,
-      "speed_kph": 85
+      "speed_kph": 96
     }
   ]
 }

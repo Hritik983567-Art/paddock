@@ -1533,10 +1533,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Chicane",
+      "type": "Medium-Speed Curve",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 175
     }
   ]
 }

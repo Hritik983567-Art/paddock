@@ -1545,10 +1545,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 91
     },
     {
       "number": 2,
@@ -1561,10 +1561,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 194
     },
     {
       "number": 3,
@@ -1577,10 +1577,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 207
     },
     {
       "number": 4,
@@ -1593,10 +1593,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 152
     },
     {
       "number": 5,
@@ -1609,10 +1609,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 112
     },
     {
       "number": 6,
@@ -1625,10 +1625,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 132
     },
     {
       "number": 7,
@@ -1641,10 +1641,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 155
     },
     {
       "number": 8,
@@ -1657,10 +1657,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 193
     },
     {
       "number": 9,
@@ -1673,10 +1673,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 99
     },
     {
       "number": 10,
@@ -1689,10 +1689,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 11,
@@ -1705,10 +1705,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 119
     },
     {
       "number": 12,
@@ -1721,10 +1721,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 91
     },
     {
       "number": 13,
@@ -1737,10 +1737,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 190
     },
     {
       "number": 14,
@@ -1753,10 +1753,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 193
     },
     {
       "number": 15,
@@ -1769,10 +1769,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 115
     },
     {
       "number": 16,
@@ -1785,10 +1785,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 110
     }
   ]
 }

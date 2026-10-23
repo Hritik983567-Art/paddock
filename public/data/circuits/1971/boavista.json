@@ -1389,10 +1389,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Chicane",
+      "type": "Technical Chicane",
       "direction": "Right",
       "gear": 3,
-      "speed_kph": 140
+      "speed_kph": 135
     },
     {
       "number": 12,
@@ -1405,10 +1405,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Curve",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 175
     }
   ]
 }

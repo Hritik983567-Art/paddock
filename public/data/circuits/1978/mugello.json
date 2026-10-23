@@ -1465,7 +1465,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 160
@@ -1481,7 +1481,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 160
@@ -1497,7 +1497,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 160
@@ -1513,7 +1513,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 160
@@ -1529,7 +1529,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 160
@@ -1545,7 +1545,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 160
@@ -1561,7 +1561,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 160
@@ -1577,7 +1577,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 160
@@ -1593,7 +1593,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 160
@@ -1609,7 +1609,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 160
@@ -1625,7 +1625,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 160
@@ -1641,7 +1641,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 160
@@ -1657,7 +1657,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 160
@@ -1673,7 +1673,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
       "gear": 3,
       "speed_kph": 160
@@ -1689,7 +1689,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
       "gear": 3,
       "speed_kph": 160

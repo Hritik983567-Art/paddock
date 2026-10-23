@@ -27,6 +27,7 @@ export interface FastF1Corner {
   speed_kph?: number;
   characteristics?: string;
   history?: string;
+  description?: string;
   images?: any[];
   technical?: any;
   racing?: any;
@@ -71,6 +72,7 @@ export interface TransformedCorner {
   speed_kph?: number;
   characteristics?: string;
   history?: string;
+  description?: string;
   images?: any[];
   technical?: any;
   racing?: any;
@@ -484,14 +486,20 @@ export function enrichCornerDetails(c: TransformedCorner, targetCircuit: string,
   };
 
   // Characteristics & Description & History derivation
-  const characteristics = c.characteristics ||
-    `${turnName} is a ${cornerType.toLowerCase()} at ${circuitName}, demanding high axle stability and precise throttle application on corner exit.`;
+  let characteristics = c.characteristics;
+  if (!characteristics || characteristics.includes('Features technical elevation and high braking demand')) {
+    characteristics = c.history || `${turnName} is a ${cornerType.toLowerCase()} at ${circuitName}, demanding precise apex commitment and smooth power delivery on corner exit.`;
+  }
 
-  const history = c.history ||
-    `${turnName} at ${circuitName} plays a pivotal role in establishing lap momentum, serving as a critical telemetry measurement point for aerodynamic balance and tyre degradation analysis.`;
+  let history = c.history;
+  if (!history || history.includes('Features technical elevation and high braking demand')) {
+    history = `${turnName} at ${circuitName} plays a pivotal role in establishing lap momentum and managing tyre thermal degradation across race stints.`;
+  }
 
-  const description = c.history || c.characteristics ||
-    `${turnName} is an official corner layout sector on the ${circuitName} circuit map. Drivers approach this section following telemetry-derived braking points to optimize exit speed onto the following acceleration sector.\n\nKey telemetry factors include maintaining high apex velocity while preserving rear traction to maximize speed into subsequent DRS zones.`;
+  let description = c.description;
+  if (!description || description.includes('Features technical elevation and high braking demand')) {
+    description = history || characteristics;
+  }
 
   const key = `t${c.number}${c.letter || ''}`.toLowerCase();
 

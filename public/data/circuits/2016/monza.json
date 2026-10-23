@@ -1313,7 +1313,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Chicane",
+      "type": "Chicane Exit",
       "direction": "Left",
       "gear": 2,
       "speed_kph": 85
@@ -1321,7 +1321,7 @@
     {
       "number": 3,
       "letter": "",
-      "name": "Curva Grande (Biassono)",
+      "name": "Curva Grande (Curva Biassono)",
       "turn": "Turn 3",
       "x": 611.6,
       "y": 13310.62,
@@ -1329,10 +1329,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Sweeper",
+      "type": "Flat-Out Sweeper",
       "direction": "Right",
       "gear": 8,
-      "speed_kph": 305
+      "speed_kph": 310
     },
     {
       "number": 4,
@@ -1348,7 +1348,7 @@
       "type": "Chicane",
       "direction": "Left",
       "gear": 3,
-      "speed_kph": 120
+      "speed_kph": 115
     },
     {
       "number": 5,
@@ -1361,10 +1361,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Chicane",
+      "type": "Chicane Exit",
       "direction": "Right",
       "gear": 3,
-      "speed_kph": 130
+      "speed_kph": 125
     },
     {
       "number": 6,
@@ -1377,10 +1377,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
       "gear": 4,
-      "speed_kph": 170
+      "speed_kph": 175
     },
     {
       "number": 7,
@@ -1393,7 +1393,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Medium-Speed",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
       "gear": 4,
       "speed_kph": 160
@@ -1401,7 +1401,7 @@
     {
       "number": 8,
       "letter": "",
-      "name": "Curva del Serraglio",
+      "name": "Variante Ascari T8",
       "turn": "Turn 8",
       "x": 2562.92,
       "y": 6171.02,
@@ -1409,15 +1409,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Chicane",
+      "type": "High-Speed Chicane Entry",
       "direction": "Left",
       "gear": 5,
-      "speed_kph": 215
+      "speed_kph": 175
     },
     {
       "number": 9,
       "letter": "",
-      "name": "Variante Ascari Entrance",
+      "name": "Variante Ascari T9",
       "turn": "Turn 9",
       "x": 2478.04,
       "y": 5270.56,
@@ -1425,15 +1425,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Chicane",
+      "type": "High-Speed Chicane Mid",
       "direction": "Right",
-      "gear": 6,
-      "speed_kph": 240
+      "gear": 5,
+      "speed_kph": 215
     },
     {
       "number": 10,
       "letter": "",
-      "name": "Variante Ascari Apex",
+      "name": "Variante Ascari T10",
       "turn": "Turn 10",
       "x": 1890.11,
       "y": 4451.19,
@@ -1441,15 +1441,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "High-Speed Chicane",
+      "type": "High-Speed Chicane Exit",
       "direction": "Left",
       "gear": 6,
-      "speed_kph": 260
+      "speed_kph": 235
     },
     {
       "number": 11,
       "letter": "",
-      "name": "Curva Parabolica (Alboreto)",
+      "name": "Curva Parabolica (Curva Alboreto)",
       "turn": "Turn 11",
       "x": -55.33,
       "y": -5800.17,
@@ -1457,10 +1457,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Increasing-Radius Sweeper",
+      "type": "Long Accelerating Sweeper",
       "direction": "Right",
       "gear": 5,
-      "speed_kph": 210
+      "speed_kph": 215
     }
   ]
 }

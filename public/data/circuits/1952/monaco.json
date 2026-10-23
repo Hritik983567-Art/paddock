@@ -1217,7 +1217,7 @@
     {
       "number": 1,
       "letter": "",
-      "name": "Sainte-Dévote",
+      "name": "Sainte Devote",
       "turn": "Turn 1",
       "x": -7381.11,
       "y": -4719.95,
@@ -1225,10 +1225,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "90-Degree",
+      "type": "Medium-Speed 90° Apex",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 90
+      "gear": 3,
+      "speed_kph": 110
     },
     {
       "number": 2,
@@ -1244,7 +1244,7 @@
       "type": "Kink",
       "direction": "Left",
       "gear": 7,
-      "speed_kph": 270
+      "speed_kph": 166
     },
     {
       "number": 3,
@@ -1260,7 +1260,7 @@
       "type": "Long Sweeper",
       "direction": "Right",
       "gear": 4,
-      "speed_kph": 150
+      "speed_kph": 118
     },
     {
       "number": 4,
@@ -1276,7 +1276,7 @@
       "type": "Medium-Speed",
       "direction": "Left",
       "gear": 3,
-      "speed_kph": 125
+      "speed_kph": 98
     },
     {
       "number": 5,
@@ -1292,12 +1292,12 @@
       "type": "Tight Corner",
       "direction": "Right",
       "gear": 2,
-      "speed_kph": 75
+      "speed_kph": 200
     },
     {
       "number": 6,
       "letter": "",
-      "name": "Fairmont (Grand Hotel) Hairpin",
+      "name": "Grand Hotel Hairpin (Fairmont)",
       "turn": "Turn 6",
       "x": -797.25,
       "y": -1127.09,
@@ -1305,7 +1305,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Hairpin",
+      "type": "Slowest Hairpin in Formula 1",
       "direction": "Left",
       "gear": 1,
       "speed_kph": 48
@@ -1324,7 +1324,7 @@
       "type": "Tight Corner",
       "direction": "Right",
       "gear": 2,
-      "speed_kph": 80
+      "speed_kph": 184
     },
     {
       "number": 8,
@@ -1340,7 +1340,7 @@
       "type": "Tight Corner",
       "direction": "Left",
       "gear": 2,
-      "speed_kph": 75
+      "speed_kph": 124
     },
     {
       "number": 9,
@@ -1356,12 +1356,12 @@
       "type": "High-Speed Sweeper",
       "direction": "Right",
       "gear": 7,
-      "speed_kph": 280
+      "speed_kph": 208
     },
     {
       "number": 10,
       "letter": "",
-      "name": "Nouvelle Chicane 1",
+      "name": "Nouvelle Chicane (T10)",
       "turn": "Turn 10",
       "x": -4159.99,
       "y": -4441.6,
@@ -1369,10 +1369,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Chicane",
+      "type": "Heavy Braking Chicane",
       "direction": "Left",
       "gear": 2,
-      "speed_kph": 65
+      "speed_kph": 75
     },
     {
       "number": 11,
@@ -1388,7 +1388,7 @@
       "type": "Chicane",
       "direction": "Right",
       "gear": 2,
-      "speed_kph": 75
+      "speed_kph": 128
     },
     {
       "number": 12,
@@ -1404,7 +1404,7 @@
       "type": "Medium-Speed",
       "direction": "Left",
       "gear": 4,
-      "speed_kph": 160
+      "speed_kph": 135
     },
     {
       "number": 13,
@@ -1420,7 +1420,7 @@
       "type": "High-Speed Chicane",
       "direction": "Right",
       "gear": 6,
-      "speed_kph": 210
+      "speed_kph": 90
     },
     {
       "number": 14,
@@ -1436,7 +1436,7 @@
       "type": "High-Speed Chicane",
       "direction": "Left",
       "gear": 6,
-      "speed_kph": 215
+      "speed_kph": 112
     },
     {
       "number": 15,
@@ -1452,7 +1452,7 @@
       "type": "Slow Chicane",
       "direction": "Right",
       "gear": 3,
-      "speed_kph": 105
+      "speed_kph": 113
     },
     {
       "number": 16,
@@ -1468,7 +1468,7 @@
       "type": "Slow Chicane",
       "direction": "Left",
       "gear": 3,
-      "speed_kph": 115
+      "speed_kph": 92
     },
     {
       "number": 17,
@@ -1484,7 +1484,7 @@
       "type": "Double-Apex Hairpin",
       "direction": "Right",
       "gear": 2,
-      "speed_kph": 60
+      "speed_kph": 165
     },
     {
       "number": 18,
@@ -1500,7 +1500,7 @@
       "type": "Double-Apex Hairpin",
       "direction": "Left",
       "gear": 2,
-      "speed_kph": 70
+      "speed_kph": 204
     },
     {
       "number": 19,
@@ -1516,7 +1516,7 @@
       "type": "Medium-Slow",
       "direction": "Right",
       "gear": 2,
-      "speed_kph": 85
+      "speed_kph": 205
     }
   ]
 }

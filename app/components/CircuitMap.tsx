@@ -15,6 +15,7 @@ import { CornerDetails } from './CornerDetails';
 import { CornerDirectory } from './CornerDirectory';
 import { getTeamColor } from '../utils/api';
 import { TRACKS_REGISTRY, getTrackDefinition } from '../lib/tracksRegistry';
+import { getFiaSectorIndices } from '../lib/fiaSectors';
 
 export interface CircuitMapProps {
   circuit?: string;
@@ -446,36 +447,37 @@ function computeTrackData(rawCircuitData: any, targetCircuit: string) {
   });
 
   // Sector sub-paths so each track segment is color-coded by sector (S1=Cyan, S2=Amber, S3=Magenta)
-  const trackMeta = TRACKS_REGISTRY[targetCircuit] || TRACKS_REGISTRY[targetCircuit.replace(/-/g, '_')] || TRACKS_REGISTRY[targetCircuit.replace(/_/g, '-')];
+  const trackMeta = getTrackDefinition(targetCircuit);
   let pathS1 = pathD, pathS2 = '', pathS3 = '';
+  let sectorIndices = { s1Idx: 0, s2Idx: 0, stIdx: 0 };
   if (transformedPoints && transformedPoints.length >= 5) {
     const totalPts = transformedPoints.length;
     const refPts = trackMeta?.path?.length || totalPts;
 
-    const getPropIdx = (rawIdx: number | undefined, defRatio: number) => {
-      if (typeof rawIdx === 'number' && refPts > 0) {
-        const ratio = rawIdx / refPts;
-        return Math.floor(totalPts * Math.min(0.99, Math.max(0.01, ratio)));
-      }
-      return Math.floor(totalPts * defRatio);
-    };
+    sectorIndices = getFiaSectorIndices(
+      targetCircuit,
+      totalPts,
+      transformedCorners,
+      trackMeta?.sectors,
+      trackMeta?.speedTrapIndex,
+      refPts
+    );
 
-    const s1Idx = getPropIdx(trackMeta?.sectors?.[0]?.markerIndex, 0.33);
-    const s2Idx = getPropIdx(trackMeta?.sectors?.[1]?.markerIndex, 0.66);
+    const { s1Idx, s2Idx } = sectorIndices;
 
-    // Sector 1: 0 -> s1Idx
+    // Sector 1: 0 -> s1Idx (Cyan)
     pathS1 = `M ${transformedPoints[0].x},${transformedPoints[0].y}`;
     for (let i = 1; i <= s1Idx && i < totalPts; i++) {
       pathS1 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
     }
 
-    // Sector 2: s1Idx -> s2Idx
+    // Sector 2: s1Idx -> s2Idx (Amber / Yellow)
     pathS2 = `M ${transformedPoints[Math.min(s1Idx, totalPts - 1)].x},${transformedPoints[Math.min(s1Idx, totalPts - 1)].y}`;
     for (let i = s1Idx + 1; i <= s2Idx && i < totalPts; i++) {
       pathS2 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
     }
 
-    // Sector 3: s2Idx -> end -> 0
+    // Sector 3: s2Idx -> end -> 0 (Magenta, completes full lap back to start/finish)
     pathS3 = `M ${transformedPoints[Math.min(s2Idx, totalPts - 1)].x},${transformedPoints[Math.min(s2Idx, totalPts - 1)].y}`;
     for (let i = s2Idx + 1; i < totalPts; i++) {
       pathS3 += ` L ${transformedPoints[i].x},${transformedPoints[i].y}`;
@@ -620,6 +622,7 @@ function computeTrackData(rawCircuitData: any, targetCircuit: string) {
     bounds,
     pathD,
     sectorPaths: { pathS1, pathS2, pathS3, pathDrs1, pathDrs2 },
+    sectorIndices,
     transformedPoints,
     transformedCorners,
     startPoint,
@@ -1250,8 +1253,8 @@ export function CircuitMap({
               </div>
             </div>
 
-            {/* Right: Layer Toggles, Telemetry Modes & Canvas Zoom Controls */}
-            <div className="flex items-center gap-1.5 sm:gap-2 w-full sm:w-auto overflow-x-auto scrollbar-none pb-1 sm:pb-0 flex-nowrap sm:flex-wrap">
+            {/* Right: Layer Toggles, Telemetry Modes & Canvas Zoom Controls (Desktop / Tablet) */}
+            <div className="hidden sm:flex items-center gap-1.5 sm:gap-2 w-auto overflow-x-auto scrollbar-none pb-0 flex-wrap">
               {/* Telemetry View Mode: Sectors vs Speed Heatmap */}
               <div className="flex items-center gap-1 bg-[#090D14] p-1 border border-white/10 rounded-xl shadow-inner">
                 <button
@@ -1732,25 +1735,15 @@ export function CircuitMap({
                 </g>
               )}
 
-              {/* LAYER 3.5: Sectors (S1, S2, S3) & Speed Trap Gates */}
+              {/* LAYER 3.5: FIA Sectors (S1, S2) & Speed Trap Gates */}
               {(() => {
                 if (!transformedPoints || transformedPoints.length < 5) return null;
                 const totalPts = transformedPoints.length;
-
-                // Proportional sector and speed trap marker indices matching real track specifications
-                const refPts = trackMeta?.path?.length || totalPts;
-                const getPropIdx = (rawIdx: number | undefined, defRatio: number) => {
-                  if (typeof rawIdx === 'number' && refPts > 0) {
-                    const ratio = rawIdx / refPts;
-                    return Math.floor(totalPts * Math.min(0.99, Math.max(0.01, ratio)));
-                  }
-                  return Math.floor(totalPts * defRatio);
+                const { s1Idx, s2Idx, stIdx } = trackData.sectorIndices || {
+                  s1Idx: Math.floor(totalPts * 0.31),
+                  s2Idx: Math.floor(totalPts * 0.67),
+                  stIdx: Math.floor(totalPts * 0.58)
                 };
-
-                const s1Idx = getPropIdx(trackMeta?.sectors?.[0]?.markerIndex, 0.33);
-                const s2Idx = getPropIdx(trackMeta?.sectors?.[1]?.markerIndex, 0.66);
-                const s3Idx = getPropIdx(trackMeta?.sectors?.[2]?.markerIndex, 0.95);
-                const stIdx = getPropIdx(trackMeta?.speedTrapIndex, 0.18);
 
                 const getPt = (idx: number) => {
                   const safeIdx = Math.max(0, Math.min(totalPts - 1, idx));
@@ -1762,12 +1755,11 @@ export function CircuitMap({
 
                 const s1 = getPt(s1Idx);
                 const s2 = getPt(s2Idx);
-                const s3 = getPt(s3Idx);
                 const st = getPt(stIdx);
 
                 return (
                   <g className="pointer-events-none select-none">
-                    {/* Sector 1 Boundary Line & Badge */}
+                    {/* Sector 1 Boundary Line & Badge (Intermediate 1) */}
                     {showSectors && (
                       <g transform={`translate(${s1.x}, ${s1.y}) rotate(${s1.angle})`}>
                         <line x1="0" y1="-14" x2="0" y2="14" stroke="#00F5D4" strokeWidth="3" />
@@ -1778,24 +1770,13 @@ export function CircuitMap({
                       </g>
                     )}
 
-                    {/* Sector 2 Boundary Line & Badge */}
+                    {/* Sector 2 Boundary Line & Badge (Intermediate 2) */}
                     {showSectors && (
                       <g transform={`translate(${s2.x}, ${s2.y}) rotate(${s2.angle})`}>
                         <line x1="0" y1="-14" x2="0" y2="14" stroke="#FFB800" strokeWidth="3" />
                         <g transform={`translate(0, -20) rotate(${-s2.angle})`}>
                           <rect x="-14" y="-9" width="28" height="18" rx="4" fill="#090D16" stroke="#FFB800" strokeWidth="1.5" />
                           <text x="0" y="3" fill="#FFB800" fontSize="10" fontWeight="900" fontFamily="monospace" textAnchor="middle">S2</text>
-                        </g>
-                      </g>
-                    )}
-
-                    {/* Sector 3 Boundary Line & Badge */}
-                    {showSectors && (
-                      <g transform={`translate(${s3.x}, ${s3.y}) rotate(${s3.angle})`}>
-                        <line x1="0" y1="-14" x2="0" y2="14" stroke="#D946EF" strokeWidth="3" />
-                        <g transform={`translate(0, -20) rotate(${-s3.angle})`}>
-                          <rect x="-14" y="-9" width="28" height="18" rx="4" fill="#090D16" stroke="#D946EF" strokeWidth="1.5" />
-                          <text x="0" y="3" fill="#D946EF" fontSize="10" fontWeight="900" fontFamily="monospace" textAnchor="middle">S3</text>
                         </g>
                       </g>
                     )}
@@ -2215,77 +2196,199 @@ export function CircuitMap({
 
         {/* Docked Tactical Corner Reconnaissance Drawer (Opens instantly when an apex is clicked) */}
         {selectedCorner && detailedCornerObj && (
-          <div className="bg-[#0B1019] border-t border-white/10 p-3.5 sm:p-4.5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 animate-in fade-in slide-in-from-bottom-2 duration-200 z-10">
-            <div className="flex items-center gap-3.5 min-w-0">
-              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-red-600 to-red-800 border border-red-500/80 flex items-center justify-center font-mono font-black text-white text-base shadow-[0_0_14px_rgba(239,68,68,0.4)] shrink-0">
+          <div className="bg-[#0B1019] border-t border-white/10 p-3 sm:p-4.5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 animate-in fade-in slide-in-from-bottom-2 duration-200 z-10 w-full max-w-full overflow-hidden">
+            <div className="flex items-center gap-3 min-w-0 w-full md:w-auto">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-red-600 to-red-800 border border-red-500/80 flex items-center justify-center font-mono font-black text-white text-sm sm:text-base shadow-[0_0_14px_rgba(239,68,68,0.4)] shrink-0">
                 T{selectedCorner.number}{selectedCorner.letter || ''}
               </div>
-              <div className="min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h4 className="text-sm sm:text-base font-bold text-white tracking-tight truncate">
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                  <h4 className="text-xs sm:text-base font-bold text-white tracking-tight truncate">
                     {detailedCornerObj.name || `Turn ${selectedCorner.number}`}
                   </h4>
                   {detailedCornerObj.type && (
-                    <span className="stitch-data-chip text-[9px] text-[#00F0FF] border-[#00F0FF]/30 font-bold">
+                    <span className="stitch-data-chip text-[8.5px] sm:text-[9px] text-[#00F0FF] border-[#00F0FF]/30 font-bold whitespace-nowrap">
                       {detailedCornerObj.type}
                     </span>
                   )}
                   {detailedCornerObj.direction && (
-                    <span className="stitch-data-chip text-[9px] text-slate-300">
+                    <span className="stitch-data-chip text-[8.5px] sm:text-[9px] text-slate-300 whitespace-nowrap">
                       {detailedCornerObj.direction}
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-slate-400 font-sans mt-0.5 truncate max-w-xl">
+                <p className="text-[11px] sm:text-xs text-slate-400 font-sans mt-0.5 truncate max-w-xl">
                   {detailedCornerObj.characteristics || detailedCornerObj.description?.slice(0, 110) || 'Telemetry Sector Apex'}
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap w-full md:w-auto justify-between md:justify-end shrink-0">
-              {detailedCornerObj.technical?.entrySpeed && (
-                <div className="bg-[#05070A] border border-white/10 px-2.5 sm:px-3 py-1.5 rounded-xl text-center min-w-[65px] sm:min-w-[70px]">
-                  <span className="text-[8.5px] sm:text-[9px] font-mono text-slate-400 block font-semibold">ENTRY SPEED</span>
-                  <span className="text-xs font-mono font-black text-white">{detailedCornerObj.technical.entrySpeed}</span>
-                </div>
-              )}
-              {detailedCornerObj.technical?.typicalGear && (
-                <div className="bg-[#05070A] border border-white/10 px-2.5 sm:px-3 py-1.5 rounded-xl text-center min-w-[55px] sm:min-w-[60px]">
-                  <span className="text-[8.5px] sm:text-[9px] font-mono text-slate-400 block font-semibold">GEAR</span>
-                  <span className="text-xs font-mono font-black text-[#00FF9C]">{detailedCornerObj.technical.typicalGear}</span>
-                </div>
-              )}
-              {detailedCornerObj.technical?.brakingIntensity && (
-                <div className="bg-[#05070A] border border-white/10 px-2.5 sm:px-3 py-1.5 rounded-xl text-center min-w-[60px] sm:min-w-[65px]">
-                  <span className="text-[8.5px] sm:text-[9px] font-mono text-slate-400 block font-semibold">G-FORCE</span>
-                  <span className="text-xs font-mono font-black text-[#FF3366]">{detailedCornerObj.technical.brakingIntensity}</span>
-                </div>
-              )}
-              {detailedCornerObj.technical?.drs && (
-                <div className="bg-[#05070A] border border-white/10 px-2.5 sm:px-3 py-1.5 rounded-xl text-center min-w-[70px] hidden sm:block">
-                  <span className="text-[8.5px] sm:text-[9px] font-mono text-slate-400 block font-semibold">AERO / DRS</span>
-                  <span className="text-xs font-mono font-black text-[#00F0FF]">{detailedCornerObj.technical.drs}</span>
-                </div>
-              )}
-              <div className="flex items-center gap-1.5 ml-auto md:ml-0">
+            <div className="w-full md:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <div className="grid grid-cols-3 gap-1.5 w-full sm:flex sm:items-center sm:w-auto">
+                {detailedCornerObj.technical?.entrySpeed && (
+                  <div className="bg-[#05070A] border border-white/10 px-2 sm:px-3 py-1.5 rounded-xl text-center min-w-0 sm:min-w-[65px]">
+                    <span className="text-[8px] sm:text-[9px] font-mono text-slate-400 block font-semibold truncate">ENTRY</span>
+                    <span className="text-xs font-mono font-black text-white truncate block">{detailedCornerObj.technical.entrySpeed}</span>
+                  </div>
+                )}
+                {detailedCornerObj.technical?.typicalGear && (
+                  <div className="bg-[#05070A] border border-white/10 px-2 sm:px-3 py-1.5 rounded-xl text-center min-w-0 sm:min-w-[55px]">
+                    <span className="text-[8px] sm:text-[9px] font-mono text-slate-400 block font-semibold truncate">GEAR</span>
+                    <span className="text-xs font-mono font-black text-[#00FF9C] truncate block">{detailedCornerObj.technical.typicalGear}</span>
+                  </div>
+                )}
+                {detailedCornerObj.technical?.brakingIntensity && (
+                  <div className="bg-[#05070A] border border-white/10 px-2 sm:px-3 py-1.5 rounded-xl text-center min-w-0 sm:min-w-[60px]">
+                    <span className="text-[8px] sm:text-[9px] font-mono text-slate-400 block font-semibold truncate">G-FORCE</span>
+                    <span className="text-xs font-mono font-black text-[#FF3366] truncate block">{detailedCornerObj.technical.brakingIntensity}</span>
+                  </div>
+                )}
+              </div>
+              <div className="flex items-center gap-1.5 justify-end w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => {
                     if (onCornerSelect) onCornerSelect(selectedCorner);
                   }}
-                  className="px-3 py-1.5 sm:py-2 bg-[#00F0FF] hover:bg-[#33F5FF] text-black font-mono font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_12px_rgba(0,240,255,0.25)] flex items-center gap-1 active:scale-[0.98]"
+                  className="flex-1 sm:flex-initial px-3 py-1.5 sm:py-2 bg-[#00F0FF] hover:bg-[#33F5FF] text-black font-mono font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-[0_0_12px_rgba(0,240,255,0.25)] flex items-center justify-center gap-1 active:scale-[0.98]"
                 >
                   <span>RECON 🔍</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setSelectedCorner(null)}
-                  className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white flex items-center justify-center font-bold text-xs transition-colors"
+                  className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white flex items-center justify-center font-bold text-xs transition-colors shrink-0"
                   title="Dismiss Inspector"
                 >
                   ✕
                 </button>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Dedicated Bottom Controls Dock (< sm) */}
+        {showStats && (
+          <div className="sm:hidden px-2.5 py-2 bg-[#090D14] border-t border-white/10 flex items-center gap-1.5 overflow-x-auto scrollbar-none w-full select-none">
+            {/* View Mode: Sectors vs Speed Heatmap */}
+            <div className="flex items-center gap-1 bg-[#05070A] p-0.5 border border-white/10 rounded-xl shrink-0">
+              <button
+                type="button"
+                onClick={() => setViewMode('SECTORS')}
+                className={`px-2 py-1 text-[9.5px] font-mono font-bold rounded-lg uppercase tracking-wider transition-all duration-150 ${
+                  viewMode === 'SECTORS'
+                    ? 'bg-[#00F0FF] text-black shadow-[0_0_8px_rgba(0,240,255,0.3)]'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+                title="Sector 1/2/3 Split View"
+              >
+                SECTORS
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('HEATMAP')}
+                className={`px-2 py-1 text-[9.5px] font-mono font-bold rounded-lg uppercase tracking-wider transition-all duration-150 ${
+                  viewMode === 'HEATMAP'
+                    ? 'bg-gradient-to-r from-[#FFD600] to-[#FF0055] text-black font-black'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+                title="Real-Time Telemetry Speed & Braking Heatmap"
+              >
+                HEATMAP
+              </button>
+            </div>
+
+            {/* Tactical Overlays Toggles */}
+            <div className="flex items-center gap-1 bg-[#05070A] p-0.5 border border-white/10 rounded-xl shrink-0">
+              <button
+                type="button"
+                onClick={() => setShowDrs(!showDrs)}
+                className={`px-1.5 py-1 text-[9.5px] font-mono font-bold rounded-lg uppercase tracking-wider transition-all duration-150 ${
+                  showDrs ? 'bg-[#00FF9C] text-black font-black' : 'text-slate-400 hover:text-white'
+                }`}
+                title="Toggle DRS Straight Zones"
+              >
+                DRS
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowCornersLayer(!showCornersLayer)}
+                className={`px-1.5 py-1 text-[9.5px] font-mono font-bold rounded-lg uppercase tracking-wider transition-all duration-150 ${
+                  showCornersLayer ? 'bg-red-600 text-white font-black' : 'text-slate-400 hover:text-white'
+                }`}
+                title="Toggle Corner Badges"
+              >
+                TURNS
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowSpeedTraps(!showSpeedTraps)}
+                className={`px-1.5 py-1 text-[9.5px] font-mono font-bold rounded-lg uppercase tracking-wider transition-all duration-150 ${
+                  showSpeedTraps ? 'bg-[#FF007A] text-white font-black' : 'text-slate-400 hover:text-white'
+                }`}
+                title="Toggle Speed Trap Gate"
+              >
+                TRAP
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowPitLane(!showPitLane)}
+                className={`px-1.5 py-1 text-[9.5px] font-mono font-bold rounded-lg uppercase tracking-wider transition-all duration-150 ${
+                  showPitLane ? 'bg-[#FFB800] text-black font-black' : 'text-slate-400 hover:text-white'
+                }`}
+                title="Toggle Pit Lane Detour & Limiter Zone"
+              >
+                PIT
+              </button>
+            </div>
+
+            {/* Telemetry Analysis: Elevation & Sim */}
+            <div className="flex items-center gap-1 bg-[#05070A] p-0.5 border border-white/10 rounded-xl shrink-0">
+              <button
+                type="button"
+                onClick={() => setShowElevation(!showElevation)}
+                className={`px-2 py-1 text-[9.5px] font-mono font-bold rounded-lg uppercase tracking-wider transition-all duration-150 ${
+                  showElevation ? 'bg-[#00F0FF] text-black font-black' : 'text-slate-400 hover:text-white'
+                }`}
+                title="Toggle 2D Altitude & Incline Graph"
+              >
+                ALTITUDE 🏔️
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsSimulating(!isSimulating)}
+                className={`px-2 py-1 text-[9.5px] font-mono font-bold rounded-lg uppercase tracking-wider transition-all duration-150 ${
+                  isSimulating ? 'bg-[#00FF9C] text-black font-black animate-pulse' : 'text-slate-400 hover:text-white'
+                }`}
+                title="Simulate Hot Lap with Live Speed and Corner Telemetry"
+              >
+                {isSimulating ? '⏸ PAUSE' : '▶ SIM'}
+              </button>
+            </div>
+
+            {/* Canvas Zoom Controls */}
+            <div className="flex items-center gap-1 bg-[#05070A] p-0.5 border border-white/10 rounded-xl shrink-0">
+              <button
+                onClick={() => setZoom(prev => Math.min(prev + 0.25, 3.0))}
+                className="w-6 h-6 rounded-lg bg-[#131A26] border border-white/10 text-white font-mono text-xs flex items-center justify-center font-bold"
+                title="Zoom In"
+              >
+                +
+              </button>
+              <button
+                onClick={() => setZoom(prev => Math.max(prev - 0.25, 0.6))}
+                className="w-6 h-6 rounded-lg bg-[#131A26] border border-white/10 text-white font-mono text-xs flex items-center justify-center font-bold"
+                title="Zoom Out"
+              >
+                -
+              </button>
+              <button
+                onClick={resetView}
+                className="px-2 h-6 rounded-lg bg-[#131A26] border border-white/10 text-cyan-400 font-mono text-[9px] font-bold flex items-center justify-center whitespace-nowrap"
+                title="Reset View"
+              >
+                ↺
+              </button>
             </div>
           </div>
         )}

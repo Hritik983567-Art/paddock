@@ -1301,15 +1301,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 199
     },
     {
       "number": 2,
       "letter": "",
-      "name": "Hungaroring Turn 1",
+      "name": "Hungaroring Turn 2",
       "turn": "Turn 2",
       "x": -4288.65,
       "y": 3778.16,
@@ -1317,15 +1317,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 196
     },
     {
       "number": 3,
       "letter": "",
-      "name": "Hungaroring Turn 2",
+      "name": "Hungaroring Turn 3",
       "turn": "Turn 3",
       "x": -1739.77,
       "y": 2279.86,
@@ -1333,15 +1333,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 128
     },
     {
       "number": 4,
       "letter": "",
-      "name": "Hungaroring Turn 3",
+      "name": "Hungaroring Turn 4",
       "turn": "Turn 4",
       "x": -2081.06,
       "y": 3944.52,
@@ -1349,15 +1349,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 201
     },
     {
       "number": 5,
       "letter": "",
-      "name": "Hungaroring Turn 4",
+      "name": "Hungaroring Turn 5",
       "turn": "Turn 5",
       "x": 137.27,
       "y": 8089.45,
@@ -1365,15 +1365,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 3,
+      "gear": 4,
       "speed_kph": 140
     },
     {
       "number": 6,
       "letter": "",
-      "name": "Hungaroring Turn 5",
+      "name": "Hungaroring Turn 6",
       "turn": "Turn 6",
       "x": -20.38,
       "y": 10382.62,
@@ -1381,15 +1381,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 139
     },
     {
       "number": 7,
       "letter": "",
-      "name": "Hungaroring Turn 6",
+      "name": "Hungaroring Turn 7",
       "turn": "Turn 7",
       "x": 2399.32,
       "y": 8671.93,
@@ -1397,15 +1397,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 148
     },
     {
       "number": 8,
       "letter": "",
-      "name": "Hungaroring Turn 7",
+      "name": "Hungaroring Turn 8",
       "turn": "Turn 8",
       "x": 2251.83,
       "y": 8271.93,
@@ -1413,15 +1413,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 144
     },
     {
       "number": 9,
       "letter": "",
-      "name": "Hungaroring Turn 8",
+      "name": "Hungaroring Turn 9",
       "turn": "Turn 9",
       "x": 2747.39,
       "y": 6726.58,
@@ -1429,15 +1429,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 118
     },
     {
       "number": 10,
       "letter": "",
-      "name": "Hungaroring Turn 9",
+      "name": "Hungaroring Turn 10",
       "turn": "Turn 10",
       "x": 3969.89,
       "y": 6201.39,
@@ -1445,15 +1445,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 137
     },
     {
       "number": 11,
       "letter": "",
-      "name": "Hungaroring Turn 10",
+      "name": "Hungaroring Turn 11",
       "turn": "Turn 11",
       "x": 3859.83,
       "y": 4303.84,
@@ -1461,15 +1461,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 184
     },
     {
       "number": 12,
       "letter": "",
-      "name": "Hungaroring Turn 11",
+      "name": "Hungaroring Turn 12",
       "turn": "Turn 12",
       "x": 4508.72,
       "y": 2507.17,
@@ -1477,15 +1477,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 134
     },
     {
       "number": 13,
       "letter": "",
-      "name": "Hungaroring Turn 12",
+      "name": "Hungaroring Turn 13",
       "turn": "Turn 13",
       "x": 1823.33,
       "y": -301.94,
@@ -1493,15 +1493,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 96
     },
     {
       "number": 14,
       "letter": "",
-      "name": "Hungaroring Turn 12",
+      "name": "Hungaroring Turn 14",
       "turn": "Turn 14",
       "x": 917.19,
       "y": 547.99,
@@ -1509,10 +1509,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 196
     }
   ]
 }

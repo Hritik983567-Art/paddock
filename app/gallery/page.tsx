@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo, useCallback, useRef, Suspense } from 'react';
+import { createPortal } from 'react-dom';
 import { useSearchParams, useRouter } from 'next/navigation';
 import CircuitMap from '../components/CircuitMap';
 import { GalleryMediaItem } from '../lib/galleryMediaData';
@@ -44,6 +45,11 @@ function GalleryContent() {
   });
   const [selectedMedia, setSelectedMedia] = useState<GalleryMediaItem | null>(null);
   const [activeCornerDetails, setActiveCornerDetails] = useState<CircuitCorner | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const lastUrlCircuitRef = useRef<string | null>(targetCircuitFromUrl || 'monza');
 
@@ -679,14 +685,14 @@ function GalleryContent() {
       </section>
 
       {/* FULL CORNER RECONNAISSANCE INFORMATION MODAL */}
-      {selectedMedia && (
+      {selectedMedia && isMounted && createPortal(
         <div 
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-slate-950/90 backdrop-blur-xl animate-in fade-in duration-150"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-2.5 sm:p-4 bg-slate-950/90 backdrop-blur-xl animate-in fade-in duration-150"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-4xl my-auto bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl space-y-3.5 sm:space-y-5 p-3.5 sm:p-6 max-h-[94vh] sm:max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-4xl max-w-[calc(100vw-1.25rem)] my-auto bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl space-y-3.5 sm:space-y-5 p-3.5 sm:p-6 max-h-[94vh] sm:max-h-[90vh] overflow-y-auto"
           >
             {/* Close Button */}
             <button
@@ -976,7 +982,7 @@ function GalleryContent() {
                 <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
                   <span className="block text-[10px] text-slate-400 font-display font-bold uppercase tracking-wider">ENTRY SPEED</span>
                   <span className="text-base font-telemetry font-black text-white">
-                    {selectedMedia.entrySpeed || tech.entrySpeed || 'N/A'}
+                    {tech.entrySpeed || selectedMedia.entrySpeed || 'N/A'}
                   </span>
                 </div>
                 <div className="bg-slate-950/90 p-3 rounded-xl border border-red-950/60 shadow-[0_0_10px_rgba(225,6,0,0.1)]">
@@ -1000,7 +1006,7 @@ function GalleryContent() {
                 <div className="bg-slate-950/90 p-3 rounded-xl border border-slate-800">
                   <span className="block text-[10px] text-slate-400 font-display font-bold uppercase tracking-wider">LATERAL G-FORCE</span>
                   <span className="text-base font-telemetry font-black text-white">
-                    {selectedMedia.gForce || 'N/A'}
+                    {(tech as any).lateralG || (selectedMedia.gForce && !selectedMedia.gForce.startsWith('-') ? selectedMedia.gForce : (parseInt(tech.apexSpeed || '100', 10) > 200 ? '+4.8 G' : parseInt(tech.apexSpeed || '100', 10) > 150 ? '+3.8 G' : '+2.8 G'))}
                   </span>
                 </div>
                 <div className="bg-slate-950/90 p-3 rounded-xl border border-red-950/60 shadow-[0_0_10px_rgba(225,6,0,0.1)]">
@@ -1075,7 +1081,8 @@ function GalleryContent() {
               )}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Interactive Circuit Map Canvas Below */}

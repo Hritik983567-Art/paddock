@@ -1429,10 +1429,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 106
     },
     {
       "number": 2,
@@ -1445,10 +1445,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 184
     },
     {
       "number": 3,
@@ -1461,10 +1461,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 180
     },
     {
       "number": 4,
@@ -1477,10 +1477,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 177
     },
     {
       "number": 5,
@@ -1493,10 +1493,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 195
     },
     {
       "number": 6,
@@ -1509,10 +1509,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 91
     },
     {
       "number": 7,
@@ -1525,10 +1525,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 154
     },
     {
       "number": 8,
@@ -1541,10 +1541,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 156
     },
     {
       "number": 9,
@@ -1557,10 +1557,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 121
     },
     {
       "number": 10,
@@ -1573,15 +1573,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 99
     },
     {
       "number": 11,
       "letter": "",
-      "name": "Hairpin Curve",
+      "name": "Suzuka Hairpin",
       "turn": "Turn 11",
       "x": -5964.65,
       "y": 1876.74,
@@ -1589,10 +1589,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 2,
+      "speed_kph": 70
     },
     {
       "number": 12,
@@ -1605,10 +1605,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 190
     },
     {
       "number": 13,
@@ -1621,10 +1621,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 106
     },
     {
       "number": 14,
@@ -1637,15 +1637,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 173
     },
     {
       "number": 15,
       "letter": "",
-      "name": "130R (Ultra High Speed)",
+      "name": "130R",
       "turn": "Turn 15",
       "x": -4974.21,
       "y": -1679.81,
@@ -1653,15 +1653,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Legendary Flat-Out Sweeper",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 7,
+      "speed_kph": 305
     },
     {
       "number": 16,
       "letter": "",
-      "name": "Casio Triangle Chicane 1",
+      "name": "Casio Triangle Chicane (T16)",
       "turn": "Turn 16",
       "x": -1819.33,
       "y": 517.59,
@@ -1669,10 +1669,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Chicane",
       "direction": "Left",
       "gear": 2,
-      "speed_kph": 95
+      "speed_kph": 75
     },
     {
       "number": 17,
@@ -1685,10 +1685,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Technical Chicane",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 143
     },
     {
       "number": 18,
@@ -1701,10 +1701,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 204
     }
   ]
 }

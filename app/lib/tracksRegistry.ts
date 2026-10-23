@@ -1,3 +1,5 @@
+import { FIA_TRACK_SECTOR_SPECS } from './fiaSectors';
+
 export interface TrackSector {
   id: 'S1' | 'S2' | 'S3';
   markerIndex: number;
@@ -1528,5 +1530,25 @@ export function getTrackDefinition(id: string): TrackDefinition {
   const resolvedKey = ALIAS_MAP[cleanId] || cleanId;
   const normId = resolvedKey.replace(/-/g, '_');
   const altId = resolvedKey.replace(/_/g, '-');
-  return TRACKS_REGISTRY[resolvedKey] || TRACKS_REGISTRY[normId] || TRACKS_REGISTRY[altId] || TRACKS_REGISTRY['monza'];
+  const base = TRACKS_REGISTRY[resolvedKey] || TRACKS_REGISTRY[normId] || TRACKS_REGISTRY[altId] || TRACKS_REGISTRY['monza'];
+
+  // Calibrate sectors and speed trap dynamically from authoritative FIA specifications
+  const spec = FIA_TRACK_SECTOR_SPECS[normId] || FIA_TRACK_SECTOR_SPECS[resolvedKey];
+  const pathLen = base.path?.length || 100;
+  const s1 = spec ? Math.floor(pathLen * spec.fallbackRatios.s1) : Math.floor(pathLen * 0.31);
+  const s2 = spec ? Math.floor(pathLen * spec.fallbackRatios.s2) : Math.floor(pathLen * 0.67);
+  const st = spec ? Math.floor(pathLen * spec.fallbackRatios.speedTrap) : Math.floor(pathLen * 0.58);
+
+  const safeS1 = Math.max(1, Math.min(pathLen - 2, s1));
+  const safeS2 = Math.max(safeS1 + 1, Math.min(pathLen - 2, s2));
+  const safeSt = Math.max(0, Math.min(pathLen - 1, st));
+
+  return {
+    ...base,
+    sectors: [
+      { id: 'S1', markerIndex: safeS1 },
+      { id: 'S2', markerIndex: safeS2 }
+    ],
+    speedTrapIndex: safeSt
+  };
 }

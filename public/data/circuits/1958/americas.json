@@ -1489,7 +1489,7 @@
     {
       "number": 1,
       "letter": "",
-      "name": "Circuit of the Americas Turn 1",
+      "name": "Circuit of the Americas Turn 1 ('Big Red')",
       "turn": "Turn 1",
       "x": 3743.51,
       "y": -4013.37,
@@ -1497,10 +1497,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
-      "direction": "Right",
+      "type": "Uphill Hairpin / Blind Crest",
+      "direction": "Left",
       "gear": 2,
-      "speed_kph": 95
+      "speed_kph": 82
     },
     {
       "number": 2,
@@ -1513,10 +1513,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
-      "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "type": "Downhill Sweeper",
+      "direction": "Right",
+      "gear": 4,
+      "speed_kph": 195
     },
     {
       "number": 3,
@@ -1529,10 +1529,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper (Esses)",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 6,
+      "speed_kph": 250
     },
     {
       "number": 4,
@@ -1545,10 +1545,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper (Esses)",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 5,
+      "speed_kph": 225
     },
     {
       "number": 5,
@@ -1561,10 +1561,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "High-Speed Sweeper (Esses)",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 5,
+      "speed_kph": 210
     },
     {
       "number": 6,
@@ -1577,10 +1577,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium Sweeper (Esses Exit)",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 190
     },
     {
       "number": 7,
@@ -1593,10 +1593,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 8,
@@ -1609,10 +1609,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Medium-Speed Corner",
       "direction": "Left",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 4,
+      "speed_kph": 160
     },
     {
       "number": 9,
@@ -1625,10 +1625,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Uphill Sweeper",
       "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 4,
+      "speed_kph": 165
     },
     {
       "number": 10,
@@ -1641,10 +1641,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Blind Crest Kink",
       "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "gear": 6,
+      "speed_kph": 235
     },
     {
       "number": 11,
@@ -1657,10 +1657,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
-      "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "type": "Heavy Braking Hairpin",
+      "direction": "Left",
+      "gear": 2,
+      "speed_kph": 78
     },
     {
       "number": 12,
@@ -1673,10 +1673,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Heavy Braking Hairpin (End of Back Straight)",
       "direction": "Left",
-      "gear": 5,
-      "speed_kph": 210
+      "gear": 2,
+      "speed_kph": 85
     },
     {
       "number": 13,
@@ -1689,7 +1689,7 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Stadium Section Entry",
       "direction": "Right",
       "gear": 2,
       "speed_kph": 95
@@ -1705,10 +1705,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
-      "direction": "Left",
+      "type": "Technical Chicane",
+      "direction": "Right",
       "gear": 3,
-      "speed_kph": 140
+      "speed_kph": 125
     },
     {
       "number": 15,
@@ -1721,10 +1721,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
-      "direction": "Right",
-      "gear": 5,
-      "speed_kph": 210
+      "type": "Slow Apex Hairpin",
+      "direction": "Left",
+      "gear": 2,
+      "speed_kph": 90
     },
     {
       "number": 16,
@@ -1737,10 +1737,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
-      "direction": "Left",
-      "gear": 2,
-      "speed_kph": 95
+      "type": "Multi-Apex Carousel (Entry)",
+      "direction": "Right",
+      "gear": 4,
+      "speed_kph": 170
     },
     {
       "number": 17,
@@ -1753,10 +1753,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "Multi-Apex Carousel (Mid)",
       "direction": "Right",
-      "gear": 3,
-      "speed_kph": 140
+      "gear": 5,
+      "speed_kph": 215
     },
     {
       "number": 18,
@@ -1769,15 +1769,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
-      "direction": "Left",
+      "type": "Multi-Apex Carousel (Exit)",
+      "direction": "Right",
       "gear": 5,
-      "speed_kph": 210
+      "speed_kph": 240
     },
     {
       "number": 19,
       "letter": "",
-      "name": "Turn 19",
+      "name": "Circuit of the Americas Turn 19",
       "turn": "Turn 19",
       "x": 45.35,
       "y": 1887.25,
@@ -1785,15 +1785,15 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
-      "direction": "Right",
-      "gear": 2,
-      "speed_kph": 95
+      "type": "Downhill Off-Camber Corner",
+      "direction": "Left",
+      "gear": 4,
+      "speed_kph": 175
     },
     {
       "number": 20,
       "letter": "",
-      "name": "Turn 20",
+      "name": "Circuit of the Americas Turn 20",
       "turn": "Turn 20",
       "x": -2544.67,
       "y": 618.33,
@@ -1801,10 +1801,10 @@
       "distance": 0,
       "nearestTrackDistance": 0,
       "alignmentValid": true,
-      "type": "Corner",
+      "type": "90-Degree Corner (Main Straight Entry)",
       "direction": "Left",
       "gear": 3,
-      "speed_kph": 140
+      "speed_kph": 115
     }
   ]
 }
