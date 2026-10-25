@@ -22,6 +22,8 @@ interface PredictorHeaderProps {
   onToggleHistoryLedger?: () => void;
   isViewingHistory?: boolean;
   onReturnToUpcoming?: () => void;
+  calendarRaces?: CalendarRaceInfo[];
+  onSelectRound?: (round: string) => void;
 }
 
 export default function PredictorHeader({
@@ -35,6 +37,8 @@ export default function PredictorHeader({
   onToggleHistoryLedger,
   isViewingHistory = false,
   onReturnToUpcoming,
+  calendarRaces,
+  onSelectRound,
 }: PredictorHeaderProps) {
   return (
     <header className="stitch-card-machined relative z-10 p-5 sm:p-6 rounded-2xl mb-8 shadow-2xl overflow-hidden">
@@ -77,9 +81,27 @@ export default function PredictorHeader({
               </span>
             )}
 
-            <span className="data-chip px-2.5 py-1 text-xs font-mono font-bold text-gray-200">
-              Round {currentRace?.round || "19"} of 24
-            </span>
+            {calendarRaces && calendarRaces.length > 0 && onSelectRound && !isViewingHistory ? (
+              <div className="inline-flex items-center gap-1.5 bg-[#101724] px-2.5 py-1 rounded-xl border border-white/20">
+                <span className="text-[10px] font-mono text-cyan-400 font-bold">ROUND:</span>
+                <select
+                  value={currentRace?.round || "19"}
+                  onChange={(e) => onSelectRound(e.target.value)}
+                  className="bg-transparent text-white font-mono font-bold text-xs cursor-pointer focus:outline-none"
+                  title="Select Grand Prix Round"
+                >
+                  {calendarRaces.map((r) => (
+                    <option key={r.round} value={r.round} className="bg-[#090E16] text-white">
+                      R{r.round} · {r.raceName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : (
+              <span className="data-chip px-2.5 py-1 text-xs font-mono font-bold text-gray-200">
+                Round {currentRace?.round || "19"} of 24
+              </span>
+            )}
 
             {isCompletedRace ? (
               <span className="data-chip px-2.5 py-1 text-xs font-semibold bg-[#00FF9C]/15 text-[#00FF9C] border-[#00FF9C]/40">

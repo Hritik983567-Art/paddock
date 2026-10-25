@@ -230,6 +230,18 @@ export default function RacePredictorPage() {
         onToggleHistoryLedger={() => setIsViewingHistory(prev => !prev)}
         isViewingHistory={isViewingHistory}
         onReturnToUpcoming={handleReturnToUpcoming}
+        calendarRaces={calendarRaces.map(r => ({
+          round: r.round,
+          raceName: r.raceName,
+          circuitId: r.Circuit?.circuitId || '',
+          circuitName: r.Circuit?.circuitName || '',
+          country: r.Circuit?.Location?.country || '',
+          date: r.date
+        }))}
+        onSelectRound={(round) => {
+          setSelectedRound(round);
+          fetchPrediction(activeSeason, round);
+        }}
       />
 
       {/* 2. Loading State */}
