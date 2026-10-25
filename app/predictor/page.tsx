@@ -115,7 +115,7 @@ export default function RacePredictorPage() {
   }, [activeSeason]);
 
   // 2. Fetch Prediction for Selected Race (Active Upcoming or Historical)
-  const fetchPrediction = useCallback(async (seasonToFetch: string, roundToFetch: string, forceRefresh = false) => {
+  const fetchPrediction = useCallback(async (seasonToFetch: string, roundToFetch: string, forceRefresh = false, retryCount = 1) => {
     setIsLoading(true);
     setErrorMsg(null);
 
@@ -137,6 +137,10 @@ export default function RacePredictorPage() {
 
       setPredictionData(data);
     } catch (err: any) {
+      if (retryCount > 0) {
+        await new Promise(r => setTimeout(r, 800));
+        return fetchPrediction(seasonToFetch, roundToFetch, forceRefresh, retryCount - 1);
+      }
       setErrorMsg(err.message || 'Unable to connect to the Paddock Race Predictor service.');
       setPredictionData(null);
     } finally {
