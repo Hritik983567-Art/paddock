@@ -115,37 +115,42 @@ export default function RacePredictorPage() {
   }, [activeSeason]);
 
   // 2. Fetch Prediction for Selected Race (Active Upcoming or Historical)
-  const fetchPrediction = useCallback(async (seasonToFetch: string, roundToFetch: string, forceRefresh = false, retryCount = 1) => {
+  const fetchPrediction = useCallback(async (seasonToFetch: string, roundToFetch: string, forceRefresh = false) => {
     setIsLoading(true);
     setErrorMsg(null);
 
     const raceId = `${seasonToFetch}_${roundToFetch}`;
     const query = forceRefresh ? '?refresh=true' : '';
 
-    try {
-      const res = await fetch(`/api/predictions/race/${raceId}${query}`);
-      let data: RacePredictionResponse;
+    let lastError: any = null;
+    for (let attempt = 0; attempt < 2; attempt++) {
       try {
-        data = await res.json();
-      } catch {
-        throw new Error(`Invalid response received from race prediction service (Status: ${res.status}).`);
-      }
+        const res = await fetch(`/api/predictions/race/${raceId}${query}`);
+        let data: RacePredictionResponse;
+        try {
+          data = await res.json();
+        } catch {
+          throw new Error(`Invalid response received from race prediction service (Status: ${res.status}).`);
+        }
 
-      if (!res.ok && res.status !== 200 && data.status !== 'unavailable') {
-        throw new Error(data.message || `Prediction service returned status ${res.status}`);
-      }
+        if (!res.ok && res.status !== 200 && data.status !== 'unavailable') {
+          throw new Error(data.message || `Prediction service returned status ${res.status}`);
+        }
 
-      setPredictionData(data);
-    } catch (err: any) {
-      if (retryCount > 0) {
-        await new Promise(r => setTimeout(r, 800));
-        return fetchPrediction(seasonToFetch, roundToFetch, forceRefresh, retryCount - 1);
+        setPredictionData(data);
+        setIsLoading(false);
+        return;
+      } catch (err: any) {
+        lastError = err;
+        if (attempt === 0) {
+          await new Promise(r => setTimeout(r, 800));
+        }
       }
-      setErrorMsg(err.message || 'Unable to connect to the Paddock Race Predictor service.');
-      setPredictionData(null);
-    } finally {
-      setIsLoading(false);
     }
+
+    setErrorMsg(lastError?.message || 'Unable to connect to the Paddock Race Predictor service.');
+    setPredictionData(null);
+    setIsLoading(false);
   }, []);
 
   // Initial load: Fetch upcoming Austin race status
