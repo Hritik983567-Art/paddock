@@ -13,7 +13,6 @@ import {
 import PredictedWinnerBanner from '../app/predictor/components/PredictedWinnerBanner';
 import ProbabilityTable from '../app/predictor/components/ProbabilityTable';
 import ExplanationsPanel from '../app/predictor/components/ExplanationsPanel';
-import PredictorHeader from '../app/predictor/components/PredictorHeader';
 import {
   QualifyingNotCompletedState,
   PredictorLoadingSkeleton,

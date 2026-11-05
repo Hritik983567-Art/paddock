@@ -7,7 +7,7 @@
   "circuitName": "Bahrain International Circuit",
   "country": "Bahrain",
   "predictionStage": "after_qualifying",
-  "generatedAtUtc": "2026-11-05T16:54:27.497634+00:00Z",
+  "generatedAtUtc": "2026-11-05T20:08:54.839089+00:00Z",
   "modelVersion": "v1.0.0",
   "featureSchemaVersion": "1.0.0",
   "qualifyingStatus": {
@@ -619,6 +619,6 @@
   "provenance": {
     "qualifyingSource": "live_telemetry",
     "baselineVersion": "v1.3.1",
-    "retrievalTimestampUtc": "2026-11-05T16:54:27.497634+00:00Z"
+    "retrievalTimestampUtc": "2026-11-05T20:08:54.839089+00:00Z"
   }
 }

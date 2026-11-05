@@ -5,7 +5,6 @@ import {
   validateSnapshot,
   getCircuitForRound,
   compareSnapshotPrecedence,
-  loadAndValidateDiskSnapshot,
   REGULATION_ERA_WARNING_2026,
   CURRENT_2026_GRID,
   MODEL_VERSION,

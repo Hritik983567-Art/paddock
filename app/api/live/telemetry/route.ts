@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
     // 1. Attempt to fetch real-time session from OpenF1 public live endpoints
     let openf1Drivers: LiveDriverPayload[] | null = null;
     let weatherData: any = null;
-    let trackStatus = 'GREEN';
+    const trackStatus = 'GREEN';
 
     try {
       const controller = new AbortController();
@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
           const sessionKey = activeSess.session_key;
 
           // Fetch latest positions and intervals in parallel
-          const [posRes, intRes, lapRes, weaRes] = await Promise.all([
+          const [posRes, _intRes, _lapRes, weaRes] = await Promise.all([
             fetch(`https://api.openf1.org/v1/position?session_key=${sessionKey}`, { signal: controller.signal }),
             fetch(`https://api.openf1.org/v1/intervals?session_key=${sessionKey}`, { signal: controller.signal }),
             fetch(`https://api.openf1.org/v1/laps?session_key=${sessionKey}`, { signal: controller.signal }),

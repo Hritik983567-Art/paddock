@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSeason } from '../contexts/SeasonContext';
 import { getJSON, API_BASE } from '../utils/api';
 import { RacePredictionResponse } from '../lib/racePredictorService';
-import { getOfficialRaceResults, recordCompletedRaceToLedger } from '../lib/raceResultsService';
+import { getOfficialRaceResults } from '../lib/raceResultsService';
 
 import PredictorHeader, { CalendarRaceInfo } from './components/PredictorHeader';
 import PredictedWinnerBanner from './components/PredictedWinnerBanner';
@@ -313,7 +313,7 @@ export default function RacePredictorPage() {
   const [predictionData, setPredictionData] = useState<RacePredictionResponse | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [isSimulationMode, setIsSimulationMode] = useState<boolean>(false);
+  const [_isSimulationMode, setIsSimulationMode] = useState<boolean>(false);
 
   // 1. Fetch Calendar Races for Active Season
   useEffect(() => {

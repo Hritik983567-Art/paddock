@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { getTeamColor, getJSON, API_BASE } from '../utils/api';
 import CircuitMap from '../components/CircuitMap';
-import { TRACKS_REGISTRY, getTrackDefinition } from '../lib/tracksRegistry';
+import { getTrackDefinition } from '../lib/tracksRegistry';
 
 export interface SectorData {
   value: string;
@@ -46,12 +46,6 @@ interface LiveDriver {
   pitStops?: number;
 }
 
-function formatLapTime(seconds: number): string {
-  const m = Math.floor(seconds / 60);
-  const s = Math.floor(seconds % 60);
-  const ms = Math.floor((seconds % 1) * 1000);
-  return `${m}:${s.toString().padStart(2, '0')}.${ms.toString().padStart(3, '0')}`;
-}
 
 
 function getTyreBadgeStyle(compound: string) {
@@ -381,7 +375,6 @@ export default function LiveTelemetryPage() {
   const activeRaceDataRef = useRef<any>(null);
   const [sessions, setSessions] = useState<CompetitiveSession[]>([]);
   const [activeDriverCode, setActiveDriverCode] = useState<string | null>(null);
-  const [currentLap, setCurrentLap] = useState<number | string>('—');
   const [flagStatus, setFlagStatus] = useState<'GREEN' | 'YELLOW' | 'SAFETY CAR' | 'RED FLAG'>('GREEN');
   const [proxyStatus, setProxyStatus] = useState<'OFFLINE' | 'CONNECTING' | 'CONNECTED' | 'STANDBY'>('OFFLINE');
   const [uplinkError, setUplinkError] = useState<string | null>(null);

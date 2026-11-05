@@ -151,7 +151,7 @@ const inFlightRequests = new Map<string, Promise<RacePredictionResponse>>();
 const PROJECT_ROOT = process.cwd();
 export const MODEL_VERSION = 'v1.0.0';
 export const FEATURE_SCHEMA_VERSION = '1.0.0';
-const METADATA_PATH = path.join(PROJECT_ROOT, 'models', 'predictor', MODEL_VERSION, 'model_metadata.json');
+export const METADATA_PATH = path.join(PROJECT_ROOT, 'models', 'predictor', MODEL_VERSION, 'model_metadata.json');
 export const MODEL_BUNDLE_PATH = path.join(PROJECT_ROOT, 'models', 'predictor', MODEL_VERSION, 'trained_models.joblib');
 export const FROZEN_MODEL_BUNDLE_SHA256 = 'D8244024E6B7F0F31912EFE80B35652EF228461955232DDE7E4D65ECCC5779CD';
 

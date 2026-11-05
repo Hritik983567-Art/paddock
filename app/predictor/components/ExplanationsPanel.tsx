@@ -333,7 +333,7 @@ export default function ExplanationsPanel({
             <div className="text-xs text-slate-300 leading-relaxed space-y-1.5 font-sans">
               <p>
                 <strong className="text-white font-mono">Qualifying vs. Heritage Balance: </strong>
-                Starting grid position and single-lap qualifying delta determine initial track positioning, while the circuit's historical pole-to-win conversion rate and past winners indicate how readily overtaking occurs at this venue.
+                Starting grid position and single-lap qualifying delta determine initial track positioning, while the circuit&apos;s historical pole-to-win conversion rate and past winners indicate how readily overtaking occurs at this venue.
               </p>
               <p>
                 <strong className="text-white font-mono">Race Day Dynamics: </strong>

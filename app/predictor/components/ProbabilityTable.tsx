@@ -56,8 +56,8 @@ export default function ProbabilityTable({
   actualResults,
   circuitHeritage,
   rankingOrderSemantic,
-  hybridFormulaVersion,
-  experimentalStatus,
+  hybridFormulaVersion: _hybridFormulaVersion,
+  experimentalStatus: _experimentalStatus,
 }: ProbabilityTableProps) {
   const [sortField, setSortField] = useState<SortField>("prob");
   const [sortAsc, setSortAsc] = useState<boolean>(false);
