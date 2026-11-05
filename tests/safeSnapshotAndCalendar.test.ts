@@ -177,14 +177,20 @@ describe('Phase 3C.3A — Safe Snapshot and Calendar Remediation', () => {
   // Task D: Removal of Hardcoded Race-Result Fallback
   // ==========================================
   describe('Task D: Official Race Results & Accuracy Ledger Isolation', () => {
-    it('returns empty/unavailable results for unheld 2026 R19 and R20 without cross-season leakage', async () => {
-      const r19 = await getOfficialRaceResults('2026', '19');
-      expect(r19.actualWinnerCode).toBeUndefined();
-      expect(Object.keys(r19.actualResults).length).toBe(0);
-
+    it('returns empty/unavailable results for unheld 2026 R20 and R21 without cross-season leakage', async () => {
       const r20 = await getOfficialRaceResults('2026', '20');
       expect(r20.actualWinnerCode).toBeUndefined();
       expect(Object.keys(r20.actualResults).length).toBe(0);
+
+      const r21 = await getOfficialRaceResults('2026', '21');
+      expect(r21.actualWinnerCode).toBeUndefined();
+      expect(Object.keys(r21.actualResults).length).toBe(0);
+    });
+
+    it('does not leak 2024 historical results when querying 2026 completed rounds', async () => {
+      const r19 = await getOfficialRaceResults('2026', '19');
+      // 2024 R19 winner was LEC (Austin). 2026 R19 (Mexico) must never leak 2024 data.
+      expect(r19.actualWinnerCode).not.toBe('LEC');
     });
 
     it('preserves verified 2024 historical classifications when 2024 is explicitly queried', async () => {
