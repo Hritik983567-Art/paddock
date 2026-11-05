@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paddock.f1/schemas/fia_grid_fixture.schema.json",
+  "title": "FIAOfficialStartingGridFixture",
+  "type": "object",
+  "required": [
+    "document_metadata",
+    "event_metadata",
+    "roster_summary",
+    "grid_records"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "document_metadata": {
+      "type": "object",
+      "required": [
+        "official_doc_id",
+        "title",
+        "published_timestamp",
+        "fia_url",
+        "pdf_sha256",
+        "stewards_sign_off",
+        "parser_metadata"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "official_doc_id": { "type": "string" },
+        "title": { "type": "string" },
+        "published_timestamp": { "type": "string" },
+        "fia_url": { "type": "string" },
+        "pdf_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "stewards_sign_off": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "parser_metadata": {
+          "type": "object",
+          "required": ["parser_version", "extractor_library", "extracted_at"],
+          "additionalProperties": false,
+          "properties": {
+            "parser_version": { "type": "string" },
+            "extractor_library": { "type": "string" },
+            "extracted_at": { "type": "string" }
+          }
+        }
+      }
+    },
+    "event_metadata": {
+      "type": "object",
+      "required": ["season", "round", "race_name", "circuit_id"],
+      "additionalProperties": false,
+      "properties": {
+        "season": { "type": "integer" },
+        "round": { "type": "integer" },
+        "race_name": { "type": "string" },
+        "circuit_id": { "type": "string" }
+      }
+    },
+    "roster_summary": {
+      "type": "object",
+      "required": [
+        "total_entered",
+        "total_qualifying",
+        "total_withdrawn",
+        "total_track_grid",
+        "total_pit_lane",
+        "total_race_starters"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "total_entered": { "type": "integer", "minimum": 0 },
+        "total_qualifying": { "type": "integer", "minimum": 0 },
+        "total_withdrawn": { "type": "integer", "minimum": 0 },
+        "total_track_grid": { "type": "integer", "minimum": 0 },
+        "total_pit_lane": { "type": "integer", "minimum": 0 },
+        "total_race_starters": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "grid_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "driver_id",
+          "car_number",
+          "driver_name",
+          "team_name",
+          "qualifying_position",
+          "start_type",
+          "track_grid_box",
+          "pit_lane_order",
+          "model_feature_grid_position",
+          "status",
+          "dispensation_doc",
+          "penalty_details"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "driver_id": { "type": "string" },
+          "car_number": { "type": "integer", "minimum": 1, "maximum": 99 },
+          "driver_name": { "type": "string" },
+          "team_name": { "type": "string" },
+          "qualifying_position": { "type": ["integer", "null"] },
+          "start_type": {
+            "type": "string",
+            "enum": ["TRACK_GRID", "PIT_LANE", "WITHDRAWN", "DID_NOT_START"]
+          },
+          "track_grid_box": { "type": ["integer", "null"], "minimum": 1, "maximum": 30 },
+          "pit_lane_order": { "type": ["integer", "null"], "minimum": 1, "maximum": 10 },
+          "model_feature_grid_position": { "type": ["integer", "null"], "minimum": 1, "maximum": 20 },
+          "status": {
+            "type": "string",
+            "enum": ["STARTER", "WITHDRAWN", "EXCLUDED"]
+          },
+          "dispensation_doc": { "type": ["string", "null"] },
+          "penalty_details": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}
+

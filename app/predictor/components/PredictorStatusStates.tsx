@@ -5,6 +5,7 @@ interface QualifyingNotCompletedProps {
   season: string;
   round: string;
   onViewHistory?: () => void;
+  onRunSimulation?: () => void;
 }
 
 export function QualifyingNotCompletedState({
@@ -12,6 +13,7 @@ export function QualifyingNotCompletedState({
   season,
   round,
   onViewHistory,
+  onRunSimulation,
 }: QualifyingNotCompletedProps) {
   return (
     <div className="relative z-10 stitch-card-machined rounded-2xl p-6 sm:p-10 shadow-2xl my-6">
@@ -109,9 +111,20 @@ export function QualifyingNotCompletedState({
           </div>
         </div>
 
-        {/* Explore Past Records Link */}
-        {onViewHistory && (
-          <div className="flex items-center justify-center pt-2">
+        {/* Action Buttons: Run Simulation & Explore Past Records */}
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+          {onRunSimulation && (
+            <button
+              onClick={onRunSimulation}
+              aria-label="Run calibrated 2026 pre-race simulation"
+              className="min-h-[44px] px-5 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-gradient-to-r from-[#00F0FF]/20 to-[#00FF9C]/20 hover:from-[#00F0FF]/30 hover:to-[#00FF9C]/30 text-white border border-[#00F0FF]/50 hover:border-[#00FF9C]/80 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00FF9C] transition-all duration-200 flex items-center gap-2 shadow-lg shadow-[#00F0FF]/10"
+            >
+              <span className="text-[#00FF9C]">⚡</span>
+              <span>Run 2026 Grid Simulation (Provisional)</span>
+            </button>
+          )}
+
+          {onViewHistory && (
             <button
               onClick={onViewHistory}
               aria-label="View past Grand Prix prediction records and accuracy ledger"
@@ -119,8 +132,8 @@ export function QualifyingNotCompletedState({
             >
               <span>View Past Grand Prix Records & Accuracy Ledger 📜</span>
             </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

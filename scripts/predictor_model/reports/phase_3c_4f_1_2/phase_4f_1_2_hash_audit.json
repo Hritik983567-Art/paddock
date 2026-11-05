@@ -1,0 +1,67 @@
+{
+  "verification_metadata": {
+    "phase": "Phase 3C.4F.1.2",
+    "title": "Complete Inference Hash & Contract Freeze Verification",
+    "timestamp_utc": "2026-11-05T13:28:06.014067+00:00",
+    "production_gate": "STRICTLY CLOSED",
+    "model_c_trained": false,
+    "all_tests_passed": true
+  },
+  "sample_hashes": {
+    "inference_input_hash_sha256": "e7c4e568b7a52c16a6cf76f89ec8067ab2d5bb136475a7e4ba0f6e2039095b93",
+    "prediction_output_hash_sha256": "7a3180ee45f3fab68f47c881530a51127d7664ec4b70e1db5e5301a843daaa0c"
+  },
+  "test_results": {
+    "test_1_identical_inputs": {
+      "passed": true,
+      "input_match": true,
+      "output_match": true
+    },
+    "test_2_order_invariance": {
+      "passed": true,
+      "input_invariant": true,
+      "output_invariant": true
+    },
+    "test_3_all_42_features_sensitive": {
+      "passed": true,
+      "features_tested": 42,
+      "failures": []
+    },
+    "test_4_driver_id_sensitivity": {
+      "passed": true,
+      "input_changed": true,
+      "output_changed": true
+    },
+    "test_5_race_identity_sensitivity": {
+      "passed": true,
+      "input_changed": true,
+      "output_changed": true
+    },
+    "test_6_stage_sensitivity": {
+      "passed": true,
+      "input_changed": true,
+      "output_changed": true
+    },
+    "test_7_metadata_and_weight_sensitivity": {
+      "passed": true,
+      "tested_variations": 6,
+      "all_changed": true
+    },
+    "test_8_output_probability_sensitivity": {
+      "passed": true,
+      "output_changed": true,
+      "input_unchanged": true
+    },
+    "test_9_feature_decoupled_from_output": {
+      "passed": true,
+      "input_changed_on_feature_mutation": true,
+      "output_unchanged_on_preserved_probs": true
+    },
+    "test_10_deterministic_repeatability": {
+      "passed": true,
+      "input_hashes_unique": 1,
+      "output_hashes_unique": 1
+    },
+    "all_ten_tests_passed": true
+  }
+}

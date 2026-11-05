@@ -1,0 +1,406 @@
+{
+  "metadata": {
+    "generator": "scripts/predictor_model/experimental_evaluation_integrity_audit.py",
+    "timestamp_utc": "2026-11-01T12:01:57.709612+00:00",
+    "random_seed": 42
+  },
+  "partition_isolation_proof": {
+    "train_seasons": [
+      2021,
+      2022,
+      2023
+    ],
+    "train_races_count": 66,
+    "holdout_season": 2024,
+    "holdout_races_count": 24,
+    "race_intersection_count": 0,
+    "holdout_leakage_detected": false,
+    "conclusion": "Phase 3C.4E.8 baseline training data strictly excluded all 2024 holdout races."
+  },
+  "static_vs_walk_forward_comparison": {
+    "static_cutoff_baseline": {
+      "description": "Trained once on 2021-2023 (66 races), evaluated on all 24 races of 2024.",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "multiclass_log_loss": 1.8535,
+      "multiclass_brier_score": 0.7117,
+      "expected_calibration_error": 0.0076
+    },
+    "expanding_walk_forward_baseline": {
+      "description": "Chronological walk-forward updating training counts after each 2024 race.",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "multiclass_log_loss": 1.8679,
+      "multiclass_brier_score": 0.7143,
+      "expected_calibration_error": 0.0062
+    },
+    "delta_walk_forward_vs_static": {
+      "top1_accuracy_delta": 0.0,
+      "log_loss_delta": 0.0144,
+      "brier_delta": 0.0026,
+      "ece_delta": -0.0014
+    },
+    "in_sample_contaminated_reference": {
+      "description": "Hypothetical contaminated baseline trained on 2021-2024 (full leakage).",
+      "top1_accuracy": 0.4583,
+      "multiclass_log_loss": 1.5775,
+      "multiclass_brier_score": 0.7006,
+      "leakage_log_loss_drop": 0.276
+    },
+    "finding": "Static and chronological walk-forward grid baselines achieve identical Top-1 classification accuracy (45.83%, 11/24 hits) because Grid 1 retains the highest win rate throughout. Log loss differences between static (1.8535) and walk-forward (1.8679) are negligible (+0.0144). The in-sample contaminated baseline artificially drops log loss to 1.5775, confirming that Phase 3C.4E.8 reports did not suffer from training contamination."
+  },
+  "laplace_smoothing_and_normalization_audit": {
+    "smoothing_formula": "p_i = (wins_i + smoothing * overall_win_rate) / (starts_i + smoothing)",
+    "smoothing_parameter_m": 1.0,
+    "prior_mean_overall_win_rate": 0.05,
+    "unseen_grid_probability_floor": 0.05,
+    "ratio_normalization_verified": true,
+    "roster_size_variations": {
+      "races_with_20_drivers": 23,
+      "races_with_19_drivers": 1,
+      "race_with_19_drivers_details": {
+        "race_id": "2024_3_albert_park",
+        "withdrawn_driver": "logan_sargeant",
+        "reason": "Chassis damaged by Albon in FP1; Williams gave Sargeant car to Albon; Sargeant withdrawn prior to Q1.",
+        "grids_present": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "sum_of_probabilities": 1.0
+      }
+    }
+  },
+  "per_race_roster_and_normalization": [
+    {
+      "race_id": "2024_10_catalunya",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_11_red_bull_ring",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_12_silverstone",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_13_hungaroring",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_14_spa",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_15_zandvoort",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_16_monza",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_17_baku",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_18_marina_bay",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_19_americas",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_1_bahrain",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_20_rodriguez",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_21_interlagos",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_22_vegas",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_23_losail",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_24_yas_marina",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_2_jeddah",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_3_albert_park",
+      "driver_count": 19,
+      "grid_range": [
+        1,
+        19
+      ],
+      "missing_grids": [
+        20
+      ],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_4_suzuka",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_5_shanghai",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_6_miami",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_7_imola",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_8_monaco",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    },
+    {
+      "race_id": "2024_9_villeneuve",
+      "driver_count": 20,
+      "grid_range": [
+        1,
+        20
+      ],
+      "missing_grids": [],
+      "prob_sum_static": 1.0,
+      "prob_sum_walk_forward": 1.0,
+      "prob_sum_reciprocal": 1.0,
+      "is_normalized_sum_one": true
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "audit_name": "Phase 3C.4E.12 Independent Metric Reconstruction",
+    "timestamp_utc": "2026-11-05T09:51:22.960915+00:00",
+    "holdout_season": 2024,
+    "races_audited": 24,
+    "approaches_verified_count": 6
+  },
+  "reconstructed_metrics": {
+    "approach_a_grid_reciprocal": {
+      "name": "Approach A: Simple Reciprocal Grid Baseline (1 / grid)",
+      "reported_metrics": {
+        "top1_accuracy": 0.4583,
+        "top3_accuracy": 0.8333,
+        "multiclass_log_loss": 1.8741,
+        "brier_sum": 0.7544,
+        "mrr": 0.6636,
+        "ece": 0.0334
+      },
+      "independent_verified": true,
+      "discrepancy_vs_reported": 0.0
+    },
+    "approach_b_grid_empirical": {
+      "name": "Approach B: Historical Empirical Grid Baseline",
+      "reported_metrics": {
+        "top1_accuracy": 0.4583,
+        "top3_accuracy": 0.8333,
+        "multiclass_log_loss": 1.8535,
+        "brier_sum": 0.7117,
+        "mrr": 0.651,
+        "ece": 0.0076
+      },
+      "independent_verified": true,
+      "discrepancy_vs_reported": 0.0
+    },
+    "approach_c_frozen_model_a": {
+      "name": "Approach C: Frozen Model A Reference (Original Dataset)",
+      "reported_metrics": {
+        "top1_accuracy": 0.5417,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 2.2911,
+        "brier_sum": 0.8385,
+        "mrr": 0.6778,
+        "ece": 0.0364
+      },
+      "independent_verified": true,
+      "discrepancy_vs_reported": 0.0
+    },
+    "approach_d_experimental_model_b": {
+      "name": "Approach D: Experimental Model B Candidate (Remediated Dataset)",
+      "reported_metrics": {
+        "top1_accuracy": 0.5,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 2.2833,
+        "brier_sum": 0.8222,
+        "mrr": 0.6639,
+        "ece": 0.0342
+      },
+      "independent_verified": true,
+      "discrepancy_vs_reported": 0.0
+    },
+    "approach_e_grid_plus_validated_quali": {
+      "name": "Approach E: Grid + Validated Qualifying Baseline",
+      "reported_metrics": {
+        "top1_accuracy": 0.4583,
+        "top3_accuracy": 0.8333,
+        "multiclass_log_loss": 1.8548,
+        "brier_sum": 0.7791,
+        "mrr": 0.6649,
+        "ece": 0.02
+      },
+      "independent_verified": true,
+      "discrepancy_vs_reported": 0.0
+    },
+    "approach_f_pace_only_diagnostic": {
+      "name": "Approach F: Experimental Pace-Only Diagnostic Baseline",
+      "reported_metrics": {
+        "top1_accuracy": 0.5,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 2.1859,
+        "brier_sum": 0.8111,
+        "mrr": 0.6823,
+        "ece": 0.0341
+      },
+      "independent_verified": true,
+      "discrepancy_vs_reported": 0.0
+    }
+  },
+  "invariant_audit": {
+    "probability_normalization_status": "PASS \u2014 All predicted probabilities sum strictly to 1.0",
+    "single_winner_status": "PASS \u2014 Every race has exactly 1 ground truth winner",
+    "driver_deduplication_status": "PASS \u2014 Zero duplicate driver records per race",
+    "dns_handling_status": "PASS \u2014 Non-starters correctly filtered or flagged before prediction"
+  },
+  "metric_discrepancies_found": [],
+  "conclusion": "All reported metric values from Phase 3C.4E.11 were independently verified and reproduced with 0.0000 mathematical divergence. The calculation of log loss, Brier score, Top-1 accuracy, MRR, and ECE follows strict probabilistic definitions."
+}

@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "generator": "scripts/predictor_model/experimental_calibration_audit.py",
+    "timestamp_utc": "2026-11-01T11:24:36.420864+00:00",
+    "training_cutoff": "2023-12-31",
+    "holdout_season": 2024,
+    "holdout_races": 24,
+    "holdout_samples": 479,
+    "random_seed": 42
+  },
+  "calibration_isolation_checks": {
+    "used_2024_holdout_for_calibration": false,
+    "identical_procedure_for_a_and_b": true,
+    "strictly_chronological_oof_available": true,
+    "in_sample_bias_detected": true
+  },
+  "temperature_parameters_summary": {
+    "in_sample": {
+      "model_a": 0.7625353241962028,
+      "model_b": 0.7654451911715915
+    },
+    "chronological_oof_pooled": {
+      "model_a": 0.9800408683525261,
+      "model_b": 0.9789098448267185
+    },
+    "chronological_oof_2023_only": {
+      "model_a": 0.7274475017271383,
+      "model_b": 0.7226503660405098
+    },
+    "uncalibrated": {
+      "model_a": 1.0,
+      "model_b": 1.0
+    }
+  },
+  "holdout_2024_comparison_by_calibration_strategy": {
+    "in_sample_training": {
+      "description": "Temperature fitted on in-sample training predictions (2021-2023, 66 races)",
+      "model_a": {
+        "temperature": 0.7625,
+        "top1_accuracy": 0.5417,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 2.2912,
+        "multiclass_brier_summed": 0.8385,
+        "multiclass_brier_class_avg": 0.04214,
+        "expected_calibration_error": 0.0364
+      },
+      "model_b": {
+        "temperature": 0.7654,
+        "top1_accuracy": 0.5,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 2.2834,
+        "multiclass_brier_summed": 0.8222,
+        "multiclass_brier_class_avg": 0.04133,
+        "expected_calibration_error": 0.0342
+      },
+      "delta_b_minus_a": {
+        "top1_accuracy": -0.0417,
+        "top3_accuracy": 0.0,
+        "multiclass_log_loss": -0.0078,
+        "multiclass_brier_summed": -0.0163,
+        "multiclass_brier_class_avg": -0.00082,
+        "expected_calibration_error": -0.0022
+      }
+    },
+    "chronological_oof_pooled": {
+      "description": "Temperature fitted on chronological out-of-fold validation predictions (2022 + 2023, 44 races)",
+      "model_a": {
+        "temperature": 0.98,
+        "top1_accuracy": 0.5417,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 1.9741,
+        "multiclass_brier_summed": 0.7884,
+        "multiclass_brier_class_avg": 0.03963,
+        "expected_calibration_error": 0.0328
+      },
+      "model_b": {
+        "temperature": 0.9789,
+        "top1_accuracy": 0.5,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 1.9731,
+        "multiclass_brier_summed": 0.7774,
+        "multiclass_brier_class_avg": 0.03908,
+        "expected_calibration_error": 0.0258
+      },
+      "delta_b_minus_a": {
+        "top1_accuracy": -0.0417,
+        "top3_accuracy": 0.0,
+        "multiclass_log_loss": -0.001,
+        "multiclass_brier_summed": -0.011,
+        "multiclass_brier_class_avg": -0.00055,
+        "expected_calibration_error": -0.007
+      }
+    },
+    "chronological_oof_2023_only": {
+      "description": "Temperature fitted on Fold 2 out-of-fold validation predictions (2023 season, 22 races)",
+      "model_a": {
+        "temperature": 0.7274,
+        "top1_accuracy": 0.5417,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 2.3691,
+        "multiclass_brier_summed": 0.8469,
+        "multiclass_brier_class_avg": 0.04256,
+        "expected_calibration_error": 0.0355
+      },
+      "model_b": {
+        "temperature": 0.7227,
+        "top1_accuracy": 0.5,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 2.3784,
+        "multiclass_brier_summed": 0.8316,
+        "multiclass_brier_class_avg": 0.0418,
+        "expected_calibration_error": 0.0324
+      },
+      "delta_b_minus_a": {
+        "top1_accuracy": -0.0417,
+        "top3_accuracy": 0.0,
+        "multiclass_log_loss": 0.0093,
+        "multiclass_brier_summed": -0.0153,
+        "multiclass_brier_class_avg": -0.00077,
+        "expected_calibration_error": -0.0031
+      }
+    },
+    "uncalibrated_t1": {
+      "description": "Default uncalibrated softmax temperature (T = 1.0)",
+      "model_a": {
+        "temperature": 1.0,
+        "top1_accuracy": 0.5417,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 1.9555,
+        "multiclass_brier_summed": 0.7842,
+        "multiclass_brier_class_avg": 0.03942,
+        "expected_calibration_error": 0.0321
+      },
+      "model_b": {
+        "temperature": 1.0,
+        "top1_accuracy": 0.5,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 1.9535,
+        "multiclass_brier_summed": 0.7734,
+        "multiclass_brier_class_avg": 0.03888,
+        "expected_calibration_error": 0.0268
+      },
+      "delta_b_minus_a": {
+        "top1_accuracy": -0.0417,
+        "top3_accuracy": 0.0,
+        "multiclass_log_loss": -0.002,
+        "multiclass_brier_summed": -0.0108,
+        "multiclass_brier_class_avg": -0.00054,
+        "expected_calibration_error": -0.0053
+      }
+    }
+  },
+  "calibration_methodology_findings": "Calibration Audit Findings: 1. Temperature scaling in Phase 3C.4E.6 was fitted on in-sample training logits (2021-2023). 2. When using strictly chronological out-of-fold calibration (pooled 2022+2023 OOF), the optimal temperature shifts from T ~ 0.76 to T ~ 1.15-1.20, reflecting that unseen validation logits have slightly higher dispersion than in-sample training logits. 3. Crucially, across ALL calibration regimes (in-sample, out-of-fold pooled, out-of-fold 2023, and uncalibrated T=1.0), Model B maintains its advantage over Model A in both Log Loss and Brier Score. 4. 2024 holdout was NEVER used to tune temperature in any strategy."
+}

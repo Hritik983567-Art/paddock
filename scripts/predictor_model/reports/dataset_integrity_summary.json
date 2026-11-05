@@ -1,0 +1,77 @@
+{
+  "audit_metadata": {
+    "auditor": "Paddock Offline Integrity Auditor",
+    "audit_timestamp_utc": "2026-11-01T16:25:00Z",
+    "dataset_file": "data/predictor/f1_race_predictor_dataset.csv",
+    "dataset_sha256": "b1f50ef057e5af732325bb8a784d96b92b34b4441900ceb2a0fd66b579c629af",
+    "model_bundle_sha256": "D8244024E6B7F0F31912EFE80B35652EF228461955232DDE7E4D65ECCC5779CD"
+  },
+  "dataset_overview": {
+    "total_races": 90,
+    "total_training_rows": 1798,
+    "unique_drivers": 32,
+    "unique_constructors": 12,
+    "races_with_20_drivers": 88,
+    "races_with_fewer_than_20_drivers": 2,
+    "duplicate_race_driver_pairs": 0,
+    "missing_driver_ids": 0,
+    "missing_grid_positions": 0,
+    "missing_quali_positions": 0,
+    "grid_positions_outside_1_to_20": 0,
+    "rows_with_quali_different_from_grid": 541,
+    "races_with_duplicate_grid_positions": 8
+  },
+  "anomaly_counts": {
+    "CONFIRMED_DISCREPANCY": 2,
+    "SUSPECTED_ANOMALY": 5,
+    "LEGITIMATE_SPORTING_EXCEPTION": 4,
+    "UNVERIFIED_REQUIRES_MANUAL_REVIEW": 17
+  },
+  "benchmark_validation_results": {
+    "2022_italian_gp_doc_57": {
+      "race_id": "2022_16_monza",
+      "doc_id": "Doc 57",
+      "status": "VALIDATED_SPORTING_EXCEPTION",
+      "details": "19 qualifying-grid differences correctly classified as legitimate 2022 Art 42.3 penalties."
+    },
+    "2024_belgian_gp_doc_37": {
+      "race_id": "2024_14_spa",
+      "doc_id": "Doc 37",
+      "status": "VALIDATED_SPORTING_EXCEPTION",
+      "details": "14 qualifying-grid differences correctly classified as legitimate 2024 Art 42.3 penalties."
+    },
+    "2023_singapore_gp_doc_40": {
+      "race_id": "2023_15_marina_bay",
+      "doc_id": "Doc 40",
+      "status": "CONFIRMED_DISCREPANCIES_DETECTED",
+      "details": "Detected Zhou pit-lane start as grid 19 and Stroll pre-race withdrawal as grid 20."
+    },
+    "2024_saudi_arabian_gp_doc_39": {
+      "race_id": "2024_2_jeddah",
+      "doc_id": "Doc 39",
+      "status": "VALIDATED_SPORTING_EXCEPTION",
+      "details": "Bearman substitution and Zhou 107% dispensation correctly classified as legitimate starting grid records."
+    }
+  },
+  "training_matrix_impact_summary": {
+    "affected_training_rows_count": 7,
+    "affected_feature_columns": [
+      "grid_position",
+      "quali_position",
+      "grid_penalty_delta",
+      "driver_rolling_3_avg_finish",
+      "driver_rolling_5_avg_finish",
+      "driver_rolling_5_win_rate",
+      "driver_rolling_5_podium_rate",
+      "driver_rolling_5_pts_per_race",
+      "driver_rolling_5_dnf_rate",
+      "driver_rolling_10_avg_finish",
+      "driver_rolling_10_win_rate",
+      "constructor_rolling_3_avg_grid",
+      "outqualified_teammate",
+      "teammate_rolling_5_quali_h2h"
+    ],
+    "target_label_affected": true,
+    "imputation_masking_detected": true
+  }
+}

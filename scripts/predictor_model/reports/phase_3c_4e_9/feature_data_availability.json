@@ -1,0 +1,163 @@
+{
+  "metadata": {
+    "generator": "scripts/predictor_model/experimental_evaluation_integrity_audit.py",
+    "timestamp_utc": "2026-11-01T12:02:17.287738+00:00"
+  },
+  "sprint_weekends_2024_audit": [
+    {
+      "round": 5,
+      "race_id": "2024_5_shanghai",
+      "circuit_id": "shanghai",
+      "grand_prix": "Chinese Grand Prix",
+      "pole_sitter": "max_verstappen",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 1,
+      "model_b_pred": "max_verstappen",
+      "model_b_hit": 1,
+      "notes": "Standard Red Bull dominance; won sprint and main race from pole."
+    },
+    {
+      "round": 6,
+      "race_id": "2024_6_miami",
+      "circuit_id": "miami",
+      "grand_prix": "Miami Grand Prix",
+      "pole_sitter": "max_verstappen",
+      "actual_winner": "norris",
+      "winner_grid": 5,
+      "model_b_pred": "max_verstappen",
+      "model_b_hit": 0,
+      "notes": "McLaren introduced massive floor upgrade. Norris benefited from fortunate safety car timing and superior race pace."
+    },
+    {
+      "round": 11,
+      "race_id": "2024_11_spielberg",
+      "circuit_id": "red_bull_ring",
+      "grand_prix": "Austrian Grand Prix",
+      "pole_sitter": "max_verstappen",
+      "actual_winner": "russell",
+      "winner_grid": 3,
+      "model_b_pred": "max_verstappen",
+      "model_b_hit": 0,
+      "notes": "Verstappen led 63 laps; slow pit stop allowed Norris to attack; lap 64 collision eliminated both from the lead, handing win to Russell."
+    },
+    {
+      "round": 19,
+      "race_id": "2024_19_austin",
+      "circuit_id": "americas",
+      "grand_prix": "United States Grand Prix",
+      "pole_sitter": "norris",
+      "actual_winner": "leclerc",
+      "winner_grid": 4,
+      "model_b_pred": "norris",
+      "model_b_hit": 0,
+      "notes": "Norris and Verstappen fought into Turn 1, opening the inside line for Leclerc to take lead from P4; Ferrari displayed dominant race stint pace."
+    },
+    {
+      "round": 21,
+      "race_id": "2024_21_interlagos",
+      "circuit_id": "interlagos",
+      "grand_prix": "Sao Paulo Grand Prix",
+      "pole_sitter": "norris",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 17,
+      "model_b_pred": "norris",
+      "model_b_hit": 0,
+      "notes": "Torrential rain and red flag timing. Verstappen executed historic charge from P17 in wet conditions."
+    },
+    {
+      "round": 23,
+      "race_id": "2024_23_losail",
+      "circuit_id": "losail",
+      "grand_prix": "Qatar Grand Prix",
+      "pole_sitter": "russell",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 2,
+      "model_b_pred": "russell",
+      "model_b_hit": 0,
+      "notes": "Verstappen qualified P1 but received 1-place penalty for slow in-lap; started P2. Model B picked Russell from P1. Verstappen overtook into Turn 1."
+    }
+  ],
+  "constructor_parity_dynamics": {
+    "red_bull": {
+      "wins_count": 9,
+      "model_b_hits": 8,
+      "model_b_hit_rate_pct": 88.9,
+      "missed_races": [
+        "2024_23_losail (predicted Russell P1)"
+      ],
+      "notes": "High rolling form maintained strong predictive confidence."
+    },
+    "mclaren": {
+      "wins_count": 5,
+      "model_b_hits": 3,
+      "model_b_hit_rate_pct": 60.0,
+      "missed_races": [
+        "2024_6_miami (Norris P5)",
+        "2024_17_baku (Piastri P2)"
+      ],
+      "notes": "Predicted McLaren correctly once rolling form caught up at Zandvoort, Hungary, and Singapore."
+    },
+    "ferrari": {
+      "wins_count": 5,
+      "model_b_hits": 1,
+      "model_b_hit_rate_pct": 20.0,
+      "missed_races": [
+        "2024_3_albert_park (Sainz P2)",
+        "2024_16_monza (Leclerc P4)",
+        "2024_19_austin (Leclerc P4)",
+        "2024_20_rodriguez (Sainz P1)"
+      ],
+      "notes": "Only hit Monaco (P1). Ferrari victories featured tactical 1-stop strategy (Monza) or front-row battles (Austin)."
+    },
+    "mercedes": {
+      "wins_count": 3,
+      "model_b_hits": 0,
+      "model_b_hit_rate_pct": 0.0,
+      "missed_races": [
+        "2024_11_spielberg (Russell P3)",
+        "2024_12_silverstone (Hamilton P2)",
+        "2024_14_spa (Hamilton P3/P1 after Russell DSQ)"
+      ],
+      "notes": "Mercedes won opportunistically via collision (Austria) and mixed conditions (Silverstone, Spa)."
+    }
+  },
+  "feature_data_availability_assessment": {
+    "available_historical_sources": {
+      "ergast_f1_api": "Historical results, qualifying times, pit stops, lap times available 1950-2024.",
+      "fastf1_telemetry": "Telemetry, session weather, compound stints, sector times available 2018-2024.",
+      "openf1_api": "Real-time radio, car data, intervals available 2023-2024.",
+      "fia_timing_documents": "Official classification, starting grids, penalty notices available 2000-2024."
+    },
+    "potential_session_level_features": [
+      {
+        "feature_name": "fp2_long_run_median_pace",
+        "description": "Median lap time on high-fuel race simulation stints in Practice 2.",
+        "leakage_risk": "None. FP2 occurs Friday afternoon, strictly prior to Qualifying and Starting Grid.",
+        "missing_data_protocol": "On Sprint weekends, FP2 does not exist. Must impute or use Sprint Race pace.",
+        "standard_weekend_coverage": "18 / 18 races in 2024",
+        "sprint_weekend_coverage": "0 / 6 races (FP2 absent in sprint format)"
+      },
+      {
+        "feature_name": "qualifying_delta_to_pole_pct",
+        "description": "Driver best Q3 (or best reached session) lap time as a percentage difference to pole time.",
+        "leakage_risk": "None. Qualifying concludes Saturday afternoon, strictly prior to Starting Grid.",
+        "missing_data_protocol": "Drivers without representative time (crashed in Q1) assigned maximum delta (e.g. +5.0%).",
+        "coverage": "24 / 24 races in 2024"
+      },
+      {
+        "feature_name": "sprint_race_finish_position",
+        "description": "Finishing position in Saturday 100km sprint race.",
+        "leakage_risk": "None on Sprint weekends. Occurs Saturday morning before main Qualifying.",
+        "missing_data_protocol": "Null on standard weekends (18 races).",
+        "coverage": "6 / 24 races in 2024"
+      },
+      {
+        "feature_name": "circuit_overtaking_difficulty_index",
+        "description": "Historical overtaking frequency (Monaco=0.05, Spa=0.85) to scale penalty decay.",
+        "leakage_risk": "None. Static track property known prior to weekend.",
+        "coverage": "24 / 24 races"
+      }
+    ],
+    "conclusion": "Historical session-level features (Qualifying lap delta, FP2 long-run pace, track overtaking index) can be constructed with zero data leakage for 2021-2024. However, sprint weekends lack FP2, requiring a branched feature pipeline that leverages Saturday Sprint Race pace instead of practice simulation."
+  }
+}

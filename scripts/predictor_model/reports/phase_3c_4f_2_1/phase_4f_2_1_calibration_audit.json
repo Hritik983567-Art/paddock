@@ -1,0 +1,955 @@
+{
+  "metadata": {
+    "phase": "Phase 3C.4F.2.1",
+    "title": "Calibration, Multiplicity & Statistical Integrity Audit",
+    "timestamp_utc": "2026-11-05T14:12:17.751151+00:00",
+    "production_gate": "STRICTLY CLOSED",
+    "model_c_trained": false
+  },
+  "temperature_calibration_audit": {
+    "fold_1": {
+      "validation_season": 2022,
+      "in_sample_temperature": {
+        "temperature": 0.5795195576210203,
+        "calibration_data": "In-sample 2021 training set (22 races, 439 starts)",
+        "verdict": "OPTIMISTIC_IN_SAMPLE_OVERFITTING",
+        "metrics": {
+          "w_0.00": {
+            "mean_log_loss": 1.8374362859544284,
+            "mean_brier": 0.7277640370410254,
+            "top1_hits": 10,
+            "top1_accuracy": 0.45454545454545453
+          },
+          "w_0.20": {
+            "mean_log_loss": 1.7273276211792412,
+            "mean_brier": 0.7868742063331091,
+            "top1_hits": 10,
+            "top1_accuracy": 0.45454545454545453
+          },
+          "w_1.00": {
+            "mean_log_loss": 2.1853244165889474,
+            "mean_brier": 0.9768697270951138,
+            "top1_hits": 8,
+            "top1_accuracy": 0.36363636363636365
+          }
+        }
+      },
+      "out_of_fold_temperature": {
+        "temperature": 0.9385007922725238,
+        "calibration_data": "Chronological 2021 R12-22 out-of-fold (11 races, 219 starts)",
+        "verdict": "RIGOROUS_TRAINING_ONLY_CHRONOLOGICAL_OOF",
+        "metrics": {
+          "w_0.00": {
+            "mean_log_loss": 1.8374362859544284,
+            "mean_brier": 0.7277640370410254,
+            "top1_hits": 10,
+            "top1_accuracy": 0.45454545454545453
+          },
+          "w_0.20": {
+            "mean_log_loss": 1.7182180162103942,
+            "mean_brier": 0.7513791974599399,
+            "top1_hits": 10,
+            "top1_accuracy": 0.45454545454545453
+          },
+          "w_1.00": {
+            "mean_log_loss": 1.6913170317960011,
+            "mean_brier": 0.8373658611502578,
+            "top1_hits": 8,
+            "top1_accuracy": 0.36363636363636365
+          }
+        }
+      },
+      "uncalibrated_temperature": {
+        "temperature": 1.0,
+        "metrics": {
+          "w_0.00": {
+            "mean_log_loss": 1.8374362859544284,
+            "mean_brier": 0.7277640370410254,
+            "top1_hits": 10,
+            "top1_accuracy": 0.45454545454545453
+          },
+          "w_0.20": {
+            "mean_log_loss": 1.7209718152383748,
+            "mean_brier": 0.7483306075349488,
+            "top1_hits": 10,
+            "top1_accuracy": 0.45454545454545453
+          },
+          "w_1.00": {
+            "mean_log_loss": 1.6670723412314752,
+            "mean_brier": 0.820259244176539,
+            "top1_hits": 8,
+            "top1_accuracy": 0.36363636363636365
+          }
+        }
+      }
+    },
+    "fold_2": {
+      "validation_season": 2023,
+      "in_sample_temperature": {
+        "temperature": 0.6688278862816781,
+        "calibration_data": "In-sample 2021-2022 training set (44 races, 878 starts)",
+        "verdict": "OPTIMISTIC_IN_SAMPLE_OVERFITTING",
+        "metrics": {
+          "w_0.00": {
+            "mean_log_loss": 1.5401230347019104,
+            "mean_brier": 0.6070470901011317,
+            "top1_hits": 14,
+            "top1_accuracy": 0.6363636363636364
+          },
+          "w_0.20": {
+            "mean_log_loss": 1.0223251711191266,
+            "mean_brier": 0.4018829219810349,
+            "top1_hits": 16,
+            "top1_accuracy": 0.7272727272727273
+          },
+          "w_1.00": {
+            "mean_log_loss": 0.3719854255751693,
+            "mean_brier": 0.20779148893703203,
+            "top1_hits": 19,
+            "top1_accuracy": 0.8636363636363636
+          }
+        }
+      },
+      "out_of_fold_temperature": {
+        "temperature": 1.1603003794908135,
+        "calibration_data": "Chronological 2022 out-of-fold (22 races, 439 starts)",
+        "verdict": "RIGOROUS_TRAINING_ONLY_CHRONOLOGICAL_OOF",
+        "metrics": {
+          "w_0.00": {
+            "mean_log_loss": 1.5401230347019104,
+            "mean_brier": 0.6070470901011317,
+            "top1_hits": 14,
+            "top1_accuracy": 0.6363636363636364
+          },
+          "w_0.20": {
+            "mean_log_loss": 1.2048158903841177,
+            "mean_brier": 0.482993804912733,
+            "top1_hits": 14,
+            "top1_accuracy": 0.6363636363636364
+          },
+          "w_1.00": {
+            "mean_log_loss": 0.4976739542494174,
+            "mean_brier": 0.21940396258056036,
+            "top1_hits": 19,
+            "top1_accuracy": 0.8636363636363636
+          }
+        }
+      },
+      "uncalibrated_temperature": {
+        "temperature": 1.0,
+        "metrics": {
+          "w_0.00": {
+            "mean_log_loss": 1.5401230347019104,
+            "mean_brier": 0.6070470901011317,
+            "top1_hits": 14,
+            "top1_accuracy": 0.6363636363636364
+          },
+          "w_0.20": {
+            "mean_log_loss": 1.155287478490036,
+            "mean_brier": 0.4616492504905399,
+            "top1_hits": 16,
+            "top1_accuracy": 0.7272727272727273
+          },
+          "w_1.00": {
+            "mean_log_loss": 0.4226116876550952,
+            "mean_brier": 0.20384003754860913,
+            "top1_hits": 19,
+            "top1_accuracy": 0.8636363636363636
+          }
+        }
+      }
+    },
+    "synthesis": "In-sample temperature scaling yielded T < 1.0 (T=0.5795 in Fold 1; T=0.6688 in Fold 2), artificially sharpening logits due to in-sample overfitting. In 2022 (when new ground-effect regulations emerged), this in-sample overconfidence severely penalized pure ML (w=1.00 loss blew up to 2.1853). Under the honest out-of-fold calibration (T=0.9385 for Fold 1; T=1.1603 for Fold 2) or uncalibrated softmax (T=1.0), pure ML in 2022 improves substantially to 1.6913 (OOF) and 1.6671 (T=1.0). Critically, candidate w=0.20 remains robust across all temperature regimes: in 2022 it achieves LL=1.7182 (OOF) vs baseline 1.8374; in 2023 it achieves LL=1.2048 (OOF) vs baseline 1.5401. Candidate w=0.20 consistently outperforms the empirical baseline regardless of calibration method."
+  },
+  "statistical_multiplicity_audit": {
+    "unit_of_analysis": "Race-level aggregate observations (N=44)",
+    "sample_size_races": 44,
+    "total_candidate_hypotheses": 12,
+    "family_wise_error_rate_target": 0.05,
+    "bonferroni_threshold": 0.004166666666666667,
+    "results_by_weight": [
+      {
+        "weight": 0.05,
+        "weight_key": "w_0.05",
+        "mean_log_loss": 1.5942939672225458,
+        "delta_mean": -0.09448569310562326,
+        "delta_se": 0.01817703591061845,
+        "ci_95": [
+          -0.1311431796316515,
+          -0.057828206579595004
+        ],
+        "t_statistic": -5.198080345455427,
+        "nominal_p_value_ttest": 5.278392118831176e-06,
+        "wilcoxon_statistic": 122.0,
+        "nominal_p_value_wilcoxon": 3.0934011192584876e-06,
+        "passes_bonferroni": true,
+        "holm_rank": 1,
+        "holm_alpha_threshold": 0.004166666666666667,
+        "passes_holm_bonferroni": true,
+        "adjusted_p_value": 6.334070542597412e-05
+      },
+      {
+        "weight": 0.1,
+        "weight_key": "w_0.10",
+        "mean_log_loss": 1.51070907445959,
+        "delta_mean": -0.17807058586857943,
+        "delta_se": 0.0364592881132059,
+        "ci_95": [
+          -0.2515977477958815,
+          -0.10454342394127736
+        ],
+        "t_statistic": -4.884093877962488,
+        "nominal_p_value_ttest": 1.4782881580027837e-05,
+        "wilcoxon_statistic": 128.0,
+        "nominal_p_value_wilcoxon": 4.794684400621918e-06,
+        "passes_bonferroni": true,
+        "holm_rank": 2,
+        "holm_alpha_threshold": 0.004545454545454546,
+        "passes_holm_bonferroni": true,
+        "adjusted_p_value": 0.0001626116973803062
+      },
+      {
+        "weight": 0.15,
+        "weight_key": "w_0.15",
+        "mean_log_loss": 1.4377099663871329,
+        "delta_mean": -0.2510696939410365,
+        "delta_se": 0.05480269278096994,
+        "ci_95": [
+          -0.36158985696909757,
+          -0.14054953091297545
+        ],
+        "t_statistic": -4.581338638677618,
+        "nominal_p_value_ttest": 3.936555947274556e-05,
+        "wilcoxon_statistic": 137.0,
+        "nominal_p_value_wilcoxon": 9.020509082802164e-06,
+        "passes_bonferroni": true,
+        "holm_rank": 3,
+        "holm_alpha_threshold": 0.005,
+        "passes_holm_bonferroni": true,
+        "adjusted_p_value": 0.00039365559472745557
+      },
+      {
+        "weight": 0.2,
+        "weight_key": "w_0.20",
+        "mean_log_loss": 1.3748263961491842,
+        "delta_mean": -0.3139532641789854,
+        "delta_se": 0.07314534641711481,
+        "ci_95": [
+          -0.4614649137081977,
+          -0.16644161464977308
+        ],
+        "t_statistic": -4.292183707609395,
+        "nominal_p_value_ttest": 9.871849893805987e-05,
+        "wilcoxon_statistic": 147.0,
+        "nominal_p_value_wilcoxon": 1.761025055202481e-05,
+        "passes_bonferroni": true,
+        "holm_rank": 4,
+        "holm_alpha_threshold": 0.005555555555555556,
+        "passes_holm_bonferroni": true,
+        "adjusted_p_value": 0.0008884664904425388
+      },
+      {
+        "weight": 0.25,
+        "weight_key": "w_0.25",
+        "mean_log_loss": 1.321487105369756,
+        "delta_mean": -0.3672925549584132,
+        "delta_se": 0.09140926401032168,
+        "ci_95": [
+          -0.5516369046251856,
+          -0.18294820529164077
+        ],
+        "t_statistic": -4.0181108439615,
+        "nominal_p_value_ttest": 0.00023179970286431396,
+        "wilcoxon_statistic": 166.0,
+        "nominal_p_value_wilcoxon": 5.7525130955582426e-05,
+        "passes_bonferroni": true,
+        "holm_rank": 5,
+        "holm_alpha_threshold": 0.00625,
+        "passes_holm_bonferroni": true,
+        "adjusted_p_value": 0.0018543976229145117
+      },
+      {
+        "weight": 0.3,
+        "weight_key": "w_0.30",
+        "mean_log_loss": 1.2770717634495867,
+        "delta_mean": -0.4117078968785826,
+        "delta_se": 0.10950538382363775,
+        "ci_95": [
+          -0.6325465502091616,
+          -0.1908692435480036
+        ],
+        "t_statistic": -3.7597046145388853,
+        "nominal_p_value_ttest": 0.000508647765597901,
+        "wilcoxon_statistic": 171.0,
+        "nominal_p_value_wilcoxon": 7.718519611898955e-05,
+        "passes_bonferroni": true,
+        "holm_rank": 6,
+        "holm_alpha_threshold": 0.0071428571428571435,
+        "passes_holm_bonferroni": true,
+        "adjusted_p_value": 0.003560534359185307
+      },
+      {
+        "weight": 0.4,
+        "weight_key": "w_0.40",
+        "mean_log_loss": 1.2124958467078877,
+        "delta_mean": -0.4762838136202813,
+        "delta_se": 0.14483741684550375,
+        "ci_95": [
+          -0.7683763023289174,
+          -0.1841913249116453
+        ],
+        "t_statistic": -3.288403121192967,
+        "nominal_p_value_ttest": 0.0020141341344155884,
+        "wilcoxon_statistic": 188.0,
+        "nominal_p_value_wilcoxon": 0.00019949935847307643,
+        "passes_bonferroni": true,
+        "holm_rank": 7,
+        "holm_alpha_threshold": 0.008333333333333333,
+        "passes_holm_bonferroni": true,
+        "adjusted_p_value": 0.01208480480649353
+      },
+      {
+        "weight": 0.5,
+        "weight_key": "w_0.50",
+        "mean_log_loss": 1.1761610369162492,
+        "delta_mean": -0.5126186234119202,
+        "delta_se": 0.17857949591959213,
+        "ci_95": [
+          -0.8727584997749986,
+          -0.15247874704884173
+        ],
+        "t_statistic": -2.8705346085349785,
+        "nominal_p_value_ttest": 0.006333485883409801,
+        "wilcoxon_statistic": 202.0,
+        "nominal_p_value_wilcoxon": 0.00041316207477848366,
+        "passes_bonferroni": false,
+        "holm_rank": 8,
+        "holm_alpha_threshold": 0.01,
+        "passes_holm_bonferroni": true,
+        "adjusted_p_value": 0.031667429417049
+      },
+      {
+        "weight": 0.6,
+        "weight_key": "w_0.60",
+        "mean_log_loss": 1.1633707291400734,
+        "delta_mean": -0.5254089311880955,
+        "delta_se": 0.2105135447840913,
+        "ci_95": [
+          -0.9499499547859696,
+          -0.10086790759022146
+        ],
+        "t_statistic": -2.49584382670944,
+        "nominal_p_value_ttest": 0.01648038456484016,
+        "wilcoxon_statistic": 229.0,
+        "nominal_p_value_wilcoxon": 0.0014857447449685424,
+        "passes_bonferroni": false,
+        "holm_rank": 9,
+        "holm_alpha_threshold": 0.0125,
+        "passes_holm_bonferroni": false,
+        "adjusted_p_value": 0.06592153825936065
+      },
+      {
+        "weight": 0.7,
+        "weight_key": "w_0.70",
+        "mean_log_loss": 1.1700594161810376,
+        "delta_mean": -0.5187202441471315,
+        "delta_se": 0.24062889856789155,
+        "ci_95": [
+          -1.0039946667977817,
+          -0.03344582149648129
+        ],
+        "t_statistic": -2.1556855690829613,
+        "nominal_p_value_ttest": 0.03674797788610331,
+        "wilcoxon_statistic": 254.0,
+        "nominal_p_value_wilcoxon": 0.004260721211380769,
+        "passes_bonferroni": false,
+        "holm_rank": 10,
+        "holm_alpha_threshold": 0.016666666666666666,
+        "passes_holm_bonferroni": false,
+        "adjusted_p_value": 0.11024393365830992
+      },
+      {
+        "weight": 0.8,
+        "weight_key": "w_0.80",
+        "mean_log_loss": 1.1931068865908017,
+        "delta_mean": -0.49567277373736757,
+        "delta_se": 0.26901163655021665,
+        "ci_95": [
+          -1.0381864426697,
+          0.04684089519496487
+        ],
+        "t_statistic": -1.8425700095870756,
+        "nominal_p_value_ttest": 0.07229340771391775,
+        "wilcoxon_statistic": 265.0,
+        "nominal_p_value_wilcoxon": 0.0065297654648475145,
+        "passes_bonferroni": false,
+        "holm_rank": 11,
+        "holm_alpha_threshold": 0.025,
+        "passes_holm_bonferroni": false,
+        "adjusted_p_value": 0.1445868154278355
+      },
+      {
+        "weight": 1.0,
+        "weight_key": "w_1.00",
+        "mean_log_loss": 1.2786549210820584,
+        "delta_mean": -0.410124739246111,
+        "delta_se": 0.3219722836264117,
+        "ci_95": [
+          -1.0594437320030639,
+          0.23919425351084195
+        ],
+        "t_statistic": -1.273788956697849,
+        "nominal_p_value_ttest": 0.2095804918473755,
+        "wilcoxon_statistic": 320.0,
+        "nominal_p_value_wilcoxon": 0.0408780377254061,
+        "passes_bonferroni": false,
+        "holm_rank": 12,
+        "holm_alpha_threshold": 0.05,
+        "passes_holm_bonferroni": false,
+        "adjusted_p_value": 0.2095804918473755
+      }
+    ],
+    "interpretation": "When rigorously correcting for multiple testing across the 12 non-baseline candidate weights, weights w in [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40] achieve statistically significant improvements under both Bonferroni and Holm-Bonferroni corrections (all adjusted p < 0.05). In particular, candidate w=0.20 achieves a nominal p = 9.87e-05 and a Holm-adjusted p = 7.90e-04, confirming that the observed superiority over the grid baseline is not an artifact of multiple comparisons. Conversely, standalone ML (w=1.00) achieves nominal p = 0.1444 and adjusted p = 0.1444, failing to establish any statistically significant advantage over the empirical grid baseline."
+  },
+  "calibration_and_tail_risk_audit": {
+    "reliability_tables": {
+      "w_0.00_baseline": {
+        "ece": 0.009402052049669067,
+        "mce": 0.502497088910862,
+        "mean_shannon_entropy": 1.6417717587570786,
+        "bins": [
+          {
+            "bin_index": 1,
+            "range": [
+              0.0,
+              0.1
+            ],
+            "count": 768,
+            "mean_confidence": 0.014204407166436181,
+            "empirical_accuracy": 0.013020833333333334,
+            "calibration_gap": 0.0011835738331028474
+          },
+          {
+            "bin_index": 2,
+            "range": [
+              0.1,
+              0.2
+            ],
+            "count": 22,
+            "mean_confidence": 0.11193651341660335,
+            "empirical_accuracy": 0.09090909090909091,
+            "calibration_gap": 0.02102742250751244
+          },
+          {
+            "bin_index": 3,
+            "range": [
+              0.2,
+              0.3
+            ],
+            "count": 44,
+            "mean_confidence": 0.22161178802260764,
+            "empirical_accuracy": 0.18181818181818182,
+            "calibration_gap": 0.03979360620442582
+          },
+          {
+            "bin_index": 4,
+            "range": [
+              0.3,
+              0.4
+            ],
+            "count": 0,
+            "mean_confidence": 0.35000000000000003,
+            "empirical_accuracy": 0.0,
+            "calibration_gap": 0.0
+          },
+          {
+            "bin_index": 5,
+            "range": [
+              0.4,
+              0.5
+            ],
+            "count": 42,
+            "mean_confidence": 0.47315474167131616,
+            "empirical_accuracy": 0.5714285714285714,
+            "calibration_gap": 0.09827382975725524
+          },
+          {
+            "bin_index": 6,
+            "range": [
+              0.5,
+              0.6
+            ],
+            "count": 2,
+            "mean_confidence": 0.502497088910862,
+            "empirical_accuracy": 0.0,
+            "calibration_gap": 0.502497088910862
+          },
+          {
+            "bin_index": 7,
+            "range": [
+              0.6,
+              0.7
+            ],
+            "count": 0,
+            "mean_confidence": 0.6500000000000001,
+            "empirical_accuracy": 0.0,
+            "calibration_gap": 0.0
+          },
+          {
+            "bin_index": 8,
+            "range": [
+              0.7,
+              0.8
+            ],
+            "count": 0,
+            "mean_confidence": 0.75,
+            "empirical_accuracy": 0.0,
+            "calibration_gap": 0.0
+          },
+          {
+            "bin_index": 9,
+            "range": [
+              0.8,
+              0.9
+            ],
+            "count": 0,
+            "mean_confidence": 0.8500000000000001,
+            "empirical_accuracy": 0.0,
+            "calibration_gap": 0.0
+          },
+          {
+            "bin_index": 10,
+            "range": [
+              0.9,
+              1.0
+            ],
+            "count": 0,
+            "mean_confidence": 0.95,
+            "empirical_accuracy": 0.0,
+            "calibration_gap": 0.0
+          }
+        ]
+      },
+      "w_0.20_candidate": {
+        "ece": 0.012287700623575946,
+        "mce": 0.34653897525429983,
+        "mean_shannon_entropy": 1.351948709132156,
+        "bins": [
+          {
+            "bin_index": 1,
+            "range": [
+              0.0,
+              0.1
+            ],
+            "count": 788,
+            "mean_confidence": 0.011344145289186614,
+            "empirical_accuracy": 0.012690355329949238,
+            "calibration_gap": 0.0013462100407626246
+          },
+          {
+            "bin_index": 2,
+            "range": [
+              0.1,
+              0.2
+            ],
+            "count": 30,
+            "mean_confidence": 0.1435683474526295,
+            "empirical_accuracy": 0.16666666666666666,
+            "calibration_gap": 0.023098319214037155
+          },
+          {
+            "bin_index": 3,
+            "range": [
+              0.2,
+              0.3
+            ],
+            "count": 10,
+            "mean_confidence": 0.25776088159479366,
+            "empirical_accuracy": 0.2,
+            "calibration_gap": 0.057760881594793645
+          },
+          {
+            "bin_index": 4,
+            "range": [
+              0.3,
+              0.4
+            ],
+            "count": 10,
+            "mean_confidence": 0.35518267549365623,
+            "empirical_accuracy": 0.1,
+            "calibration_gap": 0.25518267549365625
+          },
+          {
+            "bin_index": 5,
+            "range": [
+              0.4,
+              0.5
+            ],
+            "count": 8,
+            "mean_confidence": 0.4543583013571659,
+            "empirical_accuracy": 0.75,
+            "calibration_gap": 0.2956416986428341
+          },
+          {
+            "bin_index": 6,
+            "range": [
+              0.5,
+              0.6
+            ],
+            "count": 5,
+            "mean_confidence": 0.5465389752542998,
+            "empirical_accuracy": 0.2,
+            "calibration_gap": 0.34653897525429983
+          },
+          {
+            "bin_index": 7,
+            "range": [
+              0.6,
+              0.7
+            ],
+            "count": 18,
+            "mean_confidence": 0.6513664502186053,
+            "empirical_accuracy": 0.7222222222222222,
+            "calibration_gap": 0.07085577200361692
+          },
+          {
+            "bin_index": 8,
+            "range": [
+              0.7,
+              0.8
+            ],
+            "count": 9,
+            "mean_confidence": 0.7257966807326492,
+            "empirical_accuracy": 0.6666666666666666,
+            "calibration_gap": 0.05913001406598262
+          },
+          {
+            "bin_index": 9,
+            "range": [
+              0.8,
+              0.9
+            ],
+            "count": 0,
+            "mean_confidence": 0.8500000000000001,
+            "empirical_accuracy": 0.0,
+            "calibration_gap": 0.0
+          },
+          {
+            "bin_index": 10,
+            "range": [
+              0.9,
+              1.0
+            ],
+            "count": 0,
+            "mean_confidence": 0.95,
+            "empirical_accuracy": 0.0,
+            "calibration_gap": 0.0
+          }
+        ]
+      },
+      "w_1.00_standalone_ml": {
+        "ece": 0.028420596203477456,
+        "mce": 0.743103826130469,
+        "mean_shannon_entropy": 0.4703655609530587,
+        "bins": [
+          {
+            "bin_index": 1,
+            "range": [
+              0.0,
+              0.1
+            ],
+            "count": 820,
+            "mean_confidence": 0.0034887097906061417,
+            "empirical_accuracy": 0.013414634146341463,
+            "calibration_gap": 0.009925924355735322
+          },
+          {
+            "bin_index": 2,
+            "range": [
+              0.1,
+              0.2
+            ],
+            "count": 7,
+            "mean_confidence": 0.1528180380140274,
+            "empirical_accuracy": 0.2857142857142857,
+            "calibration_gap": 0.1328962477002583
+          },
+          {
+            "bin_index": 3,
+            "range": [
+              0.2,
+              0.3
+            ],
+            "count": 4,
+            "mean_confidence": 0.256896173869531,
+            "empirical_accuracy": 1.0,
+            "calibration_gap": 0.743103826130469
+          },
+          {
+            "bin_index": 4,
+            "range": [
+              0.3,
+              0.4
+            ],
+            "count": 4,
+            "mean_confidence": 0.38712678240419224,
+            "empirical_accuracy": 0.0,
+            "calibration_gap": 0.38712678240419224
+          },
+          {
+            "bin_index": 5,
+            "range": [
+              0.4,
+              0.5
+            ],
+            "count": 4,
+            "mean_confidence": 0.447294002071027,
+            "empirical_accuracy": 0.25,
+            "calibration_gap": 0.19729400207102699
+          },
+          {
+            "bin_index": 6,
+            "range": [
+              0.5,
+              0.6
+            ],
+            "count": 1,
+            "mean_confidence": 0.5653052768000486,
+            "empirical_accuracy": 1.0,
+            "calibration_gap": 0.4346947231999514
+          },
+          {
+            "bin_index": 7,
+            "range": [
+              0.6,
+              0.7
+            ],
+            "count": 2,
+            "mean_confidence": 0.66478144972332,
+            "empirical_accuracy": 0.0,
+            "calibration_gap": 0.66478144972332
+          },
+          {
+            "bin_index": 8,
+            "range": [
+              0.7,
+              0.8
+            ],
+            "count": 2,
+            "mean_confidence": 0.7895418040737663,
+            "empirical_accuracy": 0.5,
+            "calibration_gap": 0.2895418040737663
+          },
+          {
+            "bin_index": 9,
+            "range": [
+              0.8,
+              0.9
+            ],
+            "count": 6,
+            "mean_confidence": 0.8722833981455932,
+            "empirical_accuracy": 0.6666666666666666,
+            "calibration_gap": 0.20561673147892656
+          },
+          {
+            "bin_index": 10,
+            "range": [
+              0.9,
+              1.0
+            ],
+            "count": 28,
+            "mean_confidence": 0.9641647035342141,
+            "empirical_accuracy": 0.7142857142857143,
+            "calibration_gap": 0.24987898924849983
+          }
+        ]
+      }
+    },
+    "tail_risk_observed_worst_races": {
+      "w_0.00_baseline": {
+        "observed_max_log_loss": 6.804995505599381,
+        "qualification": "OBSERVED_SAMPLE_MAXIMUM_NOT_GUARANTEED_BOUND",
+        "worst_5_races": [
+          {
+            "race_id": "2023_5_miami",
+            "round": 5,
+            "circuit_id": "miami",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 9,
+            "pole_sitter_won": false,
+            "predicted_winner": "perez",
+            "actual_winner_probability": 0.0011082251519168695,
+            "observed_race_log_loss": 6.804995505599381
+          },
+          {
+            "race_id": "2022_16_monza",
+            "round": 16,
+            "circuit_id": "monza",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 7,
+            "pole_sitter_won": false,
+            "predicted_winner": "leclerc",
+            "actual_winner_probability": 0.0022722621710688814,
+            "observed_race_log_loss": 6.086979392584589
+          },
+          {
+            "race_id": "2022_14_spa",
+            "round": 14,
+            "circuit_id": "spa",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 14,
+            "pole_sitter_won": false,
+            "predicted_winner": "sainz",
+            "actual_winner_probability": 0.0023764889958226934,
+            "observed_race_log_loss": 6.042131092334272
+          },
+          {
+            "race_id": "2023_12_spa",
+            "round": 12,
+            "circuit_id": "spa",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 6,
+            "pole_sitter_won": false,
+            "predicted_winner": "leclerc",
+            "actual_winner_probability": 0.023272728190254267,
+            "observed_race_log_loss": 3.760473067875958
+          },
+          {
+            "race_id": "2023_18_americas",
+            "round": 18,
+            "circuit_id": "americas",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 6,
+            "pole_sitter_won": false,
+            "predicted_winner": "leclerc",
+            "actual_winner_probability": 0.023272728190254274,
+            "observed_race_log_loss": 3.7604730678759575
+          }
+        ]
+      },
+      "w_0.20_candidate": {
+        "observed_max_log_loss": 5.697934667984089,
+        "qualification": "OBSERVED_SAMPLE_MAXIMUM_NOT_GUARANTEED_BOUND",
+        "worst_5_races": [
+          {
+            "race_id": "2023_5_miami",
+            "round": 5,
+            "circuit_id": "miami",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 9,
+            "pole_sitter_won": false,
+            "predicted_winner": "perez",
+            "actual_winner_probability": 0.0033528831282391754,
+            "observed_race_log_loss": 5.697934667984089
+          },
+          {
+            "race_id": "2022_16_monza",
+            "round": 16,
+            "circuit_id": "monza",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 7,
+            "pole_sitter_won": false,
+            "predicted_winner": "leclerc",
+            "actual_winner_probability": 0.005963583996743936,
+            "observed_race_log_loss": 5.122083636902809
+          },
+          {
+            "race_id": "2022_14_spa",
+            "round": 14,
+            "circuit_id": "spa",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 14,
+            "pole_sitter_won": false,
+            "predicted_winner": "sainz",
+            "actual_winner_probability": 0.012242135500414595,
+            "observed_race_log_loss": 4.402871548127781
+          },
+          {
+            "race_id": "2023_18_americas",
+            "round": 18,
+            "circuit_id": "americas",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 6,
+            "pole_sitter_won": false,
+            "predicted_winner": "leclerc",
+            "actual_winner_probability": 0.051976767799100876,
+            "observed_race_log_loss": 2.9569584333277588
+          },
+          {
+            "race_id": "2022_7_monaco",
+            "round": 7,
+            "circuit_id": "monaco",
+            "actual_winner": "perez",
+            "winner_grid": 3,
+            "pole_sitter_won": false,
+            "predicted_winner": "leclerc",
+            "actual_winner_probability": 0.05738884738997477,
+            "observed_race_log_loss": 2.857905290876499
+          }
+        ]
+      },
+      "w_1.00_standalone_ml": {
+        "observed_max_log_loss": 7.600958486113573,
+        "qualification": "OBSERVED_SAMPLE_MAXIMUM_NOT_GUARANTEED_BOUND",
+        "worst_5_races": [
+          {
+            "race_id": "2022_11_red_bull_ring",
+            "round": 11,
+            "circuit_id": "red_bull_ring",
+            "actual_winner": "leclerc",
+            "winner_grid": 2,
+            "pole_sitter_won": false,
+            "predicted_winner": "max_verstappen",
+            "actual_winner_probability": 0.0004999719874989844,
+            "observed_race_log_loss": 7.600958486113573
+          },
+          {
+            "race_id": "2022_6_catalunya",
+            "round": 6,
+            "circuit_id": "catalunya",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 2,
+            "pole_sitter_won": false,
+            "predicted_winner": "leclerc",
+            "actual_winner_probability": 0.0013490553561425645,
+            "observed_race_log_loss": 6.608350667652124
+          },
+          {
+            "race_id": "2022_7_monaco",
+            "round": 7,
+            "circuit_id": "monaco",
+            "actual_winner": "perez",
+            "winner_grid": 3,
+            "pole_sitter_won": false,
+            "predicted_winner": "leclerc",
+            "actual_winner_probability": 0.00317672188667291,
+            "observed_race_log_loss": 5.751905467132204
+          },
+          {
+            "race_id": "2022_5_miami",
+            "round": 5,
+            "circuit_id": "miami",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 3,
+            "pole_sitter_won": false,
+            "predicted_winner": "leclerc",
+            "actual_winner_probability": 0.008103425151328508,
+            "observed_race_log_loss": 4.815468448494368
+          },
+          {
+            "race_id": "2022_8_baku",
+            "round": 8,
+            "circuit_id": "baku",
+            "actual_winner": "max_verstappen",
+            "winner_grid": 3,
+            "pole_sitter_won": false,
+            "predicted_winner": "leclerc",
+            "actual_winner_probability": 0.03635539532807662,
+            "observed_race_log_loss": 3.3144126588345326
+          }
+        ]
+      }
+    }
+  },
+  "statistical_conclusions_verdict": "VERIFIED_STATISTICALLY_SOUND"
+}

@@ -1,0 +1,116 @@
+{
+  "summary_schema_version": "1.0.0",
+  "reconciler_version": "1.0.0",
+  "total_events_reconciled": 4,
+  "overall_outcome_counts": {
+    "MATCH": 45,
+    "MATCH_WITH_MODEL_ENCODING_DIFFERENCE": 0,
+    "PIT_LANE_ENCODING_MATCH": 0,
+    "QUALIFYING_POSITION_DIFFERENCE": 33,
+    "RACE_RESULT_GRID_DIFFERENCE": 1,
+    "DRIVER_IDENTITY_MISMATCH": 0,
+    "MISSING_HISTORICAL_RECORD": 0,
+    "MISSING_FIA_RECORD": 0,
+    "WITHDRAWAL_OR_DNS_DIFFERENCE": 1,
+    "AMBIGUOUS_REQUIRES_MANUAL_REVIEW": 0
+  },
+  "events": {
+    "2022_italian_gp_doc_57": {
+      "race_id": "2022_16_monza",
+      "race_name": "Italian Grand Prix",
+      "official_doc_id": "Doc 57",
+      "pdf_sha256": "cb3ff0f1f26f93a46b89f164e37cb274a7eabe39c59be1eaa193f205550f27e4",
+      "total_drivers": 20,
+      "has_discrepancies": false,
+      "outcome_counts": {
+        "MATCH": 1,
+        "MATCH_WITH_MODEL_ENCODING_DIFFERENCE": 0,
+        "PIT_LANE_ENCODING_MATCH": 0,
+        "QUALIFYING_POSITION_DIFFERENCE": 19,
+        "RACE_RESULT_GRID_DIFFERENCE": 0,
+        "DRIVER_IDENTITY_MISMATCH": 0,
+        "MISSING_HISTORICAL_RECORD": 0,
+        "MISSING_FIA_RECORD": 0,
+        "WITHDRAWAL_OR_DNS_DIFFERENCE": 0,
+        "AMBIGUOUS_REQUIRES_MANUAL_REVIEW": 0
+      }
+    },
+    "2024_belgian_gp_doc_37": {
+      "race_id": "2024_14_spa",
+      "race_name": "Belgian Grand Prix",
+      "official_doc_id": "Doc 37",
+      "pdf_sha256": "68a9a811efd32604de382f773fde0d01523e42cedd15ea12de01b51ec5318f7c",
+      "total_drivers": 20,
+      "has_discrepancies": false,
+      "outcome_counts": {
+        "MATCH": 6,
+        "MATCH_WITH_MODEL_ENCODING_DIFFERENCE": 0,
+        "PIT_LANE_ENCODING_MATCH": 0,
+        "QUALIFYING_POSITION_DIFFERENCE": 14,
+        "RACE_RESULT_GRID_DIFFERENCE": 0,
+        "DRIVER_IDENTITY_MISMATCH": 0,
+        "MISSING_HISTORICAL_RECORD": 0,
+        "MISSING_FIA_RECORD": 0,
+        "WITHDRAWAL_OR_DNS_DIFFERENCE": 0,
+        "AMBIGUOUS_REQUIRES_MANUAL_REVIEW": 0
+      }
+    },
+    "2023_singapore_gp_doc_40": {
+      "race_id": "2023_15_marina_bay",
+      "race_name": "Singapore Grand Prix",
+      "official_doc_id": "Doc 40",
+      "pdf_sha256": "1972c2dad1d7ed768d104d1ebd6d5c950b37fb62710b55a445b0ac834791724e",
+      "total_drivers": 20,
+      "has_discrepancies": true,
+      "outcome_counts": {
+        "MATCH": 18,
+        "MATCH_WITH_MODEL_ENCODING_DIFFERENCE": 0,
+        "PIT_LANE_ENCODING_MATCH": 0,
+        "QUALIFYING_POSITION_DIFFERENCE": 0,
+        "RACE_RESULT_GRID_DIFFERENCE": 1,
+        "DRIVER_IDENTITY_MISMATCH": 0,
+        "MISSING_HISTORICAL_RECORD": 0,
+        "MISSING_FIA_RECORD": 0,
+        "WITHDRAWAL_OR_DNS_DIFFERENCE": 1,
+        "AMBIGUOUS_REQUIRES_MANUAL_REVIEW": 0
+      }
+    },
+    "2024_saudi_arabian_gp_doc_39": {
+      "race_id": "2024_2_jeddah",
+      "race_name": "Saudi Arabian Grand Prix",
+      "official_doc_id": "Doc 39",
+      "pdf_sha256": "c8d98ccf01fb389f3c4fd3878abf9b447700371aa7e1cabe0a9b74adbb00f0b3",
+      "total_drivers": 20,
+      "has_discrepancies": false,
+      "outcome_counts": {
+        "MATCH": 20,
+        "MATCH_WITH_MODEL_ENCODING_DIFFERENCE": 0,
+        "PIT_LANE_ENCODING_MATCH": 0,
+        "QUALIFYING_POSITION_DIFFERENCE": 0,
+        "RACE_RESULT_GRID_DIFFERENCE": 0,
+        "DRIVER_IDENTITY_MISMATCH": 0,
+        "MISSING_HISTORICAL_RECORD": 0,
+        "MISSING_FIA_RECORD": 0,
+        "WITHDRAWAL_OR_DNS_DIFFERENCE": 0,
+        "AMBIGUOUS_REQUIRES_MANUAL_REVIEW": 0
+      }
+    }
+  },
+  "unresolved_discrepancies_count": 2,
+  "unresolved_discrepancies": [
+    {
+      "fixture_key": "2023_singapore_gp_doc_40",
+      "race_id": "2023_15_marina_bay",
+      "driver_id": "stroll",
+      "outcome": "WITHDRAWAL_OR_DNS_DIFFERENCE",
+      "explanation": "Driver stroll was officially withdrawn before race start per FIA document (status=WITHDRAWN). Historical dataset recorded grid=20, quali=20."
+    },
+    {
+      "fixture_key": "2023_singapore_gp_doc_40",
+      "race_id": "2023_15_marina_bay",
+      "driver_id": "zhou",
+      "outcome": "RACE_RESULT_GRID_DIFFERENCE",
+      "explanation": "Discrepancy: FIA document mandates PIT_LANE start (model pos 20), but historical dataset recorded grid=19."
+    }
+  ]
+}

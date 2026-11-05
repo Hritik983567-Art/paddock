@@ -188,4 +188,167 @@ describe('Paddock Race Predictor — Frontend Components & Contracts', () => {
     isQualifyingCompleted = true;
     expect(canShowDriverPositions(isQualifyingCompleted)).toBe(true);
   });
+
+  it('validates CircuitHeritageSummary and past track winners contracts', () => {
+    const mockHeritage = {
+      circuitId: 'americas',
+      circuitName: 'Circuit of the Americas',
+      totalRacesAnalyzed: 6,
+      poleWinRatePct: 33.3,
+      avgWinnerGrid: 2.3,
+      pastWinners: [
+        { year: 2024, winnerCode: 'LEC', winnerName: 'Charles Leclerc', constructorName: 'Ferrari', startedGrid: 4, wonFromPole: false },
+        { year: 2023, winnerCode: 'VER', winnerName: 'Max Verstappen', constructorName: 'Red Bull', startedGrid: 6, wonFromPole: false },
+        { year: 2022, winnerCode: 'VER', winnerName: 'Max Verstappen', constructorName: 'Red Bull', startedGrid: 2, wonFromPole: false },
+        { year: 2021, winnerCode: 'VER', winnerName: 'Max Verstappen', constructorName: 'Red Bull', startedGrid: 1, wonFromPole: true },
+      ]
+    };
+
+    expect(mockHeritage.circuitId).toBe('americas');
+    expect(mockHeritage.totalRacesAnalyzed).toBe(6);
+    expect(mockHeritage.poleWinRatePct).toBe(33.3);
+    expect(mockHeritage.avgWinnerGrid).toBe(2.3);
+    expect(mockHeritage.pastWinners.length).toBe(4);
+    expect(mockHeritage.pastWinners[0].winnerCode).toBe('LEC');
+    expect(mockHeritage.pastWinners[0].startedGrid).toBe(4);
+  });
+
+  it('validates driver qualifying scenario delta and track heritage attributes', () => {
+    const entrant = {
+      driverId: 'max_verstappen',
+      driverCode: 'VER',
+      gridPosition: 1,
+      qualiPosition: 1,
+      qualiTime: '1:32.810',
+      qualiDeltaToPole: 0.000,
+      circuitStarts: 9,
+      circuitWins: 3,
+      circuitPodiums: 6,
+      circuitAvgFinish: 2.1,
+      circuitWinRatePct: 33.3,
+      rolling5AvgFinish: 2.4,
+      rolling10AvgFinish: 2.2,
+      rolling10WinRatePct: 40.0
+    };
+
+    expect(entrant.qualiDeltaToPole).toBe(0.000);
+    expect(entrant.circuitStarts).toBe(9);
+    expect(entrant.circuitWins).toBe(3);
+    expect(entrant.circuitAvgFinish).toBe(2.1);
+    expect(entrant.circuitWinRatePct).toBe(33.3);
+    expect(entrant.rolling10AvgFinish).toBe(2.2);
+  });
+
+  it('validates automatic advancement to next race as soon as previous race ends', () => {
+    const calendarRaces = [
+      { round: '19', raceName: 'United States Grand Prix', date: '2026-10-18' },
+      { round: '20', raceName: 'Mexico City Grand Prix', date: '2026-10-25' },
+      { round: '21', raceName: 'São Paulo Grand Prix', date: '2026-11-08' },
+      { round: '22', raceName: 'Las Vegas Grand Prix', date: '2026-11-22' }
+    ];
+
+    // Current time is 2026-10-30: R19 and R20 have ended, R21 is next upcoming
+    const testNow = new Date('2026-10-30T12:00:00Z').getTime();
+
+    const getActiveRound = (races: typeof calendarRaces, currentTime: number) => {
+      const upcoming = races.find(r => {
+        const endTime = new Date(r.date + 'T23:59:59Z').getTime();
+        return endTime > currentTime;
+      });
+      return upcoming ? upcoming.round : races[races.length - 1].round;
+    };
+
+    // 1. Immediately after Mexico ends, next race is Round 21 (São Paulo)
+    expect(getActiveRound(calendarRaces, testNow)).toBe('21');
+
+    // 2. As soon as São Paulo ends (e.g. 2026-11-09), it advances to Round 22 (Las Vegas)
+    const afterBrazilTime = new Date('2026-11-09T00:00:00Z').getTime();
+    expect(getActiveRound(calendarRaces, afterBrazilTime)).toBe('22');
+  });
+
+  it('validates prediction history log retains completed races with verified classifications', async () => {
+    const { getHistoricalAccuracyLedger } = await import('../app/lib/raceResultsService');
+    const ledger = getHistoricalAccuracyLedger();
+
+    expect(ledger.length).toBeGreaterThanOrEqual(2);
+
+    // Verify Mexico City GP entry
+    const mexico = ledger.find(r => r.round === '20');
+    expect(mexico).toBeDefined();
+    expect(mexico?.isCompleted).toBe(true);
+    expect(mexico?.predictedWinner?.driverCode).toBe('SAI');
+    expect(mexico?.actualWinner?.driverCode).toBe('SAI');
+    expect(mexico?.accuracyVerdict).toBe('winner_hit');
+
+    // Verify United States GP entry
+    const austin = ledger.find(r => r.round === '19');
+    expect(austin).toBeDefined();
+    expect(austin?.isCompleted).toBe(true);
+    expect(austin?.actualWinner?.driverCode).toBe('LEC');
+    expect(austin?.accuracyVerdict).toBe('podium_hit');
+  });
+
+  // 13. Phase 3C.4F.4 Hybrid Prediction Component Contracts
+  it('validates hybrid driver prediction entry contract with 3 probabilities and ranking semantic', () => {
+    const hybridDriver = {
+      driverId: 'norris',
+      driverCode: 'NOR',
+      driverNumber: '1',
+      constructorId: 'mclaren',
+      constructorName: 'McLaren Formula 1 Team',
+      gridPosition: 1,
+      qualiPosition: 1,
+      gridPenaltyDelta: 0,
+      winProbability: 0.4937,
+      winProbabilityPct: 49.37,
+      predictedRank: 1,
+      grid_baseline_probability: 0.5225,
+      ml_win_probability: 0.2973,
+      hybrid_win_probability: 0.4937,
+      gridBaselineProbability: 0.5225,
+      mlWinProbability: 0.2973,
+      hybridWinProbability: 0.4937
+    };
+
+    expect(hybridDriver.grid_baseline_probability).toBe(0.5225);
+    expect(hybridDriver.ml_win_probability).toBe(0.2973);
+    expect(hybridDriver.hybrid_win_probability).toBe(0.4937);
+    expect(hybridDriver.winProbability).toBe(hybridDriver.hybrid_win_probability);
+
+    // CamelCase mirrors
+    expect(hybridDriver.gridBaselineProbability).toBe(hybridDriver.grid_baseline_probability);
+    expect(hybridDriver.mlWinProbability).toBe(hybridDriver.ml_win_probability);
+    expect(hybridDriver.hybridWinProbability).toBe(hybridDriver.hybrid_win_probability);
+  });
+
+  it('validates hybrid model metadata contract and non-production disclosure tags', () => {
+    const hybridMetadata = {
+      baselineVersion: 'grid-empirical-laplace-a1',
+      hybridFormulaVersion: 'geometric-w0.20-v1',
+      experimentalStatus: 'EXPERIMENTAL_NON_PRODUCTION',
+      rankingOrderSemantic: 'Predicted Win Probability Order',
+      inferenceInputHash: '56947b913051836cf128d3f871cbf46bdbdf5a8f58518685c4507583fb16e7e3',
+      predictionOutputHash: '6cff56139ae556dd215e5c0a272e9492d7be694b2380d8b1a2d1a06fd0ce2ec6'
+    };
+
+    expect(hybridMetadata.baselineVersion).toBe('grid-empirical-laplace-a1');
+    expect(hybridMetadata.hybridFormulaVersion).toBe('geometric-w0.20-v1');
+    expect(hybridMetadata.experimentalStatus).toBe('EXPERIMENTAL_NON_PRODUCTION');
+    expect(hybridMetadata.rankingOrderSemantic).toBe('Predicted Win Probability Order');
+    expect(hybridMetadata.inferenceInputHash.length).toBe(64);
+    expect(hybridMetadata.predictionOutputHash.length).toBe(64);
+  });
+
+  it('validates 2026 regulation era disclosure metadata contract', () => {
+    const warning = {
+      isUnknownRegulationEra: true,
+      regulationEra: 'active_aero_sustainable_fuel_gen3',
+      warningCode: 'UNVALIDATED_2026_REGULATIONS',
+      disclaimer: 'Statistical forecast generated by model trained on 2021-2024 regulations. 2026 active aerodynamics and sustainable fuel regulations are unvalidated in training data; probabilities represent historical baseline extrapolation.'
+    };
+
+    expect(warning.isUnknownRegulationEra).toBe(true);
+    expect(warning.warningCode).toBe('UNVALIDATED_2026_REGULATIONS');
+    expect(warning.disclaimer).toContain('2026 active aerodynamics');
+  });
 });

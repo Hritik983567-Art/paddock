@@ -1,0 +1,1443 @@
+{
+  "metadata": {
+    "phase": "Phase 3C.4F.2",
+    "title": "Chronological Walk-Forward Calibration & Sensitivity Audit",
+    "timestamp_utc": "2026-11-05T13:48:42.443048+00:00",
+    "production_gate": "STRICTLY CLOSED",
+    "model_c_trained": false,
+    "sample_counts": {
+      "total_validation_races": 44,
+      "total_driver_starts": 878,
+      "pole_won_races": 24,
+      "non_pole_upset_races": 20
+    },
+    "evaluated_weights": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.5,
+      0.6,
+      0.7,
+      1.0
+    ]
+  },
+  "calibration_by_weight": {
+    "w_0.00": {
+      "weight": 0.0,
+      "ece_overall": 0.009402052049669067,
+      "mce_overall": 0.502497088910862,
+      "reliability_bins": [
+        {
+          "bin_index": 1,
+          "range": [
+            0.0,
+            0.1
+          ],
+          "count": 768,
+          "mean_confidence": 0.014204407166436181,
+          "empirical_accuracy": 0.013020833333333334,
+          "calibration_gap": 0.0011835738331028474
+        },
+        {
+          "bin_index": 2,
+          "range": [
+            0.1,
+            0.2
+          ],
+          "count": 22,
+          "mean_confidence": 0.11193651341660335,
+          "empirical_accuracy": 0.09090909090909091,
+          "calibration_gap": 0.02102742250751244
+        },
+        {
+          "bin_index": 3,
+          "range": [
+            0.2,
+            0.3
+          ],
+          "count": 44,
+          "mean_confidence": 0.22161178802260764,
+          "empirical_accuracy": 0.18181818181818182,
+          "calibration_gap": 0.03979360620442582
+        },
+        {
+          "bin_index": 4,
+          "range": [
+            0.3,
+            0.4
+          ],
+          "count": 0,
+          "mean_confidence": 0.35000000000000003,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_index": 5,
+          "range": [
+            0.4,
+            0.5
+          ],
+          "count": 42,
+          "mean_confidence": 0.47315474167131616,
+          "empirical_accuracy": 0.5714285714285714,
+          "calibration_gap": 0.09827382975725524
+        },
+        {
+          "bin_index": 6,
+          "range": [
+            0.5,
+            0.6
+          ],
+          "count": 2,
+          "mean_confidence": 0.502497088910862,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.502497088910862
+        },
+        {
+          "bin_index": 7,
+          "range": [
+            0.6,
+            0.7
+          ],
+          "count": 0,
+          "mean_confidence": 0.6500000000000001,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_index": 8,
+          "range": [
+            0.7,
+            0.8
+          ],
+          "count": 0,
+          "mean_confidence": 0.75,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_index": 9,
+          "range": [
+            0.8,
+            0.9
+          ],
+          "count": 0,
+          "mean_confidence": 0.8500000000000001,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_index": 10,
+          "range": [
+            0.9,
+            1.0
+          ],
+          "count": 0,
+          "mean_confidence": 0.95,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        }
+      ],
+      "dispersion_metrics": {
+        "mean_shannon_entropy": 1.6417717587570786,
+        "std_shannon_entropy": 0.025501977424675453,
+        "min_shannon_entropy": 1.53076630776008,
+        "max_shannon_entropy": 1.655634034776546,
+        "winner_probabilities": {
+          "mean": 0.3122872061088977,
+          "std": 0.1851865208728026,
+          "min": 0.0011082251519168695,
+          "p25": 0.11193074034360387,
+          "median": 0.46656278895700215,
+          "p75": 0.4666951409424513,
+          "p90": 0.4803364641624739,
+          "max": 0.48033646416247394,
+          "iqr": 0.3547644005988474
+        },
+        "non_winner_probabilities": {
+          "mean": 0.03628220974965048,
+          "std": 0.0844596247602348,
+          "min": 0.0009590409968511372,
+          "p25": 0.0011334120871877083,
+          "median": 0.0022722621710688814,
+          "p75": 0.04543723122859167,
+          "p90": 0.08911219470887526,
+          "max": 0.5026250692265092,
+          "iqr": 0.04430381914140396
+        }
+      },
+      "tail_risk_audit": {
+        "high_confidence_p50": {
+          "total_instances": 2,
+          "correct_winner_instances": 0,
+          "false_positive_losses": 2,
+          "empirical_accuracy": 0.0
+        },
+        "extreme_confidence_p70": {
+          "total_instances": 0,
+          "correct_winner_instances": 0,
+          "false_positive_losses": 0,
+          "empirical_accuracy": 0.0
+        },
+        "winner_underconfidence_risk": {
+          "winners_with_p_below_0.05": 7,
+          "winners_with_p_below_0.01": 3,
+          "minimum_probability_assigned_to_winner": 0.0011082251519168695,
+          "maximum_single_race_log_loss": 6.804995505599381
+        }
+      },
+      "subsets": {
+        "pole_won_races": {
+          "count": 24,
+          "ece": 0.05287777413375964,
+          "mce": 0.5276761210431431
+        },
+        "non_pole_upset_races": {
+          "count": 20,
+          "ece": 0.047828171594247806,
+          "mce": 0.502497088910862
+        }
+      }
+    },
+    "w_0.10": {
+      "weight": 0.1,
+      "ece_overall": 0.005426399838321141,
+      "mce_overall": 0.16318789317950455,
+      "reliability_bins": [
+        {
+          "bin_index": 1,
+          "range": [
+            0.0,
+            0.1
+          ],
+          "count": 782,
+          "mean_confidence": 0.013193897555390759,
+          "empirical_accuracy": 0.01278772378516624,
+          "calibration_gap": 0.00040617377022451884
+        },
+        {
+          "bin_index": 2,
+          "range": [
+            0.1,
+            0.2
+          ],
+          "count": 31,
+          "mean_confidence": 0.15755099979852216,
+          "empirical_accuracy": 0.12903225806451613,
+          "calibration_gap": 0.028518741734006037
+        },
+        {
+          "bin_index": 3,
+          "range": [
+            0.2,
+            0.3
+          ],
+          "count": 18,
+          "mean_confidence": 0.23732961858333612,
+          "empirical_accuracy": 0.2222222222222222,
+          "calibration_gap": 0.015107396361113912
+        },
+        {
+          "bin_index": 4,
+          "range": [
+            0.3,
+            0.4
+          ],
+          "count": 4,
+          "mean_confidence": 0.33681210682049545,
+          "empirical_accuracy": 0.5,
+          "calibration_gap": 0.16318789317950455
+        },
+        {
+          "bin_index": 5,
+          "range": [
+            0.4,
+            0.5
+          ],
+          "count": 11,
+          "mean_confidence": 0.4462315920411975,
+          "empirical_accuracy": 0.36363636363636365,
+          "calibration_gap": 0.08259522840483385
+        },
+        {
+          "bin_index": 6,
+          "range": [
+            0.5,
+            0.6
+          ],
+          "count": 24,
+          "mean_confidence": 0.5579137362664391,
+          "empirical_accuracy": 0.625,
+          "calibration_gap": 0.06708626373356086
+        },
+        {
+          "bin_index": 7,
+          "range": [
+            0.6,
+            0.7
+          ],
+          "count": 8,
+          "mean_confidence": 0.6100790466625625,
+          "empirical_accuracy": 0.625,
+          "calibration_gap": 0.014920953337437481
+        },
+        {
+          "bin_index": 8,
+          "range": [
+            0.7,
+            0.8
+          ],
+          "count": 0,
+          "mean_confidence": 0.75,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_index": 9,
+          "range": [
+            0.8,
+            0.9
+          ],
+          "count": 0,
+          "mean_confidence": 0.8500000000000001,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_index": 10,
+          "range": [
+            0.9,
+            1.0
+          ],
+          "count": 0,
+          "mean_confidence": 0.95,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        }
+      ],
+      "dispersion_metrics": {
+        "mean_shannon_entropy": 1.508575856487242,
+        "std_shannon_entropy": 0.08833368609931384,
+        "min_shannon_entropy": 1.3460522678511726,
+        "max_shannon_entropy": 1.7710520376397427,
+        "winner_probabilities": {
+          "mean": 0.36379566808941827,
+          "std": 0.22442167263584092,
+          "min": 0.0019807758266996833,
+          "p25": 0.13768097997852627,
+          "median": 0.4753275533897855,
+          "p75": 0.5680087728442617,
+          "p90": 0.6024807696429336,
+          "max": 0.6120894855714928,
+          "iqr": 0.4303277928657354
+        },
+        "non_winner_probabilities": {
+          "mean": 0.03356473693533046,
+          "std": 0.08765873931488964,
+          "min": 0.0009861792920322294,
+          "p25": 0.0013215252304195377,
+          "median": 0.0022006993409822055,
+          "p75": 0.03207807784779296,
+          "p90": 0.07398710296708219,
+          "max": 0.6185442495182008,
+          "iqr": 0.03075655261737342
+        }
+      },
+      "tail_risk_audit": {
+        "high_confidence_p50": {
+          "total_instances": 32,
+          "correct_winner_instances": 20,
+          "false_positive_losses": 12,
+          "empirical_accuracy": 0.625
+        },
+        "extreme_confidence_p70": {
+          "total_instances": 0,
+          "correct_winner_instances": 0,
+          "false_positive_losses": 0,
+          "empirical_accuracy": 0.0
+        },
+        "winner_underconfidence_risk": {
+          "winners_with_p_below_0.05": 4,
+          "winners_with_p_below_0.01": 3,
+          "minimum_probability_assigned_to_winner": 0.0019807758266996833,
+          "maximum_single_race_log_loss": 6.224266679355167
+        }
+      },
+      "subsets": {
+        "pole_won_races": {
+          "count": 24,
+          "ece": 0.044470669552670726,
+          "mce": 0.5273454236032276
+        },
+        "non_pole_upset_races": {
+          "count": 20,
+          "ece": 0.049272355458711024,
+          "mce": 0.6161207717308964
+        }
+      }
+    },
+    "w_0.20": {
+      "weight": 0.2,
+      "ece_overall": 0.012287700623575946,
+      "mce_overall": 0.34653897525429983,
+      "reliability_bins": [
+        {
+          "bin_index": 1,
+          "range": [
+            0.0,
+            0.1
+          ],
+          "count": 788,
+          "mean_confidence": 0.011344145289186614,
+          "empirical_accuracy": 0.012690355329949238,
+          "calibration_gap": 0.0013462100407626246
+        },
+        {
+          "bin_index": 2,
+          "range": [
+            0.1,
+            0.2
+          ],
+          "count": 30,
+          "mean_confidence": 0.1435683474526295,
+          "empirical_accuracy": 0.16666666666666666,
+          "calibration_gap": 0.023098319214037155
+        },
+        {
+          "bin_index": 3,
+          "range": [
+            0.2,
+            0.3
+          ],
+          "count": 10,
+          "mean_confidence": 0.25776088159479366,
+          "empirical_accuracy": 0.2,
+          "calibration_gap": 0.057760881594793645
+        },
+        {
+          "bin_index": 4,
+          "range": [
+            0.3,
+            0.4
+          ],
+          "count": 10,
+          "mean_confidence": 0.35518267549365623,
+          "empirical_accuracy": 0.1,
+          "calibration_gap": 0.25518267549365625
+        },
+        {
+          "bin_index": 5,
+          "range": [
+            0.4,
+            0.5
+          ],
+          "count": 8,
+          "mean_confidence": 0.4543583013571659,
+          "empirical_accuracy": 0.75,
+          "calibration_gap": 0.2956416986428341
+        },
+        {
+          "bin_index": 6,
+          "range": [
+            0.5,
+            0.6
+          ],
+          "count": 5,
+          "mean_confidence": 0.5465389752542998,
+          "empirical_accuracy": 0.2,
+          "calibration_gap": 0.34653897525429983
+        },
+        {
+          "bin_index": 7,
+          "range": [
+            0.6,
+            0.7
+          ],
+          "count": 18,
+          "mean_confidence": 0.6513664502186053,
+          "empirical_accuracy": 0.7222222222222222,
+          "calibration_gap": 0.07085577200361692
+        },
+        {
+          "bin_index": 8,
+          "range": [
+            0.7,
+            0.8
+          ],
+          "count": 9,
+          "mean_confidence": 0.7257966807326492,
+          "empirical_accuracy": 0.6666666666666666,
+          "calibration_gap": 0.05913001406598262
+        },
+        {
+          "bin_index": 9,
+          "range": [
+            0.8,
+            0.9
+          ],
+          "count": 0,
+          "mean_confidence": 0.8500000000000001,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_index": 10,
+          "range": [
+            0.9,
+            1.0
+          ],
+          "count": 0,
+          "mean_confidence": 0.95,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        }
+      ],
+      "dispersion_metrics": {
+        "mean_shannon_entropy": 1.351948709132156,
+        "std_shannon_entropy": 0.18138121721473993,
+        "min_shannon_entropy": 1.122447956568447,
+        "max_shannon_entropy": 1.8816380870206557,
+        "winner_probabilities": {
+          "mean": 0.41275937629109377,
+          "std": 0.2641300423327042,
+          "min": 0.0033528831282391754,
+          "p25": 0.1122312653015955,
+          "median": 0.4687152106027998,
+          "p75": 0.6515416753861751,
+          "p90": 0.7224157366048012,
+          "max": 0.7280738754792363,
+          "iqr": 0.5393104100845796
+        },
+        "non_winner_probabilities": {
+          "mean": 0.0309815197160574,
+          "std": 0.09232556319938652,
+          "min": 0.000982995399528051,
+          "p25": 0.0014678434948748242,
+          "median": 0.0021211214652729314,
+          "p75": 0.02200629716741564,
+          "p90": 0.05070666405537265,
+          "max": 0.7333772602711808,
+          "iqr": 0.020538453672540816
+        }
+      },
+      "tail_risk_audit": {
+        "high_confidence_p50": {
+          "total_instances": 32,
+          "correct_winner_instances": 20,
+          "false_positive_losses": 12,
+          "empirical_accuracy": 0.625
+        },
+        "extreme_confidence_p70": {
+          "total_instances": 9,
+          "correct_winner_instances": 6,
+          "false_positive_losses": 3,
+          "empirical_accuracy": 0.6666666666666666
+        },
+        "winner_underconfidence_risk": {
+          "winners_with_p_below_0.05": 3,
+          "winners_with_p_below_0.01": 2,
+          "minimum_probability_assigned_to_winner": 0.0033528831282391754,
+          "maximum_single_race_log_loss": 5.697934667984089
+        }
+      },
+      "subsets": {
+        "pole_won_races": {
+          "count": 24,
+          "ece": 0.037029181558031594,
+          "mce": 0.5391256214249578
+        },
+        "non_pole_upset_races": {
+          "count": 20,
+          "ece": 0.04798019075661346,
+          "mce": 0.7271623979180605
+        }
+      }
+    },
+    "w_0.30": {
+      "weight": 0.3,
+      "ece_overall": 0.00915757919345402,
+      "mce_overall": 0.10868997928906438,
+      "reliability_bins": [
+        {
+          "bin_index": 1,
+          "range": [
+            0.0,
+            0.1
+          ],
+          "count": 797,
+          "mean_confidence": 0.009755909195371684,
+          "empirical_accuracy": 0.013801756587202008,
+          "calibration_gap": 0.004045847391830323
+        },
+        {
+          "bin_index": 2,
+          "range": [
+            0.1,
+            0.2
+          ],
+          "count": 21,
+          "mean_confidence": 0.14119966478028118,
+          "empirical_accuracy": 0.14285714285714285,
+          "calibration_gap": 0.0016574780768616737
+        },
+        {
+          "bin_index": 3,
+          "range": [
+            0.2,
+            0.3
+          ],
+          "count": 12,
+          "mean_confidence": 0.2636740121505476,
+          "empirical_accuracy": 0.16666666666666666,
+          "calibration_gap": 0.09700734548388093
+        },
+        {
+          "bin_index": 4,
+          "range": [
+            0.3,
+            0.4
+          ],
+          "count": 7,
+          "mean_confidence": 0.3545814820507663,
+          "empirical_accuracy": 0.2857142857142857,
+          "calibration_gap": 0.06886719633648059
+        },
+        {
+          "bin_index": 5,
+          "range": [
+            0.4,
+            0.5
+          ],
+          "count": 7,
+          "mean_confidence": 0.462738592139507,
+          "empirical_accuracy": 0.5714285714285714,
+          "calibration_gap": 0.10868997928906438
+        },
+        {
+          "bin_index": 6,
+          "range": [
+            0.5,
+            0.6
+          ],
+          "count": 6,
+          "mean_confidence": 0.5641161557455624,
+          "empirical_accuracy": 0.5,
+          "calibration_gap": 0.0641161557455624
+        },
+        {
+          "bin_index": 7,
+          "range": [
+            0.6,
+            0.7
+          ],
+          "count": 8,
+          "mean_confidence": 0.6788009013808377,
+          "empirical_accuracy": 0.625,
+          "calibration_gap": 0.05380090138083771
+        },
+        {
+          "bin_index": 8,
+          "range": [
+            0.7,
+            0.8
+          ],
+          "count": 12,
+          "mean_confidence": 0.7511100658416869,
+          "empirical_accuracy": 0.6666666666666666,
+          "calibration_gap": 0.0844433991750203
+        },
+        {
+          "bin_index": 9,
+          "range": [
+            0.8,
+            0.9
+          ],
+          "count": 8,
+          "mean_confidence": 0.8181992262680076,
+          "empirical_accuracy": 0.75,
+          "calibration_gap": 0.06819922626800756
+        },
+        {
+          "bin_index": 10,
+          "range": [
+            0.9,
+            1.0
+          ],
+          "count": 0,
+          "mean_confidence": 0.95,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        }
+      ],
+      "dispersion_metrics": {
+        "mean_shannon_entropy": 1.1897977385382514,
+        "std_shannon_entropy": 0.2661069233406081,
+        "min_shannon_entropy": 0.8556082599239984,
+        "max_shannon_entropy": 1.923784910841257,
+        "winner_probabilities": {
+          "mean": 0.4566616507131487,
+          "std": 0.2986758719967059,
+          "min": 0.005411700505819762,
+          "p25": 0.11870067580465363,
+          "median": 0.5027225066914164,
+          "p75": 0.7239068383853413,
+          "p90": 0.8147777899596169,
+          "max": 0.8212727974660584,
+          "iqr": 0.6052061625806877
+        },
+        "non_winner_probabilities": {
+          "mean": 0.028665332576284727,
+          "std": 0.0972998169691864,
+          "min": 0.0009535106957705334,
+          "p25": 0.0015050287801864082,
+          "median": 0.001928736951226917,
+          "p75": 0.015463562901914052,
+          "p90": 0.041248878206714766,
+          "max": 0.8214170525543807,
+          "iqr": 0.013958534121727643
+        }
+      },
+      "tail_risk_audit": {
+        "high_confidence_p50": {
+          "total_instances": 34,
+          "correct_winner_instances": 22,
+          "false_positive_losses": 12,
+          "empirical_accuracy": 0.6470588235294118
+        },
+        "extreme_confidence_p70": {
+          "total_instances": 20,
+          "correct_winner_instances": 14,
+          "false_positive_losses": 6,
+          "empirical_accuracy": 0.7
+        },
+        "winner_underconfidence_risk": {
+          "winners_with_p_below_0.05": 5,
+          "winners_with_p_below_0.01": 2,
+          "minimum_probability_assigned_to_winner": 0.005411700505819762,
+          "maximum_single_race_log_loss": 5.219191909114723
+        }
+      },
+      "subsets": {
+        "pole_won_races": {
+          "count": 24,
+          "ece": 0.027617929217774437,
+          "mce": 0.47817762769520344
+        },
+        "non_pole_upset_races": {
+          "count": 20,
+          "ece": 0.04527516431478225,
+          "mce": 0.8199978696480823
+        }
+      }
+    },
+    "w_0.50": {
+      "weight": 0.5,
+      "ece_overall": 0.017416843792010858,
+      "mce_overall": 0.3595751210877486,
+      "reliability_bins": [
+        {
+          "bin_index": 1,
+          "range": [
+            0.0,
+            0.1
+          ],
+          "count": 807,
+          "mean_confidence": 0.006929053721931619,
+          "empirical_accuracy": 0.011152416356877323,
+          "calibration_gap": 0.004223362634945704
+        },
+        {
+          "bin_index": 2,
+          "range": [
+            0.1,
+            0.2
+          ],
+          "count": 16,
+          "mean_confidence": 0.13579516821184756,
+          "empirical_accuracy": 0.3125,
+          "calibration_gap": 0.17670483178815244
+        },
+        {
+          "bin_index": 3,
+          "range": [
+            0.2,
+            0.3
+          ],
+          "count": 7,
+          "mean_confidence": 0.2610436561026969,
+          "empirical_accuracy": 0.2857142857142857,
+          "calibration_gap": 0.02467062961158878
+        },
+        {
+          "bin_index": 4,
+          "range": [
+            0.3,
+            0.4
+          ],
+          "count": 5,
+          "mean_confidence": 0.3595751210877486,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.3595751210877486
+        },
+        {
+          "bin_index": 5,
+          "range": [
+            0.4,
+            0.5
+          ],
+          "count": 4,
+          "mean_confidence": 0.4405577343999941,
+          "empirical_accuracy": 0.75,
+          "calibration_gap": 0.3094422656000059
+        },
+        {
+          "bin_index": 6,
+          "range": [
+            0.5,
+            0.6
+          ],
+          "count": 3,
+          "mean_confidence": 0.5332543733825513,
+          "empirical_accuracy": 0.3333333333333333,
+          "calibration_gap": 0.199921040049218
+        },
+        {
+          "bin_index": 7,
+          "range": [
+            0.6,
+            0.7
+          ],
+          "count": 7,
+          "mean_confidence": 0.63292498999523,
+          "empirical_accuracy": 0.42857142857142855,
+          "calibration_gap": 0.2043535614238014
+        },
+        {
+          "bin_index": 8,
+          "range": [
+            0.7,
+            0.8
+          ],
+          "count": 7,
+          "mean_confidence": 0.7805772421755538,
+          "empirical_accuracy": 0.7142857142857143,
+          "calibration_gap": 0.0662915278898395
+        },
+        {
+          "bin_index": 9,
+          "range": [
+            0.8,
+            0.9
+          ],
+          "count": 13,
+          "mean_confidence": 0.8506741126497152,
+          "empirical_accuracy": 0.7692307692307693,
+          "calibration_gap": 0.08144334341894588
+        },
+        {
+          "bin_index": 10,
+          "range": [
+            0.9,
+            1.0
+          ],
+          "count": 9,
+          "mean_confidence": 0.9216751788293982,
+          "empirical_accuracy": 0.6666666666666666,
+          "calibration_gap": 0.25500851216273157
+        }
+      ],
+      "dispersion_metrics": {
+        "mean_shannon_entropy": 0.8951976643951398,
+        "std_shannon_entropy": 0.36727586749965657,
+        "min_shannon_entropy": 0.4366754587300316,
+        "max_shannon_entropy": 1.6379413226663144,
+        "winner_probabilities": {
+          "mean": 0.52593806330232,
+          "std": 0.34972987487662877,
+          "min": 0.012689805829348429,
+          "p25": 0.13425018813280118,
+          "median": 0.6205615371290472,
+          "p75": 0.832434269576662,
+          "p90": 0.921467305446175,
+          "max": 0.92760788063526,
+          "iqr": 0.6981840814438608
+        },
+        "non_winner_probabilities": {
+          "mean": 0.02501046188812701,
+          "std": 0.10572421869311831,
+          "min": 0.0008411842983886709,
+          "p25": 0.001237035432586315,
+          "median": 0.0014821824877985896,
+          "p75": 0.006531135765654495,
+          "p90": 0.022870279766410078,
+          "max": 0.9234115279905925,
+          "iqr": 0.00529410033306818
+        }
+      },
+      "tail_risk_audit": {
+        "high_confidence_p50": {
+          "total_instances": 39,
+          "correct_winner_instances": 25,
+          "false_positive_losses": 14,
+          "empirical_accuracy": 0.6410256410256411
+        },
+        "extreme_confidence_p70": {
+          "total_instances": 29,
+          "correct_winner_instances": 21,
+          "false_positive_losses": 8,
+          "empirical_accuracy": 0.7241379310344828
+        },
+        "winner_underconfidence_risk": {
+          "winners_with_p_below_0.05": 6,
+          "winners_with_p_below_0.01": 0,
+          "minimum_probability_assigned_to_winner": 0.012689805829348429,
+          "maximum_single_race_log_loss": 4.366956298448677
+        }
+      },
+      "subsets": {
+        "pole_won_races": {
+          "count": 24,
+          "ece": 0.020279756767104994,
+          "mce": 0.6217719919671867
+        },
+        "non_pole_upset_races": {
+          "count": 20,
+          "ece": 0.04912640600966052,
+          "mce": 0.9153324157160508
+        }
+      }
+    },
+    "w_0.60": {
+      "weight": 0.6,
+      "ece_overall": 0.01809473559159473,
+      "mce_overall": 0.6656739993732367,
+      "reliability_bins": [
+        {
+          "bin_index": 1,
+          "range": [
+            0.0,
+            0.1
+          ],
+          "count": 812,
+          "mean_confidence": 0.005977006706545352,
+          "empirical_accuracy": 0.009852216748768473,
+          "calibration_gap": 0.0038752100422231213
+        },
+        {
+          "bin_index": 2,
+          "range": [
+            0.1,
+            0.2
+          ],
+          "count": 10,
+          "mean_confidence": 0.1266974018786367,
+          "empirical_accuracy": 0.4,
+          "calibration_gap": 0.2733025981213633
+        },
+        {
+          "bin_index": 3,
+          "range": [
+            0.2,
+            0.3
+          ],
+          "count": 8,
+          "mean_confidence": 0.24867616667512077,
+          "empirical_accuracy": 0.5,
+          "calibration_gap": 0.25132383332487923
+        },
+        {
+          "bin_index": 4,
+          "range": [
+            0.3,
+            0.4
+          ],
+          "count": 7,
+          "mean_confidence": 0.37156316147681206,
+          "empirical_accuracy": 0.2857142857142857,
+          "calibration_gap": 0.08584887576252637
+        },
+        {
+          "bin_index": 5,
+          "range": [
+            0.4,
+            0.5
+          ],
+          "count": 2,
+          "mean_confidence": 0.4733491386938792,
+          "empirical_accuracy": 0.5,
+          "calibration_gap": 0.02665086130612082
+        },
+        {
+          "bin_index": 6,
+          "range": [
+            0.5,
+            0.6
+          ],
+          "count": 3,
+          "mean_confidence": 0.5159899941712759,
+          "empirical_accuracy": 0.3333333333333333,
+          "calibration_gap": 0.18265666083794257
+        },
+        {
+          "bin_index": 7,
+          "range": [
+            0.6,
+            0.7
+          ],
+          "count": 2,
+          "mean_confidence": 0.6656739993732367,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.6656739993732367
+        },
+        {
+          "bin_index": 8,
+          "range": [
+            0.7,
+            0.8
+          ],
+          "count": 6,
+          "mean_confidence": 0.7376992525330834,
+          "empirical_accuracy": 0.5,
+          "calibration_gap": 0.23769925253308344
+        },
+        {
+          "bin_index": 9,
+          "range": [
+            0.8,
+            0.9
+          ],
+          "count": 13,
+          "mean_confidence": 0.8466056237016102,
+          "empirical_accuracy": 0.8461538461538461,
+          "calibration_gap": 0.0004517775477640429
+        },
+        {
+          "bin_index": 10,
+          "range": [
+            0.9,
+            1.0
+          ],
+          "count": 15,
+          "mean_confidence": 0.9354173459861779,
+          "empirical_accuracy": 0.6666666666666666,
+          "calibration_gap": 0.26875067931951124
+        }
+      ],
+      "dispersion_metrics": {
+        "mean_shannon_entropy": 0.7748726544955225,
+        "std_shannon_entropy": 0.3960414336046763,
+        "min_shannon_entropy": 0.3066706040157834,
+        "max_shannon_entropy": 1.6250331180763327,
+        "winner_probabilities": {
+          "mean": 0.5510377871792795,
+          "std": 0.3678715651055711,
+          "min": 0.0072816115145543,
+          "p25": 0.13170632614460792,
+          "median": 0.7438431882674057,
+          "p75": 0.8802544573461505,
+          "p90": 0.9488388074195689,
+          "max": 0.953796466435086,
+          "iqr": 0.7485481312015425
+        },
+        "non_winner_probabilities": {
+          "mean": 0.023686255832268226,
+          "std": 0.10880798179319548,
+          "min": 0.0007712259933226512,
+          "p25": 0.0010480014491301016,
+          "median": 0.001279697387947123,
+          "p75": 0.0049417712885847336,
+          "p90": 0.01766435012669352,
+          "max": 0.9501374455584063,
+          "iqr": 0.0038937698394546317
+        }
+      },
+      "tail_risk_audit": {
+        "high_confidence_p50": {
+          "total_instances": 39,
+          "correct_winner_instances": 25,
+          "false_positive_losses": 14,
+          "empirical_accuracy": 0.6410256410256411
+        },
+        "extreme_confidence_p70": {
+          "total_instances": 34,
+          "correct_winner_instances": 24,
+          "false_positive_losses": 10,
+          "empirical_accuracy": 0.7058823529411765
+        },
+        "winner_underconfidence_risk": {
+          "winners_with_p_below_0.05": 6,
+          "winners_with_p_below_0.01": 1,
+          "minimum_probability_assigned_to_winner": 0.0072816115145543,
+          "maximum_single_race_log_loss": 4.9224030793811435
+        }
+      },
+      "subsets": {
+        "pole_won_races": {
+          "count": 24,
+          "ece": 0.015106304533235153,
+          "mce": 0.6942330596376887
+        },
+        "non_pole_upset_races": {
+          "count": 20,
+          "ece": 0.05152338602224507,
+          "mce": 0.9312039070678608
+        }
+      }
+    },
+    "w_0.70": {
+      "weight": 0.7,
+      "ece_overall": 0.01951420633019709,
+      "mce_overall": 0.6429672421791652,
+      "reliability_bins": [
+        {
+          "bin_index": 1,
+          "range": [
+            0.0,
+            0.1
+          ],
+          "count": 814,
+          "mean_confidence": 0.005006753637022326,
+          "empirical_accuracy": 0.011056511056511056,
+          "calibration_gap": 0.0060497574194887304
+        },
+        {
+          "bin_index": 2,
+          "range": [
+            0.1,
+            0.2
+          ],
+          "count": 10,
+          "mean_confidence": 0.1285008471702164,
+          "empirical_accuracy": 0.4,
+          "calibration_gap": 0.27149915282978365
+        },
+        {
+          "bin_index": 3,
+          "range": [
+            0.2,
+            0.3
+          ],
+          "count": 4,
+          "mean_confidence": 0.26818937220128536,
+          "empirical_accuracy": 0.5,
+          "calibration_gap": 0.23181062779871464
+        },
+        {
+          "bin_index": 4,
+          "range": [
+            0.3,
+            0.4
+          ],
+          "count": 9,
+          "mean_confidence": 0.3598539790682299,
+          "empirical_accuracy": 0.3333333333333333,
+          "calibration_gap": 0.026520645734896597
+        },
+        {
+          "bin_index": 5,
+          "range": [
+            0.4,
+            0.5
+          ],
+          "count": 3,
+          "mean_confidence": 0.4450637296129067,
+          "empirical_accuracy": 0.3333333333333333,
+          "calibration_gap": 0.11173039627957337
+        },
+        {
+          "bin_index": 6,
+          "range": [
+            0.5,
+            0.6
+          ],
+          "count": 2,
+          "mean_confidence": 0.5360757868358986,
+          "empirical_accuracy": 0.5,
+          "calibration_gap": 0.03607578683589863
+        },
+        {
+          "bin_index": 7,
+          "range": [
+            0.6,
+            0.7
+          ],
+          "count": 1,
+          "mean_confidence": 0.6429672421791652,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.6429672421791652
+        },
+        {
+          "bin_index": 8,
+          "range": [
+            0.7,
+            0.8
+          ],
+          "count": 4,
+          "mean_confidence": 0.7614534776886559,
+          "empirical_accuracy": 0.25,
+          "calibration_gap": 0.5114534776886559
+        },
+        {
+          "bin_index": 9,
+          "range": [
+            0.8,
+            0.9
+          ],
+          "count": 13,
+          "mean_confidence": 0.8589325088860092,
+          "empirical_accuracy": 0.8461538461538461,
+          "calibration_gap": 0.012778662732163104
+        },
+        {
+          "bin_index": 10,
+          "range": [
+            0.9,
+            1.0
+          ],
+          "count": 18,
+          "mean_confidence": 0.948100235354446,
+          "empirical_accuracy": 0.6666666666666666,
+          "calibration_gap": 0.28143356868777936
+        }
+      ],
+      "dispersion_metrics": {
+        "mean_shannon_entropy": 0.6750225293518394,
+        "std_shannon_entropy": 0.4169563621402295,
+        "min_shannon_entropy": 0.21658411397164862,
+        "max_shannon_entropy": 1.6517976068457108,
+        "winner_probabilities": {
+          "mean": 0.5705515822972886,
+          "std": 0.3816494528788492,
+          "min": 0.0037478980093152404,
+          "p25": 0.11816486154183954,
+          "median": 0.8188466337861643,
+          "p75": 0.9186384687199136,
+          "p90": 0.9663915680223979,
+          "max": 0.9699425601082853,
+          "iqr": 0.800473607178074
+        },
+        "non_winner_probabilities": {
+          "mean": 0.022656751053860072,
+          "std": 0.11115898080922576,
+          "min": 0.0006989386072919799,
+          "p25": 0.0008829100140804375,
+          "median": 0.0011338703238732517,
+          "p75": 0.0032283885467382606,
+          "p90": 0.016821334588124345,
+          "max": 0.9669901807711685,
+          "iqr": 0.002345478532657823
+        }
+      },
+      "tail_risk_audit": {
+        "high_confidence_p50": {
+          "total_instances": 38,
+          "correct_winner_instances": 25,
+          "false_positive_losses": 13,
+          "empirical_accuracy": 0.6578947368421053
+        },
+        "extreme_confidence_p70": {
+          "total_instances": 35,
+          "correct_winner_instances": 24,
+          "false_positive_losses": 11,
+          "empirical_accuracy": 0.6857142857142857
+        },
+        "winner_underconfidence_risk": {
+          "winners_with_p_below_0.05": 6,
+          "winners_with_p_below_0.01": 2,
+          "minimum_probability_assigned_to_winner": 0.0037478980093152404,
+          "maximum_single_race_log_loss": 5.586560127005233
+        }
+      },
+      "subsets": {
+        "pole_won_races": {
+          "count": 24,
+          "ece": 0.013204047680936167,
+          "mce": 0.7553857133700838
+        },
+        "non_pole_upset_races": {
+          "count": 20,
+          "ece": 0.05236254599754053,
+          "mce": 0.7959647351078156
+        }
+      }
+    },
+    "w_1.00": {
+      "weight": 1.0,
+      "ece_overall": 0.028420596203477456,
+      "mce_overall": 0.743103826130469,
+      "reliability_bins": [
+        {
+          "bin_index": 1,
+          "range": [
+            0.0,
+            0.1
+          ],
+          "count": 820,
+          "mean_confidence": 0.0034887097906061417,
+          "empirical_accuracy": 0.013414634146341463,
+          "calibration_gap": 0.009925924355735322
+        },
+        {
+          "bin_index": 2,
+          "range": [
+            0.1,
+            0.2
+          ],
+          "count": 7,
+          "mean_confidence": 0.1528180380140274,
+          "empirical_accuracy": 0.2857142857142857,
+          "calibration_gap": 0.1328962477002583
+        },
+        {
+          "bin_index": 3,
+          "range": [
+            0.2,
+            0.3
+          ],
+          "count": 4,
+          "mean_confidence": 0.256896173869531,
+          "empirical_accuracy": 1.0,
+          "calibration_gap": 0.743103826130469
+        },
+        {
+          "bin_index": 4,
+          "range": [
+            0.3,
+            0.4
+          ],
+          "count": 4,
+          "mean_confidence": 0.38712678240419224,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.38712678240419224
+        },
+        {
+          "bin_index": 5,
+          "range": [
+            0.4,
+            0.5
+          ],
+          "count": 4,
+          "mean_confidence": 0.447294002071027,
+          "empirical_accuracy": 0.25,
+          "calibration_gap": 0.19729400207102699
+        },
+        {
+          "bin_index": 6,
+          "range": [
+            0.5,
+            0.6
+          ],
+          "count": 1,
+          "mean_confidence": 0.5653052768000486,
+          "empirical_accuracy": 1.0,
+          "calibration_gap": 0.4346947231999514
+        },
+        {
+          "bin_index": 7,
+          "range": [
+            0.6,
+            0.7
+          ],
+          "count": 2,
+          "mean_confidence": 0.66478144972332,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.66478144972332
+        },
+        {
+          "bin_index": 8,
+          "range": [
+            0.7,
+            0.8
+          ],
+          "count": 2,
+          "mean_confidence": 0.7895418040737663,
+          "empirical_accuracy": 0.5,
+          "calibration_gap": 0.2895418040737663
+        },
+        {
+          "bin_index": 9,
+          "range": [
+            0.8,
+            0.9
+          ],
+          "count": 6,
+          "mean_confidence": 0.8722833981455932,
+          "empirical_accuracy": 0.6666666666666666,
+          "calibration_gap": 0.20561673147892656
+        },
+        {
+          "bin_index": 10,
+          "range": [
+            0.9,
+            1.0
+          ],
+          "count": 28,
+          "mean_confidence": 0.9641647035342141,
+          "empirical_accuracy": 0.7142857142857143,
+          "calibration_gap": 0.24987898924849983
+        }
+      ],
+      "dispersion_metrics": {
+        "mean_shannon_entropy": 0.4703655609530587,
+        "std_shannon_entropy": 0.42219533409430193,
+        "min_shannon_entropy": 0.0852638903422088,
+        "max_shannon_entropy": 1.4753398772778525,
+        "winner_probabilities": {
+          "mean": 0.6017227244339721,
+          "std": 0.4109454218799101,
+          "min": 0.0004999719874989844,
+          "p25": 0.10901146840224933,
+          "median": 0.8795625937274494,
+          "p75": 0.9735148492810854,
+          "p90": 0.9887548978663048,
+          "max": 0.990009790476132,
+          "iqr": 0.8645033808788362
+        },
+        "non_winner_probabilities": {
+          "mean": 0.0210122303655938,
+          "std": 0.11631988573064908,
+          "min": 0.0004999702095755021,
+          "p25": 0.0004999788945611983,
+          "median": 0.0004999904979295708,
+          "p75": 0.0010681843516796511,
+          "p90": 0.007763325166364829,
+          "max": 0.9887434214226949,
+          "iqr": 0.0005682054571184528
+        }
+      },
+      "tail_risk_audit": {
+        "high_confidence_p50": {
+          "total_instances": 39,
+          "correct_winner_instances": 26,
+          "false_positive_losses": 13,
+          "empirical_accuracy": 0.6666666666666666
+        },
+        "extreme_confidence_p70": {
+          "total_instances": 36,
+          "correct_winner_instances": 25,
+          "false_positive_losses": 11,
+          "empirical_accuracy": 0.6944444444444444
+        },
+        "winner_underconfidence_risk": {
+          "winners_with_p_below_0.05": 5,
+          "winners_with_p_below_0.01": 4,
+          "minimum_probability_assigned_to_winner": 0.0004999719874989844,
+          "maximum_single_race_log_loss": 7.600958486113573
+        }
+      },
+      "subsets": {
+        "pole_won_races": {
+          "count": 24,
+          "ece": 0.012177988357004755,
+          "mce": 0.7395058465391213
+        },
+        "non_pole_upset_races": {
+          "count": 20,
+          "ece": 0.055436703179624534,
+          "mce": 0.7906696744193508
+        }
+      }
+    }
+  }
+}

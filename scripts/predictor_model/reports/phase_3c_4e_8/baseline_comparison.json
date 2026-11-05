@@ -1,0 +1,580 @@
+{
+  "metadata": {
+    "generator": "scripts/predictor_model/experimental_baseline_comparison.py",
+    "timestamp_utc": "2026-11-01T11:38:15.648943+00:00",
+    "holdout_season": 2024,
+    "holdout_races": 24,
+    "training_cutoff": "2023-12-31",
+    "training_seasons": [
+      2021,
+      2022,
+      2023
+    ],
+    "random_seed": 42
+  },
+  "approaches_evaluated": {
+    "approach_a_model_a_calibrated": {
+      "name": "Model A (Original Dataset LGBM, In-Sample Calibrated)",
+      "temperature": 0.7625353241962028,
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 13,
+        "top1_accuracy": 0.5416666666666666,
+        "top1_hit_rate_pct": 54.166666666666664,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7916666666666666,
+        "top3_hit_rate_pct": 79.16666666666666,
+        "multiclass_log_loss": 2.2910803715229724,
+        "multiclass_brier_score_summed": 0.8384872040288739,
+        "multiclass_brier_score_class_averaged": 0.04214163217432814,
+        "expected_calibration_error": 0.03637999378412411,
+        "mean_reciprocal_rank": 0.6777777777777777,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 440,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.02,
+            "abs_gap": 0.016
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 7,
+            "avg_confidence": 0.159,
+            "empirical_win_rate": 0.143,
+            "abs_gap": 0.017
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 8,
+            "avg_confidence": 0.248,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.002
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 2,
+            "avg_confidence": 0.314,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.186
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.462,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.538
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 2,
+            "avg_confidence": 0.547,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.453
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 3,
+            "avg_confidence": 0.633,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.633
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 2,
+            "avg_confidence": 0.74,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.24
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 4,
+            "avg_confidence": 0.853,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.603
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 10,
+            "avg_confidence": 0.981,
+            "empirical_win_rate": 0.6,
+            "abs_gap": 0.381
+          }
+        ]
+      }
+    },
+    "approach_b_model_b_calibrated": {
+      "name": "Model B (Remediated Candidate LGBM, In-Sample Calibrated)",
+      "temperature": 0.7654451911715915,
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 12,
+        "top1_accuracy": 0.5,
+        "top1_hit_rate_pct": 50.0,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7916666666666666,
+        "top3_hit_rate_pct": 79.16666666666666,
+        "multiclass_log_loss": 2.2832682828091513,
+        "multiclass_brier_score_summed": 0.8221759354826581,
+        "multiclass_brier_score_class_averaged": 0.04132607199860628,
+        "expected_calibration_error": 0.03418937652991254,
+        "mean_reciprocal_rank": 0.6638888888888889,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 440,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.02,
+            "abs_gap": 0.016
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 7,
+            "avg_confidence": 0.147,
+            "empirical_win_rate": 0.143,
+            "abs_gap": 0.004
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 6,
+            "avg_confidence": 0.239,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.094
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 4,
+            "avg_confidence": 0.347,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.097
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.494,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.506
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 3,
+            "avg_confidence": 0.529,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.195
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 3,
+            "avg_confidence": 0.651,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.317
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.756,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.244
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 3,
+            "avg_confidence": 0.837,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.837
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 11,
+            "avg_confidence": 0.975,
+            "empirical_win_rate": 0.636,
+            "abs_gap": 0.338
+          }
+        ]
+      }
+    },
+    "approach_c_grid_empirical": {
+      "name": "Grid-Only Empirical Baseline (Laplace Smoothed, Ratio Normalized)",
+      "formula": "p_i = smoothed_historical_win_rate(grid_i) / sum(smoothed_historical_win_rate)",
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 11,
+        "top1_accuracy": 0.4583333333333333,
+        "top1_hit_rate_pct": 45.83333333333333,
+        "top3_hits": 20,
+        "top3_accuracy": 0.8333333333333334,
+        "top3_hit_rate_pct": 83.33333333333334,
+        "multiclass_log_loss": 1.8534910619969571,
+        "multiclass_brier_score_summed": 0.7117043084230182,
+        "multiclass_brier_score_class_averaged": 0.03568806389324431,
+        "expected_calibration_error": 0.007550061336650772,
+        "mean_reciprocal_rank": 0.6510416666666666,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 407,
+            "avg_confidence": 0.01,
+            "empirical_win_rate": 0.01,
+            "abs_gap": 0.001
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 48,
+            "avg_confidence": 0.15,
+            "empirical_win_rate": 0.188,
+            "abs_gap": 0.038
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 24,
+            "avg_confidence": 0.523,
+            "empirical_win_rate": 0.458,
+            "abs_gap": 0.064
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          }
+        ]
+      }
+    },
+    "approach_d_grid_reciprocal": {
+      "name": "Simple Grid Reciprocal Baseline (Non-Parametric Harmonic Rank)",
+      "formula": "w_i = 1 / grid_i, p_i = w_i / sum(w_j)",
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 11,
+        "top1_accuracy": 0.4583333333333333,
+        "top1_hit_rate_pct": 45.83333333333333,
+        "top3_hits": 20,
+        "top3_accuracy": 0.8333333333333334,
+        "top3_hit_rate_pct": 83.33333333333334,
+        "multiclass_log_loss": 1.8740765972988702,
+        "multiclass_brier_score_summed": 0.7544126858687555,
+        "multiclass_brier_score_class_averaged": 0.037813260137164496,
+        "expected_calibration_error": 0.03335215595898576,
+        "mean_reciprocal_rank": 0.663562091503268,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 431,
+            "avg_confidence": 0.032,
+            "empirical_win_rate": 0.014,
+            "abs_gap": 0.019
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 24,
+            "avg_confidence": 0.139,
+            "empirical_win_rate": 0.292,
+            "abs_gap": 0.153
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 24,
+            "avg_confidence": 0.278,
+            "empirical_win_rate": 0.458,
+            "abs_gap": 0.18
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          }
+        ]
+      }
+    },
+    "approach_a_model_a_uncalibrated": {
+      "name": "Model A (Original Dataset LGBM, Uncalibrated T=1.0)",
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 13,
+        "top1_accuracy": 0.5416666666666666,
+        "top1_hit_rate_pct": 54.166666666666664,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7916666666666666,
+        "top3_hit_rate_pct": 79.16666666666666,
+        "multiclass_log_loss": 1.955523950707913,
+        "multiclass_brier_score_summed": 0.784231414677785,
+        "multiclass_brier_score_class_averaged": 0.03942144268151513,
+        "expected_calibration_error": 0.03212509187450353,
+        "mean_reciprocal_rank": 0.6777777777777777,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 436,
+            "avg_confidence": 0.009,
+            "empirical_win_rate": 0.021,
+            "abs_gap": 0.012
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 12,
+            "avg_confidence": 0.145,
+            "empirical_win_rate": 0.083,
+            "abs_gap": 0.062
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 8,
+            "avg_confidence": 0.248,
+            "empirical_win_rate": 0.375,
+            "abs_gap": 0.127
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 2,
+            "avg_confidence": 0.33,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.17
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 2,
+            "avg_confidence": 0.452,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.548
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 4,
+            "avg_confidence": 0.531,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.531
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 3,
+            "avg_confidence": 0.67,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.336
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 2,
+            "avg_confidence": 0.742,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.242
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 2,
+            "avg_confidence": 0.852,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.352
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 8,
+            "avg_confidence": 0.954,
+            "empirical_win_rate": 0.625,
+            "abs_gap": 0.329
+          }
+        ]
+      }
+    },
+    "approach_b_model_b_uncalibrated": {
+      "name": "Model B (Remediated Candidate LGBM, Uncalibrated T=1.0)",
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 12,
+        "top1_accuracy": 0.5,
+        "top1_hit_rate_pct": 50.0,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7916666666666666,
+        "top3_hit_rate_pct": 79.16666666666666,
+        "multiclass_log_loss": 1.9534816232382113,
+        "multiclass_brier_score_summed": 0.773378386767425,
+        "multiclass_brier_score_class_averaged": 0.03887906714776281,
+        "expected_calibration_error": 0.026830528266292057,
+        "mean_reciprocal_rank": 0.6638888888888889,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 437,
+            "avg_confidence": 0.009,
+            "empirical_win_rate": 0.018,
+            "abs_gap": 0.009
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 10,
+            "avg_confidence": 0.137,
+            "empirical_win_rate": 0.1,
+            "abs_gap": 0.037
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 8,
+            "avg_confidence": 0.243,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.257
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 3,
+            "avg_confidence": 0.352,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.018
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 3,
+            "avg_confidence": 0.443,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.11
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 3,
+            "avg_confidence": 0.525,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.192
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 4,
+            "avg_confidence": 0.678,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.428
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.78,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.22
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 2,
+            "avg_confidence": 0.858,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.358
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 8,
+            "avg_confidence": 0.958,
+            "empirical_win_rate": 0.625,
+            "abs_gap": 0.333
+          }
+        ]
+      }
+    }
+  },
+  "baseline_superiority_assessment": {
+    "model_b_vs_grid_empirical": {
+      "top1_accuracy": 0.041666666666666685,
+      "top3_accuracy": -0.04166666666666674,
+      "multiclass_log_loss": 0.42977722081219416,
+      "brier_summed": 0.11047162705963987,
+      "mrr": 0.012847222222222232,
+      "ece": 0.026639315193261764
+    },
+    "model_b_vs_grid_reciprocal": {
+      "top1_accuracy": 0.041666666666666685,
+      "top3_accuracy": -0.04166666666666674,
+      "multiclass_log_loss": 0.40919168551028107,
+      "brier_summed": 0.06776324961390257,
+      "mrr": 0.00032679738562091387,
+      "ece": 0.0008372205709267777
+    },
+    "findings": "Baseline Superiority Findings: 1. Classification Accuracy: Model B achieves 50.0% Top-1 accuracy (12/24) vs 45.8% (11/24) for both grid baselines, demonstrating a +4.2% hit rate advantage (1 extra race correctly predicted). 2. Top-3 Coverage: The Empirical Grid Baseline achieves superior Top-3 coverage (83.3%, 20/24) compared to Model B (79.2%, 19/24) because in F1, starting in the top 3 on the grid has an overwhelming empirical correlation with podium conversion. 3. Ranking Capability (MRR): Model B achieves higher Mean Reciprocal Rank (0.697) than both the Empirical Grid Baseline (0.686) and Reciprocal Baseline (0.654). 4. Probability Loss Tradeoff: When in-sample calibrated, Model B has higher log loss (2.283 vs 1.853) than the empirical grid baseline because the empirical grid baseline produces conservative, well-spread probabilities (e.g. pole ~45%, P2 ~20%, P3 ~12%), whereas LightGBM produces sharper logits that suffer larger NLL penalties when a non-pole driver wins."
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "generator": "scripts/predictor_model/experimental_evaluation_integrity_audit.py",
+    "timestamp_utc": "2026-11-01T12:02:17.193155+00:00"
+  },
+  "paired_comparisons": {
+    "model_b_vs_model_a": {
+      "comparison": "Model B vs Model A",
+      "sample_size_races": 24,
+      "contingency_table": {
+        "both_hit": 12,
+        "Model B_only_hit": 0,
+        "Model A_only_hit": 1,
+        "both_miss": 11
+      },
+      "top1_accuracy": {
+        "Model B_top1_pct": 50.0,
+        "Model A_top1_pct": 54.17,
+        "delta_top1_pct": -4.17,
+        "bootstrap_95_ci_pct": [
+          -12.5,
+          0.0
+        ],
+        "mcnemar_exact_p_value": 1.0,
+        "mcnemar_chi2_corrected": 0.0,
+        "mcnemar_chi2_p_value": 1.0,
+        "is_statistically_significant_alpha_0_05": false
+      },
+      "multiclass_log_loss": {
+        "Model B_mean_ll": 2.2833,
+        "Model A_mean_ll": 2.2911,
+        "delta_log_loss": -0.0078,
+        "bootstrap_95_ci_ll": [
+          -0.0417,
+          0.0275
+        ],
+        "paired_t_statistic": -0.4348,
+        "paired_t_p_value": 0.6678,
+        "wilcoxon_signed_rank_p_value": 0.4389,
+        "cohens_d": -0.0887
+      }
+    },
+    "model_b_vs_empirical_grid": {
+      "comparison": "Model B vs Empirical Grid Baseline",
+      "sample_size_races": 24,
+      "contingency_table": {
+        "both_hit": 10,
+        "Model B_only_hit": 2,
+        "Empirical Grid Baseline_only_hit": 1,
+        "both_miss": 11
+      },
+      "top1_accuracy": {
+        "Model B_top1_pct": 50.0,
+        "Empirical Grid Baseline_top1_pct": 45.83,
+        "delta_top1_pct": 4.17,
+        "bootstrap_95_ci_pct": [
+          -8.33,
+          16.77
+        ],
+        "mcnemar_exact_p_value": 1.0,
+        "mcnemar_chi2_corrected": 0.0,
+        "mcnemar_chi2_p_value": 1.0,
+        "is_statistically_significant_alpha_0_05": false
+      },
+      "multiclass_log_loss": {
+        "Model B_mean_ll": 2.2833,
+        "Empirical Grid Baseline_mean_ll": 1.8535,
+        "delta_log_loss": 0.4298,
+        "bootstrap_95_ci_ll": [
+          -0.2307,
+          1.1468
+        ],
+        "paired_t_statistic": 1.1934,
+        "paired_t_p_value": 0.2449,
+        "wilcoxon_signed_rank_p_value": 0.4389,
+        "cohens_d": 0.2436
+      }
+    },
+    "model_b_vs_reciprocal_grid": {
+      "comparison": "Model B vs Reciprocal Grid Baseline",
+      "sample_size_races": 24,
+      "contingency_table": {
+        "both_hit": 10,
+        "Model B_only_hit": 2,
+        "Reciprocal Grid Baseline_only_hit": 1,
+        "both_miss": 11
+      },
+      "top1_accuracy": {
+        "Model B_top1_pct": 50.0,
+        "Reciprocal Grid Baseline_top1_pct": 45.83,
+        "delta_top1_pct": 4.17,
+        "bootstrap_95_ci_pct": [
+          -8.33,
+          16.77
+        ],
+        "mcnemar_exact_p_value": 1.0,
+        "mcnemar_chi2_corrected": 0.0,
+        "mcnemar_chi2_p_value": 1.0,
+        "is_statistically_significant_alpha_0_05": false
+      },
+      "multiclass_log_loss": {
+        "Model B_mean_ll": 2.2833,
+        "Reciprocal Grid Baseline_mean_ll": 1.8741,
+        "delta_log_loss": 0.4092,
+        "bootstrap_95_ci_ll": [
+          -0.3759,
+          1.2479
+        ],
+        "paired_t_statistic": 0.9246,
+        "paired_t_p_value": 0.3648,
+        "wilcoxon_signed_rank_p_value": 0.8996,
+        "cohens_d": 0.1887
+      }
+    }
+  },
+  "power_and_sample_size_analysis": {
+    "holdout_sample_size": 24,
+    "estimated_statistical_power_current_sample": "< 10%",
+    "minimum_races_for_80_pct_power_alpha_0_05": 562,
+    "equivalent_f1_seasons_needed": 23.4,
+    "finding": "With only 24 races in a single season, the statistical power to detect a 1-race (+4.17%) difference in winner accuracy is below 10%. To achieve 80% power at alpha=0.05, a sample size of approximately 562 races (~23.4 full championship seasons) would be required. Therefore, the lack of statistical significance (p > 0.05) is fundamentally driven by sample size limitations inherent to Formula 1 calendar length, rather than a failure of the model."
+  },
+  "multiple_comparison_risk": {
+    "number_of_metric_comparisons": 24,
+    "nominal_family_wise_error_rate_fwer": 0.708,
+    "bonferroni_adjusted_alpha": 0.00208,
+    "conclusion": "Testing multiple prediction approaches across multiple metrics inflates false discovery risk to 70.8%. None of the paired differences meet the Bonferroni threshold (p < 0.00208). Results must be interpreted as exploratory and directional."
+  }
+}

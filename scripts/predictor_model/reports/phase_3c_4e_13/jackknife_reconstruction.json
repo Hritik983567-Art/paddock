@@ -1,0 +1,563 @@
+{
+  "metadata": {
+    "audit": "Phase 3C.4E.13 Jackknife Reconstruction & LORO Identity Audit",
+    "timestamp_utc": "2026-11-05T10:13:20.113965+00:00",
+    "training_period": "2021-2023 (66 races)",
+    "evaluation_period": "2024 (24 races)",
+    "model_audited": "GridPositionBaseline(smoothing=1.0)"
+  },
+  "historical_training_comparison_grid5_vs_grid17": {
+    "grid_5": {
+      "historical_wins_2021_2023": 0,
+      "historical_starts_2021_2023": 66,
+      "laplace_smoothed_win_rate": 0.0007462686567164179
+    },
+    "grid_17": {
+      "historical_wins_2021_2023": 0,
+      "historical_starts_2021_2023": 66,
+      "laplace_smoothed_win_rate": 0.0007462686567164179
+    },
+    "rates_identical": true
+  },
+  "miami_vs_interlagos_investigation": {
+    "miami_round_6": {
+      "race_id": "2024_6_miami",
+      "winner_driver_id": "norris",
+      "winner_grid_position": 5,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.0007454068895779557,
+      "individual_log_loss": 7.201580328168759
+    },
+    "interlagos_round_21": {
+      "race_id": "2024_21_interlagos",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 17,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.0007454068895779557,
+      "individual_log_loss": 7.201580328168759
+    },
+    "delta_predicted_probability": 0.0,
+    "delta_individual_log_loss": 0.0,
+    "delta_loro_mean": 0.0,
+    "verdict_cause": "identical_individual_losses",
+    "detailed_scientific_explanation": "The identical LORO values for Miami and Interlagos in Phase 3C.4E.12 were NOT an indexing bug nor a mere rounding coincidence. They were caused by an exact mathematical identity: In the 2021-2023 training data, Grid 5 had 0 wins and 66 starts, while Grid 17 had 0 wins and 66 starts. Under Laplace smoothing (w + alpha * p_bar) / (n + alpha), both positions received the exact same smoothed rate (0.00074627). Furthermore, both 2024 races had exactly 20 starters with an identical distribution of grid positions 1-20, producing the exact same field probability normalization sum. Consequently, both winners (Norris P5 and Verstappen P17) received the exact same continuous probability (0.00074541), yielding the exact same continuous log loss (7.201580) and the exact same leave-one-out mean (1.620948)."
+  },
+  "full_season_summary": {
+    "total_races": 24,
+    "sum_log_loss": 44.48337700221698,
+    "mean_log_loss": 1.853474041759041,
+    "analytical_identity_verified_all_24_races": true
+  },
+  "ranked_loro_leverage": [
+    {
+      "race_id": "2024_6_miami",
+      "winner_driver_id": "norris",
+      "winner_grid_position": 5,
+      "individual_log_loss": 7.201580328168759,
+      "loro_mean_direct": 1.6209476814803572,
+      "loro_mean_formula": 1.6209476814803576,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": 0.23252636027868379,
+      "leverage_pct_of_season_mean": 12.545433873894693
+    },
+    {
+      "race_id": "2024_21_interlagos",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 17,
+      "individual_log_loss": 7.201580328168759,
+      "loro_mean_direct": 1.6209476814803572,
+      "loro_mean_formula": 1.6209476814803576,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": 0.23252636027868379,
+      "leverage_pct_of_season_mean": 12.545433873894693
+    },
+    {
+      "race_id": "2024_16_monza",
+      "winner_driver_id": "leclerc",
+      "winner_grid_position": 4,
+      "individual_log_loss": 3.488008261464451,
+      "loro_mean_direct": 1.7824073365544577,
+      "loro_mean_formula": 1.782407336554458,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": 0.07106670520458325,
+      "leverage_pct_of_season_mean": 3.83424335078021
+    },
+    {
+      "race_id": "2024_19_americas",
+      "winner_driver_id": "leclerc",
+      "winner_grid_position": 4,
+      "individual_log_loss": 3.488008261464451,
+      "loro_mean_direct": 1.7824073365544577,
+      "loro_mean_formula": 1.782407336554458,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": 0.07106670520458325,
+      "leverage_pct_of_season_mean": 3.83424335078021
+    },
+    {
+      "race_id": "2024_11_red_bull_ring",
+      "winner_driver_id": "russell",
+      "winner_grid_position": 3,
+      "individual_log_loss": 2.2528204377905903,
+      "loro_mean_direct": 1.8361111549750604,
+      "loro_mean_formula": 1.8361111549750606,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": 0.01736288678398057,
+      "leverage_pct_of_season_mean": 0.9367752875299137
+    },
+    {
+      "race_id": "2024_14_spa",
+      "winner_driver_id": "hamilton",
+      "winner_grid_position": 3,
+      "individual_log_loss": 2.2528204377905907,
+      "loro_mean_direct": 1.8361111549750604,
+      "loro_mean_formula": 1.8361111549750606,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": 0.01736288678398057,
+      "leverage_pct_of_season_mean": 0.9367752875299137
+    },
+    {
+      "race_id": "2024_9_villeneuve",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 2,
+      "individual_log_loss": 1.6370599208460652,
+      "loro_mean_direct": 1.8628833513639527,
+      "loro_mean_formula": 1.862883351363953,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.009409309604911709,
+      "leverage_pct_of_season_mean": -0.5076580190991936
+    },
+    {
+      "race_id": "2024_10_catalunya",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 2,
+      "individual_log_loss": 1.6370599208460654,
+      "loro_mean_direct": 1.8628833513639527,
+      "loro_mean_formula": 1.862883351363953,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.009409309604911709,
+      "leverage_pct_of_season_mean": -0.5076580190991936
+    },
+    {
+      "race_id": "2024_12_silverstone",
+      "winner_driver_id": "hamilton",
+      "winner_grid_position": 2,
+      "individual_log_loss": 1.6370599208460654,
+      "loro_mean_direct": 1.8628833513639527,
+      "loro_mean_formula": 1.862883351363953,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.009409309604911709,
+      "leverage_pct_of_season_mean": -0.5076580190991936
+    },
+    {
+      "race_id": "2024_13_hungaroring",
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 2,
+      "individual_log_loss": 1.6370599208460652,
+      "loro_mean_direct": 1.8628833513639527,
+      "loro_mean_formula": 1.862883351363953,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.009409309604911709,
+      "leverage_pct_of_season_mean": -0.5076580190991936
+    },
+    {
+      "race_id": "2024_17_baku",
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 2,
+      "individual_log_loss": 1.6370599208460652,
+      "loro_mean_direct": 1.8628833513639527,
+      "loro_mean_formula": 1.862883351363953,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.009409309604911709,
+      "leverage_pct_of_season_mean": -0.5076580190991936
+    },
+    {
+      "race_id": "2024_23_losail",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 2,
+      "individual_log_loss": 1.6370599208460652,
+      "loro_mean_direct": 1.8628833513639527,
+      "loro_mean_formula": 1.862883351363953,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.009409309604911709,
+      "leverage_pct_of_season_mean": -0.5076580190991936
+    },
+    {
+      "race_id": "2024_3_albert_park",
+      "winner_driver_id": "sainz",
+      "winner_grid_position": 2,
+      "individual_log_loss": 1.636402569817136,
+      "loro_mean_direct": 1.8629119318434713,
+      "loro_mean_formula": 1.8629119318434717,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.0094378900844303,
+      "leverage_pct_of_season_mean": -0.5092000142323689
+    },
+    {
+      "race_id": "2024_1_bahrain",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.6490724411341687,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    },
+    {
+      "race_id": "2024_2_jeddah",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.6490724411341687,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    },
+    {
+      "race_id": "2024_4_suzuka",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.6490724411341687,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    },
+    {
+      "race_id": "2024_5_shanghai",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.6490724411341687,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    },
+    {
+      "race_id": "2024_7_imola",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.6490724411341687,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    },
+    {
+      "race_id": "2024_8_monaco",
+      "winner_driver_id": "leclerc",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.6490724411341687,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    },
+    {
+      "race_id": "2024_15_zandvoort",
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.6490724411341685,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    },
+    {
+      "race_id": "2024_18_marina_bay",
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.6490724411341687,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    },
+    {
+      "race_id": "2024_20_rodriguez",
+      "winner_driver_id": "sainz",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.649072441134169,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    },
+    {
+      "race_id": "2024_22_vegas",
+      "winner_driver_id": "russell",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.6490724411341687,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    },
+    {
+      "race_id": "2024_24_yas_marina",
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1,
+      "individual_log_loss": 0.6490724411341687,
+      "loro_mean_direct": 1.9058393287427309,
+      "loro_mean_formula": 1.905839328742731,
+      "formula_matches_direct": true,
+      "leverage_on_season_loss": -0.05236528698368992,
+      "leverage_pct_of_season_mean": -2.825250626871073
+    }
+  ],
+  "all_races_unrounded_data": [
+    {
+      "race_id": "2024_1_bahrain",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.5225302295941469,
+      "individual_log_loss": 0.6490724411341687
+    },
+    {
+      "race_id": "2024_2_jeddah",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.5225302295941469,
+      "individual_log_loss": 0.6490724411341687
+    },
+    {
+      "race_id": "2024_3_albert_park",
+      "winner_driver_id": "sainz",
+      "winner_grid_position": 2,
+      "starters_count": 19,
+      "field_raw_prob_sum": 1.0004982082594023,
+      "field_prob_sum": 0.9999999999999999,
+      "winner_predicted_probability": 0.19467912865315684,
+      "individual_log_loss": 1.636402569817136
+    },
+    {
+      "race_id": "2024_4_suzuka",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.5225302295941469,
+      "individual_log_loss": 0.6490724411341687
+    },
+    {
+      "race_id": "2024_5_shanghai",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.5225302295941469,
+      "individual_log_loss": 0.6490724411341687
+    },
+    {
+      "race_id": "2024_6_miami",
+      "winner_driver_id": "norris",
+      "winner_grid_position": 5,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.0007454068895779557,
+      "individual_log_loss": 7.201580328168759
+    },
+    {
+      "race_id": "2024_7_imola",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.5225302295941469,
+      "individual_log_loss": 0.6490724411341687
+    },
+    {
+      "race_id": "2024_8_monaco",
+      "winner_driver_id": "leclerc",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.5225302295941469,
+      "individual_log_loss": 0.6490724411341687
+    },
+    {
+      "race_id": "2024_9_villeneuve",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 2,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.19455119817984642,
+      "individual_log_loss": 1.6370599208460652
+    },
+    {
+      "race_id": "2024_10_catalunya",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 2,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 0.9999999999999998,
+      "winner_predicted_probability": 0.1945511981798464,
+      "individual_log_loss": 1.6370599208460654
+    },
+    {
+      "race_id": "2024_11_red_bull_ring",
+      "winner_driver_id": "russell",
+      "winner_grid_position": 3,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.10510237143049175,
+      "individual_log_loss": 2.2528204377905903
+    },
+    {
+      "race_id": "2024_12_silverstone",
+      "winner_driver_id": "hamilton",
+      "winner_grid_position": 2,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 0.9999999999999999,
+      "winner_predicted_probability": 0.1945511981798464,
+      "individual_log_loss": 1.6370599208460654
+    },
+    {
+      "race_id": "2024_13_hungaroring",
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 2,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.19455119817984642,
+      "individual_log_loss": 1.6370599208460652
+    },
+    {
+      "race_id": "2024_14_spa",
+      "winner_driver_id": "hamilton",
+      "winner_grid_position": 3,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 0.9999999999999998,
+      "winner_predicted_probability": 0.10510237143049173,
+      "individual_log_loss": 2.2528204377905907
+    },
+    {
+      "race_id": "2024_15_zandvoort",
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.522530229594147,
+      "individual_log_loss": 0.6490724411341685
+    },
+    {
+      "race_id": "2024_16_monza",
+      "winner_driver_id": "leclerc",
+      "winner_grid_position": 4,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.030561682472696177,
+      "individual_log_loss": 3.488008261464451
+    },
+    {
+      "race_id": "2024_17_baku",
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 2,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 0.9999999999999999,
+      "winner_predicted_probability": 0.19455119817984642,
+      "individual_log_loss": 1.6370599208460652
+    },
+    {
+      "race_id": "2024_18_marina_bay",
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.5225302295941469,
+      "individual_log_loss": 0.6490724411341687
+    },
+    {
+      "race_id": "2024_19_americas",
+      "winner_driver_id": "leclerc",
+      "winner_grid_position": 4,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 0.9999999999999999,
+      "winner_predicted_probability": 0.030561682472696177,
+      "individual_log_loss": 3.488008261464451
+    },
+    {
+      "race_id": "2024_20_rodriguez",
+      "winner_driver_id": "sainz",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 0.9999999999999999,
+      "winner_predicted_probability": 0.5225302295941467,
+      "individual_log_loss": 0.649072441134169
+    },
+    {
+      "race_id": "2024_21_interlagos",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 17,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.0007454068895779557,
+      "individual_log_loss": 7.201580328168759
+    },
+    {
+      "race_id": "2024_22_vegas",
+      "winner_driver_id": "russell",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.5225302295941469,
+      "individual_log_loss": 0.6490724411341687
+    },
+    {
+      "race_id": "2024_23_losail",
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 2,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 0.9999999999999999,
+      "winner_predicted_probability": 0.19455119817984642,
+      "individual_log_loss": 1.6370599208460652
+    },
+    {
+      "race_id": "2024_24_yas_marina",
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1,
+      "starters_count": 20,
+      "field_raw_prob_sum": 1.0011561029962444,
+      "field_prob_sum": 1.0,
+      "winner_predicted_probability": 0.5225302295941469,
+      "individual_log_loss": 0.6490724411341687
+    }
+  ]
+}

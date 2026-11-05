@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "phase": "Phase 3C.4E.16",
+    "audit_title": "Prediction-Stage Integrity & Snapshot Contract Audit",
+    "timestamp_utc": "2026-11-05T11:38:42.542029+00:00",
+    "production_gate": "STRICTLY CLOSED",
+    "model_c_trained": false
+  },
+  "stage_a_isolation_verified": {
+    "passed": true,
+    "description": "Stage A strictly ignores starting_grid session block, enforces grid_penalty_delta = 0.0, and sets has_penalties_applied: False."
+  },
+  "stage_b_penalty_computation_verified": {
+    "passed": true,
+    "description": "Stage B authoritatively applies stewards' starting grid positions, computes grid penalties, and captures pit lane starts."
+  },
+  "stage_b_fail_closed_verified": {
+    "passed": true,
+    "description": "Stage B raises OFFICIAL_GRID_UNAVAILABLE when starting_grid block is missing, preventing silent fallback to provisional data."
+  },
+  "precedence_contract": {
+    "rule_1_stage_precedence": "official_grid > provisional (verified in compareSnapshotPrecedence)",
+    "rule_2_timestamp_precedence": "Later publication timestamp wins within same stage",
+    "rule_3_hash_determinism": "Snapshot filename incorporates stage: {race_id}_{stage}_{model_version}_{hash}.json"
+  },
+  "run_inference_snapshot_audit": {
+    "component": "scripts/predictor_pipeline/run_inference_snapshot.py",
+    "identified_limitation": "Line 316 strictly enforces: if stage_clean != 'provisional': raise SnapshotValidationError('UNSUPPORTED_STAGE'). As a result, run_inference_snapshot.py can only generate Stage A provisional snapshots and refuses to emit Stage B official_grid snapshots even when an authoritative starting grid block is provided.",
+    "proposed_minimal_fix": "Extend argument validation in run_inference_snapshot.py to accept '--stage official_grid', pass stage_clean to LiveFeatureBuilder.build_live_features(stage=stage_clean), and update the snapshot validator to verify hasPenaltiesApplied: True when stage == 'official_grid'.",
+    "status": "NON_BREAKING_LIMITATION_DOCUMENTED"
+  },
+  "overall_stage_integrity_status": "PASSED"
+}

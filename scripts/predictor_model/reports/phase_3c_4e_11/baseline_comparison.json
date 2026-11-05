@@ -1,0 +1,1018 @@
+{
+  "metadata": {
+    "benchmark_name": "Phase 3C.4E.11 Fair Baseline Comparison",
+    "timestamp_utc": "2026-11-05T09:35:43.758748+00:00",
+    "holdout_season": 2024,
+    "races_evaluated": 24,
+    "approaches_count": 6
+  },
+  "approaches_evaluated": {
+    "approach_a_grid_reciprocal": {
+      "name": "Approach A: Simple Reciprocal Grid Baseline (1 / grid)",
+      "type": "Non-parametric inverse rank baseline",
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 11,
+        "top1_accuracy": 0.4583333333333333,
+        "top1_hit_rate_pct": 45.83333333333333,
+        "top3_hits": 20,
+        "top3_accuracy": 0.8333333333333334,
+        "top3_hit_rate_pct": 83.33333333333334,
+        "multiclass_log_loss": 1.8740765972988702,
+        "multiclass_brier_score_summed": 0.7544126858687555,
+        "multiclass_brier_score_class_averaged": 0.037813260137164496,
+        "expected_calibration_error": 0.03335215595898576,
+        "mean_reciprocal_rank": 0.663562091503268,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 431,
+            "avg_confidence": 0.032,
+            "empirical_win_rate": 0.014,
+            "abs_gap": 0.019
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 24,
+            "avg_confidence": 0.139,
+            "empirical_win_rate": 0.292,
+            "abs_gap": 0.153
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 24,
+            "avg_confidence": 0.278,
+            "empirical_win_rate": 0.458,
+            "abs_gap": 0.18
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          }
+        ]
+      }
+    },
+    "approach_b_grid_empirical": {
+      "name": "Approach B: Historical Empirical Grid Baseline",
+      "type": "Empirical grid-slot transition win rate",
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 11,
+        "top1_accuracy": 0.4583333333333333,
+        "top1_hit_rate_pct": 45.83333333333333,
+        "top3_hits": 20,
+        "top3_accuracy": 0.8333333333333334,
+        "top3_hit_rate_pct": 83.33333333333334,
+        "multiclass_log_loss": 1.8534910619969571,
+        "multiclass_brier_score_summed": 0.7117043084230182,
+        "multiclass_brier_score_class_averaged": 0.03568806389324431,
+        "expected_calibration_error": 0.007550061336650772,
+        "mean_reciprocal_rank": 0.6510416666666666,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 407,
+            "avg_confidence": 0.01,
+            "empirical_win_rate": 0.01,
+            "abs_gap": 0.001
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 48,
+            "avg_confidence": 0.15,
+            "empirical_win_rate": 0.188,
+            "abs_gap": 0.038
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 24,
+            "avg_confidence": 0.523,
+            "empirical_win_rate": 0.458,
+            "abs_gap": 0.064
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          }
+        ]
+      }
+    },
+    "approach_c_frozen_model_a": {
+      "name": "Approach C: Frozen Model A Reference (Original Dataset)",
+      "type": "Full 42-feature LightGBM (Calibrated)",
+      "temperature": 0.7625353241962028,
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 13,
+        "top1_accuracy": 0.5416666666666666,
+        "top1_hit_rate_pct": 54.166666666666664,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7916666666666666,
+        "top3_hit_rate_pct": 79.16666666666666,
+        "multiclass_log_loss": 2.2910803715229724,
+        "multiclass_brier_score_summed": 0.8384872040288739,
+        "multiclass_brier_score_class_averaged": 0.04214163217432814,
+        "expected_calibration_error": 0.03637999378412411,
+        "mean_reciprocal_rank": 0.6777777777777777,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 440,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.02,
+            "abs_gap": 0.016
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 7,
+            "avg_confidence": 0.159,
+            "empirical_win_rate": 0.143,
+            "abs_gap": 0.017
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 8,
+            "avg_confidence": 0.248,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.002
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 2,
+            "avg_confidence": 0.314,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.186
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.462,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.538
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 2,
+            "avg_confidence": 0.547,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.453
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 3,
+            "avg_confidence": 0.633,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.633
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 2,
+            "avg_confidence": 0.74,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.24
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 4,
+            "avg_confidence": 0.853,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.603
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 10,
+            "avg_confidence": 0.981,
+            "empirical_win_rate": 0.6,
+            "abs_gap": 0.381
+          }
+        ]
+      }
+    },
+    "approach_d_experimental_model_b": {
+      "name": "Approach D: Experimental Model B Candidate (Remediated Dataset)",
+      "type": "Remediated 42-feature LightGBM (Calibrated)",
+      "temperature": 0.7654451911715915,
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 12,
+        "top1_accuracy": 0.5,
+        "top1_hit_rate_pct": 50.0,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7916666666666666,
+        "top3_hit_rate_pct": 79.16666666666666,
+        "multiclass_log_loss": 2.2832682828091513,
+        "multiclass_brier_score_summed": 0.8221759354826581,
+        "multiclass_brier_score_class_averaged": 0.04132607199860628,
+        "expected_calibration_error": 0.03418937652991254,
+        "mean_reciprocal_rank": 0.6638888888888889,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 440,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.02,
+            "abs_gap": 0.016
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 7,
+            "avg_confidence": 0.147,
+            "empirical_win_rate": 0.143,
+            "abs_gap": 0.004
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 6,
+            "avg_confidence": 0.239,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.094
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 4,
+            "avg_confidence": 0.347,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.097
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.494,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.506
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 3,
+            "avg_confidence": 0.529,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.195
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 3,
+            "avg_confidence": 0.651,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.317
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.756,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.244
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 3,
+            "avg_confidence": 0.837,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.837
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 11,
+            "avg_confidence": 0.975,
+            "empirical_win_rate": 0.636,
+            "abs_gap": 0.338
+          }
+        ]
+      }
+    },
+    "approach_e_grid_plus_validated_quali": {
+      "name": "Approach E: Grid + Validated Qualifying Baseline",
+      "type": "Logistic combination of 1/grid + quali_delta + has_valid_time",
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 11,
+        "top1_accuracy": 0.4583333333333333,
+        "top1_hit_rate_pct": 45.83333333333333,
+        "top3_hits": 20,
+        "top3_accuracy": 0.8333333333333334,
+        "top3_hit_rate_pct": 83.33333333333334,
+        "multiclass_log_loss": 1.8548211581350225,
+        "multiclass_brier_score_summed": 0.7791219230395745,
+        "multiclass_brier_score_class_averaged": 0.03909788944617548,
+        "expected_calibration_error": 0.020003683691406857,
+        "mean_reciprocal_rank": 0.6648989898989899,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 455,
+            "avg_confidence": 0.018,
+            "empirical_win_rate": 0.029,
+            "abs_gap": 0.011
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 23,
+            "avg_confidence": 0.654,
+            "empirical_win_rate": 0.478,
+            "abs_gap": 0.176
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.744,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.744
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          }
+        ]
+      }
+    },
+    "approach_f_pace_only_diagnostic": {
+      "name": "Approach F: Experimental Pace-Only Diagnostic Baseline",
+      "type": "Diagnostic baseline blind to starting grid slot (pure raw pace)",
+      "metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 12,
+        "top1_accuracy": 0.5,
+        "top1_hit_rate_pct": 50.0,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7916666666666666,
+        "top3_hit_rate_pct": 79.16666666666666,
+        "multiclass_log_loss": 2.185891540178171,
+        "multiclass_brier_score_summed": 0.8111352492988728,
+        "multiclass_brier_score_class_averaged": 0.04064894563134754,
+        "expected_calibration_error": 0.03406576325339905,
+        "mean_reciprocal_rank": 0.682260101010101,
+        "calibration_bins": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 401,
+            "avg_confidence": 0.031,
+            "empirical_win_rate": 0.012,
+            "abs_gap": 0.019
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 68,
+            "avg_confidence": 0.133,
+            "empirical_win_rate": 0.221,
+            "abs_gap": 0.088
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 8,
+            "avg_confidence": 0.228,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.272
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 2,
+            "avg_confidence": 0.34,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.34
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          }
+        ]
+      }
+    }
+  },
+  "comparative_summary_table": {
+    "columns": [
+      "Approach",
+      "Top1_Acc",
+      "Top3_Acc",
+      "Log_Loss",
+      "Brier_Sum",
+      "MRR",
+      "ECE"
+    ],
+    "rows": [
+      [
+        "Approach A (Reciprocal Grid)",
+        "0.458",
+        "0.833",
+        "1.874",
+        "0.754",
+        "0.664",
+        "0.033"
+      ],
+      [
+        "Approach B (Empirical Grid)",
+        "0.458",
+        "0.833",
+        "1.853",
+        "0.712",
+        "0.651",
+        "0.008"
+      ],
+      [
+        "Approach C (Frozen Model A)",
+        "0.542",
+        "0.792",
+        "2.291",
+        "0.838",
+        "0.678",
+        "0.036"
+      ],
+      [
+        "Approach D (Experimental Model B)",
+        "0.500",
+        "0.792",
+        "2.283",
+        "0.822",
+        "0.664",
+        "0.034"
+      ],
+      [
+        "Approach E (Grid + Validated Quali)",
+        "0.458",
+        "0.833",
+        "1.855",
+        "0.779",
+        "0.665",
+        "0.020"
+      ],
+      [
+        "Approach F (Pace-Only Diagnostic)",
+        "0.500",
+        "0.792",
+        "2.186",
+        "0.811",
+        "0.682",
+        "0.034"
+      ]
+    ]
+  },
+  "race_level_predictions_comparison": [
+    {
+      "race_id": "2024_10_catalunya",
+      "pole_driver": "norris",
+      "actual_winner": "max_verstappen",
+      "predicted_winner_approach_a": "norris",
+      "predicted_winner_approach_b": "norris",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "norris",
+      "predicted_winner_approach_f_pace_only": "norris",
+      "approach_e_hit": false,
+      "model_b_hit": true,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_11_red_bull_ring",
+      "pole_driver": "max_verstappen",
+      "actual_winner": "russell",
+      "predicted_winner_approach_a": "max_verstappen",
+      "predicted_winner_approach_b": "max_verstappen",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "max_verstappen",
+      "predicted_winner_approach_f_pace_only": "max_verstappen",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_12_silverstone",
+      "pole_driver": "russell",
+      "actual_winner": "hamilton",
+      "predicted_winner_approach_a": "russell",
+      "predicted_winner_approach_b": "russell",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "russell",
+      "predicted_winner_approach_f_pace_only": "russell",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_13_hungaroring",
+      "pole_driver": "norris",
+      "actual_winner": "piastri",
+      "predicted_winner_approach_a": "norris",
+      "predicted_winner_approach_b": "norris",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "norris",
+      "predicted_winner_approach_f_pace_only": "norris",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_14_spa",
+      "pole_driver": "leclerc",
+      "actual_winner": "hamilton",
+      "predicted_winner_approach_a": "leclerc",
+      "predicted_winner_approach_b": "leclerc",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "leclerc",
+      "predicted_winner_approach_f_pace_only": "max_verstappen",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_15_zandvoort",
+      "pole_driver": "norris",
+      "actual_winner": "norris",
+      "predicted_winner_approach_a": "norris",
+      "predicted_winner_approach_b": "norris",
+      "predicted_winner_approach_c": "norris",
+      "predicted_winner_approach_d": "norris",
+      "predicted_winner_approach_e": "norris",
+      "predicted_winner_approach_f_pace_only": "norris",
+      "approach_e_hit": true,
+      "model_b_hit": true,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_16_monza",
+      "pole_driver": "norris",
+      "actual_winner": "leclerc",
+      "predicted_winner_approach_a": "norris",
+      "predicted_winner_approach_b": "norris",
+      "predicted_winner_approach_c": "norris",
+      "predicted_winner_approach_d": "norris",
+      "predicted_winner_approach_e": "norris",
+      "predicted_winner_approach_f_pace_only": "norris",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_17_baku",
+      "pole_driver": "leclerc",
+      "actual_winner": "piastri",
+      "predicted_winner_approach_a": "leclerc",
+      "predicted_winner_approach_b": "leclerc",
+      "predicted_winner_approach_c": "leclerc",
+      "predicted_winner_approach_d": "leclerc",
+      "predicted_winner_approach_e": "leclerc",
+      "predicted_winner_approach_f_pace_only": "leclerc",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_18_marina_bay",
+      "pole_driver": "norris",
+      "actual_winner": "norris",
+      "predicted_winner_approach_a": "norris",
+      "predicted_winner_approach_b": "norris",
+      "predicted_winner_approach_c": "norris",
+      "predicted_winner_approach_d": "norris",
+      "predicted_winner_approach_e": "norris",
+      "predicted_winner_approach_f_pace_only": "norris",
+      "approach_e_hit": true,
+      "model_b_hit": true,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_19_americas",
+      "pole_driver": "norris",
+      "actual_winner": "leclerc",
+      "predicted_winner_approach_a": "norris",
+      "predicted_winner_approach_b": "norris",
+      "predicted_winner_approach_c": "norris",
+      "predicted_winner_approach_d": "norris",
+      "predicted_winner_approach_e": "norris",
+      "predicted_winner_approach_f_pace_only": "norris",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_1_bahrain",
+      "pole_driver": "max_verstappen",
+      "actual_winner": "max_verstappen",
+      "predicted_winner_approach_a": "max_verstappen",
+      "predicted_winner_approach_b": "max_verstappen",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "max_verstappen",
+      "predicted_winner_approach_f_pace_only": "max_verstappen",
+      "approach_e_hit": true,
+      "model_b_hit": true,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_20_rodriguez",
+      "pole_driver": "sainz",
+      "actual_winner": "sainz",
+      "predicted_winner_approach_a": "sainz",
+      "predicted_winner_approach_b": "sainz",
+      "predicted_winner_approach_c": "sainz",
+      "predicted_winner_approach_d": "sainz",
+      "predicted_winner_approach_e": "sainz",
+      "predicted_winner_approach_f_pace_only": "sainz",
+      "approach_e_hit": true,
+      "model_b_hit": true,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_21_interlagos",
+      "pole_driver": "norris",
+      "actual_winner": "max_verstappen",
+      "predicted_winner_approach_a": "norris",
+      "predicted_winner_approach_b": "norris",
+      "predicted_winner_approach_c": "norris",
+      "predicted_winner_approach_d": "norris",
+      "predicted_winner_approach_e": "norris",
+      "predicted_winner_approach_f_pace_only": "norris",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_22_vegas",
+      "pole_driver": "russell",
+      "actual_winner": "russell",
+      "predicted_winner_approach_a": "russell",
+      "predicted_winner_approach_b": "russell",
+      "predicted_winner_approach_c": "russell",
+      "predicted_winner_approach_d": "russell",
+      "predicted_winner_approach_e": "russell",
+      "predicted_winner_approach_f_pace_only": "russell",
+      "approach_e_hit": true,
+      "model_b_hit": true,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_23_losail",
+      "pole_driver": "russell",
+      "actual_winner": "max_verstappen",
+      "predicted_winner_approach_a": "russell",
+      "predicted_winner_approach_b": "russell",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "russell",
+      "predicted_winner_approach_e": "russell",
+      "predicted_winner_approach_f_pace_only": "max_verstappen",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_24_yas_marina",
+      "pole_driver": "norris",
+      "actual_winner": "norris",
+      "predicted_winner_approach_a": "norris",
+      "predicted_winner_approach_b": "norris",
+      "predicted_winner_approach_c": "norris",
+      "predicted_winner_approach_d": "norris",
+      "predicted_winner_approach_e": "norris",
+      "predicted_winner_approach_f_pace_only": "norris",
+      "approach_e_hit": true,
+      "model_b_hit": true,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_2_jeddah",
+      "pole_driver": "max_verstappen",
+      "actual_winner": "max_verstappen",
+      "predicted_winner_approach_a": "max_verstappen",
+      "predicted_winner_approach_b": "max_verstappen",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "max_verstappen",
+      "predicted_winner_approach_f_pace_only": "max_verstappen",
+      "approach_e_hit": true,
+      "model_b_hit": true,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_3_albert_park",
+      "pole_driver": "max_verstappen",
+      "actual_winner": "sainz",
+      "predicted_winner_approach_a": "max_verstappen",
+      "predicted_winner_approach_b": "max_verstappen",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "max_verstappen",
+      "predicted_winner_approach_f_pace_only": "max_verstappen",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_4_suzuka",
+      "pole_driver": "max_verstappen",
+      "actual_winner": "max_verstappen",
+      "predicted_winner_approach_a": "max_verstappen",
+      "predicted_winner_approach_b": "max_verstappen",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "max_verstappen",
+      "predicted_winner_approach_f_pace_only": "max_verstappen",
+      "approach_e_hit": true,
+      "model_b_hit": true,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_5_shanghai",
+      "pole_driver": "max_verstappen",
+      "actual_winner": "max_verstappen",
+      "predicted_winner_approach_a": "max_verstappen",
+      "predicted_winner_approach_b": "max_verstappen",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "max_verstappen",
+      "predicted_winner_approach_f_pace_only": "max_verstappen",
+      "approach_e_hit": true,
+      "model_b_hit": true,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_6_miami",
+      "pole_driver": "max_verstappen",
+      "actual_winner": "norris",
+      "predicted_winner_approach_a": "max_verstappen",
+      "predicted_winner_approach_b": "max_verstappen",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "max_verstappen",
+      "predicted_winner_approach_f_pace_only": "max_verstappen",
+      "approach_e_hit": false,
+      "model_b_hit": false,
+      "pace_only_hit": false
+    },
+    {
+      "race_id": "2024_7_imola",
+      "pole_driver": "max_verstappen",
+      "actual_winner": "max_verstappen",
+      "predicted_winner_approach_a": "max_verstappen",
+      "predicted_winner_approach_b": "max_verstappen",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "max_verstappen",
+      "predicted_winner_approach_f_pace_only": "max_verstappen",
+      "approach_e_hit": true,
+      "model_b_hit": true,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_8_monaco",
+      "pole_driver": "leclerc",
+      "actual_winner": "leclerc",
+      "predicted_winner_approach_a": "leclerc",
+      "predicted_winner_approach_b": "leclerc",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "leclerc",
+      "predicted_winner_approach_f_pace_only": "leclerc",
+      "approach_e_hit": true,
+      "model_b_hit": false,
+      "pace_only_hit": true
+    },
+    {
+      "race_id": "2024_9_villeneuve",
+      "pole_driver": "russell",
+      "actual_winner": "max_verstappen",
+      "predicted_winner_approach_a": "russell",
+      "predicted_winner_approach_b": "russell",
+      "predicted_winner_approach_c": "max_verstappen",
+      "predicted_winner_approach_d": "max_verstappen",
+      "predicted_winner_approach_e": "russell",
+      "predicted_winner_approach_f_pace_only": "russell",
+      "approach_e_hit": false,
+      "model_b_hit": true,
+      "pace_only_hit": false
+    }
+  ],
+  "roster_discrepancy_audit": {
+    "total_discrepancies_audited": 6,
+    "audit_conclusion": "All 2024 holdout roster discrepancies are documented and verified against official FIA Starting Grid documents.",
+    "documented_cases": [
+      {
+        "race_id": "2023_15_singapore",
+        "round": 15,
+        "season": 2023,
+        "issue": "Lance Stroll Q1 heavy crash; withdrew from race. In original dataset, Stroll was included as P20 starter. Zhou pit-lane start represented as P19.",
+        "dataset_discrepancy": "Original dataset had 20 starters; official FIA starting grid had 19 starters.",
+        "remediation_status": "Remediated in Model B dataset (Stroll flagged WITHDRAWN_BEFORE_START, Zhou grid=20)."
+      },
+      {
+        "race_id": "2024_2_jeddah",
+        "round": 2,
+        "season": 2024,
+        "issue": "Carlos Sainz appendicitis after FP2; replaced by Oliver Bearman for FP3, Qualifying (P11), and Race (P7).",
+        "dataset_discrepancy": "Bearman correctly replaced Sainz in dataset row; Zhou Guanyu practice crash, no timed lap in Q1, started P20.",
+        "remediation_status": "Verified correct in dataset."
+      },
+      {
+        "race_id": "2024_5_china",
+        "round": 5,
+        "season": 2024,
+        "issue": "Logan Sargeant pit-lane start under Parc Ferm\u00e9 suspension setup changes.",
+        "dataset_discrepancy": "Dataset records Sargeant grid_position=20, pit_lane start flag.",
+        "remediation_status": "Verified consistent with FIA Doc 38."
+      },
+      {
+        "race_id": "2024_7_imola",
+        "round": 7,
+        "season": 2024,
+        "issue": "Logan Sargeant track limits lap deletion in Q1; unclassified without a valid lap time, started P20.",
+        "dataset_discrepancy": "Dataset records quali_time_delta_to_pole as null.",
+        "remediation_status": "Enforced missing indicator has_valid_quali_time=False without +5% invented fallback."
+      },
+      {
+        "race_id": "2024_15_zandvoort",
+        "round": 15,
+        "season": 2024,
+        "issue": "Logan Sargeant heavy FP3 crash, car fire; missed Qualifying entirely, permitted to start P20 by stewards.",
+        "dataset_discrepancy": "Dataset records quali_time_delta_to_pole as null.",
+        "remediation_status": "Enforced missing indicator has_valid_quali_time=False without +5% invented fallback."
+      },
+      {
+        "race_id": "2024_17_baku",
+        "round": 17,
+        "season": 2024,
+        "issue": "Kevin Magnussen single-race penalty points suspension; Oliver Bearman substituted at Haas.",
+        "dataset_discrepancy": "Bearman correctly entered as Haas driver.",
+        "remediation_status": "Verified roster match."
+      }
+    ]
+  }
+}

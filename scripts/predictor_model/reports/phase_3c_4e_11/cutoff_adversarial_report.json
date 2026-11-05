@@ -1,0 +1,93 @@
+{
+  "metadata": {
+    "audit_name": "Phase 3C.4E.11 Adversarial Prediction-Cutoff Audit",
+    "timestamp_utc": "2026-11-05T09:33:03.978717+00:00",
+    "test_count": 7,
+    "stages_evaluated": [
+      "provisional_post_qualifying",
+      "official_starting_grid",
+      "sprint_post_shootout",
+      "provisional_post_sprint_and_qualifying",
+      "sprint_official_grid"
+    ]
+  },
+  "attack_results": {
+    "attack_1_race_laps_injection": {
+      "attack_id": "ATK-01",
+      "name": "Grand Prix Race Lap Telemetry Pre-Race Ingestion",
+      "target_stage": "official_starting_grid",
+      "injected_session": "GRAND_PRIX",
+      "expected_behavior": "Raise CutoffViolationError (Blocked)",
+      "blocked": true,
+      "exception_captured": "Cutoff Violation! Session 'GRAND_PRIX' is not in permitted whitelist for standard at stage 'official_starting_grid'. Allowed: ['FP1', 'FP2', 'FP3', 'OFFICIAL_GRID_DOC', 'QUALIFYING']",
+      "status": "PASS"
+    },
+    "attack_2_sunday_weather_injection": {
+      "attack_id": "ATK-02",
+      "name": "Sunday Race-Day Weather Injection into Saturday Post-Qualifying",
+      "target_stage": "provisional_post_qualifying",
+      "injected_domain": "SUNDAY_WEATHER",
+      "expected_behavior": "Raise CutoffViolationError (Blocked)",
+      "blocked": true,
+      "exception_captured": "Forbidden Data Domain Detected! Domain 'SUNDAY_WEATHER' is strictly barred at stage 'provisional_post_qualifying'.",
+      "status": "PASS"
+    },
+    "attack_3_sprint_race_into_shootout": {
+      "attack_id": "ATK-03",
+      "name": "Saturday Sprint Race Pace into Friday Post-Shootout Cutoff",
+      "target_stage": "sprint_post_shootout",
+      "injected_session": "SPRINT_RACE",
+      "expected_behavior": "Raise CutoffViolationError (Blocked)",
+      "blocked": true,
+      "exception_captured": "Adversarial Leakage Blocked! Session 'SPRINT_RACE' is in FORBIDDEN blacklist for stage 'sprint_post_shootout'.",
+      "status": "PASS"
+    },
+    "attack_4_official_grid_into_provisional": {
+      "attack_id": "ATK-04",
+      "name": "Sunday Official Starting Grid Document into Saturday Provisional Cutoff",
+      "target_stage": "provisional_post_qualifying",
+      "injected_session": "OFFICIAL_GRID_DOC",
+      "expected_behavior": "Raise CutoffViolationError (Blocked)",
+      "blocked": true,
+      "exception_captured": "Adversarial Leakage Blocked! Session 'OFFICIAL_GRID_DOC' is in FORBIDDEN blacklist for stage 'provisional_post_qualifying'.",
+      "status": "PASS"
+    },
+    "attack_5_future_standings_injection": {
+      "attack_id": "ATK-05",
+      "name": "Post-Race Championship Standings Injection",
+      "target_stage": "official_starting_grid",
+      "injected_domain": "POST_RACE_STANDINGS",
+      "expected_behavior": "Raise CutoffViolationError (Blocked)",
+      "blocked": true,
+      "exception_captured": "Forbidden Data Domain Detected! Domain 'POST_RACE_STANDINGS' is strictly barred at stage 'official_starting_grid'.",
+      "status": "PASS"
+    },
+    "attack_6_future_circuit_stats_injection": {
+      "attack_id": "ATK-06",
+      "name": "In-Sample Current Race Circuit Statistics Injection",
+      "target_stage": "provisional_post_qualifying",
+      "injected_domain": "FUTURE_CIRCUIT_STATS",
+      "expected_behavior": "Raise CutoffViolationError (Blocked)",
+      "blocked": true,
+      "exception_captured": "Forbidden Data Domain Detected! Domain 'FUTURE_CIRCUIT_STATS' is strictly barred at stage 'provisional_post_qualifying'.",
+      "status": "PASS"
+    },
+    "attack_7_future_timestamp_violation": {
+      "attack_id": "ATK-07",
+      "name": "Temporal Leakage via Post-Cutoff ISO Timestamp",
+      "target_stage": "official_starting_grid",
+      "feature_timestamp": "2024-03-02T16:05:00Z",
+      "cutoff_timestamp": "2024-03-02T15:00:00Z",
+      "expected_behavior": "Raise CutoffViolationError (Blocked)",
+      "blocked": true,
+      "exception_captured": "Timestamp Leakage Detected! Feature 'telemetry_lap_15_speed_trap' timestamp (2024-03-02T16:05:00Z) is strictly after prediction cutoff (2024-03-02T15:00:00Z). Delta: 1:05:00",
+      "status": "PASS"
+    }
+  },
+  "audit_summary": {
+    "total_adversarial_attacks": 7,
+    "attacks_successfully_blocked": 7,
+    "fail_closed_compliance_rate_pct": 100.0,
+    "audit_verdict": "PASS \u2014 100% FAIL-CLOSED LEAKAGE IMMUNITY VERIFIED"
+  }
+}

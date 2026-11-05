@@ -1,0 +1,91 @@
+{
+  "total_configurations_tested": 8,
+  "metrics_per_configuration": 4,
+  "total_hypotheses_tested": 32,
+  "nominal_alpha": 0.05,
+  "family_wise_error_rate_fwer": 0.8063,
+  "bonferroni_significance_threshold": 0.001563,
+  "hypothesis_test_table": [
+    {
+      "configuration": "grid_empirical",
+      "delta_log_loss": -0.0206,
+      "unadjusted_p_value": 0.08524,
+      "rank": 1,
+      "bh_critical_value": 0.00625,
+      "bonferroni_threshold": 0.001563,
+      "significant_bonferroni": false,
+      "significant_bh_fdr": false
+    },
+    {
+      "configuration": "grid_plus_qualifying",
+      "delta_log_loss": -0.0193,
+      "unadjusted_p_value": 0.42234,
+      "rank": 2,
+      "bh_critical_value": 0.0125,
+      "bonferroni_threshold": 0.001563,
+      "significant_bonferroni": false,
+      "significant_bh_fdr": false
+    },
+    {
+      "configuration": "grid_plus_sector_pace",
+      "delta_log_loss": -0.0194,
+      "unadjusted_p_value": 0.42234,
+      "rank": 3,
+      "bh_critical_value": 0.01875,
+      "bonferroni_threshold": 0.001563,
+      "significant_bonferroni": false,
+      "significant_bh_fdr": false
+    },
+    {
+      "configuration": "grid_plus_tyre_deg",
+      "delta_log_loss": -0.0397,
+      "unadjusted_p_value": 0.45505,
+      "rank": 4,
+      "bh_critical_value": 0.025,
+      "bonferroni_threshold": 0.001563,
+      "significant_bonferroni": false,
+      "significant_bh_fdr": false
+    },
+    {
+      "configuration": "grid_plus_validated_combination",
+      "delta_log_loss": -0.0179,
+      "unadjusted_p_value": 0.4908,
+      "rank": 5,
+      "bh_critical_value": 0.03125,
+      "bonferroni_threshold": 0.001563,
+      "significant_bonferroni": false,
+      "significant_bh_fdr": false
+    },
+    {
+      "configuration": "grid_plus_track_difficulty_interaction",
+      "delta_log_loss": 0.0435,
+      "unadjusted_p_value": 0.90852,
+      "rank": 6,
+      "bh_critical_value": 0.0375,
+      "bonferroni_threshold": 0.001563,
+      "significant_bonferroni": false,
+      "significant_bh_fdr": false
+    },
+    {
+      "configuration": "grid_plus_sprint_pace",
+      "delta_log_loss": 0.0128,
+      "unadjusted_p_value": 0.9087,
+      "rank": 7,
+      "bh_critical_value": 0.04375,
+      "bonferroni_threshold": 0.001563,
+      "significant_bonferroni": false,
+      "significant_bh_fdr": false
+    },
+    {
+      "configuration": "grid_plus_fp2_pace",
+      "delta_log_loss": 0.0203,
+      "unadjusted_p_value": 0.92181,
+      "rank": 8,
+      "bh_critical_value": 0.05,
+      "bonferroni_threshold": 0.001563,
+      "significant_bonferroni": false,
+      "significant_bh_fdr": false
+    }
+  ],
+  "multiplicity_verdict": "ZERO STATISTICAL DISCOVERIES. Even before multiple testing correction, not a single pace configuration achieves p < 0.05 over the grid baseline. Under Bonferroni (alpha=0.00156) and Benjamini-Hochberg FDR control, all adjusted discoveries remain strictly zero. Any apparent improvement on the 2024 holdout is statistically indistinguishable from random noise."
+}

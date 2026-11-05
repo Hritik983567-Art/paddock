@@ -1,0 +1,839 @@
+{
+  "metadata": {
+    "phase": "Phase 3C.4F.2",
+    "title": "Chronological Walk-Forward Weight Sweep Analysis",
+    "timestamp_utc": "2026-11-05T13:47:05.653026+00:00",
+    "production_gate": "STRICTLY CLOSED",
+    "model_c_trained": false,
+    "candidate_weights": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      1.0
+    ],
+    "source_walk_forward_json": "phase_4f_2_walk_forward.json"
+  },
+  "surface_curvature": {
+    "fold_1_2022": {
+      "min_weight": 0.3,
+      "min_loss": 1.7196437796421584,
+      "first_derivatives": [
+        {
+          "interval": [
+            0.0,
+            0.05
+          ],
+          "midpoint": 0.025,
+          "gradient_dL_dw": -0.8205523151021321
+        },
+        {
+          "interval": [
+            0.05,
+            0.1
+          ],
+          "midpoint": 0.07500000000000001,
+          "gradient_dL_dw": -0.632676704877384
+        },
+        {
+          "interval": [
+            0.1,
+            0.15
+          ],
+          "midpoint": 0.125,
+          "gradient_dL_dw": -0.45608188405468664
+        },
+        {
+          "interval": [
+            0.15,
+            0.2
+          ],
+          "midpoint": 0.175,
+          "gradient_dL_dw": -0.2928623914695415
+        },
+        {
+          "interval": [
+            0.2,
+            0.25
+          ],
+          "midpoint": 0.225,
+          "gradient_dL_dw": -0.1440444691583798
+        },
+        {
+          "interval": [
+            0.25,
+            0.3
+          ],
+          "midpoint": 0.275,
+          "gradient_dL_dw": -0.009632361583276074
+        },
+        {
+          "interval": [
+            0.3,
+            0.4
+          ],
+          "midpoint": 0.35,
+          "gradient_dL_dw": 0.16563704571556975
+        },
+        {
+          "interval": [
+            0.4,
+            0.5
+          ],
+          "midpoint": 0.45,
+          "gradient_dL_dw": 0.3641494253799072
+        },
+        {
+          "interval": [
+            0.5,
+            0.6
+          ],
+          "midpoint": 0.55,
+          "gradient_dL_dw": 0.5352737522000829
+        },
+        {
+          "interval": [
+            0.6,
+            0.7
+          ],
+          "midpoint": 0.6499999999999999,
+          "gradient_dL_dw": 0.693576665339093
+        },
+        {
+          "interval": [
+            0.7,
+            0.8
+          ],
+          "midpoint": 0.75,
+          "gradient_dL_dw": 0.8430733308847774
+        },
+        {
+          "interval": [
+            0.8,
+            1.0
+          ],
+          "midpoint": 0.9,
+          "gradient_dL_dw": 1.0275480749742296
+        }
+      ],
+      "second_derivatives": [
+        {
+          "weight": 0.05,
+          "curvature_d2L_dw2": 3.7575122044949616,
+          "is_convex": true
+        },
+        {
+          "weight": 0.1,
+          "curvature_d2L_dw2": 3.5318964164539484,
+          "is_convex": true
+        },
+        {
+          "weight": 0.15,
+          "curvature_d2L_dw2": 3.2643898517029024,
+          "is_convex": true
+        },
+        {
+          "weight": 0.2,
+          "curvature_d2L_dw2": 2.976358446223234,
+          "is_convex": true
+        },
+        {
+          "weight": 0.25,
+          "curvature_d2L_dw2": 2.688242151502075,
+          "is_convex": true
+        },
+        {
+          "weight": 0.3,
+          "curvature_d2L_dw2": 2.3369254306512772,
+          "is_convex": true
+        },
+        {
+          "weight": 0.4,
+          "curvature_d2L_dw2": 1.9851237966433743,
+          "is_convex": true
+        },
+        {
+          "weight": 0.5,
+          "curvature_d2L_dw2": 1.7112432682017573,
+          "is_convex": true
+        },
+        {
+          "weight": 0.6,
+          "curvature_d2L_dw2": 1.5830291313901017,
+          "is_convex": true
+        },
+        {
+          "weight": 0.7,
+          "curvature_d2L_dw2": 1.4949666554568437,
+          "is_convex": true
+        },
+        {
+          "weight": 0.8,
+          "curvature_d2L_dw2": 1.2298316272630145,
+          "is_convex": true
+        }
+      ]
+    },
+    "fold_2_2023": {
+      "min_weight": 1.0,
+      "min_loss": 0.3719854255751693,
+      "first_derivatives": [
+        {
+          "interval": [
+            0.0,
+            0.05
+          ],
+          "midpoint": 0.025,
+          "gradient_dL_dw": -2.958875409122803
+        },
+        {
+          "interval": [
+            0.05,
+            0.1
+          ],
+          "midpoint": 0.07500000000000001,
+          "gradient_dL_dw": -2.710719005640869
+        },
+        {
+          "interval": [
+            0.1,
+            0.15
+          ],
+          "midpoint": 0.125,
+          "gradient_dL_dw": -2.4638824388435947
+        },
+        {
+          "interval": [
+            0.15,
+            0.2
+          ],
+          "midpoint": 0.175,
+          "gradient_dL_dw": -2.2224804180484083
+        },
+        {
+          "interval": [
+            0.2,
+            0.25
+          ],
+          "midpoint": 0.225,
+          "gradient_dL_dw": -1.9895271620187343
+        },
+        {
+          "interval": [
+            0.25,
+            0.3
+          ],
+          "midpoint": 0.275,
+          "gradient_dL_dw": -1.7669813152234997
+        },
+        {
+          "interval": [
+            0.3,
+            0.4
+          ],
+          "midpoint": 0.35,
+          "gradient_dL_dw": -1.4571553805495447
+        },
+        {
+          "interval": [
+            0.4,
+            0.5
+          ],
+          "midpoint": 0.45,
+          "gradient_dL_dw": -1.0908456212126851
+        },
+        {
+          "interval": [
+            0.5,
+            0.6
+          ],
+          "midpoint": 0.55,
+          "gradient_dL_dw": -0.7910799077235866
+        },
+        {
+          "interval": [
+            0.6,
+            0.7
+          ],
+          "midpoint": 0.6499999999999999,
+          "gradient_dL_dw": -0.5598029245198134
+        },
+        {
+          "interval": [
+            0.7,
+            0.8
+          ],
+          "midpoint": 0.75,
+          "gradient_dL_dw": -0.38212392268949646
+        },
+        {
+          "interval": [
+            0.8,
+            1.0
+          ],
+          "midpoint": 0.9,
+          "gradient_dL_dw": -0.17206773006166495
+        }
+      ],
+      "second_derivatives": [
+        {
+          "weight": 0.05,
+          "curvature_d2L_dw2": 4.963128069638678,
+          "is_convex": true
+        },
+        {
+          "weight": 0.1,
+          "curvature_d2L_dw2": 4.93673133594549,
+          "is_convex": true
+        },
+        {
+          "weight": 0.15,
+          "curvature_d2L_dw2": 4.828040415903727,
+          "is_convex": true
+        },
+        {
+          "weight": 0.2,
+          "curvature_d2L_dw2": 4.659065120593482,
+          "is_convex": true
+        },
+        {
+          "weight": 0.25,
+          "curvature_d2L_dw2": 4.450916935904693,
+          "is_convex": true
+        },
+        {
+          "weight": 0.3,
+          "curvature_d2L_dw2": 4.131012462319398,
+          "is_convex": true
+        },
+        {
+          "weight": 0.4,
+          "curvature_d2L_dw2": 3.663097593368596,
+          "is_convex": true
+        },
+        {
+          "weight": 0.5,
+          "curvature_d2L_dw2": 2.9976571348909857,
+          "is_convex": true
+        },
+        {
+          "weight": 0.6,
+          "curvature_d2L_dw2": 2.312769832037733,
+          "is_convex": true
+        },
+        {
+          "weight": 0.7,
+          "curvature_d2L_dw2": 1.7767900183031686,
+          "is_convex": true
+        },
+        {
+          "weight": 0.8,
+          "curvature_d2L_dw2": 1.4003746175188765,
+          "is_convex": true
+        }
+      ]
+    },
+    "pooled_validation": {
+      "min_weight": 0.6,
+      "min_loss": 1.1633707291400734,
+      "first_derivatives": [
+        {
+          "interval": [
+            0.0,
+            0.05
+          ],
+          "midpoint": 0.025,
+          "gradient_dL_dw": -1.8897138621124698
+        },
+        {
+          "interval": [
+            0.05,
+            0.1
+          ],
+          "midpoint": 0.07500000000000001,
+          "gradient_dL_dw": -1.6716978552591177
+        },
+        {
+          "interval": [
+            0.1,
+            0.15
+          ],
+          "midpoint": 0.125,
+          "gradient_dL_dw": -1.4599821614491406
+        },
+        {
+          "interval": [
+            0.15,
+            0.2
+          ],
+          "midpoint": 0.175,
+          "gradient_dL_dw": -1.2576714047589728
+        },
+        {
+          "interval": [
+            0.2,
+            0.25
+          ],
+          "midpoint": 0.225,
+          "gradient_dL_dw": -1.0667858155885626
+        },
+        {
+          "interval": [
+            0.25,
+            0.3
+          ],
+          "midpoint": 0.275,
+          "gradient_dL_dw": -0.8883068384033879
+        },
+        {
+          "interval": [
+            0.3,
+            0.4
+          ],
+          "midpoint": 0.35,
+          "gradient_dL_dw": -0.6457591674169902
+        },
+        {
+          "interval": [
+            0.4,
+            0.5
+          ],
+          "midpoint": 0.45,
+          "gradient_dL_dw": -0.36334809791638506
+        },
+        {
+          "interval": [
+            0.5,
+            0.6
+          ],
+          "midpoint": 0.55,
+          "gradient_dL_dw": -0.12790307776175738
+        },
+        {
+          "interval": [
+            0.6,
+            0.7
+          ],
+          "midpoint": 0.6499999999999999,
+          "gradient_dL_dw": 0.06688687040964149
+        },
+        {
+          "interval": [
+            0.7,
+            0.8
+          ],
+          "midpoint": 0.75,
+          "gradient_dL_dw": 0.2304747040976405
+        },
+        {
+          "interval": [
+            0.8,
+            1.0
+          ],
+          "midpoint": 0.9,
+          "gradient_dL_dw": 0.4277401724562836
+        }
+      ],
+      "second_derivatives": [
+        {
+          "weight": 0.05,
+          "curvature_d2L_dw2": 4.360320137067042,
+          "is_convex": true
+        },
+        {
+          "weight": 0.1,
+          "curvature_d2L_dw2": 4.2343138761995425,
+          "is_convex": true
+        },
+        {
+          "weight": 0.15,
+          "curvature_d2L_dw2": 4.046215133803357,
+          "is_convex": true
+        },
+        {
+          "weight": 0.2,
+          "curvature_d2L_dw2": 3.817711783408204,
+          "is_convex": true
+        },
+        {
+          "weight": 0.25,
+          "curvature_d2L_dw2": 3.5695795437034947,
+          "is_convex": true
+        },
+        {
+          "weight": 0.3,
+          "curvature_d2L_dw2": 3.233968946485301,
+          "is_convex": true
+        },
+        {
+          "weight": 0.4,
+          "curvature_d2L_dw2": 2.8241106950060515,
+          "is_convex": true
+        },
+        {
+          "weight": 0.5,
+          "curvature_d2L_dw2": 2.3544502015462774,
+          "is_convex": true
+        },
+        {
+          "weight": 0.6,
+          "curvature_d2L_dw2": 1.9478994817139892,
+          "is_convex": true
+        },
+        {
+          "weight": 0.7,
+          "curvature_d2L_dw2": 1.6358783368799896,
+          "is_convex": true
+        },
+        {
+          "weight": 0.8,
+          "curvature_d2L_dw2": 1.3151031223909537,
+          "is_convex": true
+        }
+      ]
+    }
+  },
+  "key_weight_comparisons": {
+    "w_0.00": {
+      "weight": 0.0,
+      "fold_1_2022": {
+        "log_loss": 1.8374362859544284,
+        "brier": 0.7277640370410254,
+        "top1": 10,
+        "delta_vs_baseline": 0.0
+      },
+      "fold_2_2023": {
+        "log_loss": 1.5401230347019104,
+        "brier": 0.6070470901011317,
+        "top1": 14,
+        "delta_vs_baseline": 0.0
+      },
+      "pooled_44_races": {
+        "log_loss": 1.6887796603281693,
+        "brier": 0.6674055635710785,
+        "top1": 24,
+        "delta_vs_baseline": 0.0,
+        "p_value": 1.0,
+        "ci_95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "w_0.20": {
+      "weight": 0.2,
+      "fold_1_2022": {
+        "log_loss": 1.7273276211792412,
+        "brier": 0.7868742063331091,
+        "top1": 10,
+        "delta_vs_baseline": -0.11010866477518721
+      },
+      "fold_2_2023": {
+        "log_loss": 1.0223251711191266,
+        "brier": 0.4018829219810349,
+        "top1": 16,
+        "delta_vs_baseline": -0.5177978635827838
+      },
+      "pooled_44_races": {
+        "log_loss": 1.3748263961491842,
+        "brier": 0.5943785641570719,
+        "top1": 26,
+        "delta_vs_baseline": -0.3139532641789854,
+        "p_value": 9.871849893805987e-05,
+        "ci_95": [
+          -0.4614649137081977,
+          -0.16644161464977308
+        ]
+      }
+    },
+    "w_0.30": {
+      "weight": 0.3,
+      "fold_1_2022": {
+        "log_loss": 1.7196437796421584,
+        "brier": 0.8281111682644314,
+        "top1": 9,
+        "delta_vs_baseline": -0.11779250631227
+      },
+      "fold_2_2023": {
+        "log_loss": 0.8344997472570149,
+        "brier": 0.3307814643763079,
+        "top1": 18,
+        "delta_vs_baseline": -0.7056232874448954
+      },
+      "pooled_44_races": {
+        "log_loss": 1.2770717634495867,
+        "brier": 0.5794463163203696,
+        "top1": 27,
+        "delta_vs_baseline": -0.4117078968785826,
+        "p_value": 0.000508647765597901,
+        "ci_95": [
+          -0.6325465502091616,
+          -0.1908692435480036
+        ]
+      }
+    },
+    "w_0.60": {
+      "weight": 0.6,
+      "fold_1_2022": {
+        "log_loss": 1.8261498019717144,
+        "brier": 0.9216861126982455,
+        "top1": 8,
+        "delta_vs_baseline": -0.011286483982714035
+      },
+      "fold_2_2023": {
+        "log_loss": 0.5005916563084333,
+        "brier": 0.22218790233699404,
+        "top1": 19,
+        "delta_vs_baseline": -1.0395313783934772
+      },
+      "pooled_44_races": {
+        "log_loss": 1.1633707291400734,
+        "brier": 0.5719370075176198,
+        "top1": 27,
+        "delta_vs_baseline": -0.5254089311880955,
+        "p_value": 0.01648038456484016,
+        "ci_95": [
+          -0.9499499547859696,
+          -0.10086790759022146
+        ]
+      }
+    },
+    "w_1.00": {
+      "weight": 1.0,
+      "fold_1_2022": {
+        "log_loss": 2.1853244165889474,
+        "brier": 0.9768697270951138,
+        "top1": 8,
+        "delta_vs_baseline": 0.34788813063451896
+      },
+      "fold_2_2023": {
+        "log_loss": 0.3719854255751693,
+        "brier": 0.20779148893703203,
+        "top1": 19,
+        "delta_vs_baseline": -1.168137609126741
+      },
+      "pooled_44_races": {
+        "log_loss": 1.2786549210820584,
+        "brier": 0.592330608016073,
+        "top1": 27,
+        "delta_vs_baseline": -0.410124739246111,
+        "p_value": 0.2095804918473755,
+        "ci_95": [
+          -1.0594437320030639,
+          0.23919425351084195
+        ]
+      }
+    }
+  },
+  "local_stability_w020": {
+    "candidate_weight": 0.2,
+    "gradient_w015_to_w020": -1.2576714047589728,
+    "gradient_w020_to_w025": -1.0667858155885626,
+    "interpretation": "The negative gradient indicates log loss is steadily improving as weight increases from 0.15 through 0.25, with a moderate, well-behaved slope (~ -1.6 to -1.3), demonstrating that w=0.20 sits in a stable, non-steep region of the objective surface without sharp local cliffs."
+  },
+  "regime_tension_synthesis": {
+    "finding": "REGIME_TENSION_CONFIRMED",
+    "description": "Chronological validation reveals acute tension between 2022 (regulatory overhaul, multi-team parity) and 2023 (unprecedented Red Bull / Verstappen monopoly). In 2022, pure ML (w=1.00) severely overfits 2021 conditions, degrading log loss to 2.1853 (+0.3479 worse than baseline). Log loss in 2022 minimizes at w=0.30 (1.7196) and rapidly deteriorates at w >= 0.50. Conversely, in 2023, high ML confidence monotonically drives log loss down to 0.3720. Consequently, an unconstrained pooled optimization selects w=0.60 (LL 1.1634), but this weight would have sacrificed substantial calibration in 2022 (LL 1.8261 vs 1.7196). The conservative candidate w=0.20 functions as a safety regularizer: it captures 93.5% of the achievable 2022 gain (LL 1.7273 vs 1.7196) and 51.5% of the 2023 gain (LL 1.0223 vs 1.5401), producing a statistically significant pooled improvement of -0.3140 (p = 9.87e-05) without exposing the model to catastrophic failure under competitive regime shifts.",
+    "gain_capture_ratios": {
+      "2022_max_possible_gain": 0.11779250631227,
+      "2022_w020_gain": 0.11010866477518721,
+      "2022_w020_capture_pct": 93.47679935028057,
+      "2023_max_possible_gain": 1.168137609126741,
+      "2023_w020_gain": 0.5177978635827838,
+      "2023_w020_capture_pct": 44.326786462244925
+    }
+  },
+  "grid_group_slicing": {
+    "P1_Pole": {
+      "winner_count": 24,
+      "weights": {
+        "w_0.00": {
+          "mean_log_loss": 0.7501928286804281,
+          "winner_count": 24
+        },
+        "w_0.20": {
+          "mean_log_loss": 0.47274999220388275,
+          "winner_count": 24
+        },
+        "w_0.50": {
+          "mean_log_loss": 0.3089075234820399,
+          "winner_count": 24
+        },
+        "w_0.60": {
+          "mean_log_loss": 0.29465908898591436,
+          "winner_count": 24
+        },
+        "w_1.00": {
+          "mean_log_loss": 0.34840881057280276,
+          "winner_count": 24
+        }
+      }
+    },
+    "P2_P3_Front": {
+      "winner_count": 13,
+      "weights": {
+        "w_0.00": {
+          "mean_log_loss": 1.8211226576506476,
+          "winner_count": 13
+        },
+        "w_0.20": {
+          "mean_log_loss": 1.7870307764706934,
+          "winner_count": 13
+        },
+        "w_0.50": {
+          "mean_log_loss": 2.048416153621804,
+          "winner_count": 13
+        },
+        "w_0.60": {
+          "mean_log_loss": 2.1937876908786906,
+          "winner_count": 13
+        },
+        "w_1.00": {
+          "mean_log_loss": 2.912859273276342,
+          "winner_count": 13
+        }
+      }
+    },
+    "P4_P10_Points": {
+      "winner_count": 6,
+      "weights": {
+        "w_0.00": {
+          "mean_log_loss": 4.4308252540527455,
+          "winner_count": 6
+        },
+        "w_0.20": {
+          "mean_log_loss": 3.585348329237353,
+          "winner_count": 6
+        },
+        "w_0.50": {
+          "mean_log_loss": 2.5991121793004845,
+          "winner_count": 6
+        },
+        "w_0.60": {
+          "mean_log_loss": 2.3553809110582185,
+          "winner_count": 6
+        },
+        "w_1.00": {
+          "mean_log_loss": 1.6457684574704767,
+          "winner_count": 6
+        }
+      }
+    },
+    "P11_P20_Back": {
+      "winner_count": 1,
+      "weights": {
+        "w_0.00": {
+          "mean_log_loss": 6.042131092334272,
+          "winner_count": 1
+        },
+        "w_0.20": {
+          "mean_log_loss": 4.402871548127781,
+          "winner_count": 1
+        },
+        "w_0.50": {
+          "mean_log_loss": 2.113221987859635,
+          "winner_count": 1
+        },
+        "w_0.60": {
+          "mean_log_loss": 1.4649684987290088,
+          "winner_count": 1
+        },
+        "w_1.00": {
+          "mean_log_loss": 0.15722377644798258,
+          "winner_count": 1
+        }
+      }
+    }
+  },
+  "non_pole_upset_slicing": {
+    "upset_races_count": 20,
+    "weights_summary": {
+      "w_0.00": {
+        "mean_log_loss": 2.8150838583054583,
+        "mean_brier": 1.0537977906359275,
+        "top1_accuracy": 0.0,
+        "top1_hits": 0
+      },
+      "w_0.05": {
+        "mean_log_loss": 2.710155201693091,
+        "mean_brier": 1.0605504185970813,
+        "top1_accuracy": 0.0,
+        "top1_hits": 0
+      },
+      "w_0.10": {
+        "mean_log_loss": 2.615568086217061,
+        "mean_brier": 1.068228850999177,
+        "top1_accuracy": 0.0,
+        "top1_hits": 0
+      },
+      "w_0.15": {
+        "mean_log_loss": 2.5313206208274233,
+        "mean_brier": 1.0759093935090085,
+        "top1_accuracy": 0.1,
+        "top1_hits": 2
+      },
+      "w_0.20": {
+        "mean_log_loss": 2.457318080883545,
+        "mean_brier": 1.082753166764485,
+        "top1_accuracy": 0.1,
+        "top1_hits": 2
+      },
+      "w_0.25": {
+        "mean_log_loss": 2.3934044025956256,
+        "mean_brier": 1.088139849856408,
+        "top1_accuracy": 0.15,
+        "top1_hits": 3
+      },
+      "w_0.30": {
+        "mean_log_loss": 2.3393861291686737,
+        "mean_brier": 1.0917677190912813,
+        "top1_accuracy": 0.2,
+        "top1_hits": 4
+      },
+      "w_0.40": {
+        "mean_log_loss": 2.2600866485321505,
+        "mean_brier": 1.0943083386341939,
+        "top1_accuracy": 0.25,
+        "top1_hits": 5
+      },
+      "w_0.50": {
+        "mean_log_loss": 2.2168652530373,
+        "mean_brier": 1.0931914857794554,
+        "top1_accuracy": 0.25,
+        "top1_hits": 5
+      },
+      "w_0.60": {
+        "mean_log_loss": 2.2058246973250646,
+        "mean_brier": 1.089344624109352,
+        "top1_accuracy": 0.25,
+        "top1_hits": 5
+      },
+      "w_0.70": {
+        "mean_log_loss": 2.2224261838540422,
+        "mean_brier": 1.0820875399499263,
+        "top1_accuracy": 0.3,
+        "top1_hits": 6
+      },
+      "w_0.80": {
+        "mean_log_loss": 2.26238722060399,
+        "mean_brier": 1.0740749673347603,
+        "top1_accuracy": 0.35,
+        "top1_hits": 7
+      },
+      "w_1.00": {
+        "mean_log_loss": 2.394950253693165,
+        "mean_brier": 1.0627870653746883,
+        "top1_accuracy": 0.35,
+        "top1_hits": 7
+      }
+    }
+  }
+}

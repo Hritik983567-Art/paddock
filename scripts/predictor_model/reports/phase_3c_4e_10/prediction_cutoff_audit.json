@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "validator": "PredictionCutoffValidator",
+    "timestamp_utc": "2026-11-01T12:49:51.369426+00:00",
+    "f1_regulations_supported": [
+      "2021-2025 V6 Turbo Hybrid / Ground Effect"
+    ]
+  },
+  "weekend_formats": {
+    "standard_weekend": {
+      "total_practice_sessions": 3,
+      "session_sequence": [
+        "FP1",
+        "FP2",
+        "FP3",
+        "Qualifying",
+        "Grand Prix"
+      ],
+      "stages": {
+        "provisional_post_qualifying": {
+          "cutoff_description": "Immediately following Qualifying Q3 Chequered Flag (Saturday evening).",
+          "allowed_sessions": [
+            "FP3",
+            "QUALIFYING",
+            "FP1",
+            "FP2"
+          ],
+          "forbidden_sources": [
+            "OFFICIAL_GRID_DOC",
+            "RACE_RESULT",
+            "RACE_FASTEST_LAP",
+            "RACE_TELEMETRY",
+            "SUNDAY_WEATHER"
+          ],
+          "intended_use": "Provisional model inference prior to overnight penalties and starting grid confirmation."
+        },
+        "official_starting_grid": {
+          "cutoff_description": "Following publication of FIA Final Starting Grid Document (Sunday ~2h before lights out).",
+          "allowed_sessions": [
+            "FP3",
+            "QUALIFYING",
+            "FP2",
+            "OFFICIAL_GRID_DOC",
+            "FP1"
+          ],
+          "forbidden_sources": [
+            "RACE_RESULT",
+            "RACE_FASTEST_LAP",
+            "RACE_TELEMETRY",
+            "RACE_PIT_STOPS",
+            "POST_RACE_SCRUTINEERING"
+          ],
+          "intended_use": "Authoritative starting grid model inference incorporating verified steward penalties."
+        }
+      }
+    },
+    "sprint_weekend_2024": {
+      "total_practice_sessions": 1,
+      "session_sequence": [
+        "FP1",
+        "Sprint Shootout (SQ)",
+        "Sprint Race (100km)",
+        "GP Qualifying",
+        "Grand Prix"
+      ],
+      "critical_sporting_rule": "FP2 and FP3 DO NOT EXIST on 2024 sprint weekends. FP2 features MUST be flagged as missing.",
+      "stages": {
+        "sprint_post_shootout": {
+          "cutoff_description": "Following Friday Sprint Qualifying (Shootout).",
+          "allowed_sessions": [
+            "SPRINT_SHOOTOUT",
+            "FP1"
+          ],
+          "forbidden_sources": [
+            "SPRINT_RACE_RESULT",
+            "MAIN_QUALIFYING",
+            "OFFICIAL_GRID_DOC",
+            "RACE_RESULT"
+          ]
+        },
+        "provisional_post_sprint_and_qualifying": {
+          "cutoff_description": "Following Saturday main Grand Prix Qualifying (Saturday evening).",
+          "allowed_sessions": [
+            "SPRINT_SHOOTOUT",
+            "SPRINT_RACE",
+            "QUALIFYING",
+            "FP1"
+          ],
+          "forbidden_sources": [
+            "OFFICIAL_GRID_DOC",
+            "RACE_RESULT",
+            "SUNDAY_WEATHER",
+            "RACE_TELEMETRY"
+          ],
+          "pace_advantage": "Saturday 100km Sprint Race pace is available as genuine pre-race green-flag racecraft evidence."
+        },
+        "sprint_official_grid": {
+          "cutoff_description": "Following publication of FIA Final Starting Grid Document for Sunday GP.",
+          "allowed_sessions": [
+            "SPRINT_SHOOTOUT",
+            "QUALIFYING",
+            "SPRINT_RACE",
+            "OFFICIAL_GRID_DOC",
+            "FP1"
+          ],
+          "forbidden_sources": [
+            "RACE_RESULT",
+            "RACE_FASTEST_LAP",
+            "RACE_TELEMETRY",
+            "RACE_PIT_STOPS"
+          ]
+        }
+      }
+    }
+  }
+}

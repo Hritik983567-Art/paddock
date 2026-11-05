@@ -70,9 +70,9 @@ export default function PredictorHeader({
           {/* Status Badges */}
           <div className="flex flex-wrap items-center gap-2 mb-2">
             {!isViewingHistory ? (
-              <span className="data-chip inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold tracking-wider uppercase bg-[#00FF9C]/15 text-[#00FF9C] border-[#00FF9C]/30 shadow-sm">
-                <span className="stitch-live-dot" />
-                Active Upcoming Race Focus
+              <span className={`data-chip inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold tracking-wider uppercase ${isCompletedRace ? 'bg-[#00FF9C]/15 text-[#00FF9C] border-[#00FF9C]/30' : 'bg-[#00F0FF]/15 text-[#00F0FF] border-[#00F0FF]/30'} shadow-sm`}>
+                <span className={isCompletedRace ? "w-2 h-2 rounded-full bg-[#00FF9C] shadow-[0_0_8px_#00FF9C]" : "stitch-live-dot"} />
+                {isCompletedRace ? 'Completed Grand Prix Record' : 'Active Upcoming Race Focus'}
               </span>
             ) : (
               <span className="data-chip inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold tracking-wider uppercase bg-[#00F0FF]/15 text-[#00F0FF] border-[#00F0FF]/30 shadow-sm">
@@ -81,25 +81,37 @@ export default function PredictorHeader({
               </span>
             )}
 
+            {predictionData?.experimentalStatus === 'EXPERIMENTAL_NON_PRODUCTION' && (
+              <span className="data-chip inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold tracking-wider uppercase bg-amber-500/15 text-amber-300 border-amber-500/40 shadow-sm" title="Experimental Geometric Hybrid: 80% Grid Baseline, 20% LightGBM ML Classifier">
+                <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_#F59E0B] animate-pulse" />
+                Experimental Hybrid (w=0.20)
+              </span>
+            )}
+
             {calendarRaces && calendarRaces.length > 0 && onSelectRound && !isViewingHistory ? (
               <div className="inline-flex items-center gap-1.5 bg-[#101724] px-2.5 py-1 rounded-xl border border-white/20">
                 <span className="text-[10px] font-mono text-cyan-400 font-bold">ROUND:</span>
                 <select
-                  value={currentRace?.round || "19"}
+                  value={currentRace?.round || "20"}
                   onChange={(e) => onSelectRound(e.target.value)}
                   className="bg-transparent text-white font-mono font-bold text-xs cursor-pointer focus:outline-none"
                   title="Select Grand Prix Round"
                 >
-                  {calendarRaces.map((r) => (
-                    <option key={r.round} value={r.round} className="bg-[#090E16] text-white">
-                      R{r.round} · {r.raceName}
-                    </option>
-                  ))}
+                  {calendarRaces.map((r) => {
+                    const rNum = parseInt(r.round, 10);
+                    const isNextGp = r.round === "20";
+                    const isUpcomingTracked = rNum >= 20;
+                    return (
+                      <option key={r.round} value={r.round} className="bg-[#090E16] text-white">
+                        R{r.round} · {r.raceName} {isNextGp ? '🟢 (Next GP — Active Tracking)' : isUpcomingTracked ? '⏳ (Upcoming Tracked)' : '(Pre-Tracking)'}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             ) : (
               <span className="data-chip px-2.5 py-1 text-xs font-mono font-bold text-gray-200">
-                Round {currentRace?.round || "19"} of 24
+                Round {currentRace?.round || "20"} of 23
               </span>
             )}
 
@@ -120,13 +132,15 @@ export default function PredictorHeader({
 
           {/* Grand Prix Title */}
           <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight flex items-center gap-3">
-            <span>{currentRace?.raceName || "United States Grand Prix"}</span>
+            <span>{currentRace?.raceName || "Brazilian Grand Prix"}</span>
             <span className="data-chip px-2.5 py-0.5 text-xs font-mono font-bold tracking-wider uppercase text-[#00F0FF] border-[#00F0FF]/40 shadow-sm">
               {currentRace?.circuitId === "americas"
                 ? "USA"
-                : currentRace?.country === "Mexico"
+                : currentRace?.circuitId === "rodriguez" || currentRace?.country === "Mexico"
                   ? "MEX"
-                  : currentRace?.country || "USA"}
+                  : currentRace?.circuitId === "interlagos" || currentRace?.country === "Brazil"
+                    ? "BRA"
+                    : currentRace?.country || "F1"}
             </span>
           </h1>
 
@@ -137,7 +151,7 @@ export default function PredictorHeader({
               <strong className="text-white font-semibold">
                 {predictionData?.circuitName ||
                   currentRace?.circuitName ||
-                  "Circuit of the Americas"}
+                  "Autódromo José Carlos Pace"}
               </strong>
             </span>
             <span className="text-gray-500">•</span>
@@ -146,7 +160,11 @@ export default function PredictorHeader({
               <strong className="text-white font-semibold">
                 {currentRace?.circuitId === "americas"
                   ? "Austin, Texas, USA"
-                  : currentRace?.country || "USA"}
+                  : currentRace?.circuitId === "rodriguez" || currentRace?.country === "Mexico"
+                    ? "Mexico City, Mexico"
+                    : currentRace?.circuitId === "interlagos" || currentRace?.country === "Brazil"
+                      ? "São Paulo, Brazil"
+                      : currentRace?.country || "Grand Prix"}
               </strong>
             </span>
             <span className="text-gray-500">•</span>
@@ -235,14 +253,14 @@ export default function PredictorHeader({
             </button>
           )}
 
-          {/* Return to Upcoming Austin Race if viewing history */}
+          {/* Return to Upcoming Next GP if viewing history */}
           {isViewingHistory && onReturnToUpcoming && (
             <button
               onClick={onReturnToUpcoming}
-              aria-label="Return to upcoming United States Grand Prix focus"
+              aria-label="Return to active championship Grand Prix focus"
               className="min-h-[44px] px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider bg-[#FF1801] hover:bg-[#FF351F] active:scale-[0.98] text-white transition-all duration-200 shadow-lg shadow-[#FF1801]/30 hover:shadow-[#FF1801]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white flex items-center justify-center gap-1.5"
             >
-              <span>← Return to Austin</span>
+              <span>← Return to Next GP (Round 20)</span>
             </button>
           )}
         </div>

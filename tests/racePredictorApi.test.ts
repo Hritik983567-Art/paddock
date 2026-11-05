@@ -263,14 +263,24 @@ describe('Paddock Race Predictor — Backend and API Integration', () => {
   });
 
   // 11. Modern 2026 Active Championship Pre-Qualifying Holding State
-  it('holds 2026 upcoming Austin race strictly in authentic pre-qualifying state', async () => {
-    const req = new NextRequest('http://localhost:3000/api/predictions/race/2026_19');
-    const response = await GET(req, { params: Promise.resolve({ raceId: '2026_19' }) });
-    expect(response.status).toBe(200);
-    const body = await response.json();
-    expect(body.status).toBe('unavailable');
-    expect(body.error).toBe('QUALIFYING_NOT_COMPLETED');
-    expect(body.qualifyingStatus.isCompleted).toBe(false);
+  it('holds 2026 upcoming Austin (R18) and Mexico (R19) races strictly in authentic pre-qualifying state', async () => {
+    const req18 = new NextRequest('http://localhost:3000/api/predictions/race/2026_18');
+    const response18 = await GET(req18, { params: Promise.resolve({ raceId: '2026_18' }) });
+    expect(response18.status).toBe(200);
+    const body18 = await response18.json();
+    expect(body18.status).toBe('unavailable');
+    expect(body18.error).toBe('QUALIFYING_NOT_COMPLETED');
+    expect(body18.circuitId).toBe('americas');
+    expect(body18.qualifyingStatus.isCompleted).toBe(false);
+
+    const req19 = new NextRequest('http://localhost:3000/api/predictions/race/2026_19');
+    const response19 = await GET(req19, { params: Promise.resolve({ raceId: '2026_19' }) });
+    expect(response19.status).toBe(200);
+    const body19 = await response19.json();
+    expect(body19.status).toBe('unavailable');
+    expect(body19.error).toBe('QUALIFYING_NOT_COMPLETED');
+    expect(body19.circuitId).toBe('rodriguez');
+    expect(body19.qualifyingStatus.isCompleted).toBe(false);
   });
 
   // 12. Accuracy Matching with Official Actual Race Results
@@ -288,5 +298,140 @@ describe('Paddock Race Predictor — Backend and API Integration', () => {
     expect(prediction.status).toBe('success');
     expect(prediction.predictedWinner?.driverCode).toBe(results.actualWinnerCode);
     expect(prediction.predictedWinner?.driverCode).toBe('VER');
+  });
+
+  // 13. Historical Circuit Heritage Leakage Prevention
+  it('strictly excludes target race outcome and future years from historical circuit heritage', async () => {
+    // 2024 Round 1 (Bahrain): 2024 winner must NOT appear in pastWinners
+    const pred2024 = await getRacePrediction('2024_1');
+    expect(pred2024.status).toBe('success');
+    const pastWinners2024 = pred2024.circuitHeritage?.pastWinners || [];
+    for (const w of pastWinners2024) {
+      expect(w.year).toBeLessThan(2024);
+    }
+
+    // 2021 Round 1 (Bahrain - earliest season in dataset): zero prior winners should be found
+    const pred2021 = await getRacePrediction('2021_1');
+    expect(pred2021.status).toBe('success');
+    const pastWinners2021 = pred2021.circuitHeritage?.pastWinners || [];
+    expect(pastWinners2021.length).toBe(0);
+  });
+
+  // 14. Fallback Behavior When Python Executable Is Unavailable
+  it('reliably falls back to disk snapshot or calibrated engine when python execution is unavailable', async () => {
+    const originalBin = process.env.PYTHON_BIN;
+    try {
+      // Point to an invalid executable path
+      process.env.PYTHON_BIN = 'C:\\non_existent_python_path\\python.exe';
+      const fallbackPred = await getRacePrediction('2024_1', { forceRefresh: true });
+
+      // Must not crash or throw; should recover with a valid, compliant prediction
+      expect(fallbackPred).toBeDefined();
+      expect(['success', 'unavailable']).toContain(fallbackPred.status);
+      if (fallbackPred.status === 'success') {
+        const sumProb = fallbackPred.predictions.reduce((acc, d) => acc + d.winProbability, 0);
+        expect(Math.abs(sumProb - 1.0)).toBeLessThan(0.005);
+      }
+    } finally {
+      process.env.PYTHON_BIN = originalBin;
+    }
+  });
+
+  // 15. Phase 3C.4F.4 Hybrid Snapshot Discovery & API Contract
+  it('discovers and validates 2025 Round 1 hybrid snapshot with 3-probability breakdown and dual hashes', async () => {
+    const res = await getRacePrediction('2025_1');
+
+    expect(res.status).toBe('success');
+    expect(res.season).toBe(2025);
+    expect(res.round).toBe(1);
+    expect(res.circuitId).toBe('albert_park');
+    expect(res.modelVersion).toBe('v1.0.0');
+    expect(res.hybridFormulaVersion).toBe('geometric-w0.20-v1');
+    expect(res.baselineVersion).toBe('grid-empirical-laplace-a1');
+    expect(res.experimentalStatus).toBe('EXPERIMENTAL_NON_PRODUCTION');
+    expect(res.rankingOrderSemantic).toBe('Predicted Win Probability Order');
+
+    // Dual hashes
+    expect(res.inferenceInputHash).toBeDefined();
+    expect(res.inferenceInputHash?.length).toBe(64);
+    expect(res.predictionOutputHash).toBeDefined();
+    expect(res.predictionOutputHash?.length).toBe(64);
+    expect(res.inputHash).toBe(res.inferenceInputHash?.slice(0, 16));
+
+    // Winner prediction matching
+    expect(res.predictedWinner).not.toBeNull();
+    expect(res.predictedWinner?.driverId).toBe('norris');
+    expect(res.predictedWinner?.driverCode).toBe('NOR');
+    expect(res.predictions[0].driverId).toBe('norris');
+    expect(res.predictedWinner?.winProbability).toBe(res.predictions[0].winProbability);
+
+    // Predictions array with 3 probabilities
+    expect(res.predictions.length).toBe(20);
+    for (const p of res.predictions) {
+      // 3 probabilities present
+      expect(p.grid_baseline_probability).toBeDefined();
+      expect(p.gridBaselineProbability).toBeDefined();
+      expect(p.ml_win_probability).toBeDefined();
+      expect(p.mlWinProbability).toBeDefined();
+      expect(p.hybrid_win_probability).toBeDefined();
+      expect(p.hybridWinProbability).toBeDefined();
+
+      // winProbability matches hybrid probability
+      expect(p.winProbability).toBe(p.hybrid_win_probability);
+
+      // Value bounds
+      expect(p.grid_baseline_probability!).toBeGreaterThanOrEqual(0.0005);
+      expect(p.ml_win_probability!).toBeGreaterThanOrEqual(0.0);
+      expect(p.hybrid_win_probability!).toBeGreaterThanOrEqual(0.0005);
+    }
+
+    // Probability sums
+    const sumGrid = res.predictions.reduce((acc, p) => acc + (p.grid_baseline_probability || 0), 0);
+    const sumMl = res.predictions.reduce((acc, p) => acc + (p.ml_win_probability || 0), 0);
+    const sumHybrid = res.predictions.reduce((acc, p) => acc + p.winProbability, 0);
+
+    expect(Math.abs(sumGrid - 1.0)).toBeLessThan(0.005);
+    expect(Math.abs(sumMl - 1.0)).toBeLessThan(0.005);
+    expect(Math.abs(sumHybrid - 1.0)).toBeLessThan(0.005);
+  });
+
+  it('discovers and validates 2025 Round 2 Shanghai hybrid snapshot', async () => {
+    const res = await getRacePrediction('2025_2');
+
+    expect(res.status).toBe('success');
+    expect(res.season).toBe(2025);
+    expect(res.round).toBe(2);
+    expect(res.circuitId).toBe('shanghai');
+    expect(res.hybridFormulaVersion).toBe('geometric-w0.20-v1');
+    expect(res.predictions.length).toBe(20);
+  });
+
+  it('preserves 2026 Round 1 regulation era warning on hybrid snapshot', async () => {
+    const res = await getRacePrediction('2026_1');
+
+    expect(res.status).toBe('success');
+    expect(res.season).toBe(2026);
+    expect(res.round).toBe(1);
+    expect(res.circuitId).toBe('albert_park');
+    expect(res.hybridFormulaVersion).toBe('geometric-w0.20-v1');
+    expect(res.regulationEraWarning).toBeDefined();
+    expect(res.regulationEraWarning?.warningCode).toBe('UNVALIDATED_2026_REGULATIONS');
+    expect(res.regulationEraWarning?.disclaimer).toContain('2026 active aerodynamics');
+  });
+
+  it('serves hybrid snapshot through NextRequest GET route with stage filter', async () => {
+    const req = new NextRequest('http://localhost:3000/api/predictions/race/2025_1?stage=provisional');
+    const response = await GET(req, { params: Promise.resolve({ raceId: '2025_1' }) });
+
+    expect(response.status).toBe(200);
+    const body = await response.json();
+
+    expect(body.status).toBe('success');
+    expect(body.hybridFormulaVersion).toBe('geometric-w0.20-v1');
+    expect(body.experimentalStatus).toBe('EXPERIMENTAL_NON_PRODUCTION');
+    expect(body.rankingOrderSemantic).toBe('Predicted Win Probability Order');
+    expect(body.predictions[0].grid_baseline_probability).toBeDefined();
+    expect(body.predictions[0].ml_win_probability).toBeDefined();
+    expect(body.predictions[0].hybrid_win_probability).toBeDefined();
   });
 }, 30000);

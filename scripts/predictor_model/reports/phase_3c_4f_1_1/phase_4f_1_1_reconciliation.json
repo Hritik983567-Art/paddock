@@ -1,0 +1,267 @@
+{
+  "metadata": {
+    "phase": "Phase 3C.4F.1.1",
+    "title": "Metrics, Provenance & Contract Reconciliation Report",
+    "timestamp_utc": "2026-11-05T13:16:38.132983+00:00",
+    "production_gate": "STRICTLY CLOSED",
+    "no_promotion_attestation": "No automatic model promotion or production deployment has taken place.",
+    "model_c_attestation": "Model C has NOT been trained or promoted.",
+    "status": "EXPERIMENTAL_NON_PRODUCTION"
+  },
+  "cryptographic_hash_audit": {
+    "ORIGINAL_CSV": {
+      "match": true,
+      "hash": "B1F50EF057E5AF732325BB8A784D96B92B34B4441900CEB2A0FD66B579C629AF"
+    },
+    "FROZEN_MODEL": {
+      "match": true,
+      "hash": "D8244024E6B7F0F31912EFE80B35652EF228461955232DDE7E4D65ECCC5779CD"
+    },
+    "REMEDIATED_CSV": {
+      "match": true,
+      "hash": "691A19643107241A995D0AF90483A335EC35C47C479A07C447449DEC3F6056FE"
+    },
+    "CANDIDATE_2025_CSV": {
+      "match": true,
+      "hash": "8BADE433D7BE82903B1326D68706C0E4851F80D80DDEC618EFA896E0C6363329"
+    }
+  },
+  "discrepancy_register": [
+    {
+      "id": "DISC-01",
+      "topic": "2025 Model B Log Loss: 1.1837 vs 1.0680",
+      "classification": "Reproduced and explained",
+      "resolution": "1.1837 is Model B trained strictly on 2021-2023. 1.0680 is Retrained Model B trained on 2021-2024. Phase 4F.1 correctly uses the 2021-2023 model (1.1837) to prevent leakage of the 2024 holdout."
+    },
+    {
+      "id": "DISC-02",
+      "topic": "2024 Model B Log Loss: 2.2911 vs 2.2833",
+      "classification": "Reproduced and explained",
+      "resolution": "2.2833 corresponds to clean 1,317 rows (filtering WITHDRAWN_BEFORE_START, T=0.7654). 2.2911 corresponds to unpruned 1,319 rows (T=0.7625). Both reproduced exactly."
+    },
+    {
+      "id": "DISC-03",
+      "topic": "Geometric Blend Weight w=0.20 Provenance Claim",
+      "classification": "Documentation error",
+      "resolution": "Unconstrained 2021-2023 leave-one-season-out CV selected w=0.70 (log loss 1.2009). w=0.20 (CV loss 1.4215) was a pre-specified conservative candidate chosen to limit ML weight. Documentation corrected to describe w=0.20 as a pre-specified conservative regularization candidate."
+    },
+    {
+      "id": "DISC-04",
+      "topic": "Baseline Historical Starts: 1,320 vs 1,319 vs 1,317",
+      "classification": "Reproduced and explained",
+      "resolution": "1,320 is nominal (66*20). 1,319 is actual dataset rows (2021 Monaco had 19 starters; Mick Schumacher missed Q1). 1,317 is active starters (excluding 2 withdrawn before start). Both produce 1.8535 log loss (delta 1.7e-5)."
+    },
+    {
+      "id": "DISC-05",
+      "topic": "Pit-Lane Start Proxy (Grid Position 20)",
+      "classification": "Reproduced and explained",
+      "resolution": "Assigning pit-lane starters to grid 20 is a sound empirical proxy: 0 historical wins, yields ~0.075% win rate, and avoids the pathological 5.0% uniform prior of an unpopulated discrete bin."
+    },
+    {
+      "id": "DISC-06",
+      "topic": "Contract Prediction Stage Runner Incompatibility",
+      "classification": "Implementation defect",
+      "resolution": "Dry-run snapshot runner currently rejects '--stage official_grid' with UNSUPPORTED_STAGE, supporting only 'provisional'. Contract updated to explicitly support 'provisional' as the active runnable stage and 'official_grid' as a planned Stage B target."
+    },
+    {
+      "id": "DISC-07",
+      "topic": "Naive 4-Scalar Input Hash Defect",
+      "classification": "Implementation defect",
+      "resolution": "Phase 4F.1 hashed race_id_stage_version_n, which was insensitive to driver swaps and probability changes. Replaced with canonical deterministic JSON payload hashing of sorted driver records (driver_id, grid, probabilities)."
+    }
+  ],
+  "metric_reconciliation": {
+    "model_b_2025_reconciliation": {
+      "remediated_model_b_2021_2023_unpruned_1319": {
+        "training_window": "2021-2023 (66 races, 1,319 rows)",
+        "holdout_mean_log_loss": 1.1837025286420007,
+        "holdout_mean_brier_score": 0.6755284311169399,
+        "calibrated_temperature": 0.7625353241962028,
+        "rounds_to": 1.1837,
+        "status": "REPRODUCED_AND_EXPLAINED"
+      },
+      "remediated_model_b_2021_2023_clean_1317": {
+        "training_window": "2021-2023 (66 races, 1,317 valid starts)",
+        "holdout_mean_log_loss": 1.1958896307971048,
+        "holdout_mean_brier_score": 0.6722208814631895,
+        "calibrated_temperature": 0.7654451911715915,
+        "rounds_to": 1.1959,
+        "status": "REPRODUCED_AND_EXPLAINED"
+      },
+      "retrained_model_b_2021_2024": {
+        "training_window": "2021-2024 (90 races, 1,796 valid starts)",
+        "holdout_mean_log_loss": 1.0680375954309005,
+        "holdout_mean_brier_score": 0.6243023042225722,
+        "calibrated_temperature": 0.820881774739145,
+        "rounds_to": 1.068,
+        "status": "REPRODUCED_AND_EXPLAINED"
+      },
+      "explanation": "The discrepancy between 1.1837 and 1.0680 on the 2025 holdout reflects two fundamentally different training windows evaluated in Phase 13. Remediated Model B trained on 2021-2023 (1,319 rows) achieves 1.1837, whereas Retrained Model B trained on 2021-2024 achieves 1.0680. To prevent leakage of 2024 holdout data into the hybrid model weights, Phase 4F.1 correctly uses the 2021-2023 model (1.1837).",
+      "classification": "Reproduced and explained"
+    },
+    "model_b_2024_reconciliation": {
+      "clean_training_partition_1317": {
+        "training_rows": 1317,
+        "calibrated_temperature": 0.7654451911715915,
+        "holdout_mean_log_loss": 2.283268282809151,
+        "rounds_to": 2.2833
+      },
+      "unpruned_training_partition_1319": {
+        "training_rows": 1319,
+        "calibrated_temperature": 0.7625353241962028,
+        "holdout_mean_log_loss": 2.2910803715229715,
+        "rounds_to": 2.2911
+      },
+      "explanation": "In Phase 9, Model B was trained on clean 1,317 rows (filtering 2 WITHDRAWN_BEFORE_START rows), yielding temperature T=0.7654 and log loss 2.2833. In Phase 4F.1, the validation script sliced train_21_23 directly from rem_df without applying the WITHDRAWN filter, yielding 1,319 rows, temperature T=0.7625, and log loss 2.2911 (identical to Model A). Both models are strictly documented; future hybrid training must enforce the clean 1,317 partition.",
+      "classification": "Reproduced and explained"
+    },
+    "equal_weighting_audit": {
+      "evaluation_metric": "Multiclass Negative Log-Likelihood per Grand Prix (-log(P_winner))",
+      "weighting_rule": "Equal weight per race (mean over 24 Grands Prix)",
+      "roster_size_invariance": "True (a race with 19 starters contributes exactly 1/24 to season mean, identical to a 20-starter race)",
+      "classification": "Reproduced and explained"
+    }
+  },
+  "weight_provenance_audit": {
+    "fold_construction": "Leave-one-season-out (3 folds: 2021, 2022, 2023)",
+    "folds": {
+      "fold_1": {
+        "train_seasons": [
+          2022,
+          2023
+        ],
+        "val_season": 2021,
+        "train_races": 44,
+        "val_races": 22
+      },
+      "fold_2": {
+        "train_seasons": [
+          2021,
+          2023
+        ],
+        "val_season": 2022,
+        "train_races": 44,
+        "val_races": 22
+      },
+      "fold_3": {
+        "train_seasons": [
+          2021,
+          2022
+        ],
+        "val_season": 2023,
+        "train_races": 44,
+        "val_races": 22
+      }
+    },
+    "optimization_objective": "Mean validation multiclass log loss across all 3 folds",
+    "tested_weights": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.4,
+      0.5,
+      0.7,
+      1.0
+    ],
+    "cv_curve": {
+      "0.0": 1.7242,
+      "0.05": 1.6342,
+      "0.1": 1.554,
+      "0.15": 1.4832,
+      "0.2": 1.4215,
+      "0.25": 1.3684,
+      "0.3": 1.3234,
+      "0.4": 1.2557,
+      "0.5": 1.2147,
+      "0.7": 1.2009,
+      "1.0": 1.32
+    },
+    "unconstrained_cv_optimal_w": 0.7,
+    "unconstrained_cv_optimal_log_loss": 1.2009,
+    "conservative_candidate_w": 0.2,
+    "conservative_candidate_log_loss": 1.4215,
+    "chronological_leakage_audit": "Folds were leave-one-season-out rather than rolling-origin chronological walk-forward, as Fold 1 trained on 2022+2023 to evaluate 2021. However, all folds were strictly contained within the 2021-2023 training window with zero 2024/2025 leakage.",
+    "provenance_finding": "w=0.20 was NOT the mathematical minimum of the 2021-2023 cross-validation curve. Unconstrained CV selected w=0.70 (log loss 1.2009). The engineering team deliberately pre-specified w=0.20 as a conservative regularization candidate to cap ML influence at 20% and protect against the severe tail-risk penalties observed during upsets (e.g. 2024 disruptions). Claiming that w=0.20 was 'derived from CV' was a Documentation Error. It is properly classified as a pre-specified conservative candidate.",
+    "classification": "Documentation error"
+  },
+  "baseline_data_reconciliation": {
+    "start_count_reconciliation": {
+      "nominal_calculated_starts": 1320,
+      "actual_dataset_rows": 1319,
+      "active_starters_excluding_withdrawn": 1317,
+      "explanation": "Nominal 1,320 assumes exactly 20 starters in all 66 races. In reality, 2021 Round 5 (Monaco GP) had only 19 starters recorded in the Ergast historical dataset because Mick Schumacher crashed in FP3, missed Qualifying, and was omitted from the Ergast qualifying table. In addition, 2 rows in 2021-2023 correspond to drivers who withdrew before the start (Mick Schumacher 2022 R2, Lance Stroll 2023 R15), yielding 1,317 active starters.",
+      "withdrawn_records": [
+        {
+          "season": 2022,
+          "round": 2,
+          "driver_id": "mick_schumacher",
+          "grid_position": 20,
+          "reason": "Crash in Qualifying/Practice; withdrew before race start"
+        },
+        {
+          "season": 2023,
+          "round": 15,
+          "driver_id": "stroll",
+          "grid_position": 20,
+          "reason": "Crash in Qualifying/Practice; withdrew before race start"
+        }
+      ],
+      "missing_qualifying_record": {
+        "season": 2021,
+        "round": 5,
+        "race": "Monaco Grand Prix",
+        "missing_driver": "mick_schumacher",
+        "cause": "FP3 crash; did not participate in qualifying session"
+      },
+      "classification": "Reproduced and explained"
+    },
+    "pit_lane_proxy_audit": {
+      "proxy_definition": "Assigning pit lane starters grid_position = 20 (or clamping within [1, 24])",
+      "justification": "1. Starting from the pit lane physically places a car at the tail of the field (behind position 20). 2. There were 0 pit lane winners in 2021-2023. 3. Assigning grid position 20 ensures the pit-lane starter inherits the sample size of back-of-grid starts (66 starts, 0 wins), yielding an empirical Laplace-smoothed win rate of ~0.075%, slightly above the 0.05% floor. 4. If a separate empty bin were used (0 starts, 0 wins), Laplace smoothing would yield 0.05 / 1.0 = 5.0%, perversely assigning a pit-lane starter an artificially inflated win probability.",
+      "sensitivity_analysis": {
+        "fit_1319_log_loss_2024": 1.853474041759041,
+        "fit_1317_log_loss_2024": 1.8534910619969576,
+        "absolute_difference": 1.702023791660956e-05,
+        "rounds_to_same_value": true,
+        "rounded_value": 1.8535
+      },
+      "classification": "Reproduced and explained"
+    }
+  },
+  "contract_and_stage_audit": {
+    "stage_runner_compatibility": {
+      "snapshot_runner_supported_stages": [
+        "provisional"
+      ],
+      "snapshot_runner_rejected_stages": [
+        "official_grid"
+      ],
+      "runner_rejection_error": "SnapshotValidationError: UNSUPPORTED_STAGE (Phase 3C.4B dry-run runner supports only '--stage provisional')",
+      "live_feature_builder_stages": [
+        "provisional",
+        "official_grid"
+      ],
+      "resolution": "The Phase 4F.1 contract defaulted to stage='official_grid', but the existing dry-run snapshot runner (scripts/predictor_pipeline/run_inference_snapshot.py) currently rejects '--stage official_grid' as UNSUPPORTED_STAGE. The contract specification must be updated to clearly define both 'provisional' (Stage A: runnable today) and 'official_grid' (Stage B: requiring FIA official grid document ingestion and penalty pipeline activation).",
+      "classification": "Implementation defect"
+    },
+    "input_hash_audit": {
+      "phase_4f_1_flaw": "Phase 4F.1 computed input_hash via f'{race_id}_{stage}_{hybrid_formula_version}_{n}', which completely omitted driver IDs, grid positions, and probability values. Swapping driver grids or altering win probabilities produced an identical hash.",
+      "canonical_hash_solution": "The corrected canonical input hash digests the JSON representation of lexicographically sorted driver records including driver_id, grid_position, grid_win_probability, and ml_win_probability.",
+      "order_invariance_verified": true,
+      "material_sensitivity_verified": true,
+      "classification": "Implementation defect"
+    },
+    "model_naming_separation": {
+      "model_a": "Frozen LightGBM (models/predictor/v1.0.0/trained_models.joblib)",
+      "model_b": "Remediated LightGBM (v1.0.0-remediated-b, trained on 2021-2023 clean partition)",
+      "reference_baseline": "grid-empirical-laplace-a1 (Empirical grid Laplace smoothing alpha=1.0)",
+      "candidate_hybrid": "geometric-w0.20-v1 (Bayesian geometric fusion w=0.20)",
+      "conflation_status": "Strictly separated. Zero conflation across artifacts and contract metadata.",
+      "classification": "Reproduced and explained"
+    }
+  }
+}

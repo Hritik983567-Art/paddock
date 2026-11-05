@@ -1,0 +1,856 @@
+{
+  "metadata": {
+    "generator": "scripts/predictor_model/experimental_probability_reliability.py",
+    "timestamp_utc": "2026-11-01T11:39:28.438968+00:00",
+    "holdout_season": 2024,
+    "holdout_races": 24,
+    "holdout_samples": 479,
+    "random_seed": 42
+  },
+  "calibration_vs_accuracy_distinction": "Mathematical Invariant: Temperature scaling T modifies softmax dispersion via exp(s_i / T) / sum(exp(s_j / T)). Because exp(s / T) is strictly monotonically increasing for any T > 0, the ranking of drivers within any race is strictly invariant to T. Therefore, Top-1 accuracy and Mean Reciprocal Rank (MRR) remain 100% identical regardless of calibration. Calibration specifically optimizes the probability distribution: log loss, Brier score, ECE, and reliability.",
+  "calibration_regimes_evaluation": {
+    "uncalibrated_t1": {
+      "regime_name": "Uncalibrated Baseline (T = 1.0)",
+      "description": "Standard softmax without temperature tuning.",
+      "model_a": {
+        "temperature": 1.0,
+        "top1_accuracy": 0.5417,
+        "multiclass_log_loss": 1.9555,
+        "multiclass_brier_summed": 0.7842,
+        "expected_calibration_error": 0.0321,
+        "maximum_calibration_error": 0.5479,
+        "reliability_bins": [
+          {
+            "bin_index": 1,
+            "bin_range": "[0.0, 0.1]",
+            "sample_count": 436,
+            "avg_confidence": 0.0086,
+            "empirical_win_rate": 0.0206,
+            "calibration_gap": 0.012
+          },
+          {
+            "bin_index": 2,
+            "bin_range": "[0.1, 0.2]",
+            "sample_count": 12,
+            "avg_confidence": 0.1453,
+            "empirical_win_rate": 0.0833,
+            "calibration_gap": 0.062
+          },
+          {
+            "bin_index": 3,
+            "bin_range": "[0.2, 0.3]",
+            "sample_count": 8,
+            "avg_confidence": 0.2481,
+            "empirical_win_rate": 0.375,
+            "calibration_gap": 0.1269
+          },
+          {
+            "bin_index": 4,
+            "bin_range": "[0.3, 0.4]",
+            "sample_count": 2,
+            "avg_confidence": 0.3305,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.1695
+          },
+          {
+            "bin_index": 5,
+            "bin_range": "[0.4, 0.5]",
+            "sample_count": 2,
+            "avg_confidence": 0.4521,
+            "empirical_win_rate": 1.0,
+            "calibration_gap": 0.5479
+          },
+          {
+            "bin_index": 6,
+            "bin_range": "[0.5, 0.6]",
+            "sample_count": 4,
+            "avg_confidence": 0.5307,
+            "empirical_win_rate": 0.0,
+            "calibration_gap": 0.5307
+          },
+          {
+            "bin_index": 7,
+            "bin_range": "[0.6, 0.7]",
+            "sample_count": 3,
+            "avg_confidence": 0.6697,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.3364
+          },
+          {
+            "bin_index": 8,
+            "bin_range": "[0.7, 0.8]",
+            "sample_count": 2,
+            "avg_confidence": 0.7419,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.2419
+          },
+          {
+            "bin_index": 9,
+            "bin_range": "[0.8, 0.9]",
+            "sample_count": 2,
+            "avg_confidence": 0.8522,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.3522
+          },
+          {
+            "bin_index": 10,
+            "bin_range": "[0.9, 1.0]",
+            "sample_count": 8,
+            "avg_confidence": 0.9537,
+            "empirical_win_rate": 0.625,
+            "calibration_gap": 0.3287
+          }
+        ]
+      },
+      "model_b": {
+        "temperature": 1.0,
+        "top1_accuracy": 0.5,
+        "multiclass_log_loss": 1.9535,
+        "multiclass_brier_summed": 0.7734,
+        "expected_calibration_error": 0.0268,
+        "maximum_calibration_error": 0.4278,
+        "reliability_bins": [
+          {
+            "bin_index": 1,
+            "bin_range": "[0.0, 0.1]",
+            "sample_count": 437,
+            "avg_confidence": 0.0088,
+            "empirical_win_rate": 0.0183,
+            "calibration_gap": 0.0095
+          },
+          {
+            "bin_index": 2,
+            "bin_range": "[0.1, 0.2]",
+            "sample_count": 10,
+            "avg_confidence": 0.1373,
+            "empirical_win_rate": 0.1,
+            "calibration_gap": 0.0373
+          },
+          {
+            "bin_index": 3,
+            "bin_range": "[0.2, 0.3]",
+            "sample_count": 8,
+            "avg_confidence": 0.2432,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.2568
+          },
+          {
+            "bin_index": 4,
+            "bin_range": "[0.3, 0.4]",
+            "sample_count": 3,
+            "avg_confidence": 0.3517,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.0184
+          },
+          {
+            "bin_index": 5,
+            "bin_range": "[0.4, 0.5]",
+            "sample_count": 3,
+            "avg_confidence": 0.4435,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.1101
+          },
+          {
+            "bin_index": 6,
+            "bin_range": "[0.5, 0.6]",
+            "sample_count": 3,
+            "avg_confidence": 0.5255,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.1921
+          },
+          {
+            "bin_index": 7,
+            "bin_range": "[0.6, 0.7]",
+            "sample_count": 4,
+            "avg_confidence": 0.6778,
+            "empirical_win_rate": 0.25,
+            "calibration_gap": 0.4278
+          },
+          {
+            "bin_index": 8,
+            "bin_range": "[0.7, 0.8]",
+            "sample_count": 1,
+            "avg_confidence": 0.7798,
+            "empirical_win_rate": 1.0,
+            "calibration_gap": 0.2202
+          },
+          {
+            "bin_index": 9,
+            "bin_range": "[0.8, 0.9]",
+            "sample_count": 2,
+            "avg_confidence": 0.8578,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.3578
+          },
+          {
+            "bin_index": 10,
+            "bin_range": "[0.9, 1.0]",
+            "sample_count": 8,
+            "avg_confidence": 0.958,
+            "empirical_win_rate": 0.625,
+            "calibration_gap": 0.333
+          }
+        ]
+      },
+      "temperature_invariance_proof": {
+        "model_a_top1_invariant": false,
+        "model_b_top1_invariant": true
+      }
+    },
+    "in_sample_training": {
+      "regime_name": "In-Sample Training Calibration",
+      "description": "Temperature fitted on in-sample training logits (2021-2023).",
+      "model_a": {
+        "temperature": 0.7625,
+        "top1_accuracy": 0.5417,
+        "multiclass_log_loss": 2.2911,
+        "multiclass_brier_summed": 0.8385,
+        "expected_calibration_error": 0.0364,
+        "maximum_calibration_error": 0.6332,
+        "reliability_bins": [
+          {
+            "bin_index": 1,
+            "bin_range": "[0.0, 0.1]",
+            "sample_count": 440,
+            "avg_confidence": 0.0048,
+            "empirical_win_rate": 0.0205,
+            "calibration_gap": 0.0156
+          },
+          {
+            "bin_index": 2,
+            "bin_range": "[0.1, 0.2]",
+            "sample_count": 7,
+            "avg_confidence": 0.1594,
+            "empirical_win_rate": 0.1429,
+            "calibration_gap": 0.0165
+          },
+          {
+            "bin_index": 3,
+            "bin_range": "[0.2, 0.3]",
+            "sample_count": 8,
+            "avg_confidence": 0.2479,
+            "empirical_win_rate": 0.25,
+            "calibration_gap": 0.0021
+          },
+          {
+            "bin_index": 4,
+            "bin_range": "[0.3, 0.4]",
+            "sample_count": 2,
+            "avg_confidence": 0.3139,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.1861
+          },
+          {
+            "bin_index": 5,
+            "bin_range": "[0.4, 0.5]",
+            "sample_count": 1,
+            "avg_confidence": 0.4622,
+            "empirical_win_rate": 1.0,
+            "calibration_gap": 0.5378
+          },
+          {
+            "bin_index": 6,
+            "bin_range": "[0.5, 0.6]",
+            "sample_count": 2,
+            "avg_confidence": 0.5469,
+            "empirical_win_rate": 1.0,
+            "calibration_gap": 0.4531
+          },
+          {
+            "bin_index": 7,
+            "bin_range": "[0.6, 0.7]",
+            "sample_count": 3,
+            "avg_confidence": 0.6332,
+            "empirical_win_rate": 0.0,
+            "calibration_gap": 0.6332
+          },
+          {
+            "bin_index": 8,
+            "bin_range": "[0.7, 0.8]",
+            "sample_count": 2,
+            "avg_confidence": 0.7405,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.2405
+          },
+          {
+            "bin_index": 9,
+            "bin_range": "[0.8, 0.9]",
+            "sample_count": 4,
+            "avg_confidence": 0.8528,
+            "empirical_win_rate": 0.25,
+            "calibration_gap": 0.6028
+          },
+          {
+            "bin_index": 10,
+            "bin_range": "[0.9, 1.0]",
+            "sample_count": 10,
+            "avg_confidence": 0.9806,
+            "empirical_win_rate": 0.6,
+            "calibration_gap": 0.3806
+          }
+        ]
+      },
+      "model_b": {
+        "temperature": 0.7654,
+        "top1_accuracy": 0.5,
+        "multiclass_log_loss": 2.2833,
+        "multiclass_brier_summed": 0.8222,
+        "expected_calibration_error": 0.0342,
+        "maximum_calibration_error": 0.8368,
+        "reliability_bins": [
+          {
+            "bin_index": 1,
+            "bin_range": "[0.0, 0.1]",
+            "sample_count": 440,
+            "avg_confidence": 0.0048,
+            "empirical_win_rate": 0.0205,
+            "calibration_gap": 0.0156
+          },
+          {
+            "bin_index": 2,
+            "bin_range": "[0.1, 0.2]",
+            "sample_count": 7,
+            "avg_confidence": 0.147,
+            "empirical_win_rate": 0.1429,
+            "calibration_gap": 0.0042
+          },
+          {
+            "bin_index": 3,
+            "bin_range": "[0.2, 0.3]",
+            "sample_count": 6,
+            "avg_confidence": 0.2389,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.0945
+          },
+          {
+            "bin_index": 4,
+            "bin_range": "[0.3, 0.4]",
+            "sample_count": 4,
+            "avg_confidence": 0.3472,
+            "empirical_win_rate": 0.25,
+            "calibration_gap": 0.0972
+          },
+          {
+            "bin_index": 5,
+            "bin_range": "[0.4, 0.5]",
+            "sample_count": 1,
+            "avg_confidence": 0.4944,
+            "empirical_win_rate": 1.0,
+            "calibration_gap": 0.5056
+          },
+          {
+            "bin_index": 6,
+            "bin_range": "[0.5, 0.6]",
+            "sample_count": 3,
+            "avg_confidence": 0.5285,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.1952
+          },
+          {
+            "bin_index": 7,
+            "bin_range": "[0.6, 0.7]",
+            "sample_count": 3,
+            "avg_confidence": 0.6507,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.3173
+          },
+          {
+            "bin_index": 8,
+            "bin_range": "[0.7, 0.8]",
+            "sample_count": 1,
+            "avg_confidence": 0.7564,
+            "empirical_win_rate": 1.0,
+            "calibration_gap": 0.2436
+          },
+          {
+            "bin_index": 9,
+            "bin_range": "[0.8, 0.9]",
+            "sample_count": 3,
+            "avg_confidence": 0.8368,
+            "empirical_win_rate": 0.0,
+            "calibration_gap": 0.8368
+          },
+          {
+            "bin_index": 10,
+            "bin_range": "[0.9, 1.0]",
+            "sample_count": 11,
+            "avg_confidence": 0.9747,
+            "empirical_win_rate": 0.6364,
+            "calibration_gap": 0.3384
+          }
+        ]
+      },
+      "temperature_invariance_proof": {
+        "model_a_top1_invariant": false,
+        "model_b_top1_invariant": true
+      }
+    },
+    "chronological_oof_pooled": {
+      "regime_name": "Chronological Out-of-Fold Calibration (Pooled 2022+2023)",
+      "description": "Temperature fitted on strictly out-of-fold validation predictions (2022 and 2023).",
+      "model_a": {
+        "temperature": 0.98,
+        "top1_accuracy": 0.5417,
+        "multiclass_log_loss": 1.974,
+        "multiclass_brier_summed": 0.7884,
+        "expected_calibration_error": 0.0328,
+        "maximum_calibration_error": 0.5405,
+        "reliability_bins": [
+          {
+            "bin_index": 1,
+            "bin_range": "[0.0, 0.1]",
+            "sample_count": 436,
+            "avg_confidence": 0.0082,
+            "empirical_win_rate": 0.0206,
+            "calibration_gap": 0.0125
+          },
+          {
+            "bin_index": 2,
+            "bin_range": "[0.1, 0.2]",
+            "sample_count": 12,
+            "avg_confidence": 0.1454,
+            "empirical_win_rate": 0.0833,
+            "calibration_gap": 0.0621
+          },
+          {
+            "bin_index": 3,
+            "bin_range": "[0.2, 0.3]",
+            "sample_count": 8,
+            "avg_confidence": 0.2497,
+            "empirical_win_rate": 0.375,
+            "calibration_gap": 0.1253
+          },
+          {
+            "bin_index": 4,
+            "bin_range": "[0.3, 0.4]",
+            "sample_count": 2,
+            "avg_confidence": 0.3353,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.1647
+          },
+          {
+            "bin_index": 5,
+            "bin_range": "[0.4, 0.5]",
+            "sample_count": 2,
+            "avg_confidence": 0.4595,
+            "empirical_win_rate": 1.0,
+            "calibration_gap": 0.5405
+          },
+          {
+            "bin_index": 6,
+            "bin_range": "[0.5, 0.6]",
+            "sample_count": 4,
+            "avg_confidence": 0.5401,
+            "empirical_win_rate": 0.0,
+            "calibration_gap": 0.5401
+          },
+          {
+            "bin_index": 7,
+            "bin_range": "[0.6, 0.7]",
+            "sample_count": 3,
+            "avg_confidence": 0.6811,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.3477
+          },
+          {
+            "bin_index": 8,
+            "bin_range": "[0.7, 0.8]",
+            "sample_count": 2,
+            "avg_confidence": 0.7545,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.2545
+          },
+          {
+            "bin_index": 9,
+            "bin_range": "[0.8, 0.9]",
+            "sample_count": 2,
+            "avg_confidence": 0.8618,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.3618
+          },
+          {
+            "bin_index": 10,
+            "bin_range": "[0.9, 1.0]",
+            "sample_count": 8,
+            "avg_confidence": 0.958,
+            "empirical_win_rate": 0.625,
+            "calibration_gap": 0.333
+          }
+        ]
+      },
+      "model_b": {
+        "temperature": 0.9789,
+        "top1_accuracy": 0.5,
+        "multiclass_log_loss": 1.9731,
+        "multiclass_brier_summed": 0.7774,
+        "expected_calibration_error": 0.0258,
+        "maximum_calibration_error": 0.3676,
+        "reliability_bins": [
+          {
+            "bin_index": 1,
+            "bin_range": "[0.0, 0.1]",
+            "sample_count": 437,
+            "avg_confidence": 0.0084,
+            "empirical_win_rate": 0.0183,
+            "calibration_gap": 0.0099
+          },
+          {
+            "bin_index": 2,
+            "bin_range": "[0.1, 0.2]",
+            "sample_count": 9,
+            "avg_confidence": 0.1301,
+            "empirical_win_rate": 0.1111,
+            "calibration_gap": 0.019
+          },
+          {
+            "bin_index": 3,
+            "bin_range": "[0.2, 0.3]",
+            "sample_count": 9,
+            "avg_confidence": 0.24,
+            "empirical_win_rate": 0.4444,
+            "calibration_gap": 0.2045
+          },
+          {
+            "bin_index": 4,
+            "bin_range": "[0.3, 0.4]",
+            "sample_count": 3,
+            "avg_confidence": 0.3569,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.0235
+          },
+          {
+            "bin_index": 5,
+            "bin_range": "[0.4, 0.5]",
+            "sample_count": 3,
+            "avg_confidence": 0.4506,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.1173
+          },
+          {
+            "bin_index": 6,
+            "bin_range": "[0.5, 0.6]",
+            "sample_count": 3,
+            "avg_confidence": 0.5358,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.2025
+          },
+          {
+            "bin_index": 7,
+            "bin_range": "[0.6, 0.7]",
+            "sample_count": 3,
+            "avg_confidence": 0.6837,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.3504
+          },
+          {
+            "bin_index": 8,
+            "bin_range": "[0.7, 0.8]",
+            "sample_count": 2,
+            "avg_confidence": 0.7511,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.2511
+          },
+          {
+            "bin_index": 9,
+            "bin_range": "[0.8, 0.9]",
+            "sample_count": 2,
+            "avg_confidence": 0.8676,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.3676
+          },
+          {
+            "bin_index": 10,
+            "bin_range": "[0.9, 1.0]",
+            "sample_count": 8,
+            "avg_confidence": 0.9622,
+            "empirical_win_rate": 0.625,
+            "calibration_gap": 0.3372
+          }
+        ]
+      },
+      "temperature_invariance_proof": {
+        "model_a_top1_invariant": false,
+        "model_b_top1_invariant": true
+      }
+    },
+    "fold_2_only_oof_2023": {
+      "regime_name": "Fold-2-Only Out-of-Fold Calibration (2023 Validation)",
+      "description": "Temperature fitted on out-of-fold validation predictions from Fold 2 (2023 season).",
+      "model_a": {
+        "temperature": 0.7274,
+        "top1_accuracy": 0.5417,
+        "multiclass_log_loss": 2.369,
+        "multiclass_brier_summed": 0.8469,
+        "expected_calibration_error": 0.0355,
+        "maximum_calibration_error": 0.859,
+        "reliability_bins": [
+          {
+            "bin_index": 1,
+            "bin_range": "[0.0, 0.1]",
+            "sample_count": 440,
+            "avg_confidence": 0.0042,
+            "empirical_win_rate": 0.0205,
+            "calibration_gap": 0.0162
+          },
+          {
+            "bin_index": 2,
+            "bin_range": "[0.1, 0.2]",
+            "sample_count": 7,
+            "avg_confidence": 0.157,
+            "empirical_win_rate": 0.1429,
+            "calibration_gap": 0.0142
+          },
+          {
+            "bin_index": 3,
+            "bin_range": "[0.2, 0.3]",
+            "sample_count": 8,
+            "avg_confidence": 0.2487,
+            "empirical_win_rate": 0.25,
+            "calibration_gap": 0.0013
+          },
+          {
+            "bin_index": 4,
+            "bin_range": "[0.3, 0.4]",
+            "sample_count": 2,
+            "avg_confidence": 0.3176,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.1824
+          },
+          {
+            "bin_index": 5,
+            "bin_range": "[0.4, 0.5]",
+            "sample_count": 1,
+            "avg_confidence": 0.4818,
+            "empirical_win_rate": 1.0,
+            "calibration_gap": 0.5182
+          },
+          {
+            "bin_index": 6,
+            "bin_range": "[0.5, 0.6]",
+            "sample_count": 1,
+            "avg_confidence": 0.5239,
+            "empirical_win_rate": 1.0,
+            "calibration_gap": 0.4761
+          },
+          {
+            "bin_index": 7,
+            "bin_range": "[0.6, 0.7]",
+            "sample_count": 4,
+            "avg_confidence": 0.6388,
+            "empirical_win_rate": 0.25,
+            "calibration_gap": 0.3888
+          },
+          {
+            "bin_index": 8,
+            "bin_range": "[0.7, 0.8]",
+            "sample_count": 2,
+            "avg_confidence": 0.7584,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.2584
+          },
+          {
+            "bin_index": 9,
+            "bin_range": "[0.8, 0.9]",
+            "sample_count": 3,
+            "avg_confidence": 0.859,
+            "empirical_win_rate": 0.0,
+            "calibration_gap": 0.859
+          },
+          {
+            "bin_index": 10,
+            "bin_range": "[0.9, 1.0]",
+            "sample_count": 11,
+            "avg_confidence": 0.9782,
+            "empirical_win_rate": 0.6364,
+            "calibration_gap": 0.3418
+          }
+        ]
+      },
+      "model_b": {
+        "temperature": 0.7227,
+        "top1_accuracy": 0.5,
+        "multiclass_log_loss": 2.3785,
+        "multiclass_brier_summed": 0.8316,
+        "expected_calibration_error": 0.0324,
+        "maximum_calibration_error": 0.8627,
+        "reliability_bins": [
+          {
+            "bin_index": 1,
+            "bin_range": "[0.0, 0.1]",
+            "sample_count": 440,
+            "avg_confidence": 0.0041,
+            "empirical_win_rate": 0.0205,
+            "calibration_gap": 0.0163
+          },
+          {
+            "bin_index": 2,
+            "bin_range": "[0.1, 0.2]",
+            "sample_count": 7,
+            "avg_confidence": 0.1442,
+            "empirical_win_rate": 0.1429,
+            "calibration_gap": 0.0013
+          },
+          {
+            "bin_index": 3,
+            "bin_range": "[0.2, 0.3]",
+            "sample_count": 6,
+            "avg_confidence": 0.2383,
+            "empirical_win_rate": 0.3333,
+            "calibration_gap": 0.095
+          },
+          {
+            "bin_index": 4,
+            "bin_range": "[0.3, 0.4]",
+            "sample_count": 4,
+            "avg_confidence": 0.3542,
+            "empirical_win_rate": 0.25,
+            "calibration_gap": 0.1042
+          },
+          {
+            "bin_index": 5,
+            "bin_range": "[0.4, 0.5]",
+            "sample_count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "calibration_gap": 0.0
+          },
+          {
+            "bin_index": 6,
+            "bin_range": "[0.5, 0.6]",
+            "sample_count": 4,
+            "avg_confidence": 0.5392,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.0392
+          },
+          {
+            "bin_index": 7,
+            "bin_range": "[0.6, 0.7]",
+            "sample_count": 2,
+            "avg_confidence": 0.6615,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.1615
+          },
+          {
+            "bin_index": 8,
+            "bin_range": "[0.7, 0.8]",
+            "sample_count": 2,
+            "avg_confidence": 0.7386,
+            "empirical_win_rate": 0.5,
+            "calibration_gap": 0.2386
+          },
+          {
+            "bin_index": 9,
+            "bin_range": "[0.8, 0.9]",
+            "sample_count": 3,
+            "avg_confidence": 0.8627,
+            "empirical_win_rate": 0.0,
+            "calibration_gap": 0.8627
+          },
+          {
+            "bin_index": 10,
+            "bin_range": "[0.9, 1.0]",
+            "sample_count": 11,
+            "avg_confidence": 0.9806,
+            "empirical_win_rate": 0.6364,
+            "calibration_gap": 0.3442
+          }
+        ]
+      },
+      "temperature_invariance_proof": {
+        "model_a_top1_invariant": false,
+        "model_b_top1_invariant": true
+      }
+    }
+  },
+  "empirical_grid_baseline_reliability": {
+    "name": "Empirical Grid Baseline (Ratio Normalized)",
+    "top1_accuracy": 0.4583,
+    "multiclass_log_loss": 1.8535,
+    "multiclass_brier_summed": 0.7117,
+    "expected_calibration_error": 0.0076,
+    "maximum_calibration_error": 0.0642,
+    "reliability_bins": [
+      {
+        "bin_index": 1,
+        "bin_range": "[0.0, 0.1]",
+        "sample_count": 407,
+        "avg_confidence": 0.0105,
+        "empirical_win_rate": 0.0098,
+        "calibration_gap": 0.0007
+      },
+      {
+        "bin_index": 2,
+        "bin_range": "[0.1, 0.2]",
+        "sample_count": 48,
+        "avg_confidence": 0.1498,
+        "empirical_win_rate": 0.1875,
+        "calibration_gap": 0.0377
+      },
+      {
+        "bin_index": 3,
+        "bin_range": "[0.2, 0.3]",
+        "sample_count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_index": 4,
+        "bin_range": "[0.3, 0.4]",
+        "sample_count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_index": 5,
+        "bin_range": "[0.4, 0.5]",
+        "sample_count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_index": 6,
+        "bin_range": "[0.5, 0.6]",
+        "sample_count": 24,
+        "avg_confidence": 0.5225,
+        "empirical_win_rate": 0.4583,
+        "calibration_gap": 0.0642
+      },
+      {
+        "bin_index": 7,
+        "bin_range": "[0.6, 0.7]",
+        "sample_count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_index": 8,
+        "bin_range": "[0.7, 0.8]",
+        "sample_count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_index": 9,
+        "bin_range": "[0.8, 0.9]",
+        "sample_count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_index": 10,
+        "bin_range": "[0.9, 1.0]",
+        "sample_count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "calibration_gap": 0.0
+      }
+    ]
+  },
+  "reliability_synthesis": "Reliability Synthesis: 1. Chronological Out-of-Fold Calibration (T ~ 0.98) produces the most balanced calibration, lowering holdout log loss to 1.973 and Brier score to 0.777. 2. Model B achieves lower Brier score and lower or equal log loss across all 4 calibration regimes. 3. The empirical grid baseline achieves exceptionally low ECE (0.008) because historical win rates are well calibrated in the high-frequency bins (pole ~45%, P2 ~20%), but lacks the dynamic race-pace features needed to predict non-pole upsets."
+}

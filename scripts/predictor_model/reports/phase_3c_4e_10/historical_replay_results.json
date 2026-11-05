@@ -1,0 +1,726 @@
+{
+  "metadata": {
+    "generated_by": "HistoricalReplayEngine",
+    "timestamp_utc": "2026-11-01T12:49:51.380309+00:00",
+    "determinism_verified": true,
+    "archetypes_count": 6
+  },
+  "archetype_replays": {
+    "high_tyre_degradation_standard": {
+      "metadata": {
+        "race_id": "2024_1_bahrain",
+        "grand_prix": "Bahrain Grand Prix",
+        "archetype_category": "High Tyre Degradation / Standard Weekend",
+        "weekend_format": "standard",
+        "pole_driver": "max_verstappen",
+        "actual_winner": "max_verstappen"
+      },
+      "features": [
+        {
+          "race_id": "2024_1_bahrain",
+          "driver_id": "max_verstappen",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 97.06,
+          "fp2_long_run_pace_delta_to_field": -0.295,
+          "fp2_stint_consistency": 0.214,
+          "fp2_tyre_degradation_estimate": 0.0699,
+          "qualifying_delta_to_pole_pct": 0.0,
+          "sector_pace_delta": 0.0,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.85,
+          "valid_laps_count_fp2": 10,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_1_bahrain",
+          "driver_id": "leclerc",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 97.265,
+          "fp2_long_run_pace_delta_to_field": -0.09,
+          "fp2_stint_consistency": 0.192,
+          "fp2_tyre_degradation_estimate": 0.078,
+          "qualifying_delta_to_pole_pct": 0.2557,
+          "sector_pace_delta": 0.228,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.85,
+          "valid_laps_count_fp2": 8,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_1_bahrain",
+          "driver_id": "russell",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 97.38,
+          "fp2_long_run_pace_delta_to_field": 0.025,
+          "fp2_stint_consistency": 0.209,
+          "fp2_tyre_degradation_estimate": 0.0961,
+          "qualifying_delta_to_pole_pct": 0.3431,
+          "sector_pace_delta": 0.306,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.85,
+          "valid_laps_count_fp2": 7,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_1_bahrain",
+          "driver_id": "sainz",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 97.33,
+          "fp2_long_run_pace_delta_to_field": -0.025,
+          "fp2_stint_consistency": 0.182,
+          "fp2_tyre_degradation_estimate": 0.0839,
+          "qualifying_delta_to_pole_pct": 0.3678,
+          "sector_pace_delta": 0.328,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.85,
+          "valid_laps_count_fp2": 7,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_1_bahrain",
+          "driver_id": "perez",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 97.5,
+          "fp2_long_run_pace_delta_to_field": 0.145,
+          "fp2_stint_consistency": 0.216,
+          "fp2_tyre_degradation_estimate": 0.0876,
+          "qualifying_delta_to_pole_pct": 0.4014,
+          "sector_pace_delta": 0.358,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.85,
+          "valid_laps_count_fp2": 8,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_1_bahrain",
+          "driver_id": "norris",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 97.58,
+          "fp2_long_run_pace_delta_to_field": 0.225,
+          "fp2_stint_consistency": 0.199,
+          "fp2_tyre_degradation_estimate": 0.0918,
+          "qualifying_delta_to_pole_pct": 0.4878,
+          "sector_pace_delta": 0.435,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.85,
+          "valid_laps_count_fp2": 7,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        }
+      ]
+    },
+    "constructor_performance_shift_sprint": {
+      "metadata": {
+        "race_id": "2024_6_miami",
+        "grand_prix": "Miami Grand Prix",
+        "archetype_category": "Constructor Performance Shift / Sprint Weekend (McLaren Major Floor Upgrade)",
+        "weekend_format": "sprint",
+        "pole_driver": "max_verstappen",
+        "actual_winner": "norris"
+      },
+      "features": [
+        {
+          "race_id": "2024_6_miami",
+          "driver_id": "max_verstappen",
+          "weekend_format": "sprint",
+          "prediction_stage": "provisional_post_sprint_and_qualifying",
+          "fp2_long_run_median_pace": null,
+          "fp2_long_run_pace_delta_to_field": null,
+          "fp2_stint_consistency": null,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.0,
+          "sector_pace_delta": 0.0,
+          "sprint_race_pace_indicator": 0.0,
+          "track_overtaking_difficulty": 0.65,
+          "valid_laps_count_fp2": 0,
+          "missing_reasons": {
+            "fp2_features": "SPRINT_WEEKEND_NO_FP2"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_6_miami",
+          "driver_id": "leclerc",
+          "weekend_format": "sprint",
+          "prediction_stage": "provisional_post_sprint_and_qualifying",
+          "fp2_long_run_median_pace": null,
+          "fp2_long_run_pace_delta_to_field": null,
+          "fp2_stint_consistency": null,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.1616,
+          "sector_pace_delta": 0.141,
+          "sprint_race_pace_indicator": 0.14,
+          "track_overtaking_difficulty": 0.65,
+          "valid_laps_count_fp2": 0,
+          "missing_reasons": {
+            "fp2_features": "SPRINT_WEEKEND_NO_FP2"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_6_miami",
+          "driver_id": "sainz",
+          "weekend_format": "sprint",
+          "prediction_stage": "provisional_post_sprint_and_qualifying",
+          "fp2_long_run_median_pace": null,
+          "fp2_long_run_pace_delta_to_field": null,
+          "fp2_stint_consistency": null,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.2453,
+          "sector_pace_delta": 0.214,
+          "sprint_race_pace_indicator": 0.22,
+          "track_overtaking_difficulty": 0.65,
+          "valid_laps_count_fp2": 0,
+          "missing_reasons": {
+            "fp2_features": "SPRINT_WEEKEND_NO_FP2"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_6_miami",
+          "driver_id": "perez",
+          "weekend_format": "sprint",
+          "prediction_stage": "provisional_post_sprint_and_qualifying",
+          "fp2_long_run_median_pace": null,
+          "fp2_long_run_pace_delta_to_field": null,
+          "fp2_stint_consistency": null,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.251,
+          "sector_pace_delta": 0.219,
+          "sprint_race_pace_indicator": 0.26,
+          "track_overtaking_difficulty": 0.65,
+          "valid_laps_count_fp2": 0,
+          "missing_reasons": {
+            "fp2_features": "SPRINT_WEEKEND_NO_FP2"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_6_miami",
+          "driver_id": "norris",
+          "weekend_format": "sprint",
+          "prediction_stage": "provisional_post_sprint_and_qualifying",
+          "fp2_long_run_median_pace": null,
+          "fp2_long_run_pace_delta_to_field": null,
+          "fp2_stint_consistency": null,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.4046,
+          "sector_pace_delta": 0.353,
+          "sprint_race_pace_indicator": 0.0,
+          "track_overtaking_difficulty": 0.65,
+          "valid_laps_count_fp2": 0,
+          "missing_reasons": {
+            "fp2_features": "SPRINT_WEEKEND_NO_FP2"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        }
+      ]
+    },
+    "street_circuit_low_overtaking": {
+      "metadata": {
+        "race_id": "2024_8_monaco",
+        "grand_prix": "Monaco Grand Prix",
+        "archetype_category": "Street Circuit / Ultra-Low Overtaking (Overtaking Index 0.05)",
+        "weekend_format": "standard",
+        "pole_driver": "leclerc",
+        "actual_winner": "leclerc"
+      },
+      "features": [
+        {
+          "race_id": "2024_8_monaco",
+          "driver_id": "leclerc",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 75.98,
+          "fp2_long_run_pace_delta_to_field": -0.275,
+          "fp2_stint_consistency": 0.145,
+          "fp2_tyre_degradation_estimate": 0.0587,
+          "qualifying_delta_to_pole_pct": 0.0,
+          "sector_pace_delta": 0.0,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.05,
+          "valid_laps_count_fp2": 8,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_8_monaco",
+          "driver_id": "piastri",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 76.18,
+          "fp2_long_run_pace_delta_to_field": -0.075,
+          "fp2_stint_consistency": 0.142,
+          "fp2_tyre_degradation_estimate": 0.0657,
+          "qualifying_delta_to_pole_pct": 0.2192,
+          "sector_pace_delta": 0.154,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.05,
+          "valid_laps_count_fp2": 7,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_8_monaco",
+          "driver_id": "sainz",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 76.28,
+          "fp2_long_run_pace_delta_to_field": 0.025,
+          "fp2_stint_consistency": 0.133,
+          "fp2_tyre_degradation_estimate": 0.0711,
+          "qualifying_delta_to_pole_pct": 0.3529,
+          "sector_pace_delta": 0.248,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.05,
+          "valid_laps_count_fp2": 6,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_8_monaco",
+          "driver_id": "norris",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 76.255,
+          "fp2_long_run_pace_delta_to_field": 0.0,
+          "fp2_stint_consistency": 0.135,
+          "fp2_tyre_degradation_estimate": 0.0717,
+          "qualifying_delta_to_pole_pct": 0.3543,
+          "sector_pace_delta": 0.249,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.05,
+          "valid_laps_count_fp2": 6,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_8_monaco",
+          "driver_id": "max_verstappen",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 76.415,
+          "fp2_long_run_pace_delta_to_field": 0.16,
+          "fp2_stint_consistency": 0.143,
+          "fp2_tyre_degradation_estimate": 0.0763,
+          "qualifying_delta_to_pole_pct": 0.4227,
+          "sector_pace_delta": 0.297,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.05,
+          "valid_laps_count_fp2": 6,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        }
+      ]
+    },
+    "wet_changing_conditions": {
+      "metadata": {
+        "race_id": "2024_9_villeneuve",
+        "grand_prix": "Canadian Grand Prix",
+        "archetype_category": "Wet / Changing Track Conditions",
+        "weekend_format": "standard",
+        "pole_driver": "russell",
+        "actual_winner": "max_verstappen"
+      },
+      "features": [
+        {
+          "race_id": "2024_9_villeneuve",
+          "driver_id": "russell",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 78.35,
+          "fp2_long_run_pace_delta_to_field": 0.002,
+          "fp2_stint_consistency": 0.138,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.0,
+          "sector_pace_delta": 0.02,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.5,
+          "valid_laps_count_fp2": 5,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_9_villeneuve",
+          "driver_id": "max_verstappen",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 78.285,
+          "fp2_long_run_pace_delta_to_field": -0.062,
+          "fp2_stint_consistency": 0.141,
+          "fp2_tyre_degradation_estimate": 0.0751,
+          "qualifying_delta_to_pole_pct": 0.0,
+          "sector_pace_delta": 0.02,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.5,
+          "valid_laps_count_fp2": 6,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_9_villeneuve",
+          "driver_id": "norris",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 78.345,
+          "fp2_long_run_pace_delta_to_field": -0.002,
+          "fp2_stint_consistency": 0.162,
+          "fp2_tyre_degradation_estimate": 0.0863,
+          "qualifying_delta_to_pole_pct": 0.0292,
+          "sector_pace_delta": 0.041,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.5,
+          "valid_laps_count_fp2": 6,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_9_villeneuve",
+          "driver_id": "piastri",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 78.4,
+          "fp2_long_run_pace_delta_to_field": 0.053,
+          "fp2_stint_consistency": 0.14,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.1431,
+          "sector_pace_delta": 0.123,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.5,
+          "valid_laps_count_fp2": 5,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        }
+      ]
+    },
+    "standard_weekend_high_aero": {
+      "metadata": {
+        "race_id": "2024_10_catalunya",
+        "grand_prix": "Spanish Grand Prix",
+        "archetype_category": "Standard Weekend / High Aero Demand Permanent Circuit",
+        "weekend_format": "standard",
+        "pole_driver": "norris",
+        "actual_winner": "max_verstappen"
+      },
+      "features": [
+        {
+          "race_id": "2024_10_catalunya",
+          "driver_id": "norris",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 79.745,
+          "fp2_long_run_pace_delta_to_field": -0.06,
+          "fp2_stint_consistency": 0.206,
+          "fp2_tyre_degradation_estimate": 0.0835,
+          "qualifying_delta_to_pole_pct": 0.0,
+          "sector_pace_delta": 0.01,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.5,
+          "valid_laps_count_fp2": 8,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_10_catalunya",
+          "driver_id": "max_verstappen",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 79.635,
+          "fp2_long_run_pace_delta_to_field": -0.17,
+          "fp2_stint_consistency": 0.192,
+          "fp2_tyre_degradation_estimate": 0.078,
+          "qualifying_delta_to_pole_pct": 0.028,
+          "sector_pace_delta": 0.03,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.5,
+          "valid_laps_count_fp2": 8,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_10_catalunya",
+          "driver_id": "hamilton",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 79.865,
+          "fp2_long_run_pace_delta_to_field": 0.06,
+          "fp2_stint_consistency": 0.166,
+          "fp2_tyre_degradation_estimate": 0.0886,
+          "qualifying_delta_to_pole_pct": 0.4455,
+          "sector_pace_delta": 0.328,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.5,
+          "valid_laps_count_fp2": 6,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_10_catalunya",
+          "driver_id": "russell",
+          "weekend_format": "standard",
+          "prediction_stage": "provisional_post_qualifying",
+          "fp2_long_run_median_pace": 79.9,
+          "fp2_long_run_pace_delta_to_field": 0.095,
+          "fp2_stint_consistency": 0.167,
+          "fp2_tyre_degradation_estimate": 0.0889,
+          "qualifying_delta_to_pole_pct": 0.4483,
+          "sector_pace_delta": 0.33,
+          "sprint_race_pace_indicator": null,
+          "track_overtaking_difficulty": 0.5,
+          "valid_laps_count_fp2": 6,
+          "missing_reasons": {
+            "sprint_race_pace_indicator": "STANDARD_WEEKEND_NO_SPRINT"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        }
+      ]
+    },
+    "sprint_weekend_collision_attrition": {
+      "metadata": {
+        "race_id": "2024_11_spielberg",
+        "grand_prix": "Austrian Grand Prix",
+        "archetype_category": "Sprint Weekend / Collision Anomaly (Verstappen/Norris Crash)",
+        "weekend_format": "sprint",
+        "pole_driver": "max_verstappen",
+        "actual_winner": "russell"
+      },
+      "features": [
+        {
+          "race_id": "2024_11_spielberg",
+          "driver_id": "max_verstappen",
+          "weekend_format": "sprint",
+          "prediction_stage": "provisional_post_sprint_and_qualifying",
+          "fp2_long_run_median_pace": null,
+          "fp2_long_run_pace_delta_to_field": null,
+          "fp2_stint_consistency": null,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.0,
+          "sector_pace_delta": 0.0,
+          "sprint_race_pace_indicator": 0.0,
+          "track_overtaking_difficulty": 0.75,
+          "valid_laps_count_fp2": 0,
+          "missing_reasons": {
+            "fp2_features": "SPRINT_WEEKEND_NO_FP2"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_11_spielberg",
+          "driver_id": "norris",
+          "weekend_format": "sprint",
+          "prediction_stage": "provisional_post_sprint_and_qualifying",
+          "fp2_long_run_median_pace": null,
+          "fp2_long_run_pace_delta_to_field": null,
+          "fp2_stint_consistency": null,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.6282,
+          "sector_pace_delta": 0.404,
+          "sprint_race_pace_indicator": 0.235,
+          "track_overtaking_difficulty": 0.75,
+          "valid_laps_count_fp2": 0,
+          "missing_reasons": {
+            "fp2_features": "SPRINT_WEEKEND_NO_FP2"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_11_spielberg",
+          "driver_id": "russell",
+          "weekend_format": "sprint",
+          "prediction_stage": "provisional_post_sprint_and_qualifying",
+          "fp2_long_run_median_pace": null,
+          "fp2_long_run_pace_delta_to_field": null,
+          "fp2_stint_consistency": null,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.8179,
+          "sector_pace_delta": 0.526,
+          "sprint_race_pace_indicator": 0.425,
+          "track_overtaking_difficulty": 0.75,
+          "valid_laps_count_fp2": 0,
+          "missing_reasons": {
+            "fp2_features": "SPRINT_WEEKEND_NO_FP2"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        },
+        {
+          "race_id": "2024_11_spielberg",
+          "driver_id": "sainz",
+          "weekend_format": "sprint",
+          "prediction_stage": "provisional_post_sprint_and_qualifying",
+          "fp2_long_run_median_pace": null,
+          "fp2_long_run_pace_delta_to_field": null,
+          "fp2_stint_consistency": null,
+          "fp2_tyre_degradation_estimate": null,
+          "qualifying_delta_to_pole_pct": 0.835,
+          "sector_pace_delta": 0.537,
+          "sprint_race_pace_indicator": 0.47,
+          "track_overtaking_difficulty": 0.75,
+          "valid_laps_count_fp2": 0,
+          "missing_reasons": {
+            "fp2_features": "SPRINT_WEEKEND_NO_FP2"
+          },
+          "provenance": {
+            "overtaking_index": "Canonical Paddock Track Registry v1.0",
+            "qualifying_source": "Official Q3 Session Timing",
+            "fp2_source": "FastF1 Long-Run Stint Telemetry"
+          }
+        }
+      ]
+    }
+  }
+}

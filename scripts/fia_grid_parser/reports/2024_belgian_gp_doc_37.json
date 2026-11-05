@@ -1,0 +1,493 @@
+{
+  "event_metadata": {
+    "season": 2024,
+    "round": 14,
+    "race_id": "2024_14_spa",
+    "race_name": "Belgian Grand Prix",
+    "circuit_id": "spa"
+  },
+  "document_metadata": {
+    "official_doc_id": "Doc 37",
+    "pdf_sha256": "68a9a811efd32604de382f773fde0d01523e42cedd15ea12de01b51ec5318f7c",
+    "page_count": 2,
+    "grid_page": 2
+  },
+  "reconciliation_summary": {
+    "total_drivers_reconciled": 20,
+    "outcome_counts": {
+      "MATCH": 6,
+      "MATCH_WITH_MODEL_ENCODING_DIFFERENCE": 0,
+      "PIT_LANE_ENCODING_MATCH": 0,
+      "QUALIFYING_POSITION_DIFFERENCE": 14,
+      "RACE_RESULT_GRID_DIFFERENCE": 0,
+      "DRIVER_IDENTITY_MISMATCH": 0,
+      "MISSING_HISTORICAL_RECORD": 0,
+      "MISSING_FIA_RECORD": 0,
+      "WITHDRAWAL_OR_DNS_DIFFERENCE": 0,
+      "AMBIGUOUS_REQUIRES_MANUAL_REVIEW": 0
+    },
+    "has_discrepancies": false
+  },
+  "driver_reconciliations": [
+    {
+      "driver_id": "albon",
+      "car_number": 23,
+      "driver_name": "Alexander ALBON",
+      "constructor_id": "williams",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 10,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 10,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 10,
+        "quali_position": 11,
+        "grid_penalty_delta": -1,
+        "constructor_id": "williams"
+      },
+      "explanation": "Official starting grid box P10 matches historical race results, but differs from qualifying position P11 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "alonso",
+      "car_number": 14,
+      "driver_name": "Fernando ALONSO",
+      "constructor_id": "aston_martin",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 8,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 8,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 8,
+        "quali_position": 9,
+        "grid_penalty_delta": -1,
+        "constructor_id": "aston_martin"
+      },
+      "explanation": "Official starting grid box P8 matches historical race results, but differs from qualifying position P9 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "bottas",
+      "car_number": 77,
+      "driver_name": "Valtteri BOTTAS",
+      "constructor_id": "sauber",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 14,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 14,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 14,
+        "quali_position": 14,
+        "grid_penalty_delta": 0,
+        "constructor_id": "sauber"
+      },
+      "explanation": "Full match: Official track grid box P14 matches historical race-result grid P14 and qualifying P14."
+    },
+    {
+      "driver_id": "gasly",
+      "car_number": 10,
+      "driver_name": "Pierre GASLY",
+      "constructor_id": "alpine",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 12,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 12,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 12,
+        "quali_position": 12,
+        "grid_penalty_delta": 0,
+        "constructor_id": "alpine"
+      },
+      "explanation": "Full match: Official track grid box P12 matches historical race-result grid P12 and qualifying P12."
+    },
+    {
+      "driver_id": "hamilton",
+      "car_number": 44,
+      "driver_name": "Lewis HAMILTON",
+      "constructor_id": "mercedes",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 3,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 3,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 3,
+        "quali_position": 4,
+        "grid_penalty_delta": -1,
+        "constructor_id": "mercedes"
+      },
+      "explanation": "Official starting grid box P3 matches historical race results, but differs from qualifying position P4 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "hulkenberg",
+      "car_number": 27,
+      "driver_name": "Nico HULKENBERG",
+      "constructor_id": "haas",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 16,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 16,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 16,
+        "quali_position": 16,
+        "grid_penalty_delta": 0,
+        "constructor_id": "haas"
+      },
+      "explanation": "Full match: Official track grid box P16 matches historical race-result grid P16 and qualifying P16."
+    },
+    {
+      "driver_id": "kevin_magnussen",
+      "car_number": 20,
+      "driver_name": "Kevin MAGNUSSEN",
+      "constructor_id": "haas",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 17,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 17,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 17,
+        "quali_position": 17,
+        "grid_penalty_delta": 0,
+        "constructor_id": "haas"
+      },
+      "explanation": "Full match: Official track grid box P17 matches historical race-result grid P17 and qualifying P17."
+    },
+    {
+      "driver_id": "leclerc",
+      "car_number": 16,
+      "driver_name": "Charles LECLERC",
+      "constructor_id": "ferrari",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 1,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 1,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 1,
+        "quali_position": 2,
+        "grid_penalty_delta": -1,
+        "constructor_id": "ferrari"
+      },
+      "explanation": "Official starting grid box P1 matches historical race results, but differs from qualifying position P2 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "max_verstappen",
+      "car_number": 1,
+      "driver_name": "Max VERSTAPPEN",
+      "constructor_id": "red_bull",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 11,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 11,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": "Car 1 - 10 place grid penalty - Additional power unit element has been used - Stewards' document no. 13"
+      },
+      "historical_values": {
+        "grid_position": 11,
+        "quali_position": 1,
+        "grid_penalty_delta": 10,
+        "constructor_id": "red_bull"
+      },
+      "explanation": "Official starting grid box P11 matches historical race results, but differs from qualifying position P1 due to steward penalties or grid adjustments (delta=10)."
+    },
+    {
+      "driver_id": "norris",
+      "car_number": 4,
+      "driver_name": "Lando NORRIS",
+      "constructor_id": "mclaren",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 4,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 4,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 4,
+        "quali_position": 5,
+        "grid_penalty_delta": -1,
+        "constructor_id": "mclaren"
+      },
+      "explanation": "Official starting grid box P4 matches historical race results, but differs from qualifying position P5 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "ocon",
+      "car_number": 31,
+      "driver_name": "Esteban OCON",
+      "constructor_id": "alpine",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 9,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 9,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 9,
+        "quali_position": 10,
+        "grid_penalty_delta": -1,
+        "constructor_id": "alpine"
+      },
+      "explanation": "Official starting grid box P9 matches historical race results, but differs from qualifying position P10 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "perez",
+      "car_number": 11,
+      "driver_name": "Sergio PEREZ",
+      "constructor_id": "red_bull",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 2,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 2,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 2,
+        "quali_position": 3,
+        "grid_penalty_delta": -1,
+        "constructor_id": "red_bull"
+      },
+      "explanation": "Official starting grid box P2 matches historical race results, but differs from qualifying position P3 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "piastri",
+      "car_number": 81,
+      "driver_name": "Oscar PIASTRI",
+      "constructor_id": "mclaren",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 5,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 5,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 5,
+        "quali_position": 6,
+        "grid_penalty_delta": -1,
+        "constructor_id": "mclaren"
+      },
+      "explanation": "Official starting grid box P5 matches historical race results, but differs from qualifying position P6 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "ricciardo",
+      "car_number": 3,
+      "driver_name": "Daniel RICCIARDO",
+      "constructor_id": "rb",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 13,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 13,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 13,
+        "quali_position": 13,
+        "grid_penalty_delta": 0,
+        "constructor_id": "rb"
+      },
+      "explanation": "Full match: Official track grid box P13 matches historical race-result grid P13 and qualifying P13."
+    },
+    {
+      "driver_id": "russell",
+      "car_number": 63,
+      "driver_name": "George RUSSELL",
+      "constructor_id": "mercedes",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 6,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 6,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 6,
+        "quali_position": 7,
+        "grid_penalty_delta": -1,
+        "constructor_id": "mercedes"
+      },
+      "explanation": "Official starting grid box P6 matches historical race results, but differs from qualifying position P7 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "sainz",
+      "car_number": 55,
+      "driver_name": "Carlos SAINZ",
+      "constructor_id": "ferrari",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 7,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 7,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 7,
+        "quali_position": 8,
+        "grid_penalty_delta": -1,
+        "constructor_id": "ferrari"
+      },
+      "explanation": "Official starting grid box P7 matches historical race results, but differs from qualifying position P8 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "sargeant",
+      "car_number": 2,
+      "driver_name": "Logan SARGEANT",
+      "constructor_id": "williams",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 18,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 18,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 18,
+        "quali_position": 19,
+        "grid_penalty_delta": -1,
+        "constructor_id": "williams"
+      },
+      "explanation": "Official starting grid box P18 matches historical race results, but differs from qualifying position P19 due to steward penalties or grid adjustments (delta=-1)."
+    },
+    {
+      "driver_id": "stroll",
+      "car_number": 18,
+      "driver_name": "Lance STROLL",
+      "constructor_id": "aston_martin",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 15,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 15,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 15,
+        "quali_position": 15,
+        "grid_penalty_delta": 0,
+        "constructor_id": "aston_martin"
+      },
+      "explanation": "Full match: Official track grid box P15 matches historical race-result grid P15 and qualifying P15."
+    },
+    {
+      "driver_id": "tsunoda",
+      "car_number": 22,
+      "driver_name": "Yuki TSUNODA",
+      "constructor_id": "rb",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 20,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 20,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": "Car 22 - Required to start from the back of the starting grid - Additional power unit elements have been used - Stewards' document no. 18"
+      },
+      "historical_values": {
+        "grid_position": 20,
+        "quali_position": 18,
+        "grid_penalty_delta": 2,
+        "constructor_id": "rb"
+      },
+      "explanation": "Official starting grid box P20 matches historical race results, but differs from qualifying position P18 due to steward penalties or grid adjustments (delta=2)."
+    },
+    {
+      "driver_id": "zhou",
+      "car_number": 24,
+      "driver_name": "ZHOU Guanyu",
+      "constructor_id": "sauber",
+      "outcome": "QUALIFYING_POSITION_DIFFERENCE",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 19,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 19,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": "Car 24 - 3 place grid penalty - Impeding another driver - Stewards' document no. 32"
+      },
+      "historical_values": {
+        "grid_position": 19,
+        "quali_position": 20,
+        "grid_penalty_delta": -1,
+        "constructor_id": "sauber"
+      },
+      "explanation": "Official starting grid box P19 matches historical race results, but differs from qualifying position P20 due to steward penalties or grid adjustments (delta=-1)."
+    }
+  ]
+}

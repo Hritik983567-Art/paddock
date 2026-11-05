@@ -17,17 +17,19 @@ interface PredictionHistoryLedgerProps {
 export default function PredictionHistoryLedger({
   onSelectRound,
   selectedRound,
-  selectedSeason,
+  selectedSeason = "2026",
   onReturnToActive,
   isViewingHistory,
 }: PredictionHistoryLedgerProps) {
+  const activeSeason = selectedSeason || "2026";
+
   const [completedRaces, setCompletedRaces] = useState<RaceAccuracyAudit[]>(
-    () => getHistoricalAccuracyLedger(),
+    () => getHistoricalAccuracyLedger(activeSeason),
   );
 
   useEffect(() => {
-    setCompletedRaces(getHistoricalAccuracyLedger());
-  }, []);
+    setCompletedRaces(getHistoricalAccuracyLedger(activeSeason));
+  }, [activeSeason]);
 
   const verifiedRaces = completedRaces.filter((r) => r.isCompleted);
   const totalVerified = verifiedRaces.length;
@@ -54,7 +56,7 @@ export default function PredictionHistoryLedger({
         <div className="flex items-center gap-2.5">
           <span className="stitch-live-dot" />
           <span className="text-white font-bold tracking-wider uppercase">
-            Prediction Accuracy History
+            {activeSeason} Season Prediction Accuracy History
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -70,17 +72,15 @@ export default function PredictionHistoryLedger({
           <div className="flex items-center gap-2.5 mb-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#00F0FF] shadow-[0_0_10px_#00F0FF]" />
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-              Prediction History &amp; Accuracy Records
+              {activeSeason} Championship Prediction History
             </h2>
             <span className="stitch-data-chip text-[11px] text-[#00F0FF] border-[#00F0FF]/30 font-bold">
-              Origin: Round 19 (Austin)
+              Tracking Origin: Round 20 (Next GP)
             </span>
           </div>
           <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-            Historical audit records initiate starting from this race (United
-            States Grand Prix). As this Grand Prix and future races finish,
-            predictions and official FIA classifications will be recorded here
-            to track accuracy over time.
+            Historical audit records for the {activeSeason} Formula 1 championship initiate starting from the next Grand Prix ({activeSeason} Round 20 — Brazilian Grand Prix at Interlagos). As Round 20 and future races conclude,
+            pre-race AI predictions and official FIA classifications will be archived here to track accuracy across the championship.
           </p>
         </div>
 
@@ -96,7 +96,7 @@ export default function PredictionHistoryLedger({
             <span className="text-[10px] font-mono text-slate-500 block">
               {totalVerified > 0
                 ? `(${winnerHits}/${totalVerified} Hits)`
-                : "(Starts from Austin)"}
+                : "(Round 20 Origin)"}
             </span>
           </div>
 
@@ -110,7 +110,7 @@ export default function PredictionHistoryLedger({
             <span className="text-[10px] font-mono text-slate-500 block">
               {totalVerified > 0
                 ? `(${podiumHits}/${totalVerified} in Top-3)`
-                : "(Round 19 Origin)"}
+                : "(Round 20 Origin)"}
             </span>
           </div>
 
@@ -119,7 +119,7 @@ export default function PredictionHistoryLedger({
               onClick={onReturnToActive}
               className="px-4 py-2.5 rounded-xl text-xs font-mono font-black uppercase tracking-wider bg-[#00F0FF] hover:bg-[#33F5FF] text-black transition-all shadow-[0_0_16px_rgba(0,240,255,0.3)] flex items-center gap-1.5 whitespace-nowrap active:scale-[0.98]"
             >
-              <span>← RETURN TO AUSTIN</span>
+              <span>← RETURN TO NEXT GP (ROUND 20)</span>
             </button>
           )}
         </div>
@@ -127,11 +127,22 @@ export default function PredictionHistoryLedger({
 
       {/* Historical Ledger Table / Cards */}
       <div className="space-y-3">
-        {completedRaces.map((race: RaceAccuracyAudit) => {
-          const isCurrentSelected =
-            isViewingHistory &&
-            selectedRound === race.round &&
-            selectedSeason === race.season;
+        {completedRaces.length === 0 ? (
+          <div className="bg-[#101722] border border-white/10 rounded-xl p-8 text-center">
+            <span className="text-3xl block mb-2">🏁</span>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-1">
+              {activeSeason} Championship Tracking Initiating from Next GP (Round 20)
+            </h3>
+            <p className="text-xs text-slate-400 max-w-lg mx-auto">
+              Championship race tracking begins with the upcoming Brazilian Grand Prix (Nov 8, 2026). Pre-race AI predictions and official post-race FIA classifications will automatically log here as each round finishes.
+            </p>
+          </div>
+        ) : (
+          completedRaces.map((race: RaceAccuracyAudit) => {
+            const isCurrentSelected =
+              isViewingHistory &&
+              selectedRound === race.round &&
+              activeSeason === race.season;
 
           return (
             <div
@@ -265,7 +276,7 @@ export default function PredictionHistoryLedger({
               </div>
             </div>
           );
-        })}
+        }))}
       </div>
     </section>
   );

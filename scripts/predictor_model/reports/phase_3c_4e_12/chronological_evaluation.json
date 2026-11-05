@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "audit_name": "Phase 3C.4E.12 Multi-Season Chronological Replay",
+    "timestamp_utc": "2026-11-05T09:54:38.324613+00:00",
+    "folds_evaluated": [
+      2022,
+      2023,
+      2024
+    ]
+  },
+  "folds": {
+    "season_2022_holdout": {
+      "eval_season": 2022,
+      "train_seasons": [
+        2021
+      ],
+      "train_races_count": 22,
+      "eval_races_count": 22,
+      "metrics": {
+        "reciprocal_grid": {
+          "log_loss": 1.9612,
+          "top1_acc": 0.4545
+        },
+        "empirical_grid": {
+          "log_loss": 1.8374,
+          "top1_acc": 0.4545
+        },
+        "grid_plus_qualifying": {
+          "log_loss": 1.9439,
+          "top1_acc": 0.4091
+        },
+        "pace_only_diagnostic": {
+          "log_loss": 2.3785,
+          "top1_acc": 0.4091
+        }
+      },
+      "deltas_vs_reciprocal_grid": {
+        "empirical_grid_delta": -0.1237,
+        "grid_plus_quali_delta": -0.0173
+      },
+      "deltas_vs_empirical_grid": {
+        "grid_plus_quali_delta": 0.1064
+      }
+    },
+    "season_2023_holdout": {
+      "eval_season": 2023,
+      "train_seasons": [
+        2021,
+        2022
+      ],
+      "train_races_count": 44,
+      "eval_races_count": 22,
+      "metrics": {
+        "reciprocal_grid": {
+          "log_loss": 1.7368,
+          "top1_acc": 0.6364
+        },
+        "empirical_grid": {
+          "log_loss": 1.5401,
+          "top1_acc": 0.6364
+        },
+        "grid_plus_qualifying": {
+          "log_loss": 1.4378,
+          "top1_acc": 0.5909
+        },
+        "pace_only_diagnostic": {
+          "log_loss": 2.2088,
+          "top1_acc": 0.6364
+        }
+      },
+      "deltas_vs_reciprocal_grid": {
+        "empirical_grid_delta": -0.1967,
+        "grid_plus_quali_delta": -0.299
+      },
+      "deltas_vs_empirical_grid": {
+        "grid_plus_quali_delta": -0.1024
+      }
+    },
+    "season_2024_holdout": {
+      "eval_season": 2024,
+      "train_seasons": [
+        2021,
+        2022,
+        2023
+      ],
+      "train_races_count": 66,
+      "eval_races_count": 24,
+      "metrics": {
+        "reciprocal_grid": {
+          "log_loss": 1.8741,
+          "top1_acc": 0.4583
+        },
+        "empirical_grid": {
+          "log_loss": 1.8535,
+          "top1_acc": 0.4583
+        },
+        "grid_plus_qualifying": {
+          "log_loss": 1.8548,
+          "top1_acc": 0.4583
+        },
+        "pace_only_diagnostic": {
+          "log_loss": 2.1859,
+          "top1_acc": 0.5
+        }
+      },
+      "deltas_vs_reciprocal_grid": {
+        "empirical_grid_delta": -0.0206,
+        "grid_plus_quali_delta": -0.0193
+      },
+      "deltas_vs_empirical_grid": {
+        "grid_plus_quali_delta": 0.0013
+      }
+    }
+  },
+  "multi_season_summary_table": {
+    "columns": [
+      "Season",
+      "Train_Races",
+      "Eval_Races",
+      "Recip_Grid_Loss",
+      "Emp_Grid_Loss",
+      "Grid_Plus_Quali_Loss",
+      "Delta_vs_Empirical"
+    ],
+    "rows": [
+      [
+        "2022",
+        22,
+        22,
+        1.9612,
+        1.8374,
+        1.9439,
+        0.1064
+      ],
+      [
+        "2023",
+        44,
+        22,
+        1.7368,
+        1.5401,
+        1.4378,
+        -0.1024
+      ],
+      [
+        "2024",
+        66,
+        24,
+        1.8741,
+        1.8535,
+        1.8548,
+        0.0013
+      ]
+    ]
+  },
+  "era_specific_limitations": {
+    "season_2022": "Ground-effect technical regulation overhaul. Ferrari/Red Bull duopoly. Red Bull won 17 of 22 races.",
+    "season_2023": "Historical extreme dominance: Red Bull won 21 of 22 races (Verstappen 19 wins). Unprecedented pole/front-row win concentration.",
+    "season_2024": "Multi-team competitive convergence (McLaren, Ferrari, Mercedes, Red Bull each winning >= 3 races). Lower pole win rate (45.8%), leading to slightly higher overall log loss across all models."
+  }
+}

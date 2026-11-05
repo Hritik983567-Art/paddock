@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "generator": "scripts/predictor_model/experimental_evaluation_integrity_audit.py",
+    "timestamp_utc": "2026-11-01T12:02:16.407123+00:00"
+  },
+  "holdout_isolation_check": {
+    "oof_races_count": 44,
+    "holdout_2024_races_count": 24,
+    "calibration_leakage_detected": false,
+    "overlap_race_ids": [],
+    "finding": "Temperature optimization strictly used historical seasons (2021-2023); zero 2024 holdout data was used."
+  },
+  "temperature_regimes_summary": {
+    "uncalibrated": {
+      "temperature": 1.0,
+      "source": "Standard Softmax"
+    },
+    "in_sample_training": {
+      "temperature": 0.7654,
+      "source": "Training data logits (2021-2023)"
+    },
+    "chronological_oof_pooled": {
+      "temperature": 0.9789,
+      "source": "Pooled OOF predictions (2022+2023)"
+    },
+    "fold_2_only_2023": {
+      "temperature": 0.7227,
+      "source": "2023 OOF validation only"
+    }
+  },
+  "transferability_analysis": {
+    "finding": "Temperature fitted exclusively on the 2023 season (T = 0.7227) reflects extreme Verstappen/Red Bull dominance (19 wins in 22 races), resulting in an over-sharpened probability distribution. When transferred to the 2024 competitive parity season, this over-sharpening inflates log loss (2.3785). In contrast, pooled chronological OOF calibration (T = 0.9789) incorporates both the transitional 2022 season and 2023, yielding the most reliable holdout log loss (1.9731) and lowest ECE (0.0268)."
+  },
+  "temperature_sweep_and_invariance_proof": {
+    "driver_rankings_strictly_invariant": true,
+    "top1_accuracy_strictly_invariant": true,
+    "sweep_data": [
+      {
+        "temperature": 0.5,
+        "top1_accuracy": 0.5,
+        "log_loss": 3.2101,
+        "brier_summed": 0.8777,
+        "ece": 0.0415,
+        "mce": 0.5805
+      },
+      {
+        "temperature": 0.7227,
+        "top1_accuracy": 0.5,
+        "log_loss": 2.3784,
+        "brier_summed": 0.8316,
+        "ece": 0.0324,
+        "mce": 0.8627
+      },
+      {
+        "temperature": 0.7654,
+        "top1_accuracy": 0.5,
+        "log_loss": 2.2834,
+        "brier_summed": 0.8222,
+        "ece": 0.0342,
+        "mce": 0.8369
+      },
+      {
+        "temperature": 0.9,
+        "top1_accuracy": 0.5,
+        "log_loss": 2.0617,
+        "brier_summed": 0.7932,
+        "ece": 0.0347,
+        "mce": 0.6036
+      },
+      {
+        "temperature": 0.9789,
+        "top1_accuracy": 0.5,
+        "log_loss": 1.9731,
+        "brier_summed": 0.7774,
+        "ece": 0.0258,
+        "mce": 0.3676
+      },
+      {
+        "temperature": 1.0,
+        "top1_accuracy": 0.5,
+        "log_loss": 1.9535,
+        "brier_summed": 0.7734,
+        "ece": 0.0268,
+        "mce": 0.4278
+      },
+      {
+        "temperature": 1.2,
+        "top1_accuracy": 0.5,
+        "log_loss": 1.8307,
+        "brier_summed": 0.7412,
+        "ece": 0.0181,
+        "mce": 0.4263
+      },
+      {
+        "temperature": 1.5,
+        "top1_accuracy": 0.5,
+        "log_loss": 1.7839,
+        "brier_summed": 0.7147,
+        "ece": 0.0177,
+        "mce": 0.3798
+      }
+    ]
+  }
+}

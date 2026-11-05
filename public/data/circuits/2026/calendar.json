@@ -10,7 +10,11 @@
       "country": "Australia",
       "locality": "Melbourne",
       "date": "2026-03-08",
-      "time": "04:00:00Z"
+      "time": "04:00:00Z",
+      "Qualifying": {
+        "date": "2026-03-07",
+        "time": "05:00:00Z"
+      }
     },
     {
       "round": "2",
@@ -20,7 +24,19 @@
       "country": "China",
       "locality": "Shanghai",
       "date": "2026-03-15",
-      "time": "07:00:00Z"
+      "time": "07:00:00Z",
+      "Qualifying": {
+        "date": "2026-03-14",
+        "time": "07:00:00Z"
+      },
+      "Sprint": {
+        "date": "2026-03-14",
+        "time": "03:00:00Z"
+      },
+      "SprintQualifying": {
+        "date": "2026-03-13",
+        "time": "07:30:00Z"
+      }
     },
     {
       "round": "3",
@@ -30,7 +46,11 @@
       "country": "Japan",
       "locality": "Suzuka",
       "date": "2026-03-29",
-      "time": "05:00:00Z"
+      "time": "05:00:00Z",
+      "Qualifying": {
+        "date": "2026-03-28",
+        "time": "06:00:00Z"
+      }
     },
     {
       "round": "4",
@@ -40,7 +60,19 @@
       "country": "USA",
       "locality": "Miami",
       "date": "2026-05-03",
-      "time": "20:00:00Z"
+      "time": "20:00:00Z",
+      "Qualifying": {
+        "date": "2026-05-02",
+        "time": "20:00:00Z"
+      },
+      "Sprint": {
+        "date": "2026-05-02",
+        "time": "16:00:00Z"
+      },
+      "SprintQualifying": {
+        "date": "2026-05-01",
+        "time": "20:30:00Z"
+      }
     },
     {
       "round": "5",
@@ -50,7 +82,19 @@
       "country": "Canada",
       "locality": "Montreal",
       "date": "2026-05-24",
-      "time": "20:00:00Z"
+      "time": "20:00:00Z",
+      "Qualifying": {
+        "date": "2026-05-23",
+        "time": "20:00:00Z"
+      },
+      "Sprint": {
+        "date": "2026-05-23",
+        "time": "16:00:00Z"
+      },
+      "SprintQualifying": {
+        "date": "2026-05-22",
+        "time": "20:30:00Z"
+      }
     },
     {
       "round": "6",
@@ -60,7 +104,11 @@
       "country": "Monaco",
       "locality": "Monte Carlo",
       "date": "2026-06-07",
-      "time": "13:00:00Z"
+      "time": "13:00:00Z",
+      "Qualifying": {
+        "date": "2026-06-06",
+        "time": "14:00:00Z"
+      }
     },
     {
       "round": "7",
@@ -70,7 +118,11 @@
       "country": "Spain",
       "locality": "Barcelona",
       "date": "2026-06-14",
-      "time": "13:00:00Z"
+      "time": "13:00:00Z",
+      "Qualifying": {
+        "date": "2026-06-13",
+        "time": "14:00:00Z"
+      }
     },
     {
       "round": "8",
@@ -80,7 +132,11 @@
       "country": "Austria",
       "locality": "Spielberg",
       "date": "2026-06-28",
-      "time": "13:00:00Z"
+      "time": "13:00:00Z",
+      "Qualifying": {
+        "date": "2026-06-27",
+        "time": "14:00:00Z"
+      }
     },
     {
       "round": "9",
@@ -90,7 +146,19 @@
       "country": "UK",
       "locality": "Silverstone",
       "date": "2026-07-05",
-      "time": "14:00:00Z"
+      "time": "14:00:00Z",
+      "Qualifying": {
+        "date": "2026-07-04",
+        "time": "15:00:00Z"
+      },
+      "Sprint": {
+        "date": "2026-07-04",
+        "time": "11:00:00Z"
+      },
+      "SprintQualifying": {
+        "date": "2026-07-03",
+        "time": "15:30:00Z"
+      }
     },
     {
       "round": "10",
@@ -100,7 +168,11 @@
       "country": "Belgium",
       "locality": "Spa",
       "date": "2026-07-19",
-      "time": "13:00:00Z"
+      "time": "13:00:00Z",
+      "Qualifying": {
+        "date": "2026-07-18",
+        "time": "14:00:00Z"
+      }
     },
     {
       "round": "11",
@@ -110,7 +182,11 @@
       "country": "Hungary",
       "locality": "Budapest",
       "date": "2026-07-26",
-      "time": "13:00:00Z"
+      "time": "13:00:00Z",
+      "Qualifying": {
+        "date": "2026-07-25",
+        "time": "14:00:00Z"
+      }
     },
     {
       "round": "12",
@@ -120,7 +196,19 @@
       "country": "Netherlands",
       "locality": "Zandvoort",
       "date": "2026-08-23",
-      "time": "13:00:00Z"
+      "time": "13:00:00Z",
+      "Qualifying": {
+        "date": "2026-08-22",
+        "time": "14:00:00Z"
+      },
+      "Sprint": {
+        "date": "2026-08-22",
+        "time": "10:00:00Z"
+      },
+      "SprintQualifying": {
+        "date": "2026-08-21",
+        "time": "14:30:00Z"
+      }
     },
     {
       "round": "13",
@@ -130,7 +218,11 @@
       "country": "Italy",
       "locality": "Monza",
       "date": "2026-09-06",
-      "time": "13:00:00Z"
+      "time": "13:00:00Z",
+      "Qualifying": {
+        "date": "2026-09-05",
+        "time": "14:00:00Z"
+      }
     },
     {
       "round": "14",
@@ -140,7 +232,11 @@
       "country": "Spain",
       "locality": "Madrid",
       "date": "2026-09-13",
-      "time": "13:00:00Z"
+      "time": "13:00:00Z",
+      "Qualifying": {
+        "date": "2026-09-12",
+        "time": "14:00:00Z"
+      }
     },
     {
       "round": "15",
@@ -150,7 +246,11 @@
       "country": "Azerbaijan",
       "locality": "Baku",
       "date": "2026-09-26",
-      "time": "11:00:00Z"
+      "time": "11:00:00Z",
+      "Qualifying": {
+        "date": "2026-09-25",
+        "time": "12:00:00Z"
+      }
     },
     {
       "round": "16",
@@ -160,7 +260,11 @@
       "country": "Malaysia",
       "locality": "Kuala Lumpur",
       "date": "2026-10-04",
-      "time": "07:00:00Z"
+      "time": "07:00:00Z",
+      "Qualifying": {
+        "date": "2026-10-03",
+        "time": "08:00:00Z"
+      }
     },
     {
       "round": "17",
@@ -170,7 +274,19 @@
       "country": "Singapore",
       "locality": "Marina Bay",
       "date": "2026-10-11",
-      "time": "12:00:00Z"
+      "time": "12:00:00Z",
+      "Qualifying": {
+        "date": "2026-10-10",
+        "time": "13:00:00Z"
+      },
+      "Sprint": {
+        "date": "2026-10-10",
+        "time": "09:00:00Z"
+      },
+      "SprintQualifying": {
+        "date": "2026-10-09",
+        "time": "12:30:00Z"
+      }
     },
     {
       "round": "18",
@@ -180,7 +296,11 @@
       "country": "USA",
       "locality": "Austin",
       "date": "2026-10-25",
-      "time": "20:00:00Z"
+      "time": "20:00:00Z",
+      "Qualifying": {
+        "date": "2026-10-24",
+        "time": "21:00:00Z"
+      }
     },
     {
       "round": "19",
@@ -190,7 +310,11 @@
       "country": "Mexico",
       "locality": "Mexico City",
       "date": "2026-11-01",
-      "time": "20:00:00Z"
+      "time": "20:00:00Z",
+      "Qualifying": {
+        "date": "2026-10-31",
+        "time": "21:00:00Z"
+      }
     },
     {
       "round": "20",
@@ -200,7 +324,11 @@
       "country": "Brazil",
       "locality": "São Paulo",
       "date": "2026-11-08",
-      "time": "17:00:00Z"
+      "time": "17:00:00Z",
+      "Qualifying": {
+        "date": "2026-11-07",
+        "time": "18:00:00Z"
+      }
     },
     {
       "round": "21",
@@ -210,7 +338,11 @@
       "country": "USA",
       "locality": "Las Vegas",
       "date": "2026-11-22",
-      "time": "04:00:00Z"
+      "time": "04:00:00Z",
+      "Qualifying": {
+        "date": "2026-11-21",
+        "time": "04:00:00Z"
+      }
     },
     {
       "round": "22",
@@ -220,7 +352,11 @@
       "country": "Qatar",
       "locality": "Lusail",
       "date": "2026-11-29",
-      "time": "16:00:00Z"
+      "time": "16:00:00Z",
+      "Qualifying": {
+        "date": "2026-11-28",
+        "time": "18:00:00Z"
+      }
     },
     {
       "round": "23",
@@ -230,7 +366,11 @@
       "country": "UAE",
       "locality": "Abu Dhabi",
       "date": "2026-12-06",
-      "time": "13:00:00Z"
+      "time": "13:00:00Z",
+      "Qualifying": {
+        "date": "2026-12-05",
+        "time": "14:00:00Z"
+      }
     }
   ]
 }

@@ -1,0 +1,230 @@
+{
+  "metadata": {
+    "audit": "Phase 3C.4E.13 2025 Candidate Dataset Validation",
+    "timestamp_utc": "2026-11-05T10:26:02.322695+00:00",
+    "candidate_csv": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\Projects\\paddock\\data\\predictor\\experimental\\f1_race_predictor_dataset_2025_candidate.csv",
+    "candidate_sha256": "8BADE433D7BE82903B1326D68706C0E4851F80D80DDEC618EFA896E0C6363329"
+  },
+  "isolation_verification": {
+    "original_dataset_sha256": "B1F50EF057E5AF732325BB8A784D96B92B34B4441900CEB2A0FD66B579C629AF",
+    "original_dataset_intact": true,
+    "remediated_dataset_sha256": "691A19643107241A995D0AF90483A335EC35C47C479A07C447449DEC3F6056FE",
+    "remediated_dataset_intact": true,
+    "isolated_candidate_created": true
+  },
+  "schema_compatibility": {
+    "total_columns": 70,
+    "columns_matching_remediated": true,
+    "missing_columns_count": 0
+  },
+  "dataset_dimensions": {
+    "total_records": 480,
+    "total_races": 24,
+    "all_races_have_exactly_one_winner": true,
+    "all_starter_counts_valid": true
+  },
+  "core_features_null_audit": {
+    "grid_position": 0,
+    "quali_position": 0,
+    "reached_q3": 0,
+    "front_row": 0,
+    "driver_prev_race_position": 3,
+    "teammate_rolling_5_quali_h2h": 0,
+    "circuit_historical_pole_win_rate": 0
+  },
+  "race_audits": [
+    {
+      "race_id": "2025_1_albert_park",
+      "round": 1,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_2_shanghai",
+      "round": 2,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_3_suzuka",
+      "round": 3,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_4_bahrain",
+      "round": 4,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_5_jeddah",
+      "round": 5,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 2
+    },
+    {
+      "race_id": "2025_6_miami",
+      "round": 6,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 4
+    },
+    {
+      "race_id": "2025_7_imola",
+      "round": 7,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 2
+    },
+    {
+      "race_id": "2025_8_monaco",
+      "round": 8,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_9_catalunya",
+      "round": 9,
+      "starters_count": 19,
+      "expected_starters": 19,
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_10_villeneuve",
+      "round": 10,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "russell",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_11_red_bull_ring",
+      "round": 11,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_12_silverstone",
+      "round": 12,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "norris",
+      "winner_grid_position": 3
+    },
+    {
+      "race_id": "2025_13_spa",
+      "round": 13,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 2
+    },
+    {
+      "race_id": "2025_14_hungaroring",
+      "round": 14,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "norris",
+      "winner_grid_position": 3
+    },
+    {
+      "race_id": "2025_15_zandvoort",
+      "round": 15,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "piastri",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_16_monza",
+      "round": 16,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_17_baku",
+      "round": 17,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_18_marina_bay",
+      "round": 18,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "russell",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_19_americas",
+      "round": 19,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_20_rodriguez",
+      "round": 20,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_21_interlagos",
+      "round": 21,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "norris",
+      "winner_grid_position": 1
+    },
+    {
+      "race_id": "2025_22_vegas",
+      "round": 22,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 2
+    },
+    {
+      "race_id": "2025_23_losail",
+      "round": 23,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 3
+    },
+    {
+      "race_id": "2025_24_yas_marina",
+      "round": 24,
+      "starters_count": 20,
+      "expected_starters": 20,
+      "winner_driver_id": "max_verstappen",
+      "winner_grid_position": 1
+    }
+  ],
+  "validation_verdict": "PASSED"
+}

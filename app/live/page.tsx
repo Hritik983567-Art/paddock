@@ -133,33 +133,6 @@ function parseCompetitiveSessions(race: any, nowDate = new Date()): CompetitiveS
     duration: number;
   }> = [
     {
-      id: 'sprint_qualifying',
-      name: 'Sprint Qualifying',
-      shortName: 'SPRINT QUALI',
-      badge: 'SQ',
-      icon: '⏱️',
-      raw: race.SprintQualifying || race.SprintShootout,
-      duration: 45
-    },
-    {
-      id: 'sprint_race',
-      name: 'Sprint Race',
-      shortName: 'SPRINT RACE',
-      badge: 'SPRINT',
-      icon: '⚡',
-      raw: race.Sprint,
-      duration: 60
-    },
-    {
-      id: 'qualifying',
-      name: 'Qualifying',
-      shortName: 'QUALIFYING',
-      badge: 'QUALI',
-      icon: '🏁',
-      raw: race.Qualifying,
-      duration: 60
-    },
-    {
       id: 'race',
       name: 'Grand Prix (Race)',
       shortName: 'GRAND PRIX',
@@ -170,69 +143,88 @@ function parseCompetitiveSessions(race: any, nowDate = new Date()): CompetitiveS
     }
   ];
 
-  return configs.map(c => {
-    if (!c.raw || !c.raw.date) {
+  // Only include qualifying / sprint sessions if official schedule data exists
+  if (race.SprintQualifying?.date || race.SprintShootout?.date) {
+    configs.unshift({
+      id: 'sprint_qualifying',
+      name: 'Sprint Qualifying',
+      shortName: 'SPRINT QUALI',
+      badge: 'SQ',
+      icon: '⏱️',
+      raw: race.SprintQualifying || race.SprintShootout,
+      duration: 45
+    });
+  }
+  if (race.Sprint?.date) {
+    configs.push({
+      id: 'sprint_race',
+      name: 'Sprint Race',
+      shortName: 'SPRINT RACE',
+      badge: 'SPRINT',
+      icon: '⚡',
+      raw: race.Sprint,
+      duration: 60
+    });
+  }
+  if (race.Qualifying?.date) {
+    configs.push({
+      id: 'qualifying',
+      name: 'Qualifying',
+      shortName: 'QUALIFYING',
+      badge: 'QUALI',
+      icon: '🏁',
+      raw: race.Qualifying,
+      duration: 60
+    });
+  }
+
+  return configs
+    .filter(c => Boolean(c.raw && c.raw.date))
+    .map(c => {
+      const isoString = c.raw!.time 
+        ? (c.raw!.time.endsWith('Z') ? `${c.raw!.date}T${c.raw!.time}` : `${c.raw!.date}T${c.raw!.time}Z`)
+        : `${c.raw!.date}T12:00:00Z`;
+
+      const startMs = Date.parse(isoString);
+      const endMs = startMs + c.duration * 60 * 1000;
+      const nowMs = nowDate.getTime();
+
+      let status: 'LIVE' | 'UPCOMING' | 'COMPLETED' | 'NOT_SCHEDULED' = 'UPCOMING';
+      if (nowMs >= startMs && nowMs <= endMs) {
+        status = 'LIVE';
+      } else if (nowMs > endMs) {
+        status = 'COMPLETED';
+      }
+
+      const d = new Date(startMs);
+      const dateFormatted = d.toLocaleDateString(undefined, {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric'
+      });
+      const timeFormatted = d.toLocaleTimeString(undefined, {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
       return {
         id: c.id,
         name: c.name,
         shortName: c.shortName,
         badge: c.badge,
         icon: c.icon,
-        rawDate: null,
-        status: 'NOT_SCHEDULED',
-        dateStr: 'Not Scheduled',
-        timeStr: '—',
-        startTimeUtc: null,
-        endTimeUtc: null,
+        rawDate: c.raw!.date || null,
+        status,
+        dateStr: dateFormatted,
+        timeStr: timeFormatted,
+        startTimeUtc: isoString,
+        endTimeUtc: new Date(endMs).toISOString(),
         durationMinutes: c.duration,
-        startMs: null,
-        endMs: null
+        startMs,
+        endMs
       };
-    }
-
-    const isoString = c.raw.time 
-      ? (c.raw.time.endsWith('Z') ? `${c.raw.date}T${c.raw.time}` : `${c.raw.date}T${c.raw.time}Z`)
-      : `${c.raw.date}T12:00:00Z`;
-
-    const startMs = Date.parse(isoString);
-    const endMs = startMs + c.duration * 60 * 1000;
-    const nowMs = nowDate.getTime();
-
-    let status: 'LIVE' | 'UPCOMING' | 'COMPLETED' | 'NOT_SCHEDULED' = 'UPCOMING';
-    if (nowMs >= startMs && nowMs <= endMs) {
-      status = 'LIVE';
-    } else if (nowMs > endMs) {
-      status = 'COMPLETED';
-    }
-
-    const d = new Date(startMs);
-    const dateFormatted = d.toLocaleDateString(undefined, {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric'
-    });
-    const timeFormatted = d.toLocaleTimeString(undefined, {
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-
-    return {
-      id: c.id,
-      name: c.name,
-      shortName: c.shortName,
-      badge: c.badge,
-      icon: c.icon,
-      rawDate: c.raw.date,
-      status,
-      dateStr: dateFormatted,
-      timeStr: timeFormatted,
-      startTimeUtc: isoString,
-      endTimeUtc: new Date(endMs).toISOString(),
-      durationMinutes: c.duration,
-      startMs,
-      endMs
-    };
-  });
+    })
+    .sort((a, b) => (a.startMs || 0) - (b.startMs || 0));
 }
 
 function isTodayCompetitiveDay(sessions: CompetitiveSession[], nowDate = new Date()): boolean {
@@ -392,6 +384,7 @@ export default function LiveTelemetryPage() {
   const [currentLap, setCurrentLap] = useState<number | string>('—');
   const [flagStatus, setFlagStatus] = useState<'GREEN' | 'YELLOW' | 'SAFETY CAR' | 'RED FLAG'>('GREEN');
   const [proxyStatus, setProxyStatus] = useState<'OFFLINE' | 'CONNECTING' | 'CONNECTED' | 'STANDBY'>('OFFLINE');
+  const [uplinkError, setUplinkError] = useState<string | null>(null);
   const [isLiveTransmitting, setIsLiveTransmitting] = useState(false);
   const [showNoticeAlert, setShowNoticeAlert] = useState(true);
   const [gapDisplayMode, setGapDisplayMode] = useState<'dual' | 'gap' | 'interval'>('dual');
@@ -399,7 +392,7 @@ export default function LiveTelemetryPage() {
 
   const [logs, setLogs] = useState<string[]>([
     `[${new Date().toTimeString().split(' ')[0]}] MISSION CONTROL: Pit-wall telemetry uplink initialized.`,
-    `[${new Date().toTimeString().split(' ')[0]}] TELEMETRY POLICY: Telemetry stream activates strictly on Sprint Quali, Sprint Race, Quali, and Race.`
+    `[${new Date().toTimeString().split(' ')[0]}] TELEMETRY POLICY: Real-time telemetry activates exclusively on authentic live Grand Prix track sessions.`
   ]);
 
   const logConsoleRef = useRef<HTMLDivElement | null>(null);
@@ -413,12 +406,46 @@ export default function LiveTelemetryPage() {
     }
   }, [logs]);
 
-  // Fetch current calendar races on mount
+  // Fetch current calendar races on mount (pulls rich live schedule with Qualifying/Sprint sessions)
   useEffect(() => {
     async function loadCalendar() {
       try {
-        const res = await getJSON(`${API_BASE}/current.json`) as { MRData?: { RaceTable?: { Races?: Record<string, unknown>[] } } };
-        const list = res?.MRData?.RaceTable?.Races || [];
+        let list: any[] = [];
+        try {
+          // 1. Pull rich official FIA calendar from live API first (includes real Qualifying & Sprint timestamps)
+          const res = await getJSON(`${API_BASE}/current.json`) as { MRData?: { RaceTable?: { Races?: any[] } } };
+          if (res?.MRData?.RaceTable?.Races && res.MRData.RaceTable.Races.length > 0) {
+            list = res.MRData.RaceTable.Races;
+          }
+        } catch {
+          // fallback to local calendar below
+        }
+
+        if (list.length === 0) {
+          try {
+            const localRes = await fetch('/data/circuits/2026/calendar.json');
+            if (localRes.ok) {
+              const localData = await localRes.json();
+              list = (localData.races || []).map((r: any) => ({
+                round: r.round,
+                raceName: r.raceName,
+                date: r.date,
+                time: r.time,
+                Qualifying: r.Qualifying,
+                Sprint: r.Sprint,
+                SprintQualifying: r.SprintQualifying || r.SprintShootout,
+                Circuit: {
+                  circuitId: r.circuitId,
+                  circuitName: r.circuitName,
+                  Location: { locality: r.locality || '', country: r.country || '' }
+                }
+              }));
+            }
+          } catch {
+            // fallback
+          }
+        }
+
         setCalendarRaces(list);
 
         if (list.length > 0 && !userChangedCircuitRef.current) {
@@ -459,6 +486,71 @@ export default function LiveTelemetryPage() {
     loadCalendar();
   }, []);
 
+  // Live Telemetry HTTP Fallback Polling (OpenF1 & Official Live Ingestion)
+  useEffect(() => {
+    let isCancelled = false;
+
+    async function pollLiveTelemetry() {
+      // If WebSocket is actively connected and transmitting real packets, let WS take precedence
+      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN && isLiveTransmitting) {
+        return;
+      }
+
+      try {
+        const circuitToFetch = selectedCircuitRef.current || selectedCircuit;
+        const res = await fetch(`/api/live/telemetry?circuit=${circuitToFetch}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (!isCancelled) {
+            if (data.isLive && data.drivers && data.drivers.length > 0) {
+              driversRef.current = data.drivers;
+              scheduleDriverFlush();
+              setIsLiveTransmitting(true);
+              setProxyStatus('CONNECTED');
+              setUplinkError(null);
+            } else {
+              // Outside active sessions: remain in standby with empty drivers (NO MOCK DATA)
+              setIsLiveTransmitting(false);
+              setProxyStatus('STANDBY');
+              setUplinkError(null);
+              driversRef.current = [];
+              setDrivers([]);
+            }
+
+            if (data.weather) setWeatherData(data.weather);
+            if (data.flagStatus) setFlagStatus(data.flagStatus);
+          }
+        } else {
+          // Explicit HTTP error from telemetry route
+          const errData = await res.json().catch(() => null);
+          if (!isCancelled) {
+            setIsLiveTransmitting(false);
+            setProxyStatus('OFFLINE');
+            setUplinkError(errData?.message || errData?.error || `Telemetry Uplink Offline (HTTP ${res.status})`);
+            driversRef.current = [];
+            setDrivers([]);
+          }
+        }
+      } catch (err: any) {
+        if (!isCancelled) {
+          setIsLiveTransmitting(false);
+          setProxyStatus('OFFLINE');
+          setUplinkError(err?.message || 'Network connection failed while polling telemetry uplink');
+          driversRef.current = [];
+          setDrivers([]);
+        }
+      }
+    }
+
+    const timer = setInterval(pollLiveTelemetry, 2500);
+    pollLiveTelemetry();
+
+    return () => {
+      isCancelled = true;
+      clearInterval(timer);
+    };
+  }, [selectedCircuit, isLiveTransmitting]);
+
   const handleCircuitChange = (circuitId: string) => {
     userChangedCircuitRef.current = true;
     selectedCircuitRef.current = circuitId;
@@ -480,12 +572,7 @@ export default function LiveTelemetryPage() {
       setSessions(parseCompetitiveSessions(matchedRace));
     } else {
       activeRaceDataRef.current = null;
-      setSessions([
-        { id: 'sprint_qualifying', name: 'Sprint Qualifying', shortName: 'SPRINT QUALI', badge: 'SQ', icon: '⏱️', rawDate: null, status: 'NOT_SCHEDULED', dateStr: 'Not Scheduled', timeStr: '—', startTimeUtc: null, endTimeUtc: null, durationMinutes: 45, startMs: null, endMs: null },
-        { id: 'sprint_race', name: 'Sprint Race', shortName: 'SPRINT RACE', badge: 'SPRINT', icon: '⚡', rawDate: null, status: 'NOT_SCHEDULED', dateStr: 'Not Scheduled', timeStr: '—', startTimeUtc: null, endTimeUtc: null, durationMinutes: 60, startMs: null, endMs: null },
-        { id: 'qualifying', name: 'Qualifying', shortName: 'QUALIFYING', badge: 'QUALI', icon: '🏁', rawDate: null, status: 'NOT_SCHEDULED', dateStr: 'Track Benchmark', timeStr: '14:00', startTimeUtc: null, endTimeUtc: null, durationMinutes: 60, startMs: null, endMs: null },
-        { id: 'race', name: 'Grand Prix (Race)', shortName: 'GRAND PRIX', badge: 'RACE', icon: '🏆', rawDate: null, status: 'NOT_SCHEDULED', dateStr: 'Track Benchmark', timeStr: '15:00', startTimeUtc: null, endTimeUtc: null, durationMinutes: 120, startMs: null, endMs: null }
-      ]);
+      setSessions([]);
     }
 
     const timeStamp = new Date().toTimeString().split(' ')[0];
@@ -823,10 +910,12 @@ export default function LiveTelemetryPage() {
       socket.onerror = () => {
         setProxyStatus('OFFLINE');
         setIsLiveTransmitting(false);
+        setUplinkError('Local WebSocket proxy (ws://127.0.0.1:8080) connection error. Service is offline.');
       };
     } catch {
       setProxyStatus('OFFLINE');
       setIsLiveTransmitting(false);
+      setUplinkError('Local WebSocket proxy (ws://127.0.0.1:8080) connection error. Service is offline.');
     }
   };
 
@@ -865,9 +954,8 @@ export default function LiveTelemetryPage() {
     ? formatCountdown(nextUpcomingSession.startMs) 
     : null;
 
-  // Live timing and driver telemetry only show on the actual day of race, quali, sprint race, or sprint quali
-  // (or when official live telemetry is transmitting on track)
-  const isLiveTimingActive = isCompetitiveDay || isCompetitiveSessionLive;
+  // Live timing and driver telemetry activate strictly when an authentic session is live or transmitting real telemetry
+  const isLiveTimingActive = isCompetitiveSessionLive;
 
   return (
     <section className="view w-full max-w-[1440px] mx-auto overflow-hidden box-border px-2 sm:px-4" id="view-live">
@@ -919,7 +1007,7 @@ export default function LiveTelemetryPage() {
             </div>
 
             <button 
-              className="btn flex items-center gap-1.5 text-xs font-mono" 
+              className="btn flex items-center gap-1.5 text-xs font-mono text-slate-300 hover:text-white border border-slate-700 bg-slate-900 hover:bg-slate-800" 
               onClick={connectWebSocket}
               title="Reconnect to pit-wall telemetry proxy"
             >
@@ -957,9 +1045,9 @@ export default function LiveTelemetryPage() {
                 {isCompetitiveSessionLive ? (
                   <><strong>OFFICIAL SESSION LIVE:</strong> Pit-wall telemetry and live timing active for {activeLiveSession?.name || 'Track Action'}.</>
                 ) : isCompetitiveDay ? (
-                  <><strong>SESSION DAY DETECTED:</strong> Today is the official day of {todaySession?.name || 'Competitive Action'}. Telemetry will stream when pit-wall cars fire up.</>
+                  <><strong>SESSION DAY DETECTED:</strong> Today is the official day of {todaySession?.name || 'Grand Prix Action'}. Telemetry will stream when pit-wall cars fire up.</>
                 ) : (
-                  <><strong>OFF-DAY STANDBY:</strong> Live timing unlocks strictly on the day of Sprint Qualifying, Sprint Race, Qualifying, and Grand Prix. View upcoming timetable below.</>
+                  <><strong>OFF-DAY STANDBY:</strong> Live timing unlocks strictly on official Grand Prix session days. View upcoming timetable below.</>
                 )}
               </span>
             </span>
@@ -974,14 +1062,14 @@ export default function LiveTelemetryPage() {
           </div>
         )}
 
-        {/* 4 Competitive Sessions Schedule Cards */}
+        {/* Competitive Sessions Schedule Cards */}
         <div style={{ marginTop: '16px', marginBottom: '16px' }}>
           <div className="flex items-center justify-between flex-wrap gap-2 px-3 py-2 rounded-lg bg-slate-900/60 border border-slate-800 text-xs font-mono text-slate-300 mb-2.5">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-              <span className="text-white font-bold tracking-wider">OFFICIAL COMPETITIVE SESSIONS TIMETABLE:</span>
+              <span className="text-white font-bold tracking-wider">OFFICIAL SESSION TIMETABLE:</span>
               <span className="text-slate-400 hidden md:inline">
-                Activates strictly on Sprint Qualifying, Sprint Race, Qualifying, and Grand Prix.
+                Activates strictly during official Grand Prix track sessions.
               </span>
             </div>
             <div className="text-[11px] font-semibold flex items-center gap-2">
@@ -1000,7 +1088,13 @@ export default function LiveTelemetryPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+          {sessions.length === 0 ? (
+            <div className="p-4 rounded-lg bg-red-950/20 border border-red-500/30 text-xs font-mono text-red-300 flex items-center gap-2">
+              <span>⚠️</span>
+              <span>No official Grand Prix sessions scheduled for this venue on the 2026 FIA World Championship calendar. Telemetry stands by for official championship rounds.</span>
+            </div>
+          ) : (
+            <div className={`grid grid-cols-1 ${sessions.length > 2 ? 'sm:grid-cols-2 lg:grid-cols-4' : sessions.length === 2 ? 'sm:grid-cols-2 max-w-2xl' : 'sm:max-w-md'} gap-2.5`}>
             {sessions.map(s => {
               const isLive = s.status === 'LIVE';
               const isUpcoming = s.status === 'UPCOMING';
@@ -1072,6 +1166,7 @@ export default function LiveTelemetryPage() {
               );
             })}
           </div>
+          )}
         </div>
 
         {!isLiveTimingActive ? (
@@ -1118,7 +1213,7 @@ export default function LiveTelemetryPage() {
 
               <div className="p-4 rounded-lg bg-slate-900/60 border border-slate-800/80 text-xs text-slate-300 font-sans leading-relaxed text-left sm:text-center">
                 <p>
-                  🔒 <strong>Live Telemetry Policy:</strong> Official F1 Timing Tower, S1/S2/S3 micro-sector splits, tyre compound stints, and dynamic circuit radar unlock exclusively on the calendar day of <strong>Sprint Qualifying, Sprint Race, Qualifying, and Grand Prix</strong> sessions.
+                  🔒 <strong>Live Telemetry Policy:</strong> Official F1 Timing Tower, S1/S2/S3 micro-sector splits, tyre compound stints, and dynamic circuit radar unlock exclusively on the calendar day of <strong>Grand Prix</strong> race sessions.
                 </p>
               </div>
 
@@ -1126,11 +1221,11 @@ export default function LiveTelemetryPage() {
                 <button
                   type="button"
                   onClick={connectWebSocket}
-                  className="btn flex items-center gap-2 px-4 py-2.5 text-xs font-mono text-slate-300 hover:text-white rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 cursor-pointer transition"
+                  className="btn flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold text-slate-200 hover:text-white rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 cursor-pointer transition shadow-md"
                   title="Test WebSocket uplink"
                 >
                   <span>🔄</span>
-                  <span>CHECK UPLINK STATUS</span>
+                  <span>CHECK PIT-WALL UPLINK STATUS</span>
                 </button>
               </div>
             </div>
@@ -1375,14 +1470,14 @@ export default function LiveTelemetryPage() {
                             width: '46px',
                             height: '46px',
                             borderRadius: '12px',
-                            background: 'rgba(225, 6, 0, 0.1)',
-                            border: '1px solid rgba(225, 6, 0, 0.3)',
+                            background: proxyStatus === 'OFFLINE' ? 'rgba(239, 68, 68, 0.12)' : 'rgba(225, 6, 0, 0.1)',
+                            border: `1px solid ${proxyStatus === 'OFFLINE' ? 'rgba(239, 68, 68, 0.4)' : 'rgba(225, 6, 0, 0.3)'}`,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             fontSize: '22px'
                           }}>
-                            📡
+                            {proxyStatus === 'OFFLINE' ? '⚠️' : '📡'}
                           </div>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             <span style={{
@@ -1390,20 +1485,31 @@ export default function LiveTelemetryPage() {
                               width: '8px',
                               height: '8px',
                               borderRadius: '50%',
-                              background: '#E8B42A',
-                              boxShadow: '0 0 8px rgba(232, 180, 42, 0.8)'
+                              background: proxyStatus === 'OFFLINE' ? '#EF4444' : '#E8B42A',
+                              boxShadow: `0 0 8px ${proxyStatus === 'OFFLINE' ? 'rgba(239, 68, 68, 0.8)' : 'rgba(232, 180, 42, 0.8)'}`
                             }}></span>
-                            <span style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: '#E8B42A', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
-                              FIA Pit-Wall Telemetry Standby
+                            <span style={{ fontSize: '11px', fontWeight: 800, letterSpacing: '0.08em', color: proxyStatus === 'OFFLINE' ? '#EF4444' : '#E8B42A', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
+                              {proxyStatus === 'OFFLINE' ? 'Uplink Offline / Connection Error' : 'FIA Pit-Wall Telemetry Standby'}
                             </span>
                           </div>
                           <h4 style={{ fontSize: '15px', fontWeight: 700, color: 'var(--paper)', margin: 0 }}>
-                            Awaiting Live Session Green Flag
+                            {proxyStatus === 'OFFLINE' ? 'Live Telemetry Uplink Offline' : 'Awaiting Live Session Green Flag'}
                           </h4>
                           <p style={{ fontSize: '12px', color: 'var(--dim)', lineHeight: 1.6, margin: 0 }}>
-                            Live timing uplink connects directly to the official FIA F1 SignalR tunnel (<code style={{ color: 'var(--cyan)', fontSize: '11px' }}>ws://127.0.0.1:8080</code>). Drivers and real-time lap telemetry stream strictly during official Sprint Qualifying, Sprint Race, Qualifying, and Grand Prix sessions.
+                            {proxyStatus === 'OFFLINE'
+                              ? (uplinkError || 'Live timing proxy server is offline at ws://127.0.0.1:8080 and upstream telemetry feed is unreachable. Launch the local live telemetry service to stream real-time data.')
+                              : 'Live timing uplink connects directly to official FIA live timing channels. Drivers and real-time lap telemetry stream strictly during official Grand Prix race sessions.'}
                           </p>
-                          {nextUpcomingSession && (
+                          {proxyStatus === 'OFFLINE' && (
+                            <button
+                              type="button"
+                              onClick={connectWebSocket}
+                              className="mt-2 px-4 py-1.5 rounded-lg text-xs font-mono font-bold bg-red-950/40 text-red-300 border border-red-500/40 hover:bg-red-900/40 transition flex items-center gap-1.5 cursor-pointer"
+                            >
+                              <span>🔄</span> Reconnect Telemetry Uplink
+                            </button>
+                          )}
+                          {proxyStatus !== 'OFFLINE' && nextUpcomingSession && (
                             <div style={{
                               display: 'inline-flex',
                               alignItems: 'center',

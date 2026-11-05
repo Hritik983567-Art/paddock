@@ -7,7 +7,7 @@
   "circuitName": "Bahrain International Circuit",
   "country": "Bahrain",
   "predictionStage": "after_qualifying",
-  "generatedAtUtc": "2026-10-21T13:23:08.515195+00:00Z",
+  "generatedAtUtc": "2026-11-05T16:54:27.497634+00:00Z",
   "modelVersion": "v1.0.0",
   "featureSchemaVersion": "1.0.0",
   "qualifyingStatus": {
@@ -16,6 +16,39 @@
     "totalClassified": 20,
     "hasPenaltiesApplied": false,
     "dataCompletenessPct": 100
+  },
+  "circuitHeritage": {
+    "circuitId": "bahrain",
+    "circuitName": "Bahrain International Circuit",
+    "totalRacesAnalyzed": 3,
+    "poleWinRatePct": 66.7,
+    "avgWinnerGrid": 1.3,
+    "pastWinners": [
+      {
+        "year": 2023,
+        "winnerCode": "VER",
+        "winnerName": "VER",
+        "constructorName": "Red Bull",
+        "startedGrid": 1,
+        "wonFromPole": true
+      },
+      {
+        "year": 2022,
+        "winnerCode": "LEC",
+        "winnerName": "LEC",
+        "constructorName": "Ferrari",
+        "startedGrid": 1,
+        "wonFromPole": true
+      },
+      {
+        "year": 2021,
+        "winnerCode": "HAM",
+        "winnerName": "HAM",
+        "constructorName": "Mercedes",
+        "startedGrid": 2,
+        "wonFromPole": false
+      }
+    ]
   },
   "predictedWinner": {
     "driverId": "max_verstappen",
@@ -37,7 +70,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.6717,
       "winProbabilityPct": 67.17,
-      "predictedRank": 1
+      "predictedRank": 1,
+      "qualiTime": "1:29.179",
+      "qualiDeltaToPole": 0,
+      "circuitStarts": 6,
+      "circuitWins": 1,
+      "circuitPodiums": 3,
+      "circuitAvgFinish": 7.8,
+      "circuitWinRatePct": 16.7,
+      "rolling5AvgFinish": 1,
+      "rolling10AvgFinish": 1.4,
+      "rolling10WinRatePct": 90
     },
     {
       "driverId": "leclerc",
@@ -50,7 +93,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0461,
       "winProbabilityPct": 4.61,
-      "predictedRank": 2
+      "predictedRank": 2,
+      "qualiTime": "1:29.407",
+      "qualiDeltaToPole": 0.228,
+      "circuitStarts": 6,
+      "circuitWins": 1,
+      "circuitPodiums": 2,
+      "circuitAvgFinish": 9.8,
+      "circuitWinRatePct": 16.7,
+      "rolling5AvgFinish": 9.4,
+      "rolling10AvgFinish": 8.3,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "perez",
@@ -63,7 +116,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0302,
       "winProbabilityPct": 3.02,
-      "predictedRank": 3
+      "predictedRank": 3,
+      "qualiTime": "1:29.537",
+      "qualiDeltaToPole": 0.358,
+      "circuitStarts": 6,
+      "circuitWins": 1,
+      "circuitPodiums": 2,
+      "circuitAvgFinish": 9,
+      "circuitWinRatePct": 16.7,
+      "rolling5AvgFinish": 7,
+      "rolling10AvgFinish": 7.8,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "sainz",
@@ -76,7 +139,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0254,
       "winProbabilityPct": 2.54,
-      "predictedRank": 4
+      "predictedRank": 4,
+      "qualiTime": "1:29.507",
+      "qualiDeltaToPole": 0.328,
+      "circuitStarts": 6,
+      "circuitWins": 0,
+      "circuitPodiums": 1,
+      "circuitAvgFinish": 7,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 7.4,
+      "rolling10AvgFinish": 7.2,
+      "rolling10WinRatePct": 10
     },
     {
       "driverId": "norris",
@@ -89,7 +162,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0221,
       "winProbabilityPct": 2.21,
-      "predictedRank": 5
+      "predictedRank": 5,
+      "qualiTime": "1:29.614",
+      "qualiDeltaToPole": 0.435,
+      "circuitStarts": 6,
+      "circuitWins": 0,
+      "circuitPodiums": 0,
+      "circuitAvgFinish": 9.3,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 6.8,
+      "rolling10AvgFinish": 5.6,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "hamilton",
@@ -102,7 +185,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0214,
       "winProbabilityPct": 2.14,
-      "predictedRank": 6
+      "predictedRank": 6,
+      "qualiTime": "1:29.710",
+      "qualiDeltaToPole": 0.531,
+      "circuitStarts": 5,
+      "circuitWins": 3,
+      "circuitPodiums": 4,
+      "circuitAvgFinish": 2.2,
+      "circuitWinRatePct": 60,
+      "rolling5AvgFinish": 9,
+      "rolling10AvgFinish": 8.4,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "russell",
@@ -115,7 +208,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0201,
       "winProbabilityPct": 2.01,
-      "predictedRank": 7
+      "predictedRank": 7,
+      "qualiTime": "1:29.485",
+      "qualiDeltaToPole": 0.306,
+      "circuitStarts": 6,
+      "circuitWins": 0,
+      "circuitPodiums": 0,
+      "circuitAvgFinish": 10.2,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 7.4,
+      "rolling10AvgFinish": 8.6,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "hulkenberg",
@@ -128,7 +231,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0162,
       "winProbabilityPct": 1.62,
-      "predictedRank": 8
+      "predictedRank": 8,
+      "qualiTime": "1:30.502",
+      "qualiDeltaToPole": 1.323,
+      "circuitStarts": 3,
+      "circuitWins": 0,
+      "circuitPodiums": 0,
+      "circuitAvgFinish": 16.3,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 14,
+      "rolling10AvgFinish": 14.2,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "alonso",
@@ -141,7 +254,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0162,
       "winProbabilityPct": 1.62,
-      "predictedRank": 9
+      "predictedRank": 9,
+      "qualiTime": "1:29.542",
+      "qualiDeltaToPole": 0.363,
+      "circuitStarts": 3,
+      "circuitWins": 0,
+      "circuitPodiums": 1,
+      "circuitAvgFinish": 10.3,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 10.6,
+      "rolling10AvgFinish": 9.3,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "piastri",
@@ -154,7 +277,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0157,
       "winProbabilityPct": 1.57,
-      "predictedRank": 10
+      "predictedRank": 10,
+      "qualiTime": "1:29.683",
+      "qualiDeltaToPole": 0.504,
+      "circuitStarts": 1,
+      "circuitWins": 0,
+      "circuitPodiums": 0,
+      "circuitAvgFinish": 20,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 11,
+      "rolling10AvgFinish": 8.8,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "bottas",
@@ -167,7 +300,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0118,
       "winProbabilityPct": 1.18,
-      "predictedRank": 11
+      "predictedRank": 11,
+      "qualiTime": "1:30.756",
+      "qualiDeltaToPole": 1.577,
+      "circuitStarts": 6,
+      "circuitWins": 0,
+      "circuitPodiums": 2,
+      "circuitAvgFinish": 5.8,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 15.8,
+      "rolling10AvgFinish": 14.8,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "sargeant",
@@ -180,7 +323,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0115,
       "winProbabilityPct": 1.15,
-      "predictedRank": 12
+      "predictedRank": 12,
+      "qualiTime": "1:30.770",
+      "qualiDeltaToPole": 1.591,
+      "circuitStarts": 1,
+      "circuitWins": 0,
+      "circuitPodiums": 0,
+      "circuitAvgFinish": 12,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 13.8,
+      "rolling10AvgFinish": 15.1,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "stroll",
@@ -193,7 +346,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0115,
       "winProbabilityPct": 1.15,
-      "predictedRank": 13
+      "predictedRank": 13,
+      "qualiTime": "1:30.200",
+      "qualiDeltaToPole": 1.021,
+      "circuitStarts": 6,
+      "circuitWins": 0,
+      "circuitPodiums": 1,
+      "circuitAvgFinish": 10.7,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 8.8,
+      "rolling10AvgFinish": 12,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "tsunoda",
@@ -206,7 +369,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0115,
       "winProbabilityPct": 1.15,
-      "predictedRank": 14
+      "predictedRank": 14,
+      "qualiTime": "1:30.129",
+      "qualiDeltaToPole": 0.95,
+      "circuitStarts": 3,
+      "circuitWins": 0,
+      "circuitPodiums": 0,
+      "circuitAvgFinish": 9.3,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 11,
+      "rolling10AvgFinish": 13.6,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "ricciardo",
@@ -219,7 +392,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0115,
       "winProbabilityPct": 1.15,
-      "predictedRank": 15
+      "predictedRank": 15,
+      "qualiTime": "1:30.278",
+      "qualiDeltaToPole": 1.099,
+      "circuitStarts": 5,
+      "circuitWins": 0,
+      "circuitPodiums": 0,
+      "circuitAvgFinish": 10.2,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 12,
+      "rolling10AvgFinish": 12.5,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "albon",
@@ -232,7 +415,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0115,
       "winProbabilityPct": 1.15,
-      "predictedRank": 16
+      "predictedRank": 16,
+      "qualiTime": "1:30.221",
+      "qualiDeltaToPole": 1.042,
+      "circuitStarts": 5,
+      "circuitWins": 0,
+      "circuitPodiums": 1,
+      "circuitAvgFinish": 8.2,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 12.6,
+      "rolling10AvgFinish": 11.8,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "kevin_magnussen",
@@ -245,7 +438,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0115,
       "winProbabilityPct": 1.15,
-      "predictedRank": 17
+      "predictedRank": 17,
+      "qualiTime": "1:30.529",
+      "qualiDeltaToPole": 1.35,
+      "circuitStarts": 5,
+      "circuitWins": 0,
+      "circuitPodiums": 0,
+      "circuitAvgFinish": 12.6,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 16.8,
+      "rolling10AvgFinish": 15.7,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "zhou",
@@ -258,7 +461,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0115,
       "winProbabilityPct": 1.15,
-      "predictedRank": 18
+      "predictedRank": 18,
+      "qualiTime": "1:30.757",
+      "qualiDeltaToPole": 1.578,
+      "circuitStarts": 2,
+      "circuitWins": 0,
+      "circuitPodiums": 0,
+      "circuitAvgFinish": 13,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 15.2,
+      "rolling10AvgFinish": 14.2,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "ocon",
@@ -271,7 +484,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0115,
       "winProbabilityPct": 1.15,
-      "predictedRank": 19
+      "predictedRank": 19,
+      "qualiTime": "1:30.793",
+      "qualiDeltaToPole": 1.614,
+      "circuitStarts": 5,
+      "circuitWins": 0,
+      "circuitPodiums": 1,
+      "circuitAvgFinish": 9.8,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 10.8,
+      "rolling10AvgFinish": 11.7,
+      "rolling10WinRatePct": 0
     },
     {
       "driverId": "gasly",
@@ -284,7 +507,17 @@
       "gridPenaltyDelta": 0,
       "winProbability": 0.0115,
       "winProbabilityPct": 1.15,
-      "predictedRank": 20
+      "predictedRank": 20,
+      "qualiTime": "1:30.948",
+      "qualiDeltaToPole": 1.769,
+      "circuitStarts": 6,
+      "circuitWins": 0,
+      "circuitPodiums": 0,
+      "circuitAvgFinish": 11.8,
+      "circuitWinRatePct": 0,
+      "rolling5AvgFinish": 9.6,
+      "rolling10AvgFinish": 9.4,
+      "rolling10WinRatePct": 0
     }
   ],
   "topExplanatoryFactors": [
@@ -381,5 +614,11 @@
   ],
   "causalDisclaimer": "Probabilities quantify statistical associations in historical post-qualifying Grand Prix data. They do not imply single-factor causal determinism without tyre management, car reliability, and race strategy.",
   "inputHash": "b1eb22faf6d427b5",
-  "cached": false
+  "cached": false,
+  "stage": "provisional",
+  "provenance": {
+    "qualifyingSource": "live_telemetry",
+    "baselineVersion": "v1.3.1",
+    "retrievalTimestampUtc": "2026-11-05T16:54:27.497634+00:00Z"
+  }
 }

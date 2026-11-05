@@ -1,0 +1,481 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HistoricalBaseline2025_2026_v1.3.1",
+  "description": "Schema for F1 historical baseline dataset powering live feature builder inference for upcoming 2026 races. Retains raw FIA timing records while providing normalized structures for model consumption. Schema v1.3.1 adds multi-session revision history and hardened semantic consistency rules.",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "generated_at_utc",
+    "seasons"
+  ],
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "const": "1.3.1",
+      "description": "Strict contract version identifier for baseline schema"
+    },
+    "generated_at_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 UTC timestamp of baseline generation"
+    },
+    "offline_replay_certified": {
+      "type": "boolean",
+      "description": "Optional certification flag indicating end-to-end replay verification passed; NOT required for baseline data ingestion"
+    },
+    "seasons": {
+      "type": "array",
+      "description": "List of championship seasons included in the baseline",
+      "items": {
+        "type": "object",
+        "required": [
+          "season",
+          "regulation_era",
+          "rounds"
+        ],
+        "properties": {
+          "season": {
+            "type": "integer",
+            "minimum": 2021,
+            "maximum": 2030,
+            "description": "Championship season year"
+          },
+          "regulation_era": {
+            "type": "string",
+            "enum": [
+              "v6_turbo_hybrid_gen1",
+              "ground_effect_gen2",
+              "active_aero_sustainable_fuel_gen3"
+            ],
+            "description": "Authentic aerodynamic and powertrain regulation era. Must be 'active_aero_sustainable_fuel_gen3' for 2026."
+          },
+          "rounds": {
+            "type": "array",
+            "description": "Rounds within this season",
+            "items": {
+              "type": "object",
+              "required": [
+                "round",
+                "race_id",
+                "circuit_id",
+                "circuit_name",
+                "country",
+                "race_date",
+                "is_sprint_weekend",
+                "sessions"
+              ],
+              "properties": {
+                "round": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 30
+                },
+                "race_id": {
+                  "type": "string",
+                  "description": "Deterministic race slug e.g. '2026_1_albert_park'"
+                },
+                "circuit_id": {
+                  "type": "string",
+                  "description": "Canonical circuit identifier slug e.g. 'albert_park'"
+                },
+                "circuit_name": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "race_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "is_sprint_weekend": {
+                  "type": "boolean"
+                },
+                "sessions": {
+                  "type": "object",
+                  "required": [
+                    "qualifying",
+                    "starting_grid",
+                    "grand_prix"
+                  ],
+                  "properties": {
+                    "qualifying": {
+                      "type": "object",
+                      "required": [
+                        "session_status",
+                        "revision",
+                        "publication_timestamp_utc",
+                        "provenance",
+                        "pole_time_sec",
+                        "results"
+                      ],
+                      "properties": {
+                        "session_status": {
+                          "type": "string",
+                          "enum": ["completed", "upcoming", "cancelled"]
+                        },
+                        "revision": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "description": "Active qualifying classification revision number"
+                        },
+                        "publication_timestamp_utc": {
+                          "type": ["string", "null"]
+                        },
+                        "provenance": {
+                          "type": "string",
+                          "description": "Source of qualifying data (e.g., 'jolpica', 'fastf1', 'fia_stewards')"
+                        },
+                        "pole_time_sec": {
+                          "type": ["number", "null"],
+                          "description": "Fastest lap time across all qualifying segments"
+                        },
+                        "weather": {
+                          "type": ["object", "null"],
+                          "properties": {
+                            "air_temp_c": { "type": ["number", "null"] },
+                            "track_temp_c": { "type": ["number", "null"] },
+                            "humidity_pct": { "type": ["number", "null"] },
+                            "rainfall": { "type": ["number", "null"] },
+                            "provenance": { "type": "string" }
+                          }
+                        },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "driver_id",
+                              "constructor_id",
+                              "quali_position",
+                              "raw_position",
+                              "reached_q3"
+                            ],
+                            "properties": {
+                              "driver_id": { "type": "string" },
+                              "driver_code": { "type": "string" },
+                              "driver_number": { "type": "string" },
+                              "constructor_id": { "type": "string" },
+                              "raw_position": {
+                                "type": ["integer", "string"],
+                                "description": "Raw official classification as published by timing system (supports 'NC', 'DNQ')"
+                              },
+                              "quali_position": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 30,
+                                "description": "Model-normalized qualifying position"
+                              },
+                              "q1_time_sec": { "type": ["number", "null"] },
+                              "q2_time_sec": { "type": ["number", "null"] },
+                              "q3_time_sec": { "type": ["number", "null"] },
+                              "best_time_sec": { "type": ["number", "null"] },
+                              "reached_q3": {
+                                "type": "integer",
+                                "enum": [0, 1],
+                                "description": "1 if driver set a valid time in Q3; 0 otherwise"
+                              }
+                            }
+                          }
+                        },
+                        "revision_history": {
+                          "type": "array",
+                          "description": "Historical superseded revisions of qualifying classification",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "revision",
+                              "publication_timestamp_utc",
+                              "superseded_at_utc",
+                              "provenance",
+                              "change_reason",
+                              "results"
+                            ],
+                            "properties": {
+                              "revision": { "type": "integer" },
+                              "publication_timestamp_utc": { "type": "string" },
+                              "superseded_at_utc": { "type": "string" },
+                              "provenance": { "type": "string" },
+                              "change_reason": { "type": "string" },
+                              "results": { "type": "array" }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "starting_grid": {
+                      "type": "object",
+                      "required": [
+                        "is_official",
+                        "revision",
+                        "publication_timestamp_utc",
+                        "provenance",
+                        "entries"
+                      ],
+                      "properties": {
+                        "is_official": {
+                          "type": "boolean",
+                          "description": "True if published on Sunday morning by FIA Stewards post-penalties; False for provisional post-qualifying grid"
+                        },
+                        "revision": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "description": "Active sequential revision number of starting grid document"
+                        },
+                        "publication_timestamp_utc": {
+                          "type": ["string", "null"]
+                        },
+                        "provenance": {
+                          "type": "string"
+                        },
+                        "entries": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "driver_id",
+                              "constructor_id",
+                              "raw_grid_position",
+                              "grid_position",
+                              "is_pit_lane_start",
+                              "grid_penalty_delta"
+                            ],
+                            "properties": {
+                              "driver_id": { "type": "string" },
+                              "constructor_id": { "type": "string" },
+                              "raw_grid_position": {
+                                "type": ["integer", "string"],
+                                "description": "Raw official grid allocation (0 or 'PL' for pit lane)"
+                              },
+                              "grid_position": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 30,
+                                "description": "Normalized grid position (pit lane standardized to 20)"
+                              },
+                              "is_pit_lane_start": { "type": "boolean" },
+                              "grid_penalty_delta": {
+                                "type": "integer",
+                                "description": "grid_position - quali_position"
+                              },
+                              "penalty_reason": { "type": ["string", "null"] }
+                            }
+                          }
+                        },
+                        "revision_history": {
+                          "type": "array",
+                          "description": "Historical superseded revisions of starting grid document",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "revision",
+                              "publication_timestamp_utc",
+                              "superseded_at_utc",
+                              "provenance",
+                              "change_reason",
+                              "entries"
+                            ],
+                            "properties": {
+                              "revision": { "type": "integer" },
+                              "publication_timestamp_utc": { "type": "string" },
+                              "superseded_at_utc": { "type": "string" },
+                              "provenance": { "type": "string" },
+                              "change_reason": { "type": "string" },
+                              "entries": { "type": "array" }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "sprint_shootout": {
+                      "type": ["object", "null"],
+                      "description": "Optional sprint shootout qualifying session on sprint weekends",
+                      "properties": {
+                        "session_status": { "type": "string", "enum": ["completed", "upcoming", "cancelled"] },
+                        "revision": { "type": "integer", "minimum": 1 },
+                        "publication_timestamp_utc": { "type": ["string", "null"] },
+                        "provenance": { "type": "string" },
+                        "results": { "type": "array" },
+                        "revision_history": { "type": "array" }
+                      }
+                    },
+                    "sprint_race": {
+                      "type": ["object", "null"],
+                      "description": "Sprint race classification. Sprint points are strictly preserved separately from Sunday GP points.",
+                      "properties": {
+                        "session_status": {
+                          "type": "string",
+                          "enum": ["completed", "upcoming", "cancelled"]
+                        },
+                        "revision": { "type": "integer", "minimum": 1 },
+                        "publication_timestamp_utc": { "type": ["string", "null"] },
+                        "provenance": { "type": "string" },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "driver_id",
+                              "constructor_id",
+                              "raw_position",
+                              "finish_position",
+                              "sprint_points",
+                              "official_status",
+                              "participation_status"
+                            ],
+                            "properties": {
+                              "driver_id": { "type": "string" },
+                              "constructor_id": { "type": "string" },
+                              "raw_position": { "type": ["integer", "string"] },
+                              "finish_position": { "type": "integer" },
+                              "sprint_points": {
+                                "type": "number",
+                                "minimum": 0.0,
+                                "maximum": 8.0,
+                                "description": "Points awarded in sprint race (1st=8, 2nd=7... 8th=1). Excluded from GP rolling points."
+                              },
+                              "official_status": { "type": "string" },
+                              "participation_status": {
+                                "type": "string",
+                                "enum": ["started", "dns", "withdrawn", "dsq", "dnf", "classified_retirement"]
+                              },
+                              "is_classified": { "type": "boolean" }
+                            }
+                          }
+                        },
+                        "revision_history": {
+                          "type": "array",
+                          "description": "Historical superseded revisions of sprint race results",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "revision",
+                              "publication_timestamp_utc",
+                              "superseded_at_utc",
+                              "provenance",
+                              "change_reason",
+                              "results"
+                            ],
+                            "properties": {
+                              "revision": { "type": "integer" },
+                              "publication_timestamp_utc": { "type": "string" },
+                              "superseded_at_utc": { "type": "string" },
+                              "provenance": { "type": "string" },
+                              "change_reason": { "type": "string" },
+                              "results": { "type": "array" }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "grand_prix": {
+                      "type": "object",
+                      "required": [
+                        "session_status",
+                        "revision",
+                        "publication_timestamp_utc",
+                        "provenance",
+                        "results"
+                      ],
+                      "properties": {
+                        "session_status": {
+                          "type": "string",
+                          "enum": ["completed", "upcoming", "cancelled"]
+                        },
+                        "revision": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "description": "Active revision number of Grand Prix race classification"
+                        },
+                        "publication_timestamp_utc": { "type": ["string", "null"] },
+                        "provenance": { "type": "string" },
+                        "results": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "driver_id",
+                              "constructor_id",
+                              "raw_position",
+                              "model_finish_position",
+                              "gp_points",
+                              "raw_status",
+                              "official_participation_status",
+                              "model_dnf",
+                              "is_classified"
+                            ],
+                            "properties": {
+                              "driver_id": { "type": "string" },
+                              "constructor_id": { "type": "string" },
+                              "raw_position": {
+                                "type": ["integer", "string"],
+                                "description": "Preserves official non-numeric classifications like 'R', 'D', 'DSQ', 'NC' alongside numeric finishes"
+                              },
+                              "model_finish_position": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 99,
+                                "description": "Model normalized finish: numeric position if classified <=20; 99 for unclassified/DSQ/DNF"
+                              },
+                              "gp_points": {
+                                "type": "number",
+                                "minimum": 0.0,
+                                "maximum": 26.0,
+                                "description": "Points awarded exclusively in Sunday Grand Prix (25-18-15-12-10-8-6-4-2-1 plus optional fastest lap). Sprint points strictly excluded."
+                              },
+                              "raw_status": {
+                                "type": "string",
+                                "description": "Official FIA steward status string (e.g. 'Finished', '+1 Lap', 'Engine', 'Collision', 'Disqualified')"
+                              },
+                              "official_participation_status": {
+                                "type": "string",
+                                "enum": ["started", "dns", "withdrawn", "dsq", "dnf", "classified_retirement"],
+                                "description": "Formal categorization of driver participation"
+                              },
+                              "model_dnf": {
+                                "type": "integer",
+                                "enum": [0, 1],
+                                "description": "Model-derived DNF flag: 1 if not status.lower().startswith('finish') and not status.startswith('+'); 0 otherwise"
+                              },
+                              "is_classified": {
+                                "type": "boolean",
+                                "description": "True if driver completed >= 90% race distance or was classified by FIA; False for unclassified DNFs"
+                              }
+                            }
+                          }
+                        },
+                        "revision_history": {
+                          "type": "array",
+                          "description": "Historical superseded revisions of Grand Prix classification (e.g. post-race steward penalties/DSQs)",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "revision",
+                              "publication_timestamp_utc",
+                              "superseded_at_utc",
+                              "provenance",
+                              "change_reason",
+                              "results"
+                            ],
+                            "properties": {
+                              "revision": { "type": "integer" },
+                              "publication_timestamp_utc": { "type": "string" },
+                              "superseded_at_utc": { "type": "string" },
+                              "provenance": { "type": "string" },
+                              "change_reason": { "type": "string" },
+                              "results": { "type": "array" }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

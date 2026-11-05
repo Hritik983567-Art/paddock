@@ -63,8 +63,20 @@ def run_inference_for_race(race_id: str) -> dict:
             "message": f"Race '{race_id}' not found in verified post-qualifying records."
         }
 
-    # Load trained model
-    models = joblib.load(model_bundle_path)
+    # Load trained model with supported runtime verification
+    try:
+        models = joblib.load(model_bundle_path)
+    except Exception as e:
+        py_ver = sys.version.split()[0]
+        return {
+            "status": "error",
+            "error_type": "INCOMPATIBLE_RUNTIME",
+            "message": (
+                f"Failed to deserialize model artifact bundle under Python {py_ver}: {str(e)}. "
+                "Verified and supported runtime: Python 3.10 with scikit-learn==1.7.2, lightgbm==4.7.0, joblib==1.5.3."
+            )
+        }
+
     lgb_model = models.get("lightgbm")
 
     if lgb_model is None:
@@ -85,7 +97,14 @@ def run_inference_for_race(race_id: str) -> dict:
 
     # Predict calibrated race probabilities using temperature scaling (T=1.85)
     # Prevents extreme single-driver probability monopolies and reflects competitive F1 field dynamics
-    probs = lgb_model.predict_race_probabilities(race_rows, temperature=1.85)
+    try:
+        probs = lgb_model.predict_race_probabilities(race_rows, temperature=1.85)
+    except Exception as e:
+        return {
+            "status": "error",
+            "error_type": "INFERENCE_EXECUTION_FAILED",
+            "message": f"Inference execution failed: {str(e)}. Verify dependency versions against requirements.txt."
+        }
 
     # Probability Validation Invariants
     assert np.all(np.isfinite(probs)), "Non-finite probability values detected."
@@ -97,10 +116,80 @@ def run_inference_for_race(race_id: str) -> dict:
 
     # Sort descending by win probability
     sorted_df = race_rows.sort_values(by="win_probability", ascending=False).reset_index(drop=True)
+    first_row = sorted_df.iloc[0]
 
-    # Format Driver Prediction List
+    # Circuit Heritage Extraction from historical dataset with STRICT CHRONOLOGICAL CUTOFF
+    # Prevents future-data leakage:
+    # 1. Excludes target race's own outcome
+    # 2. Excludes subsequent rounds within the same season
+    # 3. Excludes future seasons
+    circuit_id = str(first_row["circuit_id"])
+    circuit_name = str(first_row["circuit_name"])
+    target_season = int(first_row["season"])
+    target_round = int(first_row["round"])
+
+    prior_circuit_races = df[
+        (df["circuit_id"] == circuit_id) &
+        (
+            (df["season"] < target_season) |
+            ((df["season"] == target_season) & (df["round"] < target_round))
+        )
+    ]
+    past_race_winners = prior_circuit_races[prior_circuit_races["won_race"] == 1].sort_values(by=["season", "round"], ascending=False)
+    
+    past_winners = []
+    seen_seasons = set()
+    for _, w_row in past_race_winners.iterrows():
+        s_val = int(w_row["season"])
+        if s_val not in seen_seasons and len(past_winners) < 10:
+            seen_seasons.add(s_val)
+            past_winners.append({
+                "year": s_val,
+                "winnerCode": str(w_row["driver_code"]),
+                "winnerName": str(w_row.get("driver_code", "")),
+                "constructorName": str(w_row["constructor_name"]),
+                "startedGrid": int(w_row["grid_position"]),
+                "wonFromPole": int(w_row["grid_position"]) == 1
+            })
+
+    total_analyzed = len(past_winners)
+    pole_wins = sum(1 for p in past_winners if p["wonFromPole"])
+    default_pole_rate = round(float(first_row.get("circuit_historical_pole_win_rate", 0.45)) * 100, 1) if pd.notna(first_row.get("circuit_historical_pole_win_rate")) else 45.0
+    pole_win_rate = round((pole_wins / total_analyzed * 100), 1) if total_analyzed > 0 else default_pole_rate
+    avg_grid = round(sum(p["startedGrid"] for p in past_winners) / total_analyzed, 1) if total_analyzed > 0 else 1.5
+
+    circuit_heritage = {
+        "circuitId": circuit_id,
+        "circuitName": circuit_name,
+        "totalRacesAnalyzed": total_analyzed,
+        "poleWinRatePct": pole_win_rate,
+        "avgWinnerGrid": avg_grid,
+        "pastWinners": past_winners
+    }
+
+    # Format Driver Prediction List with Qualification & Track Heritage Metrics
     predictions = []
     for rank_idx, row in sorted_df.iterrows():
+        quali_sec = row.get("quali_time_sec")
+        quali_time_str = None
+        if pd.notna(quali_sec) and float(quali_sec) > 0:
+            mins = int(float(quali_sec) // 60)
+            rem_secs = float(quali_sec) % 60
+            quali_time_str = f"{mins}:{rem_secs:06.3f}" if mins > 0 else f"{rem_secs:06.3f}"
+
+        delta_val = row.get("quali_time_delta_to_pole")
+        quali_delta = round(float(delta_val), 3) if pd.notna(delta_val) else 0.0
+
+        c_starts = int(row.get("driver_circuit_starts", 0)) if pd.notna(row.get("driver_circuit_starts")) else 0
+        c_wins = int(row.get("driver_circuit_wins", 0)) if pd.notna(row.get("driver_circuit_wins")) else 0
+        c_podiums = int(row.get("driver_circuit_podiums", 0)) if pd.notna(row.get("driver_circuit_podiums")) else 0
+        c_avg = round(float(row.get("driver_circuit_avg_finish", 0)), 1) if pd.notna(row.get("driver_circuit_avg_finish")) else None
+        c_win_rate = round(float(row.get("driver_circuit_win_rate", 0)) * 100, 1) if pd.notna(row.get("driver_circuit_win_rate")) else 0.0
+
+        r5_avg = round(float(row.get("driver_rolling_5_avg_finish", 0)), 1) if pd.notna(row.get("driver_rolling_5_avg_finish")) else None
+        r10_avg = round(float(row.get("driver_rolling_10_avg_finish", 0)), 1) if pd.notna(row.get("driver_rolling_10_avg_finish")) else None
+        r10_wins = round(float(row.get("driver_rolling_10_win_rate", 0)) * 100, 1) if pd.notna(row.get("driver_rolling_10_win_rate")) else 0.0
+
         driver_entry = {
             "driverId": str(row["driver_id"]),
             "driverCode": str(row["driver_code"]),
@@ -112,20 +201,29 @@ def run_inference_for_race(race_id: str) -> dict:
             "gridPenaltyDelta": int(row.get("grid_penalty_delta", 0)),
             "winProbability": round(float(row["win_probability"]), 4),
             "winProbabilityPct": round(float(row["win_probability"]) * 100, 2),
-            "predictedRank": int(rank_idx + 1)
+            "predictedRank": int(rank_idx + 1),
+            "qualiTime": quali_time_str,
+            "qualiDeltaToPole": quali_delta,
+            "circuitStarts": c_starts,
+            "circuitWins": c_wins,
+            "circuitPodiums": c_podiums,
+            "circuitAvgFinish": c_avg,
+            "circuitWinRatePct": c_win_rate,
+            "rolling5AvgFinish": r5_avg,
+            "rolling10AvgFinish": r10_avg,
+            "rolling10WinRatePct": r10_wins
         }
         predictions.append(driver_entry)
 
     winner = predictions[0]
-    first_row = sorted_df.iloc[0]
 
     response = {
         "status": "success",
         "raceId": str(first_row["race_id"]),
         "season": int(first_row["season"]),
         "round": int(first_row["round"]),
-        "circuitId": str(first_row["circuit_id"]),
-        "circuitName": str(first_row["circuit_name"]),
+        "circuitId": circuit_id,
+        "circuitName": circuit_name,
         "country": str(first_row.get("country", "")),
         "predictionStage": "after_qualifying",
         "generatedAtUtc": pd.Timestamp.utcnow().isoformat() + "Z",
@@ -138,6 +236,7 @@ def run_inference_for_race(race_id: str) -> dict:
             "hasPenaltiesApplied": bool(any(p["gridPenaltyDelta"] != 0 for p in predictions)),
             "dataCompletenessPct": 100.0
         },
+        "circuitHeritage": circuit_heritage,
         "predictedWinner": {
             "driverId": winner["driverId"],
             "driverCode": winner["driverCode"],

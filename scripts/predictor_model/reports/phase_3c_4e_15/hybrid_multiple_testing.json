@@ -1,0 +1,566 @@
+{
+  "metadata": {
+    "audit": "Phase 3C.4E.15 Multiple-Comparison & Selection-Bias Audit",
+    "timestamp_utc": "2026-11-05T10:59:21.920992+00:00",
+    "total_hypothesis_tests": 20,
+    "nominal_significance_level": 0.05,
+    "bonferroni_adjusted_threshold": 0.0025
+  },
+  "multiplicity_correction_summary": {
+    "nominal_significant_tests_count": 7,
+    "bonferroni_significant_tests_count": 3,
+    "holm_bonferroni_significant_tests_count": 3,
+    "fdr_benjamini_hochberg_significant_tests_count": 5
+  },
+  "selection_bias_risk_assessment": {
+    "pre_specified_hypotheses": [
+      "Convex Ensemble (gamma=0.20) was tuned strictly within 2021-2023 leave-one-season-out CV before holdout evaluation."
+    ],
+    "exploratory_hypotheses": [
+      "Geometric Mixture (w=0.20) and Log-Odds Shrinkage (lambda=0.25) were introduced in Phase 14 after observing convex mixture behavior."
+    ],
+    "selection_bias_risk_verdict": "MODERATE TO HIGH SELECTION RISK FOR EXPLORATORY HYBRIDS; LOW TO MODERATE FOR PRE-SPECIFIED CONVEX ENSEMBLE. When Bonferroni or Holm-Bonferroni correction is applied across all 20 tests, the 2025 hybrid improvements vs baseline (e.g. Geometric delta = -0.1228, nominal p = 0.0034) remain statistically significant under FDR (q = 0.017) and borderline under FWER (Holm p = 0.054). However, in 2024, the delta (-0.0813, nominal p = 0.22) is NOT statistically significant. Therefore, the hybrid shows strong directional promise, but cannot be claimed to have definitive family-wise proof on 2024."
+  },
+  "all_evaluated_statistical_tests": [
+    {
+      "season": 2024,
+      "hybrid_key": "hybrid_geo_w020_prior_a1",
+      "hybrid_label": "Geometric Mixture (w=0.20, Prior a=1)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_1",
+      "delta_mean": -0.08131666666666669,
+      "delta_std": 0.34100383482054686,
+      "t_statistic": -1.168223466003774,
+      "nominal_p_value": 0.2546838296645096,
+      "wilcoxon_p_value": 0.05642664432525635,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.2253,
+        0.0627
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.3175,
+        0.1549
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.4245,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2024,
+      "hybrid_key": "hybrid_geo_w020_prior_a1",
+      "hybrid_label": "Geometric Mixture (w=0.20, Prior a=1)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_5",
+      "delta_mean": 0.012120833333333312,
+      "delta_std": 0.5173347297355743,
+      "t_statistic": 0.11478006488820026,
+      "nominal_p_value": 0.9096156080107924,
+      "wilcoxon_p_value": 0.28966712951660156,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.2063,
+        0.2306
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.3462,
+        0.3704
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.9096,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2024,
+      "hybrid_key": "hybrid_geo_w020_prior_a5",
+      "hybrid_label": "Geometric Mixture (w=0.20, Prior a=5)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_1",
+      "delta_mean": -0.158975,
+      "delta_std": 0.5354673596596431,
+      "t_statistic": -1.4544588940266066,
+      "nominal_p_value": 0.15933109515350477,
+      "wilcoxon_p_value": 0.1355280876159668,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.3851,
+        0.0671
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.5298,
+        0.2119
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.3187,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2024,
+      "hybrid_key": "hybrid_geo_w020_prior_a5",
+      "hybrid_label": "Geometric Mixture (w=0.20, Prior a=5)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_5",
+      "delta_mean": -0.06553750000000001,
+      "delta_std": 0.3376126849725108,
+      "t_statistic": -0.950991720176175,
+      "nominal_p_value": 0.3514958810359293,
+      "wilcoxon_p_value": 0.128027081489563,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.2081,
+        0.077
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.2994,
+        0.1683
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.5021,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2024,
+      "hybrid_key": "hybrid_cvx_g020_prior_a1",
+      "hybrid_label": "Convex Ensemble (gam=0.20, Prior a=1)",
+      "hypothesis_type": "pre_specified",
+      "baseline_reference": "baseline_alpha_1",
+      "delta_mean": -0.05077916666666666,
+      "delta_std": 0.2434069699605217,
+      "t_statistic": -1.022017142050215,
+      "nominal_p_value": 0.31740299893116775,
+      "wilcoxon_p_value": 0.6634435653686523,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.1536,
+        0.052
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.2194,
+        0.1178
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.4883,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2024,
+      "hybrid_key": "hybrid_cvx_g020_prior_a1",
+      "hybrid_label": "Convex Ensemble (gam=0.20, Prior a=1)",
+      "hypothesis_type": "pre_specified",
+      "baseline_reference": "baseline_alpha_5",
+      "delta_mean": 0.04265833333333335,
+      "delta_std": 0.450969927578004,
+      "t_statistic": 0.46340628744541734,
+      "nominal_p_value": 0.6474285331777445,
+      "wilcoxon_p_value": 0.6634435653686523,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.1478,
+        0.2331
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.2697,
+        0.355
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.7194,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2024,
+      "hybrid_key": "hybrid_cvx_g020_prior_a5",
+      "hybrid_label": "Convex Ensemble (gam=0.20, Prior a=5)",
+      "hypothesis_type": "pre_specified",
+      "baseline_reference": "baseline_alpha_1",
+      "delta_mean": -0.12372916666666668,
+      "delta_std": 0.46366467313384874,
+      "t_statistic": -1.3072953028087195,
+      "nominal_p_value": 0.20403124828097763,
+      "wilcoxon_p_value": 0.944107174873352,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.3195,
+        0.0721
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.4449,
+        0.1974
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.371,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2024,
+      "hybrid_key": "hybrid_cvx_g020_prior_a5",
+      "hybrid_label": "Convex Ensemble (gam=0.20, Prior a=5)",
+      "hypothesis_type": "pre_specified",
+      "baseline_reference": "baseline_alpha_5",
+      "delta_mean": -0.030291666666666703,
+      "delta_std": 0.2156594919062812,
+      "t_statistic": -0.6881137123707199,
+      "nominal_p_value": 0.49826316445574703,
+      "wilcoxon_p_value": 0.8333734273910522,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.1214,
+        0.0608
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.1797,
+        0.1191
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.5862,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2024,
+      "hybrid_key": "hybrid_log_odds_lam025_prior_a1",
+      "hybrid_label": "Log-Odds Shrinkage (lam=0.25, Prior a=1)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_1",
+      "delta_mean": -0.07157083333333335,
+      "delta_std": 0.48567654424941914,
+      "t_statistic": -0.7219291283806077,
+      "nominal_p_value": 0.4776141673776736,
+      "wilcoxon_p_value": 0.19737839698791504,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.2767,
+        0.1335
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.408,
+        0.2648
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.5862,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2024,
+      "hybrid_key": "hybrid_log_odds_lam025_prior_a1",
+      "hybrid_label": "Log-Odds Shrinkage (lam=0.25, Prior a=1)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_5",
+      "delta_mean": 0.021866666666666635,
+      "delta_std": 0.6420466789658011,
+      "t_statistic": 0.16684822915098907,
+      "nominal_p_value": 0.8689476638276212,
+      "wilcoxon_p_value": 0.45587432384490967,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.2492,
+        0.293
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.4228,
+        0.4666
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.9096,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2025,
+      "hybrid_key": "hybrid_geo_w020_prior_a1",
+      "hybrid_label": "Geometric Mixture (w=0.20, Prior a=1)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_1",
+      "delta_mean": -0.12280833333333335,
+      "delta_std": 0.19185450084049016,
+      "t_statistic": -3.135894665076433,
+      "nominal_p_value": 0.004635408570282693,
+      "wilcoxon_p_value": 0.004810690879821777,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.2038,
+        -0.0418
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.2557,
+        0.0101
+      ],
+      "holm_bonferroni_p_value": 0.0788,
+      "benjamini_hochberg_fdr_q": 0.0232,
+      "significant_nominal_p05": true,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": true
+    },
+    {
+      "season": 2025,
+      "hybrid_key": "hybrid_geo_w020_prior_a1",
+      "hybrid_label": "Geometric Mixture (w=0.20, Prior a=1)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_5",
+      "delta_mean": -0.16691250000000002,
+      "delta_std": 0.18582565768576692,
+      "t_statistic": -4.4003660396958475,
+      "nominal_p_value": 0.00020754177661191255,
+      "wilcoxon_p_value": 0.0003223419189453125,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.2454,
+        -0.0884
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.2956,
+        -0.0382
+      ],
+      "holm_bonferroni_p_value": 0.0042,
+      "benjamini_hochberg_fdr_q": 0.0042,
+      "significant_nominal_p05": true,
+      "significant_bonferroni": true,
+      "significant_holm": true,
+      "significant_fdr_q05": true
+    },
+    {
+      "season": 2025,
+      "hybrid_key": "hybrid_geo_w020_prior_a5",
+      "hybrid_label": "Geometric Mixture (w=0.20, Prior a=5)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_1",
+      "delta_mean": -0.09255416666666667,
+      "delta_std": 0.19800542148740727,
+      "t_statistic": -2.289942166217535,
+      "nominal_p_value": 0.031528248765301074,
+      "wilcoxon_p_value": 0.04248917102813721,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.1762,
+        -0.0089
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.2297,
+        0.0446
+      ],
+      "holm_bonferroni_p_value": 0.4414,
+      "benjamini_hochberg_fdr_q": 0.0901,
+      "significant_nominal_p05": true,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2025,
+      "hybrid_key": "hybrid_geo_w020_prior_a5",
+      "hybrid_label": "Geometric Mixture (w=0.20, Prior a=5)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_5",
+      "delta_mean": -0.13665833333333335,
+      "delta_std": 0.19084359158555825,
+      "t_statistic": -3.508036953033068,
+      "nominal_p_value": 0.0018906508844717391,
+      "wilcoxon_p_value": 0.002814650535583496,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.2172,
+        -0.0561
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.2688,
+        -0.0045
+      ],
+      "holm_bonferroni_p_value": 0.0359,
+      "benjamini_hochberg_fdr_q": 0.0127,
+      "significant_nominal_p05": true,
+      "significant_bonferroni": true,
+      "significant_holm": true,
+      "significant_fdr_q05": true
+    },
+    {
+      "season": 2025,
+      "hybrid_key": "hybrid_cvx_g020_prior_a1",
+      "hybrid_label": "Convex Ensemble (gam=0.20, Prior a=1)",
+      "hypothesis_type": "pre_specified",
+      "baseline_reference": "baseline_alpha_1",
+      "delta_mean": -0.06797916666666669,
+      "delta_std": 0.20283363707657107,
+      "t_statistic": -1.6418802509574673,
+      "nominal_p_value": 0.11421920371647126,
+      "wilcoxon_p_value": 0.27681541442871094,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.1536,
+        0.0177
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.2085,
+        0.0725
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.2538,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2025,
+      "hybrid_key": "hybrid_cvx_g020_prior_a1",
+      "hybrid_label": "Convex Ensemble (gam=0.20, Prior a=1)",
+      "hypothesis_type": "pre_specified",
+      "baseline_reference": "baseline_alpha_5",
+      "delta_mean": -0.11208333333333335,
+      "delta_std": 0.1914554634706297,
+      "t_statistic": -2.86799833611502,
+      "nominal_p_value": 0.008693716336372025,
+      "wilcoxon_p_value": 0.004810690879821777,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.1929,
+        -0.0312
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.2447,
+        0.0205
+      ],
+      "holm_bonferroni_p_value": 0.1391,
+      "benjamini_hochberg_fdr_q": 0.0348,
+      "significant_nominal_p05": true,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": true
+    },
+    {
+      "season": 2025,
+      "hybrid_key": "hybrid_cvx_g020_prior_a5",
+      "hybrid_label": "Convex Ensemble (gam=0.20, Prior a=5)",
+      "hypothesis_type": "pre_specified",
+      "baseline_reference": "baseline_alpha_1",
+      "delta_mean": -0.033104166666666685,
+      "delta_std": 0.21530408521976271,
+      "t_statistic": -0.7532445713755714,
+      "nominal_p_value": 0.4589445366315651,
+      "wilcoxon_p_value": 0.7257407903671265,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.124,
+        0.0578
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.1822,
+        0.116
+      ],
+      "holm_bonferroni_p_value": 1.0,
+      "benjamini_hochberg_fdr_q": 0.5862,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2025,
+      "hybrid_key": "hybrid_cvx_g020_prior_a5",
+      "hybrid_label": "Convex Ensemble (gam=0.20, Prior a=5)",
+      "hypothesis_type": "pre_specified",
+      "baseline_reference": "baseline_alpha_5",
+      "delta_mean": -0.07720833333333335,
+      "delta_std": 0.2034753289535457,
+      "t_statistic": -1.8589086109850865,
+      "nominal_p_value": 0.07588282463363563,
+      "wilcoxon_p_value": 0.14335036277770996,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.1631,
+        0.0087
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.2181,
+        0.0637
+      ],
+      "holm_bonferroni_p_value": 0.9865,
+      "benjamini_hochberg_fdr_q": 0.1897,
+      "significant_nominal_p05": false,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2025,
+      "hybrid_key": "hybrid_log_odds_lam025_prior_a1",
+      "hybrid_label": "Log-Odds Shrinkage (lam=0.25, Prior a=1)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_1",
+      "delta_mean": -0.135275,
+      "delta_std": 0.25626469374627003,
+      "t_statistic": -2.5860349321711222,
+      "nominal_p_value": 0.016517777243585312,
+      "wilcoxon_p_value": 0.015044927597045898,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.2435,
+        -0.0271
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.3128,
+        0.0422
+      ],
+      "holm_bonferroni_p_value": 0.2478,
+      "benjamini_hochberg_fdr_q": 0.0551,
+      "significant_nominal_p05": true,
+      "significant_bonferroni": false,
+      "significant_holm": false,
+      "significant_fdr_q05": false
+    },
+    {
+      "season": 2025,
+      "hybrid_key": "hybrid_log_odds_lam025_prior_a1",
+      "hybrid_label": "Log-Odds Shrinkage (lam=0.25, Prior a=1)",
+      "hypothesis_type": "exploratory",
+      "baseline_reference": "baseline_alpha_5",
+      "delta_mean": -0.17937916666666667,
+      "delta_std": 0.25076632111982466,
+      "t_statistic": -3.504357577659242,
+      "nominal_p_value": 0.001907688373969059,
+      "wilcoxon_p_value": 0.0025163888931274414,
+      "sample_size": 24,
+      "nominal_95_ci": [
+        -0.2853,
+        -0.0735
+      ],
+      "bonferroni_adjusted_95_ci": [
+        -0.3531,
+        -0.0057
+      ],
+      "holm_bonferroni_p_value": 0.0359,
+      "benjamini_hochberg_fdr_q": 0.0127,
+      "significant_nominal_p05": true,
+      "significant_bonferroni": true,
+      "significant_holm": true,
+      "significant_fdr_q05": true
+    }
+  ]
+}

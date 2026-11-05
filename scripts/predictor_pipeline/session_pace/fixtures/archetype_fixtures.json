@@ -1,0 +1,297 @@
+{
+  "description": "Representative Formula 1 session pace fixtures across 6 archetypal racing contexts (2021-2024).",
+  "archetypes": {
+    "high_tyre_degradation_standard": {
+      "race_id": "2024_1_bahrain",
+      "round": 1,
+      "season": 2024,
+      "circuit_id": "bahrain",
+      "grand_prix": "Bahrain Grand Prix",
+      "archetype_category": "High Tyre Degradation / Standard Weekend",
+      "weekend_format": "standard",
+      "qualifying_pole_time_sec": 89.179,
+      "pole_driver": "max_verstappen",
+      "actual_winner": "max_verstappen",
+      "drivers": [
+        {
+          "driver_id": "max_verstappen",
+          "grid_position": 1,
+          "quali_time_sec": 89.179,
+          "fp2_laps_sec": [96.85, 96.81, 96.88, 96.95, 97.02, 97.10, 97.18, 97.25, 97.35, 97.42],
+          "sector_splits_sec": [28.810, 38.650, 21.719]
+        },
+        {
+          "driver_id": "leclerc",
+          "grid_position": 2,
+          "quali_time_sec": 89.407,
+          "fp2_laps_sec": [97.05, 97.08, 97.15, 97.22, 97.31, 97.40, 97.48, 97.58],
+          "sector_splits_sec": [28.890, 38.740, 21.777]
+        },
+        {
+          "driver_id": "russell",
+          "grid_position": 3,
+          "quali_time_sec": 89.485,
+          "fp2_laps_sec": [97.15, 97.20, 97.28, 97.38, 97.49, 97.60, 97.71],
+          "sector_splits_sec": [28.940, 38.780, 21.765]
+        },
+        {
+          "driver_id": "sainz",
+          "grid_position": 4,
+          "quali_time_sec": 89.507,
+          "fp2_laps_sec": [97.12, 97.18, 97.25, 97.33, 97.42, 97.52, 97.62],
+          "sector_splits_sec": [28.920, 38.810, 21.777]
+        },
+        {
+          "driver_id": "perez",
+          "grid_position": 5,
+          "quali_time_sec": 89.537,
+          "fp2_laps_sec": [97.25, 97.30, 97.38, 97.45, 97.55, 97.65, 97.75, 97.85],
+          "sector_splits_sec": [28.950, 38.820, 21.767]
+        },
+        {
+          "driver_id": "norris",
+          "grid_position": 7,
+          "quali_time_sec": 89.614,
+          "fp2_laps_sec": [97.35, 97.41, 97.48, 97.58, 97.69, 97.78, 97.89],
+          "sector_splits_sec": [28.980, 38.850, 21.784]
+        }
+      ]
+    },
+    "constructor_performance_shift_sprint": {
+      "race_id": "2024_6_miami",
+      "round": 6,
+      "season": 2024,
+      "circuit_id": "miami",
+      "grand_prix": "Miami Grand Prix",
+      "archetype_category": "Constructor Performance Shift / Sprint Weekend (McLaren Major Floor Upgrade)",
+      "weekend_format": "sprint",
+      "qualifying_pole_time_sec": 87.241,
+      "pole_driver": "max_verstappen",
+      "actual_winner": "norris",
+      "sprint_winner": "max_verstappen",
+      "drivers": [
+        {
+          "driver_id": "max_verstappen",
+          "grid_position": 1,
+          "quali_time_sec": 87.241,
+          "fp2_laps_sec": [],
+          "sprint_laps_sec": [91.85, 91.90, 91.95, 92.05, 92.12, 92.20, 92.28, 92.35, 92.45, 92.55],
+          "sector_splits_sec": [29.110, 33.420, 24.711]
+        },
+        {
+          "driver_id": "leclerc",
+          "grid_position": 2,
+          "quali_time_sec": 87.382,
+          "fp2_laps_sec": [],
+          "sprint_laps_sec": [92.05, 92.10, 92.18, 92.25, 92.35, 92.42, 92.51, 92.60],
+          "sector_splits_sec": [29.150, 33.480, 24.752]
+        },
+        {
+          "driver_id": "sainz",
+          "grid_position": 3,
+          "quali_time_sec": 87.455,
+          "fp2_laps_sec": [],
+          "sprint_laps_sec": [92.15, 92.22, 92.30, 92.38, 92.48, 92.58, 92.68],
+          "sector_splits_sec": [29.180, 33.510, 24.765]
+        },
+        {
+          "driver_id": "perez",
+          "grid_position": 4,
+          "quali_time_sec": 87.460,
+          "fp2_laps_sec": [],
+          "sprint_laps_sec": [92.20, 92.28, 92.35, 92.42, 92.52, 92.62, 92.71],
+          "sector_splits_sec": [29.190, 33.500, 24.770]
+        },
+        {
+          "driver_id": "norris",
+          "grid_position": 5,
+          "quali_time_sec": 87.594,
+          "fp2_laps_sec": [],
+          "sprint_laps_sec": [91.75, 91.79, 91.85, 91.90, 91.98, 92.05, 92.12],
+          "sector_splits_sec": [29.210, 33.560, 24.824]
+        }
+      ]
+    },
+    "street_circuit_low_overtaking": {
+      "race_id": "2024_8_monaco",
+      "round": 8,
+      "season": 2024,
+      "circuit_id": "monaco",
+      "grand_prix": "Monaco Grand Prix",
+      "archetype_category": "Street Circuit / Ultra-Low Overtaking (Overtaking Index 0.05)",
+      "weekend_format": "standard",
+      "qualifying_pole_time_sec": 70.270,
+      "pole_driver": "leclerc",
+      "actual_winner": "leclerc",
+      "drivers": [
+        {
+          "driver_id": "leclerc",
+          "grid_position": 1,
+          "quali_time_sec": 70.270,
+          "fp2_laps_sec": [75.82, 75.85, 75.89, 75.95, 76.01, 76.08, 76.15, 76.22],
+          "sector_splits_sec": [18.720, 32.850, 18.700]
+        },
+        {
+          "driver_id": "piastri",
+          "grid_position": 2,
+          "quali_time_sec": 70.424,
+          "fp2_laps_sec": [76.01, 76.05, 76.12, 76.18, 76.25, 76.32, 76.40],
+          "sector_splits_sec": [18.780, 32.910, 18.734]
+        },
+        {
+          "driver_id": "sainz",
+          "grid_position": 3,
+          "quali_time_sec": 70.518,
+          "fp2_laps_sec": [76.12, 76.18, 76.25, 76.31, 76.39, 76.48],
+          "sector_splits_sec": [18.810, 32.960, 18.748]
+        },
+        {
+          "driver_id": "norris",
+          "grid_position": 4,
+          "quali_time_sec": 70.519,
+          "fp2_laps_sec": [76.10, 76.15, 76.22, 76.29, 76.38, 76.45],
+          "sector_splits_sec": [18.800, 32.950, 18.769]
+        },
+        {
+          "driver_id": "max_verstappen",
+          "grid_position": 6,
+          "quali_time_sec": 70.567,
+          "fp2_laps_sec": [76.25, 76.30, 76.38, 76.45, 76.55, 76.62],
+          "sector_splits_sec": [18.820, 32.990, 18.757]
+        }
+      ]
+    },
+    "wet_changing_conditions": {
+      "race_id": "2024_9_villeneuve",
+      "round": 9,
+      "season": 2024,
+      "circuit_id": "villeneuve",
+      "grand_prix": "Canadian Grand Prix",
+      "archetype_category": "Wet / Changing Track Conditions",
+      "weekend_format": "standard",
+      "qualifying_pole_time_sec": 72.000,
+      "pole_driver": "russell",
+      "actual_winner": "max_verstappen",
+      "drivers": [
+        {
+          "driver_id": "russell",
+          "grid_position": 1,
+          "quali_time_sec": 72.000,
+          "fp2_laps_sec": [78.20, 78.28, 78.35, 78.45, 78.55],
+          "sector_splits_sec": [20.150, 23.420, 28.430]
+        },
+        {
+          "driver_id": "max_verstappen",
+          "grid_position": 2,
+          "quali_time_sec": 72.000,
+          "fp2_laps_sec": [78.10, 78.18, 78.25, 78.32, 78.40, 78.48],
+          "sector_splits_sec": [20.140, 23.440, 28.420]
+        },
+        {
+          "driver_id": "norris",
+          "grid_position": 3,
+          "quali_time_sec": 72.021,
+          "fp2_laps_sec": [78.15, 78.22, 78.30, 78.39, 78.48, 78.58],
+          "sector_splits_sec": [20.160, 23.430, 28.431]
+        },
+        {
+          "driver_id": "piastri",
+          "grid_position": 4,
+          "quali_time_sec": 72.103,
+          "fp2_laps_sec": [78.25, 78.32, 78.40, 78.50, 78.60],
+          "sector_splits_sec": [20.190, 23.460, 28.453]
+        }
+      ]
+    },
+    "standard_weekend_high_aero": {
+      "race_id": "2024_10_catalunya",
+      "round": 10,
+      "season": 2024,
+      "circuit_id": "catalunya",
+      "grand_prix": "Spanish Grand Prix",
+      "archetype_category": "Standard Weekend / High Aero Demand Permanent Circuit",
+      "weekend_format": "standard",
+      "qualifying_pole_time_sec": 71.383,
+      "pole_driver": "norris",
+      "actual_winner": "max_verstappen",
+      "drivers": [
+        {
+          "driver_id": "norris",
+          "grid_position": 1,
+          "quali_time_sec": 71.383,
+          "fp2_laps_sec": [79.51, 79.55, 79.62, 79.70, 79.79, 79.88, 79.98, 80.08],
+          "sector_splits_sec": [21.820, 28.910, 20.653]
+        },
+        {
+          "driver_id": "max_verstappen",
+          "grid_position": 2,
+          "quali_time_sec": 71.403,
+          "fp2_laps_sec": [79.42, 79.46, 79.52, 79.59, 79.68, 79.77, 79.86, 79.95],
+          "sector_splits_sec": [21.840, 28.900, 20.663]
+        },
+        {
+          "driver_id": "hamilton",
+          "grid_position": 3,
+          "quali_time_sec": 71.701,
+          "fp2_laps_sec": [79.68, 79.74, 79.82, 79.91, 80.01, 80.12],
+          "sector_splits_sec": [21.910, 29.020, 20.771]
+        },
+        {
+          "driver_id": "russell",
+          "grid_position": 4,
+          "quali_time_sec": 71.703,
+          "fp2_laps_sec": [79.72, 79.78, 79.85, 79.95, 80.05, 80.16],
+          "sector_splits_sec": [21.920, 29.010, 20.773]
+        }
+      ]
+    },
+    "sprint_weekend_collision_attrition": {
+      "race_id": "2024_11_spielberg",
+      "round": 11,
+      "season": 2024,
+      "circuit_id": "spielberg",
+      "grand_prix": "Austrian Grand Prix",
+      "archetype_category": "Sprint Weekend / Collision Anomaly (Verstappen/Norris Crash)",
+      "weekend_format": "sprint",
+      "qualifying_pole_time_sec": 64.314,
+      "pole_driver": "max_verstappen",
+      "actual_winner": "russell",
+      "sprint_winner": "max_verstappen",
+      "drivers": [
+        {
+          "driver_id": "max_verstappen",
+          "grid_position": 1,
+          "quali_time_sec": 64.314,
+          "fp2_laps_sec": [],
+          "sprint_laps_sec": [68.10, 68.15, 68.22, 68.28, 68.35, 68.42, 68.50, 68.58],
+          "sector_splits_sec": [16.210, 28.450, 19.654]
+        },
+        {
+          "driver_id": "norris",
+          "grid_position": 2,
+          "quali_time_sec": 64.718,
+          "fp2_laps_sec": [],
+          "sprint_laps_sec": [68.35, 68.40, 68.48, 68.55, 68.62, 68.70, 68.78],
+          "sector_splits_sec": [16.320, 28.610, 19.788]
+        },
+        {
+          "driver_id": "russell",
+          "grid_position": 3,
+          "quali_time_sec": 64.840,
+          "fp2_laps_sec": [],
+          "sprint_laps_sec": [68.55, 68.62, 68.70, 68.78, 68.86, 68.95],
+          "sector_splits_sec": [16.380, 28.650, 19.810]
+        },
+        {
+          "driver_id": "sainz",
+          "grid_position": 4,
+          "quali_time_sec": 64.851,
+          "fp2_laps_sec": [],
+          "sprint_laps_sec": [68.60, 68.68, 68.75, 68.82, 68.91, 69.00],
+          "sector_splits_sec": [16.390, 28.640, 19.821]
+        }
+      ]
+    }
+  }
+}
+

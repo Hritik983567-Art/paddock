@@ -47,4 +47,6 @@ cache/
 *.ff1pkl
 __pycache__/
 *.pyc
+temp_profile*/
+
 

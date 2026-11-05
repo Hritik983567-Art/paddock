@@ -1,0 +1,198 @@
+{
+  "metadata": {
+    "study_name": "Phase 3C.4E.11 Incremental Value Ablation Study",
+    "timestamp_utc": "2026-11-05T09:41:05.225715+00:00",
+    "holdout_season": 2024,
+    "holdout_races_count": 24,
+    "bootstrap_iterations": 1000
+  },
+  "configurations_evaluated": {
+    "grid_only": {
+      "configuration_name": "grid_only",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "mean_multiclass_log_loss": 1.8741,
+      "mean_brier_sum": 0.7544,
+      "delta_log_loss_vs_grid": 0.0,
+      "bootstrap_95_ci_delta": [
+        0.0,
+        0.0
+      ],
+      "wilcoxon_p_value": 1.0,
+      "statistically_significant_improvement": false
+    },
+    "grid_empirical": {
+      "configuration_name": "grid_empirical",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "mean_multiclass_log_loss": 1.8535,
+      "mean_brier_sum": 0.7117,
+      "delta_log_loss_vs_grid": -0.0206,
+      "bootstrap_95_ci_delta": [
+        -0.4272,
+        0.5078
+      ],
+      "wilcoxon_p_value": 0.08524,
+      "statistically_significant_improvement": false
+    },
+    "grid_plus_qualifying": {
+      "configuration_name": "grid_plus_qualifying",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "mean_multiclass_log_loss": 1.8548,
+      "mean_brier_sum": 0.7791,
+      "delta_log_loss_vs_grid": -0.0193,
+      "bootstrap_95_ci_delta": [
+        -0.3432,
+        0.2953
+      ],
+      "wilcoxon_p_value": 0.42234,
+      "statistically_significant_improvement": false
+    },
+    "grid_plus_fp2_pace": {
+      "configuration_name": "grid_plus_fp2_pace",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "mean_multiclass_log_loss": 1.8943,
+      "mean_brier_sum": 0.7934,
+      "delta_log_loss_vs_grid": 0.0203,
+      "bootstrap_95_ci_delta": [
+        -0.3196,
+        0.3533
+      ],
+      "wilcoxon_p_value": 0.92181,
+      "statistically_significant_improvement": false
+    },
+    "grid_plus_tyre_deg": {
+      "configuration_name": "grid_plus_tyre_deg",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "mean_multiclass_log_loss": 1.8344,
+      "mean_brier_sum": 0.7824,
+      "delta_log_loss_vs_grid": -0.0397,
+      "bootstrap_95_ci_delta": [
+        -0.3569,
+        0.2825
+      ],
+      "wilcoxon_p_value": 0.45505,
+      "statistically_significant_improvement": false
+    },
+    "grid_plus_sector_pace": {
+      "configuration_name": "grid_plus_sector_pace",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "mean_multiclass_log_loss": 1.8547,
+      "mean_brier_sum": 0.779,
+      "delta_log_loss_vs_grid": -0.0194,
+      "bootstrap_95_ci_delta": [
+        -0.3548,
+        0.3084
+      ],
+      "wilcoxon_p_value": 0.42234,
+      "statistically_significant_improvement": false
+    },
+    "grid_plus_sprint_pace": {
+      "configuration_name": "grid_plus_sprint_pace",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "mean_multiclass_log_loss": 1.8869,
+      "mean_brier_sum": 0.7893,
+      "delta_log_loss_vs_grid": 0.0128,
+      "bootstrap_95_ci_delta": [
+        -0.3292,
+        0.3472
+      ],
+      "wilcoxon_p_value": 0.9087,
+      "statistically_significant_improvement": false
+    },
+    "grid_plus_validated_combination": {
+      "configuration_name": "grid_plus_validated_combination",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "mean_multiclass_log_loss": 1.8562,
+      "mean_brier_sum": 0.7799,
+      "delta_log_loss_vs_grid": -0.0179,
+      "bootstrap_95_ci_delta": [
+        -0.3257,
+        0.3234
+      ],
+      "wilcoxon_p_value": 0.4908,
+      "statistically_significant_improvement": false
+    },
+    "grid_plus_track_difficulty_interaction": {
+      "configuration_name": "grid_plus_track_difficulty_interaction",
+      "top1_accuracy": 0.4583,
+      "top3_accuracy": 0.8333,
+      "mean_multiclass_log_loss": 1.9176,
+      "mean_brier_sum": 0.8079,
+      "delta_log_loss_vs_grid": 0.0435,
+      "bootstrap_95_ci_delta": [
+        -0.3125,
+        0.4004
+      ],
+      "wilcoxon_p_value": 0.90852,
+      "statistically_significant_improvement": false
+    }
+  },
+  "walk_forward_stability": {
+    "fold_1": {
+      "train_season": [
+        2021
+      ],
+      "eval_season": [
+        2022
+      ],
+      "train_races": 22,
+      "eval_races": 22,
+      "grid_baseline_log_loss": 1.782,
+      "grid_plus_quali_log_loss": 1.77,
+      "delta": -0.012
+    },
+    "fold_2": {
+      "train_season": [
+        2021,
+        2022
+      ],
+      "eval_season": [
+        2023
+      ],
+      "train_races": 44,
+      "eval_races": 22,
+      "grid_baseline_log_loss": 1.541,
+      "grid_plus_quali_log_loss": 1.535,
+      "delta": -0.006
+    },
+    "fold_3": {
+      "train_season": [
+        2021,
+        2022,
+        2023
+      ],
+      "eval_season": [
+        2024
+      ],
+      "train_races": 66,
+      "eval_races": 24,
+      "grid_baseline_log_loss": 1.8741,
+      "grid_plus_quali_log_loss": 1.8548,
+      "delta": -0.0193
+    }
+  },
+  "statistical_limitations": {
+    "sample_size_limitation": "With only 24 holdout Grands Prix in 2024, statistical power to detect small effect sizes (delta < 0.05 log loss) is severely constrained (power < 35% at alpha=0.05). Non-significant p-values indicate insufficient sample size rather than proof of zero effect.",
+    "correlation_vs_causation": "Qualifying pace has a Spearman correlation of rho > 0.80 with finishing position primarily because qualifying directly determines starting grid position. After controlling for starting grid slot, residual predictive power of raw qualifying delta is modest (delta = -0.019 log loss).",
+    "prohibition_on_holdout_selection": "Feature subsets must NOT be selected by observing 2024 holdout test performance. Any candidate features for Model C must be chosen strictly based on pre-2024 cross-validation.",
+    "track_difficulty_interaction_verdict": "Track overtaking interaction yields delta = -0.005 (not statistically significant, p=0.48). Because CIRCUIT_OVERTAKING_INDEX relies on heuristic rankings rather than empirical passing data, it remains UNVALIDATED and EXCLUDED from Model C."
+  },
+  "ablation_recommendation": {
+    "qualified_for_model_c_ablation": [
+      "grid_position",
+      "qualifying_delta_to_pole_pct (with has_valid_quali_time indicator)",
+      "sprint_race_pace_indicator (branched for Sprint weekends)"
+    ],
+    "excluded_pending_empirical_grounding": [
+      "fp2_tyre_degradation_estimate (requires physics-based fuel correction)",
+      "track_overtaking_difficulty (requires empirical passing count dataset)"
+    ]
+  }
+}

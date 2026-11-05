@@ -1,0 +1,76 @@
+{
+  "training_cutoff": "2023-12-31",
+  "affected_training_rows_count": 7,
+  "affected_feature_columns": [
+    "grid_position",
+    "quali_position",
+    "grid_penalty_delta",
+    "driver_rolling_3_avg_finish",
+    "driver_rolling_5_avg_finish",
+    "driver_rolling_5_win_rate",
+    "driver_rolling_5_podium_rate",
+    "driver_rolling_5_pts_per_race",
+    "driver_rolling_5_dnf_rate",
+    "driver_rolling_10_avg_finish",
+    "driver_rolling_10_win_rate",
+    "constructor_rolling_3_avg_grid",
+    "outqualified_teammate",
+    "teammate_rolling_5_quali_h2h"
+  ],
+  "target_label_affected": true,
+  "imputation_masking_detected": true,
+  "imputation_details": "When qualifying lap times are missing (18 rows in dataset), SimpleImputer(strategy='median') substitutes the median quali_time_delta_to_pole, masking that the car set no representative lap time.",
+  "impact_case_studies": [
+    {
+      "case": "Singapore 2023 - Lance Stroll (Withdrawn)",
+      "affected_rows": 1,
+      "in_training_set": true,
+      "feature_impact": {
+        "grid_position": "Ingested as 20 instead of omitted",
+        "grid_penalty_delta": "Ingested as 0 (disguised non-starter)",
+        "outqualified_teammate": "Assigned 0 vs Alonso (skewed H2H form)"
+      },
+      "target_impact": "won_race = 0 (Invalid negative training sample from a car that never started)"
+    },
+    {
+      "case": "Singapore 2023 - Zhou Guanyu (Pit Lane Start)",
+      "affected_rows": 1,
+      "in_training_set": true,
+      "feature_impact": {
+        "grid_position": "Ingested as 19 instead of 20 (model encoding)",
+        "grid_penalty_delta": "Ingested as 0 instead of +1"
+      },
+      "target_impact": "won_race = 0 (Valid negative, but feature distorted by 1 grid box)"
+    },
+    {
+      "case": "Saudi Arabia 2022 - Mick Schumacher (Withdrawn)",
+      "affected_rows": 1,
+      "in_training_set": true,
+      "feature_impact": {
+        "grid_position": "Converted to 20 from Ergast 0 (disguised as back of grid)",
+        "grid_penalty_delta": "Ingested as +6 (disguised penalty vs Q14)"
+      },
+      "target_impact": "won_race = 0 (Invalid negative training sample)"
+    },
+    {
+      "case": "Qatar 2023 - Carlos Sainz (Pre-Race Fuel Leak DNS)",
+      "affected_rows": 1,
+      "in_training_set": true,
+      "feature_impact": {
+        "grid_position": "Ingested as 12 (qualifying position) instead of omitted",
+        "constructor_rolling_3_avg_grid": "Distorted Ferrari constructor rolling average"
+      },
+      "target_impact": "won_race = 0 (Invalid negative sample from P12)"
+    },
+    {
+      "case": "Brazil 2023 - Charles Leclerc (Formation Lap Crash DNS)",
+      "affected_rows": 1,
+      "in_training_set": true,
+      "feature_impact": {
+        "grid_position": "Ingested as 2 (Front row starter)",
+        "front_row": "Ingested as 1"
+      },
+      "target_impact": "won_race = 0 (Distorts front-row baseline win conversion probabilities)"
+    }
+  ]
+}

@@ -196,3 +196,89 @@ def test_race_evaluation_metrics():
     assert metrics["top3_accuracy"] == 1.0
     assert metrics["multiclass_log_loss"] > 0.0
     assert metrics["multiclass_brier_score"] > 0.0
+
+
+# =============================================================================
+# REGRESSION TESTS: MODEL LOADING, FEATURE SCHEMA, AND CHRONOLOGICAL INTEGRITY
+# =============================================================================
+
+from scripts.predictor_model.inference import run_inference_for_race
+
+
+def test_model_artifact_loading_in_supported_runtime():
+    """Verify model artifact bundle exists and loads cleanly in supported runtime."""
+    model_bundle_path = os.path.join(MODELS_ROOT_DIR, MODEL_VERSION, "trained_models.joblib")
+    assert os.path.exists(model_bundle_path), f"Artifact missing at {model_bundle_path}"
+
+    models = joblib.load(model_bundle_path)
+    assert "lightgbm" in models
+    assert "logistic_regression" in models
+    assert isinstance(models["lightgbm"], LightGBMPredictor)
+
+
+def test_feature_names_and_ordering():
+    """Verify exact 42 features with expected categorical/numerical split."""
+    assert len(ALL_MODEL_FEATURES) == 42
+    assert len(NUMERICAL_FEATURES) == 41
+    assert len(CATEGORICAL_FEATURES) == 1
+    assert CATEGORICAL_FEATURES[0] == "regulation_era"
+    assert "grid_position" in NUMERICAL_FEATURES
+    assert "quali_time_delta_to_pole" in NUMERICAL_FEATURES
+
+
+def test_successful_inference_on_sample_race():
+    """Verify complete end-to-end inference on valid sample race 2024_1."""
+    res = run_inference_for_race("2024_1")
+    assert res["status"] == "success"
+    assert res["raceId"].startswith("2024_1")
+    assert res["season"] == 2024
+    assert res["round"] == 1
+    assert len(res["predictions"]) == 20
+
+    # Win probabilities nonnegative and sum to 1.0
+    probs = [d["winProbability"] for d in res["predictions"]]
+    assert all(p >= 0.0 for p in probs)
+    assert np.isclose(sum(probs), 1.0, atol=0.005)
+
+    # Agreement between highest-probability driver and predicted winner
+    top_driver = res["predictions"][0]
+    assert res["predictedWinner"]["driverId"] == top_driver["driverId"]
+    assert res["predictedWinner"]["winProbability"] == top_driver["winProbability"]
+
+
+def test_missing_or_invalid_race_error_handling():
+    """Verify clear error response for nonexistent race."""
+    res = run_inference_for_race("1950_99")
+    assert res["status"] == "error"
+    assert res["error_type"] == "RACE_NOT_FOUND"
+
+
+def test_circuit_heritage_temporal_cutoff_no_future_leakage():
+    """
+    Verify historical circuit heritage strictly enforces chronological cutoff:
+    1. 2024_1 Bahrain: The 2024 Bahrain winner must NOT be in pastWinners.
+    2. 2021_1 Bahrain: Earliest race in dataset; no future winners (2022-2024) may appear.
+    3. 2024_20 Mexico: Only races prior to round 20 of 2024 may appear.
+    """
+    # 1. 2024_1 Bahrain
+    res_2024_1 = run_inference_for_race("2024_1")
+    assert res_2024_1["status"] == "success"
+    past_winners_2024 = res_2024_1["circuitHeritage"]["pastWinners"]
+    for w in past_winners_2024:
+        assert w["year"] < 2024, f"Leaked target/future year {w['year']} into 2024_1 pre-race heritage"
+
+    # 2. 2021_1 Bahrain (earliest season in dataset)
+    res_2021_1 = run_inference_for_race("2021_1")
+    assert res_2021_1["status"] == "success"
+    past_winners_2021 = res_2021_1["circuitHeritage"]["pastWinners"]
+    assert len(past_winners_2021) == 0, f"Expected 0 prior winners for 2021_1, found: {past_winners_2021}"
+    assert res_2021_1["circuitHeritage"]["totalRacesAnalyzed"] == 0
+
+    # 3. 2024_20 Mexico
+    res_2024_20 = run_inference_for_race("2024_20")
+    assert res_2024_20["status"] == "success"
+    past_winners_2024_20 = res_2024_20["circuitHeritage"]["pastWinners"]
+    for w in past_winners_2024_20:
+        assert w["year"] <= 2024
+        if w["year"] == 2024:
+            assert w.get("round", 0) < 20

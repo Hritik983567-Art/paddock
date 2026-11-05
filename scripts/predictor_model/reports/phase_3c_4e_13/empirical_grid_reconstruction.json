@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "audit": "Phase 3C.4E.13 Empirical Grid Baseline Reconstruction & Multi-Variant Evaluation",
+    "timestamp_utc": "2026-11-05T10:18:08.528462+00:00",
+    "training_period": "2021-2023 (66 races)",
+    "evaluation_period": "2024 (24 races)",
+    "variants_evaluated": 5
+  },
+  "smoothing_hyperparameter_tuning_cv": {
+    "cv_scheme": "Leave-one-season-out CV on 2021-2023",
+    "alpha_grid_losses": {
+      "0.01": 1.9893,
+      "0.05": 1.8923,
+      "0.1": 1.851,
+      "0.2": 1.8104,
+      "0.5": 1.7592,
+      "1.0": 1.7242,
+      "2.0": 1.6962,
+      "5.0": 1.6809,
+      "10.0": 1.7012
+    },
+    "selected_optimal_alpha": 5.0
+  },
+  "variant_performance_comparison": {
+    "variant_a_reciprocal": {
+      "mean_log_loss": 1.8741,
+      "std_log_loss": 0.6999,
+      "mean_brier_score": 0.7544,
+      "top1_accuracy": 0.4583,
+      "calibration_slope": 1.8686,
+      "calibration_intercept": 1.9099
+    },
+    "variant_b_static_mle": {
+      "mean_log_loss": 1.8512,
+      "std_log_loss": 1.8199,
+      "mean_brier_score": 0.7119,
+      "top1_accuracy": 0.4583,
+      "calibration_slope": 0.8308,
+      "calibration_intercept": -0.2838
+    },
+    "variant_c_expanding_walk": {
+      "mean_log_loss": 1.8679,
+      "std_log_loss": 1.8607,
+      "mean_brier_score": 0.7143,
+      "top1_accuracy": 0.4583,
+      "calibration_slope": 0.8275,
+      "calibration_intercept": -0.2908
+    },
+    "variant_d_laplace_alpha_1": {
+      "mean_log_loss": 1.8535,
+      "std_log_loss": 1.816,
+      "mean_brier_score": 0.7117,
+      "top1_accuracy": 0.4583,
+      "calibration_slope": 0.8353,
+      "calibration_intercept": -0.2775
+    },
+    "variant_e_tuned_alpha_5": {
+      "mean_log_loss": 1.7601,
+      "std_log_loss": 1.4277,
+      "mean_brier_score": 0.7104,
+      "top1_accuracy": 0.4583,
+      "calibration_slope": 0.9843,
+      "calibration_intercept": -0.0278
+    }
+  },
+  "field_normalization_audit": {
+    "per_race_field_sum_equal_one": true,
+    "verified_races_count": 24
+  },
+  "zero_win_positions_handling_audit": {
+    "positions_with_zero_historical_wins_2021_2023": [
+      5,
+      11,
+      12,
+      13,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "static_mle_handling": "Fallback probability floor of 0.00075 (approximating 0.05 / 67)",
+    "laplace_handling": "Prior pseudo-count smoothing: (w + alpha * 0.05) / (n + alpha)",
+    "reciprocal_handling": "Inherently non-zero: 1 / grid ensures continuous non-zero support"
+  },
+  "scientific_conclusions": {
+    "robustness_across_formulations": "The empirical baseline superiority is ROBUST across all 5 formulations. Log loss ranges from 1.7601 (Tuned alpha=5.0) to 1.8741 (Reciprocal Grid). Every single baseline variant substantially outperforms Frozen Model A (2.2911) and Remediated Model B (2.2833). The advantage is not an artifact of Laplace smoothing.",
+    "optimal_smoothing_insight": "Tuned smoothing with alpha=5.0 achieves the lowest log loss (1.7601) because Formula 1 exhibits fat-tailed upset probability from Safety Cars and rain that pure MLE underestimates."
+  }
+}

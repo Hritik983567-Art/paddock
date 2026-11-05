@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "audit_name": "Phase 3C.4E.12 Candidate Pace Feature Reassessment",
+    "timestamp_utc": "2026-11-05T09:55:42.936100+00:00"
+  },
+  "candidate_feature_evaluations": {
+    "qualifying_delta_to_pole_pct": {
+      "provenance": "Official qualifying knockout lap times (Q1/Q2/Q3)",
+      "data_completeness_pct": 99.0,
+      "independent_information_content": "High physical validity: measures single-lap machinery ceiling.",
+      "collinearity_with_grid": "Spearman rho = 0.884 with grid position (high collinearity).",
+      "collinearity_with_sector_pace": "Pearson r = 1.0000, Spearman rho = 1.0000",
+      "status": "QUALIFIED FOR MODEL C ABLATION (Strictly with has_valid_time indicator)",
+      "conditions": "Must be evaluated against Empirical Grid Baseline; must handle missingness without artificial numbers."
+    },
+    "sector_pace_delta": {
+      "provenance": "Micro-sector splits from timing feed",
+      "data_completeness_pct": 96.0,
+      "independent_information_content": "Redundant when full qualifying lap time is present (r > 0.98).",
+      "collinearity_verdict": "DUPLICATIVE of qualifying_delta_to_pole_pct. Does not provide orthogonal signal.",
+      "status": "SECONDARY_DIAGNOSTIC_ONLY (Excluded from parsimonious baseline)"
+    },
+    "sprint_race_pace_indicator": {
+      "provenance": "Saturday 100km sprint race median green-flag lap pace",
+      "data_completeness_pct": "98.9% on Sprint weekends (6 races); 0% on Standard weekends (18 races)",
+      "independent_information_content": "High orthogonal validity: measures actual racecraft, tyre management, and race trim under Parc Ferm\u00e9.",
+      "collinearity_with_qualifying": "Moderate (rho ~ 0.55), provides genuinely distinct race-pace signal.",
+      "status": "QUALIFIED FOR SPRINT-BRANCHED MODEL C",
+      "conditions": "Strict temporal separation: available ONLY at Stage S2/S3 (post-sprint), NEVER at Stage S1."
+    }
+  },
+  "collinearity_audit": {
+    "qualifying_vs_sector_pace_correlation": {
+      "pearson_r": 1.0,
+      "spearman_rho": 1.0,
+      "conclusion": "Sector pace delta is virtually collinear with full qualifying lap delta. Including both in a linear model creates multicollinearity with zero incremental gain."
+    }
+  },
+  "final_ablation_pruning_decision": {
+    "retained_for_model_c_primary_branch": [
+      "grid_position (Primary anchor)",
+      "qualifying_delta_to_pole_pct (Single-lap pace gap)",
+      "has_valid_quali_time (Missingness indicator)"
+    ],
+    "retained_for_sprint_branch": [
+      "sprint_race_pace_indicator (Saturday racecraft pace)"
+    ],
+    "pruned_or_excluded": [
+      "sector_pace_delta (Collinear duplicate)",
+      "fp2_tyre_degradation_estimate (Unreliable noise, R^2 < 0.50)",
+      "track_overtaking_difficulty (Unvalidated subjective heuristic)"
+    ]
+  }
+}

@@ -1,0 +1,422 @@
+{
+  "status": "success",
+  "raceId": "2025_1_albert_park",
+  "season": 2025,
+  "round": 1,
+  "circuitId": "albert_park",
+  "circuitName": "Albert Park Grand Prix Circuit",
+  "country": "Australia",
+  "stage": "provisional",
+  "predictionStage": "after_qualifying",
+  "generatedAtUtc": "2026-11-01T09:33:10.535482+00:00",
+  "modelVersion": "v1.0.0",
+  "featureSchemaVersion": "1.0.0",
+  "inputHash": "ca71bca3ccc0ca4b",
+  "qualifyingStatus": {
+    "isCompleted": true,
+    "freshness": "dry_run",
+    "totalClassified": 20,
+    "hasPenaltiesApplied": false,
+    "dataCompletenessPct": 100.0
+  },
+  "provenance": {
+    "qualifyingSource": "jolpica_ergast_api",
+    "baselineVersion": "1.3.1",
+    "retrievalTimestampUtc": "2025-03-16T16:00:00Z",
+    "pipelineVersion": "3C.4B-dryrun"
+  },
+  "expectedRoster": [
+    "norris",
+    "piastri",
+    "max_verstappen",
+    "russell",
+    "tsunoda",
+    "albon",
+    "leclerc",
+    "hamilton",
+    "gasly",
+    "sainz",
+    "hadjar",
+    "alonso",
+    "stroll",
+    "doohan",
+    "bortoleto",
+    "antonelli",
+    "hulkenberg",
+    "lawson",
+    "ocon",
+    "bearman"
+  ],
+  "regulationEraWarning": {
+    "isUnknownRegulationEra": false,
+    "regulationEra": "ground_effect_gen2",
+    "warningCode": "HISTORICAL_VALIDATED",
+    "disclaimer": "Model evaluated on verified historical ground truth under conforming regulation era."
+  },
+  "validationStatus": "verified",
+  "predictedWinner": {
+    "driverId": "norris",
+    "driverCode": "NOR",
+    "winProbability": 0.1486,
+    "winProbabilityPct": 14.86,
+    "constructorName": "mclaren",
+    "gridPosition": 1
+  },
+  "predictions": [
+    {
+      "driverId": "norris",
+      "driverCode": "NOR",
+      "driverNumber": "1",
+      "constructorId": "mclaren",
+      "constructorName": "mclaren",
+      "gridPosition": 1,
+      "qualiPosition": 1,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.1486,
+      "winProbabilityPct": 14.86,
+      "predictedRank": 1
+    },
+    {
+      "driverId": "piastri",
+      "driverCode": "PIA",
+      "driverNumber": "81",
+      "constructorId": "mclaren",
+      "constructorName": "mclaren",
+      "gridPosition": 2,
+      "qualiPosition": 2,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.1235,
+      "winProbabilityPct": 12.35,
+      "predictedRank": 2
+    },
+    {
+      "driverId": "max_verstappen",
+      "driverCode": "VER",
+      "driverNumber": "3",
+      "constructorId": "red_bull",
+      "constructorName": "red_bull",
+      "gridPosition": 3,
+      "qualiPosition": 3,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0515,
+      "winProbabilityPct": 5.15,
+      "predictedRank": 3
+    },
+    {
+      "driverId": "russell",
+      "driverCode": "RUS",
+      "driverNumber": "63",
+      "constructorId": "mercedes",
+      "constructorName": "mercedes",
+      "gridPosition": 4,
+      "qualiPosition": 4,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0489,
+      "winProbabilityPct": 4.89,
+      "predictedRank": 4
+    },
+    {
+      "driverId": "tsunoda",
+      "driverCode": "TSU",
+      "driverNumber": "22",
+      "constructorId": "rb",
+      "constructorName": "rb",
+      "gridPosition": 5,
+      "qualiPosition": 5,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0468,
+      "winProbabilityPct": 4.68,
+      "predictedRank": 5
+    },
+    {
+      "driverId": "albon",
+      "driverCode": "ALB",
+      "driverNumber": "23",
+      "constructorId": "williams",
+      "constructorName": "williams",
+      "gridPosition": 6,
+      "qualiPosition": 6,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0468,
+      "winProbabilityPct": 4.68,
+      "predictedRank": 6
+    },
+    {
+      "driverId": "leclerc",
+      "driverCode": "LEC",
+      "driverNumber": "16",
+      "constructorId": "ferrari",
+      "constructorName": "ferrari",
+      "gridPosition": 7,
+      "qualiPosition": 7,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0468,
+      "winProbabilityPct": 4.68,
+      "predictedRank": 7
+    },
+    {
+      "driverId": "hamilton",
+      "driverCode": "HAM",
+      "driverNumber": "44",
+      "constructorId": "ferrari",
+      "constructorName": "ferrari",
+      "gridPosition": 8,
+      "qualiPosition": 8,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0468,
+      "winProbabilityPct": 4.68,
+      "predictedRank": 8
+    },
+    {
+      "driverId": "gasly",
+      "driverCode": "GAS",
+      "driverNumber": "10",
+      "constructorId": "alpine",
+      "constructorName": "alpine",
+      "gridPosition": 9,
+      "qualiPosition": 9,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0461,
+      "winProbabilityPct": 4.61,
+      "predictedRank": 9
+    },
+    {
+      "driverId": "sainz",
+      "driverCode": "SAI",
+      "driverNumber": "55",
+      "constructorId": "williams",
+      "constructorName": "williams",
+      "gridPosition": 10,
+      "qualiPosition": 10,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0461,
+      "winProbabilityPct": 4.61,
+      "predictedRank": 10
+    },
+    {
+      "driverId": "hadjar",
+      "driverCode": "HAD",
+      "driverNumber": "6",
+      "constructorId": "rb",
+      "constructorName": "rb",
+      "gridPosition": 11,
+      "qualiPosition": 11,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0348,
+      "winProbabilityPct": 3.48,
+      "predictedRank": 11
+    },
+    {
+      "driverId": "alonso",
+      "driverCode": "ALO",
+      "driverNumber": "14",
+      "constructorId": "aston_martin",
+      "constructorName": "aston_martin",
+      "gridPosition": 12,
+      "qualiPosition": 12,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0348,
+      "winProbabilityPct": 3.48,
+      "predictedRank": 12
+    },
+    {
+      "driverId": "stroll",
+      "driverCode": "STR",
+      "driverNumber": "18",
+      "constructorId": "aston_martin",
+      "constructorName": "aston_martin",
+      "gridPosition": 13,
+      "qualiPosition": 13,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0348,
+      "winProbabilityPct": 3.48,
+      "predictedRank": 13
+    },
+    {
+      "driverId": "doohan",
+      "driverCode": "DOO",
+      "driverNumber": "7",
+      "constructorId": "alpine",
+      "constructorName": "alpine",
+      "gridPosition": 14,
+      "qualiPosition": 14,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0348,
+      "winProbabilityPct": 3.48,
+      "predictedRank": 14
+    },
+    {
+      "driverId": "bortoleto",
+      "driverCode": "BOR",
+      "driverNumber": "5",
+      "constructorId": "sauber",
+      "constructorName": "sauber",
+      "gridPosition": 15,
+      "qualiPosition": 15,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0348,
+      "winProbabilityPct": 3.48,
+      "predictedRank": 15
+    },
+    {
+      "driverId": "antonelli",
+      "driverCode": "ANT",
+      "driverNumber": "12",
+      "constructorId": "mercedes",
+      "constructorName": "mercedes",
+      "gridPosition": 16,
+      "qualiPosition": 16,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0348,
+      "winProbabilityPct": 3.48,
+      "predictedRank": 16
+    },
+    {
+      "driverId": "hulkenberg",
+      "driverCode": "HUL",
+      "driverNumber": "27",
+      "constructorId": "sauber",
+      "constructorName": "sauber",
+      "gridPosition": 17,
+      "qualiPosition": 17,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0348,
+      "winProbabilityPct": 3.48,
+      "predictedRank": 17
+    },
+    {
+      "driverId": "lawson",
+      "driverCode": "LAW",
+      "driverNumber": "30",
+      "constructorId": "red_bull",
+      "constructorName": "red_bull",
+      "gridPosition": 18,
+      "qualiPosition": 18,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0348,
+      "winProbabilityPct": 3.48,
+      "predictedRank": 18
+    },
+    {
+      "driverId": "ocon",
+      "driverCode": "OCO",
+      "driverNumber": "31",
+      "constructorId": "haas",
+      "constructorName": "haas",
+      "gridPosition": 19,
+      "qualiPosition": 19,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0348,
+      "winProbabilityPct": 3.48,
+      "predictedRank": 19
+    },
+    {
+      "driverId": "bearman",
+      "driverCode": "BEA",
+      "driverNumber": "87",
+      "constructorId": "haas",
+      "constructorName": "haas",
+      "gridPosition": 20,
+      "qualiPosition": 20,
+      "gridPenaltyDelta": 0,
+      "winProbability": 0.0348,
+      "winProbabilityPct": 3.48,
+      "predictedRank": 20
+    }
+  ],
+  "topExplanatoryFactors": [
+    {
+      "rank": 1,
+      "feature": "grid_position",
+      "mean_abs_shap": 0.409,
+      "description": "Final official starting grid position after qualifying penalties"
+    },
+    {
+      "rank": 2,
+      "feature": "driver_rolling_10_avg_finish",
+      "mean_abs_shap": 0.3263,
+      "description": "Statistical feature measuring historical performance or environmental condition."
+    },
+    {
+      "rank": 3,
+      "feature": "driver_rolling_5_pts_per_race",
+      "mean_abs_shap": 0.1365,
+      "description": "Driver average points scored per race over past 5 events"
+    },
+    {
+      "rank": 4,
+      "feature": "driver_rolling_10_win_rate",
+      "mean_abs_shap": 0.1179,
+      "description": "Statistical feature measuring historical performance or environmental condition."
+    },
+    {
+      "rank": 5,
+      "feature": "quali_position",
+      "mean_abs_shap": 0.1018,
+      "description": "Driver's ranking achieved in Q3/Q2/Q1 qualifying session"
+    },
+    {
+      "rank": 6,
+      "feature": "quali_time_ratio_to_pole",
+      "mean_abs_shap": 0.0822,
+      "description": "Normalized percentage ratio of lap time compared to pole lap"
+    },
+    {
+      "rank": 7,
+      "feature": "constructor_rolling_5_podium_rate",
+      "mean_abs_shap": 0.0651,
+      "description": "Statistical feature measuring historical performance or environmental condition."
+    },
+    {
+      "rank": 8,
+      "feature": "constructor_best_quali_delta_to_pole",
+      "mean_abs_shap": 0.0553,
+      "description": "Fastest car pace for constructor relative to pole in qualifying"
+    },
+    {
+      "rank": 9,
+      "feature": "quali_time_delta_to_pole",
+      "mean_abs_shap": 0.0471,
+      "description": "Qualifying gap in seconds behind the pole position time"
+    },
+    {
+      "rank": 10,
+      "feature": "constructor_prev_race_points",
+      "mean_abs_shap": 0.0445,
+      "description": "Statistical feature measuring historical performance or environmental condition."
+    },
+    {
+      "rank": 11,
+      "feature": "constructor_rolling_5_win_rate",
+      "mean_abs_shap": 0.0431,
+      "description": "Constructor win rate across the preceding 5 completed Grands Prix"
+    },
+    {
+      "rank": 12,
+      "feature": "quali_track_temp_c",
+      "mean_abs_shap": 0.0385,
+      "description": "Statistical feature measuring historical performance or environmental condition."
+    },
+    {
+      "rank": 13,
+      "feature": "constructor_season_standing_before_gp",
+      "mean_abs_shap": 0.0311,
+      "description": "Statistical feature measuring historical performance or environmental condition."
+    },
+    {
+      "rank": 14,
+      "feature": "quali_air_temp_c",
+      "mean_abs_shap": 0.0297,
+      "description": "Statistical feature measuring historical performance or environmental condition."
+    },
+    {
+      "rank": 15,
+      "feature": "teammate_rolling_5_quali_h2h",
+      "mean_abs_shap": 0.0193,
+      "description": "Statistical feature measuring historical performance or environmental condition."
+    }
+  ],
+  "cached": false,
+  "dryRun": true,
+  "causalDisclaimer": "Probabilities quantify statistical associations in historical post-qualifying Grand Prix data. They do not imply single-factor causal determinism without tyre management, car reliability, and race strategy."
+}

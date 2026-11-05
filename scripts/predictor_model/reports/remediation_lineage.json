@@ -1,0 +1,937 @@
+{
+  "metadata": {
+    "generator": "scripts/predictor_model/experimental_remediation.py",
+    "generation_timestamp_utc": "2026-11-01T11:11:09.490472+00:00",
+    "schema_version": "1.0.0",
+    "dataset_candidate_version": "v1_remediated",
+    "original_dataset_sha256": "b1f50ef057e5af732325bb8a784d96b92b34b4441900ceb2a0fd66b579c629af",
+    "remediated_dataset_sha256": "691a19643107241a995d0af90483a335ec35c47c479a07c447449dec3f6056fe",
+    "frozen_model_bundle_sha256": "D8244024E6B7F0F31912EFE80B35652EF228461955232DDE7E4D65ECCC5779CD"
+  },
+  "statistics": {
+    "total_rows": 1798,
+    "total_races": 90,
+    "total_lineage_entries": 42,
+    "confirmed_corrections": 3,
+    "confirmed_dns_annotations": 4,
+    "missing_quali_time_annotations": 18,
+    "unresolved_provisional_records": 17,
+    "excluded_training_non_participants": 2,
+    "sporting_columns_added": [
+      "entry_status",
+      "qualifying_status",
+      "starting_status",
+      "race_participation_status",
+      "start_type",
+      "track_grid_box",
+      "pit_lane_order",
+      "model_feature_grid_position",
+      "source_confidence",
+      "manual_verification_required"
+    ]
+  },
+  "records": [
+    {
+      "race_id": "2023_15_marina_bay",
+      "season": 2023,
+      "round": 15,
+      "driver_id": "zhou",
+      "rule_applied": "RULE_A",
+      "original_values": {
+        "grid_position": 19,
+        "quali_position": 19,
+        "grid_penalty_delta": 0
+      },
+      "remediated_values": {
+        "entry_status": "CONFIRMED_ENTRY",
+        "qualifying_status": "QUALIFIED",
+        "starting_status": "PIT_LANE",
+        "race_participation_status": "PIT_LANE_STARTED",
+        "start_type": "PIT_LANE",
+        "track_grid_box": null,
+        "pit_lane_order": 1,
+        "model_feature_grid_position": 20,
+        "grid_position": 20,
+        "grid_penalty_delta": 1,
+        "source_confidence": "CONFIRMED_FIA_DOC",
+        "manual_verification_required": false
+      },
+      "evidence_source": "FIA Final Starting Grid Doc 40 & Stewards Doc 38 (Parc Ferme PU modifications requiring pit-lane start)",
+      "evidence_hash": "1972c2dad1d7ed768d104d1ebd6d5c950b37fb62710b55a445b0ac834791724e",
+      "reason": "Zhou started from pit lane per FIA Doc 40. Official physical grid box is null; model compatibility value set to 20, grid_penalty_delta set to +1.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "UPDATE_GRID_POSITION_AND_PENALTY"
+    },
+    {
+      "race_id": "2023_15_marina_bay",
+      "season": 2023,
+      "round": 15,
+      "driver_id": "stroll",
+      "rule_applied": "RULE_B",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 20,
+        "won_race": 0
+      },
+      "remediated_values": {
+        "entry_status": "WITHDRAWN_ENTRY",
+        "qualifying_status": "CRASH_IN_QUALIFYING",
+        "starting_status": "WITHDRAWN",
+        "race_participation_status": "WITHDRAWN_BEFORE_START",
+        "start_type": "DID_NOT_START",
+        "track_grid_box": null,
+        "pit_lane_order": null,
+        "model_feature_grid_position": null,
+        "source_confidence": "CONFIRMED_FIA_DOC",
+        "manual_verification_required": false
+      },
+      "evidence_source": "FIA Aston Martin Withdrawal Notice Doc 34 & Final Starting Grid Doc 40 (Grid box 20 vacant)",
+      "evidence_hash": "1972c2dad1d7ed768d104d1ebd6d5c950b37fb62710b55a445b0ac834791724e",
+      "reason": "Stroll withdrew prior to race start following heavy Q1 crash. Vacant grid box 20. Excluded from training participant matrix to prevent false negative training distortion.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "EXCLUDE_FROM_TRAINING_PARTICIPANTS"
+    },
+    {
+      "race_id": "2022_2_jeddah",
+      "season": 2022,
+      "round": 2,
+      "driver_id": "mick_schumacher",
+      "rule_applied": "RULE_B",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 14,
+        "grid_penalty_delta": 6
+      },
+      "remediated_values": {
+        "entry_status": "WITHDRAWN_ENTRY",
+        "qualifying_status": "CRASH_IN_QUALIFYING",
+        "starting_status": "WITHDRAWN",
+        "race_participation_status": "WITHDRAWN_BEFORE_START",
+        "start_type": "DID_NOT_START",
+        "track_grid_box": null,
+        "pit_lane_order": null,
+        "model_feature_grid_position": null,
+        "source_confidence": "CONFIRMED_FIA_DOC",
+        "manual_verification_required": false
+      },
+      "evidence_source": "Haas F1 official withdrawal notification following violent Q2 crash; car was withdrawn Saturday night; only 18 cars took race start.",
+      "evidence_hash": null,
+      "reason": "Schumacher withdrawn pre-race. Ergast dummy 0 was mapped to grid 20 and penalty delta 6. Excluded from training participant matrix.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "EXCLUDE_FROM_TRAINING_PARTICIPANTS"
+    },
+    {
+      "race_id": "2023_20_interlagos",
+      "season": 2023,
+      "round": 20,
+      "driver_id": "leclerc",
+      "rule_applied": "RULE_C",
+      "original_values": {
+        "grid_position": 2,
+        "quali_position": 2
+      },
+      "remediated_values": {
+        "starting_status": "DNS_ON_GRID",
+        "race_participation_status": "DNS",
+        "start_type": "DID_NOT_START",
+        "track_grid_box": 2,
+        "model_feature_grid_position": 2,
+        "source_confidence": "CONFIRMED_FIA_DOC",
+        "manual_verification_required": false
+      },
+      "evidence_source": "FIA Official Race Classification & Ferrari report: hydraulics system failure on formation lap causing crash into Turn 6 barriers.",
+      "evidence_hash": null,
+      "reason": "Leclerc qualified P2, participated in formation lap, crashed before start. Classified official DNS (did not take start).",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2023_17_losail",
+      "season": 2023,
+      "round": 17,
+      "driver_id": "sainz",
+      "rule_applied": "RULE_C",
+      "original_values": {
+        "grid_position": 12,
+        "quali_position": 12
+      },
+      "remediated_values": {
+        "starting_status": "DNS_GARAGE",
+        "race_participation_status": "DNS",
+        "start_type": "DID_NOT_START",
+        "track_grid_box": 12,
+        "model_feature_grid_position": 12,
+        "source_confidence": "CONFIRMED_FIA_DOC",
+        "manual_verification_required": false
+      },
+      "evidence_source": "FIA Official Race Classification & Scuderia Ferrari report: pre-race fuel system leak in garage; car was never rolled to grid.",
+      "evidence_hash": null,
+      "reason": "Sainz did not take start due to fuel system leak. Classified DNS. 19 starters took race start.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2022_2_jeddah",
+      "season": 2022,
+      "round": 2,
+      "driver_id": "tsunoda",
+      "rule_applied": "RULE_C",
+      "original_values": {
+        "grid_position": 19,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "starting_status": "DNS_RECONNAISSANCE",
+        "race_participation_status": "DNS",
+        "start_type": "DID_NOT_START",
+        "track_grid_box": 19,
+        "model_feature_grid_position": 19,
+        "source_confidence": "CONFIRMED_FIA_DOC",
+        "manual_verification_required": false
+      },
+      "evidence_source": "FIA Official Race Classification & AlphaTauri technical report: driveline failure on reconnaissance lap to grid.",
+      "evidence_hash": null,
+      "reason": "Tsunoda stopped on track on reconnaissance lap. Classified DNS. Did not take race start.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2021_5_monaco",
+      "season": 2021,
+      "round": 5,
+      "driver_id": "leclerc",
+      "rule_applied": "RULE_C",
+      "original_values": {
+        "dataset_rows": 19,
+        "omitted_record": "leclerc (P1 pole)"
+      },
+      "remediated_values": {
+        "status": "OMITTED_IN_ORIGINAL_PIPELINE",
+        "sporting_reality": "DNS_RECONNAISSANCE"
+      },
+      "evidence_source": "FIA Official Starting Grid & Ferrari report: left driveshaft hub failure on lap to grid; dropped by Ergast 'if not race_res: continue' filter.",
+      "evidence_hash": null,
+      "reason": "Leclerc qualified pole but suffered driveshaft failure on reconnaissance lap. Preserved as 19 rows in dataset for pipeline consistency.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2021_2_imola",
+      "season": 2021,
+      "round": 2,
+      "driver_id": "tsunoda",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "CRASH_IN_QUALIFYING",
+        "reason": "Q1 heavy crash at Variante Alta before setting timed lap."
+      },
+      "evidence_source": "Session timing and incident log for 2021_2_imola: Q1 heavy crash at Variante Alta before setting timed lap.",
+      "evidence_hash": null,
+      "reason": "Q1 heavy crash at Variante Alta before setting timed lap.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2021_6_baku",
+      "season": 2021,
+      "round": 6,
+      "driver_id": "stroll",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 19,
+        "quali_position": 19
+      },
+      "remediated_values": {
+        "qualifying_status": "CRASH_IN_QUALIFYING",
+        "reason": "Q1 Turn 15 wall impact caused red flag; no lap time set."
+      },
+      "evidence_source": "Session timing and incident log for 2021_6_baku: Q1 Turn 15 wall impact caused red flag; no lap time set.",
+      "evidence_hash": null,
+      "reason": "Q1 Turn 15 wall impact caused red flag; no lap time set.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2021_6_baku",
+      "season": 2021,
+      "round": 6,
+      "driver_id": "giovinazzi",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "CRASH_IN_QUALIFYING",
+        "reason": "Q1 Turn 15 wall impact immediately after restart; no lap time set."
+      },
+      "evidence_source": "Session timing and incident log for 2021_6_baku: Q1 Turn 15 wall impact immediately after restart; no lap time set.",
+      "evidence_hash": null,
+      "reason": "Q1 Turn 15 wall impact immediately after restart; no lap time set.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2021_7_ricard",
+      "season": 2021,
+      "round": 7,
+      "driver_id": "tsunoda",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "CRASH_IN_QUALIFYING",
+        "reason": "Q1 Turn 1 spin into barrier, damaging gearbox; no time set."
+      },
+      "evidence_source": "Session timing and incident log for 2021_7_ricard: Q1 Turn 1 spin into barrier, damaging gearbox; no time set.",
+      "evidence_hash": null,
+      "reason": "Q1 Turn 1 spin into barrier, damaging gearbox; no time set.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2021_7_ricard",
+      "season": 2021,
+      "round": 7,
+      "driver_id": "stroll",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 19,
+        "quali_position": 19
+      },
+      "remediated_values": {
+        "qualifying_status": "NO_TIMED_LAP",
+        "reason": "First lap deleted for track limits at Turn 6; second lap aborted under red flag."
+      },
+      "evidence_source": "Session timing and incident log for 2021_7_ricard: First lap deleted for track limits at Turn 6; second lap aborted under red flag.",
+      "evidence_hash": null,
+      "reason": "First lap deleted for track limits at Turn 6; second lap aborted under red flag.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2021_11_hungaroring",
+      "season": 2021,
+      "round": 11,
+      "driver_id": "mick_schumacher",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "CRASH_IN_PRACTICE",
+        "reason": "FP3 heavy crash damaged chassis; car could not be repaired in time for Q1."
+      },
+      "evidence_source": "Session timing and incident log for 2021_11_hungaroring: FP3 heavy crash damaged chassis; car could not be repaired in time for Q1.",
+      "evidence_hash": null,
+      "reason": "FP3 heavy crash damaged chassis; car could not be repaired in time for Q1.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2021_15_sochi",
+      "season": 2021,
+      "round": 15,
+      "driver_id": "max_verstappen",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "NO_TIMED_LAP",
+        "reason": "Pre-existing 4th PU back-of-grid penalty; completed out-lap only without setting timed lap."
+      },
+      "evidence_source": "Session timing and incident log for 2021_15_sochi: Pre-existing 4th PU back-of-grid penalty; completed out-lap only without setting timed lap.",
+      "evidence_hash": null,
+      "reason": "Pre-existing 4th PU back-of-grid penalty; completed out-lap only without setting timed lap.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2022_2_jeddah",
+      "season": 2022,
+      "round": 2,
+      "driver_id": "tsunoda",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 19,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "MECHANICAL_FAILURE",
+        "reason": "Water pressure issue on Q1 out-lap forced car shutdown before timed lap."
+      },
+      "evidence_source": "Session timing and incident log for 2022_2_jeddah: Water pressure issue on Q1 out-lap forced car shutdown before timed lap.",
+      "evidence_hash": null,
+      "reason": "Water pressure issue on Q1 out-lap forced car shutdown before timed lap.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2022_3_albert_park",
+      "season": 2022,
+      "round": 3,
+      "driver_id": "stroll",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 19,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "CRASH_IN_QUALIFYING",
+        "reason": "Q1 collision with Latifi between Turns 5 and 6 before setting a time."
+      },
+      "evidence_source": "Session timing and incident log for 2022_3_albert_park: Q1 collision with Latifi between Turns 5 and 6 before setting a time.",
+      "evidence_hash": null,
+      "reason": "Q1 collision with Latifi between Turns 5 and 6 before setting a time.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2022_4_imola",
+      "season": 2022,
+      "round": 4,
+      "driver_id": "albon",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 18,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "MECHANICAL_FAILURE",
+        "reason": "Right-rear brake fire in Q1 ignited tyre before setting timed lap."
+      },
+      "evidence_source": "Session timing and incident log for 2022_4_imola: Right-rear brake fire in Q1 ignited tyre before setting timed lap.",
+      "evidence_hash": null,
+      "reason": "Right-rear brake fire in Q1 ignited tyre before setting timed lap.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2022_5_miami",
+      "season": 2022,
+      "round": 5,
+      "driver_id": "ocon",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "CRASH_IN_PRACTICE",
+        "reason": "FP3 51G crash into Turn 14 concrete barrier cracked chassis; unable to run Q1."
+      },
+      "evidence_source": "Session timing and incident log for 2022_5_miami: FP3 51G crash into Turn 14 concrete barrier cracked chassis; unable to run Q1.",
+      "evidence_hash": null,
+      "reason": "FP3 51G crash into Turn 14 concrete barrier cracked chassis; unable to run Q1.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2023_3_albert_park",
+      "season": 2023,
+      "round": 3,
+      "driver_id": "perez",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "MECHANICAL_FAILURE",
+        "reason": "Brake balance glitch led to Turn 3 gravel beaching on out-lap; no time set."
+      },
+      "evidence_source": "Session timing and incident log for 2023_3_albert_park: Brake balance glitch led to Turn 3 gravel beaching on out-lap; no time set.",
+      "evidence_hash": null,
+      "reason": "Brake balance glitch led to Turn 3 gravel beaching on out-lap; no time set.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2023_16_suzuka",
+      "season": 2023,
+      "round": 16,
+      "driver_id": "sargeant",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "CRASH_IN_QUALIFYING",
+        "reason": "Q1 heavy crash at final chicane exit into wall; no time set."
+      },
+      "evidence_source": "Session timing and incident log for 2023_16_suzuka: Q1 heavy crash at final chicane exit into wall; no time set.",
+      "evidence_hash": null,
+      "reason": "Q1 heavy crash at final chicane exit into wall; no time set.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2023_19_rodriguez",
+      "season": 2023,
+      "round": 19,
+      "driver_id": "sargeant",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 19,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "NO_TIMED_LAP",
+        "reason": "Both Q1 lap times deleted for track limits at Turn 11."
+      },
+      "evidence_source": "Session timing and incident log for 2023_19_rodriguez: Both Q1 lap times deleted for track limits at Turn 11.",
+      "evidence_hash": null,
+      "reason": "Both Q1 lap times deleted for track limits at Turn 11.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2023_22_yas_marina",
+      "season": 2023,
+      "round": 22,
+      "driver_id": "sargeant",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "NO_TIMED_LAP",
+        "reason": "Both Q1 lap times deleted for track limits at Turn 1."
+      },
+      "evidence_source": "Session timing and incident log for 2023_22_yas_marina: Both Q1 lap times deleted for track limits at Turn 1.",
+      "evidence_hash": null,
+      "reason": "Both Q1 lap times deleted for track limits at Turn 1.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2024_2_jeddah",
+      "season": 2024,
+      "round": 2,
+      "driver_id": "zhou",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "CRASH_IN_PRACTICE",
+        "reason": "FP3 crash into barriers; team could not rebuild car before Q1 expired."
+      },
+      "evidence_source": "Session timing and incident log for 2024_2_jeddah: FP3 crash into barriers; team could not rebuild car before Q1 expired.",
+      "evidence_hash": "c8d98ccf01fb389f3c4fd3878abf9b447700371aa7e1cabe0a9b74adbb00f0b3",
+      "reason": "FP3 crash into barriers; team could not rebuild car before Q1 expired.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2024_7_imola",
+      "season": 2024,
+      "round": 7,
+      "driver_id": "sargeant",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 19,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "NO_TIMED_LAP",
+        "reason": "Both Q1 lap times deleted for exceeding track limits at Turn 19."
+      },
+      "evidence_source": "Session timing and incident log for 2024_7_imola: Both Q1 lap times deleted for exceeding track limits at Turn 19.",
+      "evidence_hash": null,
+      "reason": "Both Q1 lap times deleted for exceeding track limits at Turn 19.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2024_15_zandvoort",
+      "season": 2024,
+      "round": 15,
+      "driver_id": "sargeant",
+      "rule_applied": "RULE_D",
+      "original_values": {
+        "quali_time_sec": null,
+        "grid_position": 18,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "qualifying_status": "CRASH_IN_PRACTICE",
+        "reason": "FP3 violent wet grass crash and fire; chassis rebuilt, missed qualifying."
+      },
+      "evidence_source": "Session timing and incident log for 2024_15_zandvoort: FP3 violent wet grass crash and fire; chassis rebuilt, missed qualifying.",
+      "evidence_hash": null,
+      "reason": "FP3 violent wet grass crash and fire; chassis rebuilt, missed qualifying.",
+      "status": "CONFIRMED",
+      "training_matrix_action": "ANNOTATE_SPORTING_STATUS_ONLY"
+    },
+    {
+      "race_id": "2021_1_bahrain",
+      "season": 2021,
+      "round": 1,
+      "driver_id": "perez",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 11
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_1_bahrain. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver perez is one of 2 cars assigned grid=20 in 2021_1_bahrain. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_1_bahrain",
+      "season": 2021,
+      "round": 1,
+      "driver_id": "vettel",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 18
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_1_bahrain. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver vettel is one of 2 cars assigned grid=20 in 2021_1_bahrain. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_2_imola",
+      "season": 2021,
+      "round": 2,
+      "driver_id": "vettel",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 13
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_2_imola. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver vettel is one of 2 cars assigned grid=20 in 2021_2_imola. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_2_imola",
+      "season": 2021,
+      "round": 2,
+      "driver_id": "tsunoda",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_2_imola. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver tsunoda is one of 2 cars assigned grid=20 in 2021_2_imola. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_11_hungaroring",
+      "season": 2021,
+      "round": 11,
+      "driver_id": "giovinazzi",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 14
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_11_hungaroring. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver giovinazzi is one of 2 cars assigned grid=20 in 2021_11_hungaroring. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_11_hungaroring",
+      "season": 2021,
+      "round": 11,
+      "driver_id": "mick_schumacher",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_11_hungaroring. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver mick_schumacher is one of 2 cars assigned grid=20 in 2021_11_hungaroring. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_12_spa",
+      "season": 2021,
+      "round": 12,
+      "driver_id": "perez",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 7
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_12_spa. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver perez is one of 2 cars assigned grid=20 in 2021_12_spa. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_12_spa",
+      "season": 2021,
+      "round": 12,
+      "driver_id": "raikkonen",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 19
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_12_spa. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver raikkonen is one of 2 cars assigned grid=20 in 2021_12_spa. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_13_zandvoort",
+      "season": 2021,
+      "round": 13,
+      "driver_id": "latifi",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 14
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_13_zandvoort. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver latifi is one of 2 cars assigned grid=20 in 2021_13_zandvoort. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_13_zandvoort",
+      "season": 2021,
+      "round": 13,
+      "driver_id": "perez",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 16
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_13_zandvoort. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver perez is one of 2 cars assigned grid=20 in 2021_13_zandvoort. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_14_monza",
+      "season": 2021,
+      "round": 14,
+      "driver_id": "gasly",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 6
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_14_monza. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver gasly is one of 2 cars assigned grid=20 in 2021_14_monza. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2021_14_monza",
+      "season": 2021,
+      "round": 14,
+      "driver_id": "tsunoda",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 17
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2021_14_monza. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver tsunoda is one of 2 cars assigned grid=20 in 2021_14_monza. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2022_5_miami",
+      "season": 2022,
+      "round": 5,
+      "driver_id": "stroll",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 10
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2022_5_miami. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver stroll is one of 3 cars assigned grid=20 in 2022_5_miami. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2022_5_miami",
+      "season": 2022,
+      "round": 5,
+      "driver_id": "vettel",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 13
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2022_5_miami. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver vettel is one of 3 cars assigned grid=20 in 2022_5_miami. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2022_5_miami",
+      "season": 2022,
+      "round": 5,
+      "driver_id": "ocon",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 20
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2022_5_miami. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver ocon is one of 3 cars assigned grid=20 in 2022_5_miami. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2022_14_spa",
+      "season": 2022,
+      "round": 14,
+      "driver_id": "gasly",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 12
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2022_14_spa. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver gasly is one of 2 cars assigned grid=20 in 2022_14_spa. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    },
+    {
+      "race_id": "2022_14_spa",
+      "season": 2022,
+      "round": 14,
+      "driver_id": "tsunoda",
+      "rule_applied": "RULE_E",
+      "original_values": {
+        "grid_position": 20,
+        "quali_position": 19
+      },
+      "remediated_values": {
+        "source_confidence": "PROVISIONAL",
+        "manual_verification_required": true
+      },
+      "evidence_source": "Historical Ergast dataset contains multiple grid=20 entries for 2022_14_spa. Requires official FIA Final Starting Grid PDF.",
+      "evidence_hash": null,
+      "reason": "Driver tsunoda is one of 2 cars assigned grid=20 in 2022_14_spa. Physical P20 vs pit-lane start unverified; preserved without assumption.",
+      "status": "PROVISIONAL",
+      "training_matrix_action": "FLAG_AS_PROVISIONAL_UNRESOLVED"
+    }
+  ]
+}

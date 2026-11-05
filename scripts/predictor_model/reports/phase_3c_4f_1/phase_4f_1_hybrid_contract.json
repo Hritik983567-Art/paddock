@@ -1,0 +1,62 @@
+{
+  "contract_metadata": {
+    "phase": "Phase 3C.4F.1",
+    "contract_title": "Hybrid Formula & Baseline Finalization Contract",
+    "production_gate": "STRICTLY CLOSED",
+    "model_c_trained": false,
+    "timestamp_utc": "2026-11-05T12:45:57.828626+00:00",
+    "status": "EXPERIMENTAL_NON_PRODUCTION"
+  },
+  "reference_baseline_specification": {
+    "name": "Empirical Grid Baseline (Reference)",
+    "version": "grid-empirical-laplace-a1",
+    "training_window": "2021-2023 historical dataset (66 races, 1,320 driver starts)",
+    "smoothing": "Laplace smoothing (alpha = 1.0)",
+    "formula": "P_raw(g) = (wins(g) + alpha * 0.05) / (starts(g) + alpha)",
+    "probability_floor": 0.0005,
+    "normalization": "Unit simplex sum = 1.0",
+    "missing_grid_handling": "Clamp to [1, 24]; pit lane starts assigned to grid 20",
+    "exploratory_alternative": "Tuned alpha = 5.0 (retained for sensitivity comparison only)"
+  },
+  "candidate_hybrid_specification": {
+    "name": "Bayesian Geometric Hybrid (Primary Candidate)",
+    "version": "geometric-w0.20-v1",
+    "mathematical_formula": "P_hybrid(i) proportional to P_grid(i)^(1 - w) * P_ML(i)^w",
+    "log_space_computation": "log(P_tilde_i) = (1 - w)*log(P_grid_i) + w*log(P_ML_i) - logsumexp(log(P_tilde))",
+    "primary_weight_w": 0.2,
+    "ml_model_input": "Remediated LightGBM Model B (v1.0.0-remediated-b)",
+    "ml_temperature": 0.8306,
+    "probability_floor": 0.0005,
+    "numerical_guarantees": [
+      "Zero NaN / Inf values under Log-Sum-Exp normalization",
+      "Strictly positive probabilities (P_i >= 0.0005)",
+      "Strict unit simplex normalization (|sum(P) - 1.0| < 1e-12)",
+      "Driver ID alignment invariance across arbitrary roster permutations",
+      "Variable roster size invariance (18 to 22 starters)"
+    ],
+    "experimental_comparisons": [
+      "Convex Ensemble (gamma = 0.20): P_conv = (1 - gamma)*P_grid + gamma*P_ML",
+      "Log-Odds Shrinkage (lambda = 0.25): logit(P_logodds) = (1 - lam)*logit(P_grid) + lam*logit(P_ML)"
+    ]
+  },
+  "prediction_output_contract": {
+    "required_fields": [
+      "race_id",
+      "season",
+      "round",
+      "driver_id",
+      "driver_name",
+      "grid_position",
+      "grid_win_probability",
+      "ml_win_probability",
+      "hybrid_win_probability",
+      "model_version",
+      "baseline_version",
+      "hybrid_formula_version",
+      "prediction_stage",
+      "input_hash",
+      "generated_at",
+      "experimental_status"
+    ]
+  }
+}

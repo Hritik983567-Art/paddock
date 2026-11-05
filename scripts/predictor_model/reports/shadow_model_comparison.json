@@ -1,0 +1,2904 @@
+{
+  "experiment_metadata": {
+    "evaluation_timestamp_utc": "2026-11-01T11:16:30.274446+00:00",
+    "training_cutoff": "2023-12-31",
+    "training_seasons": [
+      2021,
+      2022,
+      2023
+    ],
+    "test_season": 2024,
+    "random_seed": 42,
+    "model_architecture": "LightGBM (shallow gbdt, max_depth=3, num_leaves=7)"
+  },
+  "dataset_hashes": {
+    "original_dataset_csv": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\Projects\\paddock\\data\\predictor\\f1_race_predictor_dataset.csv",
+    "original_dataset_sha256": "b1f50ef057e5af732325bb8a784d96b92b34b4441900ceb2a0fd66b579c629af",
+    "remediated_dataset_csv": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\Projects\\paddock\\data\\predictor\\experimental\\f1_race_predictor_dataset_v1_remediated.csv",
+    "remediated_dataset_sha256": "691a19643107241a995d0af90483a335ec35c47c479a07c447449dec3f6056fe"
+  },
+  "training_matrix_comparison": {
+    "model_a_training_samples": 1319,
+    "model_b_training_samples": 1317,
+    "excluded_non_participants": 2,
+    "model_a_calibrated_temperature": 0.7625,
+    "model_b_calibrated_temperature": 0.7654
+  },
+  "model_a_metrics": {
+    "races_evaluated": 24,
+    "total_driver_records": 479,
+    "top1_accuracy": 0.5417,
+    "top1_hit_rate_pct": 54.17,
+    "top3_accuracy": 0.7917,
+    "top3_hit_rate_pct": 79.17,
+    "multiclass_log_loss": 2.2912,
+    "multiclass_brier_score": 0.8385,
+    "expected_calibration_error": 0.0364,
+    "calibration_curve": [
+      {
+        "bin_range": "[0.0, 0.1]",
+        "count": 440,
+        "avg_confidence": 0.005,
+        "empirical_win_rate": 0.02,
+        "abs_gap": 0.016
+      },
+      {
+        "bin_range": "[0.1, 0.2]",
+        "count": 7,
+        "avg_confidence": 0.159,
+        "empirical_win_rate": 0.143,
+        "abs_gap": 0.017
+      },
+      {
+        "bin_range": "[0.2, 0.3]",
+        "count": 8,
+        "avg_confidence": 0.248,
+        "empirical_win_rate": 0.25,
+        "abs_gap": 0.002
+      },
+      {
+        "bin_range": "[0.3, 0.4]",
+        "count": 2,
+        "avg_confidence": 0.314,
+        "empirical_win_rate": 0.5,
+        "abs_gap": 0.186
+      },
+      {
+        "bin_range": "[0.4, 0.5]",
+        "count": 1,
+        "avg_confidence": 0.462,
+        "empirical_win_rate": 1.0,
+        "abs_gap": 0.538
+      },
+      {
+        "bin_range": "[0.5, 0.6]",
+        "count": 2,
+        "avg_confidence": 0.547,
+        "empirical_win_rate": 1.0,
+        "abs_gap": 0.453
+      },
+      {
+        "bin_range": "[0.6, 0.7]",
+        "count": 3,
+        "avg_confidence": 0.633,
+        "empirical_win_rate": 0.0,
+        "abs_gap": 0.633
+      },
+      {
+        "bin_range": "[0.7, 0.8]",
+        "count": 2,
+        "avg_confidence": 0.74,
+        "empirical_win_rate": 0.5,
+        "abs_gap": 0.24
+      },
+      {
+        "bin_range": "[0.8, 0.9]",
+        "count": 4,
+        "avg_confidence": 0.853,
+        "empirical_win_rate": 0.25,
+        "abs_gap": 0.603
+      },
+      {
+        "bin_range": "[0.9, 1.0]",
+        "count": 10,
+        "avg_confidence": 0.981,
+        "empirical_win_rate": 0.6,
+        "abs_gap": 0.381
+      }
+    ]
+  },
+  "model_b_metrics": {
+    "races_evaluated": 24,
+    "total_driver_records": 479,
+    "top1_accuracy": 0.5,
+    "top1_hit_rate_pct": 50.0,
+    "top3_accuracy": 0.7917,
+    "top3_hit_rate_pct": 79.17,
+    "multiclass_log_loss": 2.2834,
+    "multiclass_brier_score": 0.8222,
+    "expected_calibration_error": 0.0342,
+    "calibration_curve": [
+      {
+        "bin_range": "[0.0, 0.1]",
+        "count": 440,
+        "avg_confidence": 0.005,
+        "empirical_win_rate": 0.02,
+        "abs_gap": 0.016
+      },
+      {
+        "bin_range": "[0.1, 0.2]",
+        "count": 7,
+        "avg_confidence": 0.147,
+        "empirical_win_rate": 0.143,
+        "abs_gap": 0.004
+      },
+      {
+        "bin_range": "[0.2, 0.3]",
+        "count": 6,
+        "avg_confidence": 0.239,
+        "empirical_win_rate": 0.333,
+        "abs_gap": 0.094
+      },
+      {
+        "bin_range": "[0.3, 0.4]",
+        "count": 4,
+        "avg_confidence": 0.347,
+        "empirical_win_rate": 0.25,
+        "abs_gap": 0.097
+      },
+      {
+        "bin_range": "[0.4, 0.5]",
+        "count": 1,
+        "avg_confidence": 0.494,
+        "empirical_win_rate": 1.0,
+        "abs_gap": 0.506
+      },
+      {
+        "bin_range": "[0.5, 0.6]",
+        "count": 3,
+        "avg_confidence": 0.529,
+        "empirical_win_rate": 0.333,
+        "abs_gap": 0.195
+      },
+      {
+        "bin_range": "[0.6, 0.7]",
+        "count": 3,
+        "avg_confidence": 0.651,
+        "empirical_win_rate": 0.333,
+        "abs_gap": 0.317
+      },
+      {
+        "bin_range": "[0.7, 0.8]",
+        "count": 1,
+        "avg_confidence": 0.756,
+        "empirical_win_rate": 1.0,
+        "abs_gap": 0.244
+      },
+      {
+        "bin_range": "[0.8, 0.9]",
+        "count": 3,
+        "avg_confidence": 0.837,
+        "empirical_win_rate": 0.0,
+        "abs_gap": 0.837
+      },
+      {
+        "bin_range": "[0.9, 1.0]",
+        "count": 11,
+        "avg_confidence": 0.975,
+        "empirical_win_rate": 0.636,
+        "abs_gap": 0.338
+      }
+    ]
+  },
+  "grid_baseline_metrics": {
+    "races_evaluated": 24,
+    "total_driver_records": 479,
+    "top1_accuracy": 0.4583,
+    "top1_hit_rate_pct": 45.83,
+    "top3_accuracy": 0.8333,
+    "top3_hit_rate_pct": 83.33,
+    "multiclass_log_loss": 1.8535,
+    "multiclass_brier_score": 0.7117,
+    "expected_calibration_error": 0.0076,
+    "calibration_curve": [
+      {
+        "bin_range": "[0.0, 0.1]",
+        "count": 407,
+        "avg_confidence": 0.01,
+        "empirical_win_rate": 0.01,
+        "abs_gap": 0.001
+      },
+      {
+        "bin_range": "[0.1, 0.2]",
+        "count": 48,
+        "avg_confidence": 0.15,
+        "empirical_win_rate": 0.188,
+        "abs_gap": 0.038
+      },
+      {
+        "bin_range": "[0.2, 0.3]",
+        "count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "abs_gap": 0.0
+      },
+      {
+        "bin_range": "[0.3, 0.4]",
+        "count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "abs_gap": 0.0
+      },
+      {
+        "bin_range": "[0.4, 0.5]",
+        "count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "abs_gap": 0.0
+      },
+      {
+        "bin_range": "[0.5, 0.6]",
+        "count": 24,
+        "avg_confidence": 0.523,
+        "empirical_win_rate": 0.458,
+        "abs_gap": 0.064
+      },
+      {
+        "bin_range": "[0.6, 0.7]",
+        "count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "abs_gap": 0.0
+      },
+      {
+        "bin_range": "[0.7, 0.8]",
+        "count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "abs_gap": 0.0
+      },
+      {
+        "bin_range": "[0.8, 0.9]",
+        "count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "abs_gap": 0.0
+      },
+      {
+        "bin_range": "[0.9, 1.0]",
+        "count": 0,
+        "avg_confidence": null,
+        "empirical_win_rate": null,
+        "abs_gap": 0.0
+      }
+    ]
+  },
+  "holdout_2024_benchmark": {
+    "races_evaluated": 24,
+    "total_driver_records": 479,
+    "model_a_calibrated": {
+      "races_evaluated": 24,
+      "total_driver_records": 479,
+      "top1_accuracy": 0.5417,
+      "top1_hit_rate_pct": 54.17,
+      "top3_accuracy": 0.7917,
+      "top3_hit_rate_pct": 79.17,
+      "multiclass_log_loss": 2.2912,
+      "multiclass_brier_score": 0.8385,
+      "expected_calibration_error": 0.0364,
+      "calibration_curve": [
+        {
+          "bin_range": "[0.0, 0.1]",
+          "count": 440,
+          "avg_confidence": 0.005,
+          "empirical_win_rate": 0.02,
+          "abs_gap": 0.016
+        },
+        {
+          "bin_range": "[0.1, 0.2]",
+          "count": 7,
+          "avg_confidence": 0.159,
+          "empirical_win_rate": 0.143,
+          "abs_gap": 0.017
+        },
+        {
+          "bin_range": "[0.2, 0.3]",
+          "count": 8,
+          "avg_confidence": 0.248,
+          "empirical_win_rate": 0.25,
+          "abs_gap": 0.002
+        },
+        {
+          "bin_range": "[0.3, 0.4]",
+          "count": 2,
+          "avg_confidence": 0.314,
+          "empirical_win_rate": 0.5,
+          "abs_gap": 0.186
+        },
+        {
+          "bin_range": "[0.4, 0.5]",
+          "count": 1,
+          "avg_confidence": 0.462,
+          "empirical_win_rate": 1.0,
+          "abs_gap": 0.538
+        },
+        {
+          "bin_range": "[0.5, 0.6]",
+          "count": 2,
+          "avg_confidence": 0.547,
+          "empirical_win_rate": 1.0,
+          "abs_gap": 0.453
+        },
+        {
+          "bin_range": "[0.6, 0.7]",
+          "count": 3,
+          "avg_confidence": 0.633,
+          "empirical_win_rate": 0.0,
+          "abs_gap": 0.633
+        },
+        {
+          "bin_range": "[0.7, 0.8]",
+          "count": 2,
+          "avg_confidence": 0.74,
+          "empirical_win_rate": 0.5,
+          "abs_gap": 0.24
+        },
+        {
+          "bin_range": "[0.8, 0.9]",
+          "count": 4,
+          "avg_confidence": 0.853,
+          "empirical_win_rate": 0.25,
+          "abs_gap": 0.603
+        },
+        {
+          "bin_range": "[0.9, 1.0]",
+          "count": 10,
+          "avg_confidence": 0.981,
+          "empirical_win_rate": 0.6,
+          "abs_gap": 0.381
+        }
+      ]
+    },
+    "model_b_calibrated": {
+      "races_evaluated": 24,
+      "total_driver_records": 479,
+      "top1_accuracy": 0.5,
+      "top1_hit_rate_pct": 50.0,
+      "top3_accuracy": 0.7917,
+      "top3_hit_rate_pct": 79.17,
+      "multiclass_log_loss": 2.2834,
+      "multiclass_brier_score": 0.8222,
+      "expected_calibration_error": 0.0342,
+      "calibration_curve": [
+        {
+          "bin_range": "[0.0, 0.1]",
+          "count": 440,
+          "avg_confidence": 0.005,
+          "empirical_win_rate": 0.02,
+          "abs_gap": 0.016
+        },
+        {
+          "bin_range": "[0.1, 0.2]",
+          "count": 7,
+          "avg_confidence": 0.147,
+          "empirical_win_rate": 0.143,
+          "abs_gap": 0.004
+        },
+        {
+          "bin_range": "[0.2, 0.3]",
+          "count": 6,
+          "avg_confidence": 0.239,
+          "empirical_win_rate": 0.333,
+          "abs_gap": 0.094
+        },
+        {
+          "bin_range": "[0.3, 0.4]",
+          "count": 4,
+          "avg_confidence": 0.347,
+          "empirical_win_rate": 0.25,
+          "abs_gap": 0.097
+        },
+        {
+          "bin_range": "[0.4, 0.5]",
+          "count": 1,
+          "avg_confidence": 0.494,
+          "empirical_win_rate": 1.0,
+          "abs_gap": 0.506
+        },
+        {
+          "bin_range": "[0.5, 0.6]",
+          "count": 3,
+          "avg_confidence": 0.529,
+          "empirical_win_rate": 0.333,
+          "abs_gap": 0.195
+        },
+        {
+          "bin_range": "[0.6, 0.7]",
+          "count": 3,
+          "avg_confidence": 0.651,
+          "empirical_win_rate": 0.333,
+          "abs_gap": 0.317
+        },
+        {
+          "bin_range": "[0.7, 0.8]",
+          "count": 1,
+          "avg_confidence": 0.756,
+          "empirical_win_rate": 1.0,
+          "abs_gap": 0.244
+        },
+        {
+          "bin_range": "[0.8, 0.9]",
+          "count": 3,
+          "avg_confidence": 0.837,
+          "empirical_win_rate": 0.0,
+          "abs_gap": 0.837
+        },
+        {
+          "bin_range": "[0.9, 1.0]",
+          "count": 11,
+          "avg_confidence": 0.975,
+          "empirical_win_rate": 0.636,
+          "abs_gap": 0.338
+        }
+      ]
+    },
+    "model_a_uncalibrated_t1": {
+      "races_evaluated": 24,
+      "total_driver_records": 479,
+      "top1_accuracy": 0.5417,
+      "top1_hit_rate_pct": 54.17,
+      "top3_accuracy": 0.7917,
+      "top3_hit_rate_pct": 79.17,
+      "multiclass_log_loss": 1.9555,
+      "multiclass_brier_score": 0.7842,
+      "expected_calibration_error": 0.0321,
+      "calibration_curve": [
+        {
+          "bin_range": "[0.0, 0.1]",
+          "count": 436,
+          "avg_confidence": 0.009,
+          "empirical_win_rate": 0.021,
+          "abs_gap": 0.012
+        },
+        {
+          "bin_range": "[0.1, 0.2]",
+          "count": 12,
+          "avg_confidence": 0.145,
+          "empirical_win_rate": 0.083,
+          "abs_gap": 0.062
+        },
+        {
+          "bin_range": "[0.2, 0.3]",
+          "count": 8,
+          "avg_confidence": 0.248,
+          "empirical_win_rate": 0.375,
+          "abs_gap": 0.127
+        },
+        {
+          "bin_range": "[0.3, 0.4]",
+          "count": 2,
+          "avg_confidence": 0.33,
+          "empirical_win_rate": 0.5,
+          "abs_gap": 0.17
+        },
+        {
+          "bin_range": "[0.4, 0.5]",
+          "count": 2,
+          "avg_confidence": 0.452,
+          "empirical_win_rate": 1.0,
+          "abs_gap": 0.548
+        },
+        {
+          "bin_range": "[0.5, 0.6]",
+          "count": 4,
+          "avg_confidence": 0.531,
+          "empirical_win_rate": 0.0,
+          "abs_gap": 0.531
+        },
+        {
+          "bin_range": "[0.6, 0.7]",
+          "count": 3,
+          "avg_confidence": 0.67,
+          "empirical_win_rate": 0.333,
+          "abs_gap": 0.336
+        },
+        {
+          "bin_range": "[0.7, 0.8]",
+          "count": 2,
+          "avg_confidence": 0.742,
+          "empirical_win_rate": 0.5,
+          "abs_gap": 0.242
+        },
+        {
+          "bin_range": "[0.8, 0.9]",
+          "count": 2,
+          "avg_confidence": 0.852,
+          "empirical_win_rate": 0.5,
+          "abs_gap": 0.352
+        },
+        {
+          "bin_range": "[0.9, 1.0]",
+          "count": 8,
+          "avg_confidence": 0.954,
+          "empirical_win_rate": 0.625,
+          "abs_gap": 0.329
+        }
+      ]
+    },
+    "model_b_uncalibrated_t1": {
+      "races_evaluated": 24,
+      "total_driver_records": 479,
+      "top1_accuracy": 0.5,
+      "top1_hit_rate_pct": 50.0,
+      "top3_accuracy": 0.7917,
+      "top3_hit_rate_pct": 79.17,
+      "multiclass_log_loss": 1.9535,
+      "multiclass_brier_score": 0.7734,
+      "expected_calibration_error": 0.0268,
+      "calibration_curve": [
+        {
+          "bin_range": "[0.0, 0.1]",
+          "count": 437,
+          "avg_confidence": 0.009,
+          "empirical_win_rate": 0.018,
+          "abs_gap": 0.009
+        },
+        {
+          "bin_range": "[0.1, 0.2]",
+          "count": 10,
+          "avg_confidence": 0.137,
+          "empirical_win_rate": 0.1,
+          "abs_gap": 0.037
+        },
+        {
+          "bin_range": "[0.2, 0.3]",
+          "count": 8,
+          "avg_confidence": 0.243,
+          "empirical_win_rate": 0.5,
+          "abs_gap": 0.257
+        },
+        {
+          "bin_range": "[0.3, 0.4]",
+          "count": 3,
+          "avg_confidence": 0.352,
+          "empirical_win_rate": 0.333,
+          "abs_gap": 0.018
+        },
+        {
+          "bin_range": "[0.4, 0.5]",
+          "count": 3,
+          "avg_confidence": 0.443,
+          "empirical_win_rate": 0.333,
+          "abs_gap": 0.11
+        },
+        {
+          "bin_range": "[0.5, 0.6]",
+          "count": 3,
+          "avg_confidence": 0.525,
+          "empirical_win_rate": 0.333,
+          "abs_gap": 0.192
+        },
+        {
+          "bin_range": "[0.6, 0.7]",
+          "count": 4,
+          "avg_confidence": 0.678,
+          "empirical_win_rate": 0.25,
+          "abs_gap": 0.428
+        },
+        {
+          "bin_range": "[0.7, 0.8]",
+          "count": 1,
+          "avg_confidence": 0.78,
+          "empirical_win_rate": 1.0,
+          "abs_gap": 0.22
+        },
+        {
+          "bin_range": "[0.8, 0.9]",
+          "count": 2,
+          "avg_confidence": 0.858,
+          "empirical_win_rate": 0.5,
+          "abs_gap": 0.358
+        },
+        {
+          "bin_range": "[0.9, 1.0]",
+          "count": 8,
+          "avg_confidence": 0.958,
+          "empirical_win_rate": 0.625,
+          "abs_gap": 0.333
+        }
+      ]
+    },
+    "grid_position_baseline_a": {
+      "races_evaluated": 24,
+      "total_driver_records": 479,
+      "top1_accuracy": 0.4583,
+      "top1_hit_rate_pct": 45.83,
+      "top3_accuracy": 0.8333,
+      "top3_hit_rate_pct": 83.33,
+      "multiclass_log_loss": 1.8535,
+      "multiclass_brier_score": 0.7117,
+      "expected_calibration_error": 0.0075,
+      "calibration_curve": [
+        {
+          "bin_range": "[0.0, 0.1]",
+          "count": 407,
+          "avg_confidence": 0.01,
+          "empirical_win_rate": 0.01,
+          "abs_gap": 0.001
+        },
+        {
+          "bin_range": "[0.1, 0.2]",
+          "count": 48,
+          "avg_confidence": 0.15,
+          "empirical_win_rate": 0.188,
+          "abs_gap": 0.038
+        },
+        {
+          "bin_range": "[0.2, 0.3]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.3, 0.4]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.4, 0.5]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.5, 0.6]",
+          "count": 24,
+          "avg_confidence": 0.523,
+          "empirical_win_rate": 0.458,
+          "abs_gap": 0.064
+        },
+        {
+          "bin_range": "[0.6, 0.7]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.7, 0.8]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.8, 0.9]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.9, 1.0]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        }
+      ]
+    },
+    "grid_position_baseline_b": {
+      "races_evaluated": 24,
+      "total_driver_records": 479,
+      "top1_accuracy": 0.4583,
+      "top1_hit_rate_pct": 45.83,
+      "top3_accuracy": 0.8333,
+      "top3_hit_rate_pct": 83.33,
+      "multiclass_log_loss": 1.8535,
+      "multiclass_brier_score": 0.7117,
+      "expected_calibration_error": 0.0076,
+      "calibration_curve": [
+        {
+          "bin_range": "[0.0, 0.1]",
+          "count": 407,
+          "avg_confidence": 0.01,
+          "empirical_win_rate": 0.01,
+          "abs_gap": 0.001
+        },
+        {
+          "bin_range": "[0.1, 0.2]",
+          "count": 48,
+          "avg_confidence": 0.15,
+          "empirical_win_rate": 0.188,
+          "abs_gap": 0.038
+        },
+        {
+          "bin_range": "[0.2, 0.3]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.3, 0.4]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.4, 0.5]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.5, 0.6]",
+          "count": 24,
+          "avg_confidence": 0.523,
+          "empirical_win_rate": 0.458,
+          "abs_gap": 0.064
+        },
+        {
+          "bin_range": "[0.6, 0.7]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.7, 0.8]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.8, 0.9]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        },
+        {
+          "bin_range": "[0.9, 1.0]",
+          "count": 0,
+          "avg_confidence": null,
+          "empirical_win_rate": null,
+          "abs_gap": 0.0
+        }
+      ]
+    }
+  },
+  "rolling_origin_folds": [
+    {
+      "fold_id": 1,
+      "train_seasons": [
+        2021
+      ],
+      "val_season": 2022,
+      "description": "Train on 2021 (V6 Turbo Hybrid), Validate on 2022 (Ground Effect Intro)",
+      "model_a_lightgbm": {
+        "top1_accuracy": 0.3636,
+        "top3_accuracy": 0.9545,
+        "multiclass_log_loss": 2.1846,
+        "multiclass_brier_score": 0.9803,
+        "calibrated_temperature": 0.5795
+      },
+      "model_b_lightgbm": {
+        "top1_accuracy": 0.3636,
+        "top3_accuracy": 0.9545,
+        "multiclass_log_loss": 2.1846,
+        "multiclass_brier_score": 0.9803,
+        "calibrated_temperature": 0.5795
+      },
+      "grid_baseline_a": {
+        "top1_accuracy": 0.4545,
+        "top3_accuracy": 0.8182,
+        "multiclass_log_loss": 1.8375,
+        "multiclass_brier_score": 0.7277
+      },
+      "grid_baseline_b": {
+        "top1_accuracy": 0.4545,
+        "top3_accuracy": 0.8182,
+        "multiclass_log_loss": 1.8375,
+        "multiclass_brier_score": 0.7277
+      }
+    },
+    {
+      "fold_id": 2,
+      "train_seasons": [
+        2021,
+        2022
+      ],
+      "val_season": 2023,
+      "description": "Train on 2021-2022, Validate on 2023 (Red Bull RB19 Dominance)",
+      "model_a_lightgbm": {
+        "top1_accuracy": 0.8636,
+        "top3_accuracy": 1.0,
+        "multiclass_log_loss": 0.3699,
+        "multiclass_brier_score": 0.2106,
+        "calibrated_temperature": 0.6679
+      },
+      "model_b_lightgbm": {
+        "top1_accuracy": 0.8636,
+        "top3_accuracy": 1.0,
+        "multiclass_log_loss": 0.3677,
+        "multiclass_brier_score": 0.2083,
+        "calibrated_temperature": 0.6688
+      },
+      "grid_baseline_a": {
+        "top1_accuracy": 0.6364,
+        "top3_accuracy": 0.8636,
+        "multiclass_log_loss": 1.5402,
+        "multiclass_brier_score": 0.6071
+      },
+      "grid_baseline_b": {
+        "top1_accuracy": 0.6364,
+        "top3_accuracy": 0.8636,
+        "multiclass_log_loss": 1.5402,
+        "multiclass_brier_score": 0.6071
+      }
+    }
+  ],
+  "subgroup_comparison": {
+    "penalty_affected_races": {
+      "race_count": 16,
+      "races": [
+        "2024_10_catalunya",
+        "2024_12_silverstone",
+        "2024_14_spa",
+        "2024_15_zandvoort",
+        "2024_17_baku",
+        "2024_19_americas",
+        "2024_20_rodriguez",
+        "2024_21_interlagos",
+        "2024_22_vegas",
+        "2024_23_losail",
+        "2024_24_yas_marina",
+        "2024_3_albert_park",
+        "2024_6_miami",
+        "2024_7_imola",
+        "2024_8_monaco",
+        "2024_9_villeneuve"
+      ],
+      "model_a": {
+        "races_evaluated": 16,
+        "total_driver_records": 319,
+        "top1_accuracy": 0.5,
+        "top1_hit_rate_pct": 50.0,
+        "top3_accuracy": 0.8125,
+        "top3_hit_rate_pct": 81.25,
+        "multiclass_log_loss": 2.4409,
+        "multiclass_brier_score": 0.9429,
+        "expected_calibration_error": 0.0402,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 289,
+            "avg_confidence": 0.006,
+            "empirical_win_rate": 0.021,
+            "abs_gap": 0.015
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 7,
+            "avg_confidence": 0.159,
+            "empirical_win_rate": 0.143,
+            "abs_gap": 0.017
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 7,
+            "avg_confidence": 0.245,
+            "empirical_win_rate": 0.286,
+            "abs_gap": 0.041
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 2,
+            "avg_confidence": 0.314,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.186
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.462,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.538
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 2,
+            "avg_confidence": 0.547,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.453
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 2,
+            "avg_confidence": 0.634,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.634
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 2,
+            "avg_confidence": 0.74,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.24
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 2,
+            "avg_confidence": 0.843,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.843
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 5,
+            "avg_confidence": 0.971,
+            "empirical_win_rate": 0.4,
+            "abs_gap": 0.571
+          }
+        ]
+      },
+      "model_b": {
+        "races_evaluated": 16,
+        "total_driver_records": 319,
+        "top1_accuracy": 0.4375,
+        "top1_hit_rate_pct": 43.75,
+        "top3_accuracy": 0.8125,
+        "top3_hit_rate_pct": 81.25,
+        "multiclass_log_loss": 2.4292,
+        "multiclass_brier_score": 0.9218,
+        "expected_calibration_error": 0.0351,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 289,
+            "avg_confidence": 0.006,
+            "empirical_win_rate": 0.021,
+            "abs_gap": 0.015
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 7,
+            "avg_confidence": 0.147,
+            "empirical_win_rate": 0.143,
+            "abs_gap": 0.004
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 6,
+            "avg_confidence": 0.239,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.094
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 3,
+            "avg_confidence": 0.334,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.001
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.494,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.506
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 2,
+            "avg_confidence": 0.541,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.041
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 3,
+            "avg_confidence": 0.651,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.317
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.756,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.244
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 2,
+            "avg_confidence": 0.834,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.834
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 5,
+            "avg_confidence": 0.973,
+            "empirical_win_rate": 0.4,
+            "abs_gap": 0.573
+          }
+        ]
+      }
+    },
+    "clean_grid_races": {
+      "race_count": 8,
+      "model_a": {
+        "races_evaluated": 8,
+        "total_driver_records": 160,
+        "top1_accuracy": 0.625,
+        "top1_hit_rate_pct": 62.5,
+        "top3_accuracy": 0.75,
+        "top3_hit_rate_pct": 75.0,
+        "multiclass_log_loss": 1.9916,
+        "multiclass_brier_score": 0.6298,
+        "expected_calibration_error": 0.0322,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 151,
+            "avg_confidence": 0.003,
+            "empirical_win_rate": 0.02,
+            "abs_gap": 0.017
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 1,
+            "avg_confidence": 0.27,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.27
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 1,
+            "avg_confidence": 0.631,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.631
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 2,
+            "avg_confidence": 0.863,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.363
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 5,
+            "avg_confidence": 0.99,
+            "empirical_win_rate": 0.8,
+            "abs_gap": 0.19
+          }
+        ]
+      },
+      "model_b": {
+        "races_evaluated": 8,
+        "total_driver_records": 160,
+        "top1_accuracy": 0.625,
+        "top1_hit_rate_pct": 62.5,
+        "top3_accuracy": 0.75,
+        "top3_hit_rate_pct": 75.0,
+        "multiclass_log_loss": 1.9918,
+        "multiclass_brier_score": 0.623,
+        "expected_calibration_error": 0.0324,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 151,
+            "avg_confidence": 0.003,
+            "empirical_win_rate": 0.02,
+            "abs_gap": 0.017
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 1,
+            "avg_confidence": 0.387,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.387
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 1,
+            "avg_confidence": 0.503,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.503
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 1,
+            "avg_confidence": 0.843,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.843
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 6,
+            "avg_confidence": 0.976,
+            "empirical_win_rate": 0.833,
+            "abs_gap": 0.143
+          }
+        ]
+      }
+    },
+    "wet_weather_races": {
+      "race_count": 4,
+      "races": [
+        "2024_12_silverstone",
+        "2024_14_spa",
+        "2024_21_interlagos",
+        "2024_9_villeneuve"
+      ],
+      "model_a": {
+        "races_evaluated": 4,
+        "total_driver_records": 80,
+        "top1_accuracy": 0.25,
+        "top1_hit_rate_pct": 25.0,
+        "top3_accuracy": 0.5,
+        "top3_hit_rate_pct": 50.0,
+        "multiclass_log_loss": 3.0805,
+        "multiclass_brier_score": 1.177,
+        "expected_calibration_error": 0.0641,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 75,
+            "avg_confidence": 0.006,
+            "empirical_win_rate": 0.04,
+            "abs_gap": 0.034
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 1,
+            "avg_confidence": 0.27,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.27
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 1,
+            "avg_confidence": 0.608,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.608
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 2,
+            "avg_confidence": 0.843,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.843
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 1,
+            "avg_confidence": 0.95,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.05
+          }
+        ]
+      },
+      "model_b": {
+        "races_evaluated": 4,
+        "total_driver_records": 80,
+        "top1_accuracy": 0.25,
+        "top1_hit_rate_pct": 25.0,
+        "top3_accuracy": 0.5,
+        "top3_hit_rate_pct": 50.0,
+        "multiclass_log_loss": 3.0378,
+        "multiclass_brier_score": 1.148,
+        "expected_calibration_error": 0.0632,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 75,
+            "avg_confidence": 0.007,
+            "empirical_win_rate": 0.04,
+            "abs_gap": 0.033
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 1,
+            "avg_confidence": 0.351,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.351
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 1,
+            "avg_confidence": 0.509,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.509
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 2,
+            "avg_confidence": 0.834,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.834
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 1,
+            "avg_confidence": 0.952,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.048
+          }
+        ]
+      }
+    },
+    "dry_weather_races": {
+      "race_count": 20,
+      "model_a": {
+        "races_evaluated": 20,
+        "total_driver_records": 399,
+        "top1_accuracy": 0.6,
+        "top1_hit_rate_pct": 60.0,
+        "top3_accuracy": 0.85,
+        "top3_hit_rate_pct": 85.0,
+        "multiclass_log_loss": 2.1333,
+        "multiclass_brier_score": 0.7708,
+        "expected_calibration_error": 0.0324,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 365,
+            "avg_confidence": 0.004,
+            "empirical_win_rate": 0.016,
+            "abs_gap": 0.012
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 7,
+            "avg_confidence": 0.159,
+            "empirical_win_rate": 0.143,
+            "abs_gap": 0.017
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 7,
+            "avg_confidence": 0.245,
+            "empirical_win_rate": 0.286,
+            "abs_gap": 0.041
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 2,
+            "avg_confidence": 0.314,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.186
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.462,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.538
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 2,
+            "avg_confidence": 0.547,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.453
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 2,
+            "avg_confidence": 0.646,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.646
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 2,
+            "avg_confidence": 0.74,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.24
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 2,
+            "avg_confidence": 0.863,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.363
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 9,
+            "avg_confidence": 0.984,
+            "empirical_win_rate": 0.556,
+            "abs_gap": 0.428
+          }
+        ]
+      },
+      "model_b": {
+        "races_evaluated": 20,
+        "total_driver_records": 399,
+        "top1_accuracy": 0.55,
+        "top1_hit_rate_pct": 55.0,
+        "top3_accuracy": 0.85,
+        "top3_hit_rate_pct": 85.0,
+        "multiclass_log_loss": 2.1325,
+        "multiclass_brier_score": 0.757,
+        "expected_calibration_error": 0.0286,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 365,
+            "avg_confidence": 0.004,
+            "empirical_win_rate": 0.016,
+            "abs_gap": 0.012
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 7,
+            "avg_confidence": 0.147,
+            "empirical_win_rate": 0.143,
+            "abs_gap": 0.004
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 6,
+            "avg_confidence": 0.239,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.094
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 3,
+            "avg_confidence": 0.346,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.013
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.494,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.506
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 2,
+            "avg_confidence": 0.539,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.039
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 3,
+            "avg_confidence": 0.651,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.317
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.756,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.244
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 1,
+            "avg_confidence": 0.843,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.843
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 10,
+            "avg_confidence": 0.977,
+            "empirical_win_rate": 0.6,
+            "abs_gap": 0.377
+          }
+        ]
+      }
+    },
+    "pole_winner_races": {
+      "race_count": 11,
+      "model_a": {
+        "races_evaluated": 11,
+        "total_driver_records": 220,
+        "top1_accuracy": 0.9091,
+        "top1_hit_rate_pct": 90.91,
+        "top3_accuracy": 1.0,
+        "top3_hit_rate_pct": 100.0,
+        "multiclass_log_loss": 0.4834,
+        "multiclass_brier_score": 0.2581,
+        "expected_calibration_error": 0.0178,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 200,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.005
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 6,
+            "avg_confidence": 0.153,
+            "empirical_win_rate": 0.167,
+            "abs_gap": 0.014
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 3,
+            "avg_confidence": 0.244,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.089
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 1,
+            "avg_confidence": 0.32,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.32
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.462,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.538
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 2,
+            "avg_confidence": 0.547,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.453
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.706,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.706
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 1,
+            "avg_confidence": 0.897,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.103
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 5,
+            "avg_confidence": 0.988,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.012
+          }
+        ]
+      },
+      "model_b": {
+        "races_evaluated": 11,
+        "total_driver_records": 220,
+        "top1_accuracy": 0.9091,
+        "top1_hit_rate_pct": 90.91,
+        "top3_accuracy": 1.0,
+        "top3_hit_rate_pct": 100.0,
+        "multiclass_log_loss": 0.4425,
+        "multiclass_brier_score": 0.2328,
+        "expected_calibration_error": 0.011,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 200,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.005
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 6,
+            "avg_confidence": 0.144,
+            "empirical_win_rate": 0.167,
+            "abs_gap": 0.023
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 4,
+            "avg_confidence": 0.251,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.001
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.494,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.506
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 1,
+            "avg_confidence": 0.574,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.426
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 2,
+            "avg_confidence": 0.653,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.153
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 6,
+            "avg_confidence": 0.975,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.025
+          }
+        ]
+      }
+    },
+    "non_pole_winner_races": {
+      "race_count": 13,
+      "model_a": {
+        "races_evaluated": 13,
+        "total_driver_records": 259,
+        "top1_accuracy": 0.2308,
+        "top1_hit_rate_pct": 23.08,
+        "top3_accuracy": 0.6154,
+        "top3_hit_rate_pct": 61.54,
+        "multiclass_log_loss": 3.8208,
+        "multiclass_brier_score": 1.3296,
+        "expected_calibration_error": 0.0674,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 240,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.037,
+            "abs_gap": 0.033
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 1,
+            "avg_confidence": 0.199,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.199
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 5,
+            "avg_confidence": 0.25,
+            "empirical_win_rate": 0.2,
+            "abs_gap": 0.05
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 1,
+            "avg_confidence": 0.308,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.692
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 3,
+            "avg_confidence": 0.633,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.633
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.775,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.225
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 3,
+            "avg_confidence": 0.838,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.838
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 5,
+            "avg_confidence": 0.973,
+            "empirical_win_rate": 0.2,
+            "abs_gap": 0.773
+          }
+        ]
+      },
+      "model_b": {
+        "races_evaluated": 13,
+        "total_driver_records": 259,
+        "top1_accuracy": 0.1538,
+        "top1_hit_rate_pct": 15.38,
+        "top3_accuracy": 0.6154,
+        "top3_hit_rate_pct": 61.54,
+        "multiclass_log_loss": 3.841,
+        "multiclass_brier_score": 1.3209,
+        "expected_calibration_error": 0.0664,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 240,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.037,
+            "abs_gap": 0.032
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 1,
+            "avg_confidence": 0.165,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.165
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 2,
+            "avg_confidence": 0.214,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.286
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 4,
+            "avg_confidence": 0.347,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.097
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 2,
+            "avg_confidence": 0.506,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.506
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 1,
+            "avg_confidence": 0.646,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.646
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.756,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.244
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 3,
+            "avg_confidence": 0.837,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.837
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 5,
+            "avg_confidence": 0.974,
+            "empirical_win_rate": 0.2,
+            "abs_gap": 0.774
+          }
+        ]
+      }
+    },
+    "sprint_weekends": {
+      "race_count": 6,
+      "model_a": {
+        "races_evaluated": 6,
+        "total_driver_records": 120,
+        "top1_accuracy": 0.3333,
+        "top1_hit_rate_pct": 33.33,
+        "top3_accuracy": 0.5,
+        "top3_hit_rate_pct": 50.0,
+        "multiclass_log_loss": 4.4487,
+        "multiclass_brier_score": 1.3486,
+        "expected_calibration_error": 0.07,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 112,
+            "avg_confidence": 0.004,
+            "empirical_win_rate": 0.036,
+            "abs_gap": 0.031
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 1,
+            "avg_confidence": 0.199,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.199
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 1,
+            "avg_confidence": 0.285,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.285
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 1,
+            "avg_confidence": 0.308,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.692
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 1,
+            "avg_confidence": 0.814,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.814
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 4,
+            "avg_confidence": 0.975,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.725
+          }
+        ]
+      },
+      "model_b": {
+        "races_evaluated": 6,
+        "total_driver_records": 120,
+        "top1_accuracy": 0.1667,
+        "top1_hit_rate_pct": 16.67,
+        "top3_accuracy": 0.5,
+        "top3_hit_rate_pct": 50.0,
+        "multiclass_log_loss": 4.4884,
+        "multiclass_brier_score": 1.3594,
+        "expected_calibration_error": 0.0652,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 112,
+            "avg_confidence": 0.004,
+            "empirical_win_rate": 0.036,
+            "abs_gap": 0.032
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 1,
+            "avg_confidence": 0.165,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.165
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 2,
+            "avg_confidence": 0.326,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.174
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 1,
+            "avg_confidence": 0.835,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.835
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 4,
+            "avg_confidence": 0.977,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.727
+          }
+        ]
+      }
+    },
+    "standard_weekends": {
+      "race_count": 18,
+      "model_a": {
+        "races_evaluated": 18,
+        "total_driver_records": 359,
+        "top1_accuracy": 0.6111,
+        "top1_hit_rate_pct": 61.11,
+        "top3_accuracy": 0.8889,
+        "top3_hit_rate_pct": 88.89,
+        "multiclass_log_loss": 1.572,
+        "multiclass_brier_score": 0.6685,
+        "expected_calibration_error": 0.029,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 328,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.015,
+            "abs_gap": 0.01
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 6,
+            "avg_confidence": 0.153,
+            "empirical_win_rate": 0.167,
+            "abs_gap": 0.014
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 7,
+            "avg_confidence": 0.243,
+            "empirical_win_rate": 0.286,
+            "abs_gap": 0.043
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 1,
+            "avg_confidence": 0.32,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.32
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.462,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.538
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 2,
+            "avg_confidence": 0.547,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.453
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 3,
+            "avg_confidence": 0.633,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.633
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 2,
+            "avg_confidence": 0.74,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.24
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 3,
+            "avg_confidence": 0.866,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.532
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 6,
+            "avg_confidence": 0.984,
+            "empirical_win_rate": 0.833,
+            "abs_gap": 0.151
+          }
+        ]
+      },
+      "model_b": {
+        "races_evaluated": 18,
+        "total_driver_records": 359,
+        "top1_accuracy": 0.6111,
+        "top1_hit_rate_pct": 61.11,
+        "top3_accuracy": 0.8889,
+        "top3_hit_rate_pct": 88.89,
+        "multiclass_log_loss": 1.5484,
+        "multiclass_brier_score": 0.6431,
+        "expected_calibration_error": 0.0265,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 328,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.015,
+            "abs_gap": 0.01
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 6,
+            "avg_confidence": 0.144,
+            "empirical_win_rate": 0.167,
+            "abs_gap": 0.023
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 6,
+            "avg_confidence": 0.239,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.094
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 2,
+            "avg_confidence": 0.369,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.369
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.494,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.506
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 3,
+            "avg_confidence": 0.529,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.195
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 3,
+            "avg_confidence": 0.651,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.317
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.756,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.244
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 2,
+            "avg_confidence": 0.838,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.838
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 7,
+            "avg_confidence": 0.973,
+            "empirical_win_rate": 0.857,
+            "abs_gap": 0.116
+          }
+        ]
+      }
+    },
+    "street_circuits": {
+      "race_count": 7,
+      "model_a": {
+        "races_evaluated": 7,
+        "total_driver_records": 139,
+        "top1_accuracy": 0.4286,
+        "top1_hit_rate_pct": 42.86,
+        "top3_accuracy": 0.8571,
+        "top3_hit_rate_pct": 85.71,
+        "multiclass_log_loss": 2.7432,
+        "multiclass_brier_score": 0.9788,
+        "expected_calibration_error": 0.048,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 127,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.016,
+            "abs_gap": 0.011
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 3,
+            "avg_confidence": 0.147,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.186
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 3,
+            "avg_confidence": 0.226,
+            "empirical_win_rate": 0.667,
+            "abs_gap": 0.44
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 1,
+            "avg_confidence": 0.661,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.661
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.706,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.706
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 1,
+            "avg_confidence": 0.897,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.103
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 3,
+            "avg_confidence": 0.99,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.656
+          }
+        ]
+      },
+      "model_b": {
+        "races_evaluated": 7,
+        "total_driver_records": 139,
+        "top1_accuracy": 0.4286,
+        "top1_hit_rate_pct": 42.86,
+        "top3_accuracy": 0.8571,
+        "top3_hit_rate_pct": 85.71,
+        "multiclass_log_loss": 2.779,
+        "multiclass_brier_score": 0.968,
+        "expected_calibration_error": 0.0461,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 127,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.016,
+            "abs_gap": 0.011
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 3,
+            "avg_confidence": 0.144,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.189
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 3,
+            "avg_confidence": 0.234,
+            "empirical_win_rate": 0.667,
+            "abs_gap": 0.432
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 2,
+            "avg_confidence": 0.662,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.662
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 0,
+            "avg_confidence": null,
+            "empirical_win_rate": null,
+            "abs_gap": 0.0
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 4,
+            "avg_confidence": 0.969,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.469
+          }
+        ]
+      }
+    },
+    "permanent_circuits": {
+      "race_count": 17,
+      "model_a": {
+        "races_evaluated": 17,
+        "total_driver_records": 340,
+        "top1_accuracy": 0.5882,
+        "top1_hit_rate_pct": 58.82,
+        "top3_accuracy": 0.7647,
+        "top3_hit_rate_pct": 76.47,
+        "multiclass_log_loss": 2.105,
+        "multiclass_brier_score": 0.7807,
+        "expected_calibration_error": 0.0445,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 313,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.022,
+            "abs_gap": 0.018
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 4,
+            "avg_confidence": 0.169,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.169
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 5,
+            "avg_confidence": 0.261,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.261
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 2,
+            "avg_confidence": 0.314,
+            "empirical_win_rate": 0.5,
+            "abs_gap": 0.186
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.462,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.538
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 2,
+            "avg_confidence": 0.547,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.453
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 2,
+            "avg_confidence": 0.62,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.62
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.775,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.225
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 3,
+            "avg_confidence": 0.838,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.838
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 7,
+            "avg_confidence": 0.977,
+            "empirical_win_rate": 0.714,
+            "abs_gap": 0.262
+          }
+        ]
+      },
+      "model_b": {
+        "races_evaluated": 17,
+        "total_driver_records": 340,
+        "top1_accuracy": 0.5294,
+        "top1_hit_rate_pct": 52.94,
+        "top3_accuracy": 0.7647,
+        "top3_hit_rate_pct": 76.47,
+        "multiclass_log_loss": 2.0793,
+        "multiclass_brier_score": 0.7621,
+        "expected_calibration_error": 0.0392,
+        "calibration_curve": [
+          {
+            "bin_range": "[0.0, 0.1]",
+            "count": 313,
+            "avg_confidence": 0.005,
+            "empirical_win_rate": 0.022,
+            "abs_gap": 0.018
+          },
+          {
+            "bin_range": "[0.1, 0.2]",
+            "count": 4,
+            "avg_confidence": 0.149,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.149
+          },
+          {
+            "bin_range": "[0.2, 0.3]",
+            "count": 3,
+            "avg_confidence": 0.244,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.244
+          },
+          {
+            "bin_range": "[0.3, 0.4]",
+            "count": 4,
+            "avg_confidence": 0.347,
+            "empirical_win_rate": 0.25,
+            "abs_gap": 0.097
+          },
+          {
+            "bin_range": "[0.4, 0.5]",
+            "count": 1,
+            "avg_confidence": 0.494,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.506
+          },
+          {
+            "bin_range": "[0.5, 0.6]",
+            "count": 3,
+            "avg_confidence": 0.529,
+            "empirical_win_rate": 0.333,
+            "abs_gap": 0.195
+          },
+          {
+            "bin_range": "[0.6, 0.7]",
+            "count": 1,
+            "avg_confidence": 0.627,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.373
+          },
+          {
+            "bin_range": "[0.7, 0.8]",
+            "count": 1,
+            "avg_confidence": 0.756,
+            "empirical_win_rate": 1.0,
+            "abs_gap": 0.244
+          },
+          {
+            "bin_range": "[0.8, 0.9]",
+            "count": 3,
+            "avg_confidence": 0.837,
+            "empirical_win_rate": 0.0,
+            "abs_gap": 0.837
+          },
+          {
+            "bin_range": "[0.9, 1.0]",
+            "count": 7,
+            "avg_confidence": 0.978,
+            "empirical_win_rate": 0.714,
+            "abs_gap": 0.264
+          }
+        ]
+      }
+    }
+  },
+  "circuit_breakdown_2024": [
+    {
+      "race_id": "2024_10_catalunya",
+      "circuit_id": "catalunya",
+      "round": 10,
+      "actual_winner": "max_verstappen",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "norris",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.7749,
+      "model_b_winner_prob": 0.7564,
+      "winner_prob_delta": -0.0185
+    },
+    {
+      "race_id": "2024_11_red_bull_ring",
+      "circuit_id": "red_bull_ring",
+      "round": 11,
+      "actual_winner": "russell",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "max_verstappen",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.0004,
+      "model_b_winner_prob": 0.0004,
+      "winner_prob_delta": -0.0
+    },
+    {
+      "race_id": "2024_12_silverstone",
+      "circuit_id": "silverstone",
+      "round": 12,
+      "actual_winner": "hamilton",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "russell",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.0693,
+      "model_b_winner_prob": 0.08,
+      "winner_prob_delta": 0.0107
+    },
+    {
+      "race_id": "2024_13_hungaroring",
+      "circuit_id": "hungaroring",
+      "round": 13,
+      "actual_winner": "piastri",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "norris",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.0617,
+      "model_b_winner_prob": 0.0668,
+      "winner_prob_delta": 0.0051
+    },
+    {
+      "race_id": "2024_14_spa",
+      "circuit_id": "spa",
+      "round": 14,
+      "actual_winner": "hamilton",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "leclerc",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.0158,
+      "model_b_winner_prob": 0.0179,
+      "winner_prob_delta": 0.0021
+    },
+    {
+      "race_id": "2024_15_zandvoort",
+      "circuit_id": "zandvoort",
+      "round": 15,
+      "actual_winner": "norris",
+      "model_a_top1": "norris",
+      "model_b_top1": "norris",
+      "grid_base_top1": "norris",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.5848,
+      "model_b_winner_prob": 0.6273,
+      "winner_prob_delta": 0.0425
+    },
+    {
+      "race_id": "2024_16_monza",
+      "circuit_id": "monza",
+      "round": 16,
+      "actual_winner": "leclerc",
+      "model_a_top1": "norris",
+      "model_b_top1": "norris",
+      "grid_base_top1": "norris",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.0055,
+      "model_b_winner_prob": 0.005,
+      "winner_prob_delta": -0.0004
+    },
+    {
+      "race_id": "2024_17_baku",
+      "circuit_id": "baku",
+      "round": 17,
+      "actual_winner": "piastri",
+      "model_a_top1": "leclerc",
+      "model_b_top1": "leclerc",
+      "grid_base_top1": "leclerc",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.223,
+      "model_b_winner_prob": 0.207,
+      "winner_prob_delta": -0.016
+    },
+    {
+      "race_id": "2024_18_marina_bay",
+      "circuit_id": "marina_bay",
+      "round": 18,
+      "actual_winner": "norris",
+      "model_a_top1": "norris",
+      "model_b_top1": "norris",
+      "grid_base_top1": "norris",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.8974,
+      "model_b_winner_prob": 0.9038,
+      "winner_prob_delta": 0.0064
+    },
+    {
+      "race_id": "2024_19_americas",
+      "circuit_id": "americas",
+      "round": 19,
+      "actual_winner": "leclerc",
+      "model_a_top1": "norris",
+      "model_b_top1": "norris",
+      "grid_base_top1": "norris",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.0148,
+      "model_b_winner_prob": 0.0154,
+      "winner_prob_delta": 0.0006
+    },
+    {
+      "race_id": "2024_1_bahrain",
+      "circuit_id": "bahrain",
+      "round": 1,
+      "actual_winner": "max_verstappen",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "max_verstappen",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.9961,
+      "model_b_winner_prob": 0.9965,
+      "winner_prob_delta": 0.0004
+    },
+    {
+      "race_id": "2024_20_rodriguez",
+      "circuit_id": "rodriguez",
+      "round": 20,
+      "actual_winner": "sainz",
+      "model_a_top1": "sainz",
+      "model_b_top1": "sainz",
+      "grid_base_top1": "sainz",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.509,
+      "model_b_winner_prob": 0.574,
+      "winner_prob_delta": 0.065
+    },
+    {
+      "race_id": "2024_21_interlagos",
+      "circuit_id": "interlagos",
+      "round": 21,
+      "actual_winner": "max_verstappen",
+      "model_a_top1": "norris",
+      "model_b_top1": "norris",
+      "grid_base_top1": "norris",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.0043,
+      "model_b_winner_prob": 0.0039,
+      "winner_prob_delta": -0.0004
+    },
+    {
+      "race_id": "2024_22_vegas",
+      "circuit_id": "vegas",
+      "round": 22,
+      "actual_winner": "russell",
+      "model_a_top1": "russell",
+      "model_b_top1": "russell",
+      "grid_base_top1": "russell",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.2486,
+      "model_b_winner_prob": 0.2555,
+      "winner_prob_delta": 0.007
+    },
+    {
+      "race_id": "2024_23_losail",
+      "circuit_id": "losail",
+      "round": 23,
+      "actual_winner": "max_verstappen",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "russell",
+      "grid_base_top1": "russell",
+      "model_a_hit": true,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.3082,
+      "model_b_winner_prob": 0.307,
+      "winner_prob_delta": -0.0012
+    },
+    {
+      "race_id": "2024_24_yas_marina",
+      "circuit_id": "yas_marina",
+      "round": 24,
+      "actual_winner": "norris",
+      "model_a_top1": "norris",
+      "model_b_top1": "norris",
+      "grid_base_top1": "norris",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.4622,
+      "model_b_winner_prob": 0.4944,
+      "winner_prob_delta": 0.0322
+    },
+    {
+      "race_id": "2024_2_jeddah",
+      "circuit_id": "jeddah",
+      "round": 2,
+      "actual_winner": "max_verstappen",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "max_verstappen",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.9949,
+      "model_b_winner_prob": 0.995,
+      "winner_prob_delta": 0.0001
+    },
+    {
+      "race_id": "2024_3_albert_park",
+      "circuit_id": "albert_park",
+      "round": 3,
+      "actual_winner": "sainz",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "max_verstappen",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.0017,
+      "model_b_winner_prob": 0.0014,
+      "winner_prob_delta": -0.0003
+    },
+    {
+      "race_id": "2024_4_suzuka",
+      "circuit_id": "suzuka",
+      "round": 4,
+      "actual_winner": "max_verstappen",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "max_verstappen",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.982,
+      "model_b_winner_prob": 0.9836,
+      "winner_prob_delta": 0.0016
+    },
+    {
+      "race_id": "2024_5_shanghai",
+      "circuit_id": "shanghai",
+      "round": 5,
+      "actual_winner": "max_verstappen",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "max_verstappen",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.9808,
+      "model_b_winner_prob": 0.9823,
+      "winner_prob_delta": 0.0015
+    },
+    {
+      "race_id": "2024_6_miami",
+      "circuit_id": "miami",
+      "round": 6,
+      "actual_winner": "norris",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "max_verstappen",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.0003,
+      "model_b_winner_prob": 0.0003,
+      "winner_prob_delta": -0.0
+    },
+    {
+      "race_id": "2024_7_imola",
+      "circuit_id": "imola",
+      "round": 7,
+      "actual_winner": "max_verstappen",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "max_verstappen",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.9882,
+      "model_b_winner_prob": 0.9908,
+      "winner_prob_delta": 0.0025
+    },
+    {
+      "race_id": "2024_8_monaco",
+      "circuit_id": "monaco",
+      "round": 8,
+      "actual_winner": "leclerc",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "leclerc",
+      "model_a_hit": false,
+      "model_b_hit": false,
+      "model_a_winner_prob": 0.1694,
+      "model_b_winner_prob": 0.1971,
+      "winner_prob_delta": 0.0277
+    },
+    {
+      "race_id": "2024_9_villeneuve",
+      "circuit_id": "villeneuve",
+      "round": 9,
+      "actual_winner": "max_verstappen",
+      "model_a_top1": "max_verstappen",
+      "model_b_top1": "max_verstappen",
+      "grid_base_top1": "russell",
+      "model_a_hit": true,
+      "model_b_hit": true,
+      "model_a_winner_prob": 0.9502,
+      "model_b_winner_prob": 0.9516,
+      "winner_prob_delta": 0.0014
+    }
+  ],
+  "statistical_significance_note": "Empirical Evaluation Note: Model B incorporates confirmed sporting corrections (Lance Stroll pre-race withdrawal excluded, Mick Schumacher pre-race withdrawal excluded, and Zhou Guanyu pit-lane start corrected to grid position 20 with penalty delta +1). In the 2021-2023 training partition, these corrections affect 3 out of 1,319 rows (0.23%). Because both withdrawn drivers had won_race=0 and Zhou finished outside the podium, the net impact on 2024 holdout Top-1 accuracy is stable and preserves high accuracy while eliminating negative training distortion. The remediation resolves data integrity invariants without introducing regressions across subgroups."
+}

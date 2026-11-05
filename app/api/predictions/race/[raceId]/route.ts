@@ -90,9 +90,13 @@ export async function GET(request: NextRequest, context: RouteContext) {
     // 5. Query Options
     const searchParams = request.nextUrl.searchParams;
     const forceRefresh = searchParams.get('refresh') === 'true';
+    const simulate = searchParams.get('simulate') === 'true';
+    const stageParam = (searchParams.get('stage') === 'official_grid' || searchParams.get('stage') === 'provisional')
+      ? (searchParams.get('stage') as 'official_grid' | 'provisional')
+      : undefined;
 
     // 6. Execute Prediction Service
-    const prediction = await getRacePrediction(rawRaceId, { forceRefresh });
+    const prediction = await getRacePrediction(rawRaceId, { forceRefresh, simulate, stage: stageParam });
 
     // Handle unavailable statuses (e.g. qualifying session not yet completed)
     if (prediction.status === 'unavailable') {

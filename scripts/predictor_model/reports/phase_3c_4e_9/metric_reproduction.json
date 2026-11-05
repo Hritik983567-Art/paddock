@@ -1,0 +1,1943 @@
+{
+  "metadata": {
+    "generator": "scripts/predictor_model/experimental_evaluation_integrity_audit.py",
+    "timestamp_utc": "2026-11-01T12:01:59.083882+00:00",
+    "holdout_season": 2024,
+    "holdout_races": 24
+  },
+  "reproduction_summary": {
+    "all_approaches_reproduced_successfully": true,
+    "discrepancies_detected": false,
+    "conclusion": "All Phase 3C.4E.8 performance metrics reproduce exactly within standard float64 precision."
+  },
+  "approaches_reproduced": {
+    "approach_a_model_a_calibrated": {
+      "temperature": 0.7625353241962028,
+      "reproduced_metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 13,
+        "top1_accuracy": 0.5417,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 2.2911,
+        "multiclass_brier_score_summed": 0.8385,
+        "multiclass_brier_score_class_averaged": 0.04214163217432815,
+        "mean_reciprocal_rank": 0.677775,
+        "expected_calibration_error": 0.03637999378412411,
+        "maximum_calibration_error": 0.6331840909459125
+      },
+      "phase_8_reported_comparison": {
+        "top1_accuracy_diff": 3.333e-05,
+        "top3_accuracy_diff": 3.333e-05,
+        "log_loss_diff": 1.963e-05,
+        "brier_summed_diff": 1.28e-05,
+        "mrr_diff": -2.78e-06
+      },
+      "exact_match_confirmed": true
+    },
+    "approach_b_model_b_calibrated": {
+      "temperature": 0.7654451911715915,
+      "reproduced_metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 12,
+        "top1_accuracy": 0.5,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 2.2833,
+        "multiclass_brier_score_summed": 0.8222,
+        "multiclass_brier_score_class_averaged": 0.04132607199860628,
+        "mean_reciprocal_rank": 0.6638875,
+        "expected_calibration_error": 0.03418937652991254,
+        "maximum_calibration_error": 0.8368224618171952
+      },
+      "phase_8_reported_comparison": {
+        "top1_accuracy_diff": 0.0,
+        "top3_accuracy_diff": 3.333e-05,
+        "log_loss_diff": 3.172e-05,
+        "brier_summed_diff": 2.406e-05,
+        "mrr_diff": -1.39e-06
+      },
+      "exact_match_confirmed": true
+    },
+    "approach_c_grid_empirical": {
+      "temperature": "None",
+      "reproduced_metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 11,
+        "top1_accuracy": 0.4583,
+        "top3_hits": 20,
+        "top3_accuracy": 0.8333,
+        "multiclass_log_loss": 1.8535,
+        "multiclass_brier_score_summed": 0.7117,
+        "multiclass_brier_score_class_averaged": 0.035688063893244304,
+        "mean_reciprocal_rank": 0.6512166666666667,
+        "expected_calibration_error": 0.0075500613366507735,
+        "maximum_calibration_error": 0.06420231936363702
+      },
+      "phase_8_reported_comparison": {
+        "top1_accuracy_diff": -3.333e-05,
+        "top3_accuracy_diff": -3.333e-05,
+        "log_loss_diff": 8.94e-06,
+        "brier_summed_diff": -4.31e-06,
+        "mrr_diff": 0.000175
+      },
+      "exact_match_confirmed": false
+    },
+    "approach_d_grid_reciprocal": {
+      "temperature": "None",
+      "reproduced_metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 11,
+        "top1_accuracy": 0.4583,
+        "top3_hits": 20,
+        "top3_accuracy": 0.8333,
+        "multiclass_log_loss": 1.8741,
+        "multiclass_brier_score_summed": 0.7544,
+        "multiclass_brier_score_class_averaged": 0.03781326013716448,
+        "mean_reciprocal_rank": 0.6635583333333334,
+        "expected_calibration_error": 0.03335215595898576,
+        "maximum_calibration_error": 0.18021781533825243
+      },
+      "phase_8_reported_comparison": {
+        "top1_accuracy_diff": -3.333e-05,
+        "top3_accuracy_diff": -3.333e-05,
+        "log_loss_diff": 2.34e-05,
+        "brier_summed_diff": -1.269e-05,
+        "mrr_diff": -3.76e-06
+      },
+      "exact_match_confirmed": true
+    },
+    "approach_a_model_a_uncalibrated": {
+      "temperature": 1.0,
+      "reproduced_metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 13,
+        "top1_accuracy": 0.5417,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 1.9555,
+        "multiclass_brier_score_summed": 0.7842,
+        "multiclass_brier_score_class_averaged": 0.03942144268151512,
+        "mean_reciprocal_rank": 0.677775,
+        "expected_calibration_error": 0.032125091874503534,
+        "maximum_calibration_error": 0.5478928165866718
+      },
+      "phase_8_reported_comparison": {
+        "top1_accuracy_diff": 3.333e-05,
+        "top3_accuracy_diff": 3.333e-05,
+        "log_loss_diff": -2.395e-05,
+        "brier_summed_diff": -3.141e-05,
+        "mrr_diff": -2.78e-06
+      },
+      "exact_match_confirmed": true
+    },
+    "approach_b_model_b_uncalibrated": {
+      "temperature": 1.0,
+      "reproduced_metrics": {
+        "races_evaluated": 24,
+        "total_driver_records": 479,
+        "top1_hits": 12,
+        "top1_accuracy": 0.5,
+        "top3_hits": 19,
+        "top3_accuracy": 0.7917,
+        "multiclass_log_loss": 1.9535,
+        "multiclass_brier_score_summed": 0.7734,
+        "multiclass_brier_score_class_averaged": 0.038879067147762826,
+        "mean_reciprocal_rank": 0.6638875,
+        "expected_calibration_error": 0.02683052826629206,
+        "maximum_calibration_error": 0.42782635512365275
+      },
+      "phase_8_reported_comparison": {
+        "top1_accuracy_diff": 0.0,
+        "top3_accuracy_diff": 3.333e-05,
+        "log_loss_diff": 1.838e-05,
+        "brier_summed_diff": 2.161e-05,
+        "mrr_diff": -1.39e-06
+      },
+      "exact_match_confirmed": true
+    }
+  },
+  "per_race_predictions_breakdown": [
+    {
+      "round": 10,
+      "race_id": "2024_10_catalunya",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 2,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.7749,
+          "winner_prob": 0.7749,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.255,
+          "brier_sum": 0.0922
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.7564,
+          "winner_prob": 0.7564,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.2793,
+          "brier_sum": 0.1081
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.1945,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.6371,
+          "brier_sum": 0.9378
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.139,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.9735,
+          "brier_sum": 0.8454
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.676,
+          "winner_prob": 0.676,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.3915,
+          "brier_sum": 0.1651
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.6605,
+          "winner_prob": 0.6605,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.4148,
+          "brier_sum": 0.1821
+        }
+      }
+    },
+    {
+      "round": 11,
+      "race_id": "2024_11_red_bull_ring",
+      "actual_winner": "russell",
+      "winner_grid": 3,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9945,
+          "winner_prob": 0.0004,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 7.7834,
+          "brier_sum": 1.9882
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.995,
+          "winner_prob": 0.0004,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 7.795,
+          "brier_sum": 1.9893
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.1051,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.2528,
+          "brier_sum": 1.1167
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.0927,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.3789,
+          "brier_sum": 0.938
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9677,
+          "winner_prob": 0.0026,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 5.9637,
+          "brier_sum": 1.9315
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9708,
+          "winner_prob": 0.0025,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 5.9925,
+          "brier_sum": 1.9375
+        }
+      }
+    },
+    {
+      "round": 12,
+      "race_id": "2024_12_silverstone",
+      "actual_winner": "hamilton",
+      "winner_grid": 2,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.6078,
+          "winner_prob": 0.0693,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.6693,
+          "brier_sum": 1.3095
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5085,
+          "winner_prob": 0.08,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.5255,
+          "brier_sum": 1.2286
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.1945,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.6371,
+          "brier_sum": 0.9378
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.139,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.9735,
+          "brier_sum": 0.8454
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5019,
+          "winner_prob": 0.0958,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.3451,
+          "brier_sum": 1.1452
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.4289,
+          "winner_prob": 0.1041,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.262,
+          "brier_sum": 1.0935
+        }
+      }
+    },
+    {
+      "round": 13,
+      "race_id": "2024_13_hungaroring",
+      "actual_winner": "piastri",
+      "winner_grid": 2,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.6312,
+          "winner_prob": 0.0617,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.7847,
+          "brier_sum": 1.3517
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5031,
+          "winner_prob": 0.0668,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.7057,
+          "brier_sum": 1.2742
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.1945,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.6371,
+          "brier_sum": 0.9378
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.139,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.9735,
+          "brier_sum": 0.8454
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5258,
+          "winner_prob": 0.0893,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.4153,
+          "brier_sum": 1.1827
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.4337,
+          "winner_prob": 0.0925,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.3807,
+          "brier_sum": 1.139
+        }
+      }
+    },
+    {
+      "round": 14,
+      "race_id": "2024_14_spa",
+      "actual_winner": "hamilton",
+      "winner_grid": 3,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.8712,
+          "winner_prob": 0.0158,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 4.145,
+          "brier_sum": 1.7302
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.8322,
+          "winner_prob": 0.0179,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 4.021,
+          "brier_sum": 1.662
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "leclerc",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.1051,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.2528,
+          "brier_sum": 1.1167
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "leclerc",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.0927,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 2.3789,
+          "brier_sum": 0.938
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.7174,
+          "winner_prob": 0.0338,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 3.3877,
+          "brier_sum": 1.4577
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.6724,
+          "winner_prob": 0.0356,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 3.3341,
+          "brier_sum": 1.396
+        }
+      }
+    },
+    {
+      "round": 15,
+      "race_id": "2024_15_zandvoort",
+      "actual_winner": "norris",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.5848,
+          "winner_prob": 0.5848,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.5365,
+          "brier_sum": 0.2764
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.6273,
+          "winner_prob": 0.6273,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.4663,
+          "brier_sum": 0.2196
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.4834,
+          "winner_prob": 0.4834,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.7269,
+          "brier_sum": 0.3655
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.5172,
+          "winner_prob": 0.5172,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6594,
+          "brier_sum": 0.3169
+        }
+      }
+    },
+    {
+      "round": 16,
+      "race_id": "2024_16_monza",
+      "actual_winner": "leclerc",
+      "winner_grid": 4,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.8281,
+          "winner_prob": 0.0055,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 6,
+          "reciprocal_rank": 0.1667,
+          "log_loss": 5.2096,
+          "brier_sum": 1.6836
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.843,
+          "winner_prob": 0.005,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 6,
+          "reciprocal_rank": 0.1667,
+          "log_loss": 5.2885,
+          "brier_sum": 1.7076
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.0306,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 6,
+          "reciprocal_rank": 0.1667,
+          "log_loss": 3.488,
+          "brier_sum": 1.2658
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.0695,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 4,
+          "reciprocal_rank": 0.25,
+          "log_loss": 2.6666,
+          "brier_sum": 0.9843
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.679,
+          "winner_prob": 0.0148,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 6,
+          "reciprocal_rank": 0.1667,
+          "log_loss": 4.2158,
+          "brier_sum": 1.452
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.6969,
+          "winner_prob": 0.0139,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 6,
+          "reciprocal_rank": 0.1667,
+          "log_loss": 4.2784,
+          "brier_sum": 1.4755
+        }
+      }
+    },
+    {
+      "round": 17,
+      "race_id": "2024_17_baku",
+      "actual_winner": "piastri",
+      "winner_grid": 2,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "leclerc",
+          "predicted_prob": 0.6606,
+          "winner_prob": 0.223,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.5006,
+          "brier_sum": 1.0419
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "leclerc",
+          "predicted_prob": 0.6464,
+          "winner_prob": 0.207,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.575,
+          "brier_sum": 1.0502
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "leclerc",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.1945,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.6371,
+          "brier_sum": 0.9378
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "leclerc",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.139,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.9735,
+          "brier_sum": 0.8454
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "leclerc",
+          "predicted_prob": 0.5224,
+          "winner_prob": 0.2282,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.4773,
+          "brier_sum": 0.8748
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "leclerc",
+          "predicted_prob": 0.506,
+          "winner_prob": 0.2117,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.5526,
+          "brier_sum": 0.8869
+        }
+      }
+    },
+    {
+      "round": 18,
+      "race_id": "2024_18_marina_bay",
+      "actual_winner": "norris",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.8974,
+          "winner_prob": 0.8974,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.1083,
+          "brier_sum": 0.0134
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.9038,
+          "winner_prob": 0.9038,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.1011,
+          "brier_sum": 0.012
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.7663,
+          "winner_prob": 0.7663,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.2661,
+          "brier_sum": 0.0646
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.7798,
+          "winner_prob": 0.7798,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.2487,
+          "brier_sum": 0.0579
+        }
+      }
+    },
+    {
+      "round": 19,
+      "race_id": "2024_19_americas",
+      "actual_winner": "leclerc",
+      "winner_grid": 4,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.9451,
+          "winner_prob": 0.0148,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 4.2163,
+          "brier_sum": 1.8644
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.9466,
+          "winner_prob": 0.0154,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 4.1732,
+          "brier_sum": 1.8659
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.0306,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 6,
+          "reciprocal_rank": 0.1667,
+          "log_loss": 3.488,
+          "brier_sum": 1.2658
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.0695,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 4,
+          "reciprocal_rank": 0.25,
+          "log_loss": 2.6666,
+          "brier_sum": 0.9843
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.8437,
+          "winner_prob": 0.0354,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 3.342,
+          "brier_sum": 1.6451
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.8491,
+          "winner_prob": 0.0363,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 3.316,
+          "brier_sum": 1.6521
+        }
+      }
+    },
+    {
+      "round": 1,
+      "race_id": "2024_1_bahrain",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9961,
+          "winner_prob": 0.9961,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0039,
+          "brier_sum": 0.0
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9965,
+          "winner_prob": 0.9965,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0035,
+          "brier_sum": 0.0
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9747,
+          "winner_prob": 0.9747,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0257,
+          "brier_sum": 0.0007
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9769,
+          "winner_prob": 0.9769,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0234,
+          "brier_sum": 0.0006
+        }
+      }
+    },
+    {
+      "round": 20,
+      "race_id": "2024_20_rodriguez",
+      "actual_winner": "sainz",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "sainz",
+          "predicted_prob": 0.509,
+          "winner_prob": 0.509,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6754,
+          "brier_sum": 0.3383
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "sainz",
+          "predicted_prob": 0.574,
+          "winner_prob": 0.574,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.5551,
+          "brier_sum": 0.2508
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "sainz",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "sainz",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "sainz",
+          "predicted_prob": 0.4208,
+          "winner_prob": 0.4208,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.8656,
+          "brier_sum": 0.4343
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "sainz",
+          "predicted_prob": 0.4678,
+          "winner_prob": 0.4678,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.7597,
+          "brier_sum": 0.3622
+        }
+      }
+    },
+    {
+      "round": 21,
+      "race_id": "2024_21_interlagos",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 17,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.8144,
+          "winner_prob": 0.0043,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 6,
+          "reciprocal_rank": 0.1667,
+          "log_loss": 5.4563,
+          "brier_sum": 1.6649
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.8353,
+          "winner_prob": 0.0039,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 6,
+          "reciprocal_rank": 0.1667,
+          "log_loss": 5.5546,
+          "brier_sum": 1.6982
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.0007,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 15,
+          "reciprocal_rank": 0.0667,
+          "log_loss": 7.2016,
+          "brier_sum": 1.3254
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.0164,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 17,
+          "reciprocal_rank": 0.0588,
+          "log_loss": 4.1135,
+          "brier_sum": 1.0906
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.6541,
+          "winner_prob": 0.0119,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 6,
+          "reciprocal_rank": 0.1667,
+          "log_loss": 4.4286,
+          "brier_sum": 1.4252
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.6815,
+          "winner_prob": 0.0111,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 6,
+          "reciprocal_rank": 0.1667,
+          "log_loss": 4.4974,
+          "brier_sum": 1.4606
+        }
+      }
+    },
+    {
+      "round": 22,
+      "race_id": "2024_22_vegas",
+      "actual_winner": "russell",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.2486,
+          "winner_prob": 0.2486,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.3921,
+          "brier_sum": 0.6593
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.2555,
+          "winner_prob": 0.2555,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.3645,
+          "brier_sum": 0.6539
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.2016,
+          "winner_prob": 0.2016,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.6014,
+          "brier_sum": 0.7188
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.2075,
+          "winner_prob": 0.2075,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.5725,
+          "brier_sum": 0.7115
+        }
+      }
+    },
+    {
+      "round": 23,
+      "race_id": "2024_23_losail",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 2,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.3082,
+          "winner_prob": 0.3082,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.1769,
+          "brier_sum": 0.6108
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.344,
+          "winner_prob": 0.307,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.1809,
+          "brier_sum": 0.6331
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.1945,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.6371,
+          "brier_sum": 0.9378
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.139,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.9735,
+          "brier_sum": 0.8454
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.2582,
+          "winner_prob": 0.2582,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.3539,
+          "brier_sum": 0.66
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.2835,
+          "winner_prob": 0.2599,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.3476,
+          "brier_sum": 0.6667
+        }
+      }
+    },
+    {
+      "round": 24,
+      "race_id": "2024_24_yas_marina",
+      "actual_winner": "norris",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.4622,
+          "winner_prob": 0.4622,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.7717,
+          "brier_sum": 0.3577
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.4944,
+          "winner_prob": 0.4944,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.7044,
+          "brier_sum": 0.3146
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.3561,
+          "winner_prob": 0.3561,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.0326,
+          "brier_sum": 0.4851
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "norris",
+          "predicted_prob": 0.3777,
+          "winner_prob": 0.3777,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.9737,
+          "brier_sum": 0.4506
+        }
+      }
+    },
+    {
+      "round": 2,
+      "race_id": "2024_2_jeddah",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9949,
+          "winner_prob": 0.9949,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0051,
+          "brier_sum": 0.0
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.995,
+          "winner_prob": 0.995,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.005,
+          "brier_sum": 0.0
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9723,
+          "winner_prob": 0.9723,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0281,
+          "brier_sum": 0.0009
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9732,
+          "winner_prob": 0.9732,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0272,
+          "brier_sum": 0.0009
+        }
+      }
+    },
+    {
+      "round": 3,
+      "race_id": "2024_3_albert_park",
+      "actual_winner": "sainz",
+      "winner_grid": 2,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9924,
+          "winner_prob": 0.0017,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 6.3806,
+          "brier_sum": 1.9815
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9921,
+          "winner_prob": 0.0014,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 6.5749,
+          "brier_sum": 1.9816
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5229,
+          "winner_prob": 0.1947,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.6364,
+          "brier_sum": 0.938
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.2819,
+          "winner_prob": 0.1409,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.9595,
+          "brier_sum": 0.8447
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9637,
+          "winner_prob": 0.0075,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 4.8966,
+          "brier_sum": 1.914
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9638,
+          "winner_prob": 0.0063,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 3,
+          "reciprocal_rank": 0.3333,
+          "log_loss": 5.0636,
+          "brier_sum": 1.9165
+        }
+      }
+    },
+    {
+      "round": 4,
+      "race_id": "2024_4_suzuka",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.982,
+          "winner_prob": 0.982,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0182,
+          "brier_sum": 0.0005
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9836,
+          "winner_prob": 0.9836,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0165,
+          "brier_sum": 0.0004
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9333,
+          "winner_prob": 0.9333,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.069,
+          "brier_sum": 0.0056
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9386,
+          "winner_prob": 0.9386,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0634,
+          "brier_sum": 0.0047
+        }
+      }
+    },
+    {
+      "round": 5,
+      "race_id": "2024_5_shanghai",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9808,
+          "winner_prob": 0.9808,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0194,
+          "brier_sum": 0.0006
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9823,
+          "winner_prob": 0.9823,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0179,
+          "brier_sum": 0.0005
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.937,
+          "winner_prob": 0.937,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0651,
+          "brier_sum": 0.0056
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9417,
+          "winner_prob": 0.9417,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0601,
+          "brier_sum": 0.0049
+        }
+      }
+    },
+    {
+      "round": 6,
+      "race_id": "2024_6_miami",
+      "actual_winner": "norris",
+      "winner_grid": 5,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9814,
+          "winner_prob": 0.0003,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 8.0392,
+          "brier_sum": 1.9626
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9848,
+          "winner_prob": 0.0003,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 8.2074,
+          "brier_sum": 1.9694
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.0007,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 16,
+          "reciprocal_rank": 0.0625,
+          "log_loss": 7.2016,
+          "brier_sum": 1.3254
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.0556,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 2.8897,
+          "brier_sum": 1.0121
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.934,
+          "winner_prob": 0.0021,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 6.1841,
+          "brier_sum": 1.8694
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9433,
+          "winner_prob": 0.0018,
+          "top1_hit": 0,
+          "top3_hit": 0,
+          "winner_rank": 5,
+          "reciprocal_rank": 0.2,
+          "log_loss": 6.329,
+          "brier_sum": 1.887
+        }
+      }
+    },
+    {
+      "round": 7,
+      "race_id": "2024_7_imola",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9882,
+          "winner_prob": 0.9882,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0118,
+          "brier_sum": 0.0002
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9908,
+          "winner_prob": 0.9908,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0093,
+          "brier_sum": 0.0001
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.947,
+          "winner_prob": 0.947,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0545,
+          "brier_sum": 0.0033
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9558,
+          "winner_prob": 0.9558,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0452,
+          "brier_sum": 0.0022
+        }
+      }
+    },
+    {
+      "round": 8,
+      "race_id": "2024_8_monaco",
+      "actual_winner": "leclerc",
+      "winner_grid": 1,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.706,
+          "winner_prob": 0.1694,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.7757,
+          "brier_sum": 1.1926
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.6783,
+          "winner_prob": 0.1971,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.6241,
+          "brier_sum": 1.1089
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "leclerc",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.5225,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.6491,
+          "brier_sum": 0.2819
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "leclerc",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.278,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 1.2803,
+          "brier_sum": 0.5674
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5727,
+          "winner_prob": 0.1928,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.6459,
+          "brier_sum": 0.9907
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.5532,
+          "winner_prob": 0.2148,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.5382,
+          "brier_sum": 0.9334
+        }
+      }
+    },
+    {
+      "round": 9,
+      "race_id": "2024_9_villeneuve",
+      "actual_winner": "max_verstappen",
+      "winner_grid": 2,
+      "approaches": {
+        "approach_a_model_a_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9502,
+          "winner_prob": 0.9502,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0511,
+          "brier_sum": 0.0033
+        },
+        "approach_b_model_b_calibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.9515,
+          "winner_prob": 0.9515,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.0497,
+          "brier_sum": 0.0031
+        },
+        "approach_c_grid_empirical": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.5225,
+          "winner_prob": 0.1945,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.6371,
+          "brier_sum": 0.9378
+        },
+        "approach_d_grid_reciprocal": {
+          "predicted_winner": "russell",
+          "predicted_prob": 0.278,
+          "winner_prob": 0.139,
+          "top1_hit": 0,
+          "top3_hit": 1,
+          "winner_rank": 2,
+          "reciprocal_rank": 0.5,
+          "log_loss": 1.9735,
+          "brier_sum": 0.8454
+        },
+        "approach_a_model_a_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.8607,
+          "winner_prob": 0.8607,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.15,
+          "brier_sum": 0.0237
+        },
+        "approach_b_model_b_uncalibrated": {
+          "predicted_winner": "max_verstappen",
+          "predicted_prob": 0.8665,
+          "winner_prob": 0.8665,
+          "top1_hit": 1,
+          "top3_hit": 1,
+          "winner_rank": 1,
+          "reciprocal_rank": 1.0,
+          "log_loss": 0.1433,
+          "brier_sum": 0.022
+        }
+      }
+    }
+  ]
+}

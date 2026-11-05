@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paddock.f1/schemas/dataset_integrity_schema.json",
+  "title": "DatasetIntegrityAuditSummary",
+  "type": "object",
+  "required": [
+    "audit_metadata",
+    "dataset_overview",
+    "anomaly_counts",
+    "benchmark_validation_results",
+    "training_matrix_impact_summary"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "audit_metadata": {
+      "type": "object",
+      "required": ["auditor", "audit_timestamp_utc", "dataset_file", "dataset_sha256", "model_bundle_sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "auditor": { "type": "string" },
+        "audit_timestamp_utc": { "type": "string" },
+        "dataset_file": { "type": "string" },
+        "dataset_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "model_bundle_sha256": { "type": "string", "pattern": "^[A-F0-9]{64}$" }
+      }
+    },
+    "dataset_overview": {
+      "type": "object",
+      "required": [
+        "total_races",
+        "total_training_rows",
+        "unique_drivers",
+        "unique_constructors",
+        "races_with_20_drivers",
+        "races_with_fewer_than_20_drivers",
+        "duplicate_race_driver_pairs",
+        "missing_driver_ids",
+        "missing_grid_positions",
+        "missing_quali_positions",
+        "grid_positions_outside_1_to_20",
+        "rows_with_quali_different_from_grid",
+        "races_with_duplicate_grid_positions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "total_races": { "type": "integer" },
+        "total_training_rows": { "type": "integer" },
+        "unique_drivers": { "type": "integer" },
+        "unique_constructors": { "type": "integer" },
+        "races_with_20_drivers": { "type": "integer" },
+        "races_with_fewer_than_20_drivers": { "type": "integer" },
+        "duplicate_race_driver_pairs": { "type": "integer" },
+        "missing_driver_ids": { "type": "integer" },
+        "missing_grid_positions": { "type": "integer" },
+        "missing_quali_positions": { "type": "integer" },
+        "grid_positions_outside_1_to_20": { "type": "integer" },
+        "rows_with_quali_different_from_grid": { "type": "integer" },
+        "races_with_duplicate_grid_positions": { "type": "integer" }
+      }
+    },
+    "anomaly_counts": {
+      "type": "object",
+      "required": [
+        "CONFIRMED_DISCREPANCY",
+        "SUSPECTED_ANOMALY",
+        "LEGITIMATE_SPORTING_EXCEPTION",
+        "UNVERIFIED_REQUIRES_MANUAL_REVIEW"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "CONFIRMED_DISCREPANCY": { "type": "integer" },
+        "SUSPECTED_ANOMALY": { "type": "integer" },
+        "LEGITIMATE_SPORTING_EXCEPTION": { "type": "integer" },
+        "UNVERIFIED_REQUIRES_MANUAL_REVIEW": { "type": "integer" }
+      }
+    },
+    "benchmark_validation_results": {
+      "type": "object",
+      "required": [
+        "2022_italian_gp_doc_57",
+        "2024_belgian_gp_doc_37",
+        "2023_singapore_gp_doc_40",
+        "2024_saudi_arabian_gp_doc_39"
+      ],
+      "additionalProperties": true
+    },
+    "training_matrix_impact_summary": {
+      "type": "object",
+      "required": [
+        "affected_training_rows_count",
+        "affected_feature_columns",
+        "target_label_affected",
+        "imputation_masking_detected"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "affected_training_rows_count": { "type": "integer" },
+        "affected_feature_columns": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "target_label_affected": { "type": "boolean" },
+        "imputation_masking_detected": { "type": "boolean" }
+      }
+    }
+  }
+}
+

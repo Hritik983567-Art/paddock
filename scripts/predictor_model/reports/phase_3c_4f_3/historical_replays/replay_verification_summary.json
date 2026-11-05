@@ -1,0 +1,119 @@
+{
+  "2025_1": {
+    "artifact_filename": "2025_1_albert_park_provisional_v1.0.0_hybrid_56947b913051836c.json",
+    "predicted_winner": {
+      "driverId": "norris",
+      "driverCode": "NOR",
+      "winProbability": 0.4937,
+      "winProbabilityPct": 49.37,
+      "constructorName": "mclaren",
+      "gridPosition": 1
+    },
+    "driver_count": 20,
+    "total_probability": 0.9997999999999998,
+    "input_hash": "56947b913051836c",
+    "inference_input_hash": "56947b913051836cf128d3f871cbf46bdbdf5a8f58518685c4507583fb16e7e3",
+    "prediction_output_hash": "6cff56139ae556dd215e5c0a272e9492d7be694b2380d8b1a2d1a06fd0ce2ec6",
+    "top_3": [
+      {
+        "driverId": "norris",
+        "gridPosition": 1,
+        "gridBaseline": 0.5225,
+        "mlWin": 0.2973,
+        "hybridWin": 0.4937
+      },
+      {
+        "driverId": "piastri",
+        "gridPosition": 2,
+        "gridBaseline": 0.1946,
+        "mlWin": 0.2111,
+        "hybridWin": 0.2092
+      },
+      {
+        "driverId": "max_verstappen",
+        "gridPosition": 3,
+        "gridBaseline": 0.1051,
+        "mlWin": 0.0418,
+        "hybridWin": 0.0925
+      }
+    ]
+  },
+  "2025_2": {
+    "artifact_filename": "2025_2_shanghai_provisional_v1.0.0_hybrid_26e728be8d8a7492.json",
+    "predicted_winner": {
+      "driverId": "piastri",
+      "driverCode": "PIA",
+      "winProbability": 0.4428,
+      "winProbabilityPct": 44.28,
+      "constructorName": "mclaren",
+      "gridPosition": 1
+    },
+    "driver_count": 20,
+    "total_probability": 0.9999,
+    "input_hash": "26e728be8d8a7492",
+    "inference_input_hash": "26e728be8d8a749226527925b931bca4f7710a51bd11667dc6b16b4120f84fea",
+    "prediction_output_hash": "14fe16cb4310537c199c7af08621f2eaf69727f8fa65ca04d7211f91be21b7aa",
+    "top_3": [
+      {
+        "driverId": "piastri",
+        "gridPosition": 1,
+        "gridBaseline": 0.5225,
+        "mlWin": 0.0865,
+        "hybridWin": 0.4428
+      },
+      {
+        "driverId": "russell",
+        "gridPosition": 2,
+        "gridBaseline": 0.1946,
+        "mlWin": 0.071,
+        "hybridWin": 0.1931
+      },
+      {
+        "driverId": "norris",
+        "gridPosition": 3,
+        "gridBaseline": 0.1051,
+        "mlWin": 0.7381,
+        "hybridWin": 0.1884
+      }
+    ]
+  },
+  "2026_1": {
+    "artifact_filename": "2026_1_albert_park_provisional_v1.0.0_hybrid_74bd99dca49ce975.json",
+    "predicted_winner": {
+      "driverId": "russell",
+      "driverCode": "RUS",
+      "winProbability": 0.5025,
+      "winProbabilityPct": 50.25,
+      "constructorName": "mercedes",
+      "gridPosition": 1
+    },
+    "driver_count": 19,
+    "total_probability": 1.0001999999999995,
+    "input_hash": "74bd99dca49ce975",
+    "inference_input_hash": "74bd99dca49ce975f3b727ddee81c617f161e057c3acfdf6554e22e2c3c7d56c",
+    "prediction_output_hash": "af98bffd13c7271987673f55ffc455716283ea826e9bef807ac06e4cd65b975e",
+    "top_3": [
+      {
+        "driverId": "russell",
+        "gridPosition": 1,
+        "gridBaseline": 0.5229,
+        "mlWin": 0.3214,
+        "hybridWin": 0.5025
+      },
+      {
+        "driverId": "antonelli",
+        "gridPosition": 2,
+        "gridBaseline": 0.1947,
+        "mlWin": 0.1326,
+        "hybridWin": 0.191
+      },
+      {
+        "driverId": "hadjar",
+        "gridPosition": 3,
+        "gridBaseline": 0.1052,
+        "mlWin": 0.0425,
+        "hybridWin": 0.0929
+      }
+    ]
+  }
+}

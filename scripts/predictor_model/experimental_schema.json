@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paddock.f1/schemas/experimental_schema.json",
+  "title": "ExperimentalDatasetAndRemediationSchema",
+  "description": "Schema definition for Paddock Phase 3C.4E.6 experimental remediated dataset candidate, remediation lineage, and shadow model evaluation.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "dataset_candidate_version",
+    "definitions"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "dataset_candidate_version": {
+      "type": "string",
+      "const": "v1_remediated"
+    },
+    "definitions": {
+      "type": "object"
+    }
+  },
+  "definitions": {
+    "sporting_status_fields": {
+      "type": "object",
+      "required": [
+        "entry_status",
+        "qualifying_status",
+        "starting_status",
+        "race_participation_status",
+        "start_type",
+        "track_grid_box",
+        "pit_lane_order",
+        "model_feature_grid_position",
+        "source_confidence",
+        "manual_verification_required"
+      ],
+      "properties": {
+        "entry_status": {
+          "type": "string",
+          "enum": [
+            "CONFIRMED_ENTRY",
+            "WITHDRAWN_ENTRY",
+            "REPLACEMENT_ENTRY"
+          ]
+        },
+        "qualifying_status": {
+          "type": "string",
+          "enum": [
+            "QUALIFIED",
+            "NO_TIMED_LAP",
+            "CRASH_IN_PRACTICE",
+            "CRASH_IN_QUALIFYING",
+            "MECHANICAL_FAILURE",
+            "DID_NOT_QUALIFY",
+            "PERMISSION_TO_START",
+            "REPLACEMENT_SUBSTITUTION"
+          ]
+        },
+        "starting_status": {
+          "type": "string",
+          "enum": [
+            "GRID_BOX",
+            "PIT_LANE",
+            "WITHDRAWN",
+            "DNS_ON_GRID",
+            "DNS_RECONNAISSANCE",
+            "DNS_GARAGE"
+          ]
+        },
+        "race_participation_status": {
+          "type": "string",
+          "enum": [
+            "STARTED",
+            "PIT_LANE_STARTED",
+            "DNS",
+            "WITHDRAWN_BEFORE_START",
+            "EXCLUDED",
+            "UNKNOWN"
+          ]
+        },
+        "start_type": {
+          "type": "string",
+          "enum": [
+            "STANDING_START",
+            "PIT_LANE",
+            "DID_NOT_START"
+          ]
+        },
+        "track_grid_box": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "maximum": 20
+        },
+        "pit_lane_order": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "maximum": 20
+        },
+        "model_feature_grid_position": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "maximum": 20
+        },
+        "source_confidence": {
+          "type": "string",
+          "enum": [
+            "CONFIRMED_FIA_DOC",
+            "ESTABLISHED_HISTORICAL",
+            "PROVISIONAL",
+            "UNRESOLVED"
+          ]
+        },
+        "manual_verification_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "remediation_lineage_entry": {
+      "type": "object",
+      "required": [
+        "race_id",
+        "season",
+        "round",
+        "driver_id",
+        "rule_applied",
+        "original_values",
+        "remediated_values",
+        "evidence_source",
+        "reason",
+        "status",
+        "training_matrix_action"
+      ],
+      "properties": {
+        "race_id": { "type": "string" },
+        "season": { "type": "integer" },
+        "round": { "type": "integer" },
+        "driver_id": { "type": "string" },
+        "rule_applied": {
+          "type": "string",
+          "enum": ["RULE_A", "RULE_B", "RULE_C", "RULE_D", "RULE_E", "RULE_BASELINE"]
+        },
+        "original_values": { "type": "object" },
+        "remediated_values": { "type": "object" },
+        "evidence_source": { "type": "string" },
+        "evidence_hash": { "type": ["string", "null"] },
+        "reason": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["CONFIRMED", "PROVISIONAL", "UNRESOLVED"]
+        },
+        "training_matrix_action": {
+          "type": "string",
+          "enum": [
+            "EXCLUDE_FROM_TRAINING_PARTICIPANTS",
+            "UPDATE_GRID_POSITION_AND_PENALTY",
+            "ANNOTATE_SPORTING_STATUS_ONLY",
+            "FLAG_AS_PROVISIONAL_UNRESOLVED"
+          ]
+        }
+      }
+    },
+    "shadow_model_comparison": {
+      "type": "object",
+      "required": [
+        "experiment_metadata",
+        "dataset_hashes",
+        "model_a_metrics",
+        "model_b_metrics",
+        "grid_baseline_metrics",
+        "subgroup_comparison",
+        "statistical_significance_note"
+      ],
+      "properties": {
+        "experiment_metadata": { "type": "object" },
+        "dataset_hashes": { "type": "object" },
+        "model_a_metrics": { "type": "object" },
+        "model_b_metrics": { "type": "object" },
+        "grid_baseline_metrics": { "type": "object" },
+        "subgroup_comparison": { "type": "object" },
+        "statistical_significance_note": { "type": "string" }
+      }
+    }
+  }
+}
+

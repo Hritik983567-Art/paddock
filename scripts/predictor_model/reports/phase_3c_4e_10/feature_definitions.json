@@ -1,0 +1,82 @@
+{
+  "schema_version": "v1.0.0_experimental_pace",
+  "metadata": {
+    "generated_by": "PaceFeatureBuilder",
+    "timestamp_utc": "2026-11-01T12:49:51.370424+00:00",
+    "feature_count": 8
+  },
+  "features": {
+    "fp2_long_run_median_pace": {
+      "formula": "median(clean_stint_laps_fp2)",
+      "units": "seconds",
+      "data_type": "float64",
+      "sample_requirements": "Minimum 5 consecutive green-flag timed laps in FP2.",
+      "missing_handling": "Set to null (None) if laps < 5 or on Sprint weekends where FP2 does not exist.",
+      "prediction_cutoff": "Cutoff 1 (Post-Qualifying Provisional) / Cutoff 2 (Official Starting Grid).",
+      "provenance": "FastF1 session lap timing (Session 2 / Practice 2)."
+    },
+    "fp2_long_run_pace_delta_to_field": {
+      "formula": "fp2_long_run_median_pace - median(fp2_long_run_median_pace of all valid starters)",
+      "units": "seconds (negative = faster than field median)",
+      "data_type": "float64",
+      "sample_requirements": "Minimum 5 valid starters with clean FP2 stints.",
+      "missing_handling": "Set to null (None) if driver has no FP2 pace or on sprint weekends.",
+      "prediction_cutoff": "Cutoff 1 / Cutoff 2.",
+      "provenance": "Derived from FastF1 FP2 stint telemetry."
+    },
+    "fp2_stint_consistency": {
+      "formula": "std_dev(clean_stint_laps_fp2)",
+      "units": "seconds (lower = higher tyre management consistency)",
+      "data_type": "float64",
+      "sample_requirements": "Minimum 5 consecutive green-flag laps.",
+      "missing_handling": "Set to null (None) if laps < 5 or on sprint weekends.",
+      "prediction_cutoff": "Cutoff 1 / Cutoff 2.",
+      "provenance": "FastF1 FP2 stint dispersion."
+    },
+    "fp2_tyre_degradation_estimate": {
+      "formula": "linear_regression_slope(lap_index, lap_time_sec)",
+      "units": "seconds per lap (s/lap)",
+      "data_type": "float64",
+      "sample_requirements": "Minimum 6 clean laps in primary stint.",
+      "missing_handling": "Set to null (None) if laps < 6 or on sprint weekends.",
+      "prediction_cutoff": "Cutoff 1 / Cutoff 2.",
+      "provenance": "FastF1 FP2 tyre degradation slope."
+    },
+    "qualifying_delta_to_pole_pct": {
+      "formula": "((driver_best_time - pole_time) / pole_time) * 100",
+      "units": "percentage (%)",
+      "data_type": "float64",
+      "sample_requirements": "Valid timed lap recorded in Q1, Q2, or Q3.",
+      "missing_handling": "Set to null (None) for drivers without timed lap (crashed on out-lap).",
+      "prediction_cutoff": "Cutoff 1 / Cutoff 2 / Cutoff S2 / Cutoff S3.",
+      "provenance": "Jolpica / Ergast / FastF1 Qualifying Session."
+    },
+    "sector_pace_delta": {
+      "formula": "sum((driver_best_sector_i - best_overall_sector_i) for i in 1..3)",
+      "units": "seconds",
+      "data_type": "float64",
+      "sample_requirements": "Valid sector splits in qualifying session.",
+      "missing_handling": "Set to null (None) if sector splits are unavailable.",
+      "prediction_cutoff": "Cutoff 1 / Cutoff 2.",
+      "provenance": "FastF1 Qualifying telemetry sector splits."
+    },
+    "sprint_race_pace_indicator": {
+      "formula": "median(driver_sprint_laps) - median(sprint_winner_laps)",
+      "units": "seconds per lap (s/lap)",
+      "data_type": "float64",
+      "sample_requirements": "Minimum 5 green-flag laps in Saturday 100km sprint race.",
+      "missing_handling": "Set to null (None) on standard format weekends (18 of 24 races).",
+      "prediction_cutoff": "Cutoff S2 (Post-Sprint GP Qualifying) / Cutoff S3 (Sprint Official Grid).",
+      "provenance": "FastF1 / Ergast Saturday Sprint Race classification and lap chart."
+    },
+    "track_overtaking_difficulty": {
+      "formula": "calibrated_track_overtaking_index(circuit_id)",
+      "units": "dimensionless index in [0.0, 1.0] (0.05=Monaco, 0.85=Spa)",
+      "data_type": "float64",
+      "sample_requirements": "Static circuit metadata.",
+      "missing_handling": "Defaults to 0.50 for unmapped new circuits.",
+      "prediction_cutoff": "Known pre-event.",
+      "provenance": "Historical F1 overtaking database and FIA circuit layout registry."
+    }
+  }
+}

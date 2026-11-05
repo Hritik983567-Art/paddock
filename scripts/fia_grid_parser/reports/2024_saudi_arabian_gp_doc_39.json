@@ -1,0 +1,493 @@
+{
+  "event_metadata": {
+    "season": 2024,
+    "round": 2,
+    "race_id": "2024_2_jeddah",
+    "race_name": "Saudi Arabian Grand Prix",
+    "circuit_id": "jeddah"
+  },
+  "document_metadata": {
+    "official_doc_id": "Doc 39",
+    "pdf_sha256": "c8d98ccf01fb389f3c4fd3878abf9b447700371aa7e1cabe0a9b74adbb00f0b3",
+    "page_count": 2,
+    "grid_page": 2
+  },
+  "reconciliation_summary": {
+    "total_drivers_reconciled": 20,
+    "outcome_counts": {
+      "MATCH": 20,
+      "MATCH_WITH_MODEL_ENCODING_DIFFERENCE": 0,
+      "PIT_LANE_ENCODING_MATCH": 0,
+      "QUALIFYING_POSITION_DIFFERENCE": 0,
+      "RACE_RESULT_GRID_DIFFERENCE": 0,
+      "DRIVER_IDENTITY_MISMATCH": 0,
+      "MISSING_HISTORICAL_RECORD": 0,
+      "MISSING_FIA_RECORD": 0,
+      "WITHDRAWAL_OR_DNS_DIFFERENCE": 0,
+      "AMBIGUOUS_REQUIRES_MANUAL_REVIEW": 0
+    },
+    "has_discrepancies": false
+  },
+  "driver_reconciliations": [
+    {
+      "driver_id": "albon",
+      "car_number": 23,
+      "driver_name": "Alexander ALBON",
+      "constructor_id": "williams",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 12,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 12,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 12,
+        "quali_position": 12,
+        "grid_penalty_delta": 0,
+        "constructor_id": "williams"
+      },
+      "explanation": "Full match: Official track grid box P12 matches historical race-result grid P12 and qualifying P12."
+    },
+    {
+      "driver_id": "alonso",
+      "car_number": 14,
+      "driver_name": "Fernando ALONSO",
+      "constructor_id": "aston_martin",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 4,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 4,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 4,
+        "quali_position": 4,
+        "grid_penalty_delta": 0,
+        "constructor_id": "aston_martin"
+      },
+      "explanation": "Full match: Official track grid box P4 matches historical race-result grid P4 and qualifying P4."
+    },
+    {
+      "driver_id": "bearman",
+      "car_number": 38,
+      "driver_name": "Oliver BEARMAN",
+      "constructor_id": "ferrari",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 11,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 11,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 11,
+        "quali_position": 11,
+        "grid_penalty_delta": 0,
+        "constructor_id": "ferrari"
+      },
+      "explanation": "Full match: Official track grid box P11 matches historical race-result grid P11 and qualifying P11."
+    },
+    {
+      "driver_id": "bottas",
+      "car_number": 77,
+      "driver_name": "Valtteri BOTTAS",
+      "constructor_id": "sauber",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 16,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 16,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 16,
+        "quali_position": 16,
+        "grid_penalty_delta": 0,
+        "constructor_id": "sauber"
+      },
+      "explanation": "Full match: Official track grid box P16 matches historical race-result grid P16 and qualifying P16."
+    },
+    {
+      "driver_id": "gasly",
+      "car_number": 10,
+      "driver_name": "Pierre GASLY",
+      "constructor_id": "alpine",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 18,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 18,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 18,
+        "quali_position": 18,
+        "grid_penalty_delta": 0,
+        "constructor_id": "alpine"
+      },
+      "explanation": "Full match: Official track grid box P18 matches historical race-result grid P18 and qualifying P18."
+    },
+    {
+      "driver_id": "hamilton",
+      "car_number": 44,
+      "driver_name": "Lewis HAMILTON",
+      "constructor_id": "mercedes",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 8,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 8,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 8,
+        "quali_position": 8,
+        "grid_penalty_delta": 0,
+        "constructor_id": "mercedes"
+      },
+      "explanation": "Full match: Official track grid box P8 matches historical race-result grid P8 and qualifying P8."
+    },
+    {
+      "driver_id": "hulkenberg",
+      "car_number": 27,
+      "driver_name": "Nico HULKENBERG",
+      "constructor_id": "haas",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 15,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 15,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 15,
+        "quali_position": 15,
+        "grid_penalty_delta": 0,
+        "constructor_id": "haas"
+      },
+      "explanation": "Full match: Official track grid box P15 matches historical race-result grid P15 and qualifying P15."
+    },
+    {
+      "driver_id": "kevin_magnussen",
+      "car_number": 20,
+      "driver_name": "Kevin MAGNUSSEN",
+      "constructor_id": "haas",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 13,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 13,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 13,
+        "quali_position": 13,
+        "grid_penalty_delta": 0,
+        "constructor_id": "haas"
+      },
+      "explanation": "Full match: Official track grid box P13 matches historical race-result grid P13 and qualifying P13."
+    },
+    {
+      "driver_id": "leclerc",
+      "car_number": 16,
+      "driver_name": "Charles LECLERC",
+      "constructor_id": "ferrari",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 2,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 2,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 2,
+        "quali_position": 2,
+        "grid_penalty_delta": 0,
+        "constructor_id": "ferrari"
+      },
+      "explanation": "Full match: Official track grid box P2 matches historical race-result grid P2 and qualifying P2."
+    },
+    {
+      "driver_id": "max_verstappen",
+      "car_number": 1,
+      "driver_name": "Max VERSTAPPEN",
+      "constructor_id": "red_bull",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 1,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 1,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 1,
+        "quali_position": 1,
+        "grid_penalty_delta": 0,
+        "constructor_id": "red_bull"
+      },
+      "explanation": "Full match: Official track grid box P1 matches historical race-result grid P1 and qualifying P1."
+    },
+    {
+      "driver_id": "norris",
+      "car_number": 4,
+      "driver_name": "Lando NORRIS",
+      "constructor_id": "mclaren",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 6,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 6,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 6,
+        "quali_position": 6,
+        "grid_penalty_delta": 0,
+        "constructor_id": "mclaren"
+      },
+      "explanation": "Full match: Official track grid box P6 matches historical race-result grid P6 and qualifying P6."
+    },
+    {
+      "driver_id": "ocon",
+      "car_number": 31,
+      "driver_name": "Esteban OCON",
+      "constructor_id": "alpine",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 17,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 17,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 17,
+        "quali_position": 17,
+        "grid_penalty_delta": 0,
+        "constructor_id": "alpine"
+      },
+      "explanation": "Full match: Official track grid box P17 matches historical race-result grid P17 and qualifying P17."
+    },
+    {
+      "driver_id": "perez",
+      "car_number": 11,
+      "driver_name": "Sergio PEREZ",
+      "constructor_id": "red_bull",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 3,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 3,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 3,
+        "quali_position": 3,
+        "grid_penalty_delta": 0,
+        "constructor_id": "red_bull"
+      },
+      "explanation": "Full match: Official track grid box P3 matches historical race-result grid P3 and qualifying P3."
+    },
+    {
+      "driver_id": "piastri",
+      "car_number": 81,
+      "driver_name": "Oscar PIASTRI",
+      "constructor_id": "mclaren",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 5,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 5,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 5,
+        "quali_position": 5,
+        "grid_penalty_delta": 0,
+        "constructor_id": "mclaren"
+      },
+      "explanation": "Full match: Official track grid box P5 matches historical race-result grid P5 and qualifying P5."
+    },
+    {
+      "driver_id": "ricciardo",
+      "car_number": 3,
+      "driver_name": "Daniel RICCIARDO",
+      "constructor_id": "rb",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 14,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 14,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 14,
+        "quali_position": 14,
+        "grid_penalty_delta": 0,
+        "constructor_id": "rb"
+      },
+      "explanation": "Full match: Official track grid box P14 matches historical race-result grid P14 and qualifying P14."
+    },
+    {
+      "driver_id": "russell",
+      "car_number": 63,
+      "driver_name": "George RUSSELL",
+      "constructor_id": "mercedes",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 7,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 7,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 7,
+        "quali_position": 7,
+        "grid_penalty_delta": 0,
+        "constructor_id": "mercedes"
+      },
+      "explanation": "Full match: Official track grid box P7 matches historical race-result grid P7 and qualifying P7."
+    },
+    {
+      "driver_id": "sargeant",
+      "car_number": 2,
+      "driver_name": "Logan SARGEANT",
+      "constructor_id": "williams",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 19,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 19,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 19,
+        "quali_position": 19,
+        "grid_penalty_delta": 0,
+        "constructor_id": "williams"
+      },
+      "explanation": "Full match: Official track grid box P19 matches historical race-result grid P19 and qualifying P19."
+    },
+    {
+      "driver_id": "stroll",
+      "car_number": 18,
+      "driver_name": "Lance STROLL",
+      "constructor_id": "aston_martin",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 10,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 10,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 10,
+        "quali_position": 10,
+        "grid_penalty_delta": 0,
+        "constructor_id": "aston_martin"
+      },
+      "explanation": "Full match: Official track grid box P10 matches historical race-result grid P10 and qualifying P10."
+    },
+    {
+      "driver_id": "tsunoda",
+      "car_number": 22,
+      "driver_name": "Yuki TSUNODA",
+      "constructor_id": "rb",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 9,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 9,
+        "status": "STARTER",
+        "dispensation_doc": null,
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 9,
+        "quali_position": 9,
+        "grid_penalty_delta": 0,
+        "constructor_id": "rb"
+      },
+      "explanation": "Full match: Official track grid box P9 matches historical race-result grid P9 and qualifying P9."
+    },
+    {
+      "driver_id": "zhou",
+      "car_number": 24,
+      "driver_name": "ZHOU Guanyu",
+      "constructor_id": "sauber",
+      "outcome": "MATCH",
+      "fia_values": {
+        "start_type": "TRACK_GRID",
+        "track_grid_box": 20,
+        "pit_lane_order": null,
+        "model_feature_grid_position": 20,
+        "status": "STARTER",
+        "dispensation_doc": "Doc 32",
+        "penalty_details": null
+      },
+      "historical_values": {
+        "grid_position": 20,
+        "quali_position": 20,
+        "grid_penalty_delta": 0,
+        "constructor_id": "sauber"
+      },
+      "explanation": "Full match: Official track grid box P20 matches historical race-result grid P20 and qualifying P20."
+    }
+  ]
+}

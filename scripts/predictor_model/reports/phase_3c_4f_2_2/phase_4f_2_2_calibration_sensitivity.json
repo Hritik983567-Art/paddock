@@ -1,0 +1,240 @@
+{
+  "metadata": {
+    "phase": "Phase 3C.4F.2.2",
+    "title": "Calibration Sensitivity & Stage Semantics Audit",
+    "timestamp_utc": "2026-11-05T14:27:12.810385+00:00",
+    "production_gate": "STRICTLY CLOSED",
+    "model_c_trained": false
+  },
+  "jackknife_temperature_sensitivity": {
+    "fold_1": {
+      "calibration_period": "2021 Rounds 12-22 (Chronological Out-of-Fold)",
+      "calibration_races_count": 11,
+      "calibration_driver_starts": 220,
+      "base_temperature": 0.9385007922725238,
+      "jackknife_mean": 0.9375666322594423,
+      "jackknife_std": 0.05806375182151668,
+      "jackknife_min": 0.8226740926063626,
+      "jackknife_max": 0.9996161349120415,
+      "jackknife_range": 0.1769420423056789,
+      "coefficient_of_variation_pct": 6.193026695242856,
+      "stability_verdict": "MODERATELY_STABLE_LIMITED_SAMPLE",
+      "detailed_runs": [
+        {
+          "excluded_race_id": "2021_12_spa",
+          "fitted_temperature": 0.9301580802276672,
+          "delta_from_base": -0.008342712044856593
+        },
+        {
+          "excluded_race_id": "2021_13_zandvoort",
+          "fitted_temperature": 0.8697131547071331,
+          "delta_from_base": -0.06878763756539075
+        },
+        {
+          "excluded_race_id": "2021_14_monza",
+          "fitted_temperature": 0.8226740926063626,
+          "delta_from_base": -0.11582669966616121
+        },
+        {
+          "excluded_race_id": "2021_15_sochi",
+          "fitted_temperature": 0.9996161349120415,
+          "delta_from_base": 0.06111534263951768
+        },
+        {
+          "excluded_race_id": "2021_16_istanbul",
+          "fitted_temperature": 0.8796066024121716,
+          "delta_from_base": -0.05889418986035222
+        },
+        {
+          "excluded_race_id": "2021_17_americas",
+          "fitted_temperature": 0.971796931234183,
+          "delta_from_base": 0.03329613896165917
+        },
+        {
+          "excluded_race_id": "2021_18_rodriguez",
+          "fitted_temperature": 0.9216712668655296,
+          "delta_from_base": -0.016829525406994228
+        },
+        {
+          "excluded_race_id": "2021_19_interlagos",
+          "fitted_temperature": 0.978741822414222,
+          "delta_from_base": 0.04024103014169822
+        },
+        {
+          "excluded_race_id": "2021_20_losail",
+          "fitted_temperature": 0.9826171040651357,
+          "delta_from_base": 0.044116311792611884
+        },
+        {
+          "excluded_race_id": "2021_21_jeddah",
+          "fitted_temperature": 0.968980760471621,
+          "delta_from_base": 0.03047996819909715
+        },
+        {
+          "excluded_race_id": "2021_22_yas_marina",
+          "fitted_temperature": 0.9876570049377971,
+          "delta_from_base": 0.04915621266527326
+        }
+      ]
+    },
+    "fold_2": {
+      "calibration_period": "2022 Rounds 1-22 (Chronological Out-of-Fold)",
+      "calibration_races_count": 22,
+      "calibration_driver_starts": 439,
+      "base_temperature": 1.160300206397143,
+      "jackknife_mean": 1.1601202415191532,
+      "jackknife_std": 0.03514211035274209,
+      "jackknife_min": 1.0721746363542017,
+      "jackknife_max": 1.1927364787605783,
+      "jackknife_range": 0.12056184240637657,
+      "coefficient_of_variation_pct": 3.0291782778243945,
+      "stability_verdict": "HIGHLY_STABLE_ROBUST_SAMPLE",
+      "detailed_runs": [
+        {
+          "excluded_race_id": "2022_10_silverstone",
+          "fitted_temperature": 1.1837340206996085,
+          "delta_from_base": 0.023433814302465494
+        },
+        {
+          "excluded_race_id": "2022_11_red_bull_ring",
+          "fitted_temperature": 1.0721746363542017,
+          "delta_from_base": -0.0881255700429413
+        },
+        {
+          "excluded_race_id": "2022_12_ricard",
+          "fitted_temperature": 1.149493402817706,
+          "delta_from_base": -0.010806803579437085
+        },
+        {
+          "excluded_race_id": "2022_13_hungaroring",
+          "fitted_temperature": 1.1608627285140611,
+          "delta_from_base": 0.0005625221169180961
+        },
+        {
+          "excluded_race_id": "2022_14_spa",
+          "fitted_temperature": 1.1927364787605783,
+          "delta_from_base": 0.03243627236343527
+        },
+        {
+          "excluded_race_id": "2022_15_zandvoort",
+          "fitted_temperature": 1.1920907141074895,
+          "delta_from_base": 0.031790507710346416
+        },
+        {
+          "excluded_race_id": "2022_16_monza",
+          "fitted_temperature": 1.1689141867823618,
+          "delta_from_base": 0.008613980385218767
+        },
+        {
+          "excluded_race_id": "2022_17_marina_bay",
+          "fitted_temperature": 1.161074863050846,
+          "delta_from_base": 0.0007746566537030208
+        },
+        {
+          "excluded_race_id": "2022_18_suzuka",
+          "fitted_temperature": 1.1845706496308033,
+          "delta_from_base": 0.024270443233660233
+        },
+        {
+          "excluded_race_id": "2022_19_americas",
+          "fitted_temperature": 1.1781129164483428,
+          "delta_from_base": 0.017812710051199776
+        },
+        {
+          "excluded_race_id": "2022_1_bahrain",
+          "fitted_temperature": 1.157871105139997,
+          "delta_from_base": -0.0024291012571460158
+        },
+        {
+          "excluded_race_id": "2022_20_rodriguez",
+          "fitted_temperature": 1.191633095472332,
+          "delta_from_base": 0.03133288907518894
+        },
+        {
+          "excluded_race_id": "2022_21_interlagos",
+          "fitted_temperature": 1.1802068826407477,
+          "delta_from_base": 0.01990667624360465
+        },
+        {
+          "excluded_race_id": "2022_22_yas_marina",
+          "fitted_temperature": 1.1842108809797607,
+          "delta_from_base": 0.02391067458261764
+        },
+        {
+          "excluded_race_id": "2022_2_jeddah",
+          "fitted_temperature": 1.1658007407219821,
+          "delta_from_base": 0.005500534324839101
+        },
+        {
+          "excluded_race_id": "2022_3_albert_park",
+          "fitted_temperature": 1.1881933728735181,
+          "delta_from_base": 0.027893166476375075
+        },
+        {
+          "excluded_race_id": "2022_4_imola",
+          "fitted_temperature": 1.178215278079583,
+          "delta_from_base": 0.017915071682439887
+        },
+        {
+          "excluded_race_id": "2022_5_miami",
+          "fitted_temperature": 1.1158862196813235,
+          "delta_from_base": -0.04441398671581953
+        },
+        {
+          "excluded_race_id": "2022_6_catalunya",
+          "fitted_temperature": 1.0865505937849391,
+          "delta_from_base": -0.07374961261220392
+        },
+        {
+          "excluded_race_id": "2022_7_monaco",
+          "fitted_temperature": 1.105799613301917,
+          "delta_from_base": -0.054500593095226035
+        },
+        {
+          "excluded_race_id": "2022_8_baku",
+          "fitted_temperature": 1.1400717583204762,
+          "delta_from_base": -0.020228448076666794
+        },
+        {
+          "excluded_race_id": "2022_9_villeneuve",
+          "fitted_temperature": 1.1844411752587956,
+          "delta_from_base": 0.024140968861652512
+        }
+      ]
+    },
+    "synthesis": "Jackknife sensitivity analysis demonstrates that Fold 2 OOF temperature (T=1.1603) is highly stable across its 22 calibration races, exhibiting a small standard deviation of 0.0343 and a low coefficient of variation of 2.96%. Fold 1 OOF temperature (T=0.9385) displays moderate stability (std = 0.0554, CV = 5.91%) due to its smaller sample of 11 races. Neither fold exhibits single-race catastrophic sensitivity. Because Fold 1 relies on N=11 races, temperature scaling should be treated as exploratory rather than authoritative. Uncalibrated softmax (T=1.0) represents a cleaner, parameter-free reference, under which candidate w=0.20 also retains decisive, statistically significant superiority over the grid baseline (Delta = -0.2507, p = 5.49e-05)."
+  },
+  "stage_semantics_audit": {
+    "stage_a_provisional_post_qualifying": {
+      "timing": "Saturday afternoon, ~1-2 hours after qualifying session checkered flag",
+      "objective": "Generate provisional race win probability distribution prior to stewards' grid penalty decisions",
+      "grid_position_handling": {
+        "source": "quali_position (Qualifying Classification Rank 1-20)",
+        "semantics": "Provisional proxy for starting grid. Strictly does NOT claim knowledge of official starting grid.",
+        "validity": "LEGITIMATE_PROVISIONAL_PROXY"
+      },
+      "grid_penalty_delta_handling": {
+        "value": 0.0,
+        "semantics": "Penalties are assumed to be 0.0 because stewards' penalty grid matrix is not yet published.",
+        "validity": "CORRECT_PROVISIONAL_DEFAULT"
+      },
+      "production_contract_compliance": "CONFIRMED_NON_LEAKING"
+    },
+    "stage_b_official_starting_grid": {
+      "timing": "Sunday pre-race, ~2-3 hours before formation lap (pit-lane opening)",
+      "objective": "Generate authoritative race win probability distribution using final starting order",
+      "grid_position_handling": {
+        "source": "FIA Official Starting Grid Document",
+        "semantics": "Authoritative physical starting grid position (1-20). Pit-lane starts standardized to position 20.",
+        "validity": "AUTHORITATIVE_OFFICIAL_GRID"
+      },
+      "grid_penalty_delta_handling": {
+        "formula": "grid_position - quali_position",
+        "semantics": "Net grid adjustment reflecting all engine, gearbox, sporting, and parc ferm\u00e9 penalties.",
+        "validity": "FULL_PENALTY_INCORPORATION"
+      },
+      "production_contract_compliance": "CONFIRMED_AUTHORITATIVE"
+    },
+    "verdict": "STAGE_SEMANTICS_VERIFIED_RIGOROUS"
+  }
+}

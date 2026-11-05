@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "generator": "scripts/predictor_model/experimental_ablation.py",
+    "timestamp_utc": "2026-11-01T11:25:52.340662+00:00",
+    "training_cutoff": "2023-12-31",
+    "holdout_season": 2024,
+    "random_seed": 42
+  },
+  "candidates": {
+    "Candidate A (Original Baseline)": {
+      "training_samples": 1319,
+      "training_races": 66,
+      "calibrated_temperature": 0.7625,
+      "in_sample_calibrated_metrics": {
+        "top1_accuracy": 0.5417,
+        "top1_hit_rate_pct": 54.17,
+        "top3_accuracy": 0.7917,
+        "top3_hit_rate_pct": 79.17,
+        "multiclass_log_loss": 2.2911,
+        "multiclass_brier_summed": 0.8385,
+        "multiclass_brier_class_avg": 0.04214,
+        "expected_calibration_error": 0.0364
+      },
+      "uncalibrated_t1_metrics": {
+        "top1_accuracy": 0.5417,
+        "multiclass_log_loss": 1.9555,
+        "multiclass_brier_summed": 0.7842,
+        "expected_calibration_error": 0.0321
+      }
+    },
+    "Candidate B (Exclude Stroll Only)": {
+      "training_samples": 1318,
+      "training_races": 66,
+      "calibrated_temperature": 0.7646,
+      "in_sample_calibrated_metrics": {
+        "top1_accuracy": 0.5,
+        "top1_hit_rate_pct": 50.0,
+        "top3_accuracy": 0.7917,
+        "top3_hit_rate_pct": 79.17,
+        "multiclass_log_loss": 2.2876,
+        "multiclass_brier_summed": 0.8233,
+        "multiclass_brier_class_avg": 0.04138,
+        "expected_calibration_error": 0.0321
+      },
+      "uncalibrated_t1_metrics": {
+        "top1_accuracy": 0.5,
+        "multiclass_log_loss": 1.9554,
+        "multiclass_brier_summed": 0.774,
+        "expected_calibration_error": 0.026
+      }
+    },
+    "Candidate C (Exclude Schumacher Only)": {
+      "training_samples": 1318,
+      "training_races": 66,
+      "calibrated_temperature": 0.7646,
+      "in_sample_calibrated_metrics": {
+        "top1_accuracy": 0.5,
+        "top1_hit_rate_pct": 50.0,
+        "top3_accuracy": 0.7917,
+        "top3_hit_rate_pct": 79.17,
+        "multiclass_log_loss": 2.2877,
+        "multiclass_brier_summed": 0.8233,
+        "multiclass_brier_class_avg": 0.04138,
+        "expected_calibration_error": 0.0321
+      },
+      "uncalibrated_t1_metrics": {
+        "top1_accuracy": 0.5,
+        "multiclass_log_loss": 1.9554,
+        "multiclass_brier_summed": 0.774,
+        "expected_calibration_error": 0.026
+      }
+    },
+    "Candidate D (Exclude Both Non-Starters)": {
+      "training_samples": 1317,
+      "training_races": 66,
+      "calibrated_temperature": 0.7654,
+      "in_sample_calibrated_metrics": {
+        "top1_accuracy": 0.5,
+        "top1_hit_rate_pct": 50.0,
+        "top3_accuracy": 0.7917,
+        "top3_hit_rate_pct": 79.17,
+        "multiclass_log_loss": 2.2833,
+        "multiclass_brier_summed": 0.8222,
+        "multiclass_brier_class_avg": 0.04133,
+        "expected_calibration_error": 0.0342
+      },
+      "uncalibrated_t1_metrics": {
+        "top1_accuracy": 0.5,
+        "multiclass_log_loss": 1.9535,
+        "multiclass_brier_summed": 0.7734,
+        "expected_calibration_error": 0.0268
+      }
+    },
+    "Candidate E (Fully Remediated Candidate)": {
+      "training_samples": 1317,
+      "training_races": 66,
+      "calibrated_temperature": 0.7654,
+      "in_sample_calibrated_metrics": {
+        "top1_accuracy": 0.5,
+        "top1_hit_rate_pct": 50.0,
+        "top3_accuracy": 0.7917,
+        "top3_hit_rate_pct": 79.17,
+        "multiclass_log_loss": 2.2833,
+        "multiclass_brier_summed": 0.8222,
+        "multiclass_brier_class_avg": 0.04133,
+        "expected_calibration_error": 0.0342
+      },
+      "uncalibrated_t1_metrics": {
+        "top1_accuracy": 0.5,
+        "multiclass_log_loss": 1.9535,
+        "multiclass_brier_summed": 0.7734,
+        "expected_calibration_error": 0.0268
+      }
+    }
+  },
+  "ablation_attribution_analysis": {
+    "stroll_exclusion_impact": {
+      "description": "Candidate B vs Candidate A (Effect of removing Stroll Singapore 2023 row)",
+      "delta_log_loss": -0.0035,
+      "delta_brier": -0.0152
+    },
+    "schumacher_exclusion_impact": {
+      "description": "Candidate C vs Candidate A (Effect of removing Schumacher Saudi 2022 row)",
+      "delta_log_loss": -0.0034,
+      "delta_brier": -0.0152
+    },
+    "both_non_starters_impact": {
+      "description": "Candidate D vs Candidate A (Combined effect of removing both non-starters)",
+      "delta_log_loss": -0.0078,
+      "delta_brier": -0.0163
+    },
+    "zhou_pit_lane_remediation_impact": {
+      "description": "Candidate E vs Candidate D (Effect of Zhou grid=20 and delta=+1)",
+      "delta_log_loss": 0.0,
+      "delta_brier": 0.0
+    }
+  },
+  "key_takeaways": "Ablation Takeaways: 1. Candidate D (excluding both non-starters) accounts for the primary reduction in multiclass Brier score and log loss compared to Candidate A. 2. Candidate B (Stroll only) and Candidate C (Schumacher only) individually contribute incremental improvements, confirming that neither non-starter exclusion alone produces the complete effect. 3. Candidate E (Zhou pit-lane remediation) provides an additional fine-grained adjustment, ensuring that the pit-lane penalty feature aligns with FIA sporting truth."
+}

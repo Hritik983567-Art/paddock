@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paddock.f1/schemas/reconciliation_schema.json",
+  "title": "FIAGridReconciliationReport",
+  "type": "object",
+  "required": [
+    "event_metadata",
+    "document_metadata",
+    "reconciliation_summary",
+    "driver_reconciliations"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "event_metadata": {
+      "type": "object",
+      "required": ["season", "round", "race_id", "race_name", "circuit_id"],
+      "additionalProperties": false,
+      "properties": {
+        "season": { "type": "integer" },
+        "round": { "type": "integer" },
+        "race_id": { "type": "string" },
+        "race_name": { "type": "string" },
+        "circuit_id": { "type": "string" }
+      }
+    },
+    "document_metadata": {
+      "type": "object",
+      "required": ["official_doc_id", "pdf_sha256", "page_count", "grid_page"],
+      "additionalProperties": false,
+      "properties": {
+        "official_doc_id": { "type": "string" },
+        "pdf_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "page_count": { "type": "integer" },
+        "grid_page": { "type": "integer" }
+      }
+    },
+    "reconciliation_summary": {
+      "type": "object",
+      "required": [
+        "total_drivers_reconciled",
+        "outcome_counts",
+        "has_discrepancies"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "total_drivers_reconciled": { "type": "integer" },
+        "outcome_counts": {
+          "type": "object",
+          "required": [
+            "MATCH",
+            "MATCH_WITH_MODEL_ENCODING_DIFFERENCE",
+            "PIT_LANE_ENCODING_MATCH",
+            "QUALIFYING_POSITION_DIFFERENCE",
+            "RACE_RESULT_GRID_DIFFERENCE",
+            "DRIVER_IDENTITY_MISMATCH",
+            "MISSING_HISTORICAL_RECORD",
+            "MISSING_FIA_RECORD",
+            "WITHDRAWAL_OR_DNS_DIFFERENCE",
+            "AMBIGUOUS_REQUIRES_MANUAL_REVIEW"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "MATCH": { "type": "integer" },
+            "MATCH_WITH_MODEL_ENCODING_DIFFERENCE": { "type": "integer" },
+            "PIT_LANE_ENCODING_MATCH": { "type": "integer" },
+            "QUALIFYING_POSITION_DIFFERENCE": { "type": "integer" },
+            "RACE_RESULT_GRID_DIFFERENCE": { "type": "integer" },
+            "DRIVER_IDENTITY_MISMATCH": { "type": "integer" },
+            "MISSING_HISTORICAL_RECORD": { "type": "integer" },
+            "MISSING_FIA_RECORD": { "type": "integer" },
+            "WITHDRAWAL_OR_DNS_DIFFERENCE": { "type": "integer" },
+            "AMBIGUOUS_REQUIRES_MANUAL_REVIEW": { "type": "integer" }
+          }
+        },
+        "has_discrepancies": { "type": "boolean" }
+      }
+    },
+    "driver_reconciliations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "driver_id",
+          "car_number",
+          "driver_name",
+          "constructor_id",
+          "outcome",
+          "fia_values",
+          "historical_values",
+          "explanation"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "driver_id": { "type": "string" },
+          "car_number": { "type": ["integer", "null"] },
+          "driver_name": { "type": "string" },
+          "constructor_id": { "type": "string" },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "MATCH",
+              "MATCH_WITH_MODEL_ENCODING_DIFFERENCE",
+              "PIT_LANE_ENCODING_MATCH",
+              "QUALIFYING_POSITION_DIFFERENCE",
+              "RACE_RESULT_GRID_DIFFERENCE",
+              "DRIVER_IDENTITY_MISMATCH",
+              "MISSING_HISTORICAL_RECORD",
+              "MISSING_FIA_RECORD",
+              "WITHDRAWAL_OR_DNS_DIFFERENCE",
+              "AMBIGUOUS_REQUIRES_MANUAL_REVIEW"
+            ]
+          },
+          "fia_values": {
+            "type": ["object", "null"],
+            "additionalProperties": true,
+            "properties": {
+              "start_type": { "type": "string" },
+              "track_grid_box": { "type": ["integer", "null"] },
+              "pit_lane_order": { "type": ["integer", "null"] },
+              "model_feature_grid_position": { "type": ["integer", "null"] },
+              "status": { "type": "string" },
+              "dispensation_doc": { "type": ["string", "null"] },
+              "penalty_details": { "type": ["string", "null"] }
+            }
+          },
+          "historical_values": {
+            "type": ["object", "null"],
+            "additionalProperties": true,
+            "properties": {
+              "grid_position": { "type": ["integer", "null"] },
+              "quali_position": { "type": ["integer", "null"] },
+              "grid_penalty_delta": { "type": ["integer", "null"] },
+              "constructor_id": { "type": ["string", "null"] }
+            }
+          },
+          "explanation": { "type": "string" }
+        }
+      }
+    }
+  }
+}
+
