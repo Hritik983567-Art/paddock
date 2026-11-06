@@ -254,6 +254,17 @@ function formatCountdown(targetMs: number, nowMs = Date.now()): string {
   return `${minutes}m ${seconds.toString().padStart(2, '0')}s`;
 }
 
+function parseCountdownParts(targetMs: number, nowMs = Date.now()): { days: number; hours: number; minutes: number; seconds: number } {
+  const diff = targetMs - nowMs;
+  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  const totalSeconds = Math.floor(diff / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  return { days, hours, minutes, seconds };
+}
+
 
 
 const ALL_CIRCUITS_ROSTER = [
@@ -383,6 +394,7 @@ export default function LiveTelemetryPage() {
   const [gapDisplayMode, setGapDisplayMode] = useState<'dual' | 'gap' | 'interval'>('dual');
   const [weatherData, setWeatherData] = useState<LiveWeatherData | null>(null);
   const [previewLiveConsole, setPreviewLiveConsole] = useState(false);
+  const [nowMs, setNowMs] = useState(Date.now());
   const isLiveTransmittingRef = useRef(false);
   const consecutiveEmptyPollsRef = useRef(0);
 
@@ -603,6 +615,7 @@ export default function LiveTelemetryPage() {
   // Real-time 1s session scheduler ticker (NO fake simulation, strictly updates session times)
   useEffect(() => {
     const ticker = setInterval(() => {
+      setNowMs(Date.now());
       if (activeRaceDataRef.current) {
         setSessions(parseCompetitiveSessions(activeRaceDataRef.current));
       }
@@ -963,7 +976,10 @@ export default function LiveTelemetryPage() {
   });
 
   const countdownToNext = nextUpcomingSession && nextUpcomingSession.startMs 
-    ? formatCountdown(nextUpcomingSession.startMs) 
+    ? formatCountdown(nextUpcomingSession.startMs, nowMs) 
+    : null;
+  const countdownParts = nextUpcomingSession && nextUpcomingSession.startMs 
+    ? parseCountdownParts(nextUpcomingSession.startMs, nowMs) 
     : null;
 
   return (
@@ -1179,52 +1195,166 @@ export default function LiveTelemetryPage() {
         </div>
 
         {!isLiveActive && !previewLiveConsole ? (
-          <div className="w-full bg-slate-950/90 border border-slate-800 rounded-xl p-6 sm:p-10 text-center my-4 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-cyan-500/10 blur-3xl pointer-events-none rounded-full"></div>
+          <div className="w-full bg-[#0b0f17]/95 border border-[#243048] rounded-xl p-6 sm:p-10 my-4 shadow-2xl relative overflow-hidden text-center backdrop-blur-xl">
+            {/* Top Atmospheric Glow & Technical Grid Texture (Stitch Telemetry Tactical) */}
+            <div 
+              className="absolute inset-0 opacity-15 pointer-events-none" 
+              style={{
+                backgroundImage: 'linear-gradient(to right, rgba(0,240,255,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,240,255,0.15) 1px, transparent 1px)',
+                backgroundSize: '32px 32px'
+              }}
+            />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-36 bg-cyan-500/10 blur-3xl pointer-events-none rounded-full" />
+            <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-400/80 to-transparent" />
 
-            <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono text-cyan-400">
-                <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-                <span>OFFICIAL TIMETABLE • TELEMETRY STANDBY</span>
+            <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+              {/* Stitch Tactical Data Chips Bar */}
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#131a26]/90 border border-white/10 text-[11px] font-mono text-slate-200 shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444]" />
+                  <span>FIA F1 WORLD CHAMPIONSHIP™</span>
+                </div>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#131a26]/90 border border-cyan-500/30 text-[11px] font-mono text-cyan-300 shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f0ff]" />
+                  <span>RADAR LOCKED • {currentVenueName.toUpperCase()}</span>
+                </div>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#131a26]/90 border border-amber-500/30 text-[11px] font-mono text-amber-300 shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b]" />
+                  <span>TELEMETRY: STANDBY</span>
+                </div>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-display tracking-tight text-white uppercase">
-                {nextUpcomingSession ? `NEXT: ${nextUpcomingSession.name}` : `UPCOMING: ${currentVenueName}`}
-              </h2>
-
-              <div className="flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-slate-400">
-                <span>📍 {currentVenueName}{currentCountryName ? ` (${currentCountryName})` : ''}</span>
-                <span>•</span>
-                <span>🏁 {totalLaps} LAPS</span>
+              {/* Venue & Session Title */}
+              <div>
+                <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-cyan-400 font-bold mb-1.5">
+                  OFFICIAL COMPETITIVE TIMETABLE
+                </div>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-white uppercase drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                  {nextUpcomingSession ? `NEXT: ${nextUpcomingSession.name}` : `UPCOMING: ${currentVenueName}`}
+                </h2>
+                <div className="flex flex-wrap items-center justify-center gap-2.5 font-mono text-xs text-slate-400 mt-2">
+                  <span className="text-slate-300 font-semibold">📍 {currentVenueName}{currentCountryName ? ` (${currentCountryName})` : ''}</span>
+                  <span className="text-slate-600">•</span>
+                  <span>🏁 {totalLaps} LAPS</span>
+                  <span className="text-slate-600">•</span>
+                  <span>📐 {currentTrackDef?.lengthKm || 4.309} KM</span>
+                  <span className="text-slate-600">•</span>
+                  <span>⚡ 15 APEX VECTORS</span>
+                </div>
               </div>
 
-              {countdownToNext && (
-                <div className="py-4 my-2 border-y border-slate-800/80">
-                  <div className="text-[11px] font-mono uppercase text-slate-400 tracking-widest mb-1.5 font-bold">
-                    SESSION STARTS IN
+              {/* Stitch Segmented HUD Countdown Clock */}
+              {countdownParts && (
+                <div className="py-5 px-4 sm:px-6 my-4 rounded-xl bg-[#0a0e16]/80 border border-[#243048] relative">
+                  <div className="text-[11px] font-mono uppercase tracking-[0.25em] text-slate-400 font-bold mb-3 flex items-center justify-center gap-2">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    <span>SESSION GREEN FLAG COUNTDOWN</span>
                   </div>
-                  <div className="text-3xl sm:text-5xl md:text-6xl font-black font-mono text-cyan-300 tracking-tight drop-shadow-[0_0_16px_rgba(52,228,200,0.4)]">
-                    {countdownToNext}
+
+                  <div className="flex items-center justify-center gap-2 sm:gap-4 my-2 select-none">
+                    <div className="flex flex-col items-center">
+                      <div className="w-16 sm:w-24 py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
+                        <span className="font-mono text-3xl sm:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
+                          {String(countdownParts.days).padStart(2, '0')}
+                        </span>
+                      </div>
+                      <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-2 uppercase">DAYS</span>
+                    </div>
+
+                    <span className="font-mono text-2xl sm:text-4xl font-bold text-cyan-500/60 pb-5">:</span>
+
+                    <div className="flex flex-col items-center">
+                      <div className="w-16 sm:w-24 py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
+                        <span className="font-mono text-3xl sm:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
+                          {String(countdownParts.hours).padStart(2, '0')}
+                        </span>
+                      </div>
+                      <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-2 uppercase">HOURS</span>
+                    </div>
+
+                    <span className="font-mono text-2xl sm:text-4xl font-bold text-cyan-500/60 pb-5">:</span>
+
+                    <div className="flex flex-col items-center">
+                      <div className="w-16 sm:w-24 py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
+                        <span className="font-mono text-3xl sm:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
+                          {String(countdownParts.minutes).padStart(2, '0')}
+                        </span>
+                      </div>
+                      <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-2 uppercase">MINS</span>
+                    </div>
+
+                    <span className="font-mono text-2xl sm:text-4xl font-bold text-cyan-500/60 pb-5">:</span>
+
+                    <div className="flex flex-col items-center">
+                      <div className="w-16 sm:w-24 py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
+                        <span className="font-mono text-3xl sm:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
+                          {String(countdownParts.seconds).padStart(2, '0')}
+                        </span>
+                      </div>
+                      <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-2 uppercase">SECS</span>
+                    </div>
                   </div>
+
                   {nextUpcomingSession && (
-                    <div className="text-xs font-mono text-slate-400 mt-2">
-                      Official Schedule: <span className="text-white font-semibold">{nextUpcomingSession.dateStr}</span> at <span className="text-white font-semibold">{nextUpcomingSession.timeStr}</span> Local Time
+                    <div className="text-xs font-mono text-slate-300 mt-3 pt-3 border-t border-white/5 flex items-center justify-center gap-2 flex-wrap">
+                      <span className="text-slate-400">Official FIA Scheduled Start:</span>
+                      <span className="text-white font-bold bg-white/5 px-2.5 py-0.5 rounded border border-white/10">
+                        {nextUpcomingSession.dateStr} at {nextUpcomingSession.timeStr} Local Time
+                      </span>
                     </div>
                   )}
                 </div>
               )}
 
-              <div className="p-4 rounded-lg bg-slate-900/60 border border-slate-800/80 text-xs text-slate-300 font-sans leading-relaxed text-left sm:text-center">
+              {/* Stitch 4-Box Telemetry Intelligence Matrix */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 text-left">
+                <div className="p-3 rounded-lg bg-[#131a26]/80 border border-white/5">
+                  <div className="text-[10px] font-mono uppercase text-slate-400 font-bold">NEXT SESSION</div>
+                  <div className="text-sm font-mono font-bold text-white mt-1 truncate">
+                    {nextUpcomingSession?.name || 'TRACK ACTION'}
+                  </div>
+                  <div className="text-[10px] font-mono text-cyan-400 mt-0.5">Competitive Window</div>
+                </div>
+
+                <div className="p-3 rounded-lg bg-[#131a26]/80 border border-white/5">
+                  <div className="text-[10px] font-mono uppercase text-slate-400 font-bold">START TIME</div>
+                  <div className="text-sm font-mono font-bold text-white mt-1">
+                    {nextUpcomingSession?.timeStr || 'TBA'}
+                  </div>
+                  <div className="text-[10px] font-mono text-slate-400 mt-0.5">{nextUpcomingSession?.dateStr || 'Race Weekend'}</div>
+                </div>
+
+                <div className="p-3 rounded-lg bg-[#131a26]/80 border border-white/5">
+                  <div className="text-[10px] font-mono uppercase text-slate-400 font-bold">TRACK GEOMETRY</div>
+                  <div className="text-sm font-mono font-bold text-white mt-1">
+                    {totalLaps} LAPS
+                  </div>
+                  <div className="text-[10px] font-mono text-slate-400 mt-0.5">15 Apexes · DRS Straight</div>
+                </div>
+
+                <div className="p-3 rounded-lg bg-[#131a26]/80 border border-white/5">
+                  <div className="text-[10px] font-mono uppercase text-slate-400 font-bold">PIT-WALL UPLINK</div>
+                  <div className="text-sm font-mono font-bold text-amber-400 mt-1 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                    STANDBY (READY)
+                  </div>
+                  <div className="text-[10px] font-mono text-slate-400 mt-0.5">Signal Verified</div>
+                </div>
+              </div>
+
+              {/* Policy Notice Box */}
+              <div className="p-3.5 rounded-lg bg-[#131a26]/50 border border-white/5 text-xs text-slate-300 font-sans leading-relaxed text-left sm:text-center">
                 <p>
-                  🔒 <strong>Live Telemetry Policy:</strong> Official F1 Timing Tower, S1/S2/S3 micro-sector splits, tyre compound stints, and dynamic circuit radar unlock on the calendar days of <strong>Qualifying, Sprint, and Grand Prix</strong> track sessions.
+                  🔒 <strong>Telemetry Protocol:</strong> Official F1 Timing Tower, S1/S2/S3 micro-sector splits, tyre compound stints, and dynamic circuit radar unlock on the calendar days of <strong>Qualifying, Sprint, and Grand Prix</strong> track sessions.
                 </p>
               </div>
 
-              <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+              {/* Interactive Tactical Trigger Buttons */}
+              <div className="pt-1 flex flex-wrap items-center justify-center gap-3">
                 <button
                   type="button"
                   onClick={() => setPreviewLiveConsole(true)}
-                  className="btn flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold text-cyan-300 hover:text-white rounded-lg border border-cyan-500/40 bg-cyan-950/40 hover:bg-cyan-900/40 cursor-pointer transition shadow-md"
+                  className="btn flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold text-black rounded-lg border border-cyan-400 bg-cyan-400 hover:bg-cyan-300 cursor-pointer transition shadow-[0_0_15px_rgba(0,240,255,0.4)]"
                   title="Inspect track map and corner analysis in standby mode"
                 >
                   <span>🗺️</span>
