@@ -252,14 +252,14 @@
         "id": "silverstone_t1",
         "circuitId": "silverstone",
         "title": "Turn 1 — Abbey",
-        "subtitle": "Modern F1 Single-Seater — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Blistering 290 km/h Right-Hand Apex",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_1/turn_1.jpg",
         "entrySpeed": "310 km/h",
         "typicalGear": "7th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Blisteringly fast 290 km/h right-hand corner opening the lap right past the Silverstone Wing. Cars carry massive ground-effect downforce with only a slight brush of brakes.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Blisteringly fast 290 km/h right-hand corner opening the lap right past the Silverstone Wing. Cars carry massive downforce with only a brush of brakes.",
         "turnNumber": 1,
         "cornerName": "Abbey"
       },
@@ -267,13 +267,13 @@
         "id": "silverstone_t2",
         "circuitId": "silverstone",
         "title": "Turn 2 — Farm Curve",
-        "subtitle": "Yuki Tsunoda (AlphaTauri AT03) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Sweeping Flat-Out Left Bend into Arena",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_2/turn_2.jpg",
         "entrySpeed": "300 km/h",
         "typicalGear": "8th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
+        "license": "USER MANAGED CORNER ASSET",
         "description": "Flat-out sweeping left bend connecting Abbey into the technical Arena infield complex. Cars pull over 3.2 lateral G while maintaining full throttle.",
         "turnNumber": 2,
         "cornerName": "Farm Curve"
@@ -282,14 +282,14 @@
         "id": "silverstone_t3",
         "circuitId": "silverstone",
         "title": "Turn 3 — Village",
-        "subtitle": "Alexander Albon (Williams FW44) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Heavy Braking Right Hairpin Apex",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_3/turn_3.jpg",
         "entrySpeed": "295 km/h",
         "typicalGear": "3rd Gear",
         "gForce": "+2.6 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Heavy braking right-hander into the Arena infield. Drivers brake down from 295 km/h to 110 km/h, making it a prime overtaking hotspot and turn 1 restart battlefield.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Violent deceleration zone where cars shed 180 km/h in under 60 meters. Prime overtaking hotspot into the right-hand Arena corner named after Silverstone Village.",
         "turnNumber": 3,
         "cornerName": "Village"
       },
@@ -297,14 +297,14 @@
         "id": "silverstone_t4",
         "circuitId": "silverstone",
         "title": "Turn 4 — The Loop",
-        "subtitle": "Daniel Ricciardo (McLaren MCL36) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Tight 180° Left-Hand Hairpin Apex",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_4/turn_4.jpg",
         "entrySpeed": "135 km/h",
         "typicalGear": "2nd Gear",
         "gForce": "+2.6 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "The slowest corner on the entire Silverstone circuit. A tight, technical 180-degree left-hand hairpin demanding extreme mechanical grip and precise traction management.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "The slowest corner on the entire Silverstone Grand Prix circuit. Demands sharp mechanical rotation down in 2nd gear and delicate traction on exit.",
         "turnNumber": 4,
         "cornerName": "The Loop"
       },
@@ -312,14 +312,14 @@
         "id": "silverstone_t5",
         "circuitId": "silverstone",
         "title": "Turn 5 — Aintree",
-        "subtitle": "Valtteri Bottas (Alfa Romeo C42) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Slingshot Acceleration Left onto Wellington Straight",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_5/turn_5.jpg",
         "entrySpeed": "110 km/h",
         "typicalGear": "3rd Gear",
         "gForce": "+3.2 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Medium-speed left-hand bend that acts as the critical launch pad onto the DRS-assisted Wellington Straight. Exit traction and early full throttle are paramount.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Left-hand slingshot exiting the Arena. Smooth traction here dictates top speed down the entire Wellington Straight DRS overtaking zone.",
         "turnNumber": 5,
         "cornerName": "Aintree"
       },
@@ -327,14 +327,14 @@
         "id": "silverstone_t6",
         "circuitId": "silverstone",
         "title": "Turn 6 — Brooklands",
-        "subtitle": "Vettel (Aston Martin) & Sainz (Ferrari) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Heavy Trail-Braking Left Entry",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_6/turn_6.jpg",
         "entrySpeed": "315 km/h",
         "typicalGear": "3rd Gear",
         "gForce": "+3.2 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "High-speed braking zone at the end of Wellington Straight. Cars brake from 315 km/h while turning into a long, sweeping left-hander, punishing the right-front tyre.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Hard braking zone at the end of Wellington Straight. Drivers brake while loaded left, making trail-braking overtakes and lockups frequent.",
         "turnNumber": 6,
         "cornerName": "Brooklands"
       },
@@ -342,14 +342,14 @@
         "id": "silverstone_t7",
         "circuitId": "silverstone",
         "title": "Turn 7 — Luffield",
-        "subtitle": "Lando Norris (McLaren) & George Russell (Mercedes) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Endless Double-Apex Right Carousel",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_7/turn_7.jpg",
         "entrySpeed": "170 km/h",
         "typicalGear": "3rd Gear",
         "gForce": "+2.6 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Iconic long, double-apex right-hand carousel. Drivers must constantly balance throttle and steering while fighting understeer before unleashing maximum power onto Woodcote.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Endless right-hand double-apex carousel named after the ancient Augustinian priory. Severe front-left tyre degradation corner rewarded by patient throttle.",
         "turnNumber": 7,
         "cornerName": "Luffield"
       },
@@ -357,14 +357,14 @@
         "id": "silverstone_t8",
         "circuitId": "silverstone",
         "title": "Turn 8 — Woodcote",
-        "subtitle": "F1 Pack (Williams, Alfa Romeo, McLaren, Haas) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "High-Speed Right Sweep onto National Straight",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_8/turn_8.jpg",
         "entrySpeed": "245 km/h",
         "typicalGear": "6th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Sweeping right-hand kink connecting Luffield to the former start/finish National Straight. Cars accelerate at full throttle, pulling over 3.4 G lateral.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Historic sweeping right-hand curve taken nearly flat-out in modern ground-effect machinery, launching cars onto the National Straight toward Copse.",
         "turnNumber": 8,
         "cornerName": "Woodcote"
       },
@@ -372,14 +372,14 @@
         "id": "silverstone_t9",
         "circuitId": "silverstone",
         "title": "Turn 9 — Copse",
-        "subtitle": "Max Verstappen (Red Bull RB18) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "290 km/h Blind Ultra-Fast Apex",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_9/turn_9.jpg",
         "entrySpeed": "300 km/h",
         "typicalGear": "7th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "One of the most fearsome corners in global motorsport. Taken in 7th gear at 290 km/h with an aggressive blind entry, clipping the inside apex under 4.8 to 5.2 lateral G.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "One of the most fearsome corners in global motorsport. Taken in 7th gear at 290 km/h with an aggressive blind entry, clipping the apex kerb under 4.8 lateral G.",
         "turnNumber": 9,
         "cornerName": "Copse Corner"
       },
@@ -387,14 +387,14 @@
         "id": "silverstone_t10",
         "circuitId": "silverstone",
         "title": "Turn 10 — Maggotts",
-        "subtitle": "Alexander Albon (Williams FW44) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "300+ km/h Ess-Complex Entry Flick",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_10/turn_10.jpg",
         "entrySpeed": "305 km/h",
         "typicalGear": "8th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "The blistering entry to the legendary Maggotts-Becketts-Chapel high-speed esses. Approached at 310 km/h in 8th gear, taken almost flat out left.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Entry flick of the legendary Maggotts-Becketts-Chapel roller coaster. High-speed left taken nearly flat-out exceeding 300 km/h at 5.1 lateral G.",
         "turnNumber": 10,
         "cornerName": "Maggotts"
       },
@@ -402,14 +402,14 @@
         "id": "silverstone_t11",
         "circuitId": "silverstone",
         "title": "Turn 11 — Becketts 1",
-        "subtitle": "Charles Leclerc (Ferrari F1-75) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Violent Lateral Direction Change Right",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_11/turn_11.jpg",
         "entrySpeed": "295 km/h",
         "typicalGear": "7th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Violent high-speed right flick following Maggotts. Drivers experience over 5.2G lateral load as they snap the car right at 280 km/h.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Furious right flick directly following Maggotts. Peak aerodynamic downforce reverses lateral load violently at 5.2 G without losing forward momentum.",
         "turnNumber": 11,
         "cornerName": "Becketts (T11)"
       },
@@ -417,14 +417,14 @@
         "id": "silverstone_t12",
         "circuitId": "silverstone",
         "title": "Turn 12 — Becketts 2",
-        "subtitle": "Daniel Ricciardo (McLaren MCL36) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Tightening Left Apex into Chapel",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_12/turn_12.jpg",
         "entrySpeed": "250 km/h",
         "typicalGear": "5th Gear",
         "gForce": "+4.0 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Technical left-hand tightening curve within the complex. Cars scrub speed from 270 km/h to 240 km/h in 6th gear, testing front-end grip and aerodynamic balance.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Tightening left-hander in the heart of Becketts. Downshifts to 5th gear scrub speed while setting up the crucial slingshot through Chapel onto Hangar Straight.",
         "turnNumber": 12,
         "cornerName": "Becketts 2"
       },
@@ -432,14 +432,14 @@
         "id": "silverstone_t13",
         "circuitId": "silverstone",
         "title": "Turn 13 — Chapel",
-        "subtitle": "Nicholas Latifi (Williams FW44) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Downhill Slingshot onto Hangar Straight",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_13/turn_13.jpg",
         "entrySpeed": "230 km/h",
         "typicalGear": "6th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Right-hand kink leading onto the Chapel exit. The apex tightens before releasing onto the Hangar Straight run.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Fast downhill right-hand exit opening onto the 770m Hangar Straight. Drivers mount the exit kerb aggressively under full power.",
         "turnNumber": 13,
         "cornerName": "Chapel"
       },
@@ -447,14 +447,14 @@
         "id": "silverstone_t14",
         "circuitId": "silverstone",
         "title": "Turn 14 — Hangar Straight Kink",
-        "subtitle": "Lance Stroll (Aston Martin AMR22) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "330+ km/h Full-Throttle DRS Blast",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_14/turn_14.jpg",
         "entrySpeed": "315 km/h",
         "typicalGear": "8th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Fast left sweeper launching cars onto the 335 km/h Hangar Straight. Exit speed here dictates whether a driver can mount an overtake into Stowe.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Gentle kink along the full-throttle Hangar Straight where cars reach maximum velocity exceeding 330 km/h with DRS deployed before threshold braking into Stowe.",
         "turnNumber": 14,
         "cornerName": "Hangar Straight Kink"
       },
@@ -462,14 +462,14 @@
         "id": "silverstone_t15",
         "circuitId": "silverstone",
         "title": "Turn 15 — Stowe",
-        "subtitle": "Carlos Sainz (Ferrari F1-75) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "High-Speed End of Straight Right Turn",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_15/turn_15.jpg",
         "entrySpeed": "330 km/h",
         "typicalGear": "5th Gear",
         "gForce": "+4.0 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Brutal braking zone from top speed into a fast 5th-gear right turn beneath the Rolex bridge, with extreme track limit challenges on the wide exit run-off.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Brutal braking zone from top speed into a fast 5th-gear right turn beneath the Rolex bridge, with extreme track limit challenges on the exit run-off.",
         "turnNumber": 15,
         "cornerName": "Stowe Corner"
       },
@@ -477,44 +477,44 @@
         "id": "silverstone_t16",
         "circuitId": "silverstone",
         "title": "Turn 16 — Vale",
-        "subtitle": "Pierre Gasly (AlphaTauri AT03) — Silverstone British GP",
-        "category": "photo",
+        "subtitle": "Downhill Heavy Braking Chicane Entry",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_16/turn_16.jpg",
         "entrySpeed": "305 km/h",
         "typicalGear": "2nd Gear",
         "gForce": "+2.6 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Downhill braking zone into a sharp left-right chicane. Cars drop from 305 km/h to 115 km/h down a steep slope, making the inside front tyre prone to locking.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Downhill braking zone into a tight 2nd-gear left turn. Premier overtaking zone on the lap, leading directly into the Club stadium complex.",
         "turnNumber": 16,
         "cornerName": "Vale"
       },
       {
         "id": "silverstone_t17",
         "circuitId": "silverstone",
-        "title": "Turn 17 — Club Entry",
-        "subtitle": "Esteban Ocon (Alpine A522) — Silverstone British GP",
-        "category": "photo",
+        "title": "Turn 17 — Club Corner Entry",
+        "subtitle": "Stadium Complex Double-Apex Right Kink",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_17/turn_17.jpg",
         "entrySpeed": "125 km/h",
         "typicalGear": "3rd Gear",
         "gForce": "+3.2 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "Right-hand uphill apex of the Club complex. Drivers clip the aggressive inside kerbing while managing power delivery before the final launch onto the pit straight.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Right-hand turn in front of the massive grandstands of the Silverstone Wing complex, setting up the line for the final exit onto Hamilton Straight.",
         "turnNumber": 17,
         "cornerName": "Club Corner Entry"
       },
       {
         "id": "silverstone_t18",
         "circuitId": "silverstone",
-        "title": "Turn 18 — Club Exit / Hamilton Straight",
-        "subtitle": "Lewis Hamilton (Mercedes-AMG W13) — Silverstone British GP",
-        "category": "photo",
+        "title": "Turn 18 — Club Corner Exit / Hamilton Straight",
+        "subtitle": "Final Slingshot past Paddock Wing to Finish Line",
+        "category": "blueprint",
         "src": "/images/circuits/silverstone/corners/turn_18/turn_18.jpg",
         "entrySpeed": "160 km/h",
         "typicalGear": "4th Gear",
         "gForce": "+4.0 G",
-        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
-        "description": "The final corner of the Silverstone lap. A long, accelerating right-hand sweeper that launches cars onto the Hamilton Straight towards the chequered flag.",
+        "license": "USER MANAGED CORNER ASSET",
+        "description": "Final acceleration curve opening onto the 770m start/finish Hamilton Straight. Traction on exit decides straight-line speed into Turn 1 Abbey.",
         "turnNumber": 18,
         "cornerName": "Club Corner Exit / Hamilton Straight"
       }
@@ -17937,7 +17937,7 @@
         "circuitId": "silverstone",
         "name": "Abbey",
         "turns": "Turn 1 (T1)",
-        "description": "Blisteringly fast 290 km/h right-hand corner opening the lap right past the Silverstone Wing. Cars carry massive ground-effect downforce with only a slight brush of brakes.",
+        "description": "Blisteringly fast 290 km/h right-hand corner opening the lap right past the Silverstone Wing. Cars carry massive downforce with only a brush of brakes.",
         "technical": {
           "entrySpeed": "310 km/h",
           "apexSpeed": "285 km/h",
@@ -17955,11 +17955,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_1/turn_1.jpg",
-            "source": "Modern F1 Single-Seater",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Formula 1 car attacking the red-and-white apex kerb at Turn 1 Abbey, showing full corner sweep past the Wing"
+            "verified": false,
+            "alt": "Abbey Turn 1 Corner Visual"
           }
         ],
         "type": "Flat-Out Kink",
@@ -17994,11 +17994,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_2/turn_2.jpg",
-            "source": "Yuki Tsunoda (AlphaTauri AT03)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Yuki Tsunoda (AlphaTauri AT03) sweeping through the high-speed Turn 2 Farm Curve with visible apex kerbing"
+            "verified": false,
+            "alt": "Farm Curve Turn 2 Corner Visual"
           }
         ],
         "type": "Flat-Out Kink",
@@ -18015,7 +18015,7 @@
         "circuitId": "silverstone",
         "name": "Village",
         "turns": "Turn 3 (T3)",
-        "description": "Heavy braking right-hander into the Arena infield. Drivers brake down from 295 km/h to 110 km/h, making it a prime overtaking hotspot and turn 1 restart battlefield.",
+        "description": "Violent deceleration zone where cars shed 180 km/h in under 60 meters. Prime overtaking hotspot into the right-hand Arena corner named after Silverstone Village.",
         "technical": {
           "entrySpeed": "295 km/h",
           "apexSpeed": "115 km/h",
@@ -18033,11 +18033,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_3/turn_3.jpg",
-            "source": "Alexander Albon (Williams FW44)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Alexander Albon (Williams FW44) turning into Turn 3 Village apex kerb under heavy braking"
+            "verified": false,
+            "alt": "Village Turn 3 Corner Visual"
           }
         ],
         "type": "Technical Chicane",
@@ -18054,7 +18054,7 @@
         "circuitId": "silverstone",
         "name": "The Loop",
         "turns": "Turn 4 (T4)",
-        "description": "The slowest corner on the entire Silverstone circuit. A tight, technical 180-degree left-hand hairpin demanding extreme mechanical grip and precise traction management.",
+        "description": "The slowest corner on the entire Silverstone Grand Prix circuit. Demands sharp mechanical rotation down in 2nd gear and delicate traction on exit.",
         "technical": {
           "entrySpeed": "135 km/h",
           "apexSpeed": "85 km/h",
@@ -18072,11 +18072,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_4/turn_4.jpg",
-            "source": "Daniel Ricciardo (McLaren MCL36)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Daniel Ricciardo (McLaren MCL36) rotating tightly around the inside apex kerb of Turn 4 The Loop hairpin"
+            "verified": false,
+            "alt": "The Loop Turn 4 Corner Visual"
           }
         ],
         "type": "Heavy Braking Hairpin",
@@ -18093,7 +18093,7 @@
         "circuitId": "silverstone",
         "name": "Aintree",
         "turns": "Turn 5 (T5)",
-        "description": "Medium-speed left-hand bend that acts as the critical launch pad onto the DRS-assisted Wellington Straight. Exit traction and early full throttle are paramount.",
+        "description": "Left-hand slingshot exiting the Arena. Smooth traction here dictates top speed down the entire Wellington Straight DRS overtaking zone.",
         "technical": {
           "entrySpeed": "110 km/h",
           "apexSpeed": "145 km/h",
@@ -18111,11 +18111,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_5/turn_5.jpg",
-            "source": "Valtteri Bottas (Alfa Romeo C42)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Valtteri Bottas (Alfa Romeo C42) clipping the apex kerb at Turn 5 Aintree accelerating onto Wellington Straight"
+            "verified": false,
+            "alt": "Aintree Turn 5 Corner Visual"
           }
         ],
         "type": "Medium-Speed Corner",
@@ -18132,7 +18132,7 @@
         "circuitId": "silverstone",
         "name": "Brooklands",
         "turns": "Turn 6 (T6)",
-        "description": "High-speed braking zone at the end of Wellington Straight. Cars brake from 315 km/h while turning into a long, sweeping left-hander, punishing the right-front tyre.",
+        "description": "Hard braking zone at the end of Wellington Straight. Drivers brake while loaded left, making trail-braking overtakes and lockups frequent.",
         "technical": {
           "entrySpeed": "315 km/h",
           "apexSpeed": "155 km/h",
@@ -18150,11 +18150,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_6/turn_6.jpg",
-            "source": "Vettel (Aston Martin) & Sainz (Ferrari)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Sebastian Vettel (Aston Martin AMR22) & Carlos Sainz (Ferrari F1-75) sweeping through Turn 6 Brooklands corner curve"
+            "verified": false,
+            "alt": "Brooklands Turn 6 Corner Visual"
           }
         ],
         "type": "Medium-Speed Corner",
@@ -18171,7 +18171,7 @@
         "circuitId": "silverstone",
         "name": "Luffield",
         "turns": "Turn 7 (T7)",
-        "description": "Iconic long, double-apex right-hand carousel. Drivers must constantly balance throttle and steering while fighting understeer before unleashing maximum power onto Woodcote.",
+        "description": "Endless right-hand double-apex carousel named after the ancient Augustinian priory. Severe front-left tyre degradation corner rewarded by patient throttle.",
         "technical": {
           "entrySpeed": "170 km/h",
           "apexSpeed": "105 km/h",
@@ -18189,11 +18189,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_7/turn_7.jpg",
-            "source": "Lando Norris (McLaren) & George Russell (Mercedes)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Lando Norris (McLaren MCL36) leading George Russell (Mercedes-AMG W13) through the long Turn 7 Luffield carousel with full apex kerbing visible"
+            "verified": false,
+            "alt": "Luffield Turn 7 Corner Visual"
           }
         ],
         "type": "Technical Chicane",
@@ -18210,7 +18210,7 @@
         "circuitId": "silverstone",
         "name": "Woodcote",
         "turns": "Turn 8 (T8)",
-        "description": "Sweeping right-hand kink connecting Luffield to the former start/finish National Straight. Cars accelerate at full throttle, pulling over 3.4 G lateral.",
+        "description": "Historic sweeping right-hand curve taken nearly flat-out in modern ground-effect machinery, launching cars onto the National Straight toward Copse.",
         "technical": {
           "entrySpeed": "245 km/h",
           "apexSpeed": "255 km/h",
@@ -18228,11 +18228,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_8/turn_8.jpg",
-            "source": "F1 Pack (Williams, Alfa Romeo, McLaren, Haas)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Four-car Formula 1 battle train sweeping through Turn 8 Woodcote past the apex kerbing"
+            "verified": false,
+            "alt": "Woodcote Turn 8 Corner Visual"
           }
         ],
         "type": "High-Speed Sweeper",
@@ -18247,9 +18247,9 @@
       "t9": {
         "id": "t9",
         "circuitId": "silverstone",
-        "name": "Copse",
+        "name": "Copse Corner",
         "turns": "Turn 9 (T9)",
-        "description": "One of the most fearsome corners in global motorsport. Taken in 7th gear at 290 km/h with an aggressive blind entry, clipping the inside apex under 4.8 to 5.2 lateral G.",
+        "description": "One of the most fearsome corners in global motorsport. Taken in 7th gear at 290 km/h with an aggressive blind entry, clipping the apex kerb under 4.8 lateral G.",
         "technical": {
           "entrySpeed": "300 km/h",
           "apexSpeed": "285 km/h",
@@ -18267,11 +18267,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_9/turn_9.jpg",
-            "source": "Max Verstappen (Red Bull RB18)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Max Verstappen (Red Bull RB18) attacking the apex of the legendary 290 km/h Turn 9 Copse corner"
+            "verified": false,
+            "alt": "Copse Turn 9 Corner Visual"
           }
         ],
         "type": "Legendary High-Speed Sweeper",
@@ -18289,7 +18289,7 @@
         "circuitId": "silverstone",
         "name": "Maggotts",
         "turns": "Turn 10 (T10)",
-        "description": "The blistering entry to the legendary Maggotts-Becketts-Chapel high-speed esses. Approached at 310 km/h in 8th gear, taken almost flat out left.",
+        "description": "Entry flick of the legendary Maggotts-Becketts-Chapel roller coaster. High-speed left taken nearly flat-out exceeding 300 km/h at 5.1 lateral G.",
         "technical": {
           "entrySpeed": "305 km/h",
           "apexSpeed": "295 km/h",
@@ -18307,11 +18307,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_10/turn_10.jpg",
-            "source": "Alexander Albon (Williams FW44)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Alexander Albon (Williams FW44) slicing through the high-speed Turn 10 Maggotts entry with the Esses complex visible"
+            "verified": false,
+            "alt": "Maggotts Turn 10 Corner Visual"
           }
         ],
         "type": "Supersonic Sweeper",
@@ -18327,9 +18327,9 @@
       "t11": {
         "id": "t11",
         "circuitId": "silverstone",
-        "name": "Becketts 1",
+        "name": "Becketts (T11)",
         "turns": "Turn 11 (T11)",
-        "description": "Violent high-speed right flick following Maggotts. Drivers experience over 5.2G lateral load as they snap the car right at 280 km/h.",
+        "description": "Furious right flick directly following Maggotts. Peak aerodynamic downforce reverses lateral load violently at 5.2 G without losing forward momentum.",
         "technical": {
           "entrySpeed": "295 km/h",
           "apexSpeed": "265 km/h",
@@ -18347,11 +18347,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_11/turn_11.jpg",
-            "source": "Charles Leclerc (Ferrari F1-75)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Charles Leclerc (Ferrari F1-75) loaded through the dramatic high-G arc of Turn 11 Becketts with curving kerbs"
+            "verified": false,
+            "alt": "Becketts 1 Turn 11 Corner Visual"
           }
         ],
         "type": "High-Speed S-Curve",
@@ -18369,7 +18369,7 @@
         "circuitId": "silverstone",
         "name": "Becketts 2",
         "turns": "Turn 12 (T12)",
-        "description": "Technical left-hand tightening curve within the complex. Cars scrub speed from 270 km/h to 240 km/h in 6th gear, testing front-end grip and aerodynamic balance.",
+        "description": "Tightening left-hander in the heart of Becketts. Downshifts to 5th gear scrub speed while setting up the crucial slingshot through Chapel onto Hangar Straight.",
         "technical": {
           "entrySpeed": "250 km/h",
           "apexSpeed": "215 km/h",
@@ -18387,11 +18387,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_12/turn_12.jpg",
-            "source": "Daniel Ricciardo (McLaren MCL36)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Daniel Ricciardo (McLaren MCL36) loaded under lateral force through Turn 12 Becketts 2 switchback"
+            "verified": false,
+            "alt": "Becketts 2 Turn 12 Corner Visual"
           }
         ],
         "type": "High-Speed Sweeper",
@@ -18408,7 +18408,7 @@
         "circuitId": "silverstone",
         "name": "Chapel",
         "turns": "Turn 13 (T13)",
-        "description": "Right-hand kink leading onto the Chapel exit. The apex tightens before releasing onto the Hangar Straight run.",
+        "description": "Fast downhill right-hand exit opening onto the 770m Hangar Straight. Drivers mount the exit kerb aggressively under full power.",
         "technical": {
           "entrySpeed": "230 km/h",
           "apexSpeed": "245 km/h",
@@ -18426,11 +18426,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_13/turn_13.jpg",
-            "source": "Nicholas Latifi (Williams FW44)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Nicholas Latifi (Williams FW44) clipping the green runoff and apex kerb of Turn 13 Chapel"
+            "verified": false,
+            "alt": "Chapel Turn 13 Corner Visual"
           }
         ],
         "type": "High-Speed Sweeper",
@@ -18447,7 +18447,7 @@
         "circuitId": "silverstone",
         "name": "Hangar Straight Kink",
         "turns": "Turn 14 (T14)",
-        "description": "Fast left sweeper launching cars onto the 335 km/h Hangar Straight. Exit speed here dictates whether a driver can mount an overtake into Stowe.",
+        "description": "Gentle kink along the full-throttle Hangar Straight where cars reach maximum velocity exceeding 330 km/h with DRS deployed before threshold braking into Stowe.",
         "technical": {
           "entrySpeed": "315 km/h",
           "apexSpeed": "328 km/h",
@@ -18465,11 +18465,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_14/turn_14.jpg",
-            "source": "Lance Stroll (Aston Martin AMR22)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Lance Stroll (Aston Martin AMR22) accelerating across Turn 14 exit kerb onto the flat-out Hangar Straight"
+            "verified": false,
+            "alt": "Hangar Straight Kink Turn 14 Corner Visual"
           }
         ],
         "type": "Flat-Out Kink",
@@ -18484,9 +18484,9 @@
       "t15": {
         "id": "t15",
         "circuitId": "silverstone",
-        "name": "Stowe",
+        "name": "Stowe Corner",
         "turns": "Turn 15 (T15)",
-        "description": "Brutal braking zone from top speed into a fast 5th-gear right turn beneath the Rolex bridge, with extreme track limit challenges on the wide exit run-off.",
+        "description": "Brutal braking zone from top speed into a fast 5th-gear right turn beneath the Rolex bridge, with extreme track limit challenges on the exit run-off.",
         "technical": {
           "entrySpeed": "330 km/h",
           "apexSpeed": "205 km/h",
@@ -18504,11 +18504,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_15/turn_15.jpg",
-            "source": "Carlos Sainz (Ferrari F1-75)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Carlos Sainz (Ferrari F1-75) turning 3/4 right directly into the Turn 15 Stowe apex beneath the bridge"
+            "verified": false,
+            "alt": "Stowe Turn 15 Corner Visual"
           }
         ],
         "type": "High-Speed Sweeper",
@@ -18526,7 +18526,7 @@
         "circuitId": "silverstone",
         "name": "Vale",
         "turns": "Turn 16 (T16)",
-        "description": "Downhill braking zone into a sharp left-right chicane. Cars drop from 305 km/h to 115 km/h down a steep slope, making the inside front tyre prone to locking.",
+        "description": "Downhill braking zone into a tight 2nd-gear left turn. Premier overtaking zone on the lap, leading directly into the Club stadium complex.",
         "technical": {
           "entrySpeed": "305 km/h",
           "apexSpeed": "105 km/h",
@@ -18544,11 +18544,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_16/turn_16.jpg",
-            "source": "Pierre Gasly (AlphaTauri AT03)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Pierre Gasly (AlphaTauri AT03) threshold-braking through the downhill Turn 16 Vale chicane past vibrant red runoff"
+            "verified": false,
+            "alt": "Vale Turn 16 Corner Visual"
           }
         ],
         "type": "Technical Chicane",
@@ -18563,9 +18563,9 @@
       "t17": {
         "id": "t17",
         "circuitId": "silverstone",
-        "name": "Club Entry",
+        "name": "Club Corner Entry",
         "turns": "Turn 17 (T17)",
-        "description": "Right-hand uphill apex of the Club complex. Drivers clip the aggressive inside kerbing while managing power delivery before the final launch onto the pit straight.",
+        "description": "Right-hand turn in front of the massive grandstands of the Silverstone Wing complex, setting up the line for the final exit onto Hamilton Straight.",
         "technical": {
           "entrySpeed": "125 km/h",
           "apexSpeed": "135 km/h",
@@ -18583,11 +18583,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_17/turn_17.jpg",
-            "source": "Esteban Ocon (Alpine A522)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Esteban Ocon (Alpine A522) striking the apex kerb of Turn 17 Club Entry into the stadium amphitheater"
+            "verified": false,
+            "alt": "Club Corner Entry Turn 17 Corner Visual"
           }
         ],
         "type": "Technical Chicane",
@@ -18602,9 +18602,9 @@
       "t18": {
         "id": "t18",
         "circuitId": "silverstone",
-        "name": "Club Exit",
+        "name": "Club Corner Exit / Hamilton Straight",
         "turns": "Turn 18 (T18)",
-        "description": "The final corner of the Silverstone lap. A long, accelerating right-hand sweeper that launches cars onto the Hamilton Straight towards the chequered flag.",
+        "description": "Final acceleration curve opening onto the 770m start/finish Hamilton Straight. Traction on exit decides straight-line speed into Turn 1 Abbey.",
         "technical": {
           "entrySpeed": "160 km/h",
           "apexSpeed": "190 km/h",
@@ -18622,11 +18622,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_18/turn_18.jpg",
-            "source": "Lewis Hamilton (Mercedes-AMG W13)",
-            "license": "Creative Commons / Wikimedia",
+            "source": "User Upload",
+            "license": "USER MANAGED CORNER ASSET",
             "type": "real",
-            "verified": true,
-            "alt": "Lewis Hamilton (Mercedes-AMG W13) powering out of Turn 18 Club Exit onto Hamilton Straight past kerbs and red runoff"
+            "verified": false,
+            "alt": "Club Corner Exit / Hamilton Straight Turn 18 Corner Visual"
           }
         ],
         "type": "Medium-Speed Corner",

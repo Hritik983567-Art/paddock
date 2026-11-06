@@ -4817,16 +4817,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Opened the new Silverstone Arena layout in 2010 past the Wing pit complex. Hamilton and Verstappen frequently duel here on opening laps.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_1/turn_1.jpg',
-            source: 'Modern F1 Single-Seater',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Formula 1 car attacking the red-and-white apex kerb at Turn 1 Abbey, showing full corner sweep past the Wing'
-          }
-        ]
+        images: []
       },
       't2': {
         id: 't2',
@@ -4852,16 +4843,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Constructed as part of the 2010 circuit redesign, turning former infield farmland into a high-speed stadium amphitheater.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_2/turn_2.jpg',
-            source: 'Yuki Tsunoda (AlphaTauri AT03)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Yuki Tsunoda (AlphaTauri AT03) sweeping through the high-speed Turn 2 Farm Curve with visible apex kerbing'
-          }
-        ]
+        images: []
       },
       't3': {
         id: 't3',
@@ -4887,16 +4869,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Named after the nearby historic Silverstone village; venue of dramatic collisions and bold divebombs.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_3/turn_3.jpg',
-            source: 'Alexander Albon (Williams FW44)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Alexander Albon (Williams FW44) turning into Turn 3 Village apex kerb under heavy braking'
-          }
-        ]
+        images: []
       },
       't4': {
         id: 't4',
@@ -4922,16 +4895,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Introduced in 2010 to slow cars before the long Wellington Straight, creating classic cutback switchback moves.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_4/turn_4.jpg',
-            source: 'Daniel Ricciardo (McLaren MCL36)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Daniel Ricciardo (McLaren MCL36) rotating tightly around the inside apex kerb of Turn 4 The Loop hairpin'
-          }
-        ]
+        images: []
       },
       't5': {
         id: 't5',
@@ -4957,16 +4921,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Named in honour of the legendary Aintree Motor Racing Circuit, which shared British GP hosting duties in the 1950s and 60s.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_5/turn_5.jpg',
-            source: 'Valtteri Bottas (Alfa Romeo C42)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Valtteri Bottas (Alfa Romeo C42) clipping the apex kerb at Turn 5 Aintree accelerating onto Wellington Straight'
-          }
-        ]
+        images: []
       },
       't6': {
         id: 't6',
@@ -4992,16 +4947,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Named after Brooklands, the world’s first purpose-built banked motor racing circuit built in Surrey in 1907.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_6/turn_6.jpg',
-            source: 'Vettel (Aston Martin) & Sainz (Ferrari)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Sebastian Vettel (Aston Martin AMR22) & Carlos Sainz (Ferrari F1-75) sweeping through Turn 6 Brooklands corner curve'
-          }
-        ]
+        images: []
       },
       't7': {
         id: 't7',
@@ -5027,16 +4973,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Named after the medieval Luffield Priory once located near the track. Stage of countless famous British GP battles.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_7/turn_7.jpg',
-            source: 'Lando Norris (McLaren) & George Russell (Mercedes)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Lando Norris (McLaren MCL36) leading George Russell (Mercedes-AMG W13) through the long Turn 7 Luffield carousel with full apex kerbing visible'
-          }
-        ]
+        images: []
       },
       't8': {
         id: 't8',
@@ -5062,16 +4999,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Originally Silverstone’s final corner before the 2010 track redesign moved the start/finish to the Wing complex.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_8/turn_8.jpg',
-            source: 'F1 Pack (Williams, Alfa Romeo, McLaren, Haas)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Four-car Formula 1 battle train sweeping through Turn 8 Woodcote past the apex kerbing'
-          }
-        ]
+        images: []
       },
       't9': {
         id: 't9',
@@ -5097,16 +5025,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Site of the historic 2021 collision between Lewis Hamilton and Max Verstappen, recording a massive 51G impact into tyre barriers.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_9/turn_9.jpg',
-            source: 'Max Verstappen (Red Bull RB18)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Max Verstappen (Red Bull RB18) attacking the apex of the legendary 290 km/h Turn 9 Copse corner'
-          }
-        ]
+        images: []
       },
       't10': {
         id: 't10',
@@ -5132,16 +5051,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Named after Maggot Moor, a historic plot of land adjacent to the Silverstone airfield perimeter.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_10/turn_10.jpg',
-            source: 'Alexander Albon (Williams FW44)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Alexander Albon (Williams FW44) slicing through the high-speed Turn 10 Maggotts entry with the Esses complex visible'
-          }
-        ]
+        images: []
       },
       't11': {
         id: 't11',
@@ -5167,16 +5077,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Named after the nearby chapel of St Thomas Becket, Archbishop of Canterbury.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_11/turn_11.jpg',
-            source: 'Charles Leclerc (Ferrari F1-75)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Charles Leclerc (Ferrari F1-75) loaded through the dramatic high-G arc of Turn 11 Becketts with curving kerbs'
-          }
-        ]
+        images: []
       },
       't12': {
         id: 't12',
@@ -5202,16 +5103,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'The ultimate benchmark of modern F1 aerodynamic downforce and driver commitment.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_12/turn_12.jpg',
-            source: 'Daniel Ricciardo (McLaren MCL36)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Daniel Ricciardo (McLaren MCL36) loaded under lateral force through Turn 12 Becketts 2 switchback'
-          }
-        ]
+        images: []
       },
       't13': {
         id: 't13',
@@ -5237,16 +5129,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'The transitional link between the twisting Becketts complex and the flat-out Hangar Straight.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_13/turn_13.jpg',
-            source: 'Nicholas Latifi (Williams FW44)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Nicholas Latifi (Williams FW44) clipping the green runoff and apex kerb of Turn 13 Chapel'
-          }
-        ]
+        images: []
       },
       't14': {
         id: 't14',
@@ -5272,16 +5155,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Launches cars down the site of the wartime bomber runways where RAF Vickers Wellingtons once took off.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_14/turn_14.jpg',
-            source: 'Lance Stroll (Aston Martin AMR22)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Lance Stroll (Aston Martin AMR22) accelerating across Turn 14 exit kerb onto the flat-out Hangar Straight'
-          }
-        ]
+        images: []
       },
       't15': {
         id: 't15',
@@ -5307,16 +5181,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Named after nearby Stowe School; site of legendary slipstream passes and high-speed lockups throughout F1 history.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_15/turn_15.jpg',
-            source: 'Carlos Sainz (Ferrari F1-75)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Carlos Sainz (Ferrari F1-75) turning 3/4 right directly into the Turn 15 Stowe apex beneath the bridge'
-          }
-        ]
+        images: []
       },
       't16': {
         id: 't16',
@@ -5342,16 +5207,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Added in 1991 to slow cars approaching Club Corner, creating one of Silverstone’s most dramatic braking zones.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_16/turn_16.jpg',
-            source: 'Pierre Gasly (AlphaTauri AT03)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Pierre Gasly (AlphaTauri AT03) threshold-braking through the downhill Turn 16 Vale chicane past vibrant red runoff'
-          }
-        ]
+        images: []
       },
       't17': {
         id: 't17',
@@ -5377,16 +5233,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Surrounded by giant grandstands packed with roaring fans waving Union Jacks.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_17/turn_17.jpg',
-            source: 'Esteban Ocon (Alpine A522)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Esteban Ocon (Alpine A522) striking the apex kerb of Turn 17 Club Entry into the stadium amphitheater'
-          }
-        ]
+        images: []
       },
       't18': {
         id: 't18',
@@ -5412,16 +5259,7 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         history: 'Scene of Lewis Hamilton’s emotional record-breaking 9th British Grand Prix victory in 2024 to deafening home crowd cheers.',
         status: 'VERIFIED',
         x: 660, y: 250,
-        images: [
-          {
-            src: '/images/circuits/silverstone/corners/turn_18/turn_18.jpg',
-            source: 'Lewis Hamilton (Mercedes-AMG W13)',
-            license: 'Creative Commons / Wikimedia',
-            type: 'real',
-            verified: true,
-            alt: 'Lewis Hamilton (Mercedes-AMG W13) powering out of Turn 18 Club Exit onto Hamilton Straight past kerbs and red runoff'
-          }
-        ]
+        images: []
       }
     }
   },
