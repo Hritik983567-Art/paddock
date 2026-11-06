@@ -5,6 +5,7 @@ import { useSeason } from '../contexts/SeasonContext';
 import { getJSON, fetchAllPaged, API_BASE, getTeamColor, NATIONALITY_FLAGS, fetchWikipediaDriverImage } from '../utils/api';
 import { DriverFaceCard } from '../components/ui/DriverFaceCard';
 import { getDriverMediaProfile } from '../lib/driverMediaService';
+import { getCanonicalErgastDriverId, getHistoricalDriverBenchmark, HistoricalDriverBenchmark } from '../lib/historicalDriversData';
 
 
 interface Driver {
@@ -33,6 +34,17 @@ interface DriverProfile {
   active: boolean;
   careerSpan: string;
   starts: number;
+  entries?: number;
+  benchmark?: HistoricalDriverBenchmark | null;
+  historicalStarts?: number;
+  historicalEntries?: number;
+  historicalWins?: number;
+  historicalPodiums?: number;
+  historicalPoles?: number;
+  historicalFastestLaps?: number;
+  historicalPoints?: number;
+  historicalWinPct?: string;
+  historicalPodPct?: string;
   wins: number;
   podiums: number;
   poles: number;
@@ -76,7 +88,7 @@ export default function DriversPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [allHistoryMode, setAllHistoryMode] = useState(false);
   const [isOilPaintingMode, setIsOilPaintingMode] = useState(false);
-  const [statViewMode, setStatViewMode] = useState<'season' | 'career'>('season');
+  const [statViewMode, setStatViewMode] = useState<'season' | 'career' | 'historical'>('season');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -151,7 +163,7 @@ export default function DriversPage() {
 
         if (list.length === 0) {
           const FALLBACK_DRIVER_IDS = [
-            'hamilton', 'verstappen', 'leclerc', 'norris', 'piastri', 'russell', 'sainz', 'perez',
+            'hamilton', 'max_verstappen', 'leclerc', 'norris', 'piastri', 'russell', 'sainz', 'perez',
             'alonso', 'gasly', 'ocon', 'stroll', 'tsunoda', 'albon', 'hulkenberg', 'bottas',
             'magnussen', 'zhou', 'ricciardo', 'lawson', 'bearman', 'antonelli', 'doohan', 'hadjar', 'bortoleto'
           ];
@@ -184,7 +196,7 @@ export default function DriversPage() {
 
         // Populate fallback list on error so UI remains usable
         const FALLBACK_DRIVER_IDS = [
-          'hamilton', 'verstappen', 'leclerc', 'norris', 'piastri', 'russell', 'sainz', 'perez',
+          'hamilton', 'max_verstappen', 'leclerc', 'norris', 'piastri', 'russell', 'sainz', 'perez',
           'alonso', 'gasly', 'ocon', 'stroll', 'tsunoda', 'albon', 'hulkenberg', 'bottas'
         ];
         const fallbackList: Driver[] = FALLBACK_DRIVER_IDS.map(id => {
@@ -219,6 +231,9 @@ export default function DriversPage() {
     setProfile(null);
     setWikiPhoto(null);
 
+    const canonicalId = getCanonicalErgastDriverId(selectedDriverId);
+    const benchmark = getHistoricalDriverBenchmark(selectedDriverId);
+
     try {
       // Active driver check
       let activeDriversSet = new Set<string>();
@@ -232,11 +247,11 @@ export default function DriversPage() {
       const mediaProfile = getDriverMediaProfile(selectedDriverId, selectedSeason);
 
       const [infoRes, races, qualiRaces, sprintRaces, standingsList] = await Promise.all([
-        getJSON(`${API_BASE}/drivers/${selectedDriverId}.json`).catch(() => null),
-        fetchAllPaged(`${API_BASE}/drivers/${selectedDriverId}/results.json`, 'RaceTable', 'Races').catch(() => []),
-        fetchAllPaged(`${API_BASE}/drivers/${selectedDriverId}/qualifying.json`, 'RaceTable', 'Races').catch(() => []),
-        fetchAllPaged(`${API_BASE}/drivers/${selectedDriverId}/sprint.json`, 'RaceTable', 'Races').catch(() => []),
-        fetchAllPaged(`${API_BASE}/drivers/${selectedDriverId}/driverStandings.json`, 'StandingsTable', 'StandingsLists').catch(() => [])
+        getJSON(`${API_BASE}/drivers/${canonicalId}.json`).catch(() => null),
+        fetchAllPaged(`${API_BASE}/drivers/${canonicalId}/results.json`, 'RaceTable', 'Races').catch(() => []),
+        fetchAllPaged(`${API_BASE}/drivers/${canonicalId}/qualifying.json`, 'RaceTable', 'Races').catch(() => []),
+        fetchAllPaged(`${API_BASE}/drivers/${canonicalId}/sprint.json`, 'RaceTable', 'Races').catch(() => []),
+        fetchAllPaged(`${API_BASE}/drivers/${canonicalId}/driverStandings.json`, 'StandingsTable', 'StandingsLists').catch(() => [])
       ]);
 
       const infoResObj = infoRes as { MRData: { DriverTable: { Drivers: Driver[] } } } | null;
@@ -254,6 +269,7 @@ export default function DriversPage() {
       const permanentNumber = info?.permanentNumber || (mediaProfile.number !== '—' ? mediaProfile.number : '—');
       const dateOfBirth = info?.dateOfBirth || '—';
 
+      let actualStarts = 0;
       let wins = 0, podiums = 0, points = 0, dnfs = 0, fastestLaps = 0;
       let seasonWins = 0, seasonPodiums = 0, seasonPoints = 0, seasonDnfs = 0, seasonFastestLaps = 0, seasonStarts = 0;
       const seasons = new Set<string>();
@@ -263,7 +279,10 @@ export default function DriversPage() {
       const seasonTeamsSet = new Set<string>();
       let seasonLatestTeamId = '';
 
-      const typedRaces = races as Array<{ season: string; round: string; Results: Array<{ position: string; status: string; points: string; FastestLap?: { rank: string }; Constructor: { constructorId: string; name: string } }> }>;
+      const typedRaces = races as Array<{ season: string; round: string; Results: Array<{ position: string; positionText?: string; grid: string; status: string; points: string; FastestLap?: { rank: string }; Constructor: { constructorId: string; name: string } }> }>;
+
+      // Set to track unique pole position races by season_round across starting grid P1 and qualifying P1
+      const poleRaceKeys = new Set<string>();
 
       // Sort by season and round to get chronological order
       const sortedRaces = [...typedRaces].sort((a, b) => {
@@ -277,12 +296,28 @@ export default function DriversPage() {
         if (!res) return;
         seasons.add(r.season);
         const pos = parseInt(res.position);
+        
+        // Accurate start check: Exclude DNS, DNQ, and withdrawals from race starts
+        const statusLower = (res.status || '').toLowerCase();
+        const posText = (res.positionText || '').toUpperCase();
+        const isDns = statusLower.includes('did not start') || statusLower === 'dns' || posText === 'W' || posText === 'D' || (res.grid === '0' && res.laps === '0' && res.status !== 'Finished');
+        const isStart = !isDns;
+
+        if (isStart) actualStarts++;
+
         const finished = res.status === 'Finished' || /^\+\d+ Lap/.test(res.status);
 
-        // Career stats
-        if (!finished) dnfs++;
+        // Career stats: non-finishes are strictly counted only for started races
+        if (isStart && !finished) dnfs++;
         if (!isNaN(pos) && pos === 1) wins++;
         if (!isNaN(pos) && pos <= 3) podiums++;
+
+        // In F1 history since 1950, grid P1 in race results designates starting on pole position
+        if (res.grid === '1') {
+          poleRaceKeys.add(`${r.season}_${r.round}`);
+        }
+
+        // Modern Ergast FastestLap rank check (from 2004 onwards)
         if (res.FastestLap && res.FastestLap.rank === '1') fastestLaps++;
         points += parseFloat(res.points) || 0;
         latestTeamId = res.Constructor.constructorId;
@@ -290,10 +325,10 @@ export default function DriversPage() {
 
         // Selected season stats
         if (r.season === selectedSeason) {
-          seasonStarts++;
+          if (isStart) seasonStarts++;
           seasonTeamsSet.add(res.Constructor.name);
           seasonLatestTeamId = res.Constructor.constructorId;
-          if (!finished) seasonDnfs++;
+          if (isStart && !finished) seasonDnfs++;
           if (!isNaN(pos) && pos === 1) seasonWins++;
           if (!isNaN(pos) && pos <= 3) seasonPodiums++;
           if (res.FastestLap && res.FastestLap.rank === '1') seasonFastestLaps++;
@@ -301,17 +336,33 @@ export default function DriversPage() {
         }
       });
 
-      let poles = 0;
+      // Also merge modern qualifying session results P1 for pole position
       let seasonPoles = 0;
-      const typedQualiRaces = qualiRaces as Array<{ season?: string; QualifyingResults?: Array<{ position: string }> }>;
+      const typedQualiRaces = qualiRaces as Array<{ season?: string; round?: string; QualifyingResults?: Array<{ position: string }> }>;
       typedQualiRaces.forEach(r => {
         if (r.QualifyingResults && r.QualifyingResults[0] && r.QualifyingResults[0].position === '1') {
-          poles++;
+          if (r.season && r.round) {
+            poleRaceKeys.add(`${r.season}_${r.round}`);
+          }
           if (r.season === selectedSeason) {
             seasonPoles++;
           }
         }
       });
+
+      let poles = poleRaceKeys.size;
+
+      // Historical gaps reconciliation:
+      // For pre-2004 drivers (where Ergast has zero FastestLap records) or pre-2003 qualifying gaps,
+      // reconcile with verified FIA historical benchmarks if calculated is lower than verified record.
+      if (benchmark) {
+        if (benchmark.polesThrough2024 > poles) {
+          poles = Math.max(poles, benchmark.polesThrough2024);
+        }
+        if (benchmark.fastestLapsThrough2024 > fastestLaps) {
+          fastestLaps = Math.max(fastestLaps, benchmark.fastestLapsThrough2024);
+        }
+      }
 
       let sprintPoints = 0, sprintWins = 0, sprintRacesCount = 0;
       let seasonSprintPoints = 0, seasonSprintWins = 0, seasonSprintRacesCount = 0;
@@ -353,19 +404,26 @@ export default function DriversPage() {
         if (ds && ds.position === '1') championships++;
       });
 
+      // If benchmark exists, ensure official verified championships count as baseline
+      if (benchmark && benchmark.championships > championships) {
+        championships = benchmark.championships;
+      }
+
       const seasonList = Array.from(seasons).sort((a, b) => parseInt(a) - parseInt(b));
-      const active = activeDriversSet.has(selectedDriverId);
+      const active = activeDriversSet.has(selectedDriverId) || activeDriversSet.has(canonicalId);
       const careerSpan = active 
         ? `${seasonList[0] || selectedSeason}–Present` 
         : seasonList.length > 0 
           ? `${seasonList[0]}–${seasonList[seasonList.length - 1]}`
           : '2026';
           
-      const winPct = races.length ? ((wins / races.length) * 100).toFixed(1) : '0.0';
-      const podPct = races.length ? ((podiums / races.length) * 100).toFixed(1) : '0.0';
+      const startsForRate = actualStarts > 0 ? actualStarts : sortedRaces.length;
+      const winPct = startsForRate ? ((wins / startsForRate) * 100).toFixed(1) : '0.0';
+      const podPct = startsForRate ? ((podiums / startsForRate) * 100).toFixed(1) : '0.0';
 
-      const seasonWinPct = seasonStarts ? ((seasonWins / seasonStarts) * 100).toFixed(1) : '0.0';
-      const seasonPodPct = seasonStarts ? ((seasonPodiums / seasonStarts) * 100).toFixed(1) : '0.0';
+      const seasonStartsForRate = seasonStarts > 0 ? seasonStarts : 1;
+      const seasonWinPct = seasonStarts ? ((seasonWins / seasonStartsForRate) * 100).toFixed(1) : '0.0';
+      const seasonPodPct = seasonStarts ? ((seasonPodiums / seasonStartsForRate) * 100).toFixed(1) : '0.0';
 
       const seasonTeamName = seasonTeamsSet.size > 0 
         ? Array.from(seasonTeamsSet).join(' / ')
@@ -375,7 +433,17 @@ export default function DriversPage() {
       const seasonColor = seasonTeamId ? getTeamColor(seasonTeamId) : mediaProfile.teamColor;
       const careerColor = latestTeamId ? getTeamColor(latestTeamId) : mediaProfile.teamColor;
 
-      const hasRacingData = races.length > 0 || qualiRaces.length > 0 || sprintRaces.length > 0;
+      const hasRacingData = races.length > 0 || qualiRaces.length > 0 || sprintRaces.length > 0 || Boolean(benchmark);
+
+      const historicalStarts = benchmark ? benchmark.startsThrough2024 : actualStarts;
+      const historicalEntries = benchmark ? benchmark.entriesThrough2024 : sortedRaces.length;
+      const historicalWins = benchmark ? benchmark.winsThrough2024 : wins;
+      const historicalPodiums = benchmark ? benchmark.podiumsThrough2024 : podiums;
+      const historicalPoles = benchmark ? benchmark.polesThrough2024 : poles;
+      const historicalFastestLaps = benchmark ? benchmark.fastestLapsThrough2024 : fastestLaps;
+      const historicalPoints = benchmark ? benchmark.pointsThrough2024 : totalPoints;
+      const historicalWinPct = historicalStarts ? ((historicalWins / historicalStarts) * 100).toFixed(1) : '0.0';
+      const historicalPodPct = historicalStarts ? ((historicalPodiums / historicalStarts) * 100).toFixed(1) : '0.0';
 
       setProfile({
         permanentNumber,
@@ -392,7 +460,18 @@ export default function DriversPage() {
         careerColor,
         active,
         careerSpan,
-        starts: races.length,
+        starts: actualStarts > 0 ? actualStarts : sortedRaces.length,
+        entries: sortedRaces.length,
+        benchmark,
+        historicalStarts,
+        historicalEntries,
+        historicalWins,
+        historicalPodiums,
+        historicalPoles,
+        historicalFastestLaps,
+        historicalPoints,
+        historicalWinPct,
+        historicalPodPct,
         wins,
         podiums,
         poles,
@@ -436,9 +515,10 @@ export default function DriversPage() {
 
   const renderPVCFigure = () => {
     const isSeason = statViewMode === 'season';
-    const wins = isSeason ? (profile?.seasonWins || 0) : (profile?.wins || 0);
-    const podiums = isSeason ? (profile?.seasonPodiums || 0) : (profile?.podiums || 0);
-    const points = isSeason ? (profile?.seasonTotalPoints || 0) : (profile?.totalPoints || 0);
+    const isHistorical = statViewMode === 'historical';
+    const wins = isSeason ? (profile?.seasonWins || 0) : isHistorical ? (profile?.historicalWins ?? profile?.wins ?? 0) : (profile?.wins || 0);
+    const podiums = isSeason ? (profile?.seasonPodiums || 0) : isHistorical ? (profile?.historicalPodiums ?? profile?.podiums ?? 0) : (profile?.podiums || 0);
+    const points = isSeason ? (profile?.seasonTotalPoints || 0) : isHistorical ? (profile?.historicalPoints ?? profile?.totalPoints ?? 0) : (profile?.totalPoints || 0);
 
     const mediaProfile = getDriverMediaProfile(selectedDriverId, selectedSeason);
     const hasCustomEraPhoto = Boolean(
@@ -703,7 +783,11 @@ export default function DriversPage() {
                   TELEMETRY VIEW:
                 </span>
                 <span className="text-xs font-mono font-black text-cyan-400 uppercase">
-                  {statViewMode === 'season' ? `${selectedSeason} SEASON STATS` : 'ALL-TIME CAREER TOTALS'}
+                  {statViewMode === 'season'
+                    ? `${selectedSeason} SEASON STATS`
+                    : statViewMode === 'historical'
+                    ? 'OFFICIAL HISTORICAL BASELINE (1950–2024)'
+                    : 'ALL-TIME CAREER TOTALS (1950–2026)'}
                 </span>
               </div>
 
@@ -717,7 +801,7 @@ export default function DriversPage() {
                       : 'text-slate-400 hover:text-white hover:bg-slate-900'
                   }`}
                 >
-                  🗓️ {selectedSeason} Season
+                  🏎️ {selectedSeason} Season
                 </button>
 
                 <button
@@ -728,8 +812,22 @@ export default function DriversPage() {
                       ? 'bg-amber-500 text-black shadow-md shadow-amber-500/20'
                       : 'text-slate-400 hover:text-white hover:bg-slate-900'
                   }`}
+                  title="All-Time Career Totals (includes 2025-2026 live telemetry)"
                 >
                   🏆 All-Time Career
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setStatViewMode('historical')}
+                  className={`px-3 py-1.5 text-xs font-mono font-bold rounded-lg transition-all ${
+                    statViewMode === 'historical'
+                      ? 'bg-emerald-500 text-black shadow-md shadow-emerald-500/20'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-900'
+                  }`}
+                  title="Official FIA Historical Baseline through close of 2024 season"
+                >
+                  📜 Historical (1950–2024)
                 </button>
               </div>
             </div>
@@ -748,21 +846,64 @@ export default function DriversPage() {
 
             {(() => {
               const isSeason = statViewMode === 'season';
-              const displayStarts = isSeason ? profile.seasonStarts : profile.starts;
-              const displayWins = isSeason ? profile.seasonWins : profile.wins;
-              const displayPodiums = isSeason ? profile.seasonPodiums : profile.podiums;
-              const displayPoles = isSeason ? profile.seasonPoles : profile.poles;
-              const displayFastestLaps = isSeason ? profile.seasonFastestLaps : profile.fastestLaps;
-              const displayPoints = isSeason ? profile.seasonTotalPoints : profile.totalPoints;
-              const displayWinPct = isSeason ? profile.seasonWinPct : profile.winPct;
-              const displayPodPct = isSeason ? profile.seasonPodPct : profile.podPct;
+              const isHistorical = statViewMode === 'historical';
+              const displayStarts = isSeason
+                ? profile.seasonStarts
+                : isHistorical
+                ? (profile.historicalStarts ?? profile.starts)
+                : profile.starts;
+              const displayEntries = isHistorical
+                ? (profile.historicalEntries ?? profile.entries)
+                : profile.entries;
+              const displayWins = isSeason
+                ? profile.seasonWins
+                : isHistorical
+                ? (profile.historicalWins ?? profile.wins)
+                : profile.wins;
+              const displayPodiums = isSeason
+                ? profile.seasonPodiums
+                : isHistorical
+                ? (profile.historicalPodiums ?? profile.podiums)
+                : profile.podiums;
+              const displayPoles = isSeason
+                ? profile.seasonPoles
+                : isHistorical
+                ? (profile.historicalPoles ?? profile.poles)
+                : profile.poles;
+              const displayFastestLaps = isSeason
+                ? profile.seasonFastestLaps
+                : isHistorical
+                ? (profile.historicalFastestLaps ?? profile.fastestLaps)
+                : profile.fastestLaps;
+              const displayPoints = isSeason
+                ? profile.seasonTotalPoints
+                : isHistorical
+                ? (profile.historicalPoints ?? profile.totalPoints)
+                : profile.totalPoints;
+              const displayWinPct = isSeason
+                ? profile.seasonWinPct
+                : isHistorical
+                ? (profile.historicalWinPct ?? profile.winPct)
+                : profile.winPct;
+              const displayPodPct = isSeason
+                ? profile.seasonPodPct
+                : isHistorical
+                ? (profile.historicalPodPct ?? profile.podPct)
+                : profile.podPct;
               const displayDnfs = isSeason ? profile.seasonDnfs : profile.dnfs;
 
               return (
                 <div className="stat-grid">
                   <div className="stat-box">
                     <div className="k">Races started</div>
-                    <div className="v text-white">{displayStarts}</div>
+                    <div className="v text-white">
+                      {displayStarts}
+                      {displayEntries && displayEntries > displayStarts && (
+                        <span className="text-xs text-slate-400 font-mono font-normal ml-1.5" title={`${displayEntries} career entries including DNS/DNQ`}>
+                          ({displayEntries} entries)
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <div className="stat-box">
                     <div className="k">GP wins</div>
@@ -781,7 +922,7 @@ export default function DriversPage() {
                     <div className="v" style={{ color: '#B138DD', textShadow: '0 0 10px rgba(177, 56, 221, 0.45)' }}>{displayFastestLaps}</div>
                   </div>
                   <div className="stat-box">
-                    <div className="k">{isSeason ? `${selectedSeason} points` : 'Career points'}</div>
+                    <div className="k">{isSeason ? `${selectedSeason} points` : isHistorical ? 'Historical points' : 'Career points'}</div>
                     <div className="v" style={{ color: '#E10600', textShadow: '0 0 10px rgba(225, 6, 0, 0.4)' }}>{displayPoints.toFixed(0)}</div>
                   </div>
                   <div className="stat-box">
@@ -809,11 +950,15 @@ export default function DriversPage() {
                     {profile.seasonSprintWins > 0 && ` (${profile.seasonSprintWins} sprint win${profile.seasonSprintWins === 1 ? '' : 's'})`}.</>
                   )}
                 </>
+              ) : statViewMode === 'historical' ? (
+                <>
+                  Displaying <strong>Official FIA Historical Baseline (1950–2024)</strong>. All figures reflect verified historical records through the end of the 2024 season (e.g. Lewis Hamilton: 353 starts from 356 entries, 105 wins, 201 podiums, 104 poles, 67 fastest laps, 7 world championships). Pre-2004 fastest laps and pre-2003 qualifying grid positions are reconciled against the official FIA records.
+                </>
               ) : (
                 <>
-                  Career points include {profile.sprintPoints.toFixed(0)} pts from {profile.sprintRacesCount} sprint race{profile.sprintRacesCount === 1 ? '' : 's'}
+                  Displaying <strong>All-Time Career Totals</strong> (through 2026). Career points include {profile.sprintPoints.toFixed(0)} pts from {profile.sprintRacesCount} sprint race{profile.sprintRacesCount === 1 ? '' : 's'}
                   {profile.sprintWins > 0 && ` (${profile.sprintWins} sprint win${profile.sprintWins === 1 ? '' : 's'}, not counted in GP wins above)`}.
-                  World championship count only credits fully completed seasons. Figures mix eras with different points systems, so treat totals as a rough measure of output rather than a strict like-for-like ranking.
+                  World championship count only credits fully completed seasons. Switch to <em>📜 Historical (1950–2024)</em> to view strictly verified historical baseline stats without simulated 2025–2026 season data.
                 </>
               )}
             </div>
