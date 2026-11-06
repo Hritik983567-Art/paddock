@@ -212,7 +212,7 @@ export function getCornerVisualSrc(
   indexOrTurnNumber?: number,
   specs?: any
 ): string {
-  if (item?.src && !isGenericFallbackImage(item.src) && !item.src.includes('blueprint') && !item.src.endsWith('.svg')) {
+  if (item?.category !== 'blueprint' && item?.src && !isGenericFallbackImage(item.src) && !item.src.includes('blueprint') && !item.src.endsWith('.svg')) {
     return item.src;
   }
 
