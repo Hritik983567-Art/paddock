@@ -1251,47 +1251,47 @@ export default function LiveTelemetryPage() {
                     <span>SESSION GREEN FLAG COUNTDOWN</span>
                   </div>
 
-                  <div className="flex items-center justify-center gap-2 sm:gap-4 my-2 select-none">
+                  <div className="flex items-center justify-center gap-1 xs:gap-2 sm:gap-3 md:gap-4 my-2 select-none">
                     <div className="flex flex-col items-center">
-                      <div className="w-16 sm:w-24 py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
-                        <span className="font-mono text-3xl sm:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
+                      <div className="w-[52px] xs:w-16 sm:w-20 md:w-24 py-2 xs:py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
+                        <span className="font-mono text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
                           {String(countdownParts.days).padStart(2, '0')}
                         </span>
                       </div>
-                      <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-2 uppercase">DAYS</span>
+                      <span className="text-[9px] xs:text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-1.5 sm:mt-2 uppercase">DAYS</span>
                     </div>
 
-                    <span className="font-mono text-2xl sm:text-4xl font-bold text-cyan-500/60 pb-5">:</span>
+                    <span className="font-mono text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-cyan-500/60 pb-3 sm:pb-5">:</span>
 
                     <div className="flex flex-col items-center">
-                      <div className="w-16 sm:w-24 py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
-                        <span className="font-mono text-3xl sm:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
+                      <div className="w-[52px] xs:w-16 sm:w-20 md:w-24 py-2 xs:py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
+                        <span className="font-mono text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
                           {String(countdownParts.hours).padStart(2, '0')}
                         </span>
                       </div>
-                      <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-2 uppercase">HOURS</span>
+                      <span className="text-[9px] xs:text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-1.5 sm:mt-2 uppercase">HOURS</span>
                     </div>
 
-                    <span className="font-mono text-2xl sm:text-4xl font-bold text-cyan-500/60 pb-5">:</span>
+                    <span className="font-mono text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-cyan-500/60 pb-3 sm:pb-5">:</span>
 
                     <div className="flex flex-col items-center">
-                      <div className="w-16 sm:w-24 py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
-                        <span className="font-mono text-3xl sm:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
+                      <div className="w-[52px] xs:w-16 sm:w-20 md:w-24 py-2 xs:py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
+                        <span className="font-mono text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
                           {String(countdownParts.minutes).padStart(2, '0')}
                         </span>
                       </div>
-                      <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-2 uppercase">MINS</span>
+                      <span className="text-[9px] xs:text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-1.5 sm:mt-2 uppercase">MINS</span>
                     </div>
 
-                    <span className="font-mono text-2xl sm:text-4xl font-bold text-cyan-500/60 pb-5">:</span>
+                    <span className="font-mono text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-cyan-500/60 pb-3 sm:pb-5">:</span>
 
                     <div className="flex flex-col items-center">
-                      <div className="w-16 sm:w-24 py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
-                        <span className="font-mono text-3xl sm:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
+                      <div className="w-[52px] xs:w-16 sm:w-20 md:w-24 py-2 xs:py-3 sm:py-4 bg-[#131a26] border border-cyan-500/40 rounded-lg text-center shadow-[inset_0_0_16px_rgba(0,240,255,0.1)]">
+                        <span className="font-mono text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black text-cyan-300 drop-shadow-[0_0_16px_rgba(0,240,255,0.6)]">
                           {String(countdownParts.seconds).padStart(2, '0')}
                         </span>
                       </div>
-                      <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-2 uppercase">SECS</span>
+                      <span className="text-[9px] xs:text-[10px] sm:text-[11px] font-mono font-bold tracking-widest text-slate-400 mt-1.5 sm:mt-2 uppercase">SECS</span>
                     </div>
                   </div>
 
@@ -1354,7 +1354,7 @@ export default function LiveTelemetryPage() {
                 <button
                   type="button"
                   onClick={() => setPreviewLiveConsole(true)}
-                  className="btn flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold text-black rounded-lg border border-cyan-400 bg-cyan-400 hover:bg-cyan-300 cursor-pointer transition shadow-[0_0_15px_rgba(0,240,255,0.4)]"
+                  className="btn flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] text-xs font-mono font-bold text-black rounded-lg border border-cyan-400 bg-cyan-400 hover:bg-cyan-300 active:scale-[0.98] cursor-pointer transition shadow-[0_0_15px_rgba(0,240,255,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                   title="Inspect track map and corner analysis in standby mode"
                 >
                   <span>🗺️</span>
@@ -1363,7 +1363,7 @@ export default function LiveTelemetryPage() {
                 <button
                   type="button"
                   onClick={connectWebSocket}
-                  className="btn flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold text-slate-200 hover:text-white rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 cursor-pointer transition shadow-md"
+                  className="btn flex items-center justify-center gap-2 px-5 py-3 min-h-[44px] text-xs font-mono font-bold text-slate-200 hover:text-white rounded-lg border border-[#243048] bg-[#131a26] hover:bg-[#1b2436] hover:border-cyan-500/50 active:scale-[0.98] cursor-pointer transition shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                   title="Test WebSocket uplink"
                 >
                   <span>🔄</span>
@@ -1383,7 +1383,7 @@ export default function LiveTelemetryPage() {
                 <button
                   type="button"
                   onClick={() => setPreviewLiveConsole(false)}
-                  className="px-3 py-1 rounded bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold transition cursor-pointer"
+                  className="px-3.5 py-1.5 min-h-[36px] rounded bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold transition cursor-pointer active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                 >
                   ⏱️ SHOW SESSION COUNTDOWN
                 </button>
@@ -1392,56 +1392,57 @@ export default function LiveTelemetryPage() {
             {/* Live Race Status Bar */}
             <div 
               className="stat-grid" 
-          style={{ 
-            marginTop: '8px', 
-            marginBottom: '20px', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))' 
-          }}
-        >
-          <div className="stat-box">
-            <div className="k">Session Status</div>
-            <div 
-              className="v" 
               style={{ 
-                fontSize: '15px', 
-                color: isCompetitiveSessionLive ? 'var(--green)' : 'var(--paper)' 
+                marginTop: '8px', 
+                marginBottom: '20px', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+                gap: '10px'
               }}
             >
-              {isCompetitiveSessionLive ? `● LIVE: ${activeLiveSession?.name || 'ON TRACK'}` : `STANDBY`}
-            </div>
-            <div className="footnote">
-              {currentVenueName}{currentCountryName ? ` (${currentCountryName})` : ''} · {totalLaps} Laps · {isCompetitiveSessionLive ? 'Pit-wall feed active' : 'Awaiting next session'}
-            </div>
-          </div>
+              <div className="stat-box">
+                <div className="k">Session Status</div>
+                <div 
+                  className="v" 
+                  style={{ 
+                    fontSize: '15px', 
+                    color: isCompetitiveSessionLive ? 'var(--green)' : 'var(--paper)' 
+                  }}
+                >
+                  {isCompetitiveSessionLive ? `● LIVE: ${activeLiveSession?.name || 'ON TRACK'}` : `STANDBY`}
+                </div>
+                <div className="footnote">
+                  {currentVenueName}{currentCountryName ? ` (${currentCountryName})` : ''} · {totalLaps} Laps · {isCompetitiveSessionLive ? 'Pit-wall feed active' : 'Awaiting next session'}
+                </div>
+              </div>
 
-          <div className="stat-box">
-            <div className="k">Next Session Window</div>
-            <div className="v" style={{ fontSize: '17px', color: 'var(--paper)' }}>
-              {isCompetitiveSessionLive 
-                ? 'ON TRACK' 
-                : countdownToNext 
-                  ? countdownToNext 
-                  : 'CONCLUDED'}
-            </div>
-            <div className="footnote">
-              {nextUpcomingSession ? `${nextUpcomingSession.shortName} · ${nextUpcomingSession.timeStr}` : 'All weekend sessions complete'}
-            </div>
-          </div>
+              <div className="stat-box">
+                <div className="k">Next Session Window</div>
+                <div className="v" style={{ fontSize: '17px', color: 'var(--paper)' }}>
+                  {isCompetitiveSessionLive 
+                    ? 'ON TRACK' 
+                    : countdownToNext 
+                      ? countdownToNext 
+                      : 'CONCLUDED'}
+                </div>
+                <div className="footnote">
+                  {nextUpcomingSession ? `${nextUpcomingSession.shortName} · ${nextUpcomingSession.timeStr}` : 'All weekend sessions complete'}
+                </div>
+              </div>
 
-          <div className="stat-box">
-            <div className="k">Safety Flag</div>
-            <div 
-              className="v" 
-              style={{ 
-                fontSize: '18px', 
-                color: flagStatus === 'GREEN' ? 'var(--green)' : flagStatus === 'YELLOW' ? 'var(--amber)' : 'var(--red)',
-                fontWeight: 'bold' 
-              }}
-            >
-              {flagStatus}
-            </div>
-            <div className="footnote">FIA Race Control track condition</div>
-          </div>
+              <div className="stat-box">
+                <div className="k">Safety Flag</div>
+                <div 
+                  className="v" 
+                  style={{ 
+                    fontSize: '18px', 
+                    color: !isCompetitiveSessionLive ? 'var(--dim)' : flagStatus === 'GREEN' ? 'var(--green)' : flagStatus === 'YELLOW' ? 'var(--amber)' : 'var(--red)',
+                    fontWeight: 'bold' 
+                  }}
+                >
+                  {isCompetitiveSessionLive ? flagStatus : 'STANDBY'}
+                </div>
+                <div className="footnote">{isCompetitiveSessionLive ? 'FIA Race Control track condition' : 'Awaiting race control track session'}</div>
+              </div>
 
           <div className="stat-box">
             <div className="k">Telemetry Uplink</div>
@@ -1495,7 +1496,7 @@ export default function LiveTelemetryPage() {
             </div>
             <CircuitMap 
               circuitId={selectedCircuit} 
-              drivers={drivers}
+              drivers={isCompetitiveSessionLive ? drivers : []}
               showStats={false}
               showCorners={true}
               activeDriverCode={activeDriverCode || ''}
