@@ -382,6 +382,12 @@ export default function LiveTelemetryPage() {
   const [showNoticeAlert, setShowNoticeAlert] = useState(true);
   const [gapDisplayMode, setGapDisplayMode] = useState<'dual' | 'gap' | 'interval'>('dual');
   const [weatherData, setWeatherData] = useState<LiveWeatherData | null>(null);
+  const isLiveTransmittingRef = useRef(false);
+  const consecutiveEmptyPollsRef = useRef(0);
+
+  useEffect(() => {
+    isLiveTransmittingRef.current = isLiveTransmitting;
+  }, [isLiveTransmitting]);
 
   const [logs, setLogs] = useState<string[]>([
     `[${new Date().toTimeString().split(' ')[0]}] MISSION CONTROL: Pit-wall telemetry uplink initialized.`,
@@ -485,7 +491,7 @@ export default function LiveTelemetryPage() {
 
     async function pollLiveTelemetry() {
       // If WebSocket is actively connected and transmitting real packets, let WS take precedence
-      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN && isLiveTransmitting) {
+      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN && isLiveTransmittingRef.current) {
         return;
       }
 
@@ -496,18 +502,23 @@ export default function LiveTelemetryPage() {
           const data = await res.json();
           if (!isCancelled) {
             if (data.isLive && data.drivers && data.drivers.length > 0) {
+              consecutiveEmptyPollsRef.current = 0;
               driversRef.current = data.drivers;
               scheduleDriverFlush();
               setIsLiveTransmitting(true);
               setProxyStatus('CONNECTED');
               setUplinkError(null);
             } else {
-              // Outside active sessions: remain in standby with empty drivers (NO MOCK DATA)
-              setIsLiveTransmitting(false);
-              setProxyStatus('STANDBY');
-              setUplinkError(null);
-              driversRef.current = [];
-              setDrivers([]);
+              consecutiveEmptyPollsRef.current += 1;
+              // Outside active sessions: transition to standby after 2 consecutive empty polls
+              // to eliminate transient network jitter / flickering
+              if (consecutiveEmptyPollsRef.current >= 2) {
+                setIsLiveTransmitting(false);
+                setProxyStatus('STANDBY');
+                setUplinkError(null);
+                driversRef.current = [];
+                setDrivers([]);
+              }
             }
 
             if (data.weather) setWeatherData(data.weather);
@@ -517,32 +528,38 @@ export default function LiveTelemetryPage() {
           // Explicit HTTP error from telemetry route
           const errData = await res.json().catch(() => null);
           if (!isCancelled) {
-            setIsLiveTransmitting(false);
-            setProxyStatus('OFFLINE');
-            setUplinkError(errData?.message || errData?.error || `Telemetry Uplink Offline (HTTP ${res.status})`);
-            driversRef.current = [];
-            setDrivers([]);
+            consecutiveEmptyPollsRef.current += 1;
+            if (consecutiveEmptyPollsRef.current >= 2) {
+              setIsLiveTransmitting(false);
+              setProxyStatus('OFFLINE');
+              setUplinkError(errData?.message || errData?.error || `Telemetry Uplink Offline (HTTP ${res.status})`);
+              driversRef.current = [];
+              setDrivers([]);
+            }
           }
         }
       } catch (err: any) {
         if (!isCancelled) {
-          setIsLiveTransmitting(false);
-          setProxyStatus('OFFLINE');
-          setUplinkError(err?.message || 'Network connection failed while polling telemetry uplink');
-          driversRef.current = [];
-          setDrivers([]);
+          consecutiveEmptyPollsRef.current += 1;
+          if (consecutiveEmptyPollsRef.current >= 2) {
+            setIsLiveTransmitting(false);
+            setProxyStatus('OFFLINE');
+            setUplinkError(err?.message || 'Network connection failed while polling telemetry uplink');
+            driversRef.current = [];
+            setDrivers([]);
+          }
         }
       }
     }
 
-    const timer = setInterval(pollLiveTelemetry, 2500);
+    const timer = setInterval(pollLiveTelemetry, 3000);
     pollLiveTelemetry();
 
     return () => {
       isCancelled = true;
       clearInterval(timer);
     };
-  }, [selectedCircuit, isLiveTransmitting]);
+  }, [selectedCircuit]);
 
   const handleCircuitChange = (circuitId: string) => {
     userChangedCircuitRef.current = true;
@@ -947,9 +964,6 @@ export default function LiveTelemetryPage() {
     ? formatCountdown(nextUpcomingSession.startMs) 
     : null;
 
-  // Live timing and driver telemetry activate strictly when an authentic session is live or transmitting real telemetry
-  const isLiveTimingActive = isCompetitiveSessionLive;
-
   return (
     <section className="view w-full max-w-[1440px] mx-auto overflow-hidden box-border px-2 sm:px-4" id="view-live">
       <div className="panel w-full max-w-full overflow-hidden">
@@ -1040,7 +1054,7 @@ export default function LiveTelemetryPage() {
                 ) : isCompetitiveDay ? (
                   <><strong>SESSION DAY DETECTED:</strong> Today is the official day of {todaySession?.name || 'Grand Prix Action'}. Telemetry will stream when pit-wall cars fire up.</>
                 ) : (
-                  <><strong>OFF-DAY STANDBY:</strong> Live timing unlocks strictly on official Grand Prix session days. View upcoming timetable below.</>
+                  <><strong>OFF-DAY STANDBY:</strong> Pit-wall telemetry standby. Circuit map radar, corner analysis, and timing board are active. Real-time telemetry streams during official track sessions.</>
                 )}
               </span>
             </span>
@@ -1162,73 +1176,9 @@ export default function LiveTelemetryPage() {
           )}
         </div>
 
-        {!isLiveTimingActive ? (
-          <div className="w-full bg-slate-950/90 border border-slate-800 rounded-xl p-6 sm:p-10 text-center my-4 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-cyan-500/10 blur-3xl pointer-events-none rounded-full"></div>
-
-            <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono text-cyan-400">
-                <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
-                <span>OFFICIAL TIMETABLE • TELEMETRY STANDBY</span>
-              </div>
-
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-display tracking-tight text-white uppercase">
-                {nextUpcomingSession ? `NEXT: ${nextUpcomingSession.name}` : `UPCOMING: ${currentVenueName}`}
-              </h2>
-
-              <div className="flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-slate-400">
-                <span>📍 {currentVenueName}{currentCountryName ? ` (${currentCountryName})` : ''}</span>
-                <span>•</span>
-                <span>🏁 {totalLaps} LAPS</span>
-                {weatherData?.trackTemp && (
-                  <>
-                    <span>•</span>
-                    <span>🌡️ TRACK {weatherData.trackTemp}°C / AIR {weatherData.airTemp || '—'}°C</span>
-                  </>
-                )}
-              </div>
-
-              {countdownToNext && (
-                <div className="py-4 my-2 border-y border-slate-800/80">
-                  <div className="text-[11px] font-mono uppercase text-slate-400 tracking-widest mb-1.5 font-bold">
-                    SESSION STARTS IN
-                  </div>
-                  <div className="text-3xl sm:text-5xl md:text-6xl font-black font-mono text-cyan-300 tracking-tight drop-shadow-[0_0_16px_rgba(52,228,200,0.4)]">
-                    {countdownToNext}
-                  </div>
-                  {nextUpcomingSession && (
-                    <div className="text-xs font-mono text-slate-400 mt-2">
-                      Official Schedule: <span className="text-white font-semibold">{nextUpcomingSession.dateStr}</span> at <span className="text-white font-semibold">{nextUpcomingSession.timeStr}</span> Local Time
-                    </div>
-                  )}
-                </div>
-              )}
-
-              <div className="p-4 rounded-lg bg-slate-900/60 border border-slate-800/80 text-xs text-slate-300 font-sans leading-relaxed text-left sm:text-center">
-                <p>
-                  🔒 <strong>Live Telemetry Policy:</strong> Official F1 Timing Tower, S1/S2/S3 micro-sector splits, tyre compound stints, and dynamic circuit radar unlock exclusively on the calendar day of <strong>Grand Prix</strong> race sessions.
-                </p>
-              </div>
-
-              <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-                <button
-                  type="button"
-                  onClick={connectWebSocket}
-                  className="btn flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold text-slate-200 hover:text-white rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 cursor-pointer transition shadow-md"
-                  title="Test WebSocket uplink"
-                >
-                  <span>🔄</span>
-                  <span>CHECK PIT-WALL UPLINK STATUS</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <>
-
-            {/* Live Race Status Bar */}
-            <div 
-              className="stat-grid" 
+        {/* Live Race Status Bar */}
+        <div 
+          className="stat-grid" 
           style={{ 
             marginTop: '8px', 
             marginBottom: '20px', 
@@ -1247,7 +1197,7 @@ export default function LiveTelemetryPage() {
               {isCompetitiveSessionLive ? `● LIVE: ${activeLiveSession?.name || 'ON TRACK'}` : `STANDBY`}
             </div>
             <div className="footnote">
-              {currentVenueName} · {isCompetitiveSessionLive ? 'Pit-wall feed active' : 'Awaiting next session'}
+              {currentVenueName}{currentCountryName ? ` (${currentCountryName})` : ''} · {totalLaps} Laps · {isCompetitiveSessionLive ? 'Pit-wall feed active' : 'Awaiting next session'}
             </div>
           </div>
 
@@ -1866,9 +1816,7 @@ export default function LiveTelemetryPage() {
             </div>
           </div>
         </div>
-      </>
-    )}
-  </div>
-</section>
+      </div>
+    </section>
   );
 }

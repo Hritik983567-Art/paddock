@@ -57,10 +57,31 @@ const OFFICIAL_2026_DRIVER_ROSTER: DriverRosterEntry[] = [
   { driverId: 'ocon', code: 'OCO', name: 'Esteban Ocon', number: '31', teamId: 'haas', teamName: 'Haas F1 Team' }
 ];
 
+interface CacheEntry {
+  data: any;
+  status: number;
+  timestamp: number;
+}
+
+const telemetryCache: Record<string, CacheEntry> = {};
+const CACHE_TTL_MS = 3000;
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const circuit = searchParams.get('circuit') || 'interlagos';
+
+    // Check short server memory cache to prevent upstream OpenF1 throttling
+    const cached = telemetryCache[circuit];
+    if (cached && (Date.now() - cached.timestamp < CACHE_TTL_MS)) {
+      return NextResponse.json(cached.data, {
+        status: cached.status,
+        headers: {
+          'Cache-Control': 'no-store, max-age=0',
+          'Content-Type': 'application/json'
+        }
+      });
+    }
 
     // 1. Attempt to fetch real-time session from OpenF1 public live endpoints
     let openf1Drivers: LiveDriverPayload[] | null = null;
@@ -69,7 +90,7 @@ export async function GET(request: NextRequest) {
 
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 2500);
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
 
       // Probe OpenF1 latest session
       const sessRes = await fetch('https://api.openf1.org/v1/sessions?session_key=latest', {
@@ -84,11 +105,25 @@ export async function GET(request: NextRequest) {
         if (activeSess && activeSess.session_key) {
           const sessionKey = activeSess.session_key;
 
-          // Fetch latest positions and intervals in parallel
+          // Check if session is truly ongoing right now (within 30 mins before start to 1 hour after end)
+          const sessionStart = activeSess.date_start ? new Date(activeSess.date_start).getTime() : 0;
+          const sessionEnd = activeSess.date_end 
+            ? new Date(activeSess.date_end).getTime() 
+            : (sessionStart > 0 ? sessionStart + 3 * 3600 * 1000 : 0);
+          const nowMs = Date.now();
+          const isSessionOngoing = sessionStart > 0 && nowMs >= (sessionStart - 30 * 60 * 1000) && nowMs <= (sessionEnd + 60 * 60 * 1000);
+
+          // Fetch weather regardless for atmospheric telemetry
           const [posRes, _intRes, _lapRes, weaRes] = await Promise.all([
-            fetch(`https://api.openf1.org/v1/position?session_key=${sessionKey}`, { signal: controller.signal }),
-            fetch(`https://api.openf1.org/v1/intervals?session_key=${sessionKey}`, { signal: controller.signal }),
-            fetch(`https://api.openf1.org/v1/laps?session_key=${sessionKey}`, { signal: controller.signal }),
+            isSessionOngoing 
+              ? fetch(`https://api.openf1.org/v1/position?session_key=${sessionKey}`, { signal: controller.signal })
+              : Promise.resolve({ ok: false, json: async () => [] } as any),
+            isSessionOngoing 
+              ? fetch(`https://api.openf1.org/v1/intervals?session_key=${sessionKey}`, { signal: controller.signal })
+              : Promise.resolve({ ok: false, json: async () => [] } as any),
+            isSessionOngoing 
+              ? fetch(`https://api.openf1.org/v1/laps?session_key=${sessionKey}`, { signal: controller.signal })
+              : Promise.resolve({ ok: false, json: async () => [] } as any),
             fetch(`https://api.openf1.org/v1/weather?session_key=${sessionKey}`, { signal: controller.signal })
           ]);
 
@@ -106,7 +141,7 @@ export async function GET(request: NextRequest) {
             }
           }
 
-          if (posRes.ok) {
+          if (isSessionOngoing && posRes.ok) {
             const posList = await posRes.json();
             if (Array.isArray(posList) && posList.length > 0) {
               // Extract the latest position for each driver
@@ -161,7 +196,7 @@ export async function GET(request: NextRequest) {
 
     // 2. Return live telemetry payload — strictly active when an authentic live session is broadcasting
     if (!openf1Drivers || openf1Drivers.length === 0) {
-      return NextResponse.json({
+      const standbyPayload = {
         status: 'STANDBY',
         isLive: false,
         circuitId: circuit,
@@ -171,7 +206,15 @@ export async function GET(request: NextRequest) {
         flagStatus: 'GREEN',
         weather: weatherData || null,
         drivers: []
-      }, {
+      };
+
+      telemetryCache[circuit] = {
+        data: standbyPayload,
+        status: 200,
+        timestamp: Date.now()
+      };
+
+      return NextResponse.json(standbyPayload, {
         headers: {
           'Cache-Control': 'no-store, max-age=0',
           'Content-Type': 'application/json'
@@ -179,7 +222,7 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    return NextResponse.json({
+    const livePayload = {
       status: 'LIVE',
       isLive: true,
       circuitId: circuit,
@@ -188,7 +231,15 @@ export async function GET(request: NextRequest) {
       flagStatus: trackStatus,
       weather: weatherData,
       drivers: openf1Drivers
-    }, {
+    };
+
+    telemetryCache[circuit] = {
+      data: livePayload,
+      status: 200,
+      timestamp: Date.now()
+    };
+
+    return NextResponse.json(livePayload, {
       headers: {
         'Cache-Control': 'no-store, max-age=0',
         'Content-Type': 'application/json'
@@ -196,7 +247,7 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error: any) {
-    return NextResponse.json({
+    const errorPayload = {
       status: 'ERROR',
       isLive: false,
       circuitId: 'unknown',
@@ -207,7 +258,8 @@ export async function GET(request: NextRequest) {
       flagStatus: 'GREEN',
       weather: null,
       drivers: []
-    }, { status: 503 });
+    };
+
+    return NextResponse.json(errorPayload, { status: 503 });
   }
 }
-
