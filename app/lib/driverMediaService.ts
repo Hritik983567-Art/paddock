@@ -764,9 +764,10 @@ const DRIVER_DATABASE: Record<string, DriverMasterData> = {
     number: '—',
     nationality: 'Swedish',
     flag: '🇸🇪',
-    officialHeadshot: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png',
+    officialHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/1/14/FIA_F2_Austria_2025_Nr._8_Beganovic.jpg',
+    wikimediaHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/1/14/FIA_F2_Austria_2025_Nr._8_Beganovic.jpg',
     teamsByYear: [
-      { startYear: 2024, endYear: 2026, teamId: 'ferrari', teamName: 'Scuderia Ferrari (Academy)' }
+      { startYear: 2024, endYear: 2026, teamId: 'ferrari', teamName: 'Scuderia Ferrari (Academy)', headshotUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/14/FIA_F2_Austria_2025_Nr._8_Beganovic.jpg' }
     ]
   },
   browning: {
@@ -775,9 +776,10 @@ const DRIVER_DATABASE: Record<string, DriverMasterData> = {
     number: '—',
     nationality: 'British',
     flag: '🇬🇧',
-    officialHeadshot: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png',
+    officialHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/Luke_Browning.jpg',
+    wikimediaHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/Luke_Browning.jpg',
     teamsByYear: [
-      { startYear: 2024, endYear: 2026, teamId: 'williams', teamName: 'Williams Racing (Reserve)' }
+      { startYear: 2024, endYear: 2026, teamId: 'williams', teamName: 'Williams Racing (Reserve)', headshotUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ec/Luke_Browning.jpg' }
     ]
   },
   crawford: {
@@ -786,9 +788,10 @@ const DRIVER_DATABASE: Record<string, DriverMasterData> = {
     number: '—',
     nationality: 'American',
     flag: '🇺🇸',
-    officialHeadshot: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png',
+    officialHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Jak_Crawford_2026.png',
+    wikimediaHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Jak_Crawford_2026.png',
     teamsByYear: [
-      { startYear: 2024, endYear: 2026, teamId: 'aston_martin', teamName: 'Aston Martin F1 Team (Reserve)' }
+      { startYear: 2024, endYear: 2026, teamId: 'aston_martin', teamName: 'Aston Martin F1 Team (Reserve)', headshotUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Jak_Crawford_2026.png' }
     ]
   },
   fornaroli: {
@@ -797,9 +800,10 @@ const DRIVER_DATABASE: Record<string, DriverMasterData> = {
     number: '—',
     nationality: 'Italian',
     flag: '🇮🇹',
-    officialHeadshot: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/N/NICHUL01_Nico_Hulkenberg/nichul01.png',
+    officialHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/f/f8/F4_Italy_2021_Spielberg_Nr._72_Fornaroli.jpg',
+    wikimediaHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/f/f8/F4_Italy_2021_Spielberg_Nr._72_Fornaroli.jpg',
     teamsByYear: [
-      { startYear: 2024, endYear: 2026, teamId: 'sauber', teamName: 'Stake F1 Team / Invicta Racing' }
+      { startYear: 2024, endYear: 2026, teamId: 'sauber', teamName: 'Stake F1 Team / Invicta Racing', headshotUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/f8/F4_Italy_2021_Spielberg_Nr._72_Fornaroli.jpg' }
     ]
   },
   herta: {
@@ -808,9 +812,10 @@ const DRIVER_DATABASE: Record<string, DriverMasterData> = {
     number: '—',
     nationality: 'American',
     flag: '🇺🇸',
-    officialHeadshot: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/L/LOGSAR01_Logan_Sargeant/logsar01.png',
+    officialHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Colton_Herta_%282021%29.jpg',
+    wikimediaHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Colton_Herta_%282021%29.jpg',
     teamsByYear: [
-      { startYear: 2025, endYear: 2026, teamId: 'cadillac', teamName: 'Cadillac F1 Team (Test Driver)' }
+      { startYear: 2025, endYear: 2026, teamId: 'cadillac', teamName: 'Cadillac F1 Team (Test Driver)', headshotUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Colton_Herta_%282021%29.jpg' }
     ]
   },
   hirakawa: {
@@ -819,9 +824,10 @@ const DRIVER_DATABASE: Record<string, DriverMasterData> = {
     number: '—',
     nationality: 'Japanese',
     flag: '🇯🇵',
-    officialHeadshot: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/O/OSCPIA01_Oscar_Piastri/oscpia01.png',
+    officialHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Ryo_Hirakawa_2024_WEC_Fuji_3.jpg',
+    wikimediaHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Ryo_Hirakawa_2024_WEC_Fuji_3.jpg',
     teamsByYear: [
-      { startYear: 2024, endYear: 2026, teamId: 'mclaren', teamName: 'McLaren F1 Team (Reserve)' }
+      { startYear: 2024, endYear: 2026, teamId: 'mclaren', teamName: 'McLaren F1 Team (Reserve Driver)', headshotUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Ryo_Hirakawa_2024_WEC_Fuji_3.jpg' }
     ]
   },
   iwasa: {
@@ -830,9 +836,10 @@ const DRIVER_DATABASE: Record<string, DriverMasterData> = {
     number: '—',
     nationality: 'Japanese',
     flag: '🇯🇵',
-    officialHeadshot: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png',
+    officialHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Ayumu_Iwasa_Austria_2022.jpg',
+    wikimediaHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Ayumu_Iwasa_Austria_2022.jpg',
     teamsByYear: [
-      { startYear: 2024, endYear: 2026, teamId: 'rb', teamName: 'Visa Cash App RB (Reserve)' }
+      { startYear: 2024, endYear: 2026, teamId: 'rb', teamName: 'Visa Cash App RB (Reserve)', headshotUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Ayumu_Iwasa_Austria_2022.jpg' }
     ]
   },
   pourchaire: {
@@ -841,9 +848,10 @@ const DRIVER_DATABASE: Record<string, DriverMasterData> = {
     number: '—',
     nationality: 'French',
     flag: '🇫🇷',
-    officialHeadshot: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png',
+    officialHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Pourchaire-postseasonF2-2020-ART-2.jpg',
+    wikimediaHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Pourchaire-postseasonF2-2020-ART-2.jpg',
     teamsByYear: [
-      { startYear: 2023, endYear: 2026, teamId: 'sauber', teamName: 'Stake F1 Team (Reserve)' }
+      { startYear: 2023, endYear: 2026, teamId: 'sauber', teamName: 'Stake F1 Team (Reserve)', headshotUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Pourchaire-postseasonF2-2020-ART-2.jpg' }
     ]
   },
   drugovich: {
@@ -852,9 +860,10 @@ const DRIVER_DATABASE: Record<string, DriverMasterData> = {
     number: '—',
     nationality: 'Brazilian',
     flag: '🇧🇷',
-    officialHeadshot: 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png',
+    officialHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/c/c0/2023_Fala%2C_Drugovich_%28interview%29_01.jpg',
+    wikimediaHeadshot: 'https://upload.wikimedia.org/wikipedia/commons/c/c0/2023_Fala%2C_Drugovich_%28interview%29_01.jpg',
     teamsByYear: [
-      { startYear: 2023, endYear: 2026, teamId: 'aston_martin', teamName: 'Aston Martin F1 Team (Reserve)' }
+      { startYear: 2023, endYear: 2026, teamId: 'aston_martin', teamName: 'Aston Martin F1 Team (Reserve)', headshotUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c0/2023_Fala%2C_Drugovich_%28interview%29_01.jpg' }
     ]
   },
   vettel: {
