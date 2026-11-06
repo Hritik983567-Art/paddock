@@ -113,7 +113,7 @@ export async function GET(request: NextRequest) {
           const nowMs = Date.now();
           const isSessionOngoing = sessionStart > 0 && nowMs >= (sessionStart - 30 * 60 * 1000) && nowMs <= (sessionEnd + 60 * 60 * 1000);
 
-          // Fetch weather regardless for atmospheric telemetry
+          // Only fetch live telemetry endpoints when a session is truly ongoing right now
           const [posRes, _intRes, _lapRes, weaRes] = await Promise.all([
             isSessionOngoing 
               ? fetch(`https://api.openf1.org/v1/position?session_key=${sessionKey}`, { signal: controller.signal })
@@ -124,7 +124,9 @@ export async function GET(request: NextRequest) {
             isSessionOngoing 
               ? fetch(`https://api.openf1.org/v1/laps?session_key=${sessionKey}`, { signal: controller.signal })
               : Promise.resolve({ ok: false, json: async () => [] } as any),
-            fetch(`https://api.openf1.org/v1/weather?session_key=${sessionKey}`, { signal: controller.signal })
+            isSessionOngoing
+              ? fetch(`https://api.openf1.org/v1/weather?session_key=${sessionKey}`, { signal: controller.signal })
+              : Promise.resolve({ ok: false, json: async () => [] } as any)
           ]);
 
           if (weaRes.ok) {
@@ -204,7 +206,7 @@ export async function GET(request: NextRequest) {
         message: 'No live session currently active on track. Live telemetry streams strictly during official Grand Prix track action.',
         updatedAt: new Date().toISOString(),
         flagStatus: 'GREEN',
-        weather: weatherData || null,
+        weather: null,
         drivers: []
       };
 

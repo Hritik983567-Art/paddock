@@ -382,6 +382,7 @@ export default function LiveTelemetryPage() {
   const [showNoticeAlert, setShowNoticeAlert] = useState(true);
   const [gapDisplayMode, setGapDisplayMode] = useState<'dual' | 'gap' | 'interval'>('dual');
   const [weatherData, setWeatherData] = useState<LiveWeatherData | null>(null);
+  const [previewLiveConsole, setPreviewLiveConsole] = useState(false);
   const isLiveTransmittingRef = useRef(false);
   const consecutiveEmptyPollsRef = useRef(0);
 
@@ -521,7 +522,7 @@ export default function LiveTelemetryPage() {
               }
             }
 
-            if (data.weather) setWeatherData(data.weather);
+            setWeatherData(data.weather || null);
             if (data.flagStatus) setFlagStatus(data.flagStatus);
           }
         } else {
@@ -949,6 +950,7 @@ export default function LiveTelemetryPage() {
   const nextUpcomingSession = sessions.find(s => s.status === 'UPCOMING');
   const isCompetitiveDay = isTodayCompetitiveDay(sessions);
   const isCompetitiveSessionLive = Boolean(activeLiveSession) || isLiveTransmitting;
+  const isLiveActive = isCompetitiveDay || isCompetitiveSessionLive;
 
   const todaySession = sessions.find(s => {
     const nowDate = new Date();
@@ -1176,9 +1178,90 @@ export default function LiveTelemetryPage() {
           )}
         </div>
 
-        {/* Live Race Status Bar */}
-        <div 
-          className="stat-grid" 
+        {!isLiveActive && !previewLiveConsole ? (
+          <div className="w-full bg-slate-950/90 border border-slate-800 rounded-xl p-6 sm:p-10 text-center my-4 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-cyan-500/10 blur-3xl pointer-events-none rounded-full"></div>
+
+            <div className="relative z-10 max-w-2xl mx-auto space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-xs font-mono text-cyan-400">
+                <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+                <span>OFFICIAL TIMETABLE • TELEMETRY STANDBY</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black font-display tracking-tight text-white uppercase">
+                {nextUpcomingSession ? `NEXT: ${nextUpcomingSession.name}` : `UPCOMING: ${currentVenueName}`}
+              </h2>
+
+              <div className="flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-slate-400">
+                <span>📍 {currentVenueName}{currentCountryName ? ` (${currentCountryName})` : ''}</span>
+                <span>•</span>
+                <span>🏁 {totalLaps} LAPS</span>
+              </div>
+
+              {countdownToNext && (
+                <div className="py-4 my-2 border-y border-slate-800/80">
+                  <div className="text-[11px] font-mono uppercase text-slate-400 tracking-widest mb-1.5 font-bold">
+                    SESSION STARTS IN
+                  </div>
+                  <div className="text-3xl sm:text-5xl md:text-6xl font-black font-mono text-cyan-300 tracking-tight drop-shadow-[0_0_16px_rgba(52,228,200,0.4)]">
+                    {countdownToNext}
+                  </div>
+                  {nextUpcomingSession && (
+                    <div className="text-xs font-mono text-slate-400 mt-2">
+                      Official Schedule: <span className="text-white font-semibold">{nextUpcomingSession.dateStr}</span> at <span className="text-white font-semibold">{nextUpcomingSession.timeStr}</span> Local Time
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className="p-4 rounded-lg bg-slate-900/60 border border-slate-800/80 text-xs text-slate-300 font-sans leading-relaxed text-left sm:text-center">
+                <p>
+                  🔒 <strong>Live Telemetry Policy:</strong> Official F1 Timing Tower, S1/S2/S3 micro-sector splits, tyre compound stints, and dynamic circuit radar unlock on the calendar days of <strong>Qualifying, Sprint, and Grand Prix</strong> track sessions.
+                </p>
+              </div>
+
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setPreviewLiveConsole(true)}
+                  className="btn flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold text-cyan-300 hover:text-white rounded-lg border border-cyan-500/40 bg-cyan-950/40 hover:bg-cyan-900/40 cursor-pointer transition shadow-md"
+                  title="Inspect track map and corner analysis in standby mode"
+                >
+                  <span>🗺️</span>
+                  <span>PREVIEW VENUE &amp; TRACK MAP</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={connectWebSocket}
+                  className="btn flex items-center gap-2 px-5 py-2.5 text-xs font-mono font-bold text-slate-200 hover:text-white rounded-lg border border-slate-700 bg-slate-900 hover:bg-slate-800 cursor-pointer transition shadow-md"
+                  title="Test WebSocket uplink"
+                >
+                  <span>🔄</span>
+                  <span>CHECK PIT-WALL UPLINK STATUS</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            {!isLiveActive && previewLiveConsole && (
+              <div className="flex items-center justify-between flex-wrap gap-2 px-4 py-2.5 mb-4 rounded-lg bg-cyan-950/40 border border-cyan-500/40 text-xs font-mono text-cyan-300">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+                  <span><strong>CIRCUIT PREVIEW MODE:</strong> Standby map &amp; topology inspection active. Next session starts in <strong>{countdownToNext || '—'}</strong>.</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setPreviewLiveConsole(false)}
+                  className="px-3 py-1 rounded bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold transition cursor-pointer"
+                >
+                  ⏱️ SHOW SESSION COUNTDOWN
+                </button>
+              </div>
+            )}
+            {/* Live Race Status Bar */}
+            <div 
+              className="stat-grid" 
           style={{ 
             marginTop: '8px', 
             marginBottom: '20px', 
@@ -1816,7 +1899,9 @@ export default function LiveTelemetryPage() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </>
+    )}
+  </div>
+</section>
   );
 }
