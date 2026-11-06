@@ -252,13 +252,13 @@
         "id": "silverstone_t1",
         "circuitId": "silverstone",
         "title": "Turn 1 — Abbey",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Modern F1 Single-Seater — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_1/turn_1.jpg",
         "entrySpeed": "310 km/h",
         "typicalGear": "7th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Blisteringly fast 290 km/h right-hand corner opening the lap right past the Silverstone Wing. Cars carry massive ground-effect downforce with only a slight brush of brakes.",
         "turnNumber": 1,
         "cornerName": "Abbey"
@@ -267,13 +267,13 @@
         "id": "silverstone_t2",
         "circuitId": "silverstone",
         "title": "Turn 2 — Farm Curve",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Yuki Tsunoda (AlphaTauri AT03) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_2/turn_2.jpg",
         "entrySpeed": "300 km/h",
         "typicalGear": "8th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Flat-out sweeping left bend connecting Abbey into the technical Arena infield complex. Cars pull over 3.2 lateral G while maintaining full throttle.",
         "turnNumber": 2,
         "cornerName": "Farm Curve"
@@ -282,13 +282,13 @@
         "id": "silverstone_t3",
         "circuitId": "silverstone",
         "title": "Turn 3 — Village",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Alexander Albon (Williams FW44) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_3/turn_3.jpg",
         "entrySpeed": "295 km/h",
         "typicalGear": "3rd Gear",
         "gForce": "+2.6 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Heavy braking right-hander into the Arena infield. Drivers brake down from 295 km/h to 110 km/h, making it a prime overtaking hotspot and turn 1 restart battlefield.",
         "turnNumber": 3,
         "cornerName": "Village"
@@ -297,13 +297,13 @@
         "id": "silverstone_t4",
         "circuitId": "silverstone",
         "title": "Turn 4 — The Loop",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Daniel Ricciardo (McLaren MCL36) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_4/turn_4.jpg",
         "entrySpeed": "135 km/h",
         "typicalGear": "2nd Gear",
         "gForce": "+2.6 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "The slowest corner on the entire Silverstone circuit. A tight, technical 180-degree left-hand hairpin demanding extreme mechanical grip and precise traction management.",
         "turnNumber": 4,
         "cornerName": "The Loop"
@@ -312,13 +312,13 @@
         "id": "silverstone_t5",
         "circuitId": "silverstone",
         "title": "Turn 5 — Aintree",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Valtteri Bottas (Alfa Romeo C42) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_5/turn_5.jpg",
         "entrySpeed": "110 km/h",
         "typicalGear": "3rd Gear",
         "gForce": "+3.2 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Medium-speed left-hand bend that acts as the critical launch pad onto the DRS-assisted Wellington Straight. Exit traction and early full throttle are paramount.",
         "turnNumber": 5,
         "cornerName": "Aintree"
@@ -327,13 +327,13 @@
         "id": "silverstone_t6",
         "circuitId": "silverstone",
         "title": "Turn 6 — Brooklands",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Vettel (Aston Martin) & Sainz (Ferrari) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_6/turn_6.jpg",
         "entrySpeed": "315 km/h",
         "typicalGear": "3rd Gear",
         "gForce": "+3.2 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "High-speed braking zone at the end of Wellington Straight. Cars brake from 315 km/h while turning into a long, sweeping left-hander, punishing the right-front tyre.",
         "turnNumber": 6,
         "cornerName": "Brooklands"
@@ -342,13 +342,13 @@
         "id": "silverstone_t7",
         "circuitId": "silverstone",
         "title": "Turn 7 — Luffield",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Lando Norris (McLaren) & George Russell (Mercedes) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_7/turn_7.jpg",
         "entrySpeed": "170 km/h",
         "typicalGear": "3rd Gear",
         "gForce": "+2.6 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Iconic long, double-apex right-hand carousel. Drivers must constantly balance throttle and steering while fighting understeer before unleashing maximum power onto Woodcote.",
         "turnNumber": 7,
         "cornerName": "Luffield"
@@ -357,13 +357,13 @@
         "id": "silverstone_t8",
         "circuitId": "silverstone",
         "title": "Turn 8 — Woodcote",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "F1 Pack (Williams, Alfa Romeo, McLaren, Haas) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_8/turn_8.jpg",
         "entrySpeed": "245 km/h",
         "typicalGear": "6th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Sweeping right-hand kink connecting Luffield to the former start/finish National Straight. Cars accelerate at full throttle, pulling over 3.4 G lateral.",
         "turnNumber": 8,
         "cornerName": "Woodcote"
@@ -372,13 +372,13 @@
         "id": "silverstone_t9",
         "circuitId": "silverstone",
         "title": "Turn 9 — Copse",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Max Verstappen (Red Bull RB18) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_9/turn_9.jpg",
         "entrySpeed": "300 km/h",
         "typicalGear": "7th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "One of the most fearsome corners in global motorsport. Taken in 7th gear at 290 km/h with an aggressive blind entry, clipping the inside apex under 4.8 to 5.2 lateral G.",
         "turnNumber": 9,
         "cornerName": "Copse Corner"
@@ -387,13 +387,13 @@
         "id": "silverstone_t10",
         "circuitId": "silverstone",
         "title": "Turn 10 — Maggotts",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Alexander Albon (Williams FW44) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_10/turn_10.jpg",
         "entrySpeed": "305 km/h",
         "typicalGear": "8th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "The blistering entry to the legendary Maggotts-Becketts-Chapel high-speed esses. Approached at 310 km/h in 8th gear, taken almost flat out left.",
         "turnNumber": 10,
         "cornerName": "Maggotts"
@@ -402,13 +402,13 @@
         "id": "silverstone_t11",
         "circuitId": "silverstone",
         "title": "Turn 11 — Becketts 1",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Charles Leclerc (Ferrari F1-75) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_11/turn_11.jpg",
         "entrySpeed": "295 km/h",
         "typicalGear": "7th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Violent high-speed right flick following Maggotts. Drivers experience over 5.2G lateral load as they snap the car right at 280 km/h.",
         "turnNumber": 11,
         "cornerName": "Becketts (T11)"
@@ -417,13 +417,13 @@
         "id": "silverstone_t12",
         "circuitId": "silverstone",
         "title": "Turn 12 — Becketts 2",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Daniel Ricciardo (McLaren MCL36) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_12/turn_12.jpg",
         "entrySpeed": "250 km/h",
         "typicalGear": "5th Gear",
         "gForce": "+4.0 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Technical left-hand tightening curve within the complex. Cars scrub speed from 270 km/h to 240 km/h in 6th gear, testing front-end grip and aerodynamic balance.",
         "turnNumber": 12,
         "cornerName": "Becketts 2"
@@ -432,13 +432,13 @@
         "id": "silverstone_t13",
         "circuitId": "silverstone",
         "title": "Turn 13 — Chapel",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Nicholas Latifi (Williams FW44) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_13/turn_13.jpg",
         "entrySpeed": "230 km/h",
         "typicalGear": "6th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Right-hand kink leading onto the Chapel exit. The apex tightens before releasing onto the Hangar Straight run.",
         "turnNumber": 13,
         "cornerName": "Chapel"
@@ -447,13 +447,13 @@
         "id": "silverstone_t14",
         "circuitId": "silverstone",
         "title": "Turn 14 — Hangar Straight Kink",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Lance Stroll (Aston Martin AMR22) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_14/turn_14.jpg",
         "entrySpeed": "315 km/h",
         "typicalGear": "8th Gear",
         "gForce": "+4.8 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Fast left sweeper launching cars onto the 335 km/h Hangar Straight. Exit speed here dictates whether a driver can mount an overtake into Stowe.",
         "turnNumber": 14,
         "cornerName": "Hangar Straight Kink"
@@ -462,13 +462,13 @@
         "id": "silverstone_t15",
         "circuitId": "silverstone",
         "title": "Turn 15 — Stowe",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Carlos Sainz (Ferrari F1-75) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_15/turn_15.jpg",
         "entrySpeed": "330 km/h",
         "typicalGear": "5th Gear",
         "gForce": "+4.0 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Brutal braking zone from top speed into a fast 5th-gear right turn beneath the Rolex bridge, with extreme track limit challenges on the wide exit run-off.",
         "turnNumber": 15,
         "cornerName": "Stowe Corner"
@@ -477,13 +477,13 @@
         "id": "silverstone_t16",
         "circuitId": "silverstone",
         "title": "Turn 16 — Vale",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Pierre Gasly (AlphaTauri AT03) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_16/turn_16.jpg",
         "entrySpeed": "305 km/h",
         "typicalGear": "2nd Gear",
         "gForce": "+2.6 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Downhill braking zone into a sharp left-right chicane. Cars drop from 305 km/h to 115 km/h down a steep slope, making the inside front tyre prone to locking.",
         "turnNumber": 16,
         "cornerName": "Vale"
@@ -492,13 +492,13 @@
         "id": "silverstone_t17",
         "circuitId": "silverstone",
         "title": "Turn 17 — Club Entry",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "subtitle": "Esteban Ocon (Alpine A522) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_17/turn_17.jpg",
         "entrySpeed": "125 km/h",
         "typicalGear": "3rd Gear",
         "gForce": "+3.2 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "Right-hand uphill apex of the Club complex. Drivers clip the aggressive inside kerbing while managing power delivery before the final launch onto the pit straight.",
         "turnNumber": 17,
         "cornerName": "Club Corner Entry"
@@ -506,14 +506,14 @@
       {
         "id": "silverstone_t18",
         "circuitId": "silverstone",
-        "title": "Turn 18 — Club Exit",
-        "subtitle": "2024 British Grand Prix — Silverstone",
+        "title": "Turn 18 — Club Exit / Hamilton Straight",
+        "subtitle": "Lewis Hamilton (Mercedes-AMG W13) — Silverstone British GP",
         "category": "photo",
         "src": "/images/circuits/silverstone/corners/turn_18/turn_18.jpg",
         "entrySpeed": "160 km/h",
         "typicalGear": "4th Gear",
         "gForce": "+4.0 G",
-        "license": "VERIFIED REAL F1 PHOTOGRAPHY",
+        "license": "VERIFIED REAL F1 APEX PHOTOGRAPHY",
         "description": "The final corner of the Silverstone lap. A long, accelerating right-hand sweeper that launches cars onto the Hamilton Straight towards the chequered flag.",
         "turnNumber": 18,
         "cornerName": "Club Corner Exit / Hamilton Straight"
@@ -17955,11 +17955,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_1/turn_1.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Modern F1 Single-Seater",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Lewis Hamilton (Mercedes-AMG W15) attacking Turn 1 Abbey at the 2024 British GP"
+            "alt": "Formula 1 car attacking the red-and-white apex kerb at Turn 1 Abbey, showing full corner sweep past the Wing"
           }
         ],
         "type": "Flat-Out Kink",
@@ -17994,11 +17994,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_2/turn_2.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Yuki Tsunoda (AlphaTauri AT03)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Lando Norris (McLaren MCL38) flat out through Turn 2 Farm Curve during 2024 qualifying"
+            "alt": "Yuki Tsunoda (AlphaTauri AT03) sweeping through the high-speed Turn 2 Farm Curve with visible apex kerbing"
           }
         ],
         "type": "Flat-Out Kink",
@@ -18033,11 +18033,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_3/turn_3.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Alexander Albon (Williams FW44)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Max Verstappen (Red Bull RB20) negotiating Turn 3 Village under heavy braking"
+            "alt": "Alexander Albon (Williams FW44) turning into Turn 3 Village apex kerb under heavy braking"
           }
         ],
         "type": "Technical Chicane",
@@ -18072,11 +18072,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_4/turn_4.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Daniel Ricciardo (McLaren MCL36)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Charles Leclerc (Ferrari SF-24) rotating through the tight Turn 4 Loop hairpin"
+            "alt": "Daniel Ricciardo (McLaren MCL36) rotating tightly around the inside apex kerb of Turn 4 The Loop hairpin"
           }
         ],
         "type": "Heavy Braking Hairpin",
@@ -18111,11 +18111,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_5/turn_5.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Valtteri Bottas (Alfa Romeo C42)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Oscar Piastri (McLaren MCL38) powering out of Turn 5 Aintree onto Wellington Straight"
+            "alt": "Valtteri Bottas (Alfa Romeo C42) clipping the apex kerb at Turn 5 Aintree accelerating onto Wellington Straight"
           }
         ],
         "type": "Medium-Speed Corner",
@@ -18150,11 +18150,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_6/turn_6.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Vettel (Aston Martin) & Sainz (Ferrari)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Carlos Sainz (Ferrari SF-24) trail-braking into Turn 6 Brooklands"
+            "alt": "Sebastian Vettel (Aston Martin AMR22) & Carlos Sainz (Ferrari F1-75) sweeping through Turn 6 Brooklands corner curve"
           }
         ],
         "type": "Medium-Speed Corner",
@@ -18189,11 +18189,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_7/turn_7.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Lando Norris (McLaren) & George Russell (Mercedes)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Daniel Ricciardo and Kevin Magnussen wheel-to-wheel battling through Turn 7 Luffield"
+            "alt": "Lando Norris (McLaren MCL36) leading George Russell (Mercedes-AMG W13) through the long Turn 7 Luffield carousel with full apex kerbing visible"
           }
         ],
         "type": "Technical Chicane",
@@ -18228,11 +18228,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_8/turn_8.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "F1 Pack (Williams, Alfa Romeo, McLaren, Haas)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Fernando Alonso (Aston Martin AMR24) accelerating through Turn 8 Woodcote"
+            "alt": "Four-car Formula 1 battle train sweeping through Turn 8 Woodcote past the apex kerbing"
           }
         ],
         "type": "High-Speed Sweeper",
@@ -18267,11 +18267,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_9/turn_9.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Max Verstappen (Red Bull RB18)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Lewis Hamilton (Mercedes-AMG W15) committed to the blind apex at Turn 9 Copse"
+            "alt": "Max Verstappen (Red Bull RB18) attacking the apex of the legendary 290 km/h Turn 9 Copse corner"
           }
         ],
         "type": "Legendary High-Speed Sweeper",
@@ -18307,11 +18307,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_10/turn_10.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Alexander Albon (Williams FW44)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Max Verstappen (Red Bull RB20) entering the high-speed Turn 10 Maggotts switchback"
+            "alt": "Alexander Albon (Williams FW44) slicing through the high-speed Turn 10 Maggotts entry with the Esses complex visible"
           }
         ],
         "type": "Supersonic Sweeper",
@@ -18347,11 +18347,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_11/turn_11.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Charles Leclerc (Ferrari F1-75)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Lando Norris (McLaren MCL38) loading up the suspension through Turn 11 Becketts"
+            "alt": "Charles Leclerc (Ferrari F1-75) loaded through the dramatic high-G arc of Turn 11 Becketts with curving kerbs"
           }
         ],
         "type": "High-Speed S-Curve",
@@ -18387,11 +18387,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_12/turn_12.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Daniel Ricciardo (McLaren MCL36)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "George Russell (Mercedes-AMG W15) navigating Turn 12 Becketts 2"
+            "alt": "Daniel Ricciardo (McLaren MCL36) loaded under lateral force through Turn 12 Becketts 2 switchback"
           }
         ],
         "type": "High-Speed Sweeper",
@@ -18426,11 +18426,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_13/turn_13.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Nicholas Latifi (Williams FW44)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Oscar Piastri (McLaren MCL38) positioning through Turn 13 Chapel"
+            "alt": "Nicholas Latifi (Williams FW44) clipping the green runoff and apex kerb of Turn 13 Chapel"
           }
         ],
         "type": "High-Speed Sweeper",
@@ -18465,11 +18465,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_14/turn_14.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Lance Stroll (Aston Martin AMR22)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Alexander Albon (Williams FW46) slingshotting through Turn 14 onto the Hangar Straight"
+            "alt": "Lance Stroll (Aston Martin AMR22) accelerating across Turn 14 exit kerb onto the flat-out Hangar Straight"
           }
         ],
         "type": "Flat-Out Kink",
@@ -18504,11 +18504,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_15/turn_15.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Carlos Sainz (Ferrari F1-75)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Lewis Hamilton (Mercedes-AMG W15) braking from 330 km/h into Turn 15 Stowe"
+            "alt": "Carlos Sainz (Ferrari F1-75) turning 3/4 right directly into the Turn 15 Stowe apex beneath the bridge"
           }
         ],
         "type": "High-Speed Sweeper",
@@ -18544,11 +18544,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_16/turn_16.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Pierre Gasly (AlphaTauri AT03)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Nico Hülkenberg (Haas VF-24) braking hard downhill into Turn 16 Vale"
+            "alt": "Pierre Gasly (AlphaTauri AT03) threshold-braking through the downhill Turn 16 Vale chicane past vibrant red runoff"
           }
         ],
         "type": "Technical Chicane",
@@ -18583,11 +18583,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_17/turn_17.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Esteban Ocon (Alpine A522)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Yuki Tsunoda (RB VCARB01) tackling Turn 17 Club Entry"
+            "alt": "Esteban Ocon (Alpine A522) striking the apex kerb of Turn 17 Club Entry into the stadium amphitheater"
           }
         ],
         "type": "Technical Chicane",
@@ -18622,11 +18622,11 @@
         "images": [
           {
             "src": "/images/circuits/silverstone/corners/turn_18/turn_18.jpg",
-            "source": "2024 British Grand Prix",
+            "source": "Lewis Hamilton (Mercedes-AMG W13)",
             "license": "Creative Commons / Wikimedia",
             "type": "real",
             "verified": true,
-            "alt": "Lewis Hamilton (Mercedes-AMG W15) accelerating out of Turn 18 to win the 2024 British GP"
+            "alt": "Lewis Hamilton (Mercedes-AMG W13) powering out of Turn 18 Club Exit onto Hamilton Straight past kerbs and red runoff"
           }
         ],
         "type": "Medium-Speed Corner",

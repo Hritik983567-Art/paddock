@@ -4820,11 +4820,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_1/turn_1.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Modern F1 Single-Seater',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Lewis Hamilton (Mercedes-AMG W15) attacking Turn 1 Abbey at the 2024 British GP'
+            alt: 'Formula 1 car attacking the red-and-white apex kerb at Turn 1 Abbey, showing full corner sweep past the Wing'
           }
         ]
       },
@@ -4855,11 +4855,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_2/turn_2.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Yuki Tsunoda (AlphaTauri AT03)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Lando Norris (McLaren MCL38) flat out through Turn 2 Farm Curve during 2024 qualifying'
+            alt: 'Yuki Tsunoda (AlphaTauri AT03) sweeping through the high-speed Turn 2 Farm Curve with visible apex kerbing'
           }
         ]
       },
@@ -4890,11 +4890,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_3/turn_3.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Alexander Albon (Williams FW44)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Max Verstappen (Red Bull RB20) negotiating Turn 3 Village under heavy braking'
+            alt: 'Alexander Albon (Williams FW44) turning into Turn 3 Village apex kerb under heavy braking'
           }
         ]
       },
@@ -4925,11 +4925,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_4/turn_4.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Daniel Ricciardo (McLaren MCL36)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Charles Leclerc (Ferrari SF-24) rotating through the tight Turn 4 Loop hairpin'
+            alt: 'Daniel Ricciardo (McLaren MCL36) rotating tightly around the inside apex kerb of Turn 4 The Loop hairpin'
           }
         ]
       },
@@ -4960,11 +4960,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_5/turn_5.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Valtteri Bottas (Alfa Romeo C42)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Oscar Piastri (McLaren MCL38) powering out of Turn 5 Aintree onto Wellington Straight'
+            alt: 'Valtteri Bottas (Alfa Romeo C42) clipping the apex kerb at Turn 5 Aintree accelerating onto Wellington Straight'
           }
         ]
       },
@@ -4995,11 +4995,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_6/turn_6.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Vettel (Aston Martin) & Sainz (Ferrari)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Carlos Sainz (Ferrari SF-24) trail-braking into Turn 6 Brooklands'
+            alt: 'Sebastian Vettel (Aston Martin AMR22) & Carlos Sainz (Ferrari F1-75) sweeping through Turn 6 Brooklands corner curve'
           }
         ]
       },
@@ -5030,11 +5030,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_7/turn_7.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Lando Norris (McLaren) & George Russell (Mercedes)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Daniel Ricciardo and Kevin Magnussen wheel-to-wheel battling through Turn 7 Luffield'
+            alt: 'Lando Norris (McLaren MCL36) leading George Russell (Mercedes-AMG W13) through the long Turn 7 Luffield carousel with full apex kerbing visible'
           }
         ]
       },
@@ -5065,11 +5065,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_8/turn_8.jpg',
-            source: '2024 British Grand Prix',
+            source: 'F1 Pack (Williams, Alfa Romeo, McLaren, Haas)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Fernando Alonso (Aston Martin AMR24) accelerating through Turn 8 Woodcote'
+            alt: 'Four-car Formula 1 battle train sweeping through Turn 8 Woodcote past the apex kerbing'
           }
         ]
       },
@@ -5100,11 +5100,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_9/turn_9.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Max Verstappen (Red Bull RB18)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Lewis Hamilton (Mercedes-AMG W15) committed to the blind apex at Turn 9 Copse'
+            alt: 'Max Verstappen (Red Bull RB18) attacking the apex of the legendary 290 km/h Turn 9 Copse corner'
           }
         ]
       },
@@ -5135,11 +5135,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_10/turn_10.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Alexander Albon (Williams FW44)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Max Verstappen (Red Bull RB20) entering the high-speed Turn 10 Maggotts switchback'
+            alt: 'Alexander Albon (Williams FW44) slicing through the high-speed Turn 10 Maggotts entry with the Esses complex visible'
           }
         ]
       },
@@ -5170,11 +5170,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_11/turn_11.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Charles Leclerc (Ferrari F1-75)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Lando Norris (McLaren MCL38) loading up the suspension through Turn 11 Becketts'
+            alt: 'Charles Leclerc (Ferrari F1-75) loaded through the dramatic high-G arc of Turn 11 Becketts with curving kerbs'
           }
         ]
       },
@@ -5205,11 +5205,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_12/turn_12.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Daniel Ricciardo (McLaren MCL36)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'George Russell (Mercedes-AMG W15) navigating Turn 12 Becketts 2'
+            alt: 'Daniel Ricciardo (McLaren MCL36) loaded under lateral force through Turn 12 Becketts 2 switchback'
           }
         ]
       },
@@ -5240,11 +5240,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_13/turn_13.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Nicholas Latifi (Williams FW44)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Oscar Piastri (McLaren MCL38) positioning through Turn 13 Chapel'
+            alt: 'Nicholas Latifi (Williams FW44) clipping the green runoff and apex kerb of Turn 13 Chapel'
           }
         ]
       },
@@ -5275,11 +5275,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_14/turn_14.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Lance Stroll (Aston Martin AMR22)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Alexander Albon (Williams FW46) slingshotting through Turn 14 onto the Hangar Straight'
+            alt: 'Lance Stroll (Aston Martin AMR22) accelerating across Turn 14 exit kerb onto the flat-out Hangar Straight'
           }
         ]
       },
@@ -5310,11 +5310,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_15/turn_15.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Carlos Sainz (Ferrari F1-75)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Lewis Hamilton (Mercedes-AMG W15) braking from 330 km/h into Turn 15 Stowe'
+            alt: 'Carlos Sainz (Ferrari F1-75) turning 3/4 right directly into the Turn 15 Stowe apex beneath the bridge'
           }
         ]
       },
@@ -5345,11 +5345,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_16/turn_16.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Pierre Gasly (AlphaTauri AT03)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Nico Hülkenberg (Haas VF-24) braking hard downhill into Turn 16 Vale'
+            alt: 'Pierre Gasly (AlphaTauri AT03) threshold-braking through the downhill Turn 16 Vale chicane past vibrant red runoff'
           }
         ]
       },
@@ -5380,11 +5380,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_17/turn_17.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Esteban Ocon (Alpine A522)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Yuki Tsunoda (RB VCARB01) tackling Turn 17 Club Entry'
+            alt: 'Esteban Ocon (Alpine A522) striking the apex kerb of Turn 17 Club Entry into the stadium amphitheater'
           }
         ]
       },
@@ -5415,11 +5415,11 @@ export const ALL_CIRCUIT_CORNERS: Record<string, CircuitCornerCollection> = {
         images: [
           {
             src: '/images/circuits/silverstone/corners/turn_18/turn_18.jpg',
-            source: '2024 British Grand Prix',
+            source: 'Lewis Hamilton (Mercedes-AMG W13)',
             license: 'Creative Commons / Wikimedia',
             type: 'real',
             verified: true,
-            alt: 'Lewis Hamilton (Mercedes-AMG W15) accelerating out of Turn 18 to win the 2024 British GP'
+            alt: 'Lewis Hamilton (Mercedes-AMG W13) powering out of Turn 18 Club Exit onto Hamilton Straight past kerbs and red runoff'
           }
         ]
       }
