@@ -16,6 +16,7 @@ export interface HistoricalDriverBenchmark {
   winsThrough2024: number;
   podiumsThrough2024: number;
   polesThrough2024: number;
+  sprintPoles?: number;
   fastestLapsThrough2024: number;
   pointsThrough2024: number;
   activeIn2026: boolean;
@@ -34,6 +35,7 @@ export const HISTORICAL_DRIVER_BENCHMARKS: Record<string, HistoricalDriverBenchm
     winsThrough2024: 105,
     podiumsThrough2024: 201,
     polesThrough2024: 104,
+    sprintPoles: 2,
     fastestLapsThrough2024: 67,
     pointsThrough2024: 4829.5,
     activeIn2026: true
@@ -42,13 +44,14 @@ export const HISTORICAL_DRIVER_BENCHMARKS: Record<string, HistoricalDriverBenchm
     driverId: 'max_verstappen',
     name: 'Max Verstappen',
     code: 'VER',
-    championships: 3,
-    championshipYears: [2021, 2022, 2023],
+    championships: 4,
+    championshipYears: [2021, 2022, 2023, 2024],
     startsThrough2024: 206,
     entriesThrough2024: 206,
     winsThrough2024: 63,
     podiumsThrough2024: 111,
     polesThrough2024: 40,
+    sprintPoles: 8,
     fastestLapsThrough2024: 33,
     pointsThrough2024: 2979.5,
     activeIn2026: true
