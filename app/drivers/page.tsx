@@ -270,7 +270,7 @@ export default function DriversPage() {
       const seasonTeamsSet = new Set<string>();
       let seasonLatestTeamId = '';
 
-      const typedRaces = races as Array<{ season: string; round: string; Results: Array<{ position: string; positionText?: string; grid: string; status: string; points: string; FastestLap?: { rank: string }; Constructor: { constructorId: string; name: string } }> }>;
+      const typedRaces = races as Array<{ season: string; round: string; Results: Array<{ position: string; positionText?: string; grid: string; laps?: string; status: string; points: string; FastestLap?: { rank: string }; Constructor: { constructorId: string; name: string } }> }>;
 
       // Set to track unique pole position races by season_round across starting grid P1 and qualifying P1
       const poleRaceKeys = new Set<string>();

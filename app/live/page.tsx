@@ -1237,7 +1237,7 @@ export default function LiveTelemetryPage() {
                   <span className="text-slate-600">•</span>
                   <span>🏁 {totalLaps} LAPS</span>
                   <span className="text-slate-600">•</span>
-                  <span>📐 {currentTrackDef?.lengthKm || 4.309} KM</span>
+                  <span>📐 {currentTrackDef?.length_km || 4.309} KM</span>
                   <span className="text-slate-600">•</span>
                   <span>⚡ 15 APEX VECTORS</span>
                 </div>
