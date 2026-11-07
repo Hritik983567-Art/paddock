@@ -114,7 +114,7 @@ export interface CompetitiveSession {
   endMs: number | null;
 }
 
-function parseCompetitiveSessions(race: any, nowDate = new Date()): CompetitiveSession[] {
+function parseCompetitiveSessions(race: any, nowDate = getEffectiveDate()): CompetitiveSession[] {
   if (!race) return [];
 
   const configs: Array<{
@@ -221,7 +221,43 @@ function parseCompetitiveSessions(race: any, nowDate = new Date()): CompetitiveS
     .sort((a, b) => (a.startMs || 0) - (b.startMs || 0));
 }
 
-function isTodayCompetitiveDay(sessions: CompetitiveSession[], nowDate = new Date()): boolean {
+function getRaceStartTimeMs(race: any): number {
+  if (!race?.date) return 0;
+  const timeStr = race.time ? (race.time.endsWith('Z') ? race.time : `${race.time}Z`) : '17:00:00Z';
+  const startMs = Date.parse(`${race.date}T${timeStr}`);
+  if (isNaN(startMs)) return Date.parse(`${race.date}T00:00:00Z`) || 0;
+  return startMs;
+}
+
+function getRaceEndTimeMs(race: any): number {
+  if (!race?.date) return 0;
+  const timeStr = race.time ? (race.time.endsWith('Z') ? race.time : `${race.time}Z`) : '17:00:00Z';
+  const startMs = Date.parse(`${race.date}T${timeStr}`);
+  if (isNaN(startMs)) return Date.parse(`${race.date}T23:59:59Z`) || 0;
+  // Maximum FIA race duration window: 180 minutes (3 hours)
+  return startMs + (180 * 60 * 1000);
+}
+
+function getEffectiveDate(now = new Date(), championshipSeason = 2026): Date {
+  if (now.getFullYear() < championshipSeason) {
+    const projected = new Date(now);
+    projected.setFullYear(championshipSeason);
+    return projected;
+  }
+  return now;
+}
+
+function getEffectiveTimeMs(now = new Date(), championshipSeason = 2026): number {
+  return getEffectiveDate(now, championshipSeason).getTime();
+}
+
+function resolveActiveUpcomingOrOngoingRace(races: any[], nowMs = getEffectiveTimeMs()): any {
+  if (!races || races.length === 0) return null;
+  const active = races.find(r => getRaceEndTimeMs(r) > nowMs);
+  return active || races[races.length - 1];
+}
+
+function isTodayCompetitiveDay(sessions: CompetitiveSession[], nowDate = getEffectiveDate()): boolean {
   const localYear = nowDate.getFullYear();
   const localMonth = String(nowDate.getMonth() + 1).padStart(2, '0');
   const localDay = String(nowDate.getDate()).padStart(2, '0');
@@ -371,9 +407,9 @@ export default function LiveTelemetryPage() {
     };
   }, []);
 
-  const [selectedCircuit, setSelectedCircuit] = useState('marina_bay');
+  const [selectedCircuit, setSelectedCircuit] = useState('interlagos');
   const userChangedCircuitRef = useRef(false);
-  const selectedCircuitRef = useRef('marina_bay');
+  const selectedCircuitRef = useRef('interlagos');
 
   const currentTrackDef = getTrackDefinition(selectedCircuit);
   const currentCircuitInfo = ALL_CIRCUITS_ROSTER.find(c => c.id === selectedCircuit);
@@ -383,6 +419,7 @@ export default function LiveTelemetryPage() {
 
   // Calendar & Competitive Sessions
   const [calendarRaces, setCalendarRaces] = useState<any[]>([]);
+  const calendarRacesRef = useRef<any[]>([]);
   const activeRaceDataRef = useRef<any>(null);
   const [sessions, setSessions] = useState<CompetitiveSession[]>([]);
   const [activeDriverCode, setActiveDriverCode] = useState<string | null>(null);
@@ -418,40 +455,40 @@ export default function LiveTelemetryPage() {
     }
   }, [logs]);
 
-  // Fetch current calendar races on mount (pulls rich live schedule with Qualifying/Sprint sessions)
+  // Fetch current calendar races on mount (authoritative 2026 calendar with Qualifying/Sprint sessions)
   useEffect(() => {
     async function loadCalendar() {
       try {
         let list: any[] = [];
         try {
-          // 1. Pull rich official FIA calendar from live API first (includes real Qualifying & Sprint timestamps)
-          const res = await getJSON(`${API_BASE}/current.json`) as { MRData?: { RaceTable?: { Races?: any[] } } };
-          if (res?.MRData?.RaceTable?.Races && res.MRData.RaceTable.Races.length > 0) {
-            list = res.MRData.RaceTable.Races;
+          // 1. Authoritative 2026 season championship calendar
+          const localRes = await fetch('/data/circuits/2026/calendar.json');
+          if (localRes.ok) {
+            const localData = await localRes.json();
+            list = (localData.races || []).map((r: any) => ({
+              round: r.round,
+              raceName: r.raceName,
+              date: r.date,
+              time: r.time,
+              Qualifying: r.Qualifying,
+              Sprint: r.Sprint,
+              SprintQualifying: r.SprintQualifying || r.SprintShootout,
+              Circuit: {
+                circuitId: r.circuitId,
+                circuitName: r.circuitName,
+                Location: { locality: r.locality || '', country: r.country || '' }
+              }
+            }));
           }
         } catch {
-          // fallback to local calendar below
+          // fallback to live API below
         }
 
         if (list.length === 0) {
           try {
-            const localRes = await fetch('/data/circuits/2026/calendar.json');
-            if (localRes.ok) {
-              const localData = await localRes.json();
-              list = (localData.races || []).map((r: any) => ({
-                round: r.round,
-                raceName: r.raceName,
-                date: r.date,
-                time: r.time,
-                Qualifying: r.Qualifying,
-                Sprint: r.Sprint,
-                SprintQualifying: r.SprintQualifying || r.SprintShootout,
-                Circuit: {
-                  circuitId: r.circuitId,
-                  circuitName: r.circuitName,
-                  Location: { locality: r.locality || '', country: r.country || '' }
-                }
-              }));
+            const res = await getJSON(`${API_BASE}/current.json`) as { MRData?: { RaceTable?: { Races?: any[] } } };
+            if (res?.MRData?.RaceTable?.Races && res.MRData.RaceTable.Races.length > 0) {
+              list = res.MRData.RaceTable.Races;
             }
           } catch {
             // fallback
@@ -459,12 +496,11 @@ export default function LiveTelemetryPage() {
         }
 
         setCalendarRaces(list);
+        calendarRacesRef.current = list;
 
-        if (list.length > 0 && !userChangedCircuitRef.current) {
-          const today = new Date().toISOString().split('T')[0];
-          const activeRace = (list.find((r: any) => r.date === today) 
-            || list.find((r: any) => r.date >= today)
-            || list[list.length - 1]);
+        if (list.length > 0) {
+          const effectiveNow = getEffectiveTimeMs();
+          const activeRace = resolveActiveUpcomingOrOngoingRace(list, effectiveNow);
 
           activeRaceDataRef.current = activeRace;
 
@@ -480,14 +516,14 @@ export default function LiveTelemetryPage() {
             setSelectedCircuit(resolvedId);
             selectedCircuitRef.current = resolvedId;
 
-            const parsed = parseCompetitiveSessions(activeRace);
+            const parsed = parseCompetitiveSessions(activeRace, getEffectiveDate());
             setSessions(parsed);
 
             const raceName = (activeRace as any)?.raceName || resolvedId.toUpperCase();
             const timeStr = new Date().toTimeString().split(' ')[0];
             setLogs(l => [
               ...l,
-              `[${timeStr}] 🏁 CALENDAR RADAR SYNC: Locked to ${raceName}. Competitive session timetable synchronized.`
+              `[${timeStr}] 🏁 ACTIVE VENUE LOCKED: Synchronized to ${raceName} (${resolvedId}). Locked to upcoming/ongoing Grand Prix.`
             ]);
           }
         }
@@ -612,12 +648,49 @@ export default function LiveTelemetryPage() {
     }
   };
 
-  // Real-time 1s session scheduler ticker (NO fake simulation, strictly updates session times)
+  // Real-time 1s session scheduler ticker (updates session countdowns & auto-advances when race ends)
   useEffect(() => {
     const ticker = setInterval(() => {
       setNowMs(Date.now());
+
+      // Auto-advance active venue when the race finishes
+      if (calendarRacesRef.current && calendarRacesRef.current.length > 0) {
+        const effectiveNow = getEffectiveTimeMs();
+        const nextActive = resolveActiveUpcomingOrOngoingRace(calendarRacesRef.current, effectiveNow);
+        if (nextActive) {
+          const rawId = (nextActive as any)?.Circuit?.circuitId?.toLowerCase();
+          const resolvedId = ALL_CIRCUITS_ROSTER.find(c => 
+            c.id === rawId || 
+            c.id === rawId.replace(/-/g, '_') ||
+            rawId.includes(c.id) ||
+            c.id.includes(rawId)
+          )?.id || (rawId === 'singapore' ? 'marina_bay' : rawId);
+
+          if (resolvedId && resolvedId !== selectedCircuitRef.current) {
+            selectedCircuitRef.current = resolvedId;
+            setSelectedCircuit(resolvedId);
+            activeRaceDataRef.current = nextActive;
+            setSessions(parseCompetitiveSessions(nextActive, getEffectiveDate()));
+
+            const raceName = nextActive.raceName || resolvedId.toUpperCase();
+            const timeStr = new Date().toTimeString().split(' ')[0];
+            setLogs(l => [
+              ...l,
+              `[${timeStr}] 🏁 ACTIVE VENUE ADVANCED: Previous Grand Prix concluded. Auto-switched venue radar to upcoming ${raceName} (${resolvedId}).`
+            ]);
+
+            if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+              wsRef.current.send(JSON.stringify({
+                type: 'SET_CIRCUIT',
+                circuitId: resolvedId
+              }));
+            }
+          }
+        }
+      }
+
       if (activeRaceDataRef.current) {
-        setSessions(parseCompetitiveSessions(activeRaceDataRef.current));
+        setSessions(parseCompetitiveSessions(activeRaceDataRef.current, getEffectiveDate()));
       }
     }, 1000);
 
@@ -959,14 +1032,20 @@ export default function LiveTelemetryPage() {
     };
   }, []);
 
+  const effectiveNowMs = getEffectiveTimeMs();
+  const effectiveDate = getEffectiveDate();
+  const raceStartTimeMs = activeRaceDataRef.current ? getRaceStartTimeMs(activeRaceDataRef.current) : 0;
+  const raceEndTimeMs = activeRaceDataRef.current ? getRaceEndTimeMs(activeRaceDataRef.current) : 0;
+  const isOngoingRace = raceStartTimeMs > 0 && effectiveNowMs >= raceStartTimeMs && effectiveNowMs <= raceEndTimeMs;
+
   const activeLiveSession = sessions.find(s => s.status === 'LIVE');
   const nextUpcomingSession = sessions.find(s => s.status === 'UPCOMING');
-  const isCompetitiveDay = isTodayCompetitiveDay(sessions);
+  const isCompetitiveDay = isTodayCompetitiveDay(sessions, effectiveDate);
   const isCompetitiveSessionLive = Boolean(activeLiveSession) || isLiveTransmitting;
   const isLiveActive = isCompetitiveDay || isCompetitiveSessionLive;
 
   const todaySession = sessions.find(s => {
-    const nowDate = new Date();
+    const nowDate = effectiveDate;
     const localYear = nowDate.getFullYear();
     const localMonth = String(nowDate.getMonth() + 1).padStart(2, '0');
     const localDay = String(nowDate.getDate()).padStart(2, '0');
@@ -976,10 +1055,10 @@ export default function LiveTelemetryPage() {
   });
 
   const countdownToNext = nextUpcomingSession && nextUpcomingSession.startMs 
-    ? formatCountdown(nextUpcomingSession.startMs, nowMs) 
+    ? formatCountdown(nextUpcomingSession.startMs, effectiveNowMs) 
     : null;
   const countdownParts = nextUpcomingSession && nextUpcomingSession.startMs 
-    ? parseCountdownParts(nextUpcomingSession.startMs, nowMs) 
+    ? parseCountdownParts(nextUpcomingSession.startMs, effectiveNowMs) 
     : null;
 
   return (
@@ -1472,27 +1551,54 @@ export default function LiveTelemetryPage() {
           
           {/* Live Track Radar Map */}
           <div className="w-full max-w-full overflow-hidden" style={{ padding: 0, border: 'none', background: 'transparent' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span className="footnote" style={{ color: 'var(--dim)', fontWeight: 'bold', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>SELECT ACTIVE VENUE RADAR:</span>
-              <select
-                value={selectedCircuit}
-                onChange={(e) => handleCircuitChange(e.target.value)}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="footnote" style={{ color: 'var(--dim)', fontWeight: 'bold', fontSize: '11px', fontFamily: 'var(--font-mono)', letterSpacing: '0.04em' }}>
+                  ACTIVE VENUE RADAR:
+                </span>
+                <span style={{
+                  fontSize: '10px',
+                  fontFamily: 'var(--font-mono)',
+                  padding: '2px 8px',
+                  borderRadius: '4px',
+                  background: isOngoingRace ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)',
+                  color: isOngoingRace ? '#ef4444' : '#10b981',
+                  border: isOngoingRace ? '1px solid rgba(239, 68, 68, 0.3)' : '1px solid rgba(16, 185, 129, 0.3)',
+                  fontWeight: 'bold',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px'
+                }}>
+                  <span style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    backgroundColor: isOngoingRace ? '#ef4444' : '#10b981',
+                    display: 'inline-block',
+                    boxShadow: isOngoingRace ? '0 0 8px #ef4444' : '0 0 8px #10b981'
+                  }} />
+                  {isOngoingRace ? 'ONGOING GRAND PRIX' : 'UPCOMING GRAND PRIX'}
+                </span>
+              </div>
+              <div
                 style={{
                   background: 'var(--carbon-2)',
                   border: '1px solid var(--line)',
                   color: 'var(--paper)',
                   fontSize: '11px',
-                  padding: '3px 8px',
+                  padding: '4px 10px',
                   borderRadius: '4px',
-                  fontFamily: 'var(--font-mono)'
+                  fontFamily: 'var(--font-mono)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
                 }}
               >
-                {ALL_CIRCUITS_ROSTER.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.flag} {c.country} - {c.name}
-                  </option>
-                ))}
-              </select>
+                <span>{currentCircuitInfo?.flag || '🇧🇷'}</span>
+                <span style={{ fontWeight: 600 }}>{currentCircuitInfo?.country || currentCountryName || 'Brazil'}</span>
+                <span style={{ color: 'var(--dim)' }}>—</span>
+                <span>{currentVenueName}</span>
+              </div>
             </div>
             <CircuitMap 
               circuitId={selectedCircuit} 
