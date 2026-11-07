@@ -420,6 +420,7 @@ export default function LiveTelemetryPage() {
   // Calendar & Competitive Sessions
   const [calendarRaces, setCalendarRaces] = useState<any[]>([]);
   const calendarRacesRef = useRef<any[]>([]);
+  const [activeRaceData, setActiveRaceData] = useState<any>(null);
   const activeRaceDataRef = useRef<any>(null);
   const [sessions, setSessions] = useState<CompetitiveSession[]>([]);
   const [activeDriverCode, setActiveDriverCode] = useState<string | null>(null);
@@ -503,6 +504,7 @@ export default function LiveTelemetryPage() {
           const activeRace = resolveActiveUpcomingOrOngoingRace(list, effectiveNow);
 
           activeRaceDataRef.current = activeRace;
+          setActiveRaceData(activeRace);
 
           const rawCircuitId = (activeRace as any)?.Circuit?.circuitId?.toLowerCase();
           if (rawCircuitId) {
@@ -628,9 +630,11 @@ export default function LiveTelemetryPage() {
 
     if (matchedRace) {
       activeRaceDataRef.current = matchedRace;
+      setActiveRaceData(matchedRace);
       setSessions(parseCompetitiveSessions(matchedRace));
     } else {
       activeRaceDataRef.current = null;
+      setActiveRaceData(null);
       setSessions([]);
     }
 
@@ -670,6 +674,7 @@ export default function LiveTelemetryPage() {
             selectedCircuitRef.current = resolvedId;
             setSelectedCircuit(resolvedId);
             activeRaceDataRef.current = nextActive;
+            setActiveRaceData(nextActive);
             setSessions(parseCompetitiveSessions(nextActive, getEffectiveDate()));
 
             const raceName = nextActive.raceName || resolvedId.toUpperCase();
@@ -1034,8 +1039,8 @@ export default function LiveTelemetryPage() {
 
   const effectiveNowMs = getEffectiveTimeMs();
   const effectiveDate = getEffectiveDate();
-  const raceStartTimeMs = activeRaceDataRef.current ? getRaceStartTimeMs(activeRaceDataRef.current) : 0;
-  const raceEndTimeMs = activeRaceDataRef.current ? getRaceEndTimeMs(activeRaceDataRef.current) : 0;
+  const raceStartTimeMs = activeRaceData ? getRaceStartTimeMs(activeRaceData) : 0;
+  const raceEndTimeMs = activeRaceData ? getRaceEndTimeMs(activeRaceData) : 0;
   const isOngoingRace = raceStartTimeMs > 0 && effectiveNowMs >= raceStartTimeMs && effectiveNowMs <= raceEndTimeMs;
 
   const activeLiveSession = sessions.find(s => s.status === 'LIVE');
